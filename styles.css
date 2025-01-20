@@ -1,0 +1,74 @@
+/* General Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+}
+
+header, .section-bg, .contact-bg {
+    color: white;
+    text-align: center;
+}
+
+header {
+    background: linear-gradient(to right, #007acc, #005f99);
+    padding: 2rem;
+}
+
+header nav a {
+    margin: 0 15px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header nav a:hover {
+    text-decoration: underline;
+}
+
+/* Section Backgrounds */
+.section-bg {
+    background: linear-gradient(to right, #f3f4f6, #e7e8ea);
+    padding: 2rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.contact-bg {
+    background: url('https://via.placeholder.com/1500x500/007acc/ffffff') no-repeat center center;
+    background-size: cover;
+    color: white;
+    padding: 2rem;
+}
+
+/* Skills Section */
+.skills {
+    list-style: none;
+    padding: 0;
+}
+
+.skills li {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.skill-bar {
+    height: 10px;
+    background: #007acc;
+    border-radius: 5px;
+    flex-grow: 1;
+    margin-left: 10px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    background: #333;
+    color: white;
+    padding: 1rem;
+    margin-top: 20px;
+}
