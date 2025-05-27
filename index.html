@@ -29,6 +29,28 @@
       </ul>
     </nav>
 
+    <section id="hero" class="hero-section">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <h1 class="hero-headline">Mike Henke</h1>
+          <p class="hero-subheadline">
+            Web & Mobile Developer<br />Engineer. Coder. Professional.
+          </p>
+          <div class="hero-buttons">
+            <a href="#portfolio" class="btn btn-primary">View Portfolio</a>
+            <a href="#contact" class="btn btn-secondary">Contact Me</a>
+          </div>
+        </div>
+        <div class="hero-image-container">
+          <img
+            src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=facearea&w=400&q=80"
+            alt="Mike Henke profile"
+            class="hero-image"
+          />
+        </div>
+      </div>
+    </section>
+
     <section id="about">
       <h2>About Me</h2>
       <p>
@@ -49,33 +71,49 @@
             <span class="skill-label lang">JavaScript</span>
             <span class="skill-percent">95%</span>
           </div>
-          <div class="progress-bar"><span style="width:95%"></span></div>
-          <div class="skill-row"></div>
+          <div class="progress-bar"><span style="width: 95%"></span></div>
+          <div class="skill-row">
             <span class="skill-label lang">Python</span>
             <span class="skill-percent">85%</span>
           </div>
-          <div class="progress-bar"><span style="width:85%"></span></div>
+          <div class="progress-bar"><span style="width: 85%"></span></div>
           <div class="skill-row">
             <span class="skill-label lang">Ruby</span>
             <span class="skill-percent">80%</span>
           </div>
-          <div class="progress-bar"><span style="width:80%"></span></div>
+          <div class="progress-bar"><span style="width: 80%"></span></div>
         </div>
         <div class="skills-card">
           <h3>Frameworks</h3>
           <div class="frameworks-grid">
-            <div class="framework-item"><i class="fab fa-react"></i><span>React</span></div>
-            <div class="framework-item"><i class="fab fa-angular"></i><span>Angular</span></div>
-            <div class="framework-item"><i class="fab fa-node-js"></i><span>Node.js</span></div>
-            <div class="framework-item"><i class="fas fa-gem"></i><span>Rails</span></div>
+            <div class="framework-item">
+              <i class="fab fa-react"></i><span>React</span>
+            </div>
+            <div class="framework-item">
+              <i class="fab fa-angular"></i><span>Angular</span>
+            </div>
+            <div class="framework-item">
+              <i class="fab fa-node-js"></i><span>Node.js</span>
+            </div>
+            <div class="framework-item">
+              <i class="fas fa-gem"></i><span>Rails</span>
+            </div>
           </div>
         </div>
         <div class="skills-card">
           <h3>Methodologies</h3>
-          <div class="methodology-item"><i class="fas fa-check-circle"></i>Agile Development</div>
-          <div class="methodology-item"><i class="fas fa-check-circle"></i>Test Driven Development</div>
-          <div class="methodology-item"><i class="fas fa-check-circle"></i>SCRUM</div>
-          <div class="methodology-item"><i class="fas fa-check-circle"></i>CI/CD</div>
+          <div class="methodology-item">
+            <i class="fas fa-check-circle"></i>Agile Development
+          </div>
+          <div class="methodology-item">
+            <i class="fas fa-check-circle"></i>Test Driven Development
+          </div>
+          <div class="methodology-item">
+            <i class="fas fa-check-circle"></i>SCRUM
+          </div>
+          <div class="methodology-item">
+            <i class="fas fa-check-circle"></i>CI/CD
+          </div>
         </div>
       </div>
       <div class="button-container">
@@ -104,36 +142,39 @@
       </p>
     </section>
 
-    <section id="recent-career" class="recent-career-section">
-      <div class="career-left">
-        <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=400&q=80" alt="Stock career" class="career-photo" />
-        <span class="career-label">CAREER</span>
-      </div>
-      <div class="career-container">
-        <h2>My Recent Career</h2>
-        <div class="career-timeline">
-          <div class="career-item">
-            <div class="career-step">1</div>
-            <div class="career-line"></div>
-            <div class="career-details">
-              <div class="career-title">Union Pacific</div>
-              <div class="career-role">M&S Business Consultant II, July 2016 - Present</div>
+    <section id="career-timeline-slide" class="career-timeline-slide">
+      <h2>My Recent Career</h2>
+      <div class="career-timeline-grid">
+        <div class="timeline-col">
+          <div class="timeline-steps">
+            <div class="timeline-step">
+              <div class="step-number">1</div>
+              <div class="step-line"></div>
+            </div>
+            <div class="timeline-step">
+              <div class="step-number">2</div>
+              <div class="step-line"></div>
+            </div>
+            <div class="timeline-step">
+              <div class="step-number">3</div>
             </div>
           </div>
-          <div class="career-item">
-            <div class="career-step">2</div>
-            <div class="career-line"></div>
-            <div class="career-details">
-              <div class="career-title">Telvent DTN (Schneider Electric)</div>
-              <div class="career-role">Application Contractor, February 2013 - July 2016</div>
-            </div>
+        </div>
+        <div class="content-col">
+          <div class="career-entry">
+            <div class="company">Union Pacific</div>
+            <div class="role">M&S Business Consultant II</div>
+            <div class="dates">July 2016 - Present</div>
           </div>
-          <div class="career-item">
-            <div class="career-step">3</div>
-            <div class="career-details">
-              <div class="career-title">Resource Insurance Consultants</div>
-              <div class="career-role">Senior Software Engineer Web, December 2010 - February 2013</div>
-            </div>
+          <div class="career-entry">
+            <div class="company">Telvent DTN (Schneider Electric)</div>
+            <div class="role">Application Contractor</div>
+            <div class="dates">February 2013 - July 2016</div>
+          </div>
+          <div class="career-entry">
+            <div class="company">Resource Insurance Consultants</div>
+            <div class="role">Senior Software Engineer Web</div>
+            <div class="dates">December 2010 - February 2013</div>
           </div>
         </div>
       </div>
