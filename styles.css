@@ -42,7 +42,7 @@ section {
 
 /* NEW Boxed Section Styling */
 .content-section-boxed {
-  background-color: #22313a; /* Consistent dark background for boxed sections */
+  background-color: #232323; /* Consistent dark background for boxed sections */
   padding: 40px; /* Uniform padding, overrides section's default padding */
   border-radius: 18px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Subtle shadow */
