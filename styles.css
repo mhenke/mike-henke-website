@@ -106,19 +106,26 @@ nav ul li a.active {
 section {
   margin: 0 auto 60px auto;
   max-width: 1200px;
-  padding: 0 24px;
+  padding: 0 24px; /* Default horizontal padding for non-boxed sections */
+}
+
+/* NEW Boxed Section Styling */
+.content-section-boxed {
+  background-color: #22313a; /* Consistent dark background for boxed sections */
+  padding: 40px; /* Uniform padding, overrides section's default padding */
+  border-radius: 18px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  /* max-width and margin:auto will be inherited from 'section' rule */
 }
 
 #about {
-  background: #232c3b;
-  border-radius: 18px;
-  box-shadow: 0 2px 16px #0003;
-  padding: 48px 36px 36px 36px;
+  /* REMOVED background, border-radius, box-shadow, padding */
+  /* Retaining margin-top for specific spacing after hero */
   margin-top: 48px;
 }
 
 #about h2 {
-  text-align: left;
+  /* REMOVED text-align: left; .section-title handles alignment */
 }
 
 #about p {
@@ -309,15 +316,11 @@ section {
 }
 
 #portfolio {
-  background: #232c3b;
-  border-radius: 18px;
-  box-shadow: 0 2px 16px #0003;
-  padding: 48px 36px 36px 36px;
+  /* REMOVED background, border-radius, box-shadow, padding */
 }
 
 #portfolio h2 {
-  color: #00cfff;
-  text-align: left;
+  /* REMOVED color and text-align: left; .section-title handles these */
 }
 
 #portfolio ul {
@@ -345,16 +348,11 @@ section {
 }
 
 #contact {
-  background: #223a5e;
-  border-radius: 18px;
-  box-shadow: 0 2px 16px #0003;
-  padding: 48px 36px 36px 36px;
-  color: #fff;
+  /* REMOVED background, border-radius, box-shadow, padding */
 }
 
 #contact h2 {
-  color: #00cfff;
-  text-align: left;
+  /* REMOVED color and text-align: left; .section-title handles these */
 }
 
 #contact p,
@@ -372,6 +370,7 @@ section {
 
 /* Recent Career Section */
 .recent-career-section {
+  /* This rule is not actively used by current HTML for the career section box */
   display: flex;
   min-height: 500px;
   background: #1a2636;
