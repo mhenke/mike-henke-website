@@ -33,4 +33,4 @@ This project is licensed under the MIT License.
 
 ## Production URL
 
-The website is hosted on GitHub Pages and can be viewed at: [https://mikehenke.github.io/mike-henke-website/](https://mikehenke.github.io/mike-henke-website/)
+The website is hosted on GitHub Pages and can be viewed at: [https://mhenke.github.io/mike-henke-website/](https://mhenke.github.io/mike-henke-website/)
