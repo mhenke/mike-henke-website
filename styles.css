@@ -72,14 +72,7 @@ nav ul li a {
   font-weight: 700;
   letter-spacing: 0.03em;
   padding: 8px 18px;
-  border-radius: 6px;
   transition: background 0.2s, color 0.2s;
-}
-
-nav ul li a:hover,
-nav ul li a.active {
-  background: #19d4fe; /* Accent color */
-  color: #181a1b; /* Dark background for text on accent */
 }
 
 /* NEW Section Title Styling */
