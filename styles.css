@@ -636,6 +636,106 @@ section .section-underline {
   font-weight: 400;
 }
 
+/* Hero Section */
+.hero-section {
+  max-width: 1400px;
+  margin: 48px auto 60px auto;
+  padding: 0 24px 60px 24px;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 48px;
+  background: #232c3b;
+  border-radius: 24px;
+  box-shadow: 0 2px 16px #0003;
+  padding: 64px 48px;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 32px;
+}
+
+.hero-headline {
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: #00cfff;
+  margin: 0 0 12px 0;
+  letter-spacing: 0.01em;
+}
+
+.hero-subheadline {
+  font-size: 1.5rem;
+  color: #cfd8dc;
+  font-family: 'Roboto', Arial, sans-serif;
+  margin-bottom: 24px;
+  line-height: 1.4;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 24px;
+}
+
+.btn-primary {
+  background: #00cfff;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 16px 40px;
+  border-radius: 10px;
+  text-decoration: none;
+  border: none;
+  transition: background 0.2s;
+  font-family: 'Montserrat', Arial, sans-serif;
+  box-shadow: 0 2px 8px #00cfff33;
+}
+
+.btn-primary:hover {
+  background: #009ec3;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #00cfff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 16px 40px;
+  border-radius: 10px;
+  text-decoration: none;
+  border: 2px solid #00cfff;
+  transition: background 0.2s, color 0.2s;
+  font-family: 'Montserrat', Arial, sans-serif;
+  box-shadow: 0 2px 8px #00cfff33;
+}
+
+.btn-secondary:hover {
+  background: #00cfff;
+  color: #181c24;
+}
+
+.hero-image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-image {
+  width: 320px;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 4px 32px #00cfff33;
+  border: 6px solid #223a5e;
+}
+
 @media (max-width: 1200px) {
   .skills-columns {
     flex-direction: column;
@@ -677,6 +777,17 @@ section .section-underline {
   .career-container {
     padding: 40px 10px;
     max-width: 98vw;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    padding: 32px 12px;
+    gap: 32px;
+  }
+
+  .hero-image {
+    width: 220px;
+    height: 220px;
   }
 }
 
