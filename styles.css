@@ -82,28 +82,31 @@ nav ul li a.active {
   color: #181a1b; /* Dark background for text on accent */
 }
 
+/* NEW Section Title Styling */
+.section-title {
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-size: 2.5rem; /* h2 size from instructions */
+  font-weight: 700; /* Main heading weight */
+  color: #19d4fe; /* Accent color */
+  text-align: center; /* Centered */
+  margin-top: 0;
+  margin-bottom: 20px; /* Space before underline */
+  letter-spacing: 0.3px;
+}
+
+/* NEW Section Underline Styling */
+.section-underline {
+  width: 70px;
+  height: 4px;
+  background: #19d4fe; /* Accent color */
+  margin: 0 auto 40px auto; /* Centered, with bottom margin */
+  border-radius: 2px;
+}
+
 section {
   margin: 0 auto 60px auto;
   max-width: 1200px;
   padding: 0 24px;
-}
-
-section h2 {
-  font-family: 'Montserrat', Arial, sans-serif;
-  font-size: 2.7rem;
-  font-weight: 900;
-  color: #00cfff;
-  margin-bottom: 18px;
-  letter-spacing: 0.01em;
-  text-align: left;
-}
-
-section .section-underline {
-  width: 70px;
-  height: 4px;
-  background: #00cfff;
-  margin-bottom: 36px;
-  border-radius: 2px;
 }
 
 #about {
@@ -156,7 +159,7 @@ section .section-underline {
 
 .skill-bar {
   height: 10px;
-  background: #007acc;
+  background: #007acc; /* This was an old accent, ensure it's not conflicting or is for a different element */
   border-radius: 5px;
   flex-grow: 1;
   margin-left: 10px;
@@ -166,25 +169,7 @@ section .section-underline {
   max-width: 1400px;
   margin: 60px auto 0 auto;
   padding: 0 20px 60px 20px;
-  background: transparent;
-}
-
-.skills-section h2 {
-  text-align: center;
-  font-size: 56px;
-  font-weight: 900;
-  margin-bottom: 0;
-  font-family: 'Montserrat', Arial, sans-serif;
-  letter-spacing: 0.01em;
-  color: #fff;
-}
-
-.skills-underline {
-  width: 90px;
-  height: 5px;
-  background: #00cfff;
-  margin: 18px auto 48px auto;
-  border-radius: 3px;
+  background: transparent; /* Correct: inherits #181a1b from body */
 }
 
 .skills-columns {
