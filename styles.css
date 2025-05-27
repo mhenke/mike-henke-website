@@ -653,34 +653,38 @@ body {
 
 /* NAVIGATION */
 .navbar {
-  background: #181a1b;
-  padding: 0 32px;
-  border-bottom: 1px solid #222f36;
+  background: #181a1b; /* Match hero section background */
+  padding: 0 5%; /* Use percentage for padding consistent with hero */
+  /* border-bottom: 1px solid #222f36; */ /* Removing border for cleaner look like screenshot */
   position: sticky;
   top: 0;
   z-index: 100;
+  height: 80px; /* Increased height for more spacing */
+  display: flex; /* Use flex to align items in the navbar itself */
+  align-items: center; /* Vertically center content in navbar */
 }
 
 .navbar-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  height: 64px;
+  max-width: 1200px; /* Consistent max-width */
+  margin: 0 auto; /* Center container */
+  width: 100%; /* Ensure container takes full width up to max-width */
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between; /* Pushes brand to left and links to right */
 }
 
 .navbar-brand {
-  font-size: 1.3rem;
-  font-weight: 700;
+  font-size: 1.5rem; /* Slightly larger brand text */
+  font-weight: 700; /* Bold brand */
   letter-spacing: 0.5px;
-  color: #fff;
+  color: #ffffff; /* White brand text */
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
 .navbar-links {
   list-style: none;
   display: flex;
-  gap: 32px;
+  gap: 40px; /* Increased gap between nav items */
   margin: 0;
   padding: 0;
 }
@@ -690,35 +694,47 @@ body {
 }
 
 .navbar-links a {
-  color: #fff;
+  color: #cccccc; /* Lighter gray for nav links, less prominent than brand */
   text-decoration: none;
-  font-size: 1rem;
-  font-weight: 400;
-  letter-spacing: 0.2px;
-  transition: color 0.2s, border-bottom 0.2s;
-  padding: 4px 0;
-  border-bottom: 2px solid transparent;
+  font-size: 0.9rem; /* Slightly smaller font for nav links as per screenshot */
+  font-weight: 400; /* Regular weight */
+  letter-spacing: 0.3px; /* Subtle letter spacing */
+  transition: color 0.2s ease, border-bottom-color 0.2s ease; /* Smooth transition */
+  padding-bottom: 5px; /* Space for the underline */
+  border-bottom: 2px solid transparent; /* Transparent border for hover effect */
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
 .navbar-links a:hover,
 .navbar-links a:focus {
-  color: #19d4fe;
-  border-bottom: 2px solid #19d4fe;
+  color: #ffffff; /* White text on hover/focus */
+  border-bottom-color: #ffffff; /* White underline on hover/focus */
   outline: none;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
+  /* Adjusted breakpoint for nav changes */
+  .navbar {
+    height: auto; /* Allow height to adjust to content */
+    padding: 15px 5%; /* Adjust padding for mobile */
+  }
   .navbar-container {
     flex-direction: column;
-    height: auto;
-    padding: 12px 0;
-    align-items: flex-start;
+    align-items: center; /* Center items when stacked */
+  }
+
+  .navbar-brand {
+    margin-bottom: 15px; /* Space below brand when stacked */
   }
 
   .navbar-links {
-    gap: 18px;
-    margin-top: 8px;
-    flex-wrap: wrap;
+    gap: 20px; /* Reduce gap for smaller screens */
+    flex-wrap: wrap; /* Allow links to wrap */
+    justify-content: center; /* Center links when wrapped */
+  }
+  .navbar-links a {
+    font-size: 0.85rem; /* Adjust font size for mobile */
+    padding-bottom: 3px;
   }
 }
 
@@ -952,7 +968,7 @@ footer {
 .step-number {
   width: 40px;
   height: 40px;
-  background-color: #4A5A6A; /* Darker gray for number background */
+  background-color: #4a5a6a; /* Darker gray for number background */
   color: #ffffff; /* White text for numbers */
   font-size: 1.2rem;
   font-weight: 600;
@@ -968,7 +984,7 @@ footer {
 
 .step-line {
   width: 3px; /* Thinner vertical line */
-  background-color: #4A5A6A; /* Same color as number background for the line */
+  background-color: #4a5a6a; /* Same color as number background for the line */
   flex-grow: 1; /* Make line fill space down to next element or bottom of container */
   min-height: 60px; /* Minimum height for the line, ensuring it connects visually */
   /* The line will effectively be between the bottom of .step-number and the top of the next .step-number */
@@ -998,13 +1014,12 @@ footer {
   content: '';
   position: absolute;
   left: -30px; /* Distance from the start of the career-entry text */
-  top: 20px;  /* Vertically align with the center of the step-number (approx) */
+  top: 20px; /* Vertically align with the center of the step-number (approx) */
   width: 25px; /* Length of the horizontal line */
   height: 3px; /* Thickness of the line */
-  background-color: #4A5A6A; /* Match line color */
+  background-color: #4a5a6a; /* Match line color */
   z-index: 1;
 }
-
 
 .career-entry h3 {
   font-size: 1.3rem;
@@ -1044,7 +1059,7 @@ footer {
   }
   .timeline-step {
     flex-direction: row; /* Align number and a short horizontal connector if desired */
-    align-items: center; 
+    align-items: center;
     margin-bottom: 0; /* Remove bottom margin as steps are now side-by-side or managed by .timeline-col gap */
     margin-right: 15px; /* Space between horizontal steps */
   }
@@ -1082,7 +1097,7 @@ footer {
     font-size: 1rem;
   }
   .timeline-col {
-     /* Optional: if numbers become too crowded, stack them */
+    /* Optional: if numbers become too crowded, stack them */
     /* flex-direction: column; */
     /* align-items: center; */
   }
@@ -1091,5 +1106,148 @@ footer {
     /* flex-direction: column; */
     /* margin-bottom: 15px; */
     /* margin-right: 0; */
+  }
+}
+
+/* Hero Section */
+.hero-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 40px;
+  gap: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-content {
+  z-index: 2;
+  text-align: left;
+}
+
+.hero-content h1 {
+  font-size: 3.5rem;
+  font-weight: 900;
+  margin: 0 0 20px 0;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  color: #e0e0e0;
+  margin: 0 0 30px 0;
+  line-height: 1.6;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 24px;
+}
+
+.hero-buttons .btn {
+  flex: 1;
+  padding: 18px 0;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.hero-buttons .btn-primary {
+  background: #00cfff;
+  color: #181a1b;
+  border: none;
+}
+
+.hero-buttons .btn-primary:hover {
+  background-color: #15b8d8; /* Slightly darker accent on hover */
+  transform: translateY(-2px); /* Subtle lift effect */
+}
+
+/* Updated btn-outline to btn-secondary for clarity and consistency */
+.hero-buttons .btn-secondary {
+  background-color: transparent;
+  color: #19d4fe; /* Accent color for text */
+  border: 2px solid #19d4fe; /* Accent color for outline */
+}
+
+.hero-buttons .btn-secondary:hover {
+  background-color: #19d4fe;
+  color: #181a1b; /* Dark text on accent background for hover */
+  transform: translateY(-2px); /* Subtle lift effect */
+}
+
+.hero-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  order: 1;
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px #0006;
+}
+
+@media (max-width: 900px) {
+  .hero-section {
+    grid-template-columns: 1fr; /* Stack columns */
+    text-align: center; /* Center text for stacked layout */
+    padding: 60px 5%;
+  }
+
+  .hero-content {
+    /* order: 2; */ /* Text will now be first, then image, then buttons */
+    text-align: center; /* Ensure text is centered */
+  }
+
+  .hero-content h1 {
+    font-size: 2.5rem; /* Adjust heading size for mobile */
+  }
+
+  .hero-content p {
+    font-size: 1rem; /* Adjust paragraph size for mobile */
+    margin-bottom: 20px; /* Space below paragraph before image */
+  }
+
+  .hero-image {
+    order: 2; /* Image after title/subtitle */
+    margin-bottom: 30px; /* Space below image */
+  }
+
+  .hero-image img {
+    max-width: 60%; /* Control image size on mobile, slightly smaller */
+    margin: 0 auto; /* Center image */
+  }
+
+  .hero-buttons {
+    order: 3; /* Buttons last on mobile */
+    display: flex; /* Use flexbox for button alignment */
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 16px; /* Space between buttons */
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content p {
+    font-size: 0.9rem;
+  }
+
+  .hero-buttons .btn {
+    padding: 15px 0;
+    font-size: 1rem;
   }
 }
