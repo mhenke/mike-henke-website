@@ -904,233 +904,192 @@ footer {
   border-radius: 18px 18px 0 0;
 }
 
+/* Career Section Styling */
 .career-section {
-  max-width: 900px;
-  margin: 60px auto 60px auto;
-  background: #22313a;
-  border-radius: 16px;
-  padding: 48px 24px 40px 24px;
-  box-shadow: 0 2px 16px #0003;
+  max-width: 900px; /* Max width for the section */
+  margin: 80px auto; /* Centering and spacing */
+  padding: 50px 40px; /* Generous padding */
+  background-color: #22313a; /* Dark blue-gray background as per image */
+  border-radius: 16px; /* Rounded corners */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); /* Subtle shadow */
 }
 
-.career-section h2 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #19d4fe;
+.career-section .section-title {
+  font-size: 2.5rem; /* Large heading for "My Recent Career" */
+  font-weight: 700; /* Bold heading */
+  color: #ffffff; /* White text for the heading */
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-  margin-bottom: 2.5rem;
-  letter-spacing: 0.3px;
-  text-align: left;
+  margin-bottom: 40px; /* Space below the heading */
+  letter-spacing: 0.5px;
+  text-align: left; /* Align to the left as per image */
 }
 
 .career-timeline-grid {
   display: grid;
-  grid-template-columns: 60px 1fr;
-  gap: 0 32px;
+  grid-template-columns: auto 1fr; /* First column auto-width for numbers, second takes remaining space */
+  gap: 0 30px; /* Gap between columns, no row gap initially */
+  align-items: flex-start; /* Align items to the start of the grid area */
 }
 
 .timeline-col {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+  align-items: center; /* Center numbers and lines */
 }
 
 .timeline-step {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 80px;
-  position: relative;
+  position: relative; /* For positioning lines if needed, and for future ::before/::after elements */
+  margin-bottom: 20px; /* Space between each number/line group and the next one below */
+}
+
+.timeline-step:last-child {
+  margin-bottom: 0;
 }
 
 .step-number {
-  background: #19d4fe;
-  color: #181a1b;
-  font-size: 1.5rem;
-  font-weight: 700;
-  width: 38px;
-  height: 38px;
-  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  background-color: #4A5A6A; /* Darker gray for number background */
+  color: #ffffff; /* White text for numbers */
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 8px; /* Slightly rounded squares */
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 0.5rem;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-  box-shadow: 0 2px 8px #19d4fe44;
-  z-index: 1;
+  margin-bottom: 10px; /* Space between number and the start of the vertical line */
+  position: relative; /* To allow z-index if needed */
+  z-index: 2;
 }
 
 .step-line {
-  flex: 1;
-  width: 4px;
-  background: #19d4fe;
-  min-height: 36px;
-  margin-bottom: 0.5rem;
-  border-radius: 2px;
+  width: 3px; /* Thinner vertical line */
+  background-color: #4A5A6A; /* Same color as number background for the line */
+  flex-grow: 1; /* Make line fill space down to next element or bottom of container */
+  min-height: 60px; /* Minimum height for the line, ensuring it connects visually */
+  /* The line will effectively be between the bottom of .step-number and the top of the next .step-number */
 }
 
+/* Remove vertical line for the last step */
 .timeline-step:last-child .step-line {
   display: none;
 }
 
 .career-content-col {
-  display: flex;
-  flex-direction: column;
-  gap: 36px;
-  justify-content: flex-start;
+  padding-top: 5px; /* Align top of content with top of the first number */
 }
 
 .career-entry {
-  background: #181a1b;
-  border-radius: 10px;
-  padding: 20px 28px;
-  box-shadow: 0 2px 8px #0002;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  background-color: transparent; /* No background for individual entries, main section has bg */
+  padding-bottom: 30px; /* Space between entries, adjusted from gap to padding-bottom */
+  position: relative; /* For the horizontal line */
 }
 
-.company {
+.career-entry:last-child {
+  padding-bottom: 0;
+}
+
+/* Horizontal line from number to content */
+.career-entry::before {
+  content: '';
+  position: absolute;
+  left: -30px; /* Distance from the start of the career-entry text */
+  top: 20px;  /* Vertically align with the center of the step-number (approx) */
+  width: 25px; /* Length of the horizontal line */
+  height: 3px; /* Thickness of the line */
+  background-color: #4A5A6A; /* Match line color */
+  z-index: 1;
+}
+
+
+.career-entry h3 {
   font-size: 1.3rem;
-  font-weight: 700;
-  color: #19d4fe;
+  font-weight: 600; /* Subheading weight */
+  color: #ffffff; /* White company name */
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-  margin: 0 0 2px 0;
-  letter-spacing: 0.2px;
+  margin: 0 0 8px 0; /* Space below company name */
+  letter-spacing: 0.3px;
 }
 
-.role {
-  font-size: 1.1rem;
-  color: #fff;
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-  font-weight: 600;
-}
-
-.dates {
+.career-entry p {
   font-size: 1rem;
-  color: #b0bec5;
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-  font-weight: 400;
-}
-
-/* Hero Section */
-.hero-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* Two equal columns */
-  align-items: center;
-  padding: 80px 5%; /* Generous padding, percentage for responsiveness */
-  background-color: #181a1b; /* Dark theme background */
-  gap: 40px; /* Space between text and image */
-  min-height: 70vh; /* Make hero section take a good portion of viewport height */
-}
-
-.hero-content {
-  text-align: left;
-}
-
-.hero-content h1 {
-  font-size: 3rem; /* Large heading */
-  font-weight: 700; /* Bold heading */
-  color: #ffffff; /* White text */
-  margin-bottom: 20px;
-  line-height: 1.2;
-}
-
-.hero-content h1 .highlight {
-  color: #19d4fe; /* Accent color for part of the heading */
-}
-
-.hero-content p {
-  font-size: 1.2rem;
   font-weight: 400; /* Regular body text */
-  color: #cccccc; /* Lighter gray for paragraph */
-  margin-bottom: 30px;
-  line-height: 1.6;
+  color: #cccccc; /* Lighter gray for role/dates */
+  line-height: 1.5;
+  margin: 0;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
-.hero-buttons .btn {
-  font-size: 1rem;
-  font-weight: 600;
-  padding: 15px 30px;
-  border-radius: 50px; /* Rounded buttons */
-  text-decoration: none;
-  margin-right: 15px;
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
-  display: inline-block; /* Align buttons inline */
-  border: 2px solid transparent; /* For consistent sizing with outlined button */
-}
-
-.hero-buttons .btn-primary {
-  background-color: #19d4fe; /* Accent color */
-  color: #181a1b; /* Dark text on accent background */
-}
-
-.hero-buttons .btn-primary:hover {
-  background-color: #15b8d8; /* Slightly darker accent on hover */
-  transform: translateY(-2px); /* Subtle lift effect */
-}
-
-.hero-buttons .btn-secondary {
-  background-color: transparent;
-  color: #19d4fe; /* Accent color for text */
-  border: 2px solid #19d4fe; /* Accent color for outline */
-}
-
-.hero-buttons .btn-secondary:hover {
-  background-color: #19d4fe;
-  color: #181a1b;
-  transform: translateY(-2px); /* Subtle lift effect */
-}
-
-.hero-image img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 15px; /* Rounded corners for the image */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Subtle box shadow */
-}
-
-/* Responsive adjustments for Hero Section */
+/* Responsive adjustments for Career Section */
 @media (max-width: 900px) {
-  .hero-section {
+  .career-section {
+    padding: 40px 20px;
+  }
+  .career-section .section-title {
+    font-size: 2.2rem;
+    text-align: center; /* Center title on smaller screens */
+  }
+  .career-timeline-grid {
     grid-template-columns: 1fr; /* Stack columns */
-    text-align: center; /* Center text for stacked layout */
-    padding: 60px 5%;
+    gap: 30px 0; /* Add gap between stacked timeline and content */
   }
-
-  .hero-content {
-    order: 2; /* Text below image on mobile */
-    text-align: center; /* Ensure text is centered */
+  .timeline-col {
+    flex-direction: row; /* Align numbers horizontally for a compact look if needed, or keep column */
+    justify-content: center; /* Center the numbers row */
+    margin-bottom: 20px; /* Space below the numbers row before content starts */
   }
-
-  .hero-content h1 {
-    font-size: 2.5rem; /* Adjust heading size for mobile */
+  .timeline-step {
+    flex-direction: row; /* Align number and a short horizontal connector if desired */
+    align-items: center; 
+    margin-bottom: 0; /* Remove bottom margin as steps are now side-by-side or managed by .timeline-col gap */
+    margin-right: 15px; /* Space between horizontal steps */
   }
-
-  .hero-content p {
-    font-size: 1rem; /* Adjust paragraph size for mobile */
+  .timeline-step:last-child {
+    margin-right: 0;
   }
-
-  .hero-image {
-    order: 1; /* Image above text on mobile */
-    margin-bottom: 30px; /* Space below image */
+  .step-line {
+    display: none; /* Hide vertical lines when stacked or horizontal */
   }
-
-  .hero-image img {
-    max-width: 80%; /* Control image size on mobile */
-    margin: 0 auto; /* Center image */
+  .career-entry::before {
+    display: none; /* Hide horizontal connector lines on mobile */
   }
-
-  .hero-buttons {
-    display: flex; /* Use flexbox for button alignment */
-    flex-direction: column; /* Stack buttons vertically */
-    align-items: center; /* Center buttons */
-    gap: 15px; /* Space between stacked buttons */
+  .career-content-col {
+    padding-top: 0;
   }
+  .career-entry {
+    text-align: center; /* Center text in entries */
+    padding-bottom: 20px;
+  }
+}
 
-  .hero-buttons .btn {
-    margin-right: 0; /* Remove right margin for stacked buttons */
-    width: 80%; /* Make buttons take more width */
-    text-align: center;
+@media (max-width: 600px) {
+  .career-section .section-title {
+    font-size: 2rem;
+  }
+  .career-entry h3 {
+    font-size: 1.15rem;
+  }
+  .career-entry p {
+    font-size: 0.9rem;
+  }
+  .step-number {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+  .timeline-col {
+     /* Optional: if numbers become too crowded, stack them */
+    /* flex-direction: column; */
+    /* align-items: center; */
+  }
+  .timeline-step {
+    /* if timeline-col is column again */
+    /* flex-direction: column; */
+    /* margin-bottom: 15px; */
+    /* margin-right: 0; */
   }
 }
