@@ -75,27 +75,6 @@ nav ul li a {
   transition: background 0.2s, color 0.2s;
 }
 
-/* NEW Section Title Styling */
-.section-title {
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-  font-size: 2.5rem; /* h2 size from instructions */
-  font-weight: 700; /* Main heading weight */
-  color: #19d4fe; /* Accent color */
-  text-align: center; /* Centered */
-  margin-top: 0;
-  margin-bottom: 20px; /* Space before underline */
-  letter-spacing: 0.3px;
-}
-
-/* NEW Section Underline Styling */
-.section-underline {
-  width: 70px;
-  height: 4px;
-  background: #19d4fe; /* Accent color */
-  margin: 0 auto 40px auto; /* Centered, with bottom margin */
-  border-radius: 2px;
-}
-
 section {
   margin: 0 auto 60px auto;
   max-width: 1200px;
@@ -115,10 +94,6 @@ section {
   /* REMOVED background, border-radius, box-shadow, padding */
   /* Retaining margin-top for specific spacing after hero */
   margin-top: 48px;
-}
-
-#about h2 {
-  /* REMOVED text-align: left; .section-title handles alignment */
 }
 
 #about p {
@@ -308,14 +283,6 @@ section {
   background: #009ec3;
 }
 
-#portfolio {
-  /* REMOVED background, border-radius, box-shadow, padding */
-}
-
-#portfolio h2 {
-  /* REMOVED color and text-align: left; .section-title handles these */
-}
-
 #portfolio ul {
   list-style: none;
   padding: 0;
@@ -338,14 +305,6 @@ section {
   position: absolute;
   left: 0;
   top: 2px;
-}
-
-#contact {
-  /* REMOVED background, border-radius, box-shadow, padding */
-}
-
-#contact h2 {
-  /* REMOVED color and text-align: left; .section-title handles these */
 }
 
 #contact p,
@@ -907,7 +866,7 @@ footer {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); /* Subtle shadow */
 }
 
-.career-section .section-title {
+.section-title {
   font-size: 2.5rem; /* Large heading for "My Recent Career" */
   font-weight: 700; /* Bold heading */
   color: #ffffff; /* White text for the heading */
@@ -1021,10 +980,7 @@ footer {
   .career-section {
     padding: 40px 20px;
   }
-  .career-section .section-title {
-    font-size: 2.2rem;
-    text-align: center; /* Center title on smaller screens */
-  }
+
   .career-timeline-grid {
     grid-template-columns: 1fr; /* Stack columns */
     gap: 30px 0; /* Add gap between stacked timeline and content */
@@ -1059,9 +1015,6 @@ footer {
 }
 
 @media (max-width: 600px) {
-  .career-section .section-title {
-    font-size: 2rem;
-  }
   .career-entry h3 {
     font-size: 1.15rem;
   }
