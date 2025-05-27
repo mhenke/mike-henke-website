@@ -1199,7 +1199,7 @@ footer {
     order: 2; /* Image second */
     margin-bottom: 30px; /* Space between image and buttons */
   }
-  
+
   .hero-image img {
     max-width: 70%; /* Adjust image size for mobile */
   }
@@ -1210,7 +1210,7 @@ footer {
     flex-direction: column; /* Stack buttons if needed, or keep row */
     align-items: center;
   }
-  
+
   .hero-buttons .btn {
     width: 80%; /* Make buttons take more width */
     max-width: 300px; /* Max width for very wide buttons */
