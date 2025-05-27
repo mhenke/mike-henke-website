@@ -7,47 +7,6 @@ body {
   letter-spacing: 0.3px; /* Subtle letter-spacing */
 }
 
-header,
-.section-bg,
-.contact-bg {
-  color: white;
-  text-align: center;
-}
-
-header {
-  background: linear-gradient(90deg, #1a2636 0%, #223a5e 100%);
-  padding: 0;
-  border-bottom: 4px solid #00cfff;
-  box-shadow: 0 2px 16px #0004;
-}
-
-header .container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1300px;
-  margin: 0 auto;
-  padding: 0 32px;
-  height: 90px;
-}
-
-header h1 {
-  font-size: 2.5rem;
-  font-family: 'Montserrat', Arial, sans-serif;
-  font-weight: 900;
-  color: #00cfff;
-  letter-spacing: 0.04em;
-  margin: 0;
-}
-
-header p {
-  font-size: 1.1rem;
-  color: #cfd8dc;
-  margin: 0 0 0 18px;
-  font-family: 'Roboto', Arial, sans-serif;
-  font-weight: 400;
-}
-
 nav {
   background: #232c3b;
   box-shadow: 0 2px 8px #0002;
@@ -132,56 +91,6 @@ section {
   justify-content: space-between;
 }
 
-.skill-bar {
-  height: 10px;
-  background: #007acc; /* This was an old accent, ensure it's not conflicting or is for a different element */
-  border-radius: 5px;
-  flex-grow: 1;
-  margin-left: 10px;
-}
-
-.skills-section {
-  max-width: 1400px;
-  margin: 60px auto 0 auto;
-  padding: 0 20px 60px 20px;
-  background: transparent; /* Correct: inherits #181a1b from body */
-}
-
-.skills-columns {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
-  margin-bottom: 36px;
-}
-
-.skills-card {
-  background: #232323;
-  border-radius: 16px;
-  padding: 36px 32px 32px 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  box-sizing: border-box;
-  box-shadow: none;
-}
-
-.skills-card h3 {
-  margin-top: 0;
-  margin-bottom: 24px;
-  font-size: 28px;
-  font-weight: 700;
-  font-family: 'Montserrat', Arial, sans-serif;
-  color: #fff;
-}
-
-/* Programming Languages */
-.skill-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0;
-}
-
 .skill-label.lang {
   color: #00cfff;
   font-size: 19px;
@@ -196,19 +105,19 @@ section {
 }
 
 .progress-bar {
-  background: #444;
-  border-radius: 6px;
-  height: 8px;
-  margin-bottom: 24px;
-  width: 100%;
-  overflow: hidden;
+  background-color: #3e4750; /* Dark theme gray for background */
+  border-radius: 5px;
+  height: 10px;
+  margin-top: 5px; /* Space above the bar */
+  margin-bottom: 15px; /* Space below each bar set */
+  overflow: hidden; /* To contain the span's border-radius */
 }
 
 .progress-bar span {
   display: block;
   height: 100%;
-  background: #00cfff;
-  border-radius: 6px 0 0 6px;
+  background-color: #19d4fe; /* Accent color from instructions */
+  border-radius: 5px;
 }
 
 /* Frameworks */
@@ -320,167 +229,7 @@ section {
   text-decoration: underline;
 }
 
-/* Recent Career Section */
-.recent-career-section {
-  /* This rule is not actively used by current HTML for the career section box */
-  display: flex;
-  min-height: 500px;
-  background: #1a2636;
-  color: #fff;
-  font-family: 'Roboto', Arial, sans-serif;
-  margin-top: 60px;
-  border-radius: 18px;
-  box-shadow: 0 2px 16px #0003;
-}
-
-.career-left {
-  background: #14203a;
-  min-width: 220px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  padding: 32px 0;
-  border-radius: 18px 0 0 18px;
-}
-
-.career-photo {
-  width: 140px;
-  height: 140px;
-  object-fit: cover;
-  border-radius: 18px;
-  margin-bottom: 24px;
-  box-shadow: 0 4px 24px #0006;
-  border: 4px solid #223a5e;
-}
-
-.career-label {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  font-family: 'Montserrat', Arial, sans-serif;
-  font-weight: 900;
-  font-size: 3.5rem;
-  color: #223a5e;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  text-shadow: 0 2px 12px #000a;
-  opacity: 0.9;
-  user-select: none;
-}
-
-.career-container {
-  flex: 1;
-  padding: 60px 60px 60px 60px;
-  max-width: 700px;
-  margin-left: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.career-container h2 {
-  font-family: 'Montserrat', Arial, sans-serif;
-  font-size: 2.7rem;
-  font-weight: 900;
-  margin-bottom: 48px;
-  color: #00cfff;
-  letter-spacing: 0.04em;
-}
-
-.career-timeline {
-  display: flex;
-  flex-direction: column;
-  gap: 56px;
-  position: relative;
-}
-
-.career-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 36px;
-  position: relative;
-}
-
-.career-step {
-  background: linear-gradient(135deg, #00cfff 60%, #223a5e 100%);
-  color: #fff;
-  font-family: 'Montserrat', Arial, sans-serif;
-  font-size: 2.2rem;
-  font-weight: 900;
-  width: 56px;
-  height: 56px;
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  box-shadow: 0 4px 24px #00cfff33;
-  position: relative;
-  z-index: 1;
-  border: 3px solid #fff2;
-}
-
-.career-line {
-  width: 6px;
-  height: 56px;
-  background: linear-gradient(180deg, #00cfff 0%, #223a5e 100%);
-  border-radius: 3px;
-  margin-left: -31px;
-  margin-right: 25px;
-  margin-top: 56px;
-  position: absolute;
-  left: 50%;
-  top: 0;
-  z-index: 0;
-}
-
-.career-item:last-child .career-line {
-  display: none;
-}
-
-.career-details {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.career-title {
-  font-family: 'Montserrat', Arial, sans-serif;
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: #00cfff;
-  margin-bottom: 8px;
-  letter-spacing: 0.01em;
-}
-
-.career-role {
-  font-size: 1.15rem;
-  color: #cfd8dc;
-  font-family: 'Roboto', Arial, sans-serif;
-  font-weight: 400;
-}
-
-/* Career Timeline Slide */
-.career-timeline-slide {
-  margin: 80px auto 60px auto;
-  max-width: 900px;
-  background: #232c3b;
-  border-radius: 18px;
-  box-shadow: 0 2px 16px #0003;
-  padding: 48px 36px 36px 36px;
-}
-
-.career-timeline-slide h2 {
-  text-align: center;
-  color: #00cfff;
-  font-family: 'Montserrat', Arial, sans-serif;
-  font-size: 2.7rem;
-  font-weight: 900;
-  margin-bottom: 48px;
-  letter-spacing: 0.01em;
-}
-
+/* Career Timeline Slide - Removing unused selectors */
 .career-timeline-grid {
   display: grid;
   grid-template-columns: 60px 1fr;
@@ -495,19 +244,12 @@ section {
   justify-content: flex-start;
 }
 
-.timeline-steps {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-
 .timeline-step {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 80px;
-  position: relative;
+  position: relative; /* For positioning lines if needed, and for future ::before/::after elements */
+  margin-bottom: 20px; /* Space between each number/line group and the next one below */
 }
 
 .step-number {
@@ -528,63 +270,60 @@ section {
 }
 
 .step-line {
-  flex: 1;
-  width: 4px;
-  background: #19d4fe;
-  min-height: 36px;
-  margin-bottom: 0.5rem;
-  border-radius: 2px;
+  width: 3px; /* Thinner vertical line */
+  background-color: #4a5a6a; /* Same color as number background for the line */
+  flex-grow: 1; /* Make line fill space down to next element or bottom of container */
+  min-height: 60px; /* Minimum height for the line, ensuring it connects visually */
+  /* The line will effectively be between the bottom of .step-number and the top of the next .step-number */
 }
 
+/* Remove vertical line for the last step */
 .timeline-step:last-child .step-line {
   display: none;
 }
 
 .career-content-col {
-  display: flex;
-  flex-direction: column;
-  gap: 36px;
-  justify-content: flex-start;
+  padding-top: 5px; /* Align top of content with top of the first number */
 }
 
 .career-entry {
-  background: #181a1b;
-  border-radius: 10px;
-  padding: 20px 28px;
-  box-shadow: 0 2px 8px #0002;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  background-color: transparent; /* No background for individual entries, main section has bg */
+  padding-bottom: 30px; /* Space between entries, adjusted from gap to padding-bottom */
+  position: relative; /* For the horizontal line */
 }
 
-.company {
+.career-entry:last-child {
+  padding-bottom: 0;
+}
+
+/* Horizontal line from number to content */
+.career-entry::before {
+  content: '';
+  position: absolute;
+  left: -30px; /* Distance from the start of the career-entry text */
+  top: 20px; /* Vertically align with the center of the step-number (approx) */
+  width: 25px; /* Length of the horizontal line */
+  height: 3px; /* Thickness of the line */
+  background-color: #4a5a6a; /* Match line color */
+  z-index: 1;
+}
+
+.career-entry h3 {
   font-size: 1.3rem;
-  font-weight: 700;
-  color: #19d4fe;
+  font-weight: 600; /* Subheading weight */
+  color: #ffffff; /* White company name */
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-  margin: 0 0 2px 0;
-  letter-spacing: 0.2px;
+  margin: 0 0 8px 0; /* Space below company name */
+  letter-spacing: 0.3px;
 }
 
-.role {
-  font-size: 1.1rem;
-  color: #fff;
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-  font-weight: 600;
-}
-
-.dates {
+.career-entry p {
   font-size: 1rem;
-  color: #b0bec5;
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-  font-weight: 400;
-}
-
-body {
+  font-weight: 400; /* Regular body text */
+  color: #cccccc; /* Lighter gray for role/dates */
+  line-height: 1.5;
   margin: 0;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-  background: #181a1b;
-  color: #fff;
 }
 
 /* NAVIGATION */
@@ -693,30 +432,6 @@ body {
 }
 
 @media (max-width: 900px) {
-  .recent-career-section {
-    flex-direction: column;
-    min-height: unset;
-  }
-
-  .career-left {
-    min-width: 100%;
-    height: 80px;
-    justify-content: flex-start;
-    padding-left: 24px;
-    border-radius: 18px 18px 0 0;
-  }
-
-  .career-label {
-    writing-mode: horizontal-tb;
-    font-size: 2.2rem;
-    letter-spacing: 0.15em;
-  }
-
-  .career-container {
-    padding: 40px 10px;
-    max-width: 98vw;
-  }
-
   .hero-grid {
     grid-template-columns: 1fr;
     padding: 32px 12px;
@@ -765,82 +480,6 @@ body {
   }
 
   .hero-buttons {
-    justify-content: center;
-  }
-}
-
-/* Floating Header */
-.floating-header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: #181a1b;
-  box-shadow: 0 2px 16px #000a;
-  width: 100%;
-  padding: 0;
-}
-
-.header-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 32px;
-  height: 70px;
-}
-
-.site-title {
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: #fff;
-  letter-spacing: 0.2px;
-  margin-right: 32px;
-}
-
-.floating-header nav ul {
-  list-style: none;
-  display: flex;
-  gap: 32px;
-  margin: 0;
-  padding: 0;
-  align-items: center;
-}
-
-.floating-header nav ul li a {
-  color: #f3f6fa;
-  text-decoration: none;
-  font-size: 1.1rem;
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-  font-weight: 400;
-  letter-spacing: 0.2px;
-  padding: 8px 18px;
-  border-radius: 8px;
-  transition: background 0.2s, color 0.2s;
-}
-
-.floating-header nav ul li a:hover,
-.floating-header nav ul li a.active {
-  background: #19d4fe;
-  color: #181a1b;
-}
-
-@media (max-width: 900px) {
-  .header-row {
-    flex-direction: column;
-    height: auto;
-    padding: 0 10px;
-    gap: 8px;
-  }
-
-  .site-title {
-    margin: 12px 0 0 0;
-  }
-
-  .floating-header nav ul {
-    gap: 16px;
-    flex-wrap: wrap;
     justify-content: center;
   }
 }
@@ -895,10 +534,6 @@ footer {
   align-items: center;
   position: relative; /* For positioning lines if needed, and for future ::before/::after elements */
   margin-bottom: 20px; /* Space between each number/line group and the next one below */
-}
-
-.timeline-step:last-child {
-  margin-bottom: 0;
 }
 
 .step-number {

@@ -10,18 +10,21 @@
     `<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">`
   - In CSS, set:  
     `font-family: 'Montserrat', Arial, Helvetica, sans-serif;`
-  - Use `font-weight: 700` for main headings, `600` for subheadings, and `400` for body text.
-  - Headings should be large and bold (e.g., `h1` at 3rem, `h2` at 2.5rem, etc.).
+  - Use `font-weight: 700` for main headings (e.g. `.section-title`), `600` for subheadings (e.g. `<h3>` in skills cards or career entries), and `400` for body text.
+  - Headings should be large and bold (e.g., `h1` in hero at ~3rem, `.section-title` as `h2` at ~2.5rem, card/entry `h3` at ~1.5rem-1.75rem).
   - Use subtle letter-spacing (0.2px–0.5px) for a clean, modern look.
 - Use large, clear headings and generous spacing (padding/margins) for a professional, modern look.
-- Skills section should use 3 columns (Programming Languages, Frameworks, Methodologies) on desktop, stacked on mobile.
-- For skill bars, use a gray background with a cyan/blue progress indicator.
-- Buttons should be large, rounded, and use the accent color for primary actions; use outlined style for secondary actions.
-- For the hero section, use a two-column grid: left for headline and buttons, right for a photo with rounded corners and a subtle box shadow.
-- Career timeline should use a two-column grid: left for numbered steps with a vertical line, right for company details. Use Flexbox for vertical alignment of numbers and lines.
-- All sections must be responsive: stack columns vertically on screens below 900px wide.
+- Skills section (`#skills`) should use a 3-column grid (`.skills-columns`) for skill cards (`.skills-card`) on desktop, stacked on mobile.
+  - Each `.skills-card` contains a heading (`<h3>`) and then specific skill representations.
+  - For programming languages: use a `div.skill-row` containing `span.skill-label.lang` and `span.skill-percent`, followed by `div.progress-bar` with an inner `span` for the visual fill.
+- For skill bars (`.progress-bar`), use a gray background (e.g. `#3e4750`) with a cyan/blue progress indicator (`.progress-bar span` with `background-color: #19d4fe`).
+- Buttons (`.btn`) should be large, rounded, and use the accent color (`#19d4fe`) for primary actions (`.btn-primary`); use outlined style for secondary actions (`.btn-outline`).
+- For the hero section (`.hero-section`), use a CSS Grid layout: left column for headline (`.hero-text`) and buttons (`.hero-buttons`), right column for a photo (`.hero-image img`) with rounded corners and a subtle box shadow.
+- Career timeline (`.career-section`) should use a two-column grid (`.career-timeline-grid`): left column (`.timeline-col`) for numbered steps (`.timeline-step` with `.step-number` and `.step-line`), right column (`.career-content-col`) for company details in `.career-entry` (containing `<h3>` for company and `<p>` for role/dates). Use Flexbox for vertical alignment of numbers and lines within `.timeline-step`.
+- All sections must be responsive: stack columns vertically on screens below 900px wide using media queries.
 - Use accessible alt text for all images.
 - Do not use frameworks (like Bootstrap) or JavaScript for layout unless specifically requested.
 - Use only modern, standards-compliant HTML and CSS.
-- When generating code, match the visual style and structure shown in the screenshots provided.
+- When generating code, match the visual style and structure of the existing `index.html` and `styles.css`.
 - Do not reference or mention any blurred faces or image redactions.
+- Boxed sections (`.content-section-boxed`) should have a `background-color: #22313a`, `padding: 40px`, `border-radius: 18px`, and `box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2)`.
