@@ -546,8 +546,8 @@ section .section-underline {
 
 .career-timeline-grid {
   display: grid;
-  grid-template-columns: 80px 1fr;
-  gap: 0 40px;
+  grid-template-columns: 60px 1fr;
+  gap: 0 32px;
   align-items: start;
 }
 
@@ -555,6 +555,7 @@ section .section-underline {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
 }
 
 .timeline-steps {
@@ -568,161 +569,78 @@ section .section-underline {
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 80px;
   position: relative;
 }
 
 .step-number {
-  width: 48px;
-  height: 48px;
-  background: linear-gradient(135deg, #00cfff 60%, #223a5e 100%);
-  color: #fff;
-  font-family: 'Montserrat', Arial, sans-serif;
-  font-size: 1.7rem;
-  font-weight: 900;
-  border-radius: 50%;
+  background: #19d4fe;
+  color: #181a1b;
+  font-size: 1.5rem;
+  font-weight: 700;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 0;
-  box-shadow: 0 4px 24px #00cfff33;
-  border: 3px solid #fff2;
+  margin-bottom: 0.5rem;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  box-shadow: 0 2px 8px #19d4fe44;
   z-index: 1;
 }
 
 .step-line {
-  width: 6px;
-  height: 64px;
-  background: linear-gradient(180deg, #00cfff 0%, #223a5e 100%);
-  border-radius: 3px;
-  margin: 0 auto 0 auto;
-  z-index: 0;
+  flex: 1;
+  width: 4px;
+  background: #19d4fe;
+  min-height: 36px;
+  margin-bottom: 0.5rem;
+  border-radius: 2px;
 }
 
-.content-col {
+.timeline-step:last-child .step-line {
+  display: none;
+}
+
+.career-content-col {
   display: flex;
   flex-direction: column;
-  gap: 56px;
+  gap: 36px;
   justify-content: flex-start;
 }
 
 .career-entry {
-  background: #181c24;
-  border-radius: 12px;
-  padding: 24px 32px;
+  background: #181a1b;
+  border-radius: 10px;
+  padding: 20px 28px;
   box-shadow: 0 2px 8px #0002;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .company {
-  font-family: 'Montserrat', Arial, sans-serif;
   font-size: 1.3rem;
   font-weight: 700;
-  color: #00cfff;
+  color: #19d4fe;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  margin: 0 0 2px 0;
+  letter-spacing: 0.2px;
 }
 
 .role {
   font-size: 1.1rem;
-  color: #f3f6fa;
-  font-family: 'Roboto', Arial, sans-serif;
-  font-weight: 500;
+  color: #fff;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-weight: 600;
 }
 
 .dates {
   font-size: 1rem;
-  color: #cfd8dc;
-  font-family: 'Roboto', Arial, sans-serif;
-  font-weight: 400;
-}
-
-/* Hero Section */
-.hero-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: 40px;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 60px 30px 40px 30px;
-}
-
-.hero-content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 32px;
-}
-
-.hero-content h1 {
-  font-size: 3rem;
-  font-weight: 700;
-  margin: 0 0 18px 0;
-  line-height: 1.1;
-}
-
-.hero-content .highlight {
-  color: #19d4fe;
-  display: block;
-}
-
-.hero-content p {
   color: #b0bec5;
-  font-size: 1.3rem;
-  margin-bottom: 32px;
-  margin-top: 0;
-}
-
-.hero-buttons {
-  display: flex;
-  gap: 20px;
-}
-
-.btn {
-  display: inline-block;
-  padding: 14px 32px;
-  font-size: 1.1rem;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background 0.2s, color 0.2s, border 0.2s;
-}
-
-.btn-primary {
-  background: #19d4fe;
-  color: #181a1b;
-  border: none;
-}
-
-.btn-primary:hover {
-  background: #13a7c7;
-  color: #fff;
-}
-
-.btn-outline {
-  background: transparent;
-  color: #19d4fe;
-  border: 2px solid #19d4fe;
-}
-
-.btn-outline:hover {
-  background: #19d4fe;
-  color: #181a1b;
-}
-
-.hero-image {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero-image img {
-  width: 340px;
-  height: 340px;
-  object-fit: cover;
-  border-radius: 24px;
-  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.25);
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-weight: 400;
 }
 
 @media (max-width: 1200px) {
@@ -786,12 +704,18 @@ section .section-underline {
   }
 
   .career-timeline-grid {
-    grid-template-columns: 48px 1fr;
-    gap: 0 16px;
+    grid-template-columns: 40px 1fr;
+    gap: 0 12px;
   }
 
   .career-entry {
-    padding: 16px 10px;
+    padding: 12px 6px;
+  }
+
+  .step-number {
+    width: 28px;
+    height: 28px;
+    font-size: 1rem;
   }
 
   .hero-section {
@@ -823,4 +747,135 @@ footer {
   margin-top: 40px;
   font-size: 1.1rem;
   border-radius: 18px 18px 0 0;
+}
+
+.career-section {
+  max-width: 900px;
+  margin: 60px auto 60px auto;
+  background: #22313a;
+  border-radius: 16px;
+  padding: 48px 24px 40px 24px;
+  box-shadow: 0 2px 16px #0003;
+}
+
+.career-section h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #19d4fe;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.3px;
+  text-align: left;
+}
+
+.career-timeline-grid {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 0 32px;
+}
+
+.timeline-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.timeline-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 80px;
+  position: relative;
+}
+
+.step-number {
+  background: #19d4fe;
+  color: #181a1b;
+  font-size: 1.5rem;
+  font-weight: 700;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  box-shadow: 0 2px 8px #19d4fe44;
+  z-index: 1;
+}
+
+.step-line {
+  flex: 1;
+  width: 4px;
+  background: #19d4fe;
+  min-height: 36px;
+  margin-bottom: 0.5rem;
+  border-radius: 2px;
+}
+
+.timeline-step:last-child .step-line {
+  display: none;
+}
+
+.career-content-col {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  justify-content: flex-start;
+}
+
+.career-entry {
+  background: #181a1b;
+  border-radius: 10px;
+  padding: 20px 28px;
+  box-shadow: 0 2px 8px #0002;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.company {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #19d4fe;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  margin: 0 0 2px 0;
+  letter-spacing: 0.2px;
+}
+
+.role {
+  font-size: 1.1rem;
+  color: #fff;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-weight: 600;
+}
+
+.dates {
+  font-size: 1rem;
+  color: #b0bec5;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-weight: 400;
+}
+
+@media (max-width: 700px) {
+  .career-section {
+    padding: 24px 6px 24px 6px;
+  }
+
+  .career-timeline-grid {
+    grid-template-columns: 40px 1fr;
+    gap: 0 12px;
+  }
+
+  .career-entry {
+    padding: 12px 6px;
+  }
+
+  .step-number {
+    width: 28px;
+    height: 28px;
+    font-size: 1rem;
+  }
 }
