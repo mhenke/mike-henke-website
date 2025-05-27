@@ -1,9 +1,10 @@
 /* General Styles */
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
   margin: 0;
   background: #181a1b;
   color: #fff;
+  letter-spacing: 0.3px; /* Subtle letter-spacing */
 }
 
 header,
@@ -77,8 +78,8 @@ nav ul li a {
 
 nav ul li a:hover,
 nav ul li a.active {
-  background: #00cfff;
-  color: #181c24;
+  background: #19d4fe; /* Accent color */
+  color: #181a1b; /* Dark background for text on accent */
 }
 
 section {
@@ -1013,23 +1014,123 @@ footer {
   font-weight: 400;
 }
 
-@media (max-width: 700px) {
-  .career-section {
-    padding: 24px 6px 24px 6px;
+/* Hero Section */
+.hero-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
+  align-items: center;
+  padding: 80px 5%; /* Generous padding, percentage for responsiveness */
+  background-color: #181a1b; /* Dark theme background */
+  gap: 40px; /* Space between text and image */
+  min-height: 70vh; /* Make hero section take a good portion of viewport height */
+}
+
+.hero-content {
+  text-align: left;
+}
+
+.hero-content h1 {
+  font-size: 3rem; /* Large heading */
+  font-weight: 700; /* Bold heading */
+  color: #ffffff; /* White text */
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.hero-content h1 .highlight {
+  color: #19d4fe; /* Accent color for part of the heading */
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  font-weight: 400; /* Regular body text */
+  color: #cccccc; /* Lighter gray for paragraph */
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.hero-buttons .btn {
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 15px 30px;
+  border-radius: 50px; /* Rounded buttons */
+  text-decoration: none;
+  margin-right: 15px;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  display: inline-block; /* Align buttons inline */
+  border: 2px solid transparent; /* For consistent sizing with outlined button */
+}
+
+.hero-buttons .btn-primary {
+  background-color: #19d4fe; /* Accent color */
+  color: #181a1b; /* Dark text on accent background */
+}
+
+.hero-buttons .btn-primary:hover {
+  background-color: #15b8d8; /* Slightly darker accent on hover */
+  transform: translateY(-2px); /* Subtle lift effect */
+}
+
+.hero-buttons .btn-secondary {
+  background-color: transparent;
+  color: #19d4fe; /* Accent color for text */
+  border: 2px solid #19d4fe; /* Accent color for outline */
+}
+
+.hero-buttons .btn-secondary:hover {
+  background-color: #19d4fe;
+  color: #181a1b;
+  transform: translateY(-2px); /* Subtle lift effect */
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 15px; /* Rounded corners for the image */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Subtle box shadow */
+}
+
+/* Responsive adjustments for Hero Section */
+@media (max-width: 900px) {
+  .hero-section {
+    grid-template-columns: 1fr; /* Stack columns */
+    text-align: center; /* Center text for stacked layout */
+    padding: 60px 5%;
   }
 
-  .career-timeline-grid {
-    grid-template-columns: 40px 1fr;
-    gap: 0 12px;
+  .hero-content {
+    order: 2; /* Text below image on mobile */
+    text-align: center; /* Ensure text is centered */
   }
 
-  .career-entry {
-    padding: 12px 6px;
+  .hero-content h1 {
+    font-size: 2.5rem; /* Adjust heading size for mobile */
   }
 
-  .step-number {
-    width: 28px;
-    height: 28px;
-    font-size: 1rem;
+  .hero-content p {
+    font-size: 1rem; /* Adjust paragraph size for mobile */
+  }
+
+  .hero-image {
+    order: 1; /* Image above text on mobile */
+    margin-bottom: 30px; /* Space below image */
+  }
+
+  .hero-image img {
+    max-width: 80%; /* Control image size on mobile */
+    margin: 0 auto; /* Center image */
+  }
+
+  .hero-buttons {
+    display: flex; /* Use flexbox for button alignment */
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: center; /* Center buttons */
+    gap: 15px; /* Space between stacked buttons */
+  }
+
+  .hero-buttons .btn {
+    margin-right: 0; /* Remove right margin for stacked buttons */
+    width: 80%; /* Make buttons take more width */
+    text-align: center;
   }
 }
