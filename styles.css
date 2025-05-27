@@ -1097,128 +1097,131 @@ footer {
 /* Hero Section */
 .hero-section {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
   align-items: center;
-  justify-content: center;
+  gap: 40px;
+  padding: 60px 24px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 80px 40px;
-  gap: 40px;
-  position: relative;
-  z-index: 1;
+  min-height: calc(100vh - 90px); /* Adjust based on navbar height */
+  box-sizing: border-box;
 }
 
-.hero-content {
-  z-index: 2;
-  text-align: left;
-}
-
-.hero-content h1 {
-  font-size: 3.5rem;
-  font-weight: 900;
-  margin: 0 0 20px 0;
-  color: #ffffff;
-  letter-spacing: 0.02em;
-}
-
-.hero-content p {
-  font-size: 1.2rem;
-  color: #e0e0e0;
-  margin: 0 0 30px 0;
-  line-height: 1.6;
-}
-
-.hero-buttons {
-  display: flex;
-  gap: 24px;
-}
-
-.hero-buttons .btn {
-  flex: 1;
-  padding: 18px 0;
-  border-radius: 10px;
-  font-size: 1.1rem;
+.hero-text h1 {
+  font-size: 3rem; /* As per instructions */
   font-weight: 700;
-  text-decoration: none;
-  display: inline-block;
-  text-align: center;
-  transition: transform 0.2s;
+  color: #fff;
+  margin-bottom: 20px;
+  line-height: 1.2;
 }
 
-.hero-buttons .btn-primary {
-  background: #00cfff;
-  color: #181a1b;
-  border: none;
+.hero-text h1 .highlight {
+  color: #19d4fe; /* Accent color */
 }
 
-.hero-buttons .btn-primary:hover {
-  background-color: #15b8d8; /* Slightly darker accent on hover */
-  transform: translateY(-2px); /* Subtle lift effect */
-}
-
-/* Updated btn-outline to btn-secondary for clarity and consistency */
-.hero-buttons .btn-secondary {
-  background-color: transparent;
-  color: #19d4fe; /* Accent color for text */
-  border: 2px solid #19d4fe; /* Accent color for outline */
-}
-
-.hero-buttons .btn-secondary:hover {
-  background-color: #19d4fe;
-  color: #181a1b; /* Dark text on accent background for hover */
-  transform: translateY(-2px); /* Subtle lift effect */
+.hero-text p {
+  font-size: 1.25rem; /* Generous body text */
+  font-weight: 400;
+  color: #cfd8dc;
+  margin-bottom: 30px;
+  line-height: 1.6;
 }
 
 .hero-image {
   display: flex;
   justify-content: center;
   align-items: center;
-  order: 1;
 }
 
 .hero-image img {
   max-width: 100%;
   height: auto;
-  border-radius: 12px;
-  box-shadow: 0 4px 24px #0006;
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Subtle box shadow */
 }
 
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+  /* Removed grid-column span as it's now a direct child for mobile ordering */
+}
+
+.btn {
+  padding: 15px 30px; /* Large buttons */
+  border-radius: 50px; /* Rounded buttons */
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+  display: inline-block; /* Ensure proper padding and centering */
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: #19d4fe; /* Accent color */
+  color: #181a1b; /* Dark text on accent */
+  border: 2px solid #19d4fe;
+}
+
+.btn-primary:hover {
+  background-color: #15b8d8; /* Slightly darker accent */
+  border-color: #15b8d8;
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: #19d4fe; /* Accent color */
+  border: 2px solid #19d4fe; /* Accent color border */
+}
+
+.btn-outline:hover {
+  background-color: #19d4fe;
+  color: #181a1b; /* Dark text on accent */
+  transform: translateY(-2px);
+}
+
+/* Responsive Hero Section */
 @media (max-width: 900px) {
   .hero-section {
     grid-template-columns: 1fr; /* Stack columns */
-    text-align: center; /* Center text for stacked layout */
-    padding: 60px 5%;
+    text-align: center;
+    padding: 40px 24px;
+    min-height: auto;
   }
 
-  .hero-content {
-    /* order: 2; */ /* Text will now be first, then image, then buttons */
-    text-align: center; /* Ensure text is centered */
-  }
-
-  .hero-content h1 {
-    font-size: 2.5rem; /* Adjust heading size for mobile */
-  }
-
-  .hero-content p {
-    font-size: 1rem; /* Adjust paragraph size for mobile */
-    margin-bottom: 20px; /* Space below paragraph before image */
+  .hero-text {
+    order: 1; /* Title/subtitle first */
   }
 
   .hero-image {
-    order: 2; /* Image after title/subtitle */
-    margin-bottom: 30px; /* Space below image */
+    order: 2; /* Image second */
+    margin-bottom: 30px; /* Space between image and buttons */
   }
-
+  
   .hero-image img {
-    max-width: 60%; /* Control image size on mobile, slightly smaller */
-    margin: 0 auto; /* Center image */
+    max-width: 70%; /* Adjust image size for mobile */
   }
 
   .hero-buttons {
-    order: 3; /* Buttons last on mobile */
-    display: flex; /* Use flexbox for button alignment */
-    flex-direction: column; /* Stack buttons vertically */
-    gap: 16px; /* Space between buttons */
+    order: 3; /* Buttons last */
+    justify-content: center; /* Center buttons */
+    flex-direction: column; /* Stack buttons if needed, or keep row */
+    align-items: center;
+  }
+  
+  .hero-buttons .btn {
+    width: 80%; /* Make buttons take more width */
+    max-width: 300px; /* Max width for very wide buttons */
+  }
+
+  .hero-text h1 {
+    font-size: 2.5rem; /* Adjust heading size for mobile */
+  }
+
+  .hero-text p {
+    font-size: 1.1rem; /* Adjust paragraph size for mobile */
   }
 }
 
