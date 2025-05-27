@@ -6,7 +6,7 @@
     <title>Mike Henke | Coder. Engineer. Professional.</title>
     <link rel="stylesheet" href="styles.css" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Roboto:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
     <link
@@ -16,165 +16,166 @@
   </head>
   <body>
     <header>
-      <h1>Mike Henke</h1>
-      <p>Coder. Engineer. Professional.</p>
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#career">Career</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
     </header>
-
-    <nav>
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-
-    <section class="hero-section">
-      <div class="hero-content">
-        <h1>
-          Mike Henke:<br />
-          <span class="highlight">Coder. Engineer.<br />Professional.</span>
-        </h1>
-        <p>Delivering web &amp; mobile applications my clients are proud of.</p>
-        <div class="hero-buttons">
-          <a href="#portfolio" class="btn btn-primary">View My Work</a>
-          <a href="#contact" class="btn btn-outline">Contact Me</a>
-        </div>
-      </div>
-      <div class="hero-image">
-        <img
-          src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=facearea&w=400&q=80"
-          alt="Mike Henke profile"
-        />
-      </div>
-    </section>
-
-    <section id="about">
-      <h2>About Me</h2>
-      <p>
-        I have over 15 years of success developing, testing, implementing, and
-        enhancing a variety of web applications and sites to meet and exceed
-        diverse business objectives. Based in Omaha, I offer my services
-        worldwide.
-      </p>
-    </section>
-
-    <section id="skills" class="skills-section">
-      <h2>My Skills</h2>
-      <div class="skills-underline"></div>
-      <div class="skills-columns">
-        <div class="skills-card">
-          <h3>Programming Languages</h3>
-          <div class="skill-row">
-            <span class="skill-label lang">JavaScript</span>
-            <span class="skill-percent">95%</span>
-          </div>
-          <div class="progress-bar"><span style="width: 95%"></span></div>
-          <div class="skill-row">
-            <span class="skill-label lang">Python</span>
-            <span class="skill-percent">85%</span>
-          </div>
-          <div class="progress-bar"><span style="width: 85%"></span></div>
-          <div class="skill-row">
-            <span class="skill-label lang">Ruby</span>
-            <span class="skill-percent">80%</span>
-          </div>
-          <div class="progress-bar"><span style="width: 80%"></span></div>
-        </div>
-        <div class="skills-card">
-          <h3>Frameworks</h3>
-          <div class="frameworks-grid">
-            <div class="framework-item">
-              <i class="fab fa-react"></i><span>React</span>
-            </div>
-            <div class="framework-item">
-              <i class="fab fa-angular"></i><span>Angular</span>
-            </div>
-            <div class="framework-item">
-              <i class="fab fa-node-js"></i><span>Node.js</span>
-            </div>
-            <div class="framework-item">
-              <i class="fas fa-gem"></i><span>Rails</span>
+    <main>
+      <section class="hero-section" id="hero">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <h1>
+              Mike Henke:<br /><span class="highlight"
+                >Coder. Engineer.<br />Professional.</span
+              >
+            </h1>
+            <p>
+              Delivering web &amp; mobile applications my clients are proud of.
+            </p>
+            <div class="hero-buttons">
+              <a href="#portfolio" class="btn btn-primary">View My Work</a>
+              <a href="#contact" class="btn btn-outline">Contact Me</a>
             </div>
           </div>
-        </div>
-        <div class="skills-card">
-          <h3>Methodologies</h3>
-          <div class="methodology-item">
-            <i class="fas fa-check-circle"></i>Agile Development
-          </div>
-          <div class="methodology-item">
-            <i class="fas fa-check-circle"></i>Test Driven Development
-          </div>
-          <div class="methodology-item">
-            <i class="fas fa-check-circle"></i>SCRUM
-          </div>
-          <div class="methodology-item">
-            <i class="fas fa-check-circle"></i>CI/CD
+          <div class="hero-image">
+            <img
+              src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=facearea&w=400&q=80"
+              alt="Portrait of Mike Henke"
+            />
           </div>
         </div>
-      </div>
-      <div class="button-container">
-        <a href="#portfolio" class="btn">View My Projects</a>
-      </div>
-    </section>
-
-    <section class="career-section">
-      <h2>My Recent Career</h2>
-      <div class="career-timeline">
-        <div class="career-step">
-          <div class="career-marker">
-            <span class="career-number">1</span>
-            <span class="career-line"></span>
+      </section>
+      <section id="about">
+        <h2>About Me</h2>
+        <p>
+          I have over 15 years of success developing, testing, implementing, and
+          enhancing a variety of web applications and sites to meet and exceed
+          diverse business objectives. Based in Omaha, I offer my services
+          worldwide.
+        </p>
+      </section>
+      <section id="skills" class="skills-section">
+        <h2>My Skills</h2>
+        <div class="skills-underline"></div>
+        <div class="skills-columns">
+          <div class="skills-card">
+            <h3>Programming Languages</h3>
+            <div class="skill-row">
+              <span class="skill-label lang">JavaScript</span>
+              <span class="skill-percent">95%</span>
+            </div>
+            <div class="progress-bar"><span style="width: 95%"></span></div>
+            <div class="skill-row">
+              <span class="skill-label lang">Python</span>
+              <span class="skill-percent">85%</span>
+            </div>
+            <div class="progress-bar"><span style="width: 85%"></span></div>
+            <div class="skill-row">
+              <span class="skill-label lang">Ruby</span>
+              <span class="skill-percent">80%</span>
+            </div>
+            <div class="progress-bar"><span style="width: 80%"></span></div>
           </div>
-          <div class="career-details">
-            <h3>Union Pacific</h3>
-            <p>M&amp;S Business Consultant II, July 2016 – Present</p>
+          <div class="skills-card">
+            <h3>Frameworks</h3>
+            <div class="frameworks-grid">
+              <div class="framework-item">
+                <i class="fab fa-react"></i><span>React</span>
+              </div>
+              <div class="framework-item">
+                <i class="fab fa-angular"></i><span>Angular</span>
+              </div>
+              <div class="framework-item">
+                <i class="fab fa-node-js"></i><span>Node.js</span>
+              </div>
+              <div class="framework-item">
+                <i class="fas fa-gem"></i><span>Rails</span>
+              </div>
+            </div>
+          </div>
+          <div class="skills-card">
+            <h3>Methodologies</h3>
+            <div class="methodology-item">
+              <i class="fas fa-check-circle"></i>Agile Development
+            </div>
+            <div class="methodology-item">
+              <i class="fas fa-check-circle"></i>Test Driven Development
+            </div>
+            <div class="methodology-item">
+              <i class="fas fa-check-circle"></i>SCRUM
+            </div>
+            <div class="methodology-item">
+              <i class="fas fa-check-circle"></i>CI/CD
+            </div>
           </div>
         </div>
-        <div class="career-step">
-          <div class="career-marker">
-            <span class="career-number">2</span>
-            <span class="career-line"></span>
+        <div class="button-container">
+          <a href="#portfolio" class="btn btn-primary">View My Projects</a>
+        </div>
+      </section>
+      <section id="career" class="career-section">
+        <h2>My Recent Career</h2>
+        <div class="career-timeline-grid">
+          <div class="timeline-col">
+            <div class="timeline-steps">
+              <div class="timeline-step">
+                <div class="step-number">1</div>
+                <div class="step-line"></div>
+              </div>
+              <div class="timeline-step">
+                <div class="step-number">2</div>
+                <div class="step-line"></div>
+              </div>
+              <div class="timeline-step">
+                <div class="step-number">3</div>
+              </div>
+            </div>
           </div>
-          <div class="career-details">
-            <h3>Telvent DTN (Schneider Electric)</h3>
-            <p>Application Contractor, February 2013 – July 2016</p>
+          <div class="content-col">
+            <div class="career-entry">
+              <div class="company">Union Pacific</div>
+              <div class="role">M&amp;S Business Consultant II</div>
+              <div class="dates">July 2016 - Present</div>
+            </div>
+            <div class="career-entry">
+              <div class="company">Telvent DTN (Schneider Electric)</div>
+              <div class="role">Application Contractor</div>
+              <div class="dates">February 2013 - July 2016</div>
+            </div>
+            <div class="career-entry">
+              <div class="company">Resource Insurance Consultants</div>
+              <div class="role">Senior Software Engineer Web</div>
+              <div class="dates">December 2010 - February 2013</div>
+            </div>
           </div>
         </div>
-        <div class="career-step">
-          <div class="career-marker">
-            <span class="career-number">3</span>
-          </div>
-          <div class="career-details">
-            <h3>Resource Insurance Consultants</h3>
-            <p>Senior Software Engineer Web, December 2010 – February 2013</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="portfolio">
-      <h2>Portfolio</h2>
-      <ul>
-        <li>U.S. Department of Health & Human Services</li>
-        <li>Restaurant to Room</li>
-        <li>Innovate Omaha</li>
-        <li>Cameron Ranch</li>
-        <li>Resource Insurance Consultants – RIC</li>
-        <li>Data Driven website using Firebase</li>
-      </ul>
-    </section>
-
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>3121 N 48th St, Omaha, NE 68104</p>
-      <p>Phone: +1 402 577 0059</p>
-      <p>
-        Email: <a href="mailto:henke.mike@gmail.com">henke.mike@gmail.com</a>
-      </p>
-    </section>
-
+      </section>
+      <section id="portfolio">
+        <h2>Portfolio</h2>
+        <ul>
+          <li>U.S. Department of Health & Human Services</li>
+          <li>Restaurant to Room</li>
+          <li>Innovate Omaha</li>
+          <li>Cameron Ranch</li>
+          <li>Resource Insurance Consultants – RIC</li>
+          <li>Data Driven website using Firebase</li>
+        </ul>
+      </section>
+      <section id="contact">
+        <h2>Contact</h2>
+        <p>3121 N 48th St, Omaha, NE 68104</p>
+        <p>Phone: +1 402 577 0059</p>
+        <p>
+          Email: <a href="mailto:henke.mike@gmail.com">henke.mike@gmail.com</a>
+        </p>
+      </section>
+    </main>
     <footer>
       <p>© 2025 Mike Henke. All Rights Reserved.</p>
     </footer>
