@@ -15,22 +15,20 @@
     />
   </head>
   <body>
-    <header class="floating-header">
-      <div class="header-row">
-        <div class="site-title">Mike Henke</div>
-        <nav>
-          <ul>
-            <li><a href="#hero">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#career">Resume</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="#blog">Blog</a></li>
-          </ul>
-        </nav>
+    <nav class="navbar">
+      <div class="navbar-container">
+        <div class="navbar-brand">Mike Henke</div>
+        <ul class="navbar-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#resume">Resume</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#blog">Blog</a></li>
+        </ul>
       </div>
-    </header>
+    </nav>
     <main>
       <section class="hero-section">
         <div class="hero-content">
@@ -118,37 +116,43 @@
           <a href="#portfolio" class="btn btn-primary">View My Projects</a>
         </div>
       </section>
-      <section id="career" class="career-section">
-        <h2>My Recent Career</h2>
-        <div class="career-timeline-grid">
-          <div class="timeline-col">
+      <section class="career-section">
+        <div class="career-grid">
+          <div class="career-timeline">
             <div class="timeline-step">
-              <span class="step-number">1</span>
-              <span class="step-line"></span>
+              <div class="timeline-number">1</div>
+              <div class="timeline-line"></div>
             </div>
             <div class="timeline-step">
-              <span class="step-number">2</span>
-              <span class="step-line"></span>
+              <div class="timeline-number">2</div>
+              <div class="timeline-line"></div>
             </div>
             <div class="timeline-step">
-              <span class="step-number">3</span>
+              <div class="timeline-number">3</div>
             </div>
           </div>
-          <div class="career-content-col">
+          <div class="career-details">
+            <h2 class="career-title">My Recent Career</h2>
             <div class="career-entry">
-              <h3 class="company">Union Pacific</h3>
-              <div class="role">M&amp;S Business Consultant II</div>
-              <div class="dates">July 2016 – Present</div>
+              <div class="company">Union Pacific</div>
+              <div class="role-dates">
+                <span class="role">M&amp;S Business Consultant II</span>
+                <span class="dates">July 2016 – Present</span>
+              </div>
             </div>
             <div class="career-entry">
-              <h3 class="company">Telvent DTN (Schneider Electric)</h3>
-              <div class="role">Application Contractor</div>
-              <div class="dates">February 2013 – July 2016</div>
+              <div class="company">Telvent DTN (Schneider Electric)</div>
+              <div class="role-dates">
+                <span class="role">Application Contractor</span>
+                <span class="dates">February 2013 – July 2016</span>
+              </div>
             </div>
             <div class="career-entry">
-              <h3 class="company">Resource Insurance Consultants</h3>
-              <div class="role">Senior Software Engineer Web</div>
-              <div class="dates">December 2010 – February 2013</div>
+              <div class="company">Resource Insurance Consultants</div>
+              <div class="role-dates">
+                <span class="role">Senior Software Engineer Web</span>
+                <span class="dates">December 2010 – February 2013</span>
+              </div>
             </div>
           </div>
         </div>
