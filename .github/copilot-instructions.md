@@ -29,6 +29,7 @@
 - Do not reference or mention any blurred faces or image redactions.
 - Boxed sections (`.content-section-boxed`) should have a `background-color: #22313a`, `padding: 40px`, `border-radius: 18px`, and `box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2)`.
 - **Note on Git Commands**: I use Oh My Zsh Git aliases. For example, `git push` is `gp`, `git add .` is `gaa`, `git commit -m` is `gc -m`. **Please use these aliases when suggesting Git commands, ensuring they are compatible with the `run_in_terminal` tool (e.g., by prefixing with a space if necessary for your shell configuration).**
+- **Note on NPM Commands**: I use Oh My Zsh npm aliases (e.g., from the `npm` plugin). For example, `npm run build` might be `npmrb`. **Please suggest these aliases when appropriate for `run_in_terminal`.**
 
 # 🚀 Eleventy Blog + GitHub Pages + Disqus Setup
 

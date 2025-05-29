@@ -3,17 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title if title else 'Mike Henke | Coder. Engineer. Professional.' }}</title>
+    <title>Another Awesome Post</title>
     <link rel="stylesheet" href="/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
     <script src="/pagefind/pagefind-ui.js" type="text/javascript"></script>
-    <script>
-        window.addEventListener('DOMContentLoaded', (event) => {
-            new PagefindUI({ element: "#search", showSubResults: true });
-        });
-    </script>
 </head>
 <body>
     <nav class="navbar">
@@ -32,10 +27,32 @@
         </div>
     </nav>
     <main>
-        {{ content | safe }}
+        <article class="content-section-boxed" style="margin-top: 30px;">
+            <h1>Another Awesome Post</h1>
+            <p><em>Published on May 29, 2025</em></p>
+            <hr>
+            <p>This is another great post.</p>
+<p>Eleventy is pretty cool.</p>
+
+            <hr>
+            <div id="disqus_thread"></div>
+            <script>
+                var disqus_config = function () {
+                    this.page.url = "https://mhenke.github.io/posts/another-post/";
+                    this.page.identifier = "Another Awesome Post"; // Replace with a unique identifier for each page
+                };
+                (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://YOUR_DISQUS_SHORTNAME.disqus.com/embed.js'; // Replace YOUR_DISQUS_SHORTNAME
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+                })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </article>
     </main>
     <footer>
-        <p>© {{ "now" | date("%Y") }} Mike Henke. All Rights Reserved.</p>
+        <p>© %Y Mike Henke. All Rights Reserved.</p>
     </footer>
 </body>
 </html>

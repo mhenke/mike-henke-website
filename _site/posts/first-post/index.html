@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
+    <title>My First Blog Post</title>
     <link rel="stylesheet" href="/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -28,16 +28,19 @@
     </nav>
     <main>
         <article class="content-section-boxed" style="margin-top: 30px;">
-            <h1>{{ title }}</h1>
-            <p><em>Published on {{ date | date('LLLL d, yyyy') }}</em></p>
+            <h1>My First Blog Post</h1>
+            <p><em>Published on May 28, 2025</em></p>
             <hr>
-            {{ content | safe }}
+            <p>This is my first blog post using Eleventy!</p>
+<h2>Markdown Works!</h2>
+<p>So does <strong>bold</strong> and <em>italic</em> text.</p>
+
             <hr>
             <div id="disqus_thread"></div>
             <script>
                 var disqus_config = function () {
-                    this.page.url = "{{ page.url | absoluteUrl(site.url) }}";
-                    this.page.identifier = "{{ title }}"; // Replace with a unique identifier for each page
+                    this.page.url = "https://mhenke.github.io/posts/first-post/";
+                    this.page.identifier = "My First Blog Post"; // Replace with a unique identifier for each page
                 };
                 (function() { // DON'T EDIT BELOW THIS LINE
                 var d = document, s = d.createElement('script');
@@ -50,7 +53,7 @@
         </article>
     </main>
     <footer>
-        <p>© {{ "now" | date("%Y") }} Mike Henke. All Rights Reserved.</p>
+        <p>© %Y Mike Henke. All Rights Reserved.</p>
     </footer>
 </body>
 </html>
