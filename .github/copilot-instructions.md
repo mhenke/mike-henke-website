@@ -28,7 +28,7 @@
 - When generating code, match the visual style and structure of the existing `index.html` and `styles.css`.
 - Do not reference or mention any blurred faces or image redactions.
 - Boxed sections (`.content-section-boxed`) should have a `background-color: #22313a`, `padding: 40px`, `border-radius: 18px`, and `box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2)`.
-- **Note on Git Commands**: I use Oh My Zsh Git aliases. For example, `git push` is `gp`, `git add .` is `gaa`, `git commit -m` is `gc -m`. **Please use these aliases when suggesting Git commands.**
+- **Note on Git Commands**: I use Oh My Zsh Git aliases. For example, `git push` is `gp`, `git add .` is `gaa`, `git commit -m` is `gc -m`. **Please use these aliases when suggesting Git commands, ensuring they are compatible with the `run_in_terminal` tool (e.g., by prefixing with a space if necessary for your shell configuration).**
 
 # 🚀 Eleventy Blog + GitHub Pages + Disqus Setup
 
