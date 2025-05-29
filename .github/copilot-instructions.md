@@ -28,3 +28,25 @@
 - When generating code, match the visual style and structure of the existing `index.html` and `styles.css`.
 - Do not reference or mention any blurred faces or image redactions.
 - Boxed sections (`.content-section-boxed`) should have a `background-color: #22313a`, `padding: 40px`, `border-radius: 18px`, and `box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2)`.
+
+# 🚀 Eleventy Blog + GitHub Pages + Disqus Setup
+
+This guide walks you through building and deploying a blog using Eleventy (11ty), GitHub Pages, and Disqus for comments.
+
+---
+
+## ✅ Requirements
+
+- GitHub Pages repository
+- Node.js installed
+- VS Code with GitHub Copilot
+- Disqus shortname
+
+---
+
+## 1. Initialize the Project
+
+```bash
+npm init -y
+npm install @11ty/eleventy --save-dev
+```

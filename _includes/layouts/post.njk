@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+    <script src="/pagefind/pagefind-ui.js" type="text/javascript"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">Mike Henke</div>
+            <ul class="navbar-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#skills">Skills</a></li>
+                <li><a href="/#resume">Resume</a></li>
+                <li><a href="/#portfolio">Portfolio</a></li>
+                <li><a href="/#contact">Contact</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/search">Search</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main>
+        <article class="content-section-boxed" style="margin-top: 30px;">
+            <h1>{{ title }}</h1>
+            <p><em>Published on {{ date | date: 'LLLL d, yyyy' }}</em></p>
+            <hr>
+            {{ content | safe }}
+            <hr>
+            <div id="disqus_thread"></div>
+            <script>
+                var disqus_config = function () {
+                    this.page.url = "{{ page.url | absoluteUrl(eleventy.serverless.url) }}";
+                    this.page.identifier = "{{ title }}"; // Replace with a unique identifier for each page
+                };
+                (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://YOUR_DISQUS_SHORTNAME.disqus.com/embed.js'; // Replace YOUR_DISQUS_SHORTNAME
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+                })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </article>
+    </main>
+    <footer>
+        <p>© {{ "now" | date: "%Y" }} Mike Henke. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
