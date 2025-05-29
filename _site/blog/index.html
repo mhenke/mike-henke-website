@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title if title else 'Mike Henke | Coder. Engineer. Professional.' }}</title>
+    <title>Blog</title>
     <link rel="stylesheet" href="/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -32,10 +32,21 @@
         </div>
     </nav>
     <main>
-        {{ content | safe }}
+        <section class="content-section-boxed" style="margin-top: 30px;">
+    <h1 class="section-title">Blog Posts</h1>
+    <div class="section-underline"></div>
+    <ul><li>
+                <a href="/posts/another-post/">Another Awesome Post</a>
+                <p><em>May 29, 2025</em></p>
+            </li><li>
+                <a href="/posts/first-post/">My First Blog Post</a>
+                <p><em>May 28, 2025</em></p>
+            </li></ul>
+</section>
+
     </main>
     <footer>
-        <p>© {{ "now" | date("%Y") }} Mike Henke. All Rights Reserved.</p>
+        <p>© %Y Mike Henke. All Rights Reserved.</p>
     </footer>
 </body>
 </html>

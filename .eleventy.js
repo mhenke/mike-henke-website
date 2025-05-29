@@ -1,28 +1,57 @@
 const { DateTime } = require('luxon');
+const { URL } = require('url');
 
 module.exports = function (eleventyConfig) {
   // Date filter using Luxon
   eleventyConfig.addFilter('date', (dateObj, format) => {
-    // Ensure dateObj is a Date object before formatting
-    // If dateObj is 'now', use current DateTime
     if (dateObj === 'now') {
       return DateTime.now().toFormat(format);
     }
-    // Otherwise, attempt to convert from JS Date
     return DateTime.fromJSDate(dateObj).toFormat(format);
+  });
+
+  // absoluteUrl filter
+  eleventyConfig.addFilter('absoluteUrl', function (url, base) {
+    try {
+      // Access global data via this.ctx.site if base is not provided or invalid
+      if (
+        !base ||
+        !(
+          URL.canParse(base) ||
+          (typeof base === 'string' && base.startsWith('http'))
+        )
+      ) {
+        const siteUrl = this.ctx?.site?.url;
+        if (siteUrl) {
+          base = siteUrl;
+        } else {
+          console.warn(
+            'Base URL for absoluteUrl filter is not defined in site data. Falling back to relative URL.'
+          );
+          return url;
+        }
+      }
+      return new URL(url, base).href;
+    } catch (e) {
+      console.error(
+        `Error creating absolute URL for ${url} with base ${base}: `,
+        e
+      );
+      return url;
+    }
   });
 
   // Passthrough copy for static assets
   eleventyConfig.addPassthroughCopy('styles.css');
-  eleventyConfig.addPassthroughCopy('profile.jpg'); // If you have other static assets like images
+  eleventyConfig.addPassthroughCopy('profile.jpg');
   eleventyConfig.addPassthroughCopy({ _pagefind: 'pagefind' });
 
   return {
     dir: {
-      input: '.', // Source files are in the root
-      includes: '_includes', // For layouts, partials
-      data: '_data', // For global data files
-      output: '_site', // Output directory
+      input: '.',
+      includes: '_includes',
+      data: '_data',
+      output: '_site',
     },
     passthroughFileCopy: true,
     markdownTemplateEngine: 'njk',
