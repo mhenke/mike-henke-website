@@ -1,0 +1,17 @@
+{
+  "name": "mike-henke-website",
+  "version": "1.0.0",
+  "description": "This is a personal portfolio website for Mike Henke, showcasing his skills, experience, and portfolio projects. The website is built using HTML and CSS, following specific design and coding guidelines.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "eleventy && npx pagefind --source _site"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.0",
+    "pagefind": "^1.1.0"
+  }
+}

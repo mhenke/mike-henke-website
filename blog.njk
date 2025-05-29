@@ -1,0 +1,17 @@
+---
+layout: layouts/base.njk
+title: Blog
+permalink: /blog/index.html
+---
+<section class="content-section-boxed" style="margin-top: 30px;">
+    <h1 class="section-title">Blog Posts</h1>
+    <div class="section-underline"></div>
+    <ul>
+        {%- for post in collections.posts | reverse -%}
+            <li>
+                <a href="{{ post.url | url }}">{{ post.data.title }}</a>
+                <p><em>{{ post.date | date: 'LLLL d, yyyy' }}</em></p>
+            </li>
+        {%- endfor -%}
+    </ul>
+</section>
