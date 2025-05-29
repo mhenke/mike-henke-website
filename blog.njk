@@ -10,7 +10,7 @@ permalink: /blog/index.html
         {%- for post in collections.posts | reverse -%}
             <li>
                 <a href="{{ post.url | url }}">{{ post.data.title }}</a>
-                <p><em>{{ post.date | date: 'LLLL d, yyyy' }}</em></p>
+                <p><em>{{ post.date | date('LLLL d, yyyy') }}</em></p>
             </li>
         {%- endfor -%}
     </ul>
