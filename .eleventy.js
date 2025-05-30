@@ -46,6 +46,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy('profile.jpg');
   eleventyConfig.addPassthroughCopy('favicon.ico'); // Added favicon.ico
   eleventyConfig.addPassthroughCopy({ _pagefind: 'pagefind' });
+  eleventyConfig.addPassthroughCopy('assets'); // Add this line
 
   return {
     pathPrefix:
