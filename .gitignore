@@ -1,0 +1,17 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+# package-lock.json # Keep if using npm and committing package.json
+
+# Eleventy
+_site/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE / Editor specific
+# .vscode/ # You might want to commit .vscode/settings.json or .vscode/extensions.json
+.idea/
