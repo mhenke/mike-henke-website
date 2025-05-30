@@ -9,13 +9,16 @@ html {
   box-sizing: inherit;
 }
 
-/* General Styles */
+/* General Styles - Mobile First */
 body {
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
   margin: 0;
   background: #181a1b;
   color: #fff;
   letter-spacing: 0.3px; /* Subtle letter-spacing */
+  /* Mobile-first fluid typography base */
+  font-size: clamp(0.875rem, 2.5vw, 1rem); /* 14px to 16px */
+  line-height: 1.6;
 }
 
 nav {
@@ -46,9 +49,24 @@ nav ul li a {
 }
 
 section {
-  margin: 0 auto 60px auto;
+  margin: 0 auto 40px auto; /* Reduced bottom margin for mobile */
   max-width: 1200px;
-  padding: 0 24px; /* Default horizontal padding for non-boxed sections */
+  padding: 0 16px; /* Reduced horizontal padding for mobile */
+}
+
+/* Responsive section padding */
+@media (min-width: 480px) {
+  section {
+    padding: 0 20px;
+    margin-bottom: 50px;
+  }
+}
+
+@media (min-width: 768px) {
+  section {
+    padding: 0 24px;
+    margin-bottom: 60px;
+  }
 }
 
 /* Add scroll-margin-top to sections targeted by anchor links */
@@ -306,161 +324,127 @@ section {
   font-style: italic;
 }
 
-/* Career Timeline Slide - Removing unused selectors */
-
-.career-timeline-grid {
-  display: grid;
-  grid-template-columns: 80px 1fr;
-  gap: 0 32px;
-  align-items: start;
+/* Timeline - Career Section */
+.timeline {
   position: relative;
+  margin-bottom: 40px;
 }
 
-.timeline-col {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-}
-
-.career-content-col {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-.timeline-step {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  min-height: 120px;
-  margin-bottom: 0;
-}
-.timeline-step:last-child {
-  min-height: 80px;
-}
-
-.step-number {
-  background: #22313a;
-  color: #fff;
-  font-size: 2rem;
-  font-weight: 700;
-  width: 48px;
-  height: 48px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 0;
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-  box-shadow: 0 2px 8px #19d4fe44;
-  z-index: 2;
-  border: 2px solid #19d4fe;
-}
-
-.step-line {
-  width: 4px;
-  background-color: #4a5a6a;
-  flex-grow: 1;
-  min-height: 60px;
-  margin-top: 0;
-  z-index: 1;
-}
-.timeline-step:last-child .step-line {
-  display: none;
-}
-
-.career-entry {
-  position: relative;
-  min-height: 120px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-bottom: 0;
-  padding-left: 0;
-}
-.career-entry:last-child {
-  min-height: 80px;
-}
-
-.career-entry::before {
+.timeline::before {
   content: '';
   position: absolute;
-  left: -40px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 40px;
-  height: 4px;
-  background-color: #4a5a6a;
-  z-index: 1;
+  left: 35px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.3);
 }
 
-.career-entry h3 {
+.timeline-item {
+  position: relative;
+  margin-bottom: 60px;
+  padding-left: 100px;
+}
+
+.timeline-number {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 70px;
+  height: 70px;
+  background: #22313a; /* Your theme background */
+  border-radius: 8px; /* Square with rounded corners as requested */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 2rem;
   font-weight: 700;
   color: #fff;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-  margin: 0 0 10px 0;
+  box-shadow: 0 4px 20px rgba(25, 212, 254, 0.3); /* Accent color shadow */
+  border: 3px solid #19d4fe; /* Your accent color border */
+  z-index: 2;
+}
+
+.timeline-content h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #fff;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
   letter-spacing: 0.3px;
 }
 
-.career-entry p {
-  font-size: 1.25rem;
-  font-weight: 400;
-  color: #cfd8dc;
-  line-height: 1.5;
-  margin: 0;
+.timeline-content .position {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #19d4fe; /* Accent color for position */
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
-@media (max-width: 900px) {
-  .career-timeline-grid {
-    grid-template-columns: 1fr;
-    gap: 0;
+.timeline-content .duration {
+  font-size: 1.1rem;
+  color: #cfd8dc;
+  font-weight: 400;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+}
+
+/* Responsive Timeline */
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 25px;
   }
-  .timeline-col {
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 16px;
+
+  .timeline-item {
+    padding-left: 80px;
+    margin-bottom: 50px;
   }
-  .career-content-col {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 24px;
+
+  .timeline-number {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
   }
-  .timeline-step {
-    min-height: 0;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    margin-bottom: 0;
+
+  .timeline-content h3 {
+    font-size: 1.5rem;
   }
-  .step-number {
-    margin-bottom: 0;
-    margin-right: 8px;
-    width: 38px;
-    height: 38px;
+
+  .timeline-content .position {
+    font-size: 1.1rem;
+  }
+
+  .timeline-content .duration {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .timeline::before {
+    left: 20px;
+  }
+
+  .timeline-item {
+    padding-left: 65px;
+  }
+
+  .timeline-number {
+    width: 40px;
+    height: 40px;
     font-size: 1.2rem;
   }
-  .step-line {
-    display: none;
-  }
-  .career-entry {
-    min-height: 0;
-    padding-left: 0;
-    margin-bottom: 24px;
-    align-items: flex-start;
-  }
-  .career-entry::before {
-    display: none;
-  }
-  .career-entry h3 {
+
+  .timeline-content h3 {
     font-size: 1.3rem;
   }
-  .career-entry p {
+
+  .timeline-content .position {
     font-size: 1rem;
+  }
+
+  .timeline-content .duration {
+    font-size: 0.9rem;
   }
 }
 
@@ -553,21 +537,25 @@ section {
   /* Hero Section Mobile Styles */
   .hero-section {
     grid-template-columns: 1fr; /* Single column layout */
-    grid-template-rows: auto auto auto; /* Define rows for image, text, buttons */
+    grid-template-rows: auto auto auto auto; /* Define rows for title, image, description, buttons */
     padding: 40px 20px;
     min-height: auto; /* Allow height to be determined by content */
     text-align: center; /* Center align text content */
     gap: 20px; /* Reduce gap for mobile */
   }
 
+  .hero-title {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2; /* Title at the top */
+  }
+
   .hero-image {
     grid-column: 1 / 2;
-    grid-row: 1 / 2; /* Image at the top */
+    grid-row: 2 / 3; /* Image after title */
     justify-self: center;
     align-self: center;
     margin-top: 0; /* Reset margin */
     margin-bottom: 10px; /* Space below image */
-    /* width and height for img are below, this targets the container */
   }
 
   .hero-image img {
@@ -575,23 +563,26 @@ section {
     height: 220px;
   }
 
-  .hero-text {
+  .hero-description {
     grid-column: 1 / 2;
-    grid-row: 2 / 3; /* Text below image */
+    grid-row: 3 / 4; /* Description after image */
   }
 
-  .hero-text h1 {
+  .hero-title h1 {
     font-size: 2.2rem; /* Adjust h1 size for mobile */
+    margin-bottom: 0; /* Remove margin since image is separate */
   }
 
-  .hero-text p {
+  .hero-description p {
     font-size: 1.1rem; /* Adjust paragraph size */
     max-width: 100%; /* Allow paragraph to use full width */
+    margin-top: 0;
+    margin-bottom: 0;
   }
 
   .hero-buttons {
     grid-column: 1 / 2;
-    grid-row: 3 / 4; /* Buttons at the bottom */
+    grid-row: 4 / 5; /* Buttons at the bottom */
     flex-direction: column; /* Stack buttons vertically */
     align-items: center; /* Center stacked buttons */
     gap: 15px; /* Gap between stacked buttons */
@@ -638,17 +629,20 @@ section {
     text-align: center;
   }
 
-  .hero-text h1 {
+  .hero-title h1 {
     font-size: 2.5rem; /* Adjust for smaller screens */
   }
 
   .hero-image {
-    width: 220px; /* Existing style, ensure it's appropriate */
-    height: 220px; /* Existing style */
-    margin-top: 20px; /* Add some space above image when stacked */
     justify-self: center; /* Ensure it's centered */
-    order: -1; /* Move image above text on mobile if desired, or remove for text first */
+    margin-top: 20px; /* Add some space above image when stacked */
   }
+
+  .hero-image img {
+    width: 220px; /* Set size on img element, not container */
+    height: 220px;
+  }
+
   .hero-buttons {
     justify-content: center; /* Center buttons on mobile */
   }
@@ -678,11 +672,11 @@ section {
     padding: 30px 15px;
   }
 
-  .hero-text h1 {
+  .hero-title h1 {
     font-size: 2rem;
   }
 
-  .hero-text p {
+  .hero-description p {
     font-size: 1rem;
   }
 
@@ -690,10 +684,6 @@ section {
     width: 180px;
     height: 180px;
   }
-
-  /* .hero-image margin-top: 32px; - This might conflict with new stacking, verify */
-  /* .hero-image img width: 240px; height: 240px; - This was larger, changed to 180px for smaller screens */
-  /* .hero-buttons justify-content: center; - Already handled */
 }
 
 /* Footer */
@@ -855,8 +845,8 @@ footer {
 .hero-section {
   display: grid;
   grid-template-columns: 3fr 2fr; /* Text/buttons on left, image on right */
-  grid-template-rows: auto auto; /* Row for text, row for buttons */
-  gap: 30px 40px; /* row-gap column-gap */
+  grid-template-rows: auto auto auto; /* Row for title, row for description, row for buttons */
+  gap: 20px 40px; /* row-gap column-gap */
   align-items: center;
   padding: 60px 5%; /* Generous padding */
   max-width: 1200px;
@@ -864,37 +854,43 @@ footer {
   min-height: 70vh; /* Ensure it takes up significant viewport height */
 }
 
-.hero-text {
+.hero-title {
   grid-column: 1 / 2;
   grid-row: 1 / 2;
 }
 
-.hero-text h1 {
+.hero-title h1 {
   font-size: 3rem;
   font-weight: 700;
   color: #ffffff;
   margin-top: 0;
-  margin-bottom: 0.5em; /* Space below heading */
+  margin-bottom: 0; /* Remove bottom margin since description is separate */
   line-height: 1.2;
   letter-spacing: 0.5px;
 }
 
-.hero-text h1 .highlight {
+.hero-title h1 .highlight {
   color: #19d4fe; /* Accent color for highlighted text */
 }
 
-.hero-text p {
+.hero-description {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+}
+
+.hero-description p {
   font-size: 1.25rem;
   font-weight: 400;
   color: #cfd8dc;
   line-height: 1.7;
   margin-top: 0;
+  margin-bottom: 0;
   max-width: 550px; /* Constrain paragraph width */
 }
 
 .hero-image {
   grid-column: 2 / 3;
-  grid-row: 1 / 3; /* Span both rows to center vertically beside text and buttons */
+  grid-row: 1 / 4; /* Span all rows to center vertically beside all content */
   justify-self: center;
   align-self: center;
   text-align: center; /* Center the image if it's smaller than the container */
@@ -912,7 +908,7 @@ footer {
 
 .hero-buttons {
   grid-column: 1 / 2;
-  grid-row: 2 / 3;
+  grid-row: 3 / 4;
   display: flex;
   flex-wrap: wrap; /* Allow buttons to wrap if space is tight */
   gap: 20px; /* Space between buttons */
@@ -942,63 +938,4 @@ footer {
 .btn-outline:hover {
   background-color: #19d4fe;
   color: #181a1b;
-}
-
-/* Career Photo Section */
-.career-photo-section {
-  display: flex;
-  align-items: stretch;
-  gap: 0;
-  margin-bottom: 60px;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.career-photo-col {
-  flex: 1;
-  min-width: 0;
-}
-
-.career-photo-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  min-height: 350px;
-  border-radius: 18px 0 0 18px;
-  display: block;
-}
-
-.career-timeline-col {
-  flex: 2;
-  min-width: 0;
-  display: flex;
-  align-items: stretch;
-}
-
-.career-timeline-col .content-section-boxed {
-  border-radius: 0 18px 18px 0;
-  margin: 0;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-@media (max-width: 900px) {
-  .career-photo-section {
-    flex-direction: column;
-    gap: 24px;
-  }
-  .career-photo-col {
-    border-radius: 18px 18px 0 0;
-  }
-  .career-photo-img {
-    border-radius: 18px 18px 0 0;
-    min-height: 180px;
-    max-height: 220px;
-  }
-  .career-timeline-col .content-section-boxed {
-    border-radius: 0 0 18px 18px;
-  }
 }
