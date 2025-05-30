@@ -78,13 +78,30 @@ section {
   scroll-margin-top: 90px; /* Adjust this value as needed, should be navbar height + some padding */
 }
 
-/* NEW Boxed Section Styling */
+/* NEW Boxed Section Styling - Mobile First */
 .content-section-boxed {
   background-color: #232323; /* Consistent dark background for boxed sections */
-  padding: 24px; /* Reduced from 40px for a more compact look */
-  border-radius: 18px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  padding: 16px; /* Mobile-first smaller padding */
+  border-radius: 12px; /* Smaller border radius for mobile */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Lighter shadow for mobile */
   /* max-width and margin:auto will be inherited from 'section' rule */
+}
+
+/* Progressive enhancement for larger screens */
+@media (min-width: 480px) {
+  .content-section-boxed {
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+  }
+}
+
+@media (min-width: 768px) {
+  .content-section-boxed {
+    padding: 24px;
+    border-radius: 18px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
 }
 
 #about {
@@ -94,7 +111,7 @@ section {
 }
 
 #about p {
-  font-size: 1.25rem;
+  font-size: clamp(1rem, 3vw, 1.25rem); /* Fluid typography: 16px to 20px */
   color: #cfd8dc;
   line-height: 1.7;
   margin: 0;
@@ -131,14 +148,14 @@ section {
 
 .skill-label.lang {
   color: #00cfff;
-  font-size: 19px;
+  font-size: clamp(1rem, 2.5vw, 1.1875rem); /* Fluid: 16px to 19px */
   font-family: 'Montserrat', Arial, sans-serif;
   font-weight: 500;
 }
 
 .skill-percent {
   color: #fff;
-  font-size: 17px;
+  font-size: clamp(0.9375rem, 2.2vw, 1.0625rem); /* Fluid: 15px to 17px */
   font-family: 'Roboto', Arial, sans-serif;
 }
 
@@ -167,97 +184,186 @@ section {
 
 .framework-item {
   background: #353535;
-  border-radius: 10px;
-  padding: 32px 0 18px 0;
+  border-radius: 8px; /* Smaller border radius for mobile */
+  padding: clamp(16px, 4vw, 32px) 0 clamp(12px, 3vw, 18px) 0; /* Fluid padding */
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 20px;
+  font-size: clamp(1rem, 3vw, 1.25rem); /* Fluid: 16px to 20px */
   color: #00cfff;
-  gap: 12px;
+  gap: clamp(8px, 2vw, 12px); /* Fluid gap */
   font-family: 'Roboto', Arial, sans-serif;
   font-weight: 500;
   box-shadow: none;
+  /* Touch-friendly hover states */
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+/* Touch-friendly hover states */
+@media (hover: hover) and (pointer: fine) {
+  .framework-item:hover {
+    background: #404040;
+    transform: translateY(-2px);
+  }
+}
+
+/* Touch devices - use :active instead of :hover */
+@media (hover: none) and (pointer: coarse) {
+  .framework-item:active {
+    background: #404040;
+    transform: scale(0.98);
+  }
 }
 
 .framework-item i {
-  font-size: 44px;
+  font-size: clamp(2rem, 5vw, 2.75rem); /* Fluid: 32px to 44px */
   color: #00cfff;
 }
 
 /* NEW: Style for SVG icons in framework items */
 .framework-item .framework-icon {
-  width: 44px; /* Match i font-size */
-  height: 44px; /* Match i font-size */
+  width: clamp(2rem, 5vw, 2.75rem); /* Match fluid i font-size: 32px to 44px */
+  height: clamp(2rem, 5vw, 2.75rem); /* Match fluid i font-size: 32px to 44px */
   fill: #00cfff; /* Match i color */
 }
 
 /* Methodologies */
 .methodology-item {
   background: #353535;
-  border-radius: 10px;
-  padding: 18px 18px;
-  margin-bottom: 20px;
-  font-size: 20px;
+  border-radius: 8px; /* Smaller border radius for mobile */
+  padding: clamp(12px, 3vw, 18px); /* Fluid padding */
+  margin-bottom: clamp(16px, 3vw, 20px); /* Fluid margin */
+  font-size: clamp(1rem, 3vw, 1.25rem); /* Fluid: 16px to 20px */
   color: #fff;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: clamp(12px, 2.5vw, 16px); /* Fluid gap */
   font-family: 'Roboto', Arial, sans-serif;
   font-weight: 500;
   box-shadow: none;
+  /* Touch-friendly hover states */
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+/* Touch-friendly hover states */
+@media (hover: hover) and (pointer: fine) {
+  .methodology-item:hover {
+    background: #404040;
+    transform: translateY(-1px);
+  }
+}
+
+/* Touch devices - use :active instead of :hover */
+@media (hover: none) and (pointer: coarse) {
+  .methodology-item:active {
+    background: #404040;
+    transform: scale(0.98);
+  }
 }
 
 .methodology-item i {
   color: #00cfff;
-  font-size: 24px;
+  font-size: clamp(1.25rem, 3vw, 1.5rem); /* Fluid: 20px to 24px */
 }
 
-/* Base .btn styles - REPLACES OLD .btn */
+/* Base .btn styles - Mobile First with Touch Support */
 .btn {
-  padding: 0.9rem 1.8rem; /* Adjusted padding (approx 14px 28px) */
-  border-radius: 8px;
-  font-size: 1rem; /* Approx 16px */
+  padding: clamp(0.75rem, 2vw, 0.9rem) clamp(1.5rem, 3vw, 1.8rem); /* Fluid padding */
+  border-radius: 6px; /* Smaller border radius for mobile */
+  font-size: clamp(0.875rem, 2.5vw, 1rem); /* Fluid: 14px to 16px */
   font-weight: 700;
   text-decoration: none;
-  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
   display: inline-block;
   font-family: 'Montserrat', Arial, sans-serif;
   text-align: center;
   cursor: pointer;
   border: 2px solid transparent; /* Base border, colored by specific types */
   letter-spacing: 0.3px;
+  /* Minimum touch target size for accessibility */
+  min-height: 44px;
+  min-width: 44px;
+  /* Touch-friendly styling */
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* Primary Button */
+/* Progressive enhancement for larger screens */
+@media (min-width: 768px) {
+  .btn {
+    border-radius: 8px;
+  }
+}
+
+/* Primary Button with Touch Support */
 .btn-primary {
   background-color: #19d4fe;
   color: #181a1b; /* Dark text for contrast */
   border-color: #19d4fe;
-  box-shadow: 0 4px 12px rgba(25, 212, 254, 0.25);
+  box-shadow: 0 2px 8px rgba(25, 212, 254, 0.2); /* Lighter shadow for mobile */
 }
 
-.btn-primary:hover,
+/* Touch-friendly hover states */
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover {
+    background-color: #0fb8e0; /* Darker accent */
+    border-color: #0fb8e0;
+    color: #181a1b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(25, 212, 254, 0.25);
+  }
+}
+
+/* Touch devices - use :active instead of :hover */
+@media (hover: none) and (pointer: coarse) {
+  .btn-primary:active {
+    background-color: #0fb8e0;
+    border-color: #0fb8e0;
+    color: #181a1b;
+    transform: scale(0.98);
+  }
+}
+
 .btn-primary:focus {
-  background-color: #0fb8e0; /* Darker accent */
+  background-color: #0fb8e0;
   border-color: #0fb8e0;
   color: #181a1b;
-  outline: none;
+  outline: 2px solid #19d4fe;
+  outline-offset: 2px;
 }
 
-/* Outline Button */
+/* Outline Button with Touch Support */
 .btn-outline {
   background-color: transparent;
   color: #19d4fe; /* Accent text */
   border-color: #19d4fe;
 }
 
-.btn-outline:hover,
+/* Touch-friendly hover states */
+@media (hover: hover) and (pointer: fine) {
+  .btn-outline:hover {
+    background-color: #19d4fe;
+    color: #181a1b; /* Dark text on accent fill */
+    border-color: #19d4fe;
+    transform: translateY(-2px);
+  }
+}
+
+/* Touch devices - use :active instead of :hover */
+@media (hover: none) and (pointer: coarse) {
+  .btn-outline:active {
+    background-color: #19d4fe;
+    color: #181a1b;
+    border-color: #19d4fe;
+    transform: scale(0.98);
+  }
+}
+
 .btn-outline:focus {
   background-color: #19d4fe;
-  color: #181a1b; /* Dark text on accent fill */
+  color: #181a1b;
   border-color: #19d4fe;
-  outline: none;
+  outline: 2px solid #19d4fe;
+  outline-offset: 2px;
 }
 
 #portfolio ul {
@@ -324,16 +430,16 @@ section {
   font-style: italic;
 }
 
-/* Timeline - Career Section */
+/* Timeline - Career Section - Mobile First */
 .timeline {
   position: relative;
-  margin-bottom: 40px;
+  margin-bottom: clamp(24px, 5vw, 40px); /* Fluid margin */
 }
 
 .timeline::before {
   content: '';
   position: absolute;
-  left: 35px;
+  left: 20px; /* Mobile-first positioning */
   top: 0;
   bottom: 0;
   width: 2px;
@@ -342,123 +448,117 @@ section {
 
 .timeline-item {
   position: relative;
-  margin-bottom: 60px;
-  padding-left: 100px;
+  margin-bottom: clamp(40px, 8vw, 60px); /* Fluid margin */
+  padding-left: clamp(65px, 12vw, 100px); /* Fluid padding */
 }
 
 .timeline-number {
   position: absolute;
   left: 0;
   top: 0;
-  width: 70px;
-  height: 70px;
+  width: clamp(40px, 8vw, 70px); /* Fluid size: 40px to 70px */
+  height: clamp(40px, 8vw, 70px); /* Fluid size: 40px to 70px */
   background: #22313a; /* Your theme background */
-  border-radius: 8px; /* Square with rounded corners as requested */
+  border-radius: clamp(6px, 1vw, 8px); /* Fluid border radius */
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
+  font-size: clamp(1.2rem, 3vw, 2rem); /* Fluid: 19px to 32px */
   font-weight: 700;
   color: #fff;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-  box-shadow: 0 4px 20px rgba(25, 212, 254, 0.3); /* Accent color shadow */
-  border: 3px solid #19d4fe; /* Your accent color border */
+  box-shadow: 0 2px 12px rgba(25, 212, 254, 0.2); /* Lighter shadow for mobile */
+  border: clamp(2px, 0.5vw, 3px) solid #19d4fe; /* Fluid border */
   z-index: 2;
+  /* Touch-friendly styling */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Touch-friendly hover states */
+@media (hover: hover) and (pointer: fine) {
+  .timeline-number:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(25, 212, 254, 0.3);
+  }
+}
+
+/* Touch devices - use :active instead of :hover */
+@media (hover: none) and (pointer: coarse) {
+  .timeline-number:active {
+    transform: scale(0.95);
+  }
 }
 
 .timeline-content h3 {
-  font-size: 2rem;
+  font-size: clamp(1.3rem, 4vw, 2rem); /* Fluid: 21px to 32px */
   font-weight: 700;
-  margin-bottom: 15px;
+  margin-bottom: clamp(10px, 2vw, 15px); /* Fluid margin */
   color: #fff;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
   letter-spacing: 0.3px;
 }
 
 .timeline-content .position {
-  font-size: 1.3rem;
+  font-size: clamp(1rem, 3vw, 1.3rem); /* Fluid: 16px to 21px */
   font-weight: 600;
-  margin-bottom: 8px;
+  margin-bottom: clamp(6px, 1.5vw, 8px); /* Fluid margin */
   color: #19d4fe; /* Accent color for position */
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
 .timeline-content .duration {
-  font-size: 1.1rem;
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem); /* Fluid: 14px to 18px */
   color: #cfd8dc;
   font-weight: 400;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
-/* Responsive Timeline */
-@media (max-width: 768px) {
+/* Timeline Responsive Adjustments */
+/* Small mobile adjustments */
+@media (min-width: 480px) {
   .timeline::before {
     left: 25px;
   }
-
+  
   .timeline-item {
-    padding-left: 80px;
-    margin-bottom: 50px;
-  }
-
-  .timeline-number {
-    width: 50px;
-    height: 50px;
-    font-size: 1.5rem;
-  }
-
-  .timeline-content h3 {
-    font-size: 1.5rem;
-  }
-
-  .timeline-content .position {
-    font-size: 1.1rem;
-  }
-
-  .timeline-content .duration {
-    font-size: 1rem;
+    padding-left: 75px;
   }
 }
 
-@media (max-width: 480px) {
+/* Tablet adjustments */
+@media (min-width: 768px) {
   .timeline::before {
-    left: 20px;
+    left: 35px;
   }
-
+  
   .timeline-item {
-    padding-left: 65px;
+    padding-left: 100px;
   }
-
+  
   .timeline-number {
-    width: 40px;
-    height: 40px;
-    font-size: 1.2rem;
-  }
-
-  .timeline-content h3 {
-    font-size: 1.3rem;
-  }
-
-  .timeline-content .position {
-    font-size: 1rem;
-  }
-
-  .timeline-content .duration {
-    font-size: 0.9rem;
+    box-shadow: 0 4px 20px rgba(25, 212, 254, 0.3); /* Full shadow for desktop */
   }
 }
 
-/* NAVIGATION */
+/* NAVIGATION - Mobile First */
 .navbar {
   background: #181a1b; /* Match hero section background */
-  padding: 0 5%; /* Use percentage for padding consistent with hero */
-  /* border-bottom: 1px solid #222f36; */ /* Removing border for cleaner look like screenshot */
+  padding: 15px clamp(16px, 4vw, 5%); /* Mobile-first fluid padding */
   position: sticky;
   top: 0;
   z-index: 1000; /* Ensure navbar is above other content */
-  height: 80px; /* Increased height for more spacing */
-  display: flex; /* Use flex to align items in the navbar itself */
-  align-items: center; /* Vertically center content in navbar */
+  display: flex;
+  align-items: center;
+  /* Touch-friendly minimum height */
+  min-height: 60px;
+}
+
+/* Desktop navbar */
+@media (min-width: 768px) {
+  .navbar {
+    height: 80px; /* Fixed height for desktop */
+    padding: 0 5%;
+  }
 }
 
 .navbar-container {
@@ -467,23 +567,42 @@ section {
   width: 100%; /* Ensure container takes full width up to max-width */
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Pushes brand to left and links to right */
+  justify-content: center; /* Mobile-first: center items */
+  flex-direction: column; /* Mobile-first: stack items */
+}
+
+/* Desktop navbar container */
+@media (min-width: 768px) {
+  .navbar-container {
+    justify-content: space-between; /* Desktop: space between brand and links */
+    flex-direction: row; /* Desktop: horizontal layout */
+  }
 }
 
 .navbar-brand {
-  font-size: 1.5rem; /* Slightly larger brand text */
+  font-size: clamp(1.25rem, 3vw, 1.5rem); /* Fluid: 20px to 24px */
   font-weight: 700; /* Bold brand */
   letter-spacing: 0.5px;
   color: #ffffff; /* White brand text */
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  margin-bottom: 12px; /* Mobile: space below brand */
+}
+
+/* Desktop navbar brand */
+@media (min-width: 768px) {
+  .navbar-brand {
+    margin-bottom: 0; /* Desktop: no bottom margin */
+  }
 }
 
 .navbar-links {
   list-style: none;
   display: flex;
-  gap: 40px; /* Increased gap between nav items */
+  gap: clamp(16px, 3vw, 40px); /* Fluid gap */
   margin: 0;
   padding: 0;
+  flex-wrap: wrap; /* Allow wrapping on small screens */
+  justify-content: center; /* Center links */
 }
 
 .navbar-links li {
@@ -491,211 +610,101 @@ section {
 }
 
 .navbar-links a {
-  color: #cccccc; /* Lighter gray for nav links, less prominent than brand */
+  color: #cccccc; /* Lighter gray for nav links */
   text-decoration: none;
-  font-size: 0.9rem; /* Slightly smaller font for nav links as per screenshot */
+  font-size: clamp(0.8rem, 2vw, 0.9rem); /* Fluid: 13px to 14px */
   font-weight: 400; /* Regular weight */
   letter-spacing: 0.3px; /* Subtle letter spacing */
   transition: color 0.2s ease, border-bottom-color 0.2s ease; /* Smooth transition */
-  padding-bottom: 5px; /* Space for the underline */
+  padding-bottom: 3px; /* Space for the underline */
   border-bottom: 2px solid transparent; /* Transparent border for hover effect */
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  /* Touch-friendly sizing */
+  padding: 8px 12px;
+  border-radius: 4px;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.navbar-links a:hover,
+/* Touch-friendly hover states */
+@media (hover: hover) and (pointer: fine) {
+  .navbar-links a:hover {
+    color: #ffffff; /* White text on hover */
+    border-bottom-color: #ffffff; /* White underline on hover */
+  }
+}
+
+/* Touch devices - use :active instead of :hover */
+@media (hover: none) and (pointer: coarse) {
+  .navbar-links a:active {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
 .navbar-links a:focus {
-  color: #ffffff; /* White text on hover/focus */
-  border-bottom-color: #ffffff; /* White underline on hover/focus */
-  outline: none;
+  color: #ffffff;
+  border-bottom-color: #ffffff;
+  outline: 2px solid #19d4fe;
+  outline-offset: 2px;
 }
 
-@media (max-width: 900px) {
-  /* Adjusted breakpoint for nav changes */
-  .navbar {
-    height: auto; /* Allow height to adjust to content */
-    padding: 15px 5%; /* Adjust padding for mobile */
-  }
-  .navbar-container {
-    flex-direction: column;
-    align-items: center; /* Center items when stacked */
-  }
+/* Contact Section Typography */
+#contact p,
+#contact a {
+  font-size: clamp(1.1rem, 2.5vw, 1.2rem); /* Fluid: 18px to 19px */
+  color: #cfd8dc;
+  margin-bottom: 10px;
+  text-decoration: none;
+}
 
-  .navbar-brand {
-    margin-bottom: 15px; /* Space below brand when stacked */
-  }
-
-  .navbar-links {
-    gap: 20px; /* Reduce gap for smaller screens */
-    flex-wrap: wrap; /* Allow links to wrap */
-    justify-content: center; /* Center links when wrapped */
-  }
-  .navbar-links a {
-    font-size: 0.85rem; /* Adjust font size for mobile */
-    padding-bottom: 3px;
-  }
-
-  /* Hero Section Mobile Styles */
-  .hero-section {
-    grid-template-columns: 1fr; /* Single column layout */
-    grid-template-rows: auto auto auto auto; /* Define rows for title, image, description, buttons */
-    padding: 40px 20px;
-    min-height: auto; /* Allow height to be determined by content */
-    text-align: center; /* Center align text content */
-    gap: 20px; /* Reduce gap for mobile */
-  }
-
-  .hero-title {
-    grid-column: 1 / 2;
-    grid-row: 1 / 2; /* Title at the top */
-  }
-
-  .hero-image {
-    grid-column: 1 / 2;
-    grid-row: 2 / 3; /* Image after title */
-    justify-self: center;
-    align-self: center;
-    margin-top: 0; /* Reset margin */
-    margin-bottom: 10px; /* Space below image */
-  }
-
-  .hero-image img {
-    width: 220px; /* Consistent smaller image size for mobile */
-    height: 220px;
-  }
-
-  .hero-description {
-    grid-column: 1 / 2;
-    grid-row: 3 / 4; /* Description after image */
-  }
-
-  .hero-title h1 {
-    font-size: 2.2rem; /* Adjust h1 size for mobile */
-    margin-bottom: 0; /* Remove margin since image is separate */
-  }
-
-  .hero-description p {
-    font-size: 1.1rem; /* Adjust paragraph size */
-    max-width: 100%; /* Allow paragraph to use full width */
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-
-  .hero-buttons {
-    grid-column: 1 / 2;
-    grid-row: 4 / 5; /* Buttons at the bottom */
-    flex-direction: column; /* Stack buttons vertically */
-    align-items: center; /* Center stacked buttons */
-    gap: 15px; /* Gap between stacked buttons */
-    margin-top: 10px; /* Space above buttons */
-    width: 100%; /* Ensure container takes full width */
-  }
-
-  .hero-buttons .btn {
-    width: 100%; /* Make buttons take more width */
-    max-width: 320px; /* But not too wide */
+/* Touch-friendly hover states for contact links */
+@media (hover: hover) and (pointer: fine) {
+  #contact a:hover {
+    color: #00cfff;
+    text-decoration: underline;
   }
 }
 
-@media (max-width: 1200px) {
-  .skills-columns {
-    /* flex-direction: column; /* REMOVED - Assuming base display is grid, this is not needed/conflicting */
-    gap: 32px;
-  }
-
-  .skills-card {
-    max-width: 100%;
+@media (hover: none) and (pointer: coarse) {
+  #contact a:active {
+    color: #00cfff;
+    text-decoration: underline;
   }
 }
 
-@media (max-width: 1100px) {
-  .skills-columns {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
+/* Portfolio Section Typography */
+#portfolio ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-@media (max-width: 900px) {
-  .hero-grid {
-    /* This was an old class, changing to hero-section */
-    grid-template-columns: 1fr;
-    padding: 32px 12px;
-    gap: 32px;
-    text-align: center; /* Center text on mobile */
-  }
-
-  .hero-section {
-    /* Added rule for hero-section specifically */
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .hero-title h1 {
-    font-size: 2.5rem; /* Adjust for smaller screens */
-  }
-
-  .hero-image {
-    justify-self: center; /* Ensure it's centered */
-    margin-top: 20px; /* Add some space above image when stacked */
-  }
-
-  .hero-image img {
-    width: 220px; /* Set size on img element, not container */
-    height: 220px;
-  }
-
-  .hero-buttons {
-    justify-content: center; /* Center buttons on mobile */
-  }
+#portfolio ul li {
+  font-size: clamp(1.1rem, 2.5vw, 1.2rem); /* Fluid: 18px to 19px */
+  color: #f3f6fa;
+  margin-bottom: clamp(14px, 3vw, 18px); /* Fluid margin */
+  padding-left: clamp(20px, 4vw, 24px); /* Fluid padding */
+  position: relative;
 }
 
-@media (max-width: 700px) {
-  .career-timeline-slide {
-    padding: 24px 6px 24px 6px;
-  }
-
-  .career-timeline-grid {
-    grid-template-columns: 40px 1fr;
-    gap: 0 12px;
-  }
-
-  .career-entry {
-    padding: 12px 6px;
-  }
-
-  .step-number {
-    width: 28px;
-    height: 28px;
-    font-size: 1rem;
-  }
-
-  .hero-section {
-    padding: 30px 15px;
-  }
-
-  .hero-title h1 {
-    font-size: 2rem;
-  }
-
-  .hero-description p {
-    font-size: 1rem;
-  }
-
-  .hero-image img {
-    width: 180px;
-    height: 180px;
-  }
+#portfolio ul li::before {
+  content: '\f0da';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  color: #00cfff;
+  position: absolute;
+  left: 0;
+  top: 2px;
 }
 
-/* Footer */
+/* Footer - Mobile First */
 footer {
   text-align: center;
-  padding: 1.5rem 0 1rem 0;
-  margin-top: 40px;
-  font-size: 1.1rem;
-  border-radius: 18px 18px 0 0;
+  padding: clamp(1rem, 3vw, 1.5rem) 0 clamp(0.75rem, 2vw, 1rem) 0; /* Fluid padding */
+  margin-top: clamp(32px, 6vw, 40px); /* Fluid margin */
+  font-size: clamp(1rem, 2.5vw, 1.1rem); /* Fluid font size */
+  border-radius: clamp(12px, 3vw, 18px) clamp(12px, 3vw, 18px) 0 0; /* Fluid border radius */
 }
-
-/* Pagefind Search Results Styles */
 #search .pagefind-ui__search-input {
   /* Increased specificity */
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
@@ -841,17 +850,29 @@ footer {
   font-weight: 600; /* Make highlight slightly bolder */
 }
 
-/* Hero Section */
+/* Hero Section - Mobile First */
 .hero-section {
   display: grid;
-  grid-template-columns: 3fr 2fr; /* Text/buttons on left, image on right */
-  grid-template-rows: auto auto auto; /* Row for title, row for description, row for buttons */
-  gap: 20px 40px; /* row-gap column-gap */
+  grid-template-columns: 1fr; /* Mobile-first: single column */
+  grid-template-rows: auto auto auto auto; /* Title, image, description, buttons */
+  gap: clamp(16px, 4vw, 20px); /* Fluid gap */
   align-items: center;
-  padding: 60px 5%; /* Generous padding */
+  padding: clamp(40px, 8vw, 60px) clamp(16px, 4vw, 5%); /* Fluid padding */
   max-width: 1200px;
-  margin: 0 auto 60px auto; /* Center section and add bottom margin */
-  min-height: 70vh; /* Ensure it takes up significant viewport height */
+  margin: 0 auto clamp(40px, 8vw, 60px) auto; /* Fluid bottom margin */
+  min-height: auto; /* Mobile-first: content-based height */
+  text-align: center; /* Mobile-first: center alignment */
+}
+
+/* Desktop layout */
+@media (min-width: 768px) {
+  .hero-section {
+    grid-template-columns: 3fr 2fr; /* Desktop: text/buttons on left, image on right */
+    grid-template-rows: auto auto auto; /* Title, description, buttons */
+    gap: 20px 40px; /* row-gap column-gap */
+    text-align: left; /* Desktop: left alignment */
+    min-height: 70vh; /* Desktop: viewport-based height */
+  }
 }
 
 .hero-title {
@@ -859,12 +880,52 @@ footer {
   grid-row: 1 / 2;
 }
 
+/* Mobile: image after title */
+@media (max-width: 767px) {
+  .hero-image {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    justify-self: center;
+    align-self: center;
+  }
+  
+  .hero-description {
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+  }
+  
+  .hero-buttons {
+    grid-column: 1 / 2;
+    grid-row: 4 / 5;
+  }
+}
+
+/* Desktop: image spans all rows */
+@media (min-width: 768px) {
+  .hero-image {
+    grid-column: 2 / 3;
+    grid-row: 1 / 4; /* Span all rows */
+    justify-self: center;
+    align-self: center;
+  }
+  
+  .hero-description {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+  }
+  
+  .hero-buttons {
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+  }
+}
+
 .hero-title h1 {
-  font-size: 3rem;
+  font-size: clamp(2rem, 6vw, 3rem); /* Fluid: 32px to 48px */
   font-weight: 700;
   color: #ffffff;
   margin-top: 0;
-  margin-bottom: 0; /* Remove bottom margin since description is separate */
+  margin-bottom: 0;
   line-height: 1.2;
   letter-spacing: 0.5px;
 }
@@ -873,13 +934,8 @@ footer {
   color: #19d4fe; /* Accent color for highlighted text */
 }
 
-.hero-description {
-  grid-column: 1 / 2;
-  grid-row: 2 / 3;
-}
-
 .hero-description p {
-  font-size: 1.25rem;
+  font-size: clamp(1.1rem, 3vw, 1.25rem); /* Fluid: 18px to 20px */
   font-weight: 400;
   color: #cfd8dc;
   line-height: 1.7;
@@ -888,54 +944,112 @@ footer {
   max-width: 550px; /* Constrain paragraph width */
 }
 
+/* Mobile: center the paragraph */
+@media (max-width: 767px) {
+  .hero-description p {
+    max-width: 100%;
+  }
+}
+
 .hero-image {
-  grid-column: 2 / 3;
-  grid-row: 1 / 4; /* Span all rows to center vertically beside all content */
-  justify-self: center;
-  align-self: center;
-  text-align: center; /* Center the image if it's smaller than the container */
+  text-align: center;
 }
 
 .hero-image img {
   display: block;
   max-width: 100%;
-  width: 320px; /* Adjust size as needed */
-  height: 320px;
+  width: clamp(180px, 40vw, 320px); /* Fluid: 180px to 320px */
+  height: clamp(180px, 40vw, 320px); /* Fluid: 180px to 320px */
   object-fit: cover;
-  border-radius: 18px; /* Rounded corners */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25); /* Subtle shadow */
+  border-radius: clamp(12px, 3vw, 18px); /* Fluid border radius */
+  box-shadow: 0 clamp(6px, 2vw, 10px) clamp(20px, 5vw, 30px) rgba(0, 0, 0, 0.25); /* Fluid shadow */
 }
 
 .hero-buttons {
-  grid-column: 1 / 2;
-  grid-row: 3 / 4;
   display: flex;
-  flex-wrap: wrap; /* Allow buttons to wrap if space is tight */
-  gap: 20px; /* Space between buttons */
-  margin-top: 20px; /* Space above the button group */
+  flex-direction: column; /* Mobile-first: stack buttons */
+  align-items: center;
+  gap: clamp(15px, 3vw, 20px); /* Fluid gap */
+  margin-top: clamp(10px, 3vw, 20px); /* Fluid margin */
+  width: 100%;
 }
 
-/* Ensure .btn-primary and .btn-outline are defined if not already */
-/* .btn is already defined, these would be modifiers */
-
-.btn-primary {
-  background-color: #19d4fe;
-  color: #181a1b; /* Dark text on accent background */
-  /* other .btn styles are inherited */
+/* Desktop: horizontal button layout */
+@media (min-width: 768px) {
+  .hero-buttons {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Left-align for desktop */
+    align-items: flex-start;
+  }
 }
 
-.btn-primary:hover {
-  background-color: #00c4e8; /* Slightly darker hover */
+/* Mobile button sizing */
+@media (max-width: 767px) {
+  .hero-buttons .btn {
+    width: 100%;
+    max-width: 320px;
+  }
 }
 
-.btn-outline {
-  background-color: transparent;
-  color: #19d4fe;
-  border: 2px solid #19d4fe;
-  /* other .btn styles are inherited */
+/* Section Titles - Mobile First */
+.section-title {
+  font-size: clamp(1.75rem, 5vw, 2.5rem); /* Fluid: 28px to 40px */
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: clamp(16px, 3vw, 24px); /* Fluid margin */
+  text-align: center;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  letter-spacing: 0.3px;
 }
 
-.btn-outline:hover {
-  background-color: #19d4fe;
-  color: #181a1b;
+.section-underline {
+  width: clamp(60px, 10vw, 80px); /* Fluid width */
+  height: 3px;
+  background: #19d4fe;
+  margin: 0 auto clamp(24px, 5vw, 32px) auto; /* Fluid bottom margin */
+  border-radius: 2px;
+}
+
+/* Skills Section - Mobile First */
+.skills-columns {
+  display: grid;
+  grid-template-columns: 1fr; /* Mobile-first: single column */
+  gap: clamp(24px, 5vw, 32px); /* Fluid gap */
+}
+
+/* Tablet: 2 columns for middle-sized skills */
+@media (min-width: 768px) and (max-width: 1099px) {
+  .skills-columns {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Desktop: 3 columns */
+@media (min-width: 1100px) {
+  .skills-columns {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.skills-card {
+  background: #2a2a2a;
+  padding: clamp(20px, 4vw, 24px); /* Fluid padding */
+  border-radius: clamp(12px, 2vw, 15px); /* Fluid border radius */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.skills-card h3 {
+  font-size: clamp(1.25rem, 3vw, 1.5rem); /* Fluid: 20px to 24px */
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: clamp(16px, 3vw, 20px); /* Fluid margin */
+  text-align: center;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+}
+
+/* Button Container */
+.button-container {
+  text-align: center;
+  margin-top: clamp(24px, 5vw, 32px); /* Fluid margin */
 }
