@@ -345,7 +345,7 @@ section {
   content: '';
   position: absolute;
   left: -30px; /* Distance from the start of the career-entry text */
-  top: 20px; /* Vertically align with the center of the step-number (approx) */
+  top: 14px; /* MODIFIED: Vertically align with the center of the step-number */
   width: 25px; /* Length of the horizontal line */
   height: 3px; /* Thickness of the line */
   background-color: #4a5a6a; /* Match line color */
