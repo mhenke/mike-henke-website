@@ -524,107 +524,118 @@ footer {
 }
 
 /* Pagefind Search Results Styles */
-.pagefind-ui__search-input {
+#search .pagefind-ui__search-input {
+  /* Increased specificity */
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
   font-size: 1.25rem;
   padding: 12px 15px;
-  background-color: #22313a; /* Dark background consistent with content-section-boxed */
-  color: #fff; /* White text */
-  border: 1px solid #3e4750; /* Subtle border */
-  border-radius: 8px; /* Rounded corners */
+  background-color: #22313a;
+  color: #fff;
+  border: 1px solid #3e4750;
+  border-radius: 8px;
   width: 100%;
   box-sizing: border-box;
-  margin-bottom: 2rem; /* Space below search bar */
+  margin-bottom: 2rem;
 }
 
-.pagefind-ui__search-input::placeholder {
-  color: #cccccc; /* Lighter gray for placeholder */
-  opacity: 1; /* Ensure it's fully opaque */
+#search .pagefind-ui__search-input::placeholder {
+  /* Increased specificity */
+  color: #cccccc;
+  opacity: 1;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
 /* For Firefox */
-.pagefind-ui__search-input::-moz-placeholder {
-  color: #cccccc; /* Lighter gray for placeholder */
+#search .pagefind-ui__search-input::-moz-placeholder {
+  /* Increased specificity */
+  color: #cccccc;
   opacity: 1;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
 /* For Edge */
-.pagefind-ui__search-input:-ms-input-placeholder {
-  color: #cccccc !important; /* Lighter gray for placeholder */
+#search .pagefind-ui__search-input:-ms-input-placeholder {
+  /* Increased specificity */
+  color: #cccccc !important; /* Important might be needed for Edge */
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
 /* For IE (though less relevant now) */
-.pagefind-ui__search-input::-ms-input-placeholder {
-  color: #cccccc; /* Lighter gray for placeholder */
+#search .pagefind-ui__search-input::-ms-input-placeholder {
+  /* Increased specificity */
+  color: #cccccc;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
-.pagefind-ui__message {
+#search .pagefind-ui__message {
+  /* Increased specificity */
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-  color: #adb5bd;
+  color: #adb5bd; /* Existing color, ensure it's applied */
   font-size: 1rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
 
-.pagefind-ui__result {
+#search .pagefind-ui__result {
+  /* Increased specificity */
   margin-bottom: 2rem;
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid #3e4750; /* Subtle separator */
-  list-style-type: none; /* Ensure no bullets if it's a list */
+  border-bottom: 1px solid #3e4750;
+  list-style-type: none;
 }
 
-.pagefind-ui__result:last-child {
+#search .pagefind-ui__result:last-child {
+  /* Increased specificity */
   border-bottom: none;
   margin-bottom: 0;
 }
 
-.pagefind-ui__result-link {
+#search .pagefind-ui__result-link {
+  /* Increased specificity */
   color: #19d4fe; /* Accent color */
   text-decoration: none;
-  font-size: 1.75rem; /* Consistent with blog titles */
-  font-weight: 600; /* Subheading weight */
+  font-size: 1.75rem;
+  font-weight: 600;
   letter-spacing: 0.3px;
   transition: color 0.2s ease-in-out;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-  display: block; /* Make link take full width for easier clicking */
-  margin-bottom: 0.5rem; /* Space between title and excerpt */
+  display: block;
+  margin-bottom: 0.5rem;
 }
 
-.pagefind-ui__result-link:hover {
-  color: #fff; /* Change color on hover */
+#search .pagefind-ui__result-link:hover {
+  /* Increased specificity */
+  color: #fff;
   text-decoration: underline;
 }
 
-.pagefind-ui__result-excerpt {
+#search .pagefind-ui__result-excerpt {
+  /* Increased specificity */
   font-size: 1rem;
-  color: #cfd8dc; /* Slightly brighter than date for better readability */
+  color: #cfd8dc; /* Existing color, ensure it's applied */
   margin-top: 0.5rem;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
   line-height: 1.6;
 }
 
-.pagefind-ui__result-image {
+#search .pagefind-ui__result-image {
+  /* Increased specificity */
   border-radius: 8px;
   margin-right: 15px;
   max-width: 60px;
   max-height: 60px;
   object-fit: cover;
-  vertical-align: top; /* Align with top of text if result is flex/inline-block */
+  vertical-align: top;
 }
 
-.pagefind-ui__result-highlight {
-  background-color: #19d4fe;
-  color: #181a1b;
+#search .pagefind-ui__result-highlight {
+  /* Increased specificity */
+  background-color: #19d4fe; /* Accent color for background */
+  color: #181a1b; /* Dark text for contrast */
   padding: 0.1em 0.25em;
   border-radius: 3px;
-  font-weight: 600; /* Make highlight slightly bolder */
+  font-weight: 600;
 }
 
 /* Ensure the overall search container has some padding if it's our #search div */
-.search-container {
-  padding-top: 20px; /* Add some space above the search bar if it's directly in main */
-}
+/* .search-container rule is fine as is, or can also be #search if preferred */
