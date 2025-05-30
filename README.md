@@ -38,9 +38,11 @@ This is a personal portfolio website for Mike Henke, showcasing his skills, expe
 ## How to Use
 
 ### Prerequisites
+
 - Node.js and npm installed.
 
 ### Local Development
+
 1. Clone the repository to your local machine.
 2. Install dependencies:
    ```bash
@@ -48,16 +50,19 @@ This is a personal portfolio website for Mike Henke, showcasing his skills, expe
    ```
 3. Run the Eleventy development server:
    ```bash
-   npm start 
+   npm start
    ```
    (This command might be `eleventy --serve` or similar, depending on your `package.json` scripts. If `npm start` is not defined, you can run `npx @11ty/eleventy --serve`)
 4. Open your browser to the local development URL (usually `http://localhost:8080`).
 
 ### Building for Production
+
 To build the static site for deployment:
+
 ```bash
 npm run build
 ```
+
 This will generate the site in the `_site` directory.
 
 ## Technologies Used
