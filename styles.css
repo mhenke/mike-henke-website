@@ -277,23 +277,28 @@ section {
 .career-timeline-grid {
   display: grid;
   grid-template-columns: 60px 1fr;
-  gap: 0 32px;
-  align-items: start;
+  gap: 0 32px; /* Horizontal gap between number column and content column */
+  /* align-items: start; */ /* Removed to allow default stretch behavior */
 }
 
-.timeline-col {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+.timeline-col,
+.career-content-col {
+  display: contents; /* Children become direct grid items of .career-timeline-grid */
 }
+
+/* .timeline-col specific styles (like flex, align-items) are no longer needed as it's display: contents */
+/* .career-content-col specific styles (like padding-top) are no longer needed */
 
 .timeline-step {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative; /* For positioning lines if needed, and for future ::before/::after elements */
-  margin-bottom: 20px; /* Space between each number/line group and the next one below */
+  display: flex; /* Kept: for internal alignment of number and line */
+  flex-direction: column; /* Kept: for internal alignment of number and line */
+  align-items: center; /* Kept: to center number and line horizontally */
+  position: relative; /* Kept: for potential future use or if step-line was absolute */
+  /* margin-bottom: 20px; */ /* Changed to padding-bottom */
+  padding-bottom: 20px; /* Space between this timeline "row" and the next */
+}
+.timeline-step:last-child {
+  padding-bottom: 0; /* No space after the last item */
 }
 
 .step-number {
@@ -307,18 +312,17 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem; /* Space between number and its vertical line */
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
   box-shadow: 0 2px 8px #19d4fe44;
-  z-index: 1;
+  z-index: 1; /* Ensure number is above lines if they overlap */
 }
 
 .step-line {
-  width: 3px; /* Thinner vertical line */
-  background-color: #4a5a6a; /* Same color as number background for the line */
-  flex-grow: 1; /* Make line fill space down to next element or bottom of container */
-  min-height: 60px; /* Minimum height for the line, ensuring it connects visually */
-  /* The line will effectively be between the bottom of .step-number and the top of the next .step-number */
+  width: 3px;
+  background-color: #4a5a6a;
+  flex-grow: 1; /* This will make the line fill the stretched height of .timeline-step */
+  /* min-height: 60px; */ /* Potentially remove if flex-grow works as expected */
 }
 
 /* Remove vertical line for the last step */
@@ -326,27 +330,25 @@ section {
   display: none;
 }
 
-.career-content-col {
-  padding-top: 5px; /* Align top of content with top of the first number */
-}
+/* .career-content-col styling (e.g. padding-top: 5px) removed as it's display:contents */
 
 .career-entry {
-  background-color: transparent; /* No background for individual entries, main section has bg */
-  padding-bottom: 30px; /* Space between entries, adjusted from gap to padding-bottom */
+  background-color: transparent;
+  /* padding-bottom: 30px; */ /* Changed to match .timeline-step's padding-bottom */
+  padding-bottom: 20px; /* Space between this timeline "row" and the next */
   position: relative; /* For the horizontal line */
 }
-
 .career-entry:last-child {
-  padding-bottom: 0;
+  padding-bottom: 0; /* No space after the last item */
 }
 
 /* Horizontal line from number to content */
 .career-entry::before {
   content: '';
   position: absolute;
-  left: -30px; /* Distance from the start of the career-entry text */
-  top: 14px; /* MODIFIED: Vertically align with the center of the step-number */
-  width: 25px; /* Length of the horizontal line */
+  left: -32px; /* Pulls line into the 32px gap defined in .career-timeline-grid */
+  top: 17.5px; /* (38px number height / 2) - (3px line height / 2) to center with number */
+  width: 32px; /* Length of the horizontal line, spans the gap */
   height: 3px; /* Thickness of the line */
   background-color: #4a5a6a; /* Match line color */
   z-index: 1;
