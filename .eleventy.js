@@ -1,4 +1,4 @@
-career-sectionconst { DateTime } = require('luxon');
+const { DateTime } = require('luxon');
 const { URL } = require('url');
 
 module.exports = function (eleventyConfig) {
