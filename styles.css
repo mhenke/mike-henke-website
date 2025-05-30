@@ -470,14 +470,32 @@ section {
 
 @media (max-width: 900px) {
   .hero-grid {
+    /* This was an old class, changing to hero-section */
     grid-template-columns: 1fr;
     padding: 32px 12px;
     gap: 32px;
+    text-align: center; /* Center text on mobile */
+  }
+
+  .hero-section {
+    /* Added rule for hero-section specifically */
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero-text h1 {
+    font-size: 2.5rem; /* Adjust for smaller screens */
   }
 
   .hero-image {
-    width: 220px;
-    height: 220px;
+    width: 220px; /* Existing style, ensure it's appropriate */
+    height: 220px; /* Existing style */
+    margin-top: 20px; /* Add some space above image when stacked */
+    justify-self: center; /* Ensure it's centered */
+    order: -1; /* Move image above text on mobile if desired, or remove for text first */
+  }
+  .hero-buttons {
+    justify-content: center; /* Center buttons on mobile */
   }
 }
 
@@ -504,28 +522,27 @@ section {
   .hero-section {
     grid-template-columns: 1fr;
     text-align: center;
-    padding: 40px 10px;
+    padding: 40px 10px; /* Existing style */
   }
 
   .hero-image {
-    margin-top: 32px;
+    margin-top: 32px; /* Existing style */
+    /* width and height for img are below, this targets the container */
   }
 
   .hero-image img {
-    width: 240px;
-    height: 240px;
+    width: 240px; /* Existing style */
+    height: 240px; /* Existing style */
   }
 
   .hero-buttons {
-    justify-content: center;
+    justify-content: center; /* Existing style */
   }
 }
 
 /* Footer */
 footer {
   text-align: center;
-  background: #232c3b;
-  color: #cfd8dc;
   padding: 1.5rem 0 1rem 0;
   margin-top: 40px;
   font-size: 1.1rem;
@@ -678,5 +695,145 @@ footer {
   font-weight: 600; /* Make highlight slightly bolder */
 }
 
-/* Ensure the overall search container has some padding if it's our #search div */
-/* .search-container rule is fine as is, or can also be #search if preferred */
+/* Hero Section */
+.hero-section {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* Adjust ratio as needed */
+  align-items: center;
+  gap: 40px;
+  padding: 60px 5%; /* Consistent padding */
+  background: #181a1b; /* Dark background for hero */
+  min-height: 70vh; /* Give it some height */
+}
+
+.hero-text h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.hero-text .highlight {
+  color: #19d4fe; /* Accent color */
+}
+
+.hero-text p {
+  font-size: 1.25rem;
+  color: #cfd8dc;
+  margin-bottom: 2rem;
+  max-width: 500px; /* Limit width of paragraph */
+}
+
+.hero-image {
+  justify-self: center; /* Center image in its grid cell */
+}
+
+.hero-image img {
+  max-width: 300px; /* Adjust as needed */
+  height: auto;
+  border-radius: 18px; /* Rounded corners */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Ensure .btn-primary and .btn-outline are defined if not already */
+/* .btn is already defined, these would be modifiers */
+
+.btn-primary {
+  background-color: #19d4fe;
+  color: #181a1b; /* Dark text on accent background */
+  /* other .btn styles are inherited */
+}
+
+.btn-primary:hover {
+  background-color: #00c4e8; /* Slightly darker hover */
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: #19d4fe;
+  border: 2px solid #19d4fe;
+  /* other .btn styles are inherited */
+}
+
+.btn-outline:hover {
+  background-color: #19d4fe;
+  color: #181a1b;
+}
+
+@media (max-width: 900px) {
+  .hero-grid {
+    /* This was an old class, changing to hero-section */
+    grid-template-columns: 1fr;
+    padding: 32px 12px;
+    gap: 32px;
+    text-align: center; /* Center text on mobile */
+  }
+
+  .hero-section {
+    /* Added rule for hero-section specifically */
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero-text h1 {
+    font-size: 2.5rem; /* Adjust for smaller screens */
+  }
+
+  .hero-image {
+    width: 220px; /* Existing style, ensure it's appropriate */
+    height: 220px; /* Existing style */
+    margin-top: 20px; /* Add some space above image when stacked */
+    justify-self: center; /* Ensure it's centered */
+    order: -1; /* Move image above text on mobile if desired, or remove for text first */
+  }
+  .hero-buttons {
+    justify-content: center; /* Center buttons on mobile */
+  }
+}
+
+@media (max-width: 700px) {
+  .career-timeline-slide {
+    padding: 24px 6px 24px 6px;
+  }
+
+  .career-timeline-grid {
+    grid-template-columns: 40px 1fr;
+    gap: 0 12px;
+  }
+
+  .career-entry {
+    padding: 12px 6px;
+  }
+
+  .step-number {
+    width: 28px;
+    height: 28px;
+    font-size: 1rem;
+  }
+
+  .hero-section {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 40px 10px; /* Existing style */
+  }
+
+  .hero-image {
+    margin-top: 32px; /* Existing style */
+    /* width and height for img are below, this targets the container */
+  }
+
+  .hero-image img {
+    width: 240px; /* Existing style */
+    height: 240px; /* Existing style */
+  }
+
+  .hero-buttons {
+    justify-content: center; /* Existing style */
+  }
+}
