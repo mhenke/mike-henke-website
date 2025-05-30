@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="{{ '/pagefind/pagefind-ui.css' | url }}" rel="stylesheet">
-    <script src="{{ '/pagefind/pagefind-ui.js' | url }}" type="text/javascript"></script>
+    {{ '<link rel="icon" href="{{ \'/favicon.ico\' | url }}">' if favicon_exists }}
 </head>
 <body>
     <nav class="navbar">
@@ -27,6 +27,7 @@
         </div>
     </nav>
     <main>
+        <div id="search" class="search-container"></div> <!-- Added search container -->
         <article class="content-section-boxed" style="margin-top: 30px;">
             <h1>{{ title }}</h1>
             <p><em>Published on {{ date | date('LLLL d, yyyy') }}</em></p>
@@ -52,5 +53,13 @@
     <footer>
         <p>© {{ "now" | date("%Y") }} Mike Henke. All Rights Reserved.</p>
     </footer>
+    <script src="{{ '/pagefind/pagefind-ui.js' | url }}" type="text/javascript"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            if (document.getElementById("search")) {
+                new PagefindUI({ element: "#search", showSubResults: true });
+            }
+        });
+    </script>
 </body>
 </html>
