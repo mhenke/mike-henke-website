@@ -4,15 +4,17 @@ permalink: /index.html
 ---
 
 <section class="hero-section">
-  <div class="hero-text">
+  <div class="hero-title">
     <h1>
       Mike Henke:<br />
       <span class="highlight">Coder. Engineer.<br />Professional.</span>
     </h1>
-    <p>Delivering web &amp; mobile applications my clients are proud of.</p>
   </div>
   <div class="hero-image">
     <img src="{{ '/profile.jpg' | url }}" alt="Mike Henke" />
+  </div>
+  <div class="hero-description">
+    <p>Delivering web &amp; mobile applications my clients are proud of.</p>
   </div>
   <div class="hero-buttons">
     <a href="#portfolio" class="btn btn-primary">View My Work</a>
@@ -98,61 +100,34 @@ permalink: /index.html
     <a href="#portfolio" class="btn btn-primary">View My Projects</a>
   </div>
 </section>
-<section
-  class="career-photo-section"
-  style="display: flex; align-items: stretch; gap: 0"
->
-  <div class="career-photo-col" style="flex: 1; min-width: 0">
-    <img
-      src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80"
-      alt="Modern office workspace"
-      class="career-photo-img"
-      style="
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        min-height: 350px;
-        border-radius: 18px 0 0 18px;
-      "
-    />
-  </div>
-  <div class="career-timeline-col" style="flex: 2; min-width: 0">
-    <section
-      id="career"
-      class="content-section-boxed"
-      style="border-radius: 0 18px 18px 0; margin: 0"
-    >
-      <h2 class="section-title">My Recent Career</h2>
-      <div class="career-timeline-grid">
-        <div class="timeline-col">
-          <div class="timeline-step">
-            <div class="step-number">1</div>
-            <div class="step-line"></div>
-          </div>
-          <div class="timeline-step">
-            <div class="step-number">2</div>
-            <div class="step-line"></div>
-          </div>
-          <div class="timeline-step">
-            <div class="step-number">3</div>
-          </div>
-        </div>
-        <div class="career-content-col">
-          <div class="career-entry">
-            <h3>Union Pacific</h3>
-            <p>M&S Business Consultant II, July 2016 - Present</p>
-          </div>
-          <div class="career-entry">
-            <h3>Telvent DTN (Schneider Electric)</h3>
-            <p>Application Contractor, February 2013 - July 2016</p>
-          </div>
-          <div class="career-entry">
-            <h3>Resource Insurance Consultants</h3>
-            <p>Senior Software Engineer Web, December 2010 - February 2013</p>
-          </div>
-        </div>
+<section id="career" class="content-section-boxed">
+  <h2 class="section-title">My Recent Career</h2>
+  <div class="section-underline"></div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-number">1</div>
+      <div class="timeline-content">
+        <h3>Union Pacific</h3>
+        <div class="position">M&S Business Consultant II</div>
+        <div class="duration">July 2016 - Present</div>
       </div>
-    </section>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-number">2</div>
+      <div class="timeline-content">
+        <h3>Telvent DTN (Schneider Electric)</h3>
+        <div class="position">Application Contractor</div>
+        <div class="duration">February 2013 - July 2016</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-number">3</div>
+      <div class="timeline-content">
+        <h3>Resource Insurance Consultants</h3>
+        <div class="position">Senior Software Engineer Web</div>
+        <div class="duration">December 2010 - February 2013</div>
+      </div>
+    </div>
   </div>
 </section>
 <section id="portfolio" class="content-section-boxed">
