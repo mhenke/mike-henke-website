@@ -539,31 +539,27 @@ footer {
 }
 
 #search .pagefind-ui__search-input::placeholder {
-  /* Increased specificity */
-  color: #cccccc;
+  color: #bbbbbb !important; /* Made placeholder slightly darker and more assertive */
   opacity: 1;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
 /* For Firefox */
 #search .pagefind-ui__search-input::-moz-placeholder {
-  /* Increased specificity */
-  color: #cccccc;
+  color: #bbbbbb !important; /* Made placeholder slightly darker and more assertive */
   opacity: 1;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
 /* For Edge */
 #search .pagefind-ui__search-input:-ms-input-placeholder {
-  /* Increased specificity */
-  color: #cccccc !important; /* Important might be needed for Edge */
+  color: #bbbbbb !important; /* Made placeholder slightly darker and more assertive */
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
 /* For IE (though less relevant now) */
 #search .pagefind-ui__search-input::-ms-input-placeholder {
-  /* Increased specificity */
-  color: #cccccc;
+  color: #bbbbbb !important; /* Made placeholder slightly darker and more assertive */
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
@@ -592,27 +588,27 @@ footer {
 
 #search .pagefind-ui__result-link {
   /* Increased specificity */
-  color: #19d4fe; /* Accent color */
+  color: #19d4fe !important; /* Accent color, forced */
   text-decoration: none;
-  font-size: 1.75rem;
-  font-weight: 600;
+  font-size: 1.75rem; /* Consistent with blog titles */
+  font-weight: 600; /* Subheading weight */
   letter-spacing: 0.3px;
   transition: color 0.2s ease-in-out;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-  display: block;
-  margin-bottom: 0.5rem;
+  display: block; /* Make link take full width for easier clicking */
+  margin-bottom: 0.5rem; /* Space between title and excerpt */
 }
 
 #search .pagefind-ui__result-link:hover {
   /* Increased specificity */
-  color: #fff;
+  color: #fff !important; /* Change color on hover, forced */
   text-decoration: underline;
 }
 
 #search .pagefind-ui__result-excerpt {
   /* Increased specificity */
   font-size: 1rem;
-  color: #cfd8dc; /* Existing color, ensure it's applied */
+  color: #cfd8dc !important; /* Slightly brighter than date for better readability, forced */
   margin-top: 0.5rem;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
   line-height: 1.6;
@@ -630,11 +626,11 @@ footer {
 
 #search .pagefind-ui__result-highlight {
   /* Increased specificity */
-  background-color: #19d4fe; /* Accent color for background */
-  color: #181a1b; /* Dark text for contrast */
+  background-color: #19d4fe !important; /* Accent color background, forced */
+  color: #181a1b !important; /* Dark text for contrast, forced */
   padding: 0.1em 0.25em;
   border-radius: 3px;
-  font-weight: 600;
+  font-weight: 600; /* Make highlight slightly bolder */
 }
 
 /* Ensure the overall search container has some padding if it's our #search div */
