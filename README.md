@@ -52,7 +52,6 @@ This is a personal portfolio website for Mike Henke, showcasing his skills, expe
    ```bash
    npm start
    ```
-   (This command might be `eleventy --serve` or similar, depending on your `package.json` scripts. If `npm start` is not defined, you can run `npx @11ty/eleventy --serve`)
 4. Open your browser to the local development URL (usually `http://localhost:8080`).
 
 ### Building for Production
