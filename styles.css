@@ -40,6 +40,15 @@ section {
   padding: 0 24px; /* Default horizontal padding for non-boxed sections */
 }
 
+/* Add scroll-margin-top to sections targeted by anchor links */
+#about,
+#skills,
+#career, /* This is the ID for the "My Recent Career" / Resume section */
+#portfolio,
+#contact {
+  scroll-margin-top: 90px; /* Adjust this value as needed, should be navbar height + some padding */
+}
+
 /* NEW Boxed Section Styling */
 .content-section-boxed {
   background-color: #232323; /* Consistent dark background for boxed sections */
@@ -528,39 +537,75 @@ footer {
   /* Increased specificity */
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
   font-size: 1.25rem;
-  padding: 12px 15px;
+  font-weight: 400; /* MODIFIED: Match navbar-links a font-weight */
+  padding: 12px 15px 12px 40px; /* MODIFIED: Increased left padding for icon */
   background-color: #22313a;
   color: #fff;
   border: 1px solid #3e4750;
   border-radius: 8px;
   width: 100%;
   box-sizing: border-box;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem; /* MODIFIED: Reduced space below search bar */
+  position: relative; /* Added for icon positioning context if needed */
+}
+
+/* NEW or MODIFIED: Style for the SVG search icon */
+#search .pagefind-ui__search-icon svg {
+  /* Targets the SVG within the icon wrapper */
+  fill: #cccccc !important; /* Visible color for the icon */
+  opacity: 1 !important;
+  width: 18px !important; /* Adjust size as needed */
+  height: 18px !important;
+  pointer-events: none; /* So it doesn't interfere with input click */
 }
 
 #search .pagefind-ui__search-input::placeholder {
-  color: #bbbbbb !important; /* Made placeholder slightly darker and more assertive */
+  color: #bbbbbb !important;
   opacity: 1;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
 /* For Firefox */
 #search .pagefind-ui__search-input::-moz-placeholder {
-  color: #bbbbbb !important; /* Made placeholder slightly darker and more assertive */
+  color: #bbbbbb !important;
   opacity: 1;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
 /* For Edge */
 #search .pagefind-ui__search-input:-ms-input-placeholder {
-  color: #bbbbbb !important; /* Made placeholder slightly darker and more assertive */
+  color: #bbbbbb !important;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
 /* For IE (though less relevant now) */
 #search .pagefind-ui__search-input::-ms-input-placeholder {
-  color: #bbbbbb !important; /* Made placeholder slightly darker and more assertive */
+  color: #bbbbbb !important;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+}
+
+/* MODIFIED: Clear button styles for a more modern look */
+#search .pagefind-ui__search-clear {
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif !important;
+  background-color: transparent !important;
+  color: #19d4fe !important; /* Accent color text */
+  border: 1px solid #19d4fe !important; /* Accent color border */
+  border-radius: 6px !important; /* Rounded corners */
+  padding: 6px 12px !important; /* Adjusted padding */
+  font-size: 0.85rem !important; /* Slightly smaller */
+  font-weight: 400 !important; /* Normal weight */
+  cursor: pointer !important;
+  transition: background-color 0.2s ease, color 0.2s ease !important;
+  margin-left: 8px; /* Add some space to its left */
+  line-height: 1.2; /* Adjust for vertical alignment of text */
+  /* display: inline-flex; */ /* Helps with vertical alignment if needed */
+  /* align-items: center; */
+  /* justify-content: center; */
+}
+
+#search .pagefind-ui__search-clear:hover {
+  background-color: #19d4fe !important; /* Accent color background on hover */
+  color: #22313a !important; /* Dark text on hover */
 }
 
 #search .pagefind-ui__message {
