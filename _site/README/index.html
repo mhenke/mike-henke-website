@@ -1,13 +1,30 @@
 <h1>Mike Henke - Web &amp; Mobile Developer</h1>
-<p>This is a personal portfolio website for Mike Henke, showcasing his skills, experience, and portfolio projects. The website is built using HTML and CSS, following specific design and coding guidelines.</p>
+<p>This is a personal portfolio website for Mike Henke, showcasing his skills, experience, and portfolio projects. The website is built using <a href="https://www.11ty.dev/">Eleventy</a>, HTML, and CSS, following specific design and coding guidelines.</p>
 <h2>Project Structure</h2>
 <ul>
-<li><code>index.html</code>: The main HTML file containing the structure and content of the website.</li>
-<li><code>styles.css</code>: The CSS file for styling the website.</li>
-<li><code>.github/copilot-instructions.md</code>: Contains detailed instructions for AI-assisted development, including design choices, fonts, and layout preferences.</li>
+<li><code>index.html</code>: The main landing page content.</li>
+<li><code>blog.njk</code>: Template for the blog listing page.</li>
+<li><code>search.njk</code>: Template for the search page.</li>
+<li><code>posts/</code>: Directory containing individual blog posts in Markdown format.</li>
+<li><code>styles.css</code>: The main CSS file for styling the website.</li>
+<li><code>_data/site.json</code>: Global site data, like the site URL.</li>
+<li><code>_includes/</code>: Directory for Eleventy layouts and partials.
+<ul>
+<li><code>layouts/base.njk</code>: The main base layout for all pages.</li>
+<li><code>layouts/post.njk</code>: The layout for individual blog posts.</li>
+</ul>
+</li>
+<li><code>.eleventy.js</code>: Eleventy configuration file.</li>
+<li><code>package.json</code>: Defines project dependencies and scripts.</li>
+<li><code>_site/</code>: The output directory where the static site is generated.</li>
+<li><code>.github/copilot-instructions.md</code>: Contains detailed instructions for AI-assisted development.</li>
+<li><code>.github/workflows/deploy.yml</code>: GitHub Actions workflow for building and deploying the site to GitHub Pages.</li>
 </ul>
 <h2>Features</h2>
 <ul>
+<li><strong>Static Site Generation</strong>: Built with Eleventy for performance and simplicity.</li>
+<li><strong>Blog</strong>: Integrated blog with Markdown-based posts.</li>
+<li><strong>Search</strong>: Site search functionality powered by <a href="https://pagefind.app/">Pagefind</a>.</li>
 <li><strong>Responsive Design</strong>: The website is designed to be responsive and works well on different screen sizes.</li>
 <li><strong>Semantic HTML5</strong>: Uses modern HTML5 tags for better structure and accessibility.</li>
 <li><strong>CSS Grid and Flexbox</strong>: For layout and alignment, ensuring a modern and maintainable codebase.</li>
@@ -17,16 +34,38 @@
 <li><strong>Career Timeline</strong>: Highlights professional experience in a structured timeline.</li>
 <li><strong>Portfolio Section</strong>: Lists notable projects.</li>
 <li><strong>Contact Section</strong>: Provides contact information.</li>
+<li><strong>Automated Deployment</strong>: Continuous deployment to GitHub Pages via GitHub Actions.</li>
 </ul>
 <h2>How to Use</h2>
+<h3>Prerequisites</h3>
+<ul>
+<li>Node.js and npm installed.</li>
+</ul>
+<h3>Local Development</h3>
 <ol>
 <li>Clone the repository to your local machine.</li>
-<li>Open <code>index.html</code> in a web browser to view the website.</li>
+<li>Install dependencies:<pre><code class="language-bash">npm install
+</code></pre>
+</li>
+<li>Run the Eleventy development server:<pre><code class="language-bash">npm start 
+</code></pre>
+(This command might be <code>eleventy --serve</code> or similar, depending on your <code>package.json</code> scripts. If <code>npm start</code> is not defined, you can run <code>npx @11ty/eleventy --serve</code>)</li>
+<li>Open your browser to the local development URL (usually <code>http://localhost:8080</code>).</li>
 </ol>
+<h3>Building for Production</h3>
+<p>To build the static site for deployment:</p>
+<pre><code class="language-bash">npm run build
+</code></pre>
+<p>This will generate the site in the <code>_site</code> directory.</p>
 <h2>Technologies Used</h2>
 <ul>
 <li>HTML5</li>
 <li>CSS3</li>
+<li>JavaScript</li>
+<li><a href="https://www.11ty.dev/">Eleventy (11ty)</a> - Static Site Generator</li>
+<li><a href="https://mozilla.github.io/nunjucks/">Nunjucks</a> - Templating language used by Eleventy</li>
+<li><a href="https://moment.github.io/luxon/">Luxon</a> - For date formatting</li>
+<li><a href="https://pagefind.app/">Pagefind</a> - Static site search library</li>
 <li>Google Fonts (Montserrat)</li>
 <li>Font Awesome for icons</li>
 </ul>
