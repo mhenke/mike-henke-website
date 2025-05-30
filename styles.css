@@ -156,6 +156,13 @@ section {
   color: #00cfff;
 }
 
+/* NEW: Style for SVG icons in framework items */
+.framework-item .framework-icon {
+  width: 44px; /* Match i font-size */
+  height: 44px; /* Match i font-size */
+  fill: #00cfff; /* Match i color */
+}
+
 /* Methodologies */
 .methodology-item {
   background: #353535;
@@ -448,11 +455,25 @@ section {
     font-size: 0.85rem; /* Adjust font size for mobile */
     padding-bottom: 3px;
   }
+
+  /* Career Timeline Stacking */
+  .career-timeline-grid {
+    grid-template-columns: 1fr; /* Stack columns */
+    gap: 30px 0; /* Vertical gap, no horizontal gap */
+  }
+
+  .career-content-col {
+    padding-top: 0; /* Reset padding when stacked below timeline numbers */
+  }
+
+  .career-entry::before {
+    display: none; /* Hide horizontal connector line when stacked */
+  }
 }
 
 @media (max-width: 1200px) {
   .skills-columns {
-    flex-direction: column;
+    /* flex-direction: column; /* REMOVED - Assuming base display is grid, this is not needed/conflicting */
     gap: 32px;
   }
 
