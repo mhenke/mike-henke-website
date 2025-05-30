@@ -538,27 +538,27 @@ footer {
 }
 
 .pagefind-ui__search-input::placeholder {
-  color: #a0a0a0; /* A lighter gray, but darker than default */
+  color: #cccccc; /* Lighter gray for placeholder */
   opacity: 1; /* Ensure it's fully opaque */
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
 /* For Firefox */
 .pagefind-ui__search-input::-moz-placeholder {
-  color: #a0a0a0;
+  color: #cccccc; /* Lighter gray for placeholder */
   opacity: 1;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
 /* For Edge */
 .pagefind-ui__search-input:-ms-input-placeholder {
-  color: #a0a0a0 !important; /* Important sometimes needed for Edge */
+  color: #cccccc !important; /* Lighter gray for placeholder */
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
 /* For IE (though less relevant now) */
 .pagefind-ui__search-input::-ms-input-placeholder {
-  color: #a0a0a0;
+  color: #cccccc; /* Lighter gray for placeholder */
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
