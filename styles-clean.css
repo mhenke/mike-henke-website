@@ -37,10 +37,10 @@ This CSS file follows a clean, organized structure:
   --letter-spacing-wide: clamp(0.3px, 0.8vw, 0.5px);
 
   /* Mobile-First Responsive Breakpoints */
-  --breakpoint-xs: 480px;   /* Small Mobile (480px+) */
-  --breakpoint-sm: 768px;   /* Tablet (768px+) */
-  --breakpoint-md: 900px;   /* Desktop (900px+) */
-  --breakpoint-lg: 1200px;  /* Large Desktop (1200px+) */
+  --breakpoint-xs: 480px; /* Small Mobile (480px+) */
+  --breakpoint-sm: 768px; /* Tablet (768px+) */
+  --breakpoint-md: 900px; /* Desktop (900px+) */
+  --breakpoint-lg: 1200px; /* Large Desktop (1200px+) */
 
   /* Fluid Typography Scale - Mobile First with clamp() */
   --font-size-xs: clamp(0.7rem, 1.5vw + 0.6rem, 0.875rem);
@@ -55,15 +55,15 @@ This CSS file follows a clean, organized structure:
   --font-size-5xl: clamp(2.8rem, 8vw + 2.2rem, 4.5rem);
 
   /* Spacing System - Mobile First Progressive Enhancement */
-  --spacing-xs: clamp(0.25rem, 1vw + 0.2rem, 0.5rem);      /* 4px → 8px */
-  --spacing-sm: clamp(0.5rem, 1.5vw + 0.4rem, 0.75rem);    /* 8px → 12px */
-  --spacing-md: clamp(0.75rem, 2vw + 0.6rem, 1rem);        /* 12px → 16px */
-  --spacing-lg: clamp(1rem, 2.5vw + 0.8rem, 1.5rem);       /* 16px → 24px */
-  --spacing-xl: clamp(1.25rem, 3vw + 1rem, 2rem);          /* 20px → 32px */
-  --spacing-2xl: clamp(1.5rem, 4vw + 1.2rem, 2.5rem);      /* 24px → 40px */
-  --spacing-3xl: clamp(2rem, 5vw + 1.5rem, 3rem);          /* 32px → 48px */
-  --spacing-4xl: clamp(2.5rem, 6vw + 2rem, 4rem);          /* 40px → 64px */
-  --spacing-5xl: clamp(3rem, 8vw + 2.5rem, 5rem);          /* 48px → 80px */
+  --spacing-xs: clamp(0.25rem, 1vw + 0.2rem, 0.5rem); /* 4px → 8px */
+  --spacing-sm: clamp(0.5rem, 1.5vw + 0.4rem, 0.75rem); /* 8px → 12px */
+  --spacing-md: clamp(0.75rem, 2vw + 0.6rem, 1rem); /* 12px → 16px */
+  --spacing-lg: clamp(1rem, 2.5vw + 0.8rem, 1.5rem); /* 16px → 24px */
+  --spacing-xl: clamp(1.25rem, 3vw + 1rem, 2rem); /* 20px → 32px */
+  --spacing-2xl: clamp(1.5rem, 4vw + 1.2rem, 2.5rem); /* 24px → 40px */
+  --spacing-3xl: clamp(2rem, 5vw + 1.5rem, 3rem); /* 32px → 48px */
+  --spacing-4xl: clamp(2.5rem, 6vw + 2rem, 4rem); /* 40px → 64px */
+  --spacing-5xl: clamp(3rem, 8vw + 2.5rem, 5rem); /* 48px → 80px */
 
   /* Layout & Sizing */
   --max-width-content: clamp(320px, 95vw, 1200px);
@@ -167,7 +167,12 @@ a:focus {
 /* ================================
    3. TYPOGRAPHY
    ================================ */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-primary);
   font-weight: var(--font-weight-bold);
   line-height: 1.2;
@@ -176,12 +181,24 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: var(--letter-spacing-subtle);
 }
 
-h1 { font-size: var(--font-size-4xl); }
-h2 { font-size: var(--font-size-3xl); }
-h3 { font-size: var(--font-size-2xl); }
-h4 { font-size: var(--font-size-xl); }
-h5 { font-size: var(--font-size-lg); }
-h6 { font-size: var(--font-size-md); }
+h1 {
+  font-size: var(--font-size-4xl);
+}
+h2 {
+  font-size: var(--font-size-3xl);
+}
+h3 {
+  font-size: var(--font-size-2xl);
+}
+h4 {
+  font-size: var(--font-size-xl);
+}
+h5 {
+  font-size: var(--font-size-lg);
+}
+h6 {
+  font-size: var(--font-size-md);
+}
 
 p {
   margin-bottom: var(--spacing-md);
@@ -323,7 +340,11 @@ section {
 .hero-section {
   padding: var(--spacing-4xl) var(--spacing-lg);
   text-align: center;
-  background: linear-gradient(135deg, var(--color-background) 0%, var(--color-surface-alt) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--color-background) 0%,
+    var(--color-surface-alt) 100%
+  );
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--spacing-3xl);
@@ -335,7 +356,11 @@ section {
 .hero-text h1 {
   font-size: var(--font-size-4xl);
   margin-bottom: var(--spacing-md);
-  background: linear-gradient(135deg, var(--color-text) 0%, var(--color-primary) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--color-text) 0%,
+    var(--color-primary) 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -505,7 +530,8 @@ section {
   box-shadow: var(--shadow-lg);
   object-fit: cover;
   aspect-ratio: 3/4;
-  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  transition: transform var(--transition-normal),
+    box-shadow var(--transition-normal);
   transform: translate3d(0, 0, 0);
   outline-offset: 3px;
 }
@@ -726,39 +752,39 @@ footer p {
   .container {
     padding: var(--spacing-xl) var(--spacing-lg);
   }
-  
+
   .hero-section {
     gap: var(--spacing-xl);
   }
-  
+
   .button-container {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
   }
-  
+
   .frameworks-grid {
     grid-template-columns: repeat(3, 1fr);
   }
-  
+
   .career-grid {
     gap: clamp(2rem, 5vw, 3rem);
   }
-  
+
   .career-photo {
     max-width: clamp(220px, 30vw, 300px);
   }
-  
+
   .timeline::before {
     left: calc(var(--spacing-lg) - 1px);
   }
-  
+
   .timeline-item {
     padding-left: calc(var(--spacing-xxl) + var(--spacing-lg));
     margin-bottom: 50px;
   }
-  
+
   .timeline-number {
     width: var(--spacing-xl);
     height: var(--spacing-xl);
@@ -774,40 +800,40 @@ footer p {
     align-items: center;
     min-height: 70vh;
   }
-  
+
   .hero-buttons {
     flex-direction: row;
     justify-content: flex-start;
   }
-  
+
   .skills-columns {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .button-container {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
   }
-  
+
   .frameworks-grid {
     grid-template-columns: repeat(4, 1fr);
   }
-  
+
   .career-grid {
     grid-template-columns: auto 1fr;
     gap: clamp(2.5rem, 6vw, 4rem);
   }
-  
+
   .career-photo {
     max-width: clamp(240px, 25vw, 320px);
   }
-  
+
   .career-timeline-column .timeline::before {
     left: 35px;
   }
-  
+
   .career-timeline-column .timeline-item {
     padding-left: 100px;
   }
@@ -820,55 +846,55 @@ footer p {
     margin: 0 auto;
     padding: var(--spacing-2xl) var(--spacing-xl);
   }
-  
+
   .hero-section {
     grid-template-columns: 1.2fr 0.8fr;
     gap: var(--spacing-3xl);
     min-height: 85vh;
   }
-  
+
   .hero-text h1 {
     font-size: clamp(3rem, 7vw + 1.8rem, 4rem);
     line-height: 1.1;
   }
-  
+
   .skills-columns {
     grid-template-columns: repeat(3, 1fr);
     gap: var(--spacing-2xl);
   }
-  
+
   .skills-card {
     padding: clamp(32px, 6vw, 40px);
   }
-  
+
   .career-timeline-grid {
     grid-template-columns: 200px 1fr;
     gap: var(--spacing-2xl);
   }
-  
+
   .timeline-step {
     position: sticky;
     top: var(--spacing-2xl);
   }
-  
+
   .content-section-boxed {
     padding: clamp(40px, 8vw, 48px);
     margin: var(--spacing-3xl) auto;
   }
-  
+
   .btn {
     transition: all var(--transition-normal);
   }
-  
+
   .btn:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
   }
-  
+
   .career-timeline-column .timeline-content h3 {
     font-size: clamp(1.5rem, 4vw, 2.2rem);
   }
-  
+
   .career-timeline-column .timeline-content .position {
     font-size: clamp(1rem, 3vw, 1.3rem);
   }
@@ -879,21 +905,21 @@ footer p {
   .container {
     padding: var(--spacing-3xl) var(--spacing-2xl);
   }
-  
+
   .hero-section {
     grid-template-columns: 1.3fr 0.7fr;
     gap: var(--spacing-4xl);
     min-height: 90vh;
   }
-  
+
   .hero-text h1 {
     font-size: clamp(3.5rem, 8vw + 2rem, 4.5rem);
   }
-  
+
   .skills-card {
     padding: var(--spacing-2xl);
   }
-  
+
   .career-photo {
     max-width: 350px;
   }
@@ -905,10 +931,16 @@ footer p {
     opacity: 0;
     animation: fadeInUp 0.6s ease forwards;
   }
-  
-  .timeline-item:nth-child(1) { animation-delay: 0.2s; }
-  .timeline-item:nth-child(2) { animation-delay: 0.4s; }
-  .timeline-item:nth-child(3) { animation-delay: 0.6s; }
+
+  .timeline-item:nth-child(1) {
+    animation-delay: 0.2s;
+  }
+  .timeline-item:nth-child(2) {
+    animation-delay: 0.4s;
+  }
+  .timeline-item:nth-child(3) {
+    animation-delay: 0.6s;
+  }
 }
 
 /* Respect user preference for reduced motion */
@@ -917,20 +949,20 @@ footer p {
     transition-duration: 0.01ms !important;
     transition-delay: 0s !important;
   }
-  
+
   .career-photo {
     transition: none;
   }
-  
+
   .career-photo:hover {
     transform: none;
   }
-  
+
   .timeline-item {
     opacity: 1;
     animation: none;
   }
-  
+
   .btn,
   .skills-card,
   .framework-item,
@@ -954,7 +986,7 @@ footer p {
   .skills-card {
     transform: none !important; /* Disable hover transforms on touch */
   }
-  
+
   .btn:active,
   .navbar-links a:active {
     transform: scale(0.98);
@@ -966,11 +998,11 @@ footer p {
   .btn {
     border: 2px solid currentColor;
   }
-  
+
   .progress-bar {
     border: 2px solid var(--color-text);
   }
-  
+
   .timeline-number {
     border: 3px solid var(--color-primary);
   }
@@ -987,7 +1019,8 @@ footer p {
   font-family: var(--font-primary);
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-regular);
-  padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) var(--spacing-2xl);
+  padding: var(--spacing-md) var(--spacing-md) var(--spacing-md)
+    var(--spacing-2xl);
   background-color: var(--color-surface);
   color: var(--color-text);
   border: 1px solid var(--color-border);
