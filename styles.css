@@ -33,6 +33,7 @@ This CSS file follows a clean, organized structure:
   --font-weight-regular: 400;
   --font-weight-medium: 600;
   --font-weight-bold: 700;
+  --font-weight-semibold: 800;
   --letter-spacing-subtle: clamp(0.2px, 0.5vw, 0.3px);
   --letter-spacing-wide: clamp(0.3px, 0.8vw, 0.5px);
 
@@ -101,6 +102,7 @@ This CSS file follows a clean, organized structure:
 html {
   scroll-behavior: smooth;
   height: 100%;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 body {
@@ -111,6 +113,9 @@ body {
   color: var(--color-text);
   background-color: var(--color-background);
   min-height: 100vh;
+  overflow-x: hidden; /* Prevent horizontal scrolling on mobile */
+  width: 100%;
+  max-width: 100vw; /* Ensure body doesn't exceed viewport width */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -119,6 +124,40 @@ img {
   max-width: 100%;
   height: auto;
   display: block;
+}
+
+/* Mobile Overflow Prevention */
+* {
+  /* Prevent elements from extending beyond viewport */
+  max-width: 100%;
+}
+
+/* Container elements should respect viewport boundaries */
+.navbar-container,
+.hero-section,
+.content-section,
+.content-section-boxed,
+main,
+section,
+div {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+/* Ensure all text content wraps properly */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+div {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 a {
@@ -209,14 +248,17 @@ p {
    4. COMPONENT STYLES
    ================================ */
 
-/* Navigation */
+/* Navigation - Mobile First Design */
 .navbar {
   background-color: var(--color-surface);
   box-shadow: var(--shadow-md);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
   transition: background-color var(--transition-normal);
+  width: 100%;
+  max-width: 100vw; /* Ensure navbar doesn't exceed viewport */
+  overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
 .navbar-container {
@@ -226,6 +268,9 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box; /* Include padding in width calculation */
 }
 
 .navbar-brand {
@@ -233,27 +278,206 @@ p {
   font-weight: var(--font-weight-bold);
   color: var(--color-primary);
   letter-spacing: var(--letter-spacing-wide);
+  z-index: 1001; /* Above mobile menu */
 }
 
+/* Mobile Menu Toggle Button */
+.navbar-toggle {
+  display: block;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-sm);
+  color: var(--color-text);
+  font-size: var(--font-size-xl);
+  border-radius: var(--border-radius-sm);
+  transition: all var(--transition-fast);
+  min-height: 44px; /* Touch target */
+  min-width: 44px;
+  z-index: 1001; /* Above mobile menu */
+}
+
+.navbar-toggle:hover,
+.navbar-toggle:focus {
+  background-color: var(--color-primary);
+  color: var(--color-background);
+  outline: none;
+}
+
+.navbar-toggle:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Mobile Navigation Links */
 .navbar-links {
-  display: flex;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  width: 100%; /* Explicitly set width */
+  max-width: 100vw; /* Prevent overflow beyond viewport */
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-lg);
+  border-radius: 0 0 var(--border-radius-md) var(--border-radius-md);
   list-style: none;
-  gap: var(--spacing-lg);
+  margin: 0;
+  padding: var(--spacing-md) 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  transform: translateY(-100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-normal);
+  z-index: 1000;
+  box-sizing: border-box; /* Include padding in width calculation */
+  overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+/* Mobile menu open state */
+.navbar-links.nav-open {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.navbar-links li {
+  width: 100%;
 }
 
 .navbar-links a {
+  display: block;
+  width: 100%;
   color: var(--color-text);
   font-weight: var(--font-weight-medium);
-  padding: var(--spacing-sm) var(--spacing-md);
-  border-radius: var(--border-radius-sm);
-  transition: all var(--transition-normal);
+  padding: var(--spacing-md) var(--spacing-lg);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  border-left: 3px solid transparent;
+  min-height: 44px; /* Touch target */
+  display: flex;
+  align-items: center;
 }
 
 .navbar-links a:hover,
 .navbar-links a:focus {
   background-color: var(--color-primary);
   color: var(--color-background);
-  text-decoration: none;
+  border-left-color: var(--color-background);
+  outline: none;
+}
+
+.navbar-links a:focus {
+  outline: 2px solid var(--color-background);
+  outline-offset: -2px;
+}
+
+/* Enhanced navigation for different screen sizes */
+
+/* Navigation priority levels for responsive design */
+.navbar-links .nav-priority-high {
+  /* Always visible on tablet+ */
+}
+
+.navbar-links .nav-priority-medium {
+  /* Compact on tablet, full on desktop */
+}
+
+.navbar-links .nav-priority-low {
+  /* Abbreviated on tablet, full on desktop */
+}
+
+/* Modern navigation indicators */
+.navbar-links a.active {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Navigation dividers for visual grouping */
+.nav-divider {
+  display: none;
+  width: 1px;
+  height: 20px;
+  background-color: var(--color-border);
+  margin: 0 var(--spacing-xs);
+}
+
+/* Tablet-specific navigation improvements */
+@media (min-width: 768px) and (max-width: 899px) {
+  /* Show dividers between navigation groups on tablet */
+  .nav-divider {
+    display: block;
+  }
+
+  /* Compact text for certain nav items on tablet */
+  .navbar-links a[href*='portfolio'] .nav-text::after {
+    content: ' ↗';
+    font-size: 0.8em;
+    opacity: 0.7;
+  }
+
+  /* Modern badge for blog link */
+  .navbar-links a[href*='blog'] {
+    position: relative;
+  }
+
+  .navbar-links a[href*='blog']::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 6px;
+    height: 6px;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    opacity: 0.8;
+  }
+
+  /* Smart text abbreviations for very compact tablets */
+  .navbar-links a[href*='portfolio'] .nav-text {
+    display: none;
+  }
+
+  .navbar-links a[href*='portfolio']::after {
+    content: 'Work';
+  }
+
+  .navbar-links a[href*='contact'] .nav-text {
+    display: none;
+  }
+
+  .navbar-links a[href*='contact']::after {
+    content: 'Contact';
+  }
+
+  /* Compact spacing for tablets */
+  .navbar-container {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+
+  .navbar-brand {
+    font-size: var(--font-size-lg);
+  }
+}
+
+/* Medium tablets (820px+) - restore full text but keep compact */
+@media (min-width: 820px) and (max-width: 899px) {
+  .navbar-links a[href*='portfolio'] .nav-text {
+    display: inline;
+  }
+
+  .navbar-links a[href*='portfolio']::after {
+    content: '';
+  }
+
+  .navbar-links a[href*='contact'] .nav-text {
+    display: inline;
+  }
+
+  .navbar-links a[href*='contact']::after {
+    content: '';
+  }
 }
 
 /* Buttons */
@@ -305,6 +529,8 @@ section {
   max-width: var(--max-width-content);
   width: 100%;
   padding: 0 var(--spacing-lg);
+  box-sizing: border-box; /* Include padding in width calculation */
+  overflow-x: hidden; /* Prevent section overflow */
 }
 
 .content-section-boxed {
@@ -318,6 +544,8 @@ section {
   border-radius: var(--border-radius-xl);
   transform: translate3d(0, 0, 0);
   transition: box-shadow var(--transition-normal);
+  box-sizing: border-box; /* Include padding in width calculation */
+  overflow-x: hidden; /* Prevent boxed section overflow */
 }
 
 .section-title {
@@ -723,19 +951,7 @@ footer p {
 }
 
 .progress-bar {
-  border: 1px solid var(--color-border);
   background-color: var(--color-surface-light);
-}
-
-.progress-bar span::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 2px;
-  background-color: var(--color-text);
-  opacity: 0.7;
 }
 
 /* ================================
@@ -746,6 +962,19 @@ footer p {
 @media (min-width: 480px) {
   .container {
     padding: var(--spacing-xl) var(--spacing-lg);
+  }
+
+  /* Enhanced mobile navigation spacing */
+  .navbar-container {
+    padding: var(--spacing-lg) var(--spacing-xl);
+  }
+
+  .navbar-toggle {
+    padding: var(--spacing-md);
+  }
+
+  .navbar-links a {
+    padding: var(--spacing-lg) var(--spacing-xl);
   }
 
   .hero-section {
@@ -789,6 +1018,52 @@ footer p {
 
 /* Tablet (768px+) */
 @media (min-width: 768px) {
+  /* Tablet Navigation Layout - Compact horizontal */
+  .navbar-toggle {
+    display: none; /* Hide hamburger menu on tablet+ */
+  }
+
+  .navbar-container {
+    padding: var(--spacing-md) var(--spacing-lg);
+  }
+
+  .navbar-links {
+    position: static;
+    background: none;
+    box-shadow: none;
+    border-radius: 0;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    flex-direction: row;
+    gap: var(--spacing-sm); /* Reduced gap for tablet */
+    padding: 0;
+    flex-wrap: wrap; /* Allow wrapping if needed */
+  }
+
+  .navbar-links li {
+    width: auto;
+  }
+
+  .navbar-links a {
+    display: inline-flex;
+    width: auto;
+    padding: var(--spacing-xs) var(--spacing-sm); /* Compact padding for tablet */
+    border-left: none;
+    border-radius: var(--border-radius-sm);
+    min-height: auto;
+    font-size: var(--font-size-sm); /* Slightly smaller text for better fit */
+    transition: all var(--transition-fast);
+  }
+
+  .navbar-links a:hover,
+  .navbar-links a:focus {
+    border-left: none;
+    background-color: var(--color-primary);
+    color: var(--color-background);
+    transform: translateY(-1px);
+    outline: none;
+  }
   .hero-section {
     grid-template-columns: 1fr 1fr;
     gap: var(--spacing-2xl);
@@ -840,6 +1115,47 @@ footer p {
     max-width: var(--max-width-content);
     margin: 0 auto;
     padding: var(--spacing-2xl) var(--spacing-xl);
+  }
+
+  /* Enhanced desktop navigation spacing */
+  .navbar-container {
+    padding: var(--spacing-lg) var(--spacing-2xl);
+  }
+
+  .navbar-links {
+    gap: var(--spacing-lg); /* Proper spacing for desktop */
+    flex-wrap: nowrap; /* No wrapping on desktop */
+  }
+
+  .navbar-links a {
+    padding: var(--spacing-sm) var(--spacing-md); /* Better desktop padding */
+    font-size: var(--font-size-base); /* Full size text on desktop */
+    position: relative;
+  }
+
+  .navbar-links a:hover,
+  .navbar-links a:focus {
+    background-color: transparent;
+    color: var(--color-primary);
+    transform: translateY(-2px);
+  }
+
+  /* Modern underline effect for desktop */
+  .navbar-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-primary);
+    transition: all var(--transition-normal);
+    transform: translateX(-50%);
+  }
+
+  .navbar-links a:hover::after,
+  .navbar-links a:focus::after {
+    width: 100%;
   }
 
   .hero-section {
@@ -899,6 +1215,22 @@ footer p {
 @media (min-width: 1200px) {
   .container {
     padding: var(--spacing-3xl) var(--spacing-2xl);
+  }
+
+  /* Premium navigation spacing for large screens */
+  .navbar-container {
+    padding: var(--spacing-xl) var(--spacing-3xl);
+    max-width: var(--max-width-content);
+    margin: 0 auto;
+  }
+
+  .navbar-links {
+    gap: var(--spacing-2xl);
+  }
+
+  .navbar-links a {
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: var(--font-size-lg); /* Larger text for premium screens */
   }
 
   .hero-section {
@@ -1162,7 +1494,7 @@ footer p {
   vertical-align: top;
 }
 
-#search .pagefind-ui__result-highlight {
+search .pagefind-ui__result-highlight {
   background-color: var(--color-primary) !important;
   color: var(--color-background) !important;
   padding: 0.1em 0.25em;
