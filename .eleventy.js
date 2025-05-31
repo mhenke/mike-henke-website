@@ -47,24 +47,30 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ _pagefind: 'pagefind' });
   eleventyConfig.addPassthroughCopy('assets'); // Assets folder including images
   eleventyConfig.addPassthroughCopy('output/**/*.{jpg,jpeg,png,gif,svg,webp}'); // WordPress images
-  
+
   // WordPress export collections
-  eleventyConfig.addCollection('wordpressPosts', function(collectionApi) {
-    return collectionApi.getFilteredByGlob('output/posts/*/index.md').sort((a, b) => {
-      return new Date(b.data.date) - new Date(a.data.date);
-    });
+  eleventyConfig.addCollection('wordpressPosts', function (collectionApi) {
+    return collectionApi
+      .getFilteredByGlob('output/posts/*/index.md')
+      .sort((a, b) => {
+        return new Date(b.data.date) - new Date(a.data.date);
+      });
   });
-  
-  eleventyConfig.addCollection('wordpressPages', function(collectionApi) {
-    return collectionApi.getFilteredByGlob('output/pages/*/index.md').sort((a, b) => {
-      return new Date(b.data.date) - new Date(a.data.date);
-    });
+
+  eleventyConfig.addCollection('wordpressPages', function (collectionApi) {
+    return collectionApi
+      .getFilteredByGlob('output/pages/*/index.md')
+      .sort((a, b) => {
+        return new Date(b.data.date) - new Date(a.data.date);
+      });
   });
-  
+
   // Combined posts collection (regular + WordPress)
-  eleventyConfig.addCollection('allPosts', function(collectionApi) {
+  eleventyConfig.addCollection('allPosts', function (collectionApi) {
     const regularPosts = collectionApi.getFilteredByGlob('posts/*.md');
-    const wordpressPosts = collectionApi.getFilteredByGlob('output/posts/*/index.md');
+    const wordpressPosts = collectionApi.getFilteredByGlob(
+      'output/posts/*/index.md'
+    );
     return [...regularPosts, ...wordpressPosts].sort((a, b) => {
       return new Date(b.data.date) - new Date(a.data.date);
     });
