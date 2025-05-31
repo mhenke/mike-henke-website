@@ -284,7 +284,7 @@ section {
 #career,
 #portfolio,
 #contact {
-  scroll-margin-top: 90px;
+  scroll-margin-top: 100px;
 }
 
 /* Section Layout System - Responsive with Custom Properties */
@@ -296,7 +296,7 @@ section {
   margin: 0 auto var(--spacing-xxl) auto;
   max-width: var(--max-width-content);
   /* Anchor scroll margin for better navigation accessibility */
-  scroll-margin-top: calc(var(--spacing-xxl) + 60px);
+  scroll-margin-top: calc(var(--spacing-xxl) + 80px);
   /* Performance: Hardware acceleration */
   transform: translate3d(0, 0, 0);
   transition: box-shadow var(--transition-normal);
@@ -951,7 +951,7 @@ section {
 /* Contact Section - Modern Layout with Custom Properties */
 #contact {
   /* Anchor scroll margin for better navigation */
-  scroll-margin-top: calc(var(--spacing-xxl) + 60px);
+  scroll-margin-top: calc(var(--spacing-xxl) + 80px);
 }
 
 #contact p,
@@ -1007,7 +1007,7 @@ section {
 /* Portfolio Section - Enhanced Layout with Custom Properties */
 #portfolio {
   /* Anchor scroll margin for better navigation */
-  scroll-margin-top: calc(var(--spacing-xxl) + 60px);
+  scroll-margin-top: calc(var(--spacing-xxl) + 80px);
 }
 
 #portfolio ul {
