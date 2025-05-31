@@ -57,7 +57,18 @@
     <script>
         window.addEventListener('DOMContentLoaded', (event) => {
             if (document.getElementById("search")) {
-                new PagefindUI({ element: "#search", showSubResults: true });
+                new PagefindUI({ 
+                    element: "#search", 
+                    showSubResults: true,
+                    showEmptyFilters: false,
+                    resetStyles: false,
+                    autofocus: true,
+                    debounceTimeoutMs: 300,
+                    // Case insensitive search configuration
+                    processTerm: function(term) {
+                        return term.toLowerCase();
+                    }
+                });
             }
         });
     </script>
