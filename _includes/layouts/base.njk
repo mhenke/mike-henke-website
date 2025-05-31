@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title if title else 'Mike Henke | Coder. Engineer. Professional.' }}</title>
+    <meta name="description" content="Mike Henke - Full-stack web and mobile developer with 15+ years of experience. Specializing in JavaScript, Python, React, and modern web technologies.">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="{{ '/pagefind/pagefind-ui.css' | url }}" rel="stylesheet"> <!-- Pagefind CSS first -->
@@ -11,25 +12,31 @@
     <link rel="icon" href="{{ '/favicon.ico' | url }}">
 </head>
 <body>
-    <nav class="navbar">
+    <!-- Skip Navigation Links for Screen Readers -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <a href="#nav-menu" class="skip-link">Skip to navigation</a>
+    
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="navbar-container">
-            <div class="navbar-brand">Mike Henke</div>
-            <ul class="navbar-links">
-                <li><a href="{{ '/' | url }}">Home</a></li>
-                <li><a href="{{ '/' | url }}#about">About</a></li>
-                <li><a href="{{ '/' | url }}#skills">Skills</a></li>
-                <li><a href="{{ '/' | url }}#career">Resume</a></li>
-                <li><a href="{{ '/' | url }}#portfolio">Portfolio</a></li>
-                <li><a href="{{ '/' | url }}#contact">Contact</a></li>
-                <li><a href="{{ '/blog/' | url }}">Blog</a></li>
-                <li><a href="{{ '/search/' | url }}">Search</a></li>
+            <div class="navbar-brand" role="banner">Mike Henke</div>
+            <ul class="navbar-links" id="nav-menu" role="menubar">
+                <li role="none"><a href="{{ '/' | url }}" role="menuitem">Home</a></li>
+                <li role="none"><a href="{{ '/' | url }}#about" role="menuitem">About</a></li>
+                <li role="none"><a href="{{ '/' | url }}#skills" role="menuitem">Skills</a></li>
+                <li role="none"><a href="{{ '/' | url }}#career" role="menuitem">Resume</a></li>
+                <li role="none"><a href="{{ '/' | url }}#portfolio" role="menuitem">Portfolio</a></li>
+                <li role="none"><a href="{{ '/' | url }}#contact" role="menuitem">Contact</a></li>
+                <li role="none"><a href="{{ '/blog/' | url }}" role="menuitem">Blog</a></li>
+                <li role="none"><a href="{{ '/search/' | url }}" role="menuitem">Search</a></li>
             </ul>
         </div>
     </nav>
-    <main>
+    <main id="main-content" role="main">
+        <!-- ARIA live region for screen reader announcements -->
+        <div id="sr-announcements" aria-live="polite" aria-atomic="true" class="sr-only"></div>
         {{ content | safe }}
     </main>
-    <footer>
+    <footer role="contentinfo" aria-label="Site footer">
         <p>© {{ "now" | date("yyyy") }} Mike Henke. All Rights Reserved.</p>
     </footer>
     <script src="{{ '/pagefind/pagefind-ui.js' | url }}" type="text/javascript" defer></script>
