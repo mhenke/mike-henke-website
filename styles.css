@@ -1049,8 +1049,38 @@ footer {
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
-/* Button Container */
+/* Button Container - Mobile First to match .hero-buttons */
 .button-container {
-  text-align: center;
+  display: flex;
+  flex-direction: column; /* Mobile-first: stack buttons */
+  align-items: center;
+  gap: clamp(15px, 3vw, 20px); /* Fluid gap - match .hero-buttons */
   margin-top: clamp(24px, 5vw, 32px); /* Fluid margin */
+  width: 100%;
+}
+
+/* Desktop: horizontal button layout - match .hero-buttons */
+@media (min-width: 768px) {
+  .button-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center; /* Center-align for skills section (different from hero's left-align) */
+    align-items: flex-start;
+  }
+}
+
+/* Mobile button sizing - match .hero-buttons */
+@media (max-width: 767px) {
+  .button-container .btn {
+    width: 100%;
+    max-width: 320px; /* Consistent max-width with .hero-buttons */
+  }
+}
+
+/* Desktop button sizing - match .hero-buttons */
+@media (min-width: 768px) {
+  .button-container .btn {
+    width: auto; /* Auto width for desktop */
+    flex-shrink: 0; /* Prevent shrinking */
+  }
 }
