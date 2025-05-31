@@ -703,7 +703,6 @@ a.category-tag:hover {
 
 /* Footer */
 footer {
-  background: var(--color-surface);
   padding: var(--spacing-2xl) 0;
   margin-top: var(--spacing-4xl);
   text-align: center;
@@ -711,6 +710,7 @@ footer {
 }
 
 footer p {
+  color: var(--color-text-secondary);
   font-size: var(--font-size-sm);
   margin: 0;
 }
