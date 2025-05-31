@@ -622,7 +622,7 @@ section {
   font-size: var(--font-size-3xl);
   font-weight: var(--font-weight-bold);
   text-align: center;
-  margin-bottom: var(--spacing-2xl);
+  margin-bottom: var(--spacing-3xl);
   color: var(--color-text);
   letter-spacing: var(--letter-spacing-wide);
 }
@@ -639,7 +639,7 @@ section {
   }
   
   .section-title {
-    margin-bottom: var(--spacing-3xl);
+    margin-bottom: var(--spacing-2xl);
   }
 }
 
@@ -655,7 +655,7 @@ section {
   }
   
   .section-title {
-    margin-bottom: var(--spacing-4xl);
+    margin-bottom: var(--spacing-xl);
   }
 }
 
@@ -1986,9 +1986,7 @@ footer p {
 }
 
 .word-outline {
-  color: transparent !important;
-  -webkit-text-stroke: 2px #19d4fe !important; /* Outline teal */
-  text-stroke: 2px #19d4fe !important;
+  color: #19d4fe !important; /* Solid teal - same as Coder */
 }
 
 .word-white {
@@ -2003,13 +2001,7 @@ footer p {
   letter-spacing: 0.3px !important;
 }
 
-/* Fallback for browsers that don't support text-stroke */
-@supports not (-webkit-text-stroke: 2px #19d4fe) {
-  .word-outline {
-    color: #19d4fe !important;
-    opacity: 0.8 !important;
-  }
-}
+
 
 .hero-description p {
   font-size: var(--font-size-md);
@@ -2078,21 +2070,6 @@ footer p {
     width: 100%;
     max-width: 320px;
   }
-}
-
-/* Section Titles - Mobile First */
-/* Section Titles - Modern Typography with Custom Properties */
-.section-title {
-  font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text);
-  margin-top: 0;
-  margin-bottom: var(--spacing-md);
-  text-align: center;
-  font-family: var(--font-primary);
-  letter-spacing: var(--letter-spacing-wide);
-  /* Performance: Hardware acceleration for smooth rendering */
-  transform: translate3d(0, 0, 0);
 }
 
 /* Section underlines with animation */
@@ -2561,10 +2538,6 @@ footer p {
 }
 
 @media (min-width: 768px) {
-  .section-title {
-    margin-bottom: var(--spacing-2xl);
-  }
-
   .skills-card h3 {
     font-size: clamp(1.5rem, 4vw + 1rem, 1.875rem);
   }
@@ -2577,7 +2550,7 @@ footer p {
 @media (min-width: 1200px) {
   .section-title {
     font-size: clamp(2.5rem, 6vw + 1.5rem, 3rem);
-    margin-bottom: var(--spacing-3xl);
+    margin-bottom: var(--spacing-lg);
   }
 }
 
