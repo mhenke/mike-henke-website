@@ -12,7 +12,7 @@
   --color-text-secondary: #cccccc;
   --color-text-tertiary: #adb5bd;
   --color-border: #3e4750;
-  
+
   /* Typography System */
   --font-primary: 'Montserrat', Arial, Helvetica, sans-serif;
   --font-weight-regular: 400;
@@ -20,7 +20,7 @@
   --font-weight-bold: 700;
   --letter-spacing-subtle: 0.3px;
   --letter-spacing-wide: 0.5px;
-  
+
   /* Spacing System */
   --spacing-xs: clamp(8px, 2vw, 12px);
   --spacing-sm: clamp(12px, 3vw, 16px);
@@ -28,24 +28,24 @@
   --spacing-lg: clamp(24px, 5vw, 32px);
   --spacing-xl: clamp(32px, 6vw, 40px);
   --spacing-xxl: clamp(40px, 8vw, 60px);
-  
+
   /* Layout System */
   --max-width-content: 1200px;
   --border-radius-sm: clamp(6px, 1vw, 8px);
   --border-radius-md: clamp(12px, 2vw, 15px);
   --border-radius-lg: clamp(15px, 3vw, 18px);
-  
+
   /* Shadow System */
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
   --shadow-lg: 0 6px 20px rgba(0, 0, 0, 0.2);
   --shadow-primary: 0 4px 20px rgba(25, 212, 254, 0.2);
-  
+
   /* Transition System */
   --transition-fast: 0.15s ease;
   --transition-normal: 0.2s ease;
   --transition-slow: 0.3s ease;
-  
+
   /* Fluid Typography Scale */
   --font-size-xs: clamp(0.75rem, 2vw, 0.875rem);
   --font-size-sm: clamp(0.875rem, 2.5vw, 1rem);
@@ -66,6 +66,55 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* Animation System: Keyframes for Enhanced Effects */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes scaleIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(-30px, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Progressive Enhancement: Add entrance animations for modern browsers */
+@media (prefers-reduced-motion: no-preference) {
+  .content-section-boxed {
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  .skills-card {
+    animation: scaleIn 0.5s ease-out;
+  }
+
+  .timeline-item {
+    animation: slideInLeft 0.7s ease-out;
   }
 }
 
@@ -169,9 +218,9 @@ body {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-regular);
   letter-spacing: var(--letter-spacing-subtle);
-  transition: color var(--transition-normal), 
-              border-bottom-color var(--transition-normal),
-              transform var(--transition-fast);
+  transition: color var(--transition-normal),
+    border-bottom-color var(--transition-normal),
+    transform var(--transition-fast);
   padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: var(--border-radius-sm);
   border-bottom: 2px solid transparent;
@@ -238,38 +287,33 @@ section {
   scroll-margin-top: 90px;
 }
 
-/* Boxed Section Styling - Mobile First with Custom Properties */
+/* Section Layout System - Responsive with Custom Properties */
 .content-section-boxed {
-  background-color: var(--color-surface-alt);
-  padding: var(--spacing-md);
-  border-radius: var(--border-radius-md);
-  box-shadow: var(--shadow-md);
-  /* Performance: Use transform3d for hardware acceleration */
+  background-color: var(--color-surface);
+  padding: var(--spacing-xxl);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+  margin: 0 auto var(--spacing-xxl) auto;
+  max-width: var(--max-width-content);
+  /* Anchor scroll margin for better navigation accessibility */
+  scroll-margin-top: calc(var(--spacing-xxl) + 60px);
+  /* Performance: Hardware acceleration */
   transform: translate3d(0, 0, 0);
   transition: box-shadow var(--transition-normal);
 }
 
-/* Progressive enhancement for larger screens */
-@media (min-width: 480px) {
+/* Progressive Enhancement: Subtle hover effect for sections */
+@media (hover: hover) and (pointer: fine) {
+  .content-section-boxed:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+  }
+}
+
+/* Responsive padding adjustments */
+@media (max-width: 767px) {
   .content-section-boxed {
     padding: var(--spacing-lg);
-    border-radius: var(--border-radius-lg);
-    box-shadow: var(--shadow-lg);
-  }
-}
-
-@media (min-width: 768px) {
-  .content-section-boxed {
-    padding: var(--spacing-xl);
-    border-radius: var(--border-radius-lg);
-    box-shadow: var(--shadow-lg);
-  }
-}
-
-/* Smooth hover effects for interactive sections */
-@media (hover: hover) {
-  .content-section-boxed:hover {
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    margin: 0 var(--spacing-md) var(--spacing-xxl) var(--spacing-md);
   }
 }
 
@@ -365,9 +409,8 @@ section {
   font-weight: var(--font-weight-medium);
   /* Performance: GPU acceleration */
   transform: translate3d(0, 0, 0);
-  transition: background-color var(--transition-normal), 
-              transform var(--transition-normal),
-              box-shadow var(--transition-normal);
+  transition: background-color var(--transition-normal),
+    transform var(--transition-normal), box-shadow var(--transition-normal);
 }
 
 /* Progressive Enhancement: Hover states */
@@ -413,9 +456,8 @@ section {
   font-weight: var(--font-weight-medium);
   /* Performance: GPU acceleration */
   transform: translate3d(0, 0, 0);
-  transition: background-color var(--transition-normal), 
-              transform var(--transition-normal),
-              box-shadow var(--transition-normal);
+  transition: background-color var(--transition-normal),
+    transform var(--transition-normal), box-shadow var(--transition-normal);
 }
 
 /* Progressive Enhancement: Hover states */
@@ -447,11 +489,9 @@ section {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-bold);
   text-decoration: none;
-  transition: background-color var(--transition-normal), 
-              color var(--transition-normal), 
-              border-color var(--transition-normal),
-              transform var(--transition-fast),
-              box-shadow var(--transition-normal);
+  transition: background-color var(--transition-normal),
+    color var(--transition-normal), border-color var(--transition-normal),
+    transform var(--transition-fast), box-shadow var(--transition-normal);
   display: inline-block;
   font-family: var(--font-primary);
   text-align: center;
@@ -566,8 +606,7 @@ section {
   font-weight: var(--font-weight-regular);
   /* Performance: Hardware acceleration */
   transform: translate3d(0, 0, 0);
-  transition: color var(--transition-normal), 
-              transform var(--transition-normal);
+  transition: color var(--transition-normal), transform var(--transition-normal);
 }
 
 /* Progressive Enhancement: Hover effects */
@@ -679,7 +718,9 @@ section {
 .timeline::before {
   content: '';
   position: absolute;
-  left: calc(var(--spacing-md) - 1px); /* Responsive positioning using custom properties */
+  left: calc(
+    var(--spacing-md) - 1px
+  ); /* Responsive positioning using custom properties */
   top: 0;
   bottom: 0;
   width: 2px;
@@ -691,7 +732,9 @@ section {
 .timeline-item {
   position: relative;
   margin-bottom: var(--spacing-xxl);
-  padding-left: calc(var(--spacing-xxl) + var(--spacing-lg)); /* Dynamic padding based on spacing system */
+  padding-left: calc(
+    var(--spacing-xxl) + var(--spacing-lg)
+  ); /* Dynamic padding based on spacing system */
   /* Performance: Hardware acceleration */
   transform: translate3d(0, 0, 0);
   transition: transform var(--transition-normal);
@@ -724,8 +767,8 @@ section {
   z-index: 2;
   /* Performance: Hardware acceleration for smooth animations */
   transform: translate3d(0, 0, 0);
-  transition: transform var(--transition-normal), 
-              box-shadow var(--transition-normal);
+  transition: transform var(--transition-normal),
+    box-shadow var(--transition-normal);
 }
 
 /* Progressive Enhancement: Hover states for devices that support it */
@@ -905,48 +948,111 @@ section {
   outline-offset: 2px;
 }
 
-/* Contact Section Typography - Updated with Custom Properties */
+/* Contact Section - Modern Layout with Custom Properties */
+#contact {
+  /* Anchor scroll margin for better navigation */
+  scroll-margin-top: calc(var(--spacing-xxl) + 60px);
+}
+
 #contact p,
 #contact a {
-  font-size: var(--font-size-md);
+  font-size: var(--font-size-md); /* Using custom property */
   color: var(--color-text-muted);
   margin-bottom: var(--spacing-sm);
   text-decoration: none;
   font-family: var(--font-primary);
   font-weight: var(--font-weight-regular);
+  letter-spacing: var(--letter-spacing-subtle);
+  transition: color var(--transition-normal);
+  /* Performance: Hardware acceleration */
+  transform: translate3d(0, 0, 0);
 }
 
-/* Progressive Enhancement: Hover states for contact links */
+#contact a {
+  display: inline-block;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+  min-height: 44px; /* Accessibility: minimum touch target */
+  display: flex;
+  align-items: center;
+  max-width: fit-content;
+}
+
+/* Progressive Enhancement: Hover states for devices that support it */
 @media (hover: hover) and (pointer: fine) {
   #contact a:hover {
     color: var(--color-primary);
     text-decoration: underline;
+    background-color: rgba(25, 212, 254, 0.1);
+    transform: translate3d(0, -1px, 0);
   }
 }
 
-/* Touch devices */
+/* Touch-friendly interactions for mobile devices */
 @media (hover: none) and (pointer: coarse) {
   #contact a:active {
     color: var(--color-primary);
     text-decoration: underline;
+    background-color: rgba(25, 212, 254, 0.2);
+    transform: translate3d(0, 1px, 0) scale(0.98);
   }
 }
 
-/* Portfolio Section Typography - Updated with Custom Properties */
+#contact a:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  color: var(--color-primary);
+}
+
+/* Portfolio Section - Enhanced Layout with Custom Properties */
+#portfolio {
+  /* Anchor scroll margin for better navigation */
+  scroll-margin-top: calc(var(--spacing-xxl) + 60px);
+}
+
 #portfolio ul {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: grid;
+  gap: var(--spacing-md);
+  /* Performance: Hardware acceleration */
+  transform: translate3d(0, 0, 0);
 }
 
 #portfolio ul li {
   font-size: var(--font-size-md);
-  color: var(--color-text-secondary);
-  margin-bottom: var(--spacing-md);
-  padding-left: var(--spacing-lg);
+  color: var(--color-text);
+  padding: var(--spacing-md) var(--spacing-lg);
+  padding-left: calc(
+    var(--spacing-lg) + var(--spacing-md)
+  ); /* Space for icon */
   position: relative;
+  background: var(--color-surface-light);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-sm);
   font-family: var(--font-primary);
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-subtle);
+  transition: transform var(--transition-normal),
+    box-shadow var(--transition-normal);
+  /* Performance: Hardware acceleration */
+  transform: translate3d(0, 0, 0);
+}
+
+/* Progressive Enhancement: Hover effects for portfolio items */
+@media (hover: hover) and (pointer: fine) {
+  #portfolio ul li:hover {
+    transform: translate3d(0, -2px, 0);
+    box-shadow: var(--shadow-md);
+  }
+}
+
+/* Touch-friendly interactions */
+@media (hover: none) and (pointer: coarse) {
+  #portfolio ul li:active {
+    transform: translate3d(0, 1px, 0) scale(0.98);
+  }
 }
 
 #portfolio ul li::before {
@@ -955,8 +1061,18 @@ section {
   font-weight: 900;
   color: var(--color-primary);
   position: absolute;
-  left: 0;
-  top: 2px;
+  left: var(--spacing-md);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: var(--font-size-lg);
+  transition: transform var(--transition-fast);
+}
+
+/* Icon animation on hover */
+@media (hover: hover) and (pointer: fine) {
+  #portfolio ul li:hover::before {
+    transform: translateY(-50%) translateX(2px);
+  }
 }
 
 /* Footer - Modern Styling with Custom Properties */
@@ -969,7 +1085,11 @@ footer {
   font-family: var(--font-primary);
   font-weight: var(--font-weight-regular);
   border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
-  background: linear-gradient(135deg, var(--color-surface-alt) 0%, var(--color-surface) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--color-surface-alt) 0%,
+    var(--color-surface) 100%
+  );
   box-shadow: var(--shadow-md);
   /* Performance: Hardware acceleration */
   transform: translate3d(0, 0, 0);
@@ -1280,25 +1400,41 @@ footer p {
 }
 
 /* Section Titles - Mobile First */
-/* Section Titles - Typography System */
+/* Section Titles - Modern Typography with Custom Properties */
 .section-title {
   font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-bold);
   color: var(--color-text);
+  margin-top: 0;
   margin-bottom: var(--spacing-md);
   text-align: center;
   font-family: var(--font-primary);
-  letter-spacing: var(--letter-spacing-subtle);
+  letter-spacing: var(--letter-spacing-wide);
+  /* Performance: Hardware acceleration for smooth rendering */
+  transform: translate3d(0, 0, 0);
 }
 
+/* Section underlines with animation */
 .section-underline {
-  width: clamp(60px, 10vw, 80px);
-  height: 3px;
-  background: var(--color-primary);
+  width: clamp(60px, 15vw, 120px);
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--color-primary) 0%,
+    rgba(25, 212, 254, 0.6) 100%
+  );
   margin: 0 auto var(--spacing-lg) auto;
   border-radius: 2px;
   /* Performance: Hardware acceleration */
   transform: translate3d(0, 0, 0);
+  transition: transform var(--transition-normal), width var(--transition-slow);
+}
+
+/* Progressive Enhancement: Underline hover effect */
+@media (hover: hover) and (pointer: fine) {
+  .content-section-boxed:hover .section-underline {
+    transform: translate3d(0, 0, 0) scaleX(1.1);
+  }
 }
 
 /* Skills Section - CSS Grid Layout with Custom Properties */
@@ -1330,8 +1466,8 @@ footer p {
   box-shadow: var(--shadow-md);
   /* Performance: GPU acceleration */
   transform: translate3d(0, 0, 0);
-  transition: transform var(--transition-normal), 
-              box-shadow var(--transition-normal);
+  transition: transform var(--transition-normal),
+    box-shadow var(--transition-normal);
 }
 
 /* Smooth hover effects */
