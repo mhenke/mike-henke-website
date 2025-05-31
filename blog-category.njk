@@ -3,7 +3,7 @@ pagination:
   data: collections.postsByCategory
   size: 1
   addAllPagesToCollections: true
-permalink: "/blog/category/{{ pagination.items[0] }}/"
+permalink: "blog/category/{{ pagination.items[0] }}/"
 layout: layouts/base.njk
 eleventyComputed:
   title: "{{ collections.postsByCategory[pagination.items[0]].name }} Posts"
