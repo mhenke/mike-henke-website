@@ -1978,6 +1978,37 @@ footer p {
   color: var(--color-primary);
 }
 
+/* Hero Section Professional Text Styling */
+.hero-text .coder {
+  color: #19d4fe; /* Solid teal */
+}
+
+.hero-text .engineer {
+  color: transparent;
+  -webkit-text-stroke: 2px #19d4fe; /* Outline teal */
+  text-stroke: 2px #19d4fe;
+}
+
+.hero-text .professional {
+  color: #ffffff; /* White */
+}
+
+/* Enhanced text styling for better visibility */
+.hero-text .coder,
+.hero-text .engineer,
+.hero-text .professional {
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+/* Fallback for browsers that don't support text-stroke */
+@supports not (-webkit-text-stroke: 2px #19d4fe) {
+  .hero-text .engineer {
+    color: #19d4fe;
+    opacity: 0.8;
+  }
+}
+
 .hero-description p {
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-regular);
