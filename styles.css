@@ -57,6 +57,104 @@
   --font-size-3xl: clamp(2rem, 6vw, 3rem);
 }
 
+/* Accessibility: Skip Links for Screen Readers */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--color-primary);
+  color: var(--color-background);
+  padding: 8px;
+  z-index: 10000;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  transition: top var(--transition-normal);
+}
+
+.skip-link:focus {
+  top: 6px;
+  outline: 2px solid var(--color-text);
+  outline-offset: 2px;
+}
+
+/* Accessibility: Screen Reader Only Text */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Accessibility: Focus management for dynamic content */
+.sr-only.focusable:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Accessibility: ARIA live regions */
+.sr-status {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Accessibility: Better text contrast on hover/focus states */
+.btn:hover,
+.btn:focus {
+  color: var(--color-background);
+}
+
+.btn-outline:hover,
+.btn-outline:focus {
+  background-color: var(--color-primary);
+  color: var(--color-background);
+}
+
+/* Accessibility: Enhanced Focus Indicators */
+*:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Accessibility: Focus-visible for modern browsers */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Accessibility: High contrast focus for interactive elements */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[role='button']:focus-visible,
+[role='menuitem']:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 1px var(--color-background), 0 0 0 4px var(--color-primary);
+}
+
 /* Performance: Reduce animations for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -67,6 +165,52 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Accessibility: High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --color-primary: #00ffff;
+    --color-text: #ffffff;
+    --color-background: #000000;
+    --color-surface: #111111;
+  }
+
+  .progress-bar {
+    border: 2px solid var(--color-text);
+  }
+
+  .btn {
+    border: 2px solid currentColor;
+  }
+}
+
+/* Accessibility: Enhanced keyboard navigation for timeline */
+.timeline-item:focus-within {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 4px;
+  border-radius: var(--border-radius-md);
+}
+
+/* Accessibility: Better visibility for progress bars */
+.progress-bar {
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface-light);
+}
+
+.progress-bar span {
+  position: relative;
+}
+
+.progress-bar span::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: var(--color-text);
+  opacity: 0.7;
 }
 
 /* Animation System: Keyframes for Enhanced Effects */

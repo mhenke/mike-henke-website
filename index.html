@@ -3,63 +3,123 @@ layout: layouts/base.njk
 permalink: /index.html
 ---
 
-<section class="hero-section">
+<section class="hero-section" aria-labelledby="hero-title">
   <div class="hero-title">
-    <h1>
+    <h1 id="hero-title">
       Mike Henke:<br />
       <span class="highlight">Coder. Engineer.<br />Professional.</span>
     </h1>
   </div>
   <div class="hero-image">
-    <img src="{{ '/profile.jpg' | url }}" alt="Mike Henke" />
+    <img
+      src="{{ '/profile.jpg' | url }}"
+      alt="Professional headshot of Mike Henke, smiling and wearing business attire"
+    />
   </div>
   <div class="hero-description">
     <p>Delivering web &amp; mobile applications my clients are proud of.</p>
   </div>
   <div class="hero-buttons">
-    <a href="#portfolio" class="btn btn-primary">View My Work</a>
-    <a href="#contact" class="btn btn-outline">Contact Me</a>
+    <a
+      href="#portfolio"
+      class="btn btn-primary"
+      aria-describedby="portfolio-desc"
+      >View My Work</a
+    >
+    <span id="portfolio-desc" class="sr-only"
+      >Navigate to the portfolio section to see my completed projects</span
+    >
+    <a href="#contact" class="btn btn-outline" aria-describedby="contact-desc"
+      >Contact Me</a
+    >
+    <span id="contact-desc" class="sr-only"
+      >Navigate to the contact section to get in touch</span
+    >
   </div>
 </section>
-<section id="about" class="content-section-boxed">
-  <h2 class="section-title">About Me</h2>
-  <div class="section-underline"></div>
+
+<section id="about" class="content-section-boxed" aria-labelledby="about-title">
+  <h2 id="about-title" class="section-title">About Me</h2>
+  <div class="section-underline" aria-hidden="true"></div>
   <p>
     I have over 15 years of success developing, testing, implementing, and
     enhancing a variety of web applications and sites to meet and exceed diverse
     business objectives. Based in Omaha, I offer my services worldwide.
   </p>
 </section>
-<section id="skills" class="content-section-boxed">
-  <h2 class="section-title">My Skills</h2>
-  <div class="section-underline"></div>
+
+<section
+  id="skills"
+  class="content-section-boxed"
+  aria-labelledby="skills-title"
+>
+  <h2 id="skills-title" class="section-title">My Skills</h2>
+  <div class="section-underline" aria-hidden="true"></div>
   <div class="skills-columns">
-    <div class="skills-card">
-      <h3>Programming Languages</h3>
+    <div class="skills-card" role="region" aria-labelledby="prog-lang-title">
+      <h3 id="prog-lang-title">Programming Languages</h3>
       <div class="skill-row">
         <span class="skill-label lang">JavaScript</span>
-        <span class="skill-percent">95%</span>
+        <span class="skill-percent" aria-label="95 percent proficiency"
+          >95%</span
+        >
       </div>
-      <div class="progress-bar" data-width="95"><span></span></div>
+      <div
+        class="progress-bar"
+        data-width="95"
+        role="progressbar"
+        aria-valuenow="95"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-label="JavaScript skill level: 95%"
+      >
+        <span></span>
+      </div>
       <div class="skill-row">
         <span class="skill-label lang">Python</span>
-        <span class="skill-percent">85%</span>
+        <span class="skill-percent" aria-label="85 percent proficiency"
+          >85%</span
+        >
       </div>
-      <div class="progress-bar" data-width="85"><span></span></div>
+      <div
+        class="progress-bar"
+        data-width="85"
+        role="progressbar"
+        aria-valuenow="85"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-label="Python skill level: 85%"
+      >
+        <span></span>
+      </div>
       <div class="skill-row">
         <span class="skill-label lang">Ruby</span>
-        <span class="skill-percent">80%</span>
+        <span class="skill-percent" aria-label="80 percent proficiency"
+          >80%</span
+        >
       </div>
-      <div class="progress-bar" data-width="80"><span></span></div>
+      <div
+        class="progress-bar"
+        data-width="80"
+        role="progressbar"
+        aria-valuenow="80"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-label="Ruby skill level: 80%"
+      >
+        <span></span>
+      </div>
     </div>
-    <div class="skills-card">
-      <h3>Frameworks</h3>
+    <div class="skills-card" role="region" aria-labelledby="frameworks-title">
+      <h3 id="frameworks-title">Frameworks</h3>
       <div class="frameworks-grid">
         <div class="framework-item">
-          <i class="fab fa-react"></i><span>React</span>
+          <i class="fab fa-react" aria-hidden="true"></i>
+          <span>React</span>
         </div>
         <div class="framework-item">
-          <i class="fab fa-angular"></i><span>Angular</span>
+          <i class="fab fa-angular" aria-hidden="true"></i>
+          <span>Angular</span>
         </div>
         <div class="framework-item">
           <svg
@@ -67,6 +127,9 @@ permalink: /index.html
             viewBox="0 0 93.2 112"
             width="24"
             height="24"
+            aria-hidden="true"
+            role="img"
+            aria-label="SvelteKit logo"
           >
             <path
               fill="#00d4ff"
@@ -76,76 +139,141 @@ permalink: /index.html
           <span>SvelteKit</span>
         </div>
         <div class="framework-item">
-          <i class="fas fa-gem"></i><span>Rails</span>
+          <i class="fas fa-gem" aria-hidden="true"></i>
+          <span>Rails</span>
         </div>
       </div>
     </div>
-    <div class="skills-card">
-      <h3>Methodologies</h3>
-      <div class="methodology-item">
-        <i class="fas fa-check-circle"></i>Agile Development
-      </div>
-      <div class="methodology-item">
-        <i class="fas fa-check-circle"></i>Test Driven Development
-      </div>
-      <div class="methodology-item">
-        <i class="fas fa-check-circle"></i>SCRUM
-      </div>
-      <div class="methodology-item">
-        <i class="fas fa-check-circle"></i>CI/CD
-      </div>
+    <div
+      class="skills-card"
+      role="region"
+      aria-labelledby="methodologies-title"
+    >
+      <h3 id="methodologies-title">Methodologies</h3>
+      <ul role="list" aria-label="Development methodologies">
+        <li class="methodology-item" role="listitem">
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          <span>Agile Development</span>
+        </li>
+        <li class="methodology-item" role="listitem">
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          <span>Test Driven Development</span>
+        </li>
+        <li class="methodology-item" role="listitem">
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          <span>SCRUM</span>
+        </li>
+        <li class="methodology-item" role="listitem">
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          <span>CI/CD</span>
+        </li>
+      </ul>
     </div>
   </div>
   <div class="button-container">
-    <a href="#portfolio" class="btn btn-primary">View My Projects</a>
+    <a
+      href="#portfolio"
+      class="btn btn-primary"
+      aria-describedby="portfolio-btn-desc"
+      >View My Projects</a
+    >
+    <span id="portfolio-btn-desc" class="sr-only"
+      >Navigate to portfolio section showing completed work</span
+    >
   </div>
 </section>
-<section id="career" class="content-section-boxed">
-  <h2 class="section-title">My Recent Career</h2>
-  <div class="section-underline"></div>
-  <div class="timeline">
-    <div class="timeline-item">
-      <div class="timeline-number">1</div>
+<section
+  id="career"
+  class="content-section-boxed"
+  aria-labelledby="career-title"
+>
+  <h2 id="career-title" class="section-title">My Recent Career</h2>
+  <div class="section-underline" aria-hidden="true"></div>
+  <div class="timeline" role="list" aria-label="Career timeline">
+    <div class="timeline-item" role="listitem">
+      <div class="timeline-number" aria-label="Step 1 of career timeline">
+        1
+      </div>
       <div class="timeline-content">
         <h3>Union Pacific</h3>
-        <div class="position">M&S Business Consultant II</div>
-        <div class="duration">July 2016 - Present</div>
+        <div class="position" role="text" aria-label="Current position">
+          M&S Business Consultant II
+        </div>
+        <div class="duration" role="text" aria-label="Employment duration">
+          July 2016 - Present
+        </div>
       </div>
     </div>
-    <div class="timeline-item">
-      <div class="timeline-number">2</div>
+    <div class="timeline-item" role="listitem">
+      <div class="timeline-number" aria-label="Step 2 of career timeline">
+        2
+      </div>
       <div class="timeline-content">
         <h3>Telvent DTN (Schneider Electric)</h3>
-        <div class="position">Application Contractor</div>
-        <div class="duration">February 2013 - July 2016</div>
+        <div class="position" role="text" aria-label="Previous position">
+          Application Contractor
+        </div>
+        <div class="duration" role="text" aria-label="Employment duration">
+          February 2013 - July 2016
+        </div>
       </div>
     </div>
-    <div class="timeline-item">
-      <div class="timeline-number">3</div>
+    <div class="timeline-item" role="listitem">
+      <div class="timeline-number" aria-label="Step 3 of career timeline">
+        3
+      </div>
       <div class="timeline-content">
         <h3>Resource Insurance Consultants</h3>
-        <div class="position">Senior Software Engineer Web</div>
-        <div class="duration">December 2010 - February 2013</div>
+        <div class="position" role="text" aria-label="Previous position">
+          Senior Software Engineer Web
+        </div>
+        <div class="duration" role="text" aria-label="Employment duration">
+          December 2010 - February 2013
+        </div>
       </div>
     </div>
   </div>
 </section>
-<section id="portfolio" class="content-section-boxed">
-  <h2 class="section-title">Portfolio</h2>
-  <div class="section-underline"></div>
-  <ul>
-    <li>U.S. Department of Health & Human Services</li>
-    <li>Restaurant to Room</li>
-    <li>Innovate Omaha</li>
-    <li>Cameron Ranch</li>
-    <li>Resource Insurance Consultants – RIC</li>
-    <li>Data Driven website using Firebase</li>
+
+<section
+  id="portfolio"
+  class="content-section-boxed"
+  aria-labelledby="portfolio-title"
+>
+  <h2 id="portfolio-title" class="section-title">Portfolio</h2>
+  <div class="section-underline" aria-hidden="true"></div>
+  <ul role="list" aria-label="List of portfolio projects">
+    <li role="listitem">U.S. Department of Health & Human Services</li>
+    <li role="listitem">Restaurant to Room</li>
+    <li role="listitem">Innovate Omaha</li>
+    <li role="listitem">Cameron Ranch</li>
+    <li role="listitem">Resource Insurance Consultants – RIC</li>
+    <li role="listitem">Data Driven website using Firebase</li>
   </ul>
 </section>
-<section id="contact" class="content-section-boxed">
-  <h2 class="section-title">Contact</h2>
-  <div class="section-underline"></div>
-  <p>PO BOX 27593, Omaha, NE 68127</p>
-  <p>Phone: +1 402 577 0059</p>
-  <p>Email: <a href="mailto:henke.mike@gmail.com">henke.mike@gmail.com</a></p>
+
+<section
+  id="contact"
+  class="content-section-boxed"
+  aria-labelledby="contact-title"
+>
+  <h2 id="contact-title" class="section-title">Contact</h2>
+  <div class="section-underline" aria-hidden="true"></div>
+  <address>
+    <p>PO BOX 27593, Omaha, NE 68127</p>
+    <p>
+      Phone:
+      <a href="tel:+14025770059" aria-label="Call Mike Henke at 402-577-0059"
+        >+1 402 577 0059</a
+      >
+    </p>
+    <p>
+      Email:
+      <a
+        href="mailto:henke.mike@gmail.com"
+        aria-label="Send email to Mike Henke"
+        >henke.mike@gmail.com</a
+      >
+    </p>
+  </address>
 </section>
