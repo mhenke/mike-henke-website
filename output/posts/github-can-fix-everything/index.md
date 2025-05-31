@@ -1,0 +1,9 @@
+---
+title: "GitHub can fix everything"
+date: 2012-05-25
+categories: 
+  - "git"
+  - "github"
+---
+
+The title is a little facetious but I do think [Github](http://github.com) _collaberation is not being taken advantage_ of in the ColdFusion community. Sure some CFML-ers like [Mark Mandel](https://github.com/markmandel), [Luis Majano](https://github.com/lmajano), and [Marc Esher](https://github.com/marcesher) are using github. ColdFusion projects like [ValidateThis](https://github.com/ValidateThis), [FW1](https://github.com/seancorfield/fw1), and [MuraCMS](https://github.com/blueriver/MuraCMS) are on it. [ColdFusion Koans](http://bittersweetryan.github.com/ColdFusion-Koans/) is even taking advantage of [github pages](http://pages.github.com/) (being able to host a site on github). All this said, _github is much more than hosting projects and sample code**.**_ The Wired article, [The Meta-Story: How Wired Published Its GitHub Story on GitHub](http://www.wired.com/wiredenterprise/2012/02/github-revisited/), describes how Wired published a story using github. It mentions Github is being used to oversee stuff outside of code like Senate bills, text files, and books. [Pro Git](https://github.com/progit/progit) is a great example of publishing a book on github. People "_can mess around with it, and then offer the changes back_". Training material is perfect for github also. I have [CFML in 100 minutes](https://github.com/mhenke/CFML-in-100-minutes/wiki) on github. It is pretty cool a couple weeks ago [bcswartz](https://github.com/bcswartz) added a **Switch, Case, & Default** section. I did change the sections to a wiki from markdown files. Back to my original point, the CFML community _doesn't seem from my perspective to be taking full advantage of Github collaberation_ and I hope this changes.

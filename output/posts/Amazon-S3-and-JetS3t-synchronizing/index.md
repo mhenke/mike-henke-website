@@ -1,0 +1,10 @@
+---
+title: "Amazon S3 and JetS3t synchronizing"
+date: 2007-11-06
+categories: 
+  - "Amazon-S3"
+  - "Software"
+  - "Ubuntu"
+---
+
+[JetS3t](http://jets3t.s3.amazonaws.com/index.html) can be used across Ubuntu and Windows which I needed. I like to be able to sync files between my two systems. JetS3t has a [synchronize](http://jets3t.s3.amazonaws.com/applications/synchronize.html) command line tool. It is in bat and sh format. JetS3t also has a nice GUI called cockpit. My [Amazon S3](http://www.amazon.com/gp/browse.html?node=16427261) (stand for Amazon Simple Storage Service) setup for sync-ing is a bucket called mikehenke.com-sync which contains folder: doc, doc-archives, My Music, scripts, and Desktop Wallpaper. On my Windows computer I have all these folders under My Documents. My Documents contains other files and sub-folders. This example will be using the docs folder. My command for Windows to download is **_synchronize.bat DOWN mikehenke.com-sync/docs "C:Documents and SettingsmhenkeMy Documentsdocs"_** when inside the bin folder of JetS3t. Uploading is a little less obvious. Some reason when I used mikehenke.com-synch/docs JetS3t created the files in docs/docs/ on Amazon S3. Here is the Windows command I am using **_synchronize.bat -k up mikehenke.com-sync "C:Documents and SettingsmhenkeMy Documentsdocs"_** I repeat the commands for all my folder I want to sync from Windows to Amazon S3. (I have a notepad file with the commands and will try to automate later) NOTE: _Be sure to test any commands using -n before the up or down attribute. It will give a summary of what will happen._ The Ubuntu commands are a little more straightfoward since I have a sync folder where all the subfolders (doc, doc-archives, My Music, scripts, and Desktop Wallpaper) are located without any extra files and subfolders. Download: _**/home/mhenke/jets3t-0.5.0/bin/synchronize.sh DOWN mikehenke.com-sync /home/mhenke/sync**_ Upload: _**/home/mhenke/jets3t-0.5.0/bin/synchronize.sh UP mikehenke.com-sync /home/mhenke/sync/docs /home/mhenke/sync/docs-archive /home/mhenke/sync/scripts "/home/mhenke/sync/Desktop Wallpaper" "/home/mhenke/sync/My Music"**_

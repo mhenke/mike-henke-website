@@ -1087,6 +1087,24 @@ section {
   font-style: italic;
 }
 
+.blog-post-categories {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+
+.category-tag {
+  display: inline-block;
+  background-color: #22313a;
+  color: #19d4fe;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 400;
+  margin-right: 0.5rem;
+  margin-bottom: 0.3rem;
+  border: 1px solid #19d4fe;
+}
+
 /* Timeline Section - Simplified CSS based on working example */
 .timeline {
   position: relative;

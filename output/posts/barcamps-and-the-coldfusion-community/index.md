@@ -1,0 +1,12 @@
+---
+title: "BarCamps and the ColdFusion community..."
+date: 2008-08-17
+categories: 
+  - "ColdFusion"
+  - "Eclipse"
+  - "Mylyn"
+  - "Presentations"
+  - "Subversion"
+---
+
+I attended my first ever [BarCamp](http://en.wikipedia.org/wiki/Barcamp) in Omaha. I met a lot of smart individuals using a variety of programming languages. Attendents were from Omaha, Minneapolis, Kansas City, and IA. If you haven't heard of a BarCamp, I hadn't either till last week. I attended sessions over [Seaside](http://en.wikipedia.org/wiki/Seaside_\(software\)), [Prototype](http://en.wikipedia.org/wiki/Prototype_JavaScript_Framework), Geeks & .mil/.gov (how military has trouble attracting and keeping geeks), [Git](http://git.or.cz/), and several entrepreneurial presentions. I presented on [Eclipse](http://eclipse.org)/[Mylyn](http://eclipse.org/mylyn) and [Subversion](http://subversion.tigris.org/) for Dummies but mentioned [CFEclipse](http://cfeclipse.org) and [ColdFusion](http://www.adobe.com/products/coldfusion/) throughout my presentations since that is what I am familiar with. [Ryan Stille](http://www.stillnetstudios.com/) presented an Intro to ColdFusion. There were alot of interesting questions and comments from the group. Many were impressed by ColdFusion integration with Java and .Net. And also the open source options like [Railo](http://www.railo-technologies.com/en/index.cfm) and [OpenBlue Dragon](http://www.openbluedragon.org/). Talking to people, it seemed most were impressed with the ColdFusion community in general and the turnout @ the [Omaha BarCamp](http://barcampomaha.org/) but many didn't know the ColdFusion language is still being actively updated and enhanced. I would recommend anyone to [check and see if a BarCamp is happenning in your area](http://barcamp.org/). If you would like to present an Intro to ColdFusion [contact Ryan](http://ryan.cfwebtools.com/) for his slides and tweak them as you like. I am sure he would be happy to help you spread the word about ColdFusion. I am planning on attending the [BarCamp in Des Moines](http://dmbarcamp.org/) next weekend. If you are within driving distance I would recommend attending. For me google map says it is a 135 mi – about 2 hours 6 mins trip but it will be well worth it. UPDATE - [Flickr Slideshow of Omaha BarCamp](http://tinyurl.com/5puphg) - thats me with the visor demonstrating some bruce lee moves as i present :-)
