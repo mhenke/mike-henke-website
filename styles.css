@@ -1107,13 +1107,20 @@ section {
   position: relative;
   margin-bottom: var(--spacing-xxl);
   padding-left: calc(var(--spacing-xxl) + var(--spacing-lg));
-  opacity: 0;
-  animation: fadeInUp 0.6s ease forwards;
+  opacity: 1; /* Default visible, override with animation if motion is preferred */
 }
 
-.timeline-item:nth-child(1) { animation-delay: 0.2s; }
-.timeline-item:nth-child(2) { animation-delay: 0.4s; }
-.timeline-item:nth-child(3) { animation-delay: 0.6s; }
+/* Progressive Enhancement: Add entrance animations for users who prefer motion */
+@media (prefers-reduced-motion: no-preference) {
+  .timeline-item {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
+  .timeline-item:nth-child(1) { animation-delay: 0.2s; }
+  .timeline-item:nth-child(2) { animation-delay: 0.4s; }
+  .timeline-item:nth-child(3) { animation-delay: 0.6s; }
+}
 
 .timeline-number {
   position: absolute;
