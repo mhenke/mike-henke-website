@@ -273,7 +273,8 @@ section {
   font-size: clamp(0.875rem, 2.5vw, 1rem); /* Fluid: 14px to 16px */
   font-weight: 700;
   text-decoration: none;
-  transition: background-color 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+    transform 0.2s;
   display: inline-block;
   font-family: 'Montserrat', Arial, sans-serif;
   text-align: center;
@@ -519,7 +520,7 @@ section {
   .timeline::before {
     left: 25px;
   }
-  
+
   .timeline-item {
     padding-left: 75px;
   }
@@ -530,11 +531,11 @@ section {
   .timeline::before {
     left: 35px;
   }
-  
+
   .timeline-item {
     padding-left: 100px;
   }
-  
+
   .timeline-number {
     box-shadow: 0 4px 20px rgba(25, 212, 254, 0.3); /* Full shadow for desktop */
   }
@@ -888,12 +889,12 @@ footer {
     justify-self: center;
     align-self: center;
   }
-  
+
   .hero-description {
     grid-column: 1 / 2;
     grid-row: 3 / 4;
   }
-  
+
   .hero-buttons {
     grid-column: 1 / 2;
     grid-row: 4 / 5;
@@ -908,12 +909,12 @@ footer {
     justify-self: center;
     align-self: center;
   }
-  
+
   .hero-description {
     grid-column: 1 / 2;
     grid-row: 2 / 3;
   }
-  
+
   .hero-buttons {
     grid-column: 1 / 2;
     grid-row: 3 / 4;
