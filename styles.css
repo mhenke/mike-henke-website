@@ -1098,8 +1098,8 @@ section {
   color: #19d4fe;
   padding: 0.1rem 0.4rem;
   border-radius: 16px;
-  font-size: clamp(0.8rem, 2vw, 0.9rem);
-  font-weight: 400;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
   margin-right: 0.25rem;
   margin-bottom: 0.15rem;
   border: 1px solid #19d4fe;
