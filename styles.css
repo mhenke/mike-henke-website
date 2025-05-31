@@ -1096,15 +1096,16 @@ section {
   display: inline-block;
   background-color: #22313a;
   color: #19d4fe;
-  padding: 0.2rem 0.6rem;
-  border-radius: 12px;
-  font-size: 0.85rem;
-  font-weight: 400;
-  margin-right: 0.5rem;
-  margin-bottom: 0.3rem;
+  padding: 0.1rem 0.4rem;
+  border-radius: 16px;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  margin-right: 0.25rem;
+  margin-bottom: 0.15rem;
   border: 1px solid #19d4fe;
   text-decoration: none;
   transition: all 0.2s ease-in-out;
+  line-height: 1.1;
 }
 
 .category-tag:hover {
