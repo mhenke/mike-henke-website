@@ -984,6 +984,159 @@ section {
   }
 }
 
+/* Career Grid Layout - Mobile First with Fluid Typography */
+.career-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+  margin-top: clamp(1.5rem, 4vw, 2rem);
+  align-items: start;
+  /* Ensure proper isolation for sticky positioning */
+  isolation: isolate;
+}
+
+/* Career Photo Column */
+.career-photo-column {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.career-photo {
+  width: 100%;
+  max-width: clamp(200px, 35vw, 280px);
+  height: auto;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+  object-fit: cover;
+  aspect-ratio: 3/4;
+  transition: transform var(--transition-normal),
+    box-shadow var(--transition-normal);
+  /* Performance: Hardware acceleration */
+  transform: translate3d(0, 0, 0);
+  /* Accessibility: Ensure photo can receive focus if needed */
+  outline-offset: 3px;
+}
+
+/* Focus state for accessibility */
+.career-photo:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+/* Progressive Enhancement: Photo hover effect for desktop */
+@media (hover: hover) and (pointer: fine) {
+  .career-photo:hover {
+    transform: translate3d(0, -2px, 0) scale(1.02);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .career-photo {
+    transition: none;
+  }
+
+  .career-photo:hover {
+    transform: none;
+  }
+}
+
+/* Career Timeline Column */
+.career-timeline-column {
+  width: 100%;
+}
+
+/* Mobile breakpoint (480px and up) */
+@media (min-width: 480px) {
+  .career-grid {
+    gap: clamp(2rem, 5vw, 3rem);
+  }
+
+  .career-photo {
+    max-width: clamp(220px, 30vw, 300px);
+  }
+}
+
+/* Tablet breakpoint (768px and up) */
+@media (min-width: 768px) {
+  .career-grid {
+    grid-template-columns: auto 1fr;
+    gap: clamp(2.5rem, 6vw, 4rem);
+    align-items: start;
+  }
+
+  .career-photo-column {
+    position: sticky;
+    top: clamp(2rem, 4vw, 3rem);
+  }
+
+  .career-photo {
+    max-width: clamp(280px, 25vw, 350px);
+  }
+}
+
+/* Desktop breakpoint (900px and up) */
+@media (min-width: 900px) {
+  .career-grid {
+    grid-template-columns: 320px 1fr;
+    gap: clamp(3rem, 6vw, 4.5rem);
+  }
+
+  .career-photo {
+    max-width: 100%;
+    width: 320px;
+  }
+}
+
+/* Large desktop breakpoint (1200px and up) */
+@media (min-width: 1200px) {
+  .career-grid {
+    grid-template-columns: 360px 1fr;
+    gap: clamp(3.5rem, 6vw, 5rem);
+  }
+
+  .career-photo {
+    width: 360px;
+  }
+}
+
+/* Scalable Timeline Adjustments for Two-Column Layout */
+@media (min-width: 768px) {
+  /* Adjust timeline positioning within the grid */
+  .career-timeline-column .timeline::before {
+    left: calc(var(--spacing-lg) - 1px);
+  }
+
+  .career-timeline-column .timeline-item {
+    padding-left: calc(var(--spacing-xxl) + var(--spacing-lg));
+  }
+}
+
+@media (min-width: 900px) {
+  .career-timeline-column .timeline::before {
+    left: calc(var(--spacing-xl) - 1px);
+  }
+
+  .career-timeline-column .timeline-item {
+    padding-left: calc(var(--spacing-xxl) + var(--spacing-xl));
+  }
+
+  /* Enhanced spacing for larger screens */
+  .career-timeline-column .timeline-content h3 {
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  }
+
+  .career-timeline-column .timeline-content .position {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+  }
+
+  .career-timeline-column .timeline-content .duration {
+    font-size: clamp(0.875rem, 1.5vw, 1rem);
+  }
+}
+
 /* NAVIGATION - Mobile First */
 .navbar {
   background: #181a1b; /* Match hero section background */
