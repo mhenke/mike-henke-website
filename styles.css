@@ -1669,7 +1669,7 @@ footer p {
   background-color: var(--color-primary);
   border-radius: var(--border-radius-sm);
   /* Animation: Start at 0% width, animate to target width */
-  width: 0% !important;
+  width: 0%;
   transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
   /* Performance: Use transform for animations */
   transform: translate3d(0, 0, 0);
