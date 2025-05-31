@@ -18,43 +18,85 @@
   --font-weight-regular: 400;
   --font-weight-medium: 600;
   --font-weight-bold: 700;
-  --letter-spacing-subtle: 0.3px;
-  --letter-spacing-wide: 0.5px;
+  --letter-spacing-subtle: clamp(0.2px, 0.5vw, 0.3px);
+  --letter-spacing-wide: clamp(0.3px, 0.8vw, 0.5px);
 
-  /* Spacing System */
-  --spacing-xs: clamp(8px, 2vw, 12px);
-  --spacing-sm: clamp(12px, 3vw, 16px);
-  --spacing-md: clamp(16px, 4vw, 24px);
-  --spacing-lg: clamp(24px, 5vw, 32px);
-  --spacing-xl: clamp(32px, 6vw, 40px);
-  --spacing-xxl: clamp(40px, 8vw, 60px);
+  /* Mobile-First Responsive Breakpoints */
+  --breakpoint-xs: 480px;   /* Small Mobile (480px+) */
+  --breakpoint-sm: 768px;   /* Tablet (768px+) */
+  --breakpoint-md: 900px;   /* Desktop (900px+) */
+  --breakpoint-lg: 1200px;  /* Large Desktop (1200px+) */
+
+  /* Fluid Typography Scale - Mobile First with clamp() */
+  /* Extra small text for captions, labels */
+  --font-size-xs: clamp(0.7rem, 1.5vw + 0.6rem, 0.875rem);
+  /* Small text for secondary content */
+  --font-size-sm: clamp(0.8rem, 2vw + 0.65rem, 1rem);
+  /* Base body text - optimal reading size */
+  --font-size-base: clamp(0.9rem, 2.2vw + 0.7rem, 1.125rem);
+  /* Medium text for larger body content */
+  --font-size-md: clamp(1rem, 2.5vw + 0.8rem, 1.25rem);
+  /* Large text for subheadings */
+  --font-size-lg: clamp(1.1rem, 3vw + 0.9rem, 1.5rem);
+  /* Extra large for card titles, h4 */
+  --font-size-xl: clamp(1.3rem, 3.5vw + 1rem, 1.875rem);
+  /* 2XL for section subheadings, h3 */
+  --font-size-2xl: clamp(1.5rem, 4vw + 1.2rem, 2.25rem);
+  /* 3XL for main section headings, h2 */
+  --font-size-3xl: clamp(1.8rem, 5vw + 1.5rem, 3rem);
+  /* 4XL for hero headings, h1 */
+  --font-size-4xl: clamp(2.2rem, 6vw + 1.8rem, 3.75rem);
+  /* 5XL for special display text */
+  --font-size-5xl: clamp(2.8rem, 8vw + 2.2rem, 4.5rem);
+
+  /* Fluid Line Heights */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.6;
+  --line-height-loose: 1.8;
+
+  /* Fluid Spacing System - Mobile First */
+  /* Micro spacing for tight elements */
+  --spacing-xs: clamp(0.25rem, 1vw + 0.2rem, 0.5rem);
+  /* Small spacing for related elements */
+  --spacing-sm: clamp(0.5rem, 2vw + 0.3rem, 0.75rem);
+  /* Medium spacing for moderate separation */
+  --spacing-md: clamp(0.75rem, 2.5vw + 0.5rem, 1rem);
+  /* Large spacing for distinct sections */
+  --spacing-lg: clamp(1rem, 3vw + 0.8rem, 1.5rem);
+  /* Extra large for major separations */
+  --spacing-xl: clamp(1.5rem, 4vw + 1rem, 2rem);
+  /* 2XL for section breaks */
+  --spacing-2xl: clamp(2rem, 5vw + 1.5rem, 2.5rem);
+  /* 3XL for major page sections */
+  --spacing-3xl: clamp(2.5rem, 6vw + 2rem, 3rem);
+  /* 4XL for maximum emphasis */
+  --spacing-4xl: clamp(3rem, 8vw + 2.5rem, 4rem);
+  /* 5XL for hero sections and major dividers */
+  --spacing-5xl: clamp(4rem, 10vw + 3rem, 5rem);
+  --spacing-xl: clamp(1.5rem, 4vw + 1rem, 2rem);
+  --spacing-2xl: clamp(2rem, 5vw + 1.5rem, 2.5rem);
+  --spacing-3xl: clamp(2.5rem, 6vw + 2rem, 3rem);
+  --spacing-4xl: clamp(3rem, 8vw + 2.5rem, 4rem);
 
   /* Layout System */
   --max-width-content: 1200px;
-  --border-radius-sm: clamp(6px, 1vw, 8px);
-  --border-radius-md: clamp(12px, 2vw, 15px);
-  --border-radius-lg: clamp(15px, 3vw, 18px);
+  --max-width-text: 65ch;
+  --border-radius-sm: clamp(0.375rem, 1vw + 0.25rem, 0.5rem);
+  --border-radius-md: clamp(0.5rem, 1.5vw + 0.4rem, 0.75rem);
+  --border-radius-lg: clamp(0.75rem, 2vw + 0.5rem, 1.125rem);
 
   /* Shadow System */
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
-  --shadow-lg: 0 6px 20px rgba(0, 0, 0, 0.2);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
   --shadow-primary: 0 4px 20px rgba(25, 212, 254, 0.2);
 
   /* Transition System */
   --transition-fast: 0.15s ease;
   --transition-normal: 0.2s ease;
   --transition-slow: 0.3s ease;
-
-  /* Fluid Typography Scale */
-  --font-size-xs: clamp(0.75rem, 2vw, 0.875rem);
-  --font-size-sm: clamp(0.875rem, 2.5vw, 1rem);
-  --font-size-base: clamp(1rem, 2.5vw, 1.125rem);
-  --font-size-md: clamp(1.1rem, 3vw, 1.25rem);
-  --font-size-lg: clamp(1.25rem, 3.5vw, 1.5rem);
-  --font-size-xl: clamp(1.5rem, 4vw, 2rem);
-  --font-size-2xl: clamp(1.75rem, 5vw, 2.5rem);
-  --font-size-3xl: clamp(2rem, 6vw, 3rem);
 }
 
 /* Accessibility: Skip Links for Screen Readers */
@@ -274,40 +316,119 @@ html {
   box-sizing: inherit;
 }
 
-/* General Styles - Mobile First with CSS Custom Properties */
+/* Mobile-First Base Styles with Fluid Typography */
 body {
   font-family: var(--font-primary);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  letter-spacing: var(--letter-spacing-subtle);
   margin: 0;
   background: var(--color-background);
   color: var(--color-text);
-  letter-spacing: var(--letter-spacing-subtle);
-  font-size: var(--font-size-sm);
-  line-height: 1.6;
   /* Performance: Enable GPU acceleration for smoother scrolling */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Improve text rendering on mobile */
+  text-rendering: optimizeLegibility;
 }
 
-/* Navigation - Semantic and Accessible */
+/* Typography Hierarchy - Mobile First */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-wide);
+  margin: 0 0 var(--spacing-md) 0;
+  color: var(--color-text);
+}
+
+h1 {
+  font-size: var(--font-size-4xl);
+  margin-bottom: var(--spacing-lg);
+}
+
+h2 {
+  font-size: var(--font-size-3xl);
+  margin-bottom: var(--spacing-lg);
+}
+
+h3 {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--spacing-md);
+}
+
+h4 {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--spacing-md);
+}
+
+h5 {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--spacing-sm);
+}
+
+h6 {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--spacing-sm);
+}
+
+/* Body text and content */
+p {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-relaxed);
+  margin: 0 0 var(--spacing-md) 0;
+  max-width: var(--max-width-text);
+}
+
+/* Lists */
+ul, ol {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-relaxed);
+  margin: 0 0 var(--spacing-md) 0;
+  padding-left: var(--spacing-lg);
+}
+
+li {
+  margin-bottom: var(--spacing-xs);
+}
+
+/* Links */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover,
+a:focus {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
+/* Small text */
+small {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+}
+
+/* Mobile-First Navigation - Semantic and Accessible */
 .navbar {
   background: var(--color-background);
-  padding: 15px var(--spacing-md);
+  padding: var(--spacing-md);
   position: sticky;
   top: 0;
   z-index: 1000;
   display: flex;
   align-items: center;
-  min-height: 60px;
+  min-height: clamp(60px, 12vw, 80px);
   box-shadow: var(--shadow-sm);
   /* Performance: Use will-change for sticky elements */
   will-change: transform;
-}
-
-@media (min-width: 768px) {
-  .navbar {
-    height: 80px;
-    padding: 0 5%;
-  }
 }
 
 .navbar-container {
@@ -318,34 +439,106 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-}
-
-@media (min-width: 768px) {
-  .navbar-container {
-    justify-content: space-between;
-    flex-direction: row;
-  }
+  gap: var(--spacing-sm);
 }
 
 .navbar-brand {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
   letter-spacing: var(--letter-spacing-wide);
   color: var(--color-text);
   font-family: var(--font-primary);
-  margin-bottom: var(--spacing-sm);
+  text-decoration: none;
+  transition: color var(--transition-fast);
 }
 
-@media (min-width: 768px) {
-  .navbar-brand {
-    margin-bottom: 0;
-  }
+.navbar-brand:hover,
+.navbar-brand:focus {
+  color: var(--color-primary);
 }
 
 .navbar-links {
   list-style: none;
   display: flex;
   gap: var(--spacing-md);
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.navbar-links li {
+  display: inline-block;
+}
+
+.navbar-links a {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-subtle);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+  transition: all var(--transition-fast);
+  position: relative;
+}
+
+.navbar-links a:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Small Mobile (480px+) */
+@media (min-width: 480px) {
+  .navbar {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+  
+  .navbar-links {
+    gap: var(--spacing-lg);
+  }
+  
+  .navbar-links a {
+    font-size: var(--font-size-base);
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+}
+
+/* Tablet (768px+) */
+@media (min-width: 768px) {
+  .navbar {
+    padding: 0 var(--spacing-xl);
+  }
+  
+  .navbar-container {
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 0;
+  }
+  
+  .navbar-brand {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .navbar-links {
+    gap: var(--spacing-xl);
+    flex-wrap: nowrap;
+  }
+}
+
+/* Desktop (900px+) */
+@media (min-width: 900px) {
+  .navbar {
+    padding: 0 var(--spacing-2xl);
+  }
+}
+
+/* Large Desktop (1200px+) */
+@media (min-width: 1200px) {
+  .navbar {
+    padding: 0 var(--spacing-3xl);
+  }
+}
   margin: 0;
   padding: 0;
   flex-wrap: wrap;
@@ -400,25 +593,83 @@ body {
   outline-offset: 2px;
 }
 
-/* Section Layout - Semantic and Responsive */
+/* Mobile-First Section Layout System */
 section {
-  margin: 0 auto var(--spacing-xl) auto;
+  margin: 0 auto var(--spacing-2xl) auto;
   max-width: var(--max-width-content);
   padding: 0 var(--spacing-md);
+  width: 100%;
 }
 
-/* Progressive enhancement for larger screens */
+/* Mobile-First Content Section */
+.content-section-boxed {
+  background-color: var(--color-surface);
+  padding: var(--spacing-2xl);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+  margin: 0 auto var(--spacing-3xl) auto;
+  max-width: var(--max-width-content);
+  width: 100%;
+  /* Anchor scroll margin for better navigation accessibility */
+  scroll-margin-top: calc(var(--spacing-2xl) + 80px);
+  /* Performance: Hardware acceleration */
+  transform: translate3d(0, 0, 0);
+  transition: box-shadow var(--transition-normal);
+}
+
+/* Section Titles - Mobile First */
+.section-title {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+  color: var(--color-text);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+/* Small Mobile (480px+) */
 @media (min-width: 480px) {
   section {
     padding: 0 var(--spacing-lg);
-    margin-bottom: 50px;
+    margin-bottom: var(--spacing-3xl);
+  }
+  
+  .content-section-boxed {
+    padding: var(--spacing-3xl);
+  }
+  
+  .section-title {
+    margin-bottom: var(--spacing-3xl);
   }
 }
 
+/* Tablet (768px+) */
 @media (min-width: 768px) {
   section {
     padding: 0 var(--spacing-xl);
-    margin-bottom: 60px;
+    margin-bottom: var(--spacing-4xl);
+  }
+  
+  .content-section-boxed {
+    padding: var(--spacing-4xl);
+  }
+  
+  .section-title {
+    margin-bottom: var(--spacing-4xl);
+  }
+}
+
+/* Desktop (900px+) */
+@media (min-width: 900px) {
+  section {
+    padding: 0 var(--spacing-2xl);
+  }
+}
+
+/* Large Desktop (1200px+) */
+@media (min-width: 1200px) {
+  section {
+    padding: 0 var(--spacing-3xl);
   }
 }
 
@@ -429,21 +680,6 @@ section {
 #portfolio,
 #contact {
   scroll-margin-top: 100px;
-}
-
-/* Section Layout System - Responsive with Custom Properties */
-.content-section-boxed {
-  background-color: var(--color-surface);
-  padding: var(--spacing-xxl);
-  border-radius: var(--border-radius-lg);
-  box-shadow: var(--shadow-lg);
-  margin: 0 auto var(--spacing-xxl) auto;
-  max-width: var(--max-width-content);
-  /* Anchor scroll margin for better navigation accessibility */
-  scroll-margin-top: calc(var(--spacing-xxl) + 80px);
-  /* Performance: Hardware acceleration */
-  transform: translate3d(0, 0, 0);
-  transition: box-shadow var(--transition-normal);
 }
 
 /* Progressive Enhancement: Subtle hover effect for sections */
@@ -1333,8 +1569,6 @@ section {
   letter-spacing: var(--letter-spacing-subtle);
   transition: transform var(--transition-normal),
     box-shadow var(--transition-normal);
-  /* Performance: Hardware acceleration */
-  transform: translate3d(0, 0, 0);
 }
 
 /* Progressive Enhancement: Hover effects for portfolio items */
@@ -1562,7 +1796,7 @@ footer p {
   .hero-section {
     grid-template-columns: 3fr 2fr; /* Text content and image */
     grid-template-rows: auto auto auto; /* Title, description, buttons */
-    gap: var(--spacing-md) var(--spacing-xl); /* row-gap column-gap */
+    gap: var(--spacing-2xl); /* row-gap column-gap */
     text-align: left; /* Left alignment for desktop */
     min-height: 70vh; /* Viewport-based height */
   }
@@ -1655,7 +1889,7 @@ footer p {
   height: clamp(180px, 40vw, 320px);
   object-fit: cover;
   border-radius: var(--border-radius-lg);
-  box-shadow: 0 clamp(6px, 2vw, 10px) clamp(20px, 5vw, 30px) rgba(0, 0, 0, 0.25);
+  box-shadow: 0 clamp(6px, 2vw, 10px) rgba(0, 0, 0, 0.25);
   /* Performance: Hardware acceleration for smooth transforms */
   transform: translate3d(0, 0, 0);
   transition: transform var(--transition-normal);
@@ -1892,5 +2126,430 @@ footer p {
   .button-container .btn {
     width: auto; /* Auto width for desktop */
     flex-shrink: 0; /* Prevent shrinking */
+  }
+}
+
+/* ========================================
+   📱 RESPONSIVE DESIGN SYSTEM - MOBILE FIRST
+   ======================================== */
+
+/* 🎯 Base Styles: Mobile (< 480px) - Already defined above */
+/* All base styles are mobile-first by default */
+
+/* ========================================
+   📱 SMALL MOBILE (480px+)
+   ======================================== */
+@media (min-width: 480px) {
+  /* Enhanced spacing for slightly larger mobile screens */
+  .container {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+
+  .content-section-boxed {
+    padding: clamp(32px, 6vw, 40px);
+    margin: var(--spacing-xl) auto;
+  }
+
+  /* Better button spacing on small mobile */
+  .hero-buttons {
+    gap: clamp(18px, 3.5vw, 24px);
+  }
+
+  /* Improved skill card layout */
+  .skills-card {
+    padding: clamp(24px, 5vw, 32px);
+  }
+
+  /* Better timeline spacing */
+  .career-entry {
+    padding: clamp(20px, 4vw, 28px);
+  }
+}
+
+/* ========================================
+   📱 TABLET (768px+)
+   ======================================== */
+@media (min-width: 768px) {
+  /* Container improvements for tablet */
+  .container {
+    padding: var(--spacing-xl) var(--spacing-lg);
+  }
+
+  /* Hero section: transition to two-column layout */
+  .hero-section {
+    display: grid;
+    grid-template-columns: 1fr 0.6fr;
+    gap: var(--spacing-2xl);
+    align-items: center;
+    min-height: 80vh;
+  }
+
+  .hero-buttons {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: clamp(20px, 4vw, 24px);
+  }
+
+  .hero-buttons .btn {
+    width: auto;
+    flex-shrink: 0;
+  }
+
+  /* Skills section: transition to grid layout */
+  .skills-columns {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-xl);
+  }
+
+  /* Career timeline: introduce two-column layout */
+  .career-timeline-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--spacing-xl);
+    align-items: start;
+  }
+
+  /* Enhanced typography for tablet */
+  h1 {
+    font-size: clamp(2.5rem, 6vw + 1.5rem, 3.5rem);
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 5vw + 1.2rem, 2.75rem);
+  }
+}
+
+/* ========================================
+   🖥️ DESKTOP (900px+)
+   ======================================== */
+@media (min-width: 900px) {
+  /* Enhanced container for desktop */
+  .container {
+    max-width: var(--max-width-content);
+    margin: 0 auto;
+    padding: var(--spacing-2xl) var(--spacing-xl);
+  }
+
+  /* Hero section: refined proportions */
+  .hero-section {
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: var(--spacing-3xl);
+    min-height: 85vh;
+  }
+
+  .hero-text h1 {
+    font-size: clamp(3rem, 7vw + 1.8rem, 4rem);
+    line-height: 1.1;
+  }
+
+  /* Skills section: full three-column layout */
+  .skills-columns {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-2xl);
+  }
+
+  .skills-card {
+    padding: clamp(32px, 6vw, 40px);
+  }
+
+  /* Career timeline: refined layout */
+  .career-timeline-grid {
+    grid-template-columns: 200px 1fr;
+    gap: var(--spacing-2xl);
+  }
+
+  .timeline-step {
+    position: sticky;
+    top: var(--spacing-2xl);
+  }
+
+  /* Enhanced section spacing */
+  .content-section-boxed {
+    padding: clamp(40px, 8vw, 48px);
+    margin: var(--spacing-3xl) auto;
+  }
+
+  /* Better button hover effects */
+  .btn {
+    transition: all var(--transition-normal);
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+}
+
+/* ========================================
+   🖥️ LARGE DESKTOP (1200px+)
+   ======================================== */
+@media (min-width: 1200px) {
+  /* Maximum container width reached */
+  .container {
+    padding: var(--spacing-3xl) var(--spacing-2xl);
+  }
+
+  /* Hero section: optimal proportions for large screens */
+  .hero-section {
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: var(--spacing-4xl);
+    min-height: 90vh;
+  }
+
+  .hero-text h1 {
+    font-size: clamp(3.5rem, 8vw + 2rem, 4.5rem);
+    line-height: 1.05;
+  }
+
+  /* Enhanced skills section */
+  .skills-columns {
+    gap: var(--spacing-3xl);
+  }
+
+  .skills-card {
+    padding: clamp(40px, 8vw, 48px);
+  }
+
+  /* Career timeline: maximum spacing */
+  .career-timeline-grid {
+    grid-template-columns: 240px 1fr;
+    gap: var(--spacing-3xl);
+  }
+
+  /* Premium section styling */
+  .content-section-boxed {
+    padding: clamp(48px, 10vw, 56px);
+    margin: var(--spacing-4xl) auto;
+  }
+
+  /* Enhanced interactive elements */
+  .btn {
+    font-size: clamp(1rem, 2.5vw + 0.8rem, 1.125rem);
+    padding: clamp(16px, 3vw, 18px) clamp(32px, 6vw, 36px);
+  }
+
+  /* Subtle parallax effect for large screens */
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-image img {
+      transition: transform var(--transition-slow);
+    }
+
+    .hero-section:hover .hero-image img {
+      transform: scale(1.02);
+    }
+  }
+}
+
+/* ========================================
+   📱 RESPONSIVE UTILITIES
+   ======================================== */
+
+/* Hide elements on mobile */
+@media (max-width: 479px) {
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
+/* Hide elements on tablet and up */
+@media (min-width: 768px) {
+  .hide-tablet-up {
+    display: none !important;
+  }
+}
+
+/* Hide elements on desktop and up */
+@media (min-width: 900px) {
+  .hide-desktop-up {
+    display: none !important;
+  }
+}
+
+/* Show only on mobile */
+.show-mobile {
+  display: block;
+}
+
+@media (min-width: 480px) {
+  .show-mobile {
+    display: none;
+  }
+}
+
+/* Show only on tablet and up */
+.show-tablet-up {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .show-tablet-up {
+    display: block;
+  }
+}
+
+/* Show only on desktop and up */
+.show-desktop-up {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .show-desktop-up {
+    display: block;
+  }
+}
+
+/* ========================================
+   📱 RESPONSIVE TYPOGRAPHY ADJUSTMENTS
+   ======================================== */
+
+/* Fine-tune typography at specific breakpoints */
+@media (min-width: 480px) {
+  body {
+    font-size: clamp(1rem, 2.2vw + 0.7rem, 1.125rem);
+  }
+}
+
+@media (min-width: 768px) {
+  .section-title {
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .skills-card h3 {
+    font-size: clamp(1.5rem, 4vw + 1rem, 1.875rem);
+  }
+
+  .career-entry h3 {
+    font-size: clamp(1.4rem, 3.5vw + 1rem, 1.75rem);
+  }
+}
+
+@media (min-width: 1200px) {
+  .section-title {
+    font-size: clamp(2.5rem, 6vw + 1.5rem, 3rem);
+    margin-bottom: var(--spacing-3xl);
+  }
+}
+
+/* ========================================
+   📱 RESPONSIVE SPACING SYSTEM
+   ======================================== */
+
+/* Consistent spacing across breakpoints */
+@media (max-width: 479px) {
+  .section-spacing {
+    margin: var(--spacing-2xl) 0;
+  }
+}
+
+@media (min-width: 480px) {
+  .section-spacing {
+    margin: var(--spacing-3xl) 0;
+  }
+}
+
+@media (min-width: 900px) {
+  .section-spacing {
+    margin: var(--spacing-4xl) 0;
+  }
+}
+
+/* ========================================
+   📱 PERFORMANCE OPTIMIZATIONS
+   ======================================== */
+
+/* Optimize images for different screen sizes */
+@media (max-width: 767px) {
+  .hero-image img {
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-image img {
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .hero-image img {
+    max-width: 450px;
+  }
+}
+
+/* Optimize animations for mobile */
+@media (max-width: 767px) {
+  @media (prefers-reduced-motion: no-preference) {
+    .content-section-boxed {
+      animation-duration: 0.4s;
+    }
+
+    .skills-card {
+      animation-duration: 0.3s;
+    }
+  }
+}
+
+/* ========================================
+   📱 TOUCH OPTIMIZATIONS
+   ======================================== */
+
+/* Enhanced touch targets for mobile */
+@media (max-width: 767px) {
+  .btn {
+    min-height: 44px; /* iOS recommended minimum touch target */
+    padding: var(--spacing-md) var(--spacing-lg);
+  }
+
+  /* Larger tap targets for navigation */
+  nav a {
+    padding: var(--spacing-sm) var(--spacing-md);
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+/* ========================================
+   📱 PRINT STYLES
+   ======================================== */
+
+@media print {
+  /* Hide interactive elements */
+  .btn,
+  .hero-buttons,
+  nav,
+  .progress-bar {
+    display: none !important;
+  }
+
+  /* Optimize typography for print */
+  body {
+    font-size: 12pt;
+    line-height: 1.4;
+    color: #000;
+    background: #fff;
+  }
+
+  h1, h2, h3 {
+    color: #000;
+    page-break-after: avoid;
+  }
+
+  /* Ensure content fits on page */
+  .container {
+    max-width: none;
+    padding: 0;
+  }
+
+  .content-section-boxed {
+    box-shadow: none;
+    border: 1px solid #ccc;
+    padding: 20pt;
+    margin: 10pt 0;
   }
 }
