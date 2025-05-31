@@ -1,0 +1,45 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: collections.postsByCategory
+  size: 1
+  alias: categoryData
+  before: function(data) {
+    return Object.keys(data).map(slug => ({
+      slug: slug,
+      name: data[slug].name,
+      posts: data[slug].posts
+    }));
+  }
+permalink: "/blog/category/{{ categoryData.slug }}/"
+eleventyComputed:
+  title: "Posts in {{ categoryData.name }}"
+---
+<section class="content-section-boxed" style="margin-top: 30px;">
+    <h1 class="section-title">Posts in "{{ categoryData.name }}"</h1>
+    <div class="section-underline"></div>
+    
+    <p style="margin-bottom: 2rem;">
+        <a href="{{ '/blog' | url }}" style="color: #19d4fe; text-decoration: none;">← Back to All Posts</a>
+    </p>
+    
+    <ul>
+        {%- for post in categoryData.posts -%}
+            <li class="blog-post-item">
+                <a href="{{ post.url | url }}">{{ post.data.title }}</a>
+                <p class="blog-post-date"><em>{{ post.date | date('LLLL d, yyyy') }}</em></p>
+                {% if post.data.categories %}
+                    <p class="blog-post-categories">
+                        {% for category in post.data.categories %}
+                            <a href="{{ '/blog/category/' + (category | slugify) + '/' | url }}" class="category-tag">{{ category }}</a>
+                        {% endfor %}
+                    </p>
+                {% endif %}
+            </li>
+        {%- endfor -%}
+    </ul>
+    
+    {% if categoryData.posts.length == 0 %}
+        <p>No posts found in this category.</p>
+    {% endif %}
+</section>

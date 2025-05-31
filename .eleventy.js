@@ -10,6 +10,15 @@ module.exports = function (eleventyConfig) {
     return DateTime.fromJSDate(dateObj).toFormat(format);
   });
 
+  // Slugify filter for category URLs
+  eleventyConfig.addFilter('slugify', function(str) {
+    return str
+      .toLowerCase()
+      .trim()
+      .replace(/[\s\W-]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  });
+
   // absoluteUrl filter
   eleventyConfig.addFilter('absoluteUrl', function (url, base) {
     try {
@@ -74,6 +83,48 @@ module.exports = function (eleventyConfig) {
     return [...regularPosts, ...wordpressPosts].sort((a, b) => {
       return new Date(b.data.date) - new Date(a.data.date);
     });
+  });
+
+  // Category collections for filtering
+  eleventyConfig.addCollection('allCategories', function(collectionApi) {
+    const categorySet = new Set();
+    collectionApi.getAll().forEach(function(item) {
+      if (item.data.categories) {
+        item.data.categories.forEach(function(category) {
+          categorySet.add(category);
+        });
+      }
+    });
+    return Array.from(categorySet).sort();
+  });
+
+  eleventyConfig.addCollection('postsByCategory', function(collectionApi) {
+    const postsByCategory = {};
+    const allPosts = collectionApi.getFilteredByGlob(['posts/*.md', 'output/posts/*/index.md']);
+    
+    allPosts.forEach(function(post) {
+      if (post.data.categories) {
+        post.data.categories.forEach(function(category) {
+          const slug = category.toLowerCase().trim().replace(/[\s\W-]+/g, '-').replace(/^-+|-+$/g, '');
+          if (!postsByCategory[slug]) {
+            postsByCategory[slug] = {
+              name: category,
+              posts: []
+            };
+          }
+          postsByCategory[slug].posts.push(post);
+        });
+      }
+    });
+    
+    // Sort posts in each category by date (newest first)
+    Object.keys(postsByCategory).forEach(function(categorySlug) {
+      postsByCategory[categorySlug].posts.sort((a, b) => {
+        return new Date(b.data.date) - new Date(a.data.date);
+      });
+    });
+    
+    return postsByCategory;
   });
 
   return {

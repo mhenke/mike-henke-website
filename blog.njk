@@ -7,14 +7,14 @@ permalink: /blog/index.html
     <h1 class="section-title">Blog Posts</h1>
     <div class="section-underline"></div>
     <ul>
-        {%- for post in collections.allPosts | reverse -%}
+        {%- for post in collections.allPosts -%}
             <li class="blog-post-item"> {# Added class #}
                 <a href="{{ post.url | url }}">{{ post.data.title }}</a>
                 <p class="blog-post-date"><em>{{ post.date | date('LLLL d, yyyy') }}</em></p> {# Added class #}
                 {% if post.data.categories %}
                     <p class="blog-post-categories">
                         {% for category in post.data.categories %}
-                            <span class="category-tag">{{ category }}</span>
+                            <a href="{{ '/blog/category/' + (category | slugify) + '/' | url }}" class="category-tag">{{ category }}</a>
                         {% endfor %}
                     </p>
                 {% endif %}
