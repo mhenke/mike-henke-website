@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mobile Search Test</title>
+    <link href="_site/styles.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Test viewport for mobile */
+      body {
+        max-width: 480px;
+        margin: 0 auto;
+        background-color: #181a1b;
+      }
+
+      /* Add mobile indicator */
+      .mobile-indicator {
+        background-color: #19d4fe;
+        color: #181a1b;
+        padding: 8px;
+        text-align: center;
+        font-weight: 600;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+      }
+
+      .test-content {
+        margin-top: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mobile-indicator">📱 Mobile Search Test (480px width)</div>
+
+    <div class="test-content">
+      <section class="content-section-boxed" style="margin-top: 30px">
+        <h1 class="section-title">Mobile Search Test</h1>
+        <div class="section-underline"></div>
+        <div id="search"></div>
+      </section>
+    </div>
+
+    <script src="_site/pagefind/pagefind-ui.js" type="text/javascript"></script>
+    <script>
+      window.addEventListener('DOMContentLoaded', (event) => {
+        if (document.getElementById('search')) {
+          try {
+            new PagefindUI({
+              element: '#search',
+              showSubResults: true,
+              showEmptyFilters: false,
+              resetStyles: false,
+              autofocus: true,
+              debounceTimeoutMs: 300,
+              bundlePath: '_site/pagefind/',
+              excerptLength: 30,
+            });
+            console.log('Mobile search test initialized');
+          } catch (error) {
+            console.error('Failed to initialize mobile search test:', error);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
