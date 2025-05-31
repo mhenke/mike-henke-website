@@ -1092,26 +1092,27 @@ section {
   margin-bottom: 0;
 }
 
-.category-tag {
-  display: inline-block;
-  background-color: #22313a;
-  color: #19d4fe;
-  padding: 0.1rem 0.4rem;
-  border-radius: 16px;
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  margin-right: 0.25rem;
-  margin-bottom: 0.15rem;
-  border: 1px solid #19d4fe;
-  text-decoration: none;
-  transition: all 0.2s ease-in-out;
-  line-height: 1.1;
+a.category-tag {
+  display: inline-block !important;
+  background-color: #22313a !important;
+  color: #19d4fe !important;
+  padding: 0.1rem 0.4rem !important;
+  border-radius: 16px !important;
+  font-size: var(--font-size-sm) !important;
+  font-weight: var(--font-weight-regular) !important;
+  margin-right: 0.25rem !important;
+  margin-bottom: 0.15rem !important;
+  border: 1px solid #19d4fe !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease-in-out !important;
+  line-height: 1.1 !important;
+  letter-spacing: normal !important;
 }
 
-.category-tag:hover {
-  background-color: #19d4fe;
-  color: #181a1b;
-  text-decoration: none;
+a.category-tag:hover {
+  background-color: #19d4fe !important;
+  color: #181a1b !important;
+  text-decoration: none !important;
 }
 
 /* Timeline Section - Simplified CSS based on working example */
@@ -1980,33 +1981,33 @@ footer p {
 }
 
 /* Hero Section Professional Text Styling */
-.hero-text .coder {
-  color: #19d4fe; /* Solid teal */
+.word-solid {
+  color: #19d4fe !important; /* Solid teal */
 }
 
-.hero-text .engineer {
-  color: transparent;
-  -webkit-text-stroke: 2px #19d4fe; /* Outline teal */
-  text-stroke: 2px #19d4fe;
+.word-outline {
+  color: transparent !important;
+  -webkit-text-stroke: 2px #19d4fe !important; /* Outline teal */
+  text-stroke: 2px #19d4fe !important;
 }
 
-.hero-text .professional {
-  color: #ffffff; /* White */
+.word-white {
+  color: #ffffff !important; /* White */
 }
 
 /* Enhanced text styling for better visibility */
-.hero-text .coder,
-.hero-text .engineer,
-.hero-text .professional {
-  font-weight: 700;
-  letter-spacing: 0.3px;
+.word-solid,
+.word-outline,
+.word-white {
+  font-weight: 700 !important;
+  letter-spacing: 0.3px !important;
 }
 
 /* Fallback for browsers that don't support text-stroke */
 @supports not (-webkit-text-stroke: 2px #19d4fe) {
-  .hero-text .engineer {
-    color: #19d4fe;
-    opacity: 0.8;
+  .word-outline {
+    color: #19d4fe !important;
+    opacity: 0.8 !important;
   }
 }
 
