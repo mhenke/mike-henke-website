@@ -11,7 +11,7 @@ module.exports = function (eleventyConfig) {
   });
 
   // Slugify filter for category URLs
-  eleventyConfig.addFilter('slugify', function(str) {
+  eleventyConfig.addFilter('slugify', function (str) {
     return str
       .toLowerCase()
       .trim()
@@ -86,11 +86,11 @@ module.exports = function (eleventyConfig) {
   });
 
   // Category collections for filtering
-  eleventyConfig.addCollection('allCategories', function(collectionApi) {
+  eleventyConfig.addCollection('allCategories', function (collectionApi) {
     const categorySet = new Set();
-    collectionApi.getAll().forEach(function(item) {
+    collectionApi.getAll().forEach(function (item) {
       if (item.data.categories) {
-        item.data.categories.forEach(function(category) {
+        item.data.categories.forEach(function (category) {
           categorySet.add(category);
         });
       }
@@ -98,32 +98,39 @@ module.exports = function (eleventyConfig) {
     return Array.from(categorySet).sort();
   });
 
-  eleventyConfig.addCollection('postsByCategory', function(collectionApi) {
+  eleventyConfig.addCollection('postsByCategory', function (collectionApi) {
     const postsByCategory = {};
-    const allPosts = collectionApi.getFilteredByGlob(['posts/*.md', 'output/posts/*/index.md']);
-    
-    allPosts.forEach(function(post) {
+    const allPosts = collectionApi.getFilteredByGlob([
+      'posts/*.md',
+      'output/posts/*/index.md',
+    ]);
+
+    allPosts.forEach(function (post) {
       if (post.data.categories) {
-        post.data.categories.forEach(function(category) {
-          const slug = category.toLowerCase().trim().replace(/[\s\W-]+/g, '-').replace(/^-+|-+$/g, '');
+        post.data.categories.forEach(function (category) {
+          const slug = category
+            .toLowerCase()
+            .trim()
+            .replace(/[\s\W-]+/g, '-')
+            .replace(/^-+|-+$/g, '');
           if (!postsByCategory[slug]) {
             postsByCategory[slug] = {
               name: category,
-              posts: []
+              posts: [],
             };
           }
           postsByCategory[slug].posts.push(post);
         });
       }
     });
-    
+
     // Sort posts in each category by date (newest first)
-    Object.keys(postsByCategory).forEach(function(categorySlug) {
+    Object.keys(postsByCategory).forEach(function (categorySlug) {
       postsByCategory[categorySlug].posts.sort((a, b) => {
         return new Date(b.data.date) - new Date(a.data.date);
       });
     });
-    
+
     return postsByCategory;
   });
 

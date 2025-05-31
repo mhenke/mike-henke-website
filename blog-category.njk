@@ -1,22 +1,15 @@
 ---
-layout: layouts/base.njk
 pagination:
   data: collections.postsByCategory
   size: 1
-  alias: categoryData
-  before: function(data) {
-    return Object.keys(data).map(slug => ({
-      slug: slug,
-      name: data[slug].name,
-      posts: data[slug].posts
-    }));
-  }
-permalink: "/blog/category/{{ categoryData.slug }}/"
+  addAllPagesToCollections: true
+permalink: "/blog/category/{{ pagination.items[0] }}/"
+layout: layouts/base.njk
 eleventyComputed:
-  title: "Posts in {{ categoryData.name }}"
+  title: "{{ collections.postsByCategory[pagination.items[0]].name }} Posts"
 ---
 <section class="content-section-boxed" style="margin-top: 30px;">
-    <h1 class="section-title">Posts in "{{ categoryData.name }}"</h1>
+    <h1 class="section-title">Posts in "{{ collections.postsByCategory[pagination.items[0]].name }}"</h1>
     <div class="section-underline"></div>
     
     <p style="margin-bottom: 2rem;">
@@ -24,7 +17,7 @@ eleventyComputed:
     </p>
     
     <ul>
-        {%- for post in categoryData.posts -%}
+        {%- for post in collections.postsByCategory[pagination.items[0]].posts -%}
             <li class="blog-post-item">
                 <a href="{{ post.url | url }}">{{ post.data.title }}</a>
                 <p class="blog-post-date"><em>{{ post.date | date('LLLL d, yyyy') }}</em></p>
@@ -39,7 +32,7 @@ eleventyComputed:
         {%- endfor -%}
     </ul>
     
-    {% if categoryData.posts.length == 0 %}
-        <p>No posts found in this category.</p>
-    {% endif %}
+    <p style="margin-top: 2rem; color: #adb5bd;">
+        <strong>{{ collections.postsByCategory[pagination.items[0]].posts.length }}</strong> post{% if collections.postsByCategory[pagination.items[0]].posts.length != 1 %}s{% endif %} in this category
+    </p>
 </section>
