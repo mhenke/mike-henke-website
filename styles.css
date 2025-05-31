@@ -595,7 +595,7 @@ small {
 
 /* Mobile-First Section Layout System */
 section {
-  margin: 0 auto var(--spacing-2xl) auto;
+  margin: 0 auto var(--spacing-3xl) auto;
   max-width: var(--max-width-content);
   padding: 0 var(--spacing-md);
   width: 100%;
@@ -622,7 +622,7 @@ section {
   font-size: var(--font-size-3xl);
   font-weight: var(--font-weight-bold);
   text-align: center;
-  margin-bottom: var(--spacing-3xl);
+  margin-bottom: var(--spacing-lg);
   color: var(--color-text);
   letter-spacing: var(--letter-spacing-wide);
 }
@@ -631,15 +631,16 @@ section {
 @media (min-width: 480px) {
   section {
     padding: 0 var(--spacing-lg);
-    margin-bottom: var(--spacing-3xl);
+    margin-bottom: var(--spacing-4xl);
   }
   
   .content-section-boxed {
     padding: var(--spacing-3xl);
+    margin-bottom: var(--spacing-4xl);
   }
   
   .section-title {
-    margin-bottom: var(--spacing-2xl);
+    margin-bottom: var(--spacing-lg);
   }
 }
 
@@ -647,15 +648,16 @@ section {
 @media (min-width: 768px) {
   section {
     padding: 0 var(--spacing-xl);
-    margin-bottom: var(--spacing-4xl);
+    margin-bottom: var(--spacing-5xl);
   }
   
   .content-section-boxed {
     padding: var(--spacing-4xl);
+    margin-bottom: var(--spacing-5xl);
   }
   
   .section-title {
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
   }
 }
 
