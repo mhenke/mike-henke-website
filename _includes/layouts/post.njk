@@ -1,6 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang=            <ul class="navbar-links" id="nav-menu" role="menubar">
+                <li role="none" class="nav-priority-high"><a href="{{ '/' | url }}" role="menuitem"><span class="nav-text">Home</span></a></li>
+                <li role="none" class="nav-priority-high"><a href="{{ '/' | url }}#about" role="menuitem"><span class="nav-text">About</span></a></li>
+                <li role="none" class="nav-priority-high"><a href="{{ '/' | url }}#skills" role="menuitem"><span class="nav-text">Skills</span></a></li>
+                <li role="none" class="nav-divider" aria-hidden="true"></li>
+                <li role="none" class="nav-priority-medium"><a href="{{ '/' | url }}#career" role="menuitem"><span class="nav-text">Resume</span></a></li>
+                <li role="none" class="nav-priority-medium"><a href="{{ '/' | url }}#portfolio" role="menuitem"><span class="nav-text">Portfolio</span></a></li>
+                <li role="none" class="nav-priority-medium"><a href="{{ '/' | url }}#contact" role="menuitem"><span class="nav-text">Contact</span></a></li>
+                <li role="none" class="nav-divider" aria-hidden="true"></li>
+                <li role="none" class="nav-priority-low"><a href="{{ '/blog/' | url }}" role="menuitem"><span class="nav-text">Blog</span></a></li>
+                <li role="none" class="nav-priority-low"><a href="{{ '/search/' | url }}" role="menuitem"><span class="nav-text">Search</span></a></li>
+            </ul>d>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
@@ -19,6 +29,12 @@
     <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="navbar-container">
             <div class="navbar-brand" role="banner">Mike Henke</div>
+            
+            <!-- Mobile Menu Toggle Button -->
+            <button class="navbar-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+            </button>
+            
             <ul class="navbar-links" id="nav-menu" role="menubar">
                 <li role="none"><a href="{{ '/' | url }}" role="menuitem">Home</a></li>
                 <li role="none"><a href="{{ '/' | url }}#about" role="menuitem">About</a></li>
@@ -67,6 +83,71 @@
     <script src="{{ '/pagefind/pagefind-ui.js' | url }}" type="text/javascript" defer></script>
     <script>
         window.addEventListener('DOMContentLoaded', (event) => {
+            // Mobile Navigation Toggle
+            const navToggle = document.querySelector('.navbar-toggle');
+            const navLinks = document.querySelector('.navbar-links');
+            
+            if (navToggle && navLinks) {
+                navToggle.addEventListener('click', () => {
+                    const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+                    
+                    // Toggle aria-expanded
+                    navToggle.setAttribute('aria-expanded', !isExpanded);
+                    
+                    // Toggle menu visibility
+                    navLinks.classList.toggle('nav-open');
+                    
+                    // Update hamburger icon
+                    const icon = navToggle.querySelector('i');
+                    if (icon) {
+                        icon.className = navLinks.classList.contains('nav-open') 
+                            ? 'fas fa-times' 
+                            : 'fas fa-bars';
+                    }
+                });
+
+                // Close mobile menu when clicking on a nav link
+                const navLinkItems = navLinks.querySelectorAll('a');
+                navLinkItems.forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (window.innerWidth < 768) {
+                            navLinks.classList.remove('nav-open');
+                            navToggle.setAttribute('aria-expanded', 'false');
+                            const icon = navToggle.querySelector('i');
+                            if (icon) {
+                                icon.className = 'fas fa-bars';
+                            }
+                        }
+                    });
+                });
+
+                // Close mobile menu when clicking outside
+                document.addEventListener('click', (event) => {
+                    if (!navToggle.contains(event.target) && !navLinks.contains(event.target)) {
+                        if (navLinks.classList.contains('nav-open')) {
+                            navLinks.classList.remove('nav-open');
+                            navToggle.setAttribute('aria-expanded', 'false');
+                            const icon = navToggle.querySelector('i');
+                            if (icon) {
+                                icon.className = 'fas fa-bars';
+                            }
+                        }
+                    }
+                });
+
+                // Handle window resize - close mobile menu if switching to desktop
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth >= 768) {
+                        navLinks.classList.remove('nav-open');
+                        navToggle.setAttribute('aria-expanded', 'false');
+                        const icon = navToggle.querySelector('i');
+                        if (icon) {
+                            icon.className = 'fas fa-bars';
+                        }
+                    }
+                });
+            }
+
             if (document.getElementById("search")) {
                 try {
                     new PagefindUI({ 
