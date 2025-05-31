@@ -53,6 +53,55 @@
                     }
                 });
             }
+
+            // Animated Progress Bars - Intersection Observer
+            const progressBars = document.querySelectorAll('.progress-bar[data-width]');
+            
+            if (progressBars.length > 0) {
+                const animateProgressBar = (progressBar) => {
+                    const targetWidth = progressBar.getAttribute('data-width');
+                    const span = progressBar.querySelector('span');
+                    
+                    if (span && targetWidth) {
+                        // Add animate class to enable transitions
+                        progressBar.classList.add('animate');
+                        
+                        // Set the target width after a small delay to trigger animation
+                        setTimeout(() => {
+                            span.style.width = targetWidth + '%';
+                        }, 50);
+                    }
+                };
+
+                // Check if Intersection Observer is supported
+                if ('IntersectionObserver' in window) {
+                    const observerOptions = {
+                        root: null,
+                        rootMargin: '0px 0px -10% 0px', // Trigger when 90% visible
+                        threshold: 0.1
+                    };
+
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach((entry) => {
+                            if (entry.isIntersecting && !entry.target.classList.contains('animate')) {
+                                animateProgressBar(entry.target);
+                                // Stop observing this element once animated
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    }, observerOptions);
+
+                    // Start observing all progress bars
+                    progressBars.forEach((progressBar) => {
+                        observer.observe(progressBar);
+                    });
+                } else {
+                    // Fallback: animate immediately if Intersection Observer not supported
+                    progressBars.forEach((progressBar) => {
+                        animateProgressBar(progressBar);
+                    });
+                }
+            }
         });
     </script>
     {{ '' }}<!-- Remove the previously added script block here if it exists -->

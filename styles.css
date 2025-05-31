@@ -1524,9 +1524,42 @@ footer p {
   height: 100%;
   background-color: var(--color-primary);
   border-radius: var(--border-radius-sm);
-  transition: width var(--transition-slow);
+  /* Animation: Start at 0% width, animate to target width */
+  width: 0% !important;
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
   /* Performance: Use transform for animations */
   transform: translate3d(0, 0, 0);
+}
+
+/* Animation states for progress bars */
+.progress-bar.animate span {
+  /* The width will be set by JavaScript based on data-width attribute */
+  transition-delay: var(--animation-delay, 0s);
+}
+
+/* Staggered animation delays for skill bars */
+.skills-card .progress-bar:nth-child(2) {
+  --animation-delay: 0.1s;
+}
+.skills-card .progress-bar:nth-child(4) {
+  --animation-delay: 0.2s;
+}
+.skills-card .progress-bar:nth-child(6) {
+  --animation-delay: 0.3s;
+}
+.skills-card .progress-bar:nth-child(8) {
+  --animation-delay: 0.4s;
+}
+.skills-card .progress-bar:nth-child(10) {
+  --animation-delay: 0.5s;
+}
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .progress-bar span {
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+  }
 }
 
 /* Button Container - Mobile First to match .hero-buttons */
