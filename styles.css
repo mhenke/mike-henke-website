@@ -1087,136 +1087,121 @@ section {
   font-style: italic;
 }
 
-/* Timeline Section - CSS Custom Properties with Performance Optimization */
+/* Timeline Section - Simplified CSS based on working example */
 .timeline {
   position: relative;
-  margin-bottom: var(--spacing-lg);
-  /* Performance: Hardware acceleration */
-  transform: translate3d(0, 0, 0);
+  margin-bottom: 60px;
 }
 
 .timeline::before {
   content: '';
   position: absolute;
-  left: calc(
-    var(--spacing-md) - 1px
-  ); /* Responsive positioning using custom properties */
+  left: 35px;
   top: 0;
   bottom: 0;
   width: 2px;
   background: rgba(255, 255, 255, 0.3);
-  /* Performance: GPU acceleration for smooth rendering */
-  transform: translate3d(0, 0, 0);
 }
 
 .timeline-item {
   position: relative;
-  margin-bottom: var(--spacing-xxl);
-  padding-left: calc(
-    var(--spacing-xxl) + var(--spacing-lg)
-  ); /* Dynamic padding based on spacing system */
-  /* Performance: Hardware acceleration */
-  transform: translate3d(0, 0, 0);
-  transition: transform var(--transition-normal);
+  margin-bottom: 60px;
+  padding-left: 100px;
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
 }
 
-/* Progressive Enhancement: Hover effects for timeline items */
-@media (hover: hover) and (pointer: fine) {
-  .timeline-item:hover {
-    transform: translate3d(2px, 0, 0);
-  }
-}
+.timeline-item:nth-child(1) { animation-delay: 0.2s; }
+.timeline-item:nth-child(2) { animation-delay: 0.4s; }
+.timeline-item:nth-child(3) { animation-delay: 0.6s; }
 
 .timeline-number {
   position: absolute;
   left: 0;
   top: 0;
-  width: var(--spacing-xxl);
-  height: var(--spacing-xxl);
-  background: var(--color-surface);
-  border-radius: var(--border-radius-sm);
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, #19d4fe 0%, #1398c7 100%);
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-bold);
+  font-size: 2rem;
+  font-weight: 600;
   color: var(--color-text);
   font-family: var(--font-primary);
-  box-shadow: var(--shadow-primary);
-  border: 2px solid var(--color-primary);
+  box-shadow: 0 4px 20px rgba(25, 212, 254, 0.3);
+  border: 4px solid rgba(255, 255, 255, 0.1);
   z-index: 2;
-  /* Performance: Hardware acceleration for smooth animations */
-  transform: translate3d(0, 0, 0);
-  transition: transform var(--transition-normal),
-    box-shadow var(--transition-normal);
-}
-
-/* Progressive Enhancement: Hover states for devices that support it */
-@media (hover: hover) and (pointer: fine) {
-  .timeline-number:hover {
-    transform: translate3d(0, 0, 0) scale(1.05);
-    box-shadow: 0 6px 24px rgba(25, 212, 254, 0.4);
-  }
-}
-
-/* Touch devices - use :active instead of :hover */
-@media (hover: none) and (pointer: coarse) {
-  .timeline-number:active {
-    transform: translate3d(0, 0, 0) scale(0.95);
-  }
-}
-
-.timeline-content {
-  /* Performance: Hardware acceleration */
-  transform: translate3d(0, 0, 0);
 }
 
 .timeline-content h3 {
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-bold);
-  margin-bottom: var(--spacing-sm);
-  color: var(--color-text);
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-weight: 400;
+  margin-bottom: 15px;
+  color: #e2e8f0;
   font-family: var(--font-primary);
-  letter-spacing: var(--letter-spacing-subtle);
 }
 
 .timeline-content .position {
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-medium);
-  margin-bottom: var(--spacing-xs);
-  color: var(--color-primary);
+  font-size: clamp(1rem, 3vw, 1.3rem);
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #a0aec0;
   font-family: var(--font-primary);
 }
 
 .timeline-content .duration {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-muted);
-  font-weight: var(--font-weight-regular);
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+  color: #718096;
+  font-weight: 400;
   font-family: var(--font-primary);
 }
 
-/* Timeline Responsive Adjustments with Custom Properties */
-@media (min-width: 480px) {
-  .timeline::before {
-    left: calc(var(--spacing-lg) - 1px);
+/* Hover effects */
+@media (hover: hover) and (pointer: fine) {
+  .timeline-item:hover .timeline-number {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
   }
 
-  .timeline-item {
-    padding-left: calc(var(--spacing-xxl) + var(--spacing-xl));
+  .timeline-item:hover .timeline-content h3 {
+    color: #19d4fe;
+    transition: color 0.3s ease;
   }
 }
 
-@media (min-width: 768px) {
+/* Responsive Design */
+@media (max-width: 768px) {
   .timeline::before {
-    left: calc(var(--spacing-xl) - 1px);
+    left: 25px;
   }
 
   .timeline-item {
-    padding-left: calc(var(--spacing-xxl) * 2);
+    padding-left: 80px;
+    margin-bottom: 50px;
   }
 
   .timeline-number {
-    box-shadow: var(--shadow-lg);
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .timeline::before {
+    left: 20px;
+  }
+
+  .timeline-item {
+    padding-left: 65px;
+  }
+
+  .timeline-number {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
   }
 }
 
@@ -1342,34 +1327,34 @@ section {
 @media (min-width: 768px) {
   /* Adjust timeline positioning within the grid */
   .career-timeline-column .timeline::before {
-    left: calc(var(--spacing-lg) - 1px);
+    left: 35px;
   }
 
   .career-timeline-column .timeline-item {
-    padding-left: calc(var(--spacing-xxl) + var(--spacing-lg));
+    padding-left: 100px;
   }
 }
 
 @media (min-width: 900px) {
   .career-timeline-column .timeline::before {
-    left: calc(var(--spacing-xl) - 1px);
+    left: 35px;
   }
 
   .career-timeline-column .timeline-item {
-    padding-left: calc(var(--spacing-xxl) + var(--spacing-xl));
+    padding-left: 100px;
   }
 
   /* Enhanced spacing for larger screens */
   .career-timeline-column .timeline-content h3 {
-    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
   }
 
   .career-timeline-column .timeline-content .position {
-    font-size: clamp(1rem, 2vw, 1.125rem);
+    font-size: clamp(1rem, 3vw, 1.3rem);
   }
 
   .career-timeline-column .timeline-content .duration {
-    font-size: clamp(0.875rem, 1.5vw, 1rem);
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
   }
 }
 
