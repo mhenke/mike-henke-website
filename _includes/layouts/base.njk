@@ -43,22 +43,24 @@
     <script>
         window.addEventListener('DOMContentLoaded', (event) => {
             if (document.getElementById("search")) {
-                new PagefindUI({ 
-                    element: "#search", 
-                    showSubResults: true,
-                    showEmptyFilters: false,
-                    resetStyles: false,
-                    autofocus: true,
-                    debounceTimeoutMs: 300,
-                    // Enhanced search configuration
-                    bundlePath: "/pagefind/",
-                    baseUrl: "/",
-                    forceLanguage: "en",
-                    // Case insensitive search configuration
-                    processTerm: function(term) {
-                        return term.toLowerCase();
-                    }
-                });
+                try {
+                    // Auto-detect bundle path or use explicit path
+                    const bundlePath = window.location.pathname.includes('/search/') ? '../pagefind/' : '/pagefind/';
+                    
+                    new PagefindUI({ 
+                        element: "#search", 
+                        showSubResults: true,
+                        showEmptyFilters: false,
+                        resetStyles: false,
+                        autofocus: true,
+                        debounceTimeoutMs: 300,
+                        bundlePath: bundlePath,
+                        excerptLength: 30
+                    });
+                    console.log('PagefindUI initialized successfully');
+                } catch (error) {
+                    console.error('Failed to initialize PagefindUI:', error);
+                }
             }
 
             // Animated Progress Bars - Intersection Observer

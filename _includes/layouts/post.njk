@@ -32,14 +32,15 @@
         </div>
     </nav>
     <main id="main-content" role="main">
-        <div id="search" class="search-container" role="search" aria-label="Site search"></div> <!-- Added search container -->
-        <article class="content-section-boxed" style="margin-top: 30px;" role="article">
+        <article class="content-section-boxed" style="margin-top: 30px;" role="article" data-pagefind-body>
             <header>
-                <h1>{{ title }}</h1>
-                <p><em>Published on <time datetime="{{ date | date('yyyy-MM-dd') }}">{{ date | date('LLLL d, yyyy') }}</time></em></p>
+                <h1 data-pagefind-meta="title">{{ title }}</h1>
+                <p><em>Published on <time datetime="{{ date | date('yyyy-MM-dd') }}" data-pagefind-meta="date">{{ date | date('LLLL d, yyyy') }}</time></em></p>
             </header>
             <hr>
-            {{ content | safe }}
+            <div>
+                {{ content | safe }}
+            </div>
             <hr>
             <footer>
                 <p><a href="{{ '/blog' | url }}" aria-label="Return to blog listing">← Back to Blog</a></p>
@@ -67,18 +68,22 @@
     <script>
         window.addEventListener('DOMContentLoaded', (event) => {
             if (document.getElementById("search")) {
-                new PagefindUI({ 
-                    element: "#search", 
-                    showSubResults: true,
-                    showEmptyFilters: false,
-                    resetStyles: false,
-                    autofocus: true,
-                    debounceTimeoutMs: 300,
-                    // Case insensitive search configuration
-                    processTerm: function(term) {
-                        return term.toLowerCase();
-                    }
-                });
+                try {
+                    new PagefindUI({ 
+                        element: "#search", 
+                        showSubResults: true,
+                        showEmptyFilters: false,
+                        resetStyles: false,
+                        autofocus: true,
+                        debounceTimeoutMs: 300,
+                        // Enhanced search configuration
+                        bundlePath: "{{ '/pagefind/' | url }}",
+                        excerptLength: 30
+                    });
+                    console.log('PagefindUI initialized successfully on post page');
+                } catch (error) {
+                    console.error('Failed to initialize PagefindUI on post page:', error);
+                }
             }
         });
     </script>
