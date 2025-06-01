@@ -1634,13 +1634,12 @@ search .pagefind-ui__result-highlight {
 
 /* Pagefind Load More Button Styling */
 #search .pagefind-ui__button,
-#search button[class*="pagefind"] {
+#search button[class*='pagefind'] {
   font-family: var(--font-primary) !important;
   font-size: var(--font-size-base) !important;
   font-weight: var(--font-weight-medium) !important;
   background-color: var(--color-primary) !important;
   color: var(--color-background) !important;
-  border: 2px solid var(--color-primary) !important;
   border-radius: var(--border-radius-md) !important;
   padding: var(--spacing-md) var(--spacing-xl) !important;
   cursor: pointer !important;
@@ -1659,8 +1658,8 @@ search .pagefind-ui__result-highlight {
 
 #search .pagefind-ui__button:hover,
 #search .pagefind-ui__button:focus,
-#search button[class*="pagefind"]:hover,
-#search button[class*="pagefind"]:focus {
+#search button[class*='pagefind']:hover,
+#search button[class*='pagefind']:focus {
   background-color: var(--color-primary-dark) !important;
   border-color: var(--color-primary-dark) !important;
   transform: translateY(-2px) !important;
@@ -1670,9 +1669,9 @@ search .pagefind-ui__result-highlight {
 }
 
 /* Alternative selectors for different Pagefind versions */
-#search [class*="pagefind"][class*="button"],
-#search [class*="pagefind"][class*="load"],
-#search [class*="pagefind"][class*="more"] {
+#search [class*='pagefind'][class*='button'],
+#search [class*='pagefind'][class*='load'],
+#search [class*='pagefind'][class*='more'] {
   font-family: var(--font-primary) !important;
   font-size: var(--font-size-base) !important;
   font-weight: var(--font-weight-medium) !important;
@@ -1691,9 +1690,9 @@ search .pagefind-ui__result-highlight {
   text-decoration: none !important;
 }
 
-#search [class*="pagefind"][class*="button"]:hover,
-#search [class*="pagefind"][class*="load"]:hover,
-#search [class*="pagefind"][class*="more"]:hover {
+#search [class*='pagefind'][class*='button']:hover,
+#search [class*='pagefind'][class*='load']:hover,
+#search [class*='pagefind'][class*='more']:hover {
   background-color: var(--color-primary-dark) !important;
   border-color: var(--color-primary-dark) !important;
   transform: translateY(-2px) !important;
@@ -1702,13 +1701,13 @@ search .pagefind-ui__result-highlight {
 
 /* For any pagination or navigation elements */
 #search .pagefind-ui__navigation,
-#search [class*="pagefind"][class*="nav"] {
+#search [class*='pagefind'][class*='nav'] {
   margin: var(--spacing-xl) 0 !important;
   text-align: center !important;
 }
 
 #search .pagefind-ui__navigation button,
-#search [class*="pagefind"][class*="nav"] button {
+#search [class*='pagefind'][class*='nav'] button {
   font-family: var(--font-primary) !important;
   background-color: var(--color-surface) !important;
   color: var(--color-primary) !important;
