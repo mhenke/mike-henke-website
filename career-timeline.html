@@ -1,0 +1,71 @@
+<!-- Career Timeline Section - Complete HTML Structure -->
+<section
+  id="career"
+  class="content-section-boxed"
+  aria-labelledby="career-title"
+>
+  <h2 id="career-title" class="section-title">My Recent Career</h2>
+  <div class="section-underline" aria-hidden="true"></div>
+
+  <!-- Career Timeline Container -->
+  <div class="career-container">
+    <!-- Professional Photo -->
+    <div class="career-photo-section">
+      <img
+        src="{{ '/assets/image_8.png' | url }}"
+        alt="Professional photo of Mike Henke in workplace setting"
+        class="career-photo"
+        loading="lazy"
+      />
+    </div>
+
+    <!-- Timeline Section -->
+    <div class="career-timeline-section">
+      <div class="timeline-wrapper">
+        <!-- Timeline Line -->
+        <div class="timeline-line" aria-hidden="true"></div>
+        
+        <!-- Timeline Items -->
+        <div class="timeline-items" role="list" aria-label="Career progression timeline">
+          
+          <!-- Current Position -->
+          <div class="timeline-item" role="listitem">
+            <div class="timeline-marker">
+              <span class="timeline-number" aria-label="Current position">1</span>
+            </div>
+            <div class="timeline-content">
+              <h3 class="company-name">Union Pacific</h3>
+              <p class="job-title">M&S Business Consultant II</p>
+              <p class="job-duration">July 2016 - Present</p>
+            </div>
+          </div>
+
+          <!-- Previous Position 1 -->
+          <div class="timeline-item" role="listitem">
+            <div class="timeline-marker">
+              <span class="timeline-number" aria-label="Previous position">2</span>
+            </div>
+            <div class="timeline-content">
+              <h3 class="company-name">Telvent DTN (Schneider Electric)</h3>
+              <p class="job-title">Application Contractor</p>
+              <p class="job-duration">February 2013 - July 2016</p>
+            </div>
+          </div>
+
+          <!-- Previous Position 2 -->
+          <div class="timeline-item" role="listitem">
+            <div class="timeline-marker">
+              <span class="timeline-number" aria-label="Earlier position">3</span>
+            </div>
+            <div class="timeline-content">
+              <h3 class="company-name">Resource Insurance Consultants</h3>
+              <p class="job-title">Senior Software Engineer Web</p>
+              <p class="job-duration">December 2010 - February 2013</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
