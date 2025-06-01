@@ -749,20 +749,49 @@ section {
   gap: var(--spacing-sm);
   font-weight: var(--font-weight-medium);
   transition: all var(--transition-normal);
+  opacity: 0;
+  transform: rotate(-10deg) scale(0.8) translateY(20px);
+}
+
+.framework-item.animate {
+  opacity: 1;
+  transform: rotate(0deg) scale(1) translateY(0);
+  transition-delay: var(--animation-delay, 0s);
 }
 
 .framework-item:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  transform: rotate(2deg) scale(1.05) translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  background: var(--color-surface);
 }
 
 .framework-item i,
 .framework-item svg {
   font-size: var(--font-size-2xl);
   color: var(--color-primary);
+  transform: scale(0.8);
+  transition: transform var(--transition-normal);
+}
+
+.framework-item.animate i,
+.framework-item.animate svg {
+  transform: scale(1);
+  transition-delay: calc(var(--animation-delay, 0s) + 0.1s);
+}
+
+.framework-item:hover i,
+.framework-item:hover svg {
+  transform: scale(1.2) rotate(5deg);
+  color: var(--color-accent);
 }
 
 /* Methodologies List */
+.methodologies-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
 .methodology-item {
   display: flex;
   align-items: center;
@@ -770,11 +799,37 @@ section {
   margin-bottom: var(--spacing-md);
   color: var(--color-text);
   font-size: var(--font-size-base);
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all var(--transition-normal);
+}
+
+.methodology-item.animate {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: var(--animation-delay, 0s);
 }
 
 .methodology-item i {
   color: var(--color-primary);
   font-size: var(--font-size-lg);
+  transform: scale(0);
+  transition: transform var(--transition-normal);
+}
+
+.methodology-item.animate i {
+  transform: scale(1);
+  transition-delay: calc(var(--animation-delay, 0s) + 0.1s);
+}
+
+.methodology-item:hover {
+  transform: translateX(4px);
+  color: var(--color-primary);
+}
+
+.methodology-item:hover i {
+  transform: scale(1.1);
+  color: var(--color-accent);
 }
 
 /* Button Container for Skills Section */
