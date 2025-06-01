@@ -507,6 +507,11 @@ p {
   transition: all var(--transition-normal);
   min-height: 44px; /* Touch target */
   box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  flex-shrink: 0;
 }
 
 .btn-primary {
@@ -583,10 +588,22 @@ section {
   text-align: center;
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--spacing-3xl);
+  grid-template-areas:
+    'text'
+    'image'
+    'description'
+    'buttons';
+  gap: var(--spacing-2xl);
   align-items: center;
   max-width: var(--hero-max-width);
   margin: 0 auto;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.hero-text {
+  grid-area: text;
+  width: 100%;
 }
 
 .hero-text h1 {
@@ -600,29 +617,52 @@ section {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
-.hero-text p {
-  font-size: var(--font-size-lg);
-  color: var(--color-text-muted);
-  margin-bottom: var(--spacing-xl);
-  max-width: var(--max-width-text);
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.hero-buttons {
+.hero-image {
+  grid-area: image;
+  width: 100%;
   display: flex;
-  gap: var(--spacing-lg);
   justify-content: center;
-  align-items: center;
 }
 
 .hero-image img {
   border-radius: var(--border-radius-xl);
   box-shadow: var(--shadow-xl);
   max-width: 300px;
-  margin: 0 auto;
+  width: 100%;
+  height: auto;
+}
+
+.hero-description {
+  grid-area: description;
+  width: 100%;
+}
+
+.hero-description p {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-xl);
+  max-width: var(--max-width-text);
+  margin-left: auto;
+  margin-right: auto;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.hero-buttons {
+  grid-area: buttons;
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 100%;
 }
 
 /* Skills Section */
@@ -1078,14 +1118,33 @@ footer p {
   }
   .hero-section {
     grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      'text image'
+      'description image'
+      'buttons image';
     gap: var(--spacing-2xl);
     align-items: center;
     min-height: 70vh;
+    text-align: left;
+  }
+
+  .hero-text {
+    text-align: left;
+  }
+
+  .hero-description {
+    text-align: left;
+  }
+
+  .hero-description p {
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .hero-buttons {
     flex-direction: row;
     justify-content: flex-start;
+    gap: var(--spacing-lg);
   }
 
   .skills-columns {
@@ -1172,6 +1231,10 @@ footer p {
 
   .hero-section {
     grid-template-columns: 1.2fr 0.8fr;
+    grid-template-areas:
+      'text image'
+      'description image'
+      'buttons image';
     gap: var(--spacing-3xl);
     min-height: 85vh;
   }
@@ -1247,6 +1310,10 @@ footer p {
 
   .hero-section {
     grid-template-columns: 1.3fr 0.7fr;
+    grid-template-areas:
+      'text image'
+      'description image'
+      'buttons image';
     gap: var(--spacing-4xl);
     min-height: 90vh;
   }
