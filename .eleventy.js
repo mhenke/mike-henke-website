@@ -135,7 +135,7 @@ module.exports = function (eleventyConfig) {
   });
 
   return {
-    pathPrefix: '/',
+    pathPrefix: '/mike-henke-website',
     dir: {
       input: '.',
       includes: '_includes',

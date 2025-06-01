@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "eleventy && npx pagefind --site _site --verbose",
+    "clean": "rm -rf _site",
+    "build": "npm run clean && eleventy && npx pagefind --site _site --verbose",
     "start": "eleventy --serve"
   },
   "keywords": [],
