@@ -607,7 +607,7 @@ section {
 }
 
 .hero-text h1 {
-  font-size: var(--font-size-4xl);
+  font-size: var(--font-size-xl);
   margin-bottom: var(--spacing-md);
   background: linear-gradient(
     135deg,
