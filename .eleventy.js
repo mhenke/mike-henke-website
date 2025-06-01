@@ -133,9 +133,11 @@ module.exports = function (eleventyConfig) {
 
     return postsByCategory;
   });
-
+  // console log to terminal the NODE_ENV
+  console.log('NODE_ENV:', process.env?.NODE_ENV);
   return {
-    pathPrefix: '/mike-henke-website',
+    pathPrefix:
+      process.env?.NODE_ENV === 'production' ? '/mike-henke-website' : '/',
     dir: {
       input: '.',
       includes: '_includes',
