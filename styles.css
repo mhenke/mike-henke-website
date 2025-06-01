@@ -126,6 +126,10 @@ img {
   display: block;
 }
 
+hr {
+  margin-bottom: var(--spacing-md);
+}
+
 /* Mobile Overflow Prevention */
 * {
   /* Prevent elements from extending beyond viewport */
