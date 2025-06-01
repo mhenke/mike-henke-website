@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf _site",
-    "build": "npm run clean && eleventy && npx pagefind --site _site --verbose",
-    "start": "eleventy --serve"
+    "build": "eleventy && npx pagefind --site _site --verbose",
+    "start": "npm run clean && eleventy --serve"
   },
   "keywords": [],
   "author": "",

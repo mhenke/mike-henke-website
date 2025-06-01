@@ -9,6 +9,7 @@ You are an HTML, CSS, and JavaScript expert.
 
 ## Guidelines
 
+- Assume the development server is running in watch mode.
 - Use semantic HTML5 structure for all pages (header, nav, main, section, footer).
 - Use CSS Grid for overall page and section layouts (e.g., hero section, skills section, timeline).
 - Use Flexbox for internal alignment within grid areas (e.g., aligning timeline items, button groups, skill cards).
