@@ -43,28 +43,28 @@ This CSS file follows a clean, organized structure:
   --breakpoint-md: 900px; /* Desktop (900px+) */
   --breakpoint-lg: 1200px; /* Large Desktop (1200px+) */
 
-  /* Fluid Typography Scale - Mobile First with clamp() */
-  --font-size-xs: clamp(0.7rem, 1.5vw + 0.6rem, 0.875rem);
-  --font-size-sm: clamp(0.8rem, 2vw + 0.65rem, 1rem);
-  --font-size-base: clamp(0.9rem, 2.2vw + 0.7rem, 1.125rem);
-  --font-size-md: clamp(1rem, 2.5vw + 0.8rem, 1.25rem);
-  --font-size-lg: clamp(1.1rem, 3vw + 0.9rem, 1.5rem);
-  --font-size-xl: clamp(1.3rem, 3.5vw + 1rem, 1.875rem);
-  --font-size-2xl: clamp(1.5rem, 4vw + 1.2rem, 2.25rem);
-  --font-size-3xl: clamp(1.8rem, 5vw + 1.5rem, 3rem);
-  --font-size-4xl: clamp(2.2rem, 6vw + 1.8rem, 3.75rem);
-  --font-size-5xl: clamp(2.8rem, 8vw + 2.2rem, 4.5rem);
+  /* Simplified Fluid Typography Scale */
+  --font-size-xs: clamp(0.75rem, 2vw, 0.875rem);
+  --font-size-sm: clamp(0.875rem, 2.5vw, 1rem);
+  --font-size-base: clamp(1rem, 3vw, 1.125rem);
+  --font-size-md: clamp(1.125rem, 3.5vw, 1.25rem);
+  --font-size-lg: clamp(1.25rem, 4vw, 1.5rem);
+  --font-size-xl: clamp(1.5rem, 5vw, 1.875rem);
+  --font-size-2xl: clamp(1.75rem, 6vw, 2.25rem);
+  --font-size-3xl: clamp(2rem, 7vw, 3rem);
+  --font-size-4xl: clamp(2.5rem, 8vw, 3.75rem);
+  --font-size-5xl: clamp(3rem, 10vw, 4.5rem);
 
-  /* Spacing System - Mobile First Progressive Enhancement */
-  --spacing-xs: clamp(0.25rem, 1vw + 0.2rem, 0.5rem); /* 4px → 8px */
-  --spacing-sm: clamp(0.5rem, 1.5vw + 0.4rem, 0.75rem); /* 8px → 12px */
-  --spacing-md: clamp(0.75rem, 2vw + 0.6rem, 1rem); /* 12px → 16px */
-  --spacing-lg: clamp(1rem, 2.5vw + 0.8rem, 1.5rem); /* 16px → 24px */
-  --spacing-xl: clamp(1.25rem, 3vw + 1rem, 2rem); /* 20px → 32px */
-  --spacing-2xl: clamp(1.5rem, 4vw + 1.2rem, 2.5rem); /* 24px → 40px */
-  --spacing-3xl: clamp(2rem, 5vw + 1.5rem, 3rem); /* 32px → 48px */
-  --spacing-4xl: clamp(2.5rem, 6vw + 2rem, 4rem); /* 40px → 64px */
-  --spacing-5xl: clamp(3rem, 8vw + 2.5rem, 5rem); /* 48px → 80px */
+  /* Simplified Spacing System */
+  --spacing-xs: clamp(0.25rem, 1vw, 0.5rem);
+  --spacing-sm: clamp(0.5rem, 2vw, 0.75rem);
+  --spacing-md: clamp(0.75rem, 2.5vw, 1rem);
+  --spacing-lg: clamp(1rem, 3vw, 1.5rem);
+  --spacing-xl: clamp(1.25rem, 4vw, 2rem);
+  --spacing-2xl: clamp(1.5rem, 5vw, 2.5rem);
+  --spacing-3xl: clamp(2rem, 6vw, 3rem);
+  --spacing-4xl: clamp(2.5rem, 7vw, 4rem);
+  --spacing-5xl: clamp(3rem, 8vw, 5rem);
 
   /* Layout & Sizing */
   --max-width-content: clamp(320px, 95vw, 1200px);
@@ -906,28 +906,36 @@ address a:hover {
   --animation-delay: 0.3s;
 }
 
-/* Category Tags */
-a.category-tag {
-  display: inline-block !important;
-  background-color: transparent !important;
-  color: #19d4fe !important;
-  padding: 0.25rem 0.5rem !important;
-  border-radius: 4px !important;
-  font-size: var(--font-size-sm) !important;
-  font-weight: var(--font-weight-regular) !important;
-  margin-right: 0.25rem !important;
-  margin-bottom: 0.15rem !important;
-  border: 1px solid #19d4fe !important;
-  text-decoration: none !important;
-  transition: all 0.2s ease-in-out !important;
-  line-height: 1.1 !important;
-  letter-spacing: normal !important;
+/* Category Tags - Proper specificity without !important */
+.blog-content a.category-tag,
+.post-content a.category-tag,
+.search-results a.category-tag,
+article a.category-tag,
+main a.category-tag {
+  display: inline-block;
+  background-color: transparent;
+  color: var(--color-primary);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--border-radius-xs);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  margin-right: 0.25rem;
+  margin-bottom: 0.15rem;
+  border: 1px solid var(--color-primary);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  line-height: 1.1;
+  letter-spacing: normal;
 }
 
-a.category-tag:hover {
-  background-color: #19d4fe !important;
-  color: #181a1b !important;
-  text-decoration: none !important;
+.blog-content a.category-tag:hover,
+.post-content a.category-tag:hover,
+.search-results a.category-tag:hover,
+article a.category-tag:hover,
+main a.category-tag:hover {
+  background-color: var(--color-primary);
+  color: var(--color-background);
+  text-decoration: none;
 }
 
 /* Footer */
