@@ -215,6 +215,46 @@
                     });
                 }
             }
+
+            // Animated Framework Items - Intersection Observer
+            const frameworkItems = document.querySelectorAll('.framework-item[data-animation-delay]');
+            
+            if (frameworkItems.length > 0) {
+                const animateFrameworkItem = (item) => {
+                    const delay = item.getAttribute('data-animation-delay') || '0s';
+                    item.style.setProperty('--animation-delay', delay);
+                    item.classList.add('animate');
+                };
+
+                // Check if Intersection Observer is supported
+                if ('IntersectionObserver' in window) {
+                    const observerOptions = {
+                        root: null,
+                        rootMargin: '0px 0px -10% 0px', // Trigger when 90% visible
+                        threshold: 0.1
+                    };
+
+                    const frameworkObserver = new IntersectionObserver((entries) => {
+                        entries.forEach((entry) => {
+                            if (entry.isIntersecting && !entry.target.classList.contains('animate')) {
+                                animateFrameworkItem(entry.target);
+                                // Stop observing this element once animated
+                                frameworkObserver.unobserve(entry.target);
+                            }
+                        });
+                    }, observerOptions);
+
+                    // Start observing all framework items
+                    frameworkItems.forEach((item) => {
+                        frameworkObserver.observe(item);
+                    });
+                } else {
+                    // Fallback: animate immediately if Intersection Observer not supported
+                    frameworkItems.forEach((item) => {
+                        animateFrameworkItem(item);
+                    });
+                }
+            }
         });
     </script>
     {{ '' }}<!-- Remove the previously added script block here if it exists -->
