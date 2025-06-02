@@ -761,36 +761,39 @@ section {
 }
 
 .framework-item:hover {
-  transform: rotate(2deg) scale(1.05) translateY(-4px);
-  box-shadow: var(--shadow-lg);
-  background: var(--color-surface);
+  transform: none;
+  box-shadow: none;
+  background: none;
 }
 
 .framework-item i,
 .framework-item svg {
   font-size: var(--font-size-2xl);
   color: var(--color-primary);
-  transform: scale(0.8);
-  transition: transform var(--transition-normal);
+  transform: scale(1); /* Always same size */
+  transition: none; /* Remove hover transition */
+  width: 35px;
+  height: 35px;
+  min-width: 35px;
+  min-height: 35px;
+  max-width: 35px;
+  max-height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.framework-item span {
-  color: var(--color-text);
-  font-weight: var(--font-weight-medium);
-  text-align: center;
-  font-size: var(--font-size-sm);
-}
-
-.framework-item.animate i,
-.framework-item.animate svg {
-  transform: scale(1);
-  transition-delay: calc(var(--animation-delay, 0s) + 0.1s);
-}
-
-.framework-item:hover i,
-.framework-item:hover svg {
-  transform: scale(1.2) rotate(5deg);
-  color: var(--color-accent);
+.framework-item img {
+  width: 35px;
+  height: 35px;
+  min-width: 35px;
+  min-height: 35px;
+  max-width: 35px;
+  max-height: 35px;
+  object-fit: contain;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Methodologies List */
