@@ -14,7 +14,7 @@ permalink: /blog/index.html
                 {% if post.data.categories %}
                     <p class="blog-post-categories">
                         {% for category in post.data.categories %}
-                            <a href="{{ '/blog/category/' + (category | slugify) + '/' | url }}" class="category-tag">{{ category }}</a>
+                            <a href="{{ ('/blog/category/' + (category | slugify) + '/') | url }}" class="category-tag">{{ category }}</a>
                         {% endfor %}
                     </p>
                 {% endif %}
