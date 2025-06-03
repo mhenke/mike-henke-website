@@ -1306,7 +1306,7 @@ footer p {
   width: 5px;
   background: linear-gradient(
     to bottom,
-    var(--color-primary) 0%,
+    var(--color-border) 0%,
     var(--color-border) 100%
   );
   border-radius: 3px;
@@ -1366,7 +1366,7 @@ footer p {
   background: var(--color-surface-light);
   padding: 2.5rem 2.5rem 2rem 2.5rem;
   border-radius: 22px;
-  border: 2.5px solid #19d4fe;
+  border: 2.5px solid var(--color-border);
   box-shadow: 0 8px 32px rgba(25, 212, 254, 0.1), var(--shadow-md);
   margin-left: 0;
   flex: 1 1 0%;
