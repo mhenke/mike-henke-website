@@ -78,9 +78,13 @@ This CSS file follows a clean, organized structure:
 
   /* Component Sizing */
   --icon-size-standard: clamp(32px, 4vw, 40px);
+  --touch-target-min: 44px; /* Minimum touch target size */
+  --touch-target-large: 48px; /* Larger touch target for important elements */
   --timeline-border-width: 3px;
   --timeline-content-padding: clamp(1.25rem, 4vw, 2.5rem);
   --timeline-border-radius: clamp(14px, 3vw, 22px);
+  --timeline-left-offset: 44px; /* Timeline vertical line position */
+  --navbar-z-index: 1000; /* Navigation z-index */
 
   /* Interactive States */
   --border-radius-xs: 4px;
@@ -89,31 +93,40 @@ This CSS file follows a clean, organized structure:
   --border-radius-lg: 18px;
   --border-radius-xl: 24px;
 
-  /* Shadows */
+  /* Optimized Shadow System */
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
   --shadow-md: 0 8px 16px rgba(0, 0, 0, 0.2);
   --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.3);
   --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.4);
 
-  /* Accent Shadows (using primary color) */
-  --shadow-accent-sm: 0 4px 16px rgba(25, 212, 254, 0.18);
-  --shadow-accent-md: 0 8px 32px rgba(25, 212, 254, 0.1);
+  /* Optimized Accent Shadows (consolidated opacity values) */
+  --shadow-accent-sm: 0 4px 16px rgba(25, 212, 254, 0.15);
+  --shadow-accent-md: 0 8px 32px rgba(25, 212, 254, 0.12);
   --shadow-accent-lg: 0 12px 36px rgba(25, 212, 254, 0.18);
   --shadow-accent-photo: 0 8px 32px rgba(25, 212, 254, 0.12);
 
-  /* Transitions */
+  /* Transitions & Animation Delays */
   --transition-fast: 0.15s ease-out;
   --transition-normal: 0.3s ease-out;
   --transition-slow: 0.5s ease-out;
+
+  /* Standardized Animation Delays */
+  --animation-delay-none: 0s;
+  --animation-delay-short: 0.1s;
+  --animation-delay-medium: 0.2s;
+  --animation-delay-long: 0.3s;
 }
 
 /* ================================
    2. GLOBAL RESET & BASE STYLES
    ================================ */
+/* Mobile Overflow Prevention - Combined with global reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  /* Prevent elements from extending beyond viewport */
+  max-width: 100%;
 }
 
 html {
@@ -145,12 +158,6 @@ img {
 
 hr {
   margin-bottom: var(--spacing-md);
-}
-
-/* Mobile Overflow Prevention */
-* {
-  /* Prevent elements from extending beyond viewport */
-  max-width: 100%;
 }
 
 /* Container elements should respect viewport boundaries */
@@ -266,6 +273,243 @@ p {
 }
 
 /* ================================
+   3. UTILITY CLASSES
+   ================================ */
+
+/* Common Animation Utilities */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out forwards;
+  animation-delay: var(--animation-delay, var(--animation-delay-none));
+}
+
+.slide-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUp 0.6s ease-out forwards;
+  animation-delay: var(--animation-delay, var(--animation-delay-none));
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Layout Utilities */
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.grid-responsive {
+  display: grid;
+  gap: var(--spacing-lg);
+}
+
+/* Responsive Text Utilities */
+.text-responsive-sm {
+  font-size: var(--font-size-sm);
+}
+
+.text-responsive-base {
+  font-size: var(--font-size-base);
+}
+
+.text-responsive-lg {
+  font-size: var(--font-size-lg);
+}
+
+/* Shadow Utilities */
+.shadow-standard {
+  box-shadow: var(--shadow-md);
+}
+
+.shadow-accent {
+  box-shadow: var(--shadow-accent-md), var(--shadow-md);
+}
+
+.shadow-enhanced {
+  box-shadow: var(--shadow-accent-lg), var(--shadow-lg);
+}
+
+/* Navigation Utilities */
+.nav-mobile-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-sm);
+  width: var(--touch-target-min);
+  height: var(--touch-target-min);
+  border-radius: var(--border-radius-sm);
+  transition: background-color var(--transition-fast);
+}
+
+.nav-mobile-trigger:hover,
+.nav-mobile-trigger:focus {
+  background-color: var(--color-primary);
+  outline: none;
+}
+
+.nav-link-base {
+  display: flex;
+  align-items: center;
+  color: var(--color-text);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-base);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.nav-link-mobile {
+  padding: var(--spacing-md) var(--spacing-lg);
+  min-height: var(--touch-target-large);
+  border-left: 3px solid transparent;
+}
+
+.nav-link-desktop {
+  padding: var(--spacing-sm) var(--spacing-md);
+  position: relative;
+  white-space: nowrap;
+}
+
+.nav-link-desktop::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-primary);
+  transition: all var(--transition-normal);
+  transform: translateX(-50%);
+}
+
+.nav-link-desktop:hover::after,
+.nav-link-desktop:focus::after {
+  width: 100%;
+}
+
+/* Spacing Utilities */
+.spacing-none {
+  margin: 0;
+  padding: 0;
+}
+.spacing-xs {
+  margin: var(--spacing-xs);
+}
+.spacing-sm {
+  margin: var(--spacing-sm);
+}
+.spacing-md {
+  margin: var(--spacing-md);
+}
+.spacing-lg {
+  margin: var(--spacing-lg);
+}
+.spacing-xl {
+  margin: var(--spacing-xl);
+}
+
+.padding-none {
+  padding: 0;
+}
+.padding-xs {
+  padding: var(--spacing-xs);
+}
+.padding-sm {
+  padding: var(--spacing-sm);
+}
+.padding-md {
+  padding: var(--spacing-md);
+}
+.padding-lg {
+  padding: var(--spacing-lg);
+}
+.padding-xl {
+  padding: var(--spacing-xl);
+}
+
+/* Animation Control Utilities */
+.animation-delay-none {
+  animation-delay: var(--animation-delay-none);
+}
+.animation-delay-short {
+  animation-delay: var(--animation-delay-short);
+}
+.animation-delay-medium {
+  animation-delay: var(--animation-delay-medium);
+}
+.animation-delay-long {
+  animation-delay: var(--animation-delay-long);
+}
+
+.transition-none {
+  transition: none;
+}
+.transition-fast {
+  transition: all var(--transition-fast);
+}
+.transition-normal {
+  transition: all var(--transition-normal);
+}
+.transition-slow {
+  transition: all var(--transition-slow);
+}
+
+/* Color Utilities */
+.color-primary {
+  color: var(--color-primary);
+}
+.color-accent {
+  color: var(--color-accent);
+}
+.color-text {
+  color: var(--color-text);
+}
+.color-text-muted {
+  color: var(--color-text-muted);
+}
+.color-text-secondary {
+  color: var(--color-text-secondary);
+}
+
+.bg-primary {
+  background-color: var(--color-primary);
+}
+.bg-surface {
+  background-color: var(--color-surface);
+}
+.bg-surface-light {
+  background-color: var(--color-surface-light);
+}
+.bg-background {
+  background-color: var(--color-background);
+}
+
+/* ================================
    4. COMPONENT STYLES
    ================================ */
 
@@ -278,7 +522,7 @@ p {
   box-shadow: var(--shadow-md);
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: var(--navbar-z-index);
   width: 100%;
 }
 
@@ -310,8 +554,8 @@ p {
   border: none;
   cursor: pointer;
   padding: var(--spacing-sm);
-  width: 44px;
-  height: 44px;
+  width: var(--touch-target-min);
+  height: var(--touch-target-min);
   border-radius: var(--border-radius-sm);
   transition: background-color var(--transition-fast);
   z-index: 1001;
@@ -390,7 +634,7 @@ p {
   font-size: var(--font-size-base);
   text-decoration: none;
   padding: var(--spacing-md) var(--spacing-lg);
-  min-height: 48px;
+  min-height: var(--touch-target-large);
   transition: all var(--transition-fast);
   border-left: 3px solid transparent;
 }
@@ -422,7 +666,7 @@ p {
   border-radius: var(--border-radius-md);
   cursor: pointer;
   transition: all var(--transition-normal);
-  min-height: 44px; /* Touch target */
+  min-height: var(--touch-target-min); /* Touch target */
   box-sizing: border-box;
   white-space: nowrap;
   overflow: hidden;
@@ -555,8 +799,7 @@ section {
   width: 100%;
   height: auto;
   transition: box-shadow var(--transition-normal),
-    border-color var(--transition-normal),
-    transform var(--transition-normal);
+    border-color var(--transition-normal), transform var(--transition-normal);
 }
 
 .hero-image img:hover {
@@ -873,23 +1116,19 @@ address a:hover {
 }
 
 .skills-card .progress-bar:nth-child(3) {
-  --animation-delay: 0.1s;
+  --animation-delay: var(--animation-delay-short);
 }
 
 .skills-card .progress-bar:nth-child(5) {
-  --animation-delay: 0.2s;
+  --animation-delay: var(--animation-delay-medium);
 }
 
 .skills-card .progress-bar:nth-child(7) {
-  --animation-delay: 0.3s;
+  --animation-delay: var(--animation-delay-long);
 }
 
-/* Category Tags - Proper specificity without !important */
-.blog-content a.category-tag,
-.post-content a.category-tag,
-.search-results a.category-tag,
-article a.category-tag,
-main a.category-tag {
+/* Category Tags - Simplified specificity */
+.category-tag {
   display: inline-block;
   background-color: transparent;
   color: var(--color-primary);
@@ -906,11 +1145,7 @@ main a.category-tag {
   letter-spacing: normal;
 }
 
-.blog-content a.category-tag:hover,
-.post-content a.category-tag:hover,
-.search-results a.category-tag:hover,
-article a.category-tag:hover,
-main a.category-tag:hover {
+.category-tag:hover {
   background-color: var(--color-primary);
   color: var(--color-background);
   text-decoration: none;
@@ -992,6 +1227,9 @@ footer p {
     gap: var(--spacing-sm); /* Reduced gap for tablet */
     padding: 0;
     flex-wrap: wrap; /* Allow wrapping if needed */
+    max-height: none; /* Reset max-height from mobile */
+    overflow: visible; /* Reset overflow from mobile */
+    display: flex; /* Ensure it displays as flex */
   }
 
   .navbar-links li {
@@ -1040,7 +1278,9 @@ footer p {
   .hero-description p {
     margin-left: 0;
     margin-right: 0;
-    font-size: var(--font-size-base); /* Smaller text for better tablet readability */
+    font-size: var(
+      --font-size-sm
+    ); /* Even smaller text for better tablet readability at 800px width */
   }
 
   .hero-buttons {
@@ -1144,7 +1384,7 @@ footer p {
   }
 
   .hero-text h1 {
-    font-size: clamp(3rem, 7vw + 1.8rem, 4rem);
+    font-size: clamp(2.5rem, 6vw, 3.2rem); /* Reduced for desktop 900px+ */
     line-height: 1.1;
   }
 
@@ -1202,7 +1442,7 @@ footer p {
   /* Search icon styling for large desktop */
   .navbar-links a[aria-label='Search'] {
     padding: var(--spacing-md);
-    min-width: 48px;
+    min-width: var(--touch-target-large);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1222,7 +1462,12 @@ footer p {
   }
 
   .hero-text h1 {
-    font-size: clamp(3.5rem, 8vw + 2rem, 4.5rem);
+    font-size: clamp(
+      3rem,
+      7vw + 1.8rem,
+      4rem
+    ); /* Moved large text to 1200px+ */
+    line-height: 1.1;
   }
 
   .hero-image img {
@@ -1235,7 +1480,11 @@ footer p {
   }
 }
 
-/* --- Enhanced Career Timeline --- */
+/* ================================
+   CAREER TIMELINE COMPONENT
+   ================================ */
+
+/* === Timeline Layout Grid === */
 .career-grid {
   display: grid;
   grid-template-columns: 340px 1fr;
@@ -1243,11 +1492,14 @@ footer p {
   align-items: start;
   margin-top: var(--spacing-2xl);
 }
+
+/* === Timeline Photo Column === */
 .career-photo-column {
   display: flex;
   justify-content: center;
   align-items: flex-start;
 }
+
 .career-photo {
   max-width: 100%;
   width: 320px;
@@ -1256,18 +1508,23 @@ footer p {
   background: var(--color-surface);
   margin-top: var(--spacing-lg);
 }
+
+/* === Timeline Structure === */
 .career-timeline-column {
   position: relative;
   width: 100%;
 }
+
 .timeline {
   position: relative;
   margin-left: 0;
   padding-left: 0;
 }
+
+/* Timeline Vertical Line */
 .timeline-line {
   position: absolute;
-  left: 44px;
+  left: var(--timeline-left-offset);
   top: 0;
   bottom: 0;
   width: 5px;
@@ -1280,6 +1537,8 @@ footer p {
   z-index: 0;
   opacity: 0.85;
 }
+
+/* === Timeline Items === */
 .timeline-item {
   display: flex;
   align-items: center;
@@ -1288,6 +1547,8 @@ footer p {
   margin-bottom: var(--spacing-4xl);
   z-index: 1;
 }
+
+/* Timeline Markers */
 .timeline-marker-group {
   position: relative;
   display: flex;
@@ -1296,6 +1557,7 @@ footer p {
   min-width: 110px;
   z-index: 2;
 }
+
 .timeline-square {
   width: 56px;
   height: 56px;
@@ -1312,6 +1574,7 @@ footer p {
   position: relative;
   border: var(--timeline-border-width) solid var(--color-timeline-border);
 }
+
 .timeline-connector {
   flex: 1 1 32px;
   height: 5px;
@@ -1322,6 +1585,7 @@ footer p {
   border-radius: 3px;
   opacity: 0.7;
 }
+
 .timeline-number {
   font-family: var(--font-primary);
   font-weight: var(--font-weight-bold);
@@ -1329,6 +1593,8 @@ footer p {
   color: var(--color-background);
   letter-spacing: 0.5px;
 }
+
+/* === Timeline Content === */
 .timeline-content {
   background: var(--color-surface-light);
   padding: var(--timeline-content-padding);
@@ -1351,6 +1617,7 @@ footer p {
   transform: translateY(-4px);
 }
 
+/* Timeline Content Typography */
 .timeline-content h3 {
   color: var(--color-text);
   font-size: 2.1rem;
@@ -1358,6 +1625,7 @@ footer p {
   margin-bottom: var(--spacing-xs);
   letter-spacing: 0.5px;
 }
+
 .timeline-content .position {
   color: var(--color-primary);
   font-size: 1.25rem;
@@ -1365,6 +1633,7 @@ footer p {
   margin-bottom: var(--spacing-xs);
   letter-spacing: 0.2px;
 }
+
 .timeline-content .duration {
   color: var(--color-text-secondary);
   font-size: 1.1rem;
@@ -1383,33 +1652,41 @@ footer p {
   margin-bottom: 0;
   letter-spacing: 0.1px;
 }
+
+/* === Timeline Responsive Styles === */
 @media (max-width: 900px) {
   .career-grid {
     grid-template-columns: 1fr;
     gap: var(--spacing-2xl);
   }
+
   .career-photo {
     width: 100%;
     max-width: 320px;
     margin: 0 auto var(--spacing-lg) auto;
   }
+
   .career-timeline-column {
     margin-top: 0;
   }
 }
+
 @media (max-width: 600px) {
   .timeline-content {
     padding: var(--timeline-content-padding);
     border-radius: var(--timeline-border-radius);
   }
+
   .timeline-square {
     width: 40px;
     height: 40px;
     font-size: 1.2rem;
   }
+
   .timeline-marker-group {
     min-width: 60px;
   }
+
   .career-photo {
     width: 100%;
     max-width: 220px;
