@@ -683,10 +683,14 @@ section {
   padding: var(--spacing-xl);
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-md);
-  transition: transform var(--transition-normal);
+  border: 2.5px solid var(--color-border); /* Match career timeline border */
+  transition: box-shadow var(--transition-normal),
+    border-color var(--transition-normal);
 }
 
 .skills-card:hover {
+  box-shadow: 0 12px 36px rgba(25, 212, 254, 0.18), var(--shadow-lg);
+  border-color: #0fb8e0;
   transform: translateY(-4px);
 }
 
@@ -1377,6 +1381,13 @@ footer p {
   transition: box-shadow var(--transition-normal),
     border-color var(--transition-normal);
 }
+
+.timeline-content:hover {
+  box-shadow: 0 12px 36px rgba(25, 212, 254, 0.18), var(--shadow-lg);
+  border-color: #0fb8e0;
+  transform: translateY(-4px);
+}
+
 .timeline-content h3 {
   color: var(--color-text);
   font-size: 2.1rem;
@@ -1398,10 +1409,6 @@ footer p {
   font-style: italic;
   margin-bottom: 0;
   letter-spacing: 0.2px;
-}
-.timeline-content:hover {
-  box-shadow: 0 12px 36px rgba(25, 212, 254, 0.18), var(--shadow-lg);
-  border-color: #0fb8e0;
 }
 @media (max-width: 900px) {
   .career-grid {
