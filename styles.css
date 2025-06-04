@@ -29,6 +29,10 @@ This CSS file follows a clean, organized structure:
   --color-text-tertiary: #adb5bd;
   --color-border: #3e4750;
 
+  /* Interactive State Colors */
+  --color-hover-border: var(--color-primary-dark);
+  --color-timeline-border: var(--color-primary);
+
   /* Typography System */
   --font-primary: 'Montserrat', Arial, Helvetica, sans-serif;
   --font-weight-regular: 400;
@@ -70,7 +74,13 @@ This CSS file follows a clean, organized structure:
   /* Layout & Sizing */
   --max-width-content: clamp(320px, 95vw, 1200px);
   --max-width-text: clamp(280px, 90vw, 65ch);
-  --hero-max-width: clamp(300px, 85vw, 900px);
+  --hero-max-width: clamp(320px, 90vw, 1200px);
+
+  /* Component Sizing */
+  --icon-size-standard: clamp(32px, 4vw, 40px);
+  --timeline-border-width: 3px;
+  --timeline-content-padding: clamp(1.25rem, 4vw, 2.5rem);
+  --timeline-border-radius: clamp(14px, 3vw, 22px);
 
   /* Interactive States */
   --border-radius-xs: 4px;
@@ -84,6 +94,12 @@ This CSS file follows a clean, organized structure:
   --shadow-md: 0 8px 16px rgba(0, 0, 0, 0.2);
   --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.3);
   --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.4);
+
+  /* Accent Shadows (using primary color) */
+  --shadow-accent-sm: 0 4px 16px rgba(25, 212, 254, 0.18);
+  --shadow-accent-md: 0 8px 32px rgba(25, 212, 254, 0.1);
+  --shadow-accent-lg: 0 12px 36px rgba(25, 212, 254, 0.18);
+  --shadow-accent-photo: 0 8px 32px rgba(25, 212, 254, 0.12);
 
   /* Transitions */
   --transition-fast: 0.15s ease-out;
@@ -388,114 +404,10 @@ p {
 }
 
 /* ================================
-   RESPONSIVE NAVIGATION
+   RESPONSIVE NAVIGATION - CONSOLIDATED
    ================================ */
-
-/* Tablet Navigation (768px+) */
-@media (min-width: 768px) {
-  .navbar-toggle {
-    display: none;
-  }
-
-  .navbar-container {
-    padding: var(--spacing-sm) var(--spacing-lg);
-  }
-
-  .navbar-brand {
-    font-size: var(--font-size-lg);
-  }
-
-  .navbar-links {
-    position: static;
-    background: none;
-    box-shadow: none;
-    border-radius: 0;
-    max-height: none;
-    overflow: visible;
-    opacity: 1;
-    padding: 0;
-    display: flex;
-    flex-direction: row;
-    gap: var(--spacing-xs);
-    transition: none;
-  }
-
-  .navbar-links a {
-    padding: var(--spacing-sm) var(--spacing-md);
-    min-height: auto;
-    border-left: none;
-    border-radius: var(--border-radius-sm);
-    font-size: var(--font-size-sm);
-    white-space: nowrap;
-  }
-
-  .navbar-links a:hover,
-  .navbar-links a:focus {
-    background-color: var(--color-primary);
-    border-left: none;
-  }
-}
-
-/* Desktop Navigation (900px+) */
-@media (min-width: 900px) {
-  .navbar-container {
-    padding: var(--spacing-md) var(--spacing-xl);
-  }
-
-  .navbar-brand {
-    font-size: var(--font-size-xl);
-  }
-
-  .navbar-links {
-    gap: var(--spacing-md);
-  }
-
-  .navbar-links a {
-    padding: var(--spacing-md) var(--spacing-lg);
-    font-size: var(--font-size-base);
-    position: relative;
-  }
-
-  /* Modern underline effect */
-  .navbar-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background-color: var(--color-primary);
-    transition: all var(--transition-fast);
-    transform: translateX(-50%);
-  }
-
-  .navbar-links a:hover::after,
-  .navbar-links a:focus::after {
-    width: 100%;
-  }
-
-  .navbar-links a:hover,
-  .navbar-links a:focus {
-    background-color: transparent;
-    color: var(--color-primary);
-  }
-}
-
-/* Large Desktop Navigation (1200px+) */
-@media (min-width: 1200px) {
-  .navbar-container {
-    padding: var(--spacing-lg) var(--spacing-2xl);
-  }
-
-  .navbar-links {
-    gap: var(--spacing-lg);
-  }
-
-  .navbar-links a {
-    padding: var(--spacing-md) var(--spacing-xl);
-    font-size: var(--font-size-lg);
-  }
-}
+/* Navigation responsiveness is now handled in the main media queries section below 
+   to avoid duplication and ensure consistent styling across breakpoints */
 
 /* Buttons */
 .btn {
@@ -637,10 +549,20 @@ section {
 
 .hero-image img {
   border-radius: var(--border-radius-xl);
-  box-shadow: var(--shadow-xl);
-  max-width: 300px;
+  box-shadow: var(--shadow-accent-md), var(--shadow-md);
+  border: var(--timeline-border-width) solid var(--color-border);
+  max-width: 400px;
   width: 100%;
   height: auto;
+  transition: box-shadow var(--transition-normal),
+    border-color var(--transition-normal),
+    transform var(--transition-normal);
+}
+
+.hero-image img:hover {
+  box-shadow: var(--shadow-accent-lg), var(--shadow-lg);
+  border-color: var(--color-hover-border);
+  transform: translateY(-4px);
 }
 
 .hero-description {
@@ -689,8 +611,8 @@ section {
 }
 
 .skills-card:hover {
-  box-shadow: 0 12px 36px rgba(25, 212, 254, 0.18), var(--shadow-lg);
-  border-color: #0fb8e0;
+  box-shadow: var(--shadow-accent-lg), var(--shadow-lg);
+  border-color: var(--color-hover-border);
   transform: translateY(-4px);
 }
 
@@ -719,7 +641,7 @@ section {
 
 .skill-row:hover .skill-label.lang,
 .skill-row:focus .skill-label.lang {
-  color: var(--color-primary);d
+  color: var(--color-primary);
 }
 
 .skill-row:hover .skill-percent,
@@ -794,15 +716,12 @@ section {
   color: var(--color-text); /* Use light color for icons */
   transform: scale(1); /* Always same size */
   transition: color var(--transition-normal), transform var(--transition-normal);
-  width: 35px;
-  height: 35px;
-  min-width: 35px;
-  min-height: 35px;
-  max-width: 35px;
-  max-height: 35px;
+  width: var(--icon-size-standard);
+  height: var(--icon-size-standard);
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0; /* Prevent shrinking */
 }
 
 .framework-item svg.framework-icon path {
@@ -1011,10 +930,6 @@ footer p {
   margin: 0;
 }
 
-.progress-bar {
-  background-color: var(--color-surface-light);
-}
-
 /* ================================
    5. RESPONSIVE MEDIA QUERIES
    ================================ */
@@ -1125,6 +1040,7 @@ footer p {
   .hero-description p {
     margin-left: 0;
     margin-right: 0;
+    font-size: var(--font-size-base); /* Smaller text for better tablet readability */
   }
 
   .hero-buttons {
@@ -1217,13 +1133,14 @@ footer p {
   }
 
   .hero-section {
-    grid-template-columns: 1.2fr 0.8fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-areas:
       'text image'
       'description image'
       'buttons image';
     gap: var(--spacing-3xl);
     min-height: 85vh;
+    max-width: var(--max-width-content); /* Use full content width on desktop */
   }
 
   .hero-text h1 {
@@ -1232,7 +1149,7 @@ footer p {
   }
 
   .hero-image img {
-    max-width: 400px; /* Larger image for desktop */
+    max-width: 600px; /* Larger image for desktop */
     border-radius: var(--border-radius-xl);
   }
 
@@ -1299,6 +1216,9 @@ footer p {
       'buttons image';
     gap: var(--spacing-4xl);
     min-height: 90vh;
+    max-width: var(
+      --max-width-content
+    ); /* Use full content width on large desktop */
   }
 
   .hero-text h1 {
@@ -1306,7 +1226,7 @@ footer p {
   }
 
   .hero-image img {
-    max-width: 450px; /* Even larger image for large desktop */
+    max-width: 550px; /* Even larger image for large desktop */
     border-radius: var(--border-radius-xl);
   }
 
@@ -1332,7 +1252,7 @@ footer p {
   max-width: 100%;
   width: 320px;
   border-radius: var(--border-radius-xl);
-  box-shadow: 0 8px 32px rgba(25, 212, 254, 0.12), var(--shadow-lg);
+  box-shadow: var(--shadow-accent-photo), var(--shadow-lg);
   background: var(--color-surface);
   margin-top: var(--spacing-lg);
 }
@@ -1387,10 +1307,10 @@ footer p {
   font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-bold);
   color: var(--color-background);
-  box-shadow: 0 4px 16px rgba(25, 212, 254, 0.18), var(--shadow-md);
+  box-shadow: var(--shadow-accent-sm), var(--shadow-md);
   z-index: 2;
   position: relative;
-  border: 3px solid #19d4fe;
+  border: var(--timeline-border-width) solid var(--color-timeline-border);
 }
 .timeline-connector {
   flex: 1 1 32px;
@@ -1411,10 +1331,10 @@ footer p {
 }
 .timeline-content {
   background: var(--color-surface-light);
-  padding: 2.5rem 2.5rem 2rem 2.5rem;
-  border-radius: 22px;
-  border: 2.5px solid var(--color-border);
-  box-shadow: 0 8px 32px rgba(25, 212, 254, 0.1), var(--shadow-md);
+  padding: var(--timeline-content-padding);
+  border-radius: var(--timeline-border-radius);
+  border: var(--timeline-border-width) solid var(--color-border);
+  box-shadow: var(--shadow-accent-md), var(--shadow-md);
   margin-left: 0;
   flex: 1 1 0%;
   display: flex;
@@ -1426,8 +1346,8 @@ footer p {
 }
 
 .timeline-content:hover {
-  box-shadow: 0 12px 36px rgba(25, 212, 254, 0.18), var(--shadow-lg);
-  border-color: #0fb8e0;
+  box-shadow: var(--shadow-accent-lg), var(--shadow-lg);
+  border-color: var(--color-hover-border);
   transform: translateY(-4px);
 }
 
@@ -1450,8 +1370,18 @@ footer p {
   font-size: 1.1rem;
   font-weight: var(--font-weight-regular);
   font-style: italic;
-  margin-bottom: 0;
+  margin-bottom: var(--spacing-sm);
   letter-spacing: 0.2px;
+}
+
+.timeline-content .description {
+  color: var(--color-text);
+  font-size: 1rem;
+  font-weight: var(--font-weight-regular);
+  line-height: 1.6;
+  margin-top: var(--spacing-sm);
+  margin-bottom: 0;
+  letter-spacing: 0.1px;
 }
 @media (max-width: 900px) {
   .career-grid {
@@ -1469,8 +1399,8 @@ footer p {
 }
 @media (max-width: 600px) {
   .timeline-content {
-    padding: 1.25rem;
-    border-radius: 14px;
+    padding: var(--timeline-content-padding);
+    border-radius: var(--timeline-border-radius);
   }
   .timeline-square {
     width: 40px;
