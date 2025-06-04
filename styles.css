@@ -650,8 +650,16 @@ p {
 /* ================================
    RESPONSIVE NAVIGATION - CONSOLIDATED
    ================================ */
-/* Navigation responsiveness is now handled in the main media queries section below 
-   to avoid duplication and ensure consistent styling across breakpoints */
+/* 
+   Navigation responsive behavior:
+   - Mobile (default): Hidden dropdown with hamburger toggle
+   - Tablet (768px+): Horizontal flex layout with compact spacing
+   - Desktop (900px+): Enhanced spacing with underline effects
+   - Large Desktop (1200px+): Premium spacing and layout
+   
+   All breakpoints use !important declarations to override
+   mobile-first .nav-open class specificity issues.
+*/
 
 /* Buttons */
 .btn {
@@ -1215,21 +1223,22 @@ footer p {
     padding: var(--spacing-md) var(--spacing-lg);
   }
 
-  .navbar-links {
-    position: static;
-    background: none;
-    box-shadow: none;
-    border-radius: 0;
-    transform: none;
-    opacity: 1;
-    visibility: visible;
-    flex-direction: row;
-    gap: var(--spacing-sm); /* Reduced gap for tablet */
-    padding: 0;
-    flex-wrap: wrap; /* Allow wrapping if needed */
-    max-height: none; /* Reset max-height from mobile */
-    overflow: visible; /* Reset overflow from mobile */
-    display: flex; /* Ensure it displays as flex */
+  .navbar-links,
+  .navbar-links.nav-open {
+    position: static !important;
+    background: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    flex-direction: row !important;
+    gap: var(--spacing-sm) !important; /* Reduced gap for tablet */
+    padding: 0 !important;
+    flex-wrap: wrap !important; /* Allow wrapping if needed */
+    max-height: none !important; /* Reset max-height from mobile */
+    overflow: visible !important; /* Reset overflow from mobile */
+    display: flex !important; /* Ensure it displays as flex */
   }
 
   .navbar-links li {
@@ -1318,9 +1327,22 @@ footer p {
     padding: var(--spacing-lg) var(--spacing-2xl);
   }
 
-  .navbar-links {
-    gap: var(--spacing-sm); /* Reduced gap for better fit */
-    flex-wrap: nowrap; /* No wrapping on desktop */
+  .navbar-links,
+  .navbar-links.nav-open {
+    gap: var(--spacing-sm) !important; /* Reduced gap for better fit */
+    flex-wrap: nowrap !important; /* No wrapping on desktop */
+    position: static !important;
+    background: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    flex-direction: row !important;
+    padding: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+    display: flex !important;
   }
 
   .navbar-links a {
@@ -1430,8 +1452,22 @@ footer p {
     margin: 0 auto;
   }
 
-  .navbar-links {
-    gap: var(--spacing-lg); /* Reduced gap for better fit */
+  .navbar-links,
+  .navbar-links.nav-open {
+    gap: var(--spacing-lg) !important; /* Reduced gap for better fit */
+    position: static !important;
+    background: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    flex-direction: row !important;
+    padding: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
   }
 
   .navbar-links a {
