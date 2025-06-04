@@ -1688,6 +1688,46 @@ footer p {
   padding: var(--spacing-2xl) !important;
 }
 
+/* Pagefind "Load more results" button styling to match site buttons */
+.pagefind-ui__button {
+  display: inline-block !important;
+  padding: var(--spacing-md) var(--spacing-xl) !important;
+  font-family: var(--font-primary) !important;
+  font-weight: var(--font-weight-medium) !important;
+  font-size: var(--font-size-base) !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  border: 2px solid transparent;
+  border-radius: var(--border-radius-md) !important;
+  cursor: pointer !important;
+  transition: all var(--transition-normal) !important;
+  min-height: var(--touch-target-min) !important;
+  box-sizing: border-box !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  max-width: 100% !important;
+  flex-shrink: 0 !important;
+  background-color: transparent !important;
+  color: var(--color-primary) !important;
+  margin: var(--spacing-lg) auto var(--spacing-sm) auto !important;
+}
+
+.pagefind-ui__button:hover,
+.pagefind-ui__button:focus {
+  background-color: var(--color-primary) !important;
+  color: var(--color-background) !important;
+  border-color: var(--color-primary) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: var(--shadow-lg) !important;
+  outline: none !important;
+}
+
+.pagefind-ui__button:active {
+  transform: translateY(0) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
 /* ================================
    RESPONSIVE BLOG POST STYLING
    ================================ */
