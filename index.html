@@ -191,14 +191,6 @@ eleventyExcludeFromCollections: false
       </ul>
     </div>
   </div>
-  <div class="button-container">
-    <a href="#career" class="btn btn-primary" aria-describedby="career-btn-desc"
-      >View My Projects</a
-    >
-    <span id="career-btn-desc" class="sr-only"
-      >Navigate to career section showing completed work</span
-    >
-  </div>
 </section>
 <!-- Career Timeline Section - Complete HTML Structure -->
 <section
@@ -279,6 +271,16 @@ eleventyExcludeFromCollections: false
         </div>
       </div>
     </div>
+  </div>
+  <div class="button-container">
+    <a
+      href="{{ '/assets/resume.pdf' | url }}"
+      class="btn btn-primary"
+      download
+      aria-describedby="resume-btn-desc"
+      >View My Resume</a
+    >
+    <span id="resume-btn-desc" class="sr-only">Download PDF resume file</span>
   </div>
 </section>
 

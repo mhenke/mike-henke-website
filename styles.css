@@ -719,7 +719,7 @@ section {
 
 .skill-row:hover .skill-label.lang,
 .skill-row:focus .skill-label.lang {
-  color: var(--color-primary);
+  color: var(--color-primary);d
 }
 
 .skill-row:hover .skill-percent,
