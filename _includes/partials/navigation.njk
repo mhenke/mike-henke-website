@@ -1,0 +1,22 @@
+<!-- Shared navigation for all layouts -->
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar-container">
+        <div class="navbar-brand" role="banner">Mike Henke</div>
+        
+        <!-- Modern Hamburger Menu Toggle -->
+        <button class="navbar-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+            <i class="fas fa-bars" aria-hidden="true"></i>
+            <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+        
+        <ul class="navbar-links" id="nav-menu" role="menubar">
+            <li><a href="{{ '/' | url }}" role="menuitem">Home</a></li>
+            <li><a href="{{ '/' | url }}#about" role="menuitem">About</a></li>
+            <li><a href="{{ '/' | url }}#skills" role="menuitem">Skills</a></li>
+            <li><a href="{{ '/' | url }}#career" role="menuitem">Career</a></li>
+            <li><a href="{{ '/blog/' | url }}" role="menuitem">Blog</a></li>
+            <li><a href="{{ '/' | url }}#contact" role="menuitem">Contact</a></li>
+            <li><a href="{{ '/search/' | url }}" role="menuitem" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a></li>
+        </ul>
+    </div>
+</nav>
