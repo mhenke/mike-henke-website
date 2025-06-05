@@ -8,12 +8,12 @@ layout: layouts/base.njk
 eleventyComputed:
   title: "{{ collections.postsByCategory[pagination.items[0]].name }} Posts"
 ---
-<section class="content-section-boxed" style="margin-top: 30px;">
+<section class="content-section-boxed content-section-top-margin">
     <h1 class="section-title">Posts in "{{ collections.postsByCategory[pagination.items[0]].name }}"</h1>
     <div class="section-underline"></div>
     
-    <p style="margin-bottom: 2rem;">
-        <a href="{{ '/blog' | url }}" style="color: #19d4fe; text-decoration: none;">← Back to All Posts</a>
+    <p class="category-page-back-link">
+        <a href="{{ '/blog' | url }}" class="category-page-back-link">← Back to All Posts</a>
     </p>
     
     <ul>
@@ -22,17 +22,17 @@ eleventyComputed:
                 <a href="{{ post.url | url }}">{{ post.data.title }}</a>
                 <p class="blog-post-date"><em>{{ post.date | date('LLLL d, yyyy') }}</em></p>
                 {% if post.data.categories %}
-                    <p class="blog-post-categories">
+                    <div class="blog-post-categories">
                         {% for category in post.data.categories %}
                             <a href="{{ ('/blog/category/' + (category | slugify) + '/') | url }}" class="category-tag">{{ category }}</a>
                         {% endfor %}
-                    </p>
+                    </div>
                 {% endif %}
             </li>
         {%- endfor -%}
     </ul>
     
-    <p style="margin-top: 2rem; color: #adb5bd;">
+    <p class="category-post-count">
         <strong>{{ collections.postsByCategory[pagination.items[0]].posts.length }}</strong> post{% if collections.postsByCategory[pagination.items[0]].posts.length != 1 %}s{% endif %} in this category
     </p>
 </section>

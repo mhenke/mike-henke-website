@@ -1176,7 +1176,7 @@ address a:hover {
   margin-bottom: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: var(--spacing-xs);
   align-items: center;
 }
 
@@ -1617,16 +1617,6 @@ footer p {
   color: var(--color-text-secondary);
 }
 
-/* Blog post categories */
-.blog-post-categories {
-  margin-top: var(--spacing-sm);
-  margin-bottom: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  align-items: center;
-}
-
 /* Footer */
 footer {
   padding: var(--spacing-2xl) 0;
@@ -1642,3 +1632,46 @@ footer p {
 }
 
 /* ================================
+   UTILITY CLASSES FOR TEMPLATE OPTIMIZATION
+   ================================ */
+
+/* Content section with top margin - replaces style="margin-top: 30px;" */
+.content-section-top-margin {
+  margin-top: var(--spacing-xl);
+}
+
+/* Back to blog link styling - replaces inline styles */
+.back-to-blog-link {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  transition: color var(--transition-fast);
+}
+
+.back-to-blog-link:hover,
+.back-to-blog-link:focus {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
+/* Category page specific styling */
+.category-page-back-link {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--spacing-xl);
+  display: inline-block;
+  transition: color var(--transition-fast);
+}
+
+.category-page-back-link:hover,
+.category-page-back-link:focus {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
+.category-post-count {
+  margin-top: var(--spacing-xl);
+  color: var(--color-text-tertiary);
+  font-size: var(--font-size-sm);
+}

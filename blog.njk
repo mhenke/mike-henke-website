@@ -3,20 +3,20 @@ layout: layouts/base.njk
 title: Blog
 permalink: /blog/index.html
 ---
-<section class="content-section-boxed" style="margin-top: 30px;">
+<section class="content-section-boxed content-section-top-margin">
     <h1 class="section-title">Blog Posts</h1>
     <div class="section-underline"></div>
     <ul>
         {%- for post in collections.allPosts -%}
-            <li class="blog-post-item"> {# Added class #}
+            <li class="blog-post-item">
                 <a href="{{ post.url | url }}">{{ post.data.title }}</a>
-                <p class="blog-post-date"><em>{{ post.date | date('LLLL d, yyyy') }}</em></p> {# Added class #}
+                <p class="blog-post-date"><em>{{ post.date | date('LLLL d, yyyy') }}</em></p>
                 {% if post.data.categories %}
-                    <p class="blog-post-categories">
+                    <div class="blog-post-categories">
                         {% for category in post.data.categories %}
                             <a href="{{ ('/blog/category/' + (category | slugify) + '/') | url }}" class="category-tag">{{ category }}</a>
                         {% endfor %}
-                    </p>
+                    </div>
                 {% endif %}
             </li>
         {%- endfor -%}
