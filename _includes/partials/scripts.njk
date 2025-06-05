@@ -65,7 +65,7 @@
                 // Auto-detect bundle path or use explicit path
                 const bundlePath = window.location.pathname.includes('/search/') ? '../pagefind/' : '/pagefind/';
                 
-                new PagefindUI({ 
+                const searchConfig = { 
                     element: "#search", 
                     showSubResults: true,
                     showEmptyFilters: false,
@@ -74,7 +74,41 @@
                     debounceTimeoutMs: 300,
                     bundlePath: bundlePath,
                     excerptLength: 30
-                });
+                };
+
+                // Add custom result template for search page
+                if (window.location.pathname.includes('/search/')) {
+                    searchConfig.resultTemplate = function(result) {
+                        const categories = result.meta.category || result.meta.categories;
+                        let categoryHtml = '';
+                        
+                        if (categories) {
+                            const categoryList = Array.isArray(categories) ? categories : categories.split(',');
+                            categoryHtml = `
+                                <div class="search-result-categories">
+                                    ${categoryList.map(cat => 
+                                        `<span class="category-tag">${cat.trim()}</span>`
+                                    ).join('')}
+                                </div>
+                            `;
+                        }
+                        
+                        return `
+                            <div class="pagefind-ui__result">
+                                <div class="pagefind-ui__result-nested">
+                                    <h3 class="pagefind-ui__result-title">
+                                        <a href="${result.url}">${result.meta.title}</a>
+                                    </h3>
+                                    ${categoryHtml}
+                                    <p class="pagefind-ui__result-excerpt">${result.excerpt}</p>
+                                    ${result.meta.date ? `<p class="search-result-date"><em>Published: ${result.meta.date}</em></p>` : ''}
+                                </div>
+                            </div>
+                        `;
+                    };
+                }
+                
+                new PagefindUI(searchConfig);
                 console.log('PagefindUI initialized successfully');
             } catch (error) {
                 console.error('Failed to initialize PagefindUI:', error);
