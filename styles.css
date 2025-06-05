@@ -1199,15 +1199,13 @@ address a:hover {
   margin: var(--spacing-xs) 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: var(--spacing-xs);
   align-items: center;
 }
 
 .search-result-categories .category-tag {
   font-size: var(--font-size-sm);
-  padding: 0.2rem 0.5rem;
-  margin-right: 0.25rem;
-  margin-bottom: 0.1rem;
+  padding: var(--spacing-xs) var(--spacing-xs);
 }
 
 .search-result-date {
