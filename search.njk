@@ -3,7 +3,7 @@ layout: layouts/base.njk
 title: Search
 permalink: /search/index.html
 ---
-<section class="content-section-boxed" style="margin-top: 30px;">
+<section class="content-section-boxed content-section-top-margin">
     <h1 class="section-title">Search Site</h1>
     <div class="section-underline"></div>
     <div id="search"></div>
@@ -11,43 +11,50 @@ permalink: /search/index.html
 
 <script>
     window.addEventListener('DOMContentLoaded', (event) => {
-        // Initialize Pagefind
-        new PagefindUI({ 
-            element: "#search",
-            showSubResults: true,
-            showImages: false,
-            excerptLength: 30,
-            resetStyles: false,
-            bundlePath: "{{ '/pagefind/' | url }}",
-            // Custom result template to include categories
-            resultTemplate: function(result) {
-                const categories = result.meta.category || result.meta.categories;
-                let categoryHtml = '';
-                
-                if (categories) {
-                    const categoryList = Array.isArray(categories) ? categories : categories.split(',');
-                    categoryHtml = `
-                        <div class="search-result-categories">
-                            ${categoryList.map(cat => 
-                                `<span class="category-tag">${cat.trim()}</span>`
-                            ).join('')}
-                        </div>
-                    `;
-                }
-                
-                return `
-                    <div class="pagefind-ui__result">
-                        <div class="pagefind-ui__result-nested">
-                            <h3 class="pagefind-ui__result-title">
-                                <a href="${result.url}">${result.meta.title}</a>
-                            </h3>
-                            ${categoryHtml}
-                            <p class="pagefind-ui__result-excerpt">${result.excerpt}</p>
-                            ${result.meta.date ? `<p class="search-result-date"><em>Published: ${result.meta.date}</em></p>` : ''}
-                        </div>
-                    </div>
-                `;
+        // Enhanced search configuration with custom result template
+        if (document.getElementById("search")) {
+            try {
+                new PagefindUI({ 
+                    element: "#search",
+                    showSubResults: true,
+                    showImages: false,
+                    excerptLength: 30,
+                    resetStyles: false,
+                    bundlePath: "{{ '/pagefind/' | url }}",
+                    // Custom result template to include categories
+                    resultTemplate: function(result) {
+                        const categories = result.meta.category || result.meta.categories;
+                        let categoryHtml = '';
+                        
+                        if (categories) {
+                            const categoryList = Array.isArray(categories) ? categories : categories.split(',');
+                            categoryHtml = `
+                                <div class="search-result-categories">
+                                    ${categoryList.map(cat => 
+                                        `<span class="category-tag">${cat.trim()}</span>`
+                                    ).join('')}
+                                </div>
+                            `;
+                        }
+                        
+                        return `
+                            <div class="pagefind-ui__result">
+                                <div class="pagefind-ui__result-nested">
+                                    <h3 class="pagefind-ui__result-title">
+                                        <a href="${result.url}">${result.meta.title}</a>
+                                    </h3>
+                                    ${categoryHtml}
+                                    <p class="pagefind-ui__result-excerpt">${result.excerpt}</p>
+                                    ${result.meta.date ? `<p class="search-result-date"><em>Published: ${result.meta.date}</em></p>` : ''}
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+                console.log('Search page: PagefindUI initialized with custom template');
+            } catch (error) {
+                console.error('Search page: Failed to initialize PagefindUI:', error);
             }
-        });
+        }
     });
 </script>

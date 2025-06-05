@@ -29,12 +29,12 @@
             </div>
             <hr>
             <footer>
-                <p><a href="{{ '/blog/' | url }}" class="back-to-blog-link" aria-label="Return to blog listing">← Back to Blog</a></p>
+                <p><a href="{{ '/blog' | url }}" class="back-to-blog-link" aria-label="Return to blog listing">← Back to Blog</a></p>
             </footer>
             <div id="disqus_thread" role="complementary" aria-label="Comments section"></div>
             <script>
                 var disqus_config = function () {
-                    this.page.url = "{{ metadata.url }}{{ page.url }}";
+                    this.page.url = "{{ page.url | absoluteUrl(site.url) }}";
                     this.page.identifier = "{{ page.fileSlug }}";
                 };
                 (function() {
