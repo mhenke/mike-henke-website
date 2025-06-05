@@ -80,7 +80,10 @@ This CSS file follows a clean, organized structure:
   --icon-size-standard: clamp(32px, 4vw, 40px);
   --touch-target-min: 44px; /* Minimum touch target size */
   --touch-target-large: 48px; /* Larger touch target for important elements */
+  --touch-target-small: 36px; /* Smaller touch target for secondary elements */
   --border-width-default: 3px; /* Default border width for components */
+  --border-width-thin: 1px; /* Thin borders for subtle elements */
+  --border-width-thick: 2.5px; /* Thick borders for emphasis */
   --navbar-z-index: 1000; /* Navigation z-index */
 
   /* Hero Image Sizes - Converting magic numbers to variables */
@@ -218,19 +221,6 @@ a:focus {
 
 .skip-link:focus {
   top: 6px;
-}
-
-/* Screen Reader Only Content */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
 }
 
 /* ================================
@@ -496,7 +486,7 @@ p {
   border-radius: var(--border-radius-md);
   cursor: pointer;
   transition: all var(--transition-normal);
-  min-height: var(--touch-target-min); /* Touch target */
+  min-height: var(--touch-target-min);
   box-sizing: border-box;
   white-space: nowrap;
   overflow: hidden;
@@ -778,7 +768,7 @@ section {
   background: var(--color-surface-light);
   padding: 2.5rem 2.5rem 2rem 2.5rem;
   border-radius: 22px;
-  border: 2.5px solid var(--color-border);
+  border: var(--border-width-thick) solid var(--color-border);
   box-shadow: var(--shadow-accent-md), var(--shadow-md);
   margin-left: 0;
   flex: 1 1 0%;
@@ -867,7 +857,7 @@ section {
   padding: var(--spacing-xl);
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-md);
-  border: 2.5px solid var(--color-border); /* Match career timeline border */
+  border: var(--border-width-thick) solid var(--color-border);
   transition: box-shadow var(--transition-normal),
     border-color var(--transition-normal);
 }
@@ -1094,7 +1084,7 @@ section {
   padding: var(--spacing-lg);
   margin-bottom: var(--spacing-md);
   border-radius: var(--border-radius-md);
-  border-left: 4px solid var(--color-primary);
+  border-left: var(--border-width-default) solid var(--color-primary);
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-medium);
   color: var(--color-text);
@@ -1146,18 +1136,18 @@ address a:hover {
   --animation-delay: var(--animation-delay-long);
 }
 
-/* Category Tags - Simplified specificity */
+/* Category Tags - Optimized with variables */
 .category-tag {
   display: inline-block;
   background-color: transparent;
   color: var(--color-primary);
-  padding: 0.25rem 0.5rem;
+  padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: var(--border-radius-xs);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-regular);
-  margin-right: 0.25rem;
-  margin-bottom: 0.15rem;
-  border: 1px solid var(--color-primary);
+  margin-right: var(--spacing-xs);
+  margin-bottom: var(--spacing-xs);
+  border: var(--border-width-thin) solid var(--color-primary);
   text-decoration: none;
   transition: all var(--transition-fast);
   line-height: 1.1;
@@ -1181,7 +1171,7 @@ address a:hover {
 }
 
 .blog-post-categories .category-tag {
-  padding: 0.25rem 0.75rem;
+  padding: var(--spacing-xs) 0.75rem;
   font-weight: var(--font-weight-medium);
   border: 1.5px solid var(--color-primary);
   line-height: 1.2;
@@ -1227,12 +1217,12 @@ address a:hover {
   color: var(--color-text-secondary);
 }
 
-/* Footer */
+/* Footer - Consolidated single definition */
 footer {
   padding: var(--spacing-2xl) 0;
   margin-top: var(--spacing-4xl);
   text-align: center;
-  border-top: 1px solid var(--color-border);
+  border-top: var(--border-width-thin) solid var(--color-border);
 }
 
 footer p {
@@ -1585,7 +1575,7 @@ footer p {
 .blog-post-item {
   margin-bottom: var(--spacing-xl);
   padding-bottom: var(--spacing-lg);
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: var(--border-width-thin) solid var(--color-border);
 }
 
 .blog-post-item:last-child {
@@ -1624,23 +1614,7 @@ footer p {
   color: var(--color-text-secondary);
 }
 
-/* Footer */
-footer {
-  padding: var(--spacing-2xl) 0;
-  margin-top: var(--spacing-4xl);
-  text-align: center;
-  border-top: 1px solid var(--color-border);
-}
 
-footer p {
-  color: var(--color-text-secondary);
-  font-size: var(--font-size-sm);
-  margin: 0;
-}
-
-/* ================================
-   UTILITY CLASSES FOR TEMPLATE OPTIMIZATION
-   ================================ */
 
 /* Content section with top margin - replaces style="margin-top: 30px;" */
 .content-section-top-margin {
@@ -1684,10 +1658,10 @@ footer p {
 }
 
 /* ================================
-   PAGEFIND UI CUSTOM STYLING
+   PAGEFIND UI CUSTOM STYLING - OPTIMIZED
    ================================ */
 
-/* Search form container */
+/* Search form container - Core variables */
 .pagefind-ui {
   --pagefind-ui-scale: 1;
   --pagefind-ui-primary: var(--color-primary);
@@ -1695,37 +1669,37 @@ footer p {
   --pagefind-ui-background: var(--color-background);
   --pagefind-ui-border: var(--color-border);
   --pagefind-ui-tag: var(--color-primary);
-  width: 100% !important;
-  max-width: 100% !important;
-  box-sizing: border-box !important;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .pagefind-ui__form {
-  position: relative !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: var(--spacing-sm) !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  box-sizing: border-box !important;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
-/* Ensure search container doesn't overflow */
+/* Search container layout containment */
 #search {
-  width: 100% !important;
-  max-width: 100% !important;
-  box-sizing: border-box !important;
-  overflow: hidden !important;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
-/* Pagefind UI Button Styling - Match site button style */
+/* Pagefind UI Button Styling - Consolidated */
 .pagefind-ui__button {
   background-color: var(--color-primary) !important;
   color: var(--color-background) !important;
   border: none !important;
   border-radius: var(--border-radius-md) !important;
   padding: var(--spacing-sm) var(--spacing-lg) !important;
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif !important;
+  font-family: var(--font-primary) !important;
   font-weight: var(--font-weight-medium) !important;
   font-size: var(--font-size-sm) !important;
   cursor: pointer !important;
@@ -1741,7 +1715,7 @@ footer p {
   box-shadow: var(--shadow-md) !important;
 }
 
-/* Clear button specific styling */
+/* Clear button optimized styling */
 .pagefind-ui__search-clear {
   background-color: var(--color-text-muted) !important;
   color: var(--color-background) !important;
@@ -1754,13 +1728,11 @@ footer p {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif !important;
+  font-family: var(--font-primary) !important;
   font-weight: var(--font-weight-medium) !important;
   text-transform: none !important;
   letter-spacing: normal !important;
   position: relative !important;
-  top: auto !important;
-  right: auto !important;
   margin: auto var(--spacing-xs) !important;
 }
 
@@ -1772,12 +1744,12 @@ footer p {
   box-shadow: var(--shadow-sm) !important;
 }
 
-/* Search input styling */
+/* Search input styling - Optimized */
 .pagefind-ui__search-input {
   background-color: var(--color-background) !important;
-  border: 1px solid var(--color-border) !important;
+  border: var(--border-width-thin) solid var(--color-border) !important;
   color: var(--color-text) !important;
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif !important;
+  font-family: var(--font-primary) !important;
   font-size: var(--font-size-base) !important;
   border-radius: var(--border-radius-md) !important;
   padding: var(--spacing-md) var(--spacing-md) var(--spacing-md)
@@ -1794,16 +1766,15 @@ footer p {
   box-shadow: 0 0 0 2px rgba(25, 212, 254, 0.2) !important;
 }
 
-/* Search icon styling */
+/* Search icon and drawer styling - Consolidated */
 .pagefind-ui__search-icon {
   color: var(--color-text-secondary) !important;
   opacity: 0.7 !important;
 }
 
-/* Search input wrapper */
 .pagefind-ui__drawer {
   background-color: var(--color-background) !important;
-  border: 1px solid var(--color-border) !important;
+  border: var(--border-width-thin) solid var(--color-border) !important;
   border-radius: var(--border-radius-md) !important;
 }
 
@@ -1811,7 +1782,6 @@ footer p {
   color: var(--color-text-secondary) !important;
 }
 
-/* Ensure search icon shows with proper contrast */
 .pagefind-ui__form::before,
 .pagefind-ui__search::before {
   color: var(--color-text-secondary) !important;
