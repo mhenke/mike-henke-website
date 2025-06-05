@@ -80,10 +80,7 @@ This CSS file follows a clean, organized structure:
   --icon-size-standard: clamp(32px, 4vw, 40px);
   --touch-target-min: 44px; /* Minimum touch target size */
   --touch-target-large: 48px; /* Larger touch target for important elements */
-  --timeline-border-width: 3px;
-  --timeline-content-padding: clamp(1.25rem, 4vw, 2.5rem);
-  --timeline-border-radius: clamp(14px, 3vw, 22px);
-  --timeline-left-offset: 44px; /* Timeline vertical line position */
+  --border-width-default: 3px; /* Default border width for components */
   --navbar-z-index: 1000; /* Navigation z-index */
 
   /* Hero Image Sizes - Converting magic numbers to variables */
@@ -518,7 +515,7 @@ p {
 .btn-primary:focus {
   background-color: var(--color-primary-dark);
   border-color: var(--color-primary-dark);
-  color: #fff; /* Ensure high contrast on accent background */
+  color: var(--color-text); /* Use consistent text color variable */
   transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
 }
@@ -532,7 +529,7 @@ p {
 .btn-outline:hover,
 .btn-outline:focus {
   background-color: var(--color-primary);
-  color: #fff; /* Ensure high contrast on accent background */
+  color: var(--color-text); /* Use consistent text color variable */
 }
 
 /* Content Sections */
@@ -627,7 +624,7 @@ section {
 .hero-image img {
   border-radius: var(--border-radius-xl);
   box-shadow: var(--shadow-accent-md), var(--shadow-md);
-  border: var(--timeline-border-width) solid var(--color-border);
+  border: var(--border-width-default) solid var(--color-border);
   max-width: var(--hero-image-mobile);
   width: 100%;
   height: auto;
@@ -691,7 +688,7 @@ section {
   max-width: 100%;
   width: 320px;
   border-radius: var(--border-radius-xl);
-  box-shadow: 0 8px 32px rgba(25, 212, 254, 0.12), var(--shadow-lg);
+  box-shadow: var(--shadow-accent-md), var(--shadow-lg);
   background: var(--color-surface);
   margin-top: var(--spacing-lg);
 }
@@ -752,10 +749,10 @@ section {
   font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-bold);
   color: var(--color-background);
-  box-shadow: 0 4px 16px rgba(25, 212, 254, 0.18), var(--shadow-md);
+  box-shadow: var(--shadow-accent-lg), var(--shadow-md);
   z-index: 2;
   position: relative;
-  border: 3px solid #19d4fe;
+  border: 3px solid var(--color-primary);
 }
 
 .timeline-connector {
@@ -782,7 +779,7 @@ section {
   padding: 2.5rem 2.5rem 2rem 2.5rem;
   border-radius: 22px;
   border: 2.5px solid var(--color-border);
-  box-shadow: 0 8px 32px rgba(25, 212, 254, 0.1), var(--shadow-md);
+  box-shadow: var(--shadow-accent-md), var(--shadow-md);
   margin-left: 0;
   flex: 1 1 0%;
   display: flex;
@@ -794,8 +791,8 @@ section {
 }
 
 .timeline-content:hover {
-  box-shadow: 0 12px 36px rgba(25, 212, 254, 0.18), var(--shadow-lg);
-  border-color: #0fb8e0;
+  box-shadow: var(--shadow-accent-lg), var(--shadow-lg);
+  border-color: var(--color-primary-dark);
   transform: translateY(-4px);
 }
 
@@ -1184,27 +1181,16 @@ address a:hover {
 }
 
 .blog-post-categories .category-tag {
-  display: inline-block;
-  background-color: transparent;
-  color: var(--color-primary);
   padding: 0.25rem 0.75rem;
-  border-radius: var(--border-radius-xs);
-  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
-  margin-right: 0.25rem;
-  margin-bottom: 0.15rem;
   border: 1.5px solid var(--color-primary);
-  text-decoration: none;
-  transition: all var(--transition-fast);
   line-height: 1.2;
   letter-spacing: 0.2px;
+  font-size: var(--font-size-sm);
 }
 
 .blog-post-categories .category-tag:hover,
 .blog-post-categories .category-tag:focus {
-  background-color: var(--color-primary);
-  color: var(--color-background);
-  text-decoration: none;
   border-color: var(--color-primary-dark);
 }
 
