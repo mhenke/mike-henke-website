@@ -1194,6 +1194,34 @@ address a:hover {
   border-color: var(--color-primary-dark);
 }
 
+/* Search result styling */
+.search-result-categories {
+  margin: var(--spacing-xs) 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.search-result-categories .category-tag {
+  font-size: var(--font-size-sm);
+  padding: 0.2rem 0.5rem;
+  margin-right: 0.25rem;
+  margin-bottom: 0.1rem;
+}
+
+.search-result-date {
+  margin: var(--spacing-xs) 0 0 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-regular);
+}
+
+.search-result-date em {
+  font-style: normal;
+  color: var(--color-text-secondary);
+}
+
 /* Footer */
 footer {
   padding: var(--spacing-2xl) 0;
