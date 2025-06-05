@@ -1675,3 +1675,119 @@ footer p {
   color: var(--color-text-tertiary);
   font-size: var(--font-size-sm);
 }
+
+/* ================================
+   PAGEFIND UI CUSTOM STYLING
+   ================================ */
+
+/* Pagefind UI Button Styling - Match site button style */
+.pagefind-ui__button {
+  background-color: var(--color-primary) !important;
+  color: var(--color-background) !important;
+  border: none !important;
+  border-radius: var(--border-radius-md) !important;
+  padding: var(--spacing-sm) var(--spacing-lg) !important;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif !important;
+  font-weight: var(--font-weight-medium) !important;
+  font-size: var(--font-size-sm) !important;
+  cursor: pointer !important;
+  transition: all var(--transition-fast) !important;
+  text-transform: none !important;
+  letter-spacing: var(--letter-spacing-subtle) !important;
+}
+
+.pagefind-ui__button:hover,
+.pagefind-ui__button:focus {
+  background-color: var(--color-primary-dark) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+/* Clear button specific styling */
+.pagefind-ui__search-clear {
+  background-color: transparent !important;
+  color: var(--color-text-secondary) !important;
+  border: 1px solid var(--color-border) !important;
+  padding: var(--spacing-xs) var(--spacing-sm) !important;
+  font-size: var(--font-size-xs) !important;
+  border-radius: var(--border-radius-sm) !important;
+  height: auto !important;
+  min-height: var(--touch-target-small) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.pagefind-ui__search-clear:hover,
+.pagefind-ui__search-clear:focus {
+  background-color: var(--color-text-secondary) !important;
+  color: var(--color-background) !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Search input styling */
+.pagefind-ui__search-input {
+  background-color: var(--color-background) !important;
+  border: 1px solid var(--color-border) !important;
+  color: var(--color-text) !important;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif !important;
+  font-size: var(--font-size-base) !important;
+  border-radius: var(--border-radius-md) !important;
+  padding: var(--spacing-md) !important;
+}
+
+.pagefind-ui__search-input:focus {
+  border-color: var(--color-primary) !important;
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(25, 212, 254, 0.2) !important;
+}
+
+/* Results container */
+.pagefind-ui__results {
+  margin-top: var(--spacing-lg) !important;
+}
+
+/* Individual result styling */
+.pagefind-ui__result {
+  border-bottom: 1px solid var(--color-border) !important;
+  padding: var(--spacing-lg) 0 !important;
+  margin-bottom: var(--spacing-md) !important;
+}
+
+.pagefind-ui__result:last-child {
+  border-bottom: none !important;
+}
+
+.pagefind-ui__result-title a {
+  color: var(--color-text) !important;
+  font-size: var(--font-size-lg) !important;
+  font-weight: var(--font-weight-medium) !important;
+  text-decoration: none !important;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif !important;
+}
+
+.pagefind-ui__result-title a:hover,
+.pagefind-ui__result-title a:focus {
+  color: var(--color-primary) !important;
+}
+
+.pagefind-ui__result-excerpt {
+  color: var(--color-text-secondary) !important;
+  font-size: var(--font-size-sm) !important;
+  line-height: 1.6 !important;
+  margin-top: var(--spacing-sm) !important;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif !important;
+}
+
+/* Hide default result meta tags - we use custom ones */
+.pagefind-ui__result-tag {
+  display: none !important;
+}
+
+/* Message styling */
+.pagefind-ui__message {
+  color: var(--color-text-secondary) !important;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif !important;
+  font-size: var(--font-size-sm) !important;
+}

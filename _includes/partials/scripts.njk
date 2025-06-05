@@ -59,6 +59,60 @@
             });
         }
 
+        // Function to process search results and apply custom styling
+        function processSearchResults() {
+            const results = document.querySelectorAll('.pagefind-ui__result');
+            
+            results.forEach(result => {
+                // Find and process default meta tags
+                const metaTags = result.querySelectorAll('.pagefind-ui__result-tag');
+                let categoryData = '';
+                let dateData = '';
+                
+                metaTags.forEach(tag => {
+                    const metaType = tag.getAttribute('data-pagefind-ui-meta');
+                    if (metaType === 'category' || metaType === 'categories') {
+                        categoryData = tag.textContent.replace('Category: ', '').trim();
+                    } else if (metaType === 'date') {
+                        dateData = tag.textContent.replace('Date: ', '').trim();
+                    }
+                });
+                
+                // Remove default meta tags
+                metaTags.forEach(tag => tag.remove());
+                
+                // Find the title element to insert our custom elements after
+                const titleElement = result.querySelector('.pagefind-ui__result-title');
+                const excerptElement = result.querySelector('.pagefind-ui__result-excerpt');
+                
+                if (titleElement) {
+                    // Add custom category display
+                    if (categoryData) {
+                        const categoryDiv = document.createElement('div');
+                        categoryDiv.className = 'search-result-categories';
+                        
+                        const categories = categoryData.split(',');
+                        categories.forEach(cat => {
+                            const categorySpan = document.createElement('span');
+                            categorySpan.className = 'category-tag';
+                            categorySpan.textContent = cat.trim();
+                            categoryDiv.appendChild(categorySpan);
+                        });
+                        
+                        titleElement.insertAdjacentElement('afterend', categoryDiv);
+                    }
+                    
+                    // Add custom date display
+                    if (dateData && excerptElement) {
+                        const dateP = document.createElement('p');
+                        dateP.className = 'search-result-date';
+                        dateP.innerHTML = `<em>Published: ${dateData}</em>`;
+                        excerptElement.insertAdjacentElement('afterend', dateP);
+                    }
+                }
+            });
+        }
+
         // Initialize Pagefind Search if search element exists
         if (document.getElementById("search")) {
             try {
@@ -78,37 +132,41 @@
 
                 // Add custom result template for search page
                 if (window.location.pathname.includes('/search/')) {
-                    searchConfig.resultTemplate = function(result) {
-                        const categories = result.meta.category || result.meta.categories;
-                        let categoryHtml = '';
-                        
-                        if (categories) {
-                            const categoryList = Array.isArray(categories) ? categories : categories.split(',');
-                            categoryHtml = `
-                                <div class="search-result-categories">
-                                    ${categoryList.map(cat => 
-                                        `<span class="category-tag">${cat.trim()}</span>`
-                                    ).join('')}
-                                </div>
-                            `;
-                        }
-                        
-                        return `
-                            <div class="pagefind-ui__result">
-                                <div class="pagefind-ui__result-nested">
-                                    <h3 class="pagefind-ui__result-title">
-                                        <a href="${result.url}">${result.meta.title}</a>
-                                    </h3>
-                                    ${categoryHtml}
-                                    <p class="pagefind-ui__result-excerpt">${result.excerpt}</p>
-                                    ${result.meta.date ? `<p class="search-result-date"><em>Published: ${result.meta.date}</em></p>` : ''}
-                                </div>
-                            </div>
-                        `;
-                    };
+                    searchConfig.showImages = false;
+                    searchConfig.showSubResults = true;
                 }
                 
-                new PagefindUI(searchConfig);
+                const pagefindUI = new PagefindUI(searchConfig);
+                
+                // If we're on the search page, process results after they load
+                if (window.location.pathname.includes('/search/')) {
+                    // Listen for search results updates
+                    const searchElement = document.getElementById("search");
+                    const observer = new MutationObserver((mutations) => {
+                        mutations.forEach((mutation) => {
+                            if (mutation.addedNodes.length > 0) {
+                                // Check if search results were added
+                                const hasResults = Array.from(mutation.addedNodes).some(node => 
+                                    node.nodeType === 1 && 
+                                    (node.classList.contains('pagefind-ui__result') || 
+                                     node.querySelector && node.querySelector('.pagefind-ui__result'))
+                                );
+                                
+                                if (hasResults) {
+                                    setTimeout(() => processSearchResults(), 50);
+                                }
+                            }
+                        });
+                    });
+                    
+                    if (searchElement) {
+                        observer.observe(searchElement, { 
+                            childList: true, 
+                            subtree: true 
+                        });
+                    }
+                }
+                
                 console.log('PagefindUI initialized successfully');
             } catch (error) {
                 console.error('Failed to initialize PagefindUI:', error);
