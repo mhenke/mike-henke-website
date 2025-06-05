@@ -265,7 +265,7 @@ p {
 }
 
 /* ================================
-   3. UTILITY CLASSES (Essential Only)
+   4. UTILITY CLASSES & TEMPLATE OPTIMIZATION
    ================================ */
 
 /* Common Animation Utilities */
@@ -321,8 +321,49 @@ p {
   border: 0;
 }
 
+/* Content section with top margin - replaces style="margin-top: 30px;" */
+.content-section-top-margin {
+  margin-top: var(--spacing-xl);
+}
+
+/* Back to blog link styling - replaces inline styles */
+.back-to-blog-link {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  transition: color var(--transition-fast);
+}
+
+.back-to-blog-link:hover,
+.back-to-blog-link:focus {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
+/* Category page specific styling */
+.category-page-back-link {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--spacing-xl);
+  display: inline-block;
+  transition: color var(--transition-fast);
+}
+
+.category-page-back-link:hover,
+.category-page-back-link:focus {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
+.category-post-count {
+  margin-top: var(--spacing-xl);
+  color: var(--color-text-tertiary);
+  font-size: var(--font-size-sm);
+}
+
 /* ================================
-   3. COMPONENT STYLES
+   5. COMPONENT STYLES
    ================================ */
 
 /* ================================
@@ -558,7 +599,7 @@ section {
 
 .section-underline {
   width: 60px;
-  height: 4px;
+  height: var(--border-width-default);
   background-color: var(--color-primary);
   margin: 0 auto var(--spacing-lg) auto;
   border-radius: 2px;
@@ -705,7 +746,7 @@ section {
     var(--color-border) 0%,
     var(--color-border) 100%
   );
-  border-radius: 3px;
+  border-radius: var(--border-radius-xs);
   z-index: 0;
   opacity: 0.85;
 }
@@ -742,7 +783,7 @@ section {
   box-shadow: var(--shadow-accent-lg), var(--shadow-md);
   z-index: 2;
   position: relative;
-  border: 3px solid var(--color-primary);
+  border: var(--border-width-default) solid var(--color-primary);
 }
 
 .timeline-connector {
@@ -752,7 +793,7 @@ section {
   margin-left: 0;
   margin-right: var(--spacing-lg);
   z-index: 1;
-  border-radius: 3px;
+  border-radius: var(--border-radius-xs);
   opacity: 0.7;
 }
 
@@ -761,7 +802,7 @@ section {
   font-weight: var(--font-weight-bold);
   font-size: var(--font-size-2xl);
   color: var(--color-background);
-  letter-spacing: 0.5px;
+  letter-spacing: var(--letter-spacing-subtle);
 }
 
 .timeline-content {
@@ -791,7 +832,7 @@ section {
   font-size: 2.1rem;
   font-weight: var(--font-weight-bold);
   margin-bottom: var(--spacing-xs);
-  letter-spacing: 0.5px;
+  letter-spacing: var(--letter-spacing-subtle);
 }
 
 .timeline-content .position {
@@ -799,7 +840,7 @@ section {
   font-size: 1.25rem;
   font-weight: var(--font-weight-medium);
   margin-bottom: var(--spacing-xs);
-  letter-spacing: 0.2px;
+  letter-spacing: var(--letter-spacing-subtle);
 }
 
 .timeline-content .duration {
@@ -808,7 +849,7 @@ section {
   font-weight: var(--font-weight-regular);
   font-style: italic;
   margin-bottom: 0;
-  letter-spacing: 0.2px;
+  letter-spacing: var(--letter-spacing-subtle);
 }
 
 @media (max-width: 900px) {
@@ -919,7 +960,7 @@ section {
 .progress-bar {
   height: 8px;
   background-color: var(--color-border);
-  border-radius: 4px;
+  border-radius: var(--border-radius-xs);
   overflow: hidden;
   margin-bottom: var(--spacing-md);
 }
@@ -928,7 +969,7 @@ section {
   display: block;
   height: 100%;
   background-color: var(--color-primary);
-  border-radius: 4px;
+  border-radius: var(--border-radius-xs);
   width: 0; /* Start at 0 width for animation */
   transition: width 1s ease-out;
 }
@@ -948,7 +989,7 @@ section {
   flex-direction: column;
   align-items: center;
   font-size: var(--font-size-md);
-  color: var(--color-text); /* Use light text color */
+  color: var(--color-text);
   gap: var(--spacing-sm);
   font-weight: var(--font-weight-medium);
   transition: all var(--transition-normal);
@@ -965,25 +1006,25 @@ section {
 .framework-item i,
 .framework-item svg {
   font-size: var(--font-size-2xl);
-  color: var(--color-text); /* Use light color for icons */
-  transform: scale(1); /* Always same size */
+  color: var(--color-text);
+  transform: scale(1);
   transition: color var(--transition-normal), transform var(--transition-normal);
   width: var(--icon-size-standard);
   height: var(--icon-size-standard);
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0; /* Prevent shrinking */
+  flex-shrink: 0;
 }
 
 .framework-item svg path {
-  fill: var(--color-text); /* Make SVG icons light by default */
+  fill: var(--color-text);
   transition: fill var(--transition-normal), transform var(--transition-normal);
 }
 
 .framework-item:hover svg path,
 .framework-item:focus svg path {
-  fill: var(--color-accent); /* Accent color on hover/focus */
+  fill: var(--color-accent);
 }
 
 .framework-item:hover svg,
@@ -992,7 +1033,7 @@ section {
 }
 
 .framework-item span {
-  color: var(--color-text); /* Ensure text is light */
+  color: var(--color-text);
   transition: color var(--transition-normal);
 }
 
@@ -1175,7 +1216,7 @@ address a:hover {
   font-weight: var(--font-weight-medium);
   border: 1.5px solid var(--color-primary);
   line-height: 1.2;
-  letter-spacing: 0.2px;
+  letter-spacing: var(--letter-spacing-subtle);
   font-size: var(--font-size-sm);
 }
 
@@ -1232,7 +1273,7 @@ footer p {
 }
 
 /* ================================
-   5. RESPONSIVE MEDIA QUERIES
+   7. RESPONSIVE MEDIA QUERIES
    ================================ */
 
 /* Small Mobile (480px+) */
@@ -1467,10 +1508,7 @@ footer p {
     margin: var(--spacing-3xl) auto;
   }
 
-  .btn {
-    transition: all var(--transition-normal);
-  }
-
+  /* Enhanced button hover effects for desktop */
   .btn:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
@@ -1568,7 +1606,7 @@ footer p {
 }
 
 /* ================================
-   BLOG POST STYLING
+   6. BLOG POST STYLING
    ================================ */
 
 /* Blog post list items */
@@ -1658,7 +1696,7 @@ footer p {
 }
 
 /* ================================
-   PAGEFIND UI CUSTOM STYLING - OPTIMIZED
+   8. PAGEFIND UI CUSTOM STYLING - OPTIMIZED
    ================================ */
 
 /* Search form container - Core variables */
@@ -1690,6 +1728,17 @@ footer p {
   max-width: 100%;
   box-sizing: border-box;
   overflow: hidden;
+}
+
+/* Ensure all text within search results stays contained */
+#search *,
+.pagefind-ui *,
+.pagefind-ui__results *,
+.pagefind-ui__result * {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
 }
 
 /* Pagefind UI Button Styling - Consolidated */
@@ -1788,7 +1837,7 @@ footer p {
   opacity: 0.8 !important;
 }
 
-/* Results container */
+/* Results and result styling - Optimized for layout containment */
 .pagefind-ui__results {
   margin-top: var(--spacing-lg) !important;
   width: 100% !important;
@@ -1797,16 +1846,14 @@ footer p {
   overflow: hidden !important;
 }
 
-/* Results area wrapper */
 .pagefind-ui__results-area {
   width: 100% !important;
   max-width: 100% !important;
   box-sizing: border-box !important;
 }
 
-/* Individual result styling */
 .pagefind-ui__result {
-  border-bottom: 1px solid var(--color-border) !important;
+  border-bottom: var(--border-width-thin) solid var(--color-border) !important;
   padding: var(--spacing-lg) 0 !important;
   margin-bottom: var(--spacing-md) !important;
   width: 100% !important;
@@ -1820,15 +1867,20 @@ footer p {
   border-bottom: none !important;
 }
 
+/* Result content styling - Uses consistent font variables */
 .pagefind-ui__result-title a {
   color: var(--color-text) !important;
   font-size: var(--font-size-lg) !important;
   font-weight: var(--font-weight-medium) !important;
   text-decoration: none !important;
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif !important;
+  font-family: var(--font-primary) !important;
   word-wrap: break-word !important;
   overflow-wrap: break-word !important;
   hyphens: auto !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  display: inline-block !important;
 }
 
 .pagefind-ui__result-title a:hover,
@@ -1841,10 +1893,30 @@ footer p {
   font-size: var(--font-size-sm) !important;
   line-height: 1.6 !important;
   margin-top: var(--spacing-sm) !important;
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif !important;
+  font-family: var(--font-primary) !important;
   word-wrap: break-word !important;
   overflow-wrap: break-word !important;
   hyphens: auto !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+
+/* Fix search result text highlighting overflow */
+.pagefind-ui__result-excerpt mark,
+.pagefind-ui__result-title mark,
+.pagefind-ui mark {
+  background-color: rgba(255, 255, 0, 0.3) !important;
+  color: inherit !important;
+  padding: 1px 2px !important;
+  border-radius: 2px !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
+  display: inline !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 /* Hide default result meta tags - we use custom ones */
@@ -1855,6 +1927,6 @@ footer p {
 /* Message styling */
 .pagefind-ui__message {
   color: var(--color-text-secondary) !important;
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif !important;
+  font-family: var(--font-primary) !important;
   font-size: var(--font-size-sm) !important;
 }
