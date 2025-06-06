@@ -176,6 +176,7 @@ div {
   max-width: 100%;
   overflow-wrap: break-word;
   word-wrap: break-word;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 /* Ensure all text content wraps properly */
@@ -1652,8 +1653,6 @@ footer p {
   color: var(--color-text-secondary);
 }
 
-
-
 /* Content section with top margin - replaces style="margin-top: 30px;" */
 .content-section-top-margin {
   margin-top: var(--spacing-xl);
@@ -1722,23 +1721,40 @@ footer p {
   box-sizing: border-box;
 }
 
-/* Search container layout containment */
+/* Search container layout containment - Enhanced */
 #search {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  contain: layout style;
+}
+
+/* Content section with search page specific overflow protection */
+.content-section-boxed:has(#search),
+.content-section-boxed #search {
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
   overflow: hidden;
 }
 
-/* Ensure all text within search results stays contained */
+/* Global search result containment - Force all elements to respect boundaries */
+#search,
 #search *,
+.pagefind-ui,
 .pagefind-ui *,
+.pagefind-ui__results,
 .pagefind-ui__results *,
+.pagefind-ui__result,
 .pagefind-ui__result * {
   max-width: 100% !important;
   box-sizing: border-box !important;
   word-wrap: break-word !important;
   overflow-wrap: break-word !important;
+  word-break: break-word !important;
+  hyphens: auto !important;
+  overflow: hidden !important;
 }
 
 /* Pagefind UI Button Styling - Consolidated */
@@ -1837,19 +1853,22 @@ footer p {
   opacity: 0.8 !important;
 }
 
-/* Results and result styling - Optimized for layout containment */
+/* Results and result styling - Enhanced layout containment */
 .pagefind-ui__results {
   margin-top: var(--spacing-lg) !important;
   width: 100% !important;
   max-width: 100% !important;
   box-sizing: border-box !important;
   overflow: hidden !important;
+  contain: layout style !important;
 }
 
 .pagefind-ui__results-area {
   width: 100% !important;
   max-width: 100% !important;
   box-sizing: border-box !important;
+  overflow: hidden !important;
+  contain: layout !important;
 }
 
 .pagefind-ui__result {
@@ -1861,6 +1880,8 @@ footer p {
   box-sizing: border-box !important;
   word-wrap: break-word !important;
   overflow-wrap: break-word !important;
+  overflow: hidden !important;
+  contain: layout style !important;
 }
 
 .pagefind-ui__result:last-child {
@@ -1903,20 +1924,25 @@ footer p {
   overflow: hidden !important;
 }
 
-/* Fix search result text highlighting overflow */
+/* Fix search result text highlighting overflow - Enhanced */
 .pagefind-ui__result-excerpt mark,
 .pagefind-ui__result-title mark,
-.pagefind-ui mark {
+.pagefind-ui mark,
+mark {
   background-color: rgba(255, 255, 0, 0.3) !important;
   color: inherit !important;
   padding: 1px 2px !important;
   border-radius: 2px !important;
   word-wrap: break-word !important;
   overflow-wrap: break-word !important;
+  word-break: break-word !important;
   white-space: normal !important;
   display: inline !important;
   max-width: 100% !important;
   box-sizing: border-box !important;
+  overflow: hidden !important;
+  contain: layout !important;
+  text-overflow: ellipsis !important;
 }
 
 /* Hide default result meta tags - we use custom ones */
