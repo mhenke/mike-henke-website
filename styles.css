@@ -1087,6 +1087,10 @@ section {
   font-size: var(--font-size-lg);
   transform: scale(0);
   transition: transform var(--transition-normal);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.2em;
 }
 
 .methodology-item.animate i {
@@ -1404,6 +1408,13 @@ footer p {
 
   .frameworks-grid {
     grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Large Desktop (1200px+) */
+@media (min-width: 1200px) {
+  .frameworks-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
