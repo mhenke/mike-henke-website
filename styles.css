@@ -1011,7 +1011,7 @@ section {
 .framework-item i,
 .framework-item svg {
   font-size: var(--font-size-2xl);
-  color: var(--color-text);
+  color: var(--color-primary);
   transform: scale(1);
   transition: color var(--transition-normal), transform var(--transition-normal);
   width: var(--icon-size-standard);
@@ -1023,7 +1023,7 @@ section {
 }
 
 .framework-item svg path {
-  fill: var(--color-text);
+  fill: var(--color-primary);
   transition: fill var(--transition-normal), transform var(--transition-normal);
 }
 
@@ -1042,6 +1042,11 @@ section {
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-medium);
   transition: color var(--transition-normal);
+}
+
+.framework-item:hover span,
+.framework-item:focus span {
+  color: var(--color-primary);
 }
 
 .framework-item:hover i,
