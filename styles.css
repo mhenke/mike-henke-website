@@ -947,15 +947,8 @@ section {
   transform: scale(0.98) translateX(4px);
 }
 
-.skill-label.lang {
-  font-weight: var(--font-weight-medium);
-  color: var(--color-text);
-}
-
 .skill-percent {
-  font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
-  font-weight: var(--font-weight-medium);
 }
 
 .progress-bar {
@@ -1030,17 +1023,19 @@ section {
 .framework-item:hover svg path,
 .framework-item:focus svg path {
   fill: var(--color-accent);
+  transition-delay: 0.1s;
 }
 
 .framework-item:hover svg,
 .framework-item:focus svg {
   transform: scale(1.1);
+  transition-delay: 0.1s;
 }
 
 .framework-item span {
   color: var(--color-text);
   font-size: var(--font-size-base);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-regular);
   transition: color var(--transition-normal);
 }
 
@@ -1055,6 +1050,7 @@ section {
 .framework-item:focus svg {
   transform: scale(1.1);
   color: var(--color-accent);
+  transition-delay: 0.1s;
 }
 
 /* Methodologies List */
