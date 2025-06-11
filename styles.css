@@ -1002,6 +1002,12 @@ section {
   transition-delay: var(--animation-delay, 0s);
 }
 
+.framework-item.animate:hover,
+.framework-item.animate:focus {
+  transform: rotate(0deg) scale(1) translateY(0) translateX(4px);
+  color: var(--color-primary);
+}
+
 .framework-item i,
 .framework-item svg {
   font-size: var(--font-size-2xl);
@@ -1031,11 +1037,11 @@ section {
   transform: scale(1.1);
 }
 
-
-.framework-item:hover,
-.framework-item:focus {
-  transform: translateX(4px);
-  color: var(--color-primary);
+.framework-item span {
+  color: var(--color-text);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  transition: color var(--transition-normal);
 }
 
 .framework-item:hover i,
