@@ -129,7 +129,7 @@ This CSS file follows a clean, organized structure:
    * - All timing values use the standardized delay variables
    * - Icon animations follow the same sequence: container moves, then icons scale
    */
-  
+
   /* Base Timing & Easing */
   --transition-fast: 0.15s ease-out;
   --transition-normal: 0.3s ease-out;
@@ -154,9 +154,11 @@ This CSS file follows a clean, organized structure:
   --transition-border: border-color var(--transition-normal);
 
   /* Combined Transitions for Common Patterns */
-  --transition-color-transform: var(--transition-color), var(--transition-transform);
+  --transition-color-transform: var(--transition-color),
+    var(--transition-transform);
   --transition-all-standard: all var(--transition-normal);
-  --transition-visual-feedback: var(--transition-shadow), var(--transition-border), var(--transition-transform);
+  --transition-visual-feedback: var(--transition-shadow),
+    var(--transition-border), var(--transition-transform);
 
   /* Skills Section Standardized Animations */
   --skills-item-hover-transform: translateX(4px);
@@ -174,7 +176,8 @@ This CSS file follows a clean, organized structure:
 
   /* Specialized Animations */
   --progress-bar-transition: width 1s ease-out;
-  --nav-dropdown-transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+  --nav-dropdown-transition: max-height 0.3s ease, opacity 0.3s ease,
+    padding 0.3s ease;
 }
 
 /* ================================
@@ -880,7 +883,6 @@ section {
 .timeline-content:hover {
   box-shadow: var(--shadow-accent-lg), var(--shadow-lg);
   border-color: var(--color-primary-dark);
-  transform: translateX(2px);
 }
 
 .timeline-content h3 {
@@ -962,7 +964,6 @@ section {
 .skills-card:hover {
   box-shadow: var(--shadow-accent-lg), var(--shadow-lg);
   border-color: var(--color-hover-border);
-  transform: translateY(-2px);
 }
 
 .skills-card h3 {
