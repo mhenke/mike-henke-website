@@ -1031,12 +1031,6 @@ section {
   transform: scale(1.1);
 }
 
-.framework-item span {
-  color: var(--color-text);
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-medium);
-  transition: color var(--transition-normal);
-}
 
 .framework-item:hover,
 .framework-item:focus {
