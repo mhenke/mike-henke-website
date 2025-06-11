@@ -15,13 +15,13 @@ This is the source code for Mike Henke's portfolio and technical blog, built wit
 1. **Install dependencies:**
 
    ```zsh
-   npmi
+   npm install
    ```
 
 2. **Start the Eleventy dev server (with watch mode):**
 
    ```zsh
-   npmrs
+   npm run start
    ```
 
    This will build the site and serve it locally at `http://localhost:8080` (or as configured).
@@ -29,7 +29,7 @@ This is the source code for Mike Henke's portfolio and technical blog, built wit
 3. **Build for production:**
 
    ```zsh
-   npmrb
+   npm run build
    ```
 
 ## 🚀 Deployment (GitHub Pages)
@@ -37,9 +37,9 @@ This is the source code for Mike Henke's portfolio and technical blog, built wit
 1. Commit your changes:
 
    ```zsh
-   gaa
-   gc -m "Describe your change"
-   gp
+   git add .
+   git commit -m "Describe your change"
+   git push
    ```
 
 2. GitHub Actions (or your configured workflow) will deploy the `_site/` output to GitHub Pages.
@@ -62,13 +62,6 @@ This is the source code for Mike Henke's portfolio and technical blog, built wit
 - `_site/` – Generated static site (do not edit directly)
 - `styles.css` – Main stylesheet
 - `.eleventyignore` – Files/folders Eleventy should ignore
-
-## 🧑‍💻 Git & NPM Aliases
-
-This project uses Oh My Zsh aliases:
-
-- Git: `gaa` (add all), `gc -m` (commit), `gp` (push)
-- NPM: `npmi` (install), `npmrs` (run start), `npmrb` (run build)
 
 ## 📝 License
 
