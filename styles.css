@@ -110,7 +110,27 @@ This CSS file follows a clean, organized structure:
   --shadow-accent-lg: 0 12px 36px rgba(25, 212, 254, 0.18);
   --shadow-accent-photo: 0 8px 32px rgba(25, 212, 254, 0.12);
 
-  /* Transitions & Animation Delays */
+  /* ================================
+     SYSTEMATIC ANIMATION FRAMEWORK
+     ================================ */
+  /*
+   * This comprehensive animation system ensures consistent timing,
+   * easing, and behavior across all interactive elements.
+   * 
+   * USAGE PATTERNS:
+   * - Use --transition-color-transform for elements that change both color and position
+   * - Use --transition-all-standard for simple elements that change multiple properties
+   * - Use --transition-visual-feedback for cards, buttons, and emphasis elements
+   * - Use --hover-color, --hover-transform for consistent hover states
+   * - Use --icon-hover-scale with --icon-hover-delay for "move then grow" icon effects
+   * 
+   * SYNCHRONIZATION:
+   * - Technologies and Expertise sections use identical animation patterns
+   * - All timing values use the standardized delay variables
+   * - Icon animations follow the same sequence: container moves, then icons scale
+   */
+  
+  /* Base Timing & Easing */
   --transition-fast: 0.15s ease-out;
   --transition-normal: 0.3s ease-out;
   --transition-slow: 0.5s ease-out;
@@ -120,6 +140,41 @@ This CSS file follows a clean, organized structure:
   --animation-delay-short: 0.1s;
   --animation-delay-medium: 0.2s;
   --animation-delay-long: 0.3s;
+
+  /* Interaction State Animations */
+  --transition-hover: var(--transition-normal);
+  --transition-focus: var(--transition-normal);
+  --transition-active: var(--transition-fast);
+
+  /* Property-Specific Transitions */
+  --transition-color: color var(--transition-normal);
+  --transition-transform: transform var(--transition-normal);
+  --transition-shadow: box-shadow var(--transition-normal);
+  --transition-background: background-color var(--transition-normal);
+  --transition-border: border-color var(--transition-normal);
+
+  /* Combined Transitions for Common Patterns */
+  --transition-color-transform: var(--transition-color), var(--transition-transform);
+  --transition-all-standard: all var(--transition-normal);
+  --transition-visual-feedback: var(--transition-shadow), var(--transition-border), var(--transition-transform);
+
+  /* Skills Section Standardized Animations */
+  --skills-item-hover-transform: translateX(4px);
+  --skills-item-active-transform: scale(0.98) translateX(4px);
+  --skills-icon-hover-scale: scale(1.1);
+  --skills-icon-delay: var(--animation-delay-short);
+
+  /* Interactive Element Standard States */
+  --hover-color: var(--color-primary);
+  --hover-transform: var(--skills-item-hover-transform);
+  --hover-shadow: var(--shadow-md);
+  --icon-hover-scale: var(--skills-icon-hover-scale);
+  --icon-hover-delay: var(--skills-icon-delay);
+  --active-transform: var(--skills-item-active-transform);
+
+  /* Specialized Animations */
+  --progress-bar-transition: width 1s ease-out;
+  --nav-dropdown-transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
 }
 
 /* ================================
@@ -197,7 +252,7 @@ div {
 a {
   color: var(--color-primary);
   text-decoration: none;
-  transition: color var(--transition-normal);
+  transition: var(--transition-color);
 }
 
 a:hover,
@@ -466,7 +521,7 @@ p {
   max-height: 0;
   overflow: hidden;
   opacity: 0;
-  transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+  transition: var(--nav-dropdown-transition);
   z-index: 1000;
 }
 
@@ -923,14 +978,14 @@ section {
   align-items: center;
   margin-bottom: var(--spacing-sm);
   color: var(--color-text);
-  transition: color var(--transition-normal), transform var(--transition-normal);
+  transition: var(--transition-color-transform);
   cursor: pointer;
 }
 
 .skill-row:hover,
 .skill-row:focus {
-  color: var(--color-primary);
-  transform: translateX(4px);
+  color: var(--hover-color);
+  transform: var(--hover-transform);
 }
 
 .skill-row:hover .skill-label.lang,
@@ -944,7 +999,7 @@ section {
 }
 
 .skill-row:active {
-  transform: scale(0.98) translateX(4px);
+  transform: var(--active-transform);
 }
 
 .skill-percent {
@@ -965,7 +1020,7 @@ section {
   background-color: var(--color-primary);
   border-radius: var(--border-radius-xs);
   width: 0; /* Start at 0 width for animation */
-  transition: width 1s ease-out;
+  transition: var(--progress-bar-transition);
 }
 
 /* Framework Grid */
@@ -984,7 +1039,7 @@ section {
   align-items: center;
   color: var(--color-text);
   gap: var(--spacing-sm);
-  transition: all var(--transition-normal);
+  transition: var(--transition-all-standard);
   opacity: 0;
   transform: rotate(-10deg) scale(0.8) translateY(20px);
 }
@@ -997,8 +1052,8 @@ section {
 
 .framework-item.animate:hover,
 .framework-item.animate:focus {
-  transform: rotate(0deg) scale(1) translateY(0) translateX(4px);
-  color: var(--color-primary);
+  transform: var(--hover-transform);
+  color: var(--hover-color);
 }
 
 .framework-item i,
@@ -1006,7 +1061,7 @@ section {
   font-size: var(--font-size-2xl);
   color: var(--color-primary);
   transform: scale(1);
-  transition: color var(--transition-normal), transform var(--transition-normal);
+  transition: var(--transition-color-transform);
   width: var(--icon-size-standard);
   height: var(--icon-size-standard);
   display: flex;
@@ -1017,40 +1072,40 @@ section {
 
 .framework-item svg path {
   fill: var(--color-primary);
-  transition: fill var(--transition-normal), transform var(--transition-normal);
+  transition: var(--transition-color-transform);
 }
 
 .framework-item:hover svg path,
 .framework-item:focus svg path {
   fill: var(--color-accent);
-  transition-delay: 0.1s;
+  transition-delay: var(--icon-hover-delay);
 }
 
 .framework-item:hover svg,
 .framework-item:focus svg {
-  transform: scale(1.1);
-  transition-delay: 0.1s;
+  transform: var(--icon-hover-scale);
+  transition-delay: var(--icon-hover-delay);
 }
 
 .framework-item span {
   color: var(--color-text);
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-regular);
-  transition: color var(--transition-normal);
+  transition: var(--transition-color);
 }
 
 .framework-item:hover span,
 .framework-item:focus span {
-  color: var(--color-primary);
+  color: var(--hover-color);
 }
 
 .framework-item:hover i,
 .framework-item:hover svg,
 .framework-item:focus i,
 .framework-item:focus svg {
-  transform: scale(1.1);
+  transform: var(--icon-hover-scale);
   color: var(--color-accent);
-  transition-delay: 0.1s;
+  transition-delay: var(--icon-hover-delay);
 }
 
 /* Methodologies List */
@@ -1067,9 +1122,10 @@ section {
   margin-bottom: var(--spacing-md);
   color: var(--color-text);
   font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
   opacity: 0;
   transform: translateX(-20px);
-  transition: all var(--transition-normal);
+  transition: var(--transition-all-standard);
 }
 
 .methodology-item.animate {
@@ -1082,7 +1138,7 @@ section {
   color: var(--color-primary);
   font-size: var(--font-size-lg);
   transform: scale(0);
-  transition: transform var(--transition-normal);
+  transition: var(--transition-transform);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1091,16 +1147,16 @@ section {
 
 .methodology-item.animate i {
   transform: scale(1);
-  transition-delay: calc(var(--animation-delay, 0s) + 0.1s);
+  transition-delay: calc(var(--animation-delay, 0s) + var(--icon-hover-delay));
 }
 
 .methodology-item:hover {
-  transform: translateX(4px);
-  color: var(--color-primary);
+  transform: var(--hover-transform);
+  color: var(--hover-color);
 }
 
 .methodology-item:hover i {
-  transform: scale(1.1);
+  transform: var(--icon-hover-scale);
   color: var(--color-accent);
 }
 
