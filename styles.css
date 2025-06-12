@@ -499,6 +499,14 @@ p {
   margin: 0;
   padding: 0;
   gap: var(--spacing-lg);
+  align-items: center; /* Align items vertically */
+}
+
+/* Hide mobile-only elements on desktop */
+.mobile-menu-header,
+.menu-close,
+.menu-brand {
+  display: none;
 }
 
 .navbar-links a {
@@ -509,6 +517,9 @@ p {
   border-radius: var(--border-radius-sm);
   transition: all 0.3s ease;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .navbar-links a:hover {
@@ -529,6 +540,21 @@ p {
 
 .navbar-links a:hover::after {
   width: 100%;
+}
+
+/* Search icon specific styling */
+.navbar-links a[aria-label='Search'] {
+  min-width: 44px;
+  height: 44px;
+  padding: var(--spacing-sm);
+}
+
+.navbar-links a[aria-label='Search']::after {
+  display: none; /* No underline for search icon */
+}
+
+.navbar-links a[aria-label='Search'] i {
+  font-size: var(--font-size-base);
 }
 
 /* Mobile Navigation Override */
@@ -573,7 +599,7 @@ p {
     height: 80px;
     background-color: var(--color-surface);
     border-bottom: 1px solid var(--color-border);
-    display: flex;
+    display: flex !important; /* Override desktop hiding */
     align-items: center;
     justify-content: space-between;
     padding: 0 var(--spacing-xl);
@@ -588,7 +614,7 @@ p {
     background: none;
     border: none;
     cursor: pointer;
-    display: flex;
+    display: flex !important; /* Override desktop hiding */
     align-items: center;
     justify-content: center;
     color: var(--color-text);
@@ -610,6 +636,7 @@ p {
     font-weight: var(--font-weight-bold);
     color: var(--color-primary);
     letter-spacing: var(--letter-spacing-wide);
+    display: block !important; /* Override desktop hiding */
   }
 
   .navbar-links li {
@@ -1854,40 +1881,28 @@ footer p {
   box-sizing: border-box;
 }
 
-/* Search container layout containment - Enhanced */
+/* Search container layout - Fixed */
 #search {
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  overflow: hidden;
-  contain: layout style;
 }
 
-/* Content section with search page specific overflow protection */
+/* Content section with search page specific styling */
 .content-section-boxed:has(#search),
 .content-section-boxed #search {
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  overflow: hidden;
 }
 
-/* Global search result containment - Force all elements to respect boundaries */
-#search,
-#search *,
-.pagefind-ui,
-.pagefind-ui *,
-.pagefind-ui__results,
-.pagefind-ui__results *,
+/* Global search result containment - Balanced approach */
 .pagefind-ui__result,
 .pagefind-ui__result * {
   max-width: 100% !important;
   box-sizing: border-box !important;
   word-wrap: break-word !important;
   overflow-wrap: break-word !important;
-  word-break: break-word !important;
-  hyphens: auto !important;
-  overflow: hidden !important;
 }
 
 /* Pagefind UI Button Styling - Consolidated */
@@ -1986,22 +2001,18 @@ footer p {
   opacity: 0.8 !important;
 }
 
-/* Results and result styling - Enhanced layout containment */
+/* Results and result styling - Fixed display */
 .pagefind-ui__results {
   margin-top: var(--spacing-lg) !important;
   width: 100% !important;
   max-width: 100% !important;
   box-sizing: border-box !important;
-  overflow: hidden !important;
-  contain: layout style !important;
 }
 
 .pagefind-ui__results-area {
   width: 100% !important;
   max-width: 100% !important;
   box-sizing: border-box !important;
-  overflow: hidden !important;
-  contain: layout !important;
 }
 
 .pagefind-ui__result {
@@ -2013,8 +2024,6 @@ footer p {
   box-sizing: border-box !important;
   word-wrap: break-word !important;
   overflow-wrap: break-word !important;
-  overflow: hidden !important;
-  contain: layout style !important;
 }
 
 .pagefind-ui__result:last-child {
@@ -2054,10 +2063,9 @@ footer p {
   width: 100% !important;
   max-width: 100% !important;
   box-sizing: border-box !important;
-  overflow: hidden !important;
 }
 
-/* Fix search result text highlighting overflow - Enhanced */
+/* Fix search result text highlighting */
 .pagefind-ui__result-excerpt mark,
 .pagefind-ui__result-title mark,
 .pagefind-ui mark,
@@ -2068,14 +2076,10 @@ mark {
   border-radius: 2px !important;
   word-wrap: break-word !important;
   overflow-wrap: break-word !important;
-  word-break: break-word !important;
   white-space: normal !important;
   display: inline !important;
   max-width: 100% !important;
   box-sizing: border-box !important;
-  overflow: hidden !important;
-  contain: layout !important;
-  text-overflow: ellipsis !important;
 }
 
 /* Hide default result meta tags - we use custom ones */
