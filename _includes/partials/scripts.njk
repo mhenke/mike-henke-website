@@ -2,59 +2,89 @@
 <script src="{{ '/pagefind/pagefind-ui.js' | url }}" type="text/javascript" defer></script>
 <script>
     window.addEventListener('DOMContentLoaded', (event) => {
-        // Mobile Navigation Toggle
+        // New Mobile Navigation Toggle
         const navToggle = document.querySelector('.navbar-toggle');
         const navLinks = document.querySelector('.navbar-links');
+        const navOverlay = document.querySelector('.nav-overlay');
+        const menuClose = document.querySelector('.menu-close');
         
         if (navToggle && navLinks) {
+            // Store scroll position for restoration
+            let scrollPosition = 0;
+
+            function openMobileMenu() {
+                scrollPosition = window.pageYOffset;
+                navToggle.setAttribute('aria-expanded', 'true');
+                navLinks.classList.add('active');
+                navToggle.classList.add('active');
+                if (navOverlay) {
+                    navOverlay.classList.add('active');
+                }
+                document.body.classList.add('nav-open');
+                document.body.style.top = `-${scrollPosition}px`;
+            }
+
+            function closeMobileMenu() {
+                navLinks.classList.remove('active');
+                navToggle.classList.remove('active');
+                navToggle.setAttribute('aria-expanded', 'false');
+                if (navOverlay) {
+                    navOverlay.classList.remove('active');
+                }
+                document.body.classList.remove('nav-open');
+                document.body.style.top = '';
+                if (scrollPosition) {
+                    window.scrollTo(0, scrollPosition);
+                    scrollPosition = 0;
+                }
+            }
+
+            // Hamburger menu toggle
             navToggle.addEventListener('click', () => {
                 const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
                 
-                // Toggle aria-expanded
-                navToggle.setAttribute('aria-expanded', !isExpanded);
-                
-                // Toggle menu visibility
-                navLinks.classList.toggle('nav-open');
-                
-                // Toggle hamburger animation
-                navToggle.classList.toggle('nav-open');
-                
-                // Announce state change to screen readers
-                const announcement = document.getElementById('sr-announcements');
-                if (announcement) {
-                    announcement.textContent = !isExpanded ? 'Navigation menu opened' : 'Navigation menu closed';
+                if (!isExpanded) {
+                    openMobileMenu();
+                } else {
+                    closeMobileMenu();
                 }
             });
+
+            // Close button in mobile menu
+            if (menuClose) {
+                menuClose.addEventListener('click', () => {
+                    closeMobileMenu();
+                });
+            }
 
             // Close mobile menu when clicking on a nav link
             const navLinkItems = navLinks.querySelectorAll('a');
             navLinkItems.forEach(link => {
                 link.addEventListener('click', () => {
                     if (window.innerWidth < 768) {
-                        navLinks.classList.remove('nav-open');
-                        navToggle.classList.remove('nav-open');
-                        navToggle.setAttribute('aria-expanded', 'false');
+                        closeMobileMenu();
                     }
                 });
             });
 
-            // Close mobile menu when clicking outside
-            document.addEventListener('click', (event) => {
-                if (!navToggle.contains(event.target) && !navLinks.contains(event.target)) {
-                    if (navLinks.classList.contains('nav-open')) {
-                        navLinks.classList.remove('nav-open');
-                        navToggle.classList.remove('nav-open');
-                        navToggle.setAttribute('aria-expanded', 'false');
-                    }
+            // Close mobile menu when clicking on overlay
+            if (navOverlay) {
+                navOverlay.addEventListener('click', () => {
+                    closeMobileMenu();
+                });
+            }
+
+            // Close mobile menu when pressing Escape key
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && navLinks.classList.contains('active')) {
+                    closeMobileMenu();
                 }
             });
 
             // Handle window resize - close mobile menu if switching to desktop
             window.addEventListener('resize', () => {
                 if (window.innerWidth >= 768) {
-                    navLinks.classList.remove('nav-open');
-                    navToggle.classList.remove('nav-open');
-                    navToggle.setAttribute('aria-expanded', 'false');
+                    closeMobileMenu();
                 }
             });
         }

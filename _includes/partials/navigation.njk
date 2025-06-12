@@ -3,13 +3,20 @@
     <div class="navbar-container">
         <div class="navbar-brand" role="banner">Mike Henke</div>
         
-        <!-- Modern Hamburger Menu Toggle -->
+        <!-- New Hamburger Menu Toggle -->
         <button class="navbar-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
             <i class="fas fa-bars" aria-hidden="true"></i>
-            <i class="fas fa-times" aria-hidden="true"></i>
         </button>
         
         <ul class="navbar-links" id="nav-menu" role="menubar">
+            <!-- Mobile menu header with close button -->
+            <div class="mobile-menu-header">
+                <div class="menu-brand">Mike Henke</div>
+                <button class="menu-close" aria-label="Close navigation menu">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+            
             <li><a href="{{ '/' | url }}" role="menuitem">Home</a></li>
             <li><a href="{{ '/' | url }}#about" role="menuitem">About</a></li>
             <li><a href="{{ '/' | url }}#skills" role="menuitem">Skills</a></li>
@@ -19,4 +26,7 @@
             <li><a href="{{ '/search/' | url }}" role="menuitem" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a></li>
         </ul>
     </div>
+    
+    <!-- Mobile overlay -->
+    <div class="nav-overlay"></div>
 </nav>
