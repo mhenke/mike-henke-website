@@ -333,3 +333,84 @@
         }
     });
 </script>
+
+<!-- PrismJS syntax highlighting scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
+
+<script>
+    // Copy code functionality for code blocks
+    function copyCode(button) {
+        const codeBlock = button.closest('.code-block');
+        if (!codeBlock) return;
+        
+        const code = codeBlock.querySelector('code');
+        if (!code) return;
+        
+        const textToCopy = code.textContent;
+        
+        // Use the modern clipboard API if available
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                showCopySuccess(button);
+            }).catch(err => {
+                console.error('Failed to copy code: ', err);
+                fallbackCopyCode(textToCopy, button);
+            });
+        } else {
+            // Fallback for older browsers
+            fallbackCopyCode(textToCopy, button);
+        }
+    }
+    
+    // Fallback copy method for older browsers
+    function fallbackCopyCode(text, button) {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        textArea.style.top = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        
+        try {
+            document.execCommand('copy');
+            showCopySuccess(button);
+        } catch (err) {
+            console.error('Failed to copy code: ', err);
+        } finally {
+            document.body.removeChild(textArea);
+        }
+    }
+    
+    // Show copy success feedback
+    function showCopySuccess(button) {
+        const originalIcon = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-check"></i>';
+        button.classList.add('copy-success');
+        
+        setTimeout(() => {
+            button.innerHTML = originalIcon;
+            button.classList.remove('copy-success');
+        }, 2000);
+    }
+    
+    // Initialize PrismJS after DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        // Configure PrismJS autoloader
+        if (typeof Prism !== 'undefined') {
+            Prism.plugins.autoloader.languages_path = 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/';
+            
+            // Add language aliases for better ColdFusion support
+            if (Prism.languages) {
+                // Map CFML variations to existing languages
+                Prism.languages.coldfusion = Prism.languages.markup;
+                Prism.languages.cfml = Prism.languages.markup;
+                Prism.languages.cfscript = Prism.languages.javascript;
+            }
+        }
+    });
+</script>

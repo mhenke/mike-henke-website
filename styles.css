@@ -1919,7 +1919,7 @@ footer p {
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-accent-md), var(--shadow-lg);
   margin-top: var(--spacing-xl);
-  padding: var(--spacing-xl);
+  padding: var(--spacing-lg);
   position: static;
   display: block;
   visibility: visible;
@@ -1961,8 +1961,8 @@ footer p {
 
 /* Individual search result card styling */
 .pagefind-ui__result[class*='svelte'] {
-  margin-bottom: var(--spacing-2xl);
-  padding: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+  padding: var(--spacing-lg);
   background-color: var(--color-surface-light);
   border-radius: var(--border-radius-lg);
   border: var(--border-width-thick) solid var(--color-border);
@@ -2017,9 +2017,8 @@ footer p {
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-medium);
   text-align: center;
-  padding: var(--spacing-lg) 0;
-  margin: 0 0 var(--spacing-lg) 0;
-  border-bottom: var(--border-width-thin) solid var(--color-border);
+  padding: var(--spacing-md) 0;
+  margin: 0 0 var(--spacing-md) 0;
 }
 
 /* Enhanced "Load More" button styling */
