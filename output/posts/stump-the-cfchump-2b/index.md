@@ -1,5 +1,5 @@
 ---
-title: "Stump the CFChump - 2b"
+title: 'Stump the CFChump - 2b'
 date: 2012-11-29
 ---
 
@@ -22,8 +22,18 @@ C. [best comment explanation](http://mikehenke.com/post.cfm/stump-the-cfchump-2#
 What will display when this code is ran?
 
 \[code language="coldfusion"\]
+<cfset myvar = "Hello ">
 
-#myvar# \[/code\]
+<cfif 1 eq true>
+	<cfset myvar = myvar & "Carrie">
+<cfelseif 1 eq false>
+	<cfset myvar = myvar & "Brody">
+<cfelse>
+	<cfset myvar = myvar & "Saul">
+</cfif>
+
+<cfoutput>#myvar#</cfoutput>
+\\[/code\]
 
 ### Answers
 

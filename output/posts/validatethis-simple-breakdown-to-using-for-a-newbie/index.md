@@ -11,7 +11,12 @@ I have been a fan of [ValidateThis](http://www.validatethis.org/) (VT) for years
 
 1) create validatethis object most likely in application.cfc/cfm
 
-\[code language="coldfusion"\] \[/code\]
+\[code language="coldfusion"\]
+<cfif NOT StructKeyExists(application, "ValidateThis")>
+ <cfset ValidateThisConfig = {JSRoot="../js/"}/>
+ <cfset application.ValidateThis = createObject("component", "ValidateThis.ValidateThis").init(ValidateThisConfig)/>
+</cfif>
+\\[/code\]
 
 ### Step 2
 
@@ -19,13 +24,23 @@ I have been a fan of [ValidateThis](http://www.validatethis.org/) (VT) for years
 
 a) server side after form submitted
 
-\[code language="coldfusion"\] \[/code\]
+\[code language="coldfusion"\]
+<!--- Use the validate() method to perform server-side validations on an object.  --->
+<cfset result = application.ValidateThis.validate(objectType="User",theObject=form,Context=Form.Context) />
+\\[/code\]
 
 b) client side on the form to be submitted
 
 \[code language="coldfusion"\]
+<!--- Use the getInitializationScript() method to return JavaScript code to set up client-side validations.  --->
+<cfset ValInit = application.ValidateThis.getInitializationScript() />
+<cfhtmlhead text="#ValInit#" />
 
-\[/code\]
+<!--- Use the getValidationScript() method to return JavaScript code for client-side validations.  
+(objecttype is xml file, context is like registration, add, update)--->
+<cfset ValidationScript = application.ValidateThis.getValidationScript(objectType="User",Context=Form.Context) />
+<cfhtmlhead text="#ValidationScript#" />
+\\[/code\]
 
 ## Update
 

@@ -64,7 +64,18 @@ Now for the big finale, 1) we will setup a configuration file, 2) install Bluepr
 
  
 
-\[code language="coldfusion"\] http\_path = '/' sass\_dir = 'src' css\_dir = '../stylesheets' images\_dir = '../images' javascripts\_dir = '../javascripts' http\_stylesheets\_path = 'stylesheets' http\_javascripts\_path = 'javascripts' http\_images\_path = 'images' environment = :development output\_style = :compressed \[/code\]
+\[code language="coldfusion"\]
+http_path = '/'
+sass_dir = 'src'
+css_dir = '../stylesheets'
+images_dir = '../images'
+javascripts_dir = '../javascripts'
+http_stylesheets_path = 'stylesheets'
+http_javascripts_path = 'javascripts'
+http_images_path = 'images'
+environment = :development
+output_style = :compressed
+\\[/code\]
 
  
 

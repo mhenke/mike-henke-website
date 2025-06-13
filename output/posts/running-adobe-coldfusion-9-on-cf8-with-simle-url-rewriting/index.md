@@ -11,4 +11,17 @@ At work, we use are transitioning to [Adobe ColdFusion 9](http://www.adobe.com/p
   
 For me, the web.xml was C:\\JRun4\\servers\\ACF9\\cfusion.ear\\cfusion.war\\WEB-INF\\web.xml . Search for SES (around line 436) and then remove the comments around:
 
-\[code language="coldfusion"\] CfmServlet \*.cfml/\* CfmServlet \*.cfm/\* CFCServlet \*.cfc/\* \[/code\] Next restart your instance and you should have rewriting working.
+\[code language="coldfusion"\]
+<servlet-mapping id="coldfusion_mapping_6">
+     <servlet-name>CfmServlet</servlet-name>
+     <url-pattern>*.cfml/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping id="coldfusion_mapping_7">
+    <servlet-name>CfmServlet</servlet-name>
+    <url-pattern>*.cfm/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping id="coldfusion_mapping_8">
+    <servlet-name>CFCServlet</servlet-name>
+    <url-pattern>*.cfc/*</url-pattern>
+  </servlet-mapping>
+\\[/code\] Next restart your instance and you should have rewriting working.

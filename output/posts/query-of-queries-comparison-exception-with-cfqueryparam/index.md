@@ -9,16 +9,37 @@ Lately, I have been working on sql injection prevention measures. Mainly cfquery
 
 ### Original Code
 
-\[code language="coldfusion"\] select \* from xxx where id = \[/code\]
+\[code language="coldfusion"\]
+<cfquery name="xxx"  dbtype="query">
+select * from xxx
+where id = <CFQUERYPARAM Value="#xxx.id#">
+</cfquery>
+\\[/code\]
 
 ### Error
 
-\[code language="coldfusion"\] Query Of Queries runtime error. Comparison exception while executing =. Unsupported Type Comparison Exception: The = operator does not support comparison between the following types: Left hand side expression type = "INTEGER". Right hand side expression type = "STRING". The error occurred in C:\\JRun4\\servers\\mike\\cfusion.ear\\cfusion.war\\xxx\\xx\\xxx\\xx.cfm: line 31
+\[code language="coldfusion"\]
+Query Of Queries runtime error.
+Comparison exception while executing =.
+Unsupported Type Comparison Exception: The = operator does not support comparison between the following types:
+Left hand side expression type = "INTEGER".
+Right hand side expression type = "STRING".
+ 
+The error occurred in C:\JRun4\servers\mike\cfusion.ear\cfusion.war\xxx\xx\xxx\xx.cfm: line 31
 
-29 : 30 : select \* from xxx 31 : where id = 32 : \[/code\]
+29 : 	<cfquery name="xxx"  dbtype="query">
+30 : 		select * from xxx
+31 : 		where id = <CFQUERYPARAM Value="#xxx.id#">
+32 : 	</cfquery>
+\\[/code\]
 
 ### Solution
 
 All that was needed was to define the right side as integer and now the code works.
 
-\[code language="coldfusion"\] select \* from xxx where id = \[/code\]
+\[code language="coldfusion"\]
+<cfquery name="xxx"  dbtype="query">
+select * from xxx
+where id = <CFQUERYPARAM cfsqltype="cf_sql_integer" Value="#xxx.id#">
+</cfquery>
+\\[/code\]

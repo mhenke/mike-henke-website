@@ -2,6 +2,96 @@ const { DateTime } = require('luxon');
 const { URL } = require('url');
 
 module.exports = function (eleventyConfig) {
+  // Code block transform - Convert [code language="..."] shortcodes to Prism-ready HTML
+  eleventyConfig.addTransform(
+    'codeBlockTransform',
+    function (content, outputPath) {
+      if (outputPath && outputPath.endsWith('.html')) {
+        // Match HTML-encoded code blocks: <p>[code language="..."]</p><p>content</p><p>[/code]</p>
+        const htmlCodeBlockRegex =
+          /<p>\[code\s+language=&quot;([^&]+)&quot;\]<\/p>\s*<p>([\s\S]*?)<\/p>\s*<p>\[\/code\]<\/p>/gi;
+
+        // Also match single-line HTML encoded blocks: <p>[code language="..."] content [/code]</p>
+        const singleLineRegex =
+          /<p>\[code\s+language=&quot;([^&]+)&quot;\]\s*([\s\S]*?)\s*\[\/code\]<\/p>/gi;
+
+        // Function to create code block HTML
+        function createCodeBlock(language, code) {
+          // Clean up the code content
+          const cleanCode = code
+            .trim()
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .replace(/&amp;/g, '&')
+            .replace(/&quot;/g, '"')
+            .replace(/&#39;/g, "'");
+
+          // Escape HTML for display
+          const escapedCode = cleanCode
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+
+          // Map language aliases to Prism language classes
+          const languageMap = {
+            coldfusion: 'language-cfscript',
+            cfml: 'language-cfscript',
+            cfscript: 'language-cfscript',
+            javascript: 'language-javascript',
+            js: 'language-javascript',
+            java: 'language-java',
+            sql: 'language-sql',
+            xml: 'language-xml',
+            html: 'language-html',
+            css: 'language-css',
+            python: 'language-python',
+            bash: 'language-bash',
+            shell: 'language-bash',
+            json: 'language-json',
+          };
+
+          const prismLanguage =
+            languageMap[language.toLowerCase()] ||
+            `language-${language.toLowerCase()}`;
+
+          return `<div class="code-block">
+  <div class="code-header">
+    <span class="code-language">${language.toUpperCase()}</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="${prismLanguage}">${escapedCode}</code></pre>
+</div>`;
+        }
+
+        // Apply both transformations
+        let transformedContent = content;
+
+        // Transform multi-paragraph HTML-encoded blocks
+        transformedContent = transformedContent.replace(
+          htmlCodeBlockRegex,
+          (match, language, code) => {
+            return createCodeBlock(language, code);
+          }
+        );
+
+        // Transform single-line HTML-encoded blocks
+        transformedContent = transformedContent.replace(
+          singleLineRegex,
+          (match, language, code) => {
+            return createCodeBlock(language, code);
+          }
+        );
+
+        return transformedContent;
+      }
+      return content;
+    }
+  );
+
   // Date filter using Luxon
   eleventyConfig.addFilter('date', (dateObj, format) => {
     if (dateObj === 'now') {

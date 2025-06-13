@@ -11,10 +11,21 @@ I had this question emailed to me "Is it customary to have SQL in CFWheels Contr
 
 models/myStoredProc.cfc
 
-\[code language="coldfusion"\] \[/code\]
+\[code language="coldfusion"\]
+<cfcomponent extends="Model">
+<cffunction name="myfirststoredproc">
+<cfstoredproc procedure="spListRegions">
+<cfprocresult name="qRegions">
+ </cfstoredproc>
+<cfreturn spListRegions>
+</cffunction>
+</cfcomponent>
+\\[/code\]
 
 then in the controller call and pass in the values:
 
-\[code language="coldfusion"\] \[/code\]
+\[code language="coldfusion"\]
+<cfset smellyCode= model("myStoredProc").myfirststoredproc(1)>
+\\[/code\]
 
 Once using wheels, you'll get a smell testing going. Complex SQL and stored procs will seem out of place in the actual controller since the Controller should only gather and process. Hopefully this helps :-)

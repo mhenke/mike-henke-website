@@ -21,18 +21,49 @@ Drop the jtidy\_cfc folder in your webroot or add cfmapping to it, then invoke t
 Here is the code for my samples, it take some not valid xhmtl examples and fixes them.  
   
 \[code language="coldfusion"\]
+<!--- see readme.txt for testing this example file --->
 
-jtidy test page
+<!--- component path to jtidy.cfc --->
+<cfset componentPath = "jtidy_cfc.jtidy" />
 
-| mike henke |
-| --- |
-
-_**This is some text.**_
-
-Cars & Trucks
-
-  
-
-[News](index.cfm?page=news&id=5)
-
-READ-ONLY\[/code\]</div> <!-- Failing to recognize that XHTML elements and attributes are case sensitive --> <P ID="ONE">The Best Page Ever</P> </body> </html> </cfsavecontent> <div></div> <cfinvoke component="#componentPath#" method="makexHTMLValid" strToParse="#test#" returnvariable="validxHTML" > <!--- <cfdump var="#validxHTML#"> ---> <div></div> <cfoutput>#validxHTML#</cfoutput> \[/code\] <br><br> I also created a <a href="http://cfwheels.org/plugins/listing/25">jTidy CFC plugin for CFWheels</a>.</x-turndown>
+<cfsavecontent variable="test">
+<html>
+	<head>
+		<title>jtidy test page</title>
+	</head>
+	<body>
+	
+		<!-- examples from http://en.wikipedia.org/wiki/XHTML -->
+		<table id="companyAccountsTable">
+			<tbody>
+				<tr>
+					<td>mike henke</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<form action="/index.cfm">
+		
+		<!-- Not putting quotation marks around attribute values -->
+		<input type=text value=hello />
+	
+		</form>
+		
+		<!-- Not closing non-empty elements -->
+		
+		
+		<!-- Improperly nesting elements -->
+		<em><strong>This is some text.</em></strong>
+		
+		<!-- Using the ampersand character outside of entities -->
+		<div>Cars & Trucks</div>
+		
+		<!-- Not closing empty elements -->
+		<br>
+		
+		<!-- Using the ampersand character outside of entities -->
+		<div><a href="index.cfm?page=news&id=5">News</a></div>
+		
+		<!-- Using attribute minimization -->
+		<div><textarea readonly>READ-ONLY
+\\[/code\]</div> <!-- Failing to recognize that XHTML elements and attributes are case sensitive --> <P ID="ONE">The Best Page Ever</P> </body> </html> </cfsavecontent> <div></div> <cfinvoke component="#componentPath#" method="makexHTMLValid" strToParse="#test#" returnvariable="validxHTML" > <!--- <cfdump var="#validxHTML#"> ---> <div></div> <cfoutput>#validxHTML#</cfoutput> \\\[/code\] <br><br> I also created a <a href="http://cfwheels.org/plugins/listing/25">jTidy CFC plugin for CFWheels</a>.</x-turndown>

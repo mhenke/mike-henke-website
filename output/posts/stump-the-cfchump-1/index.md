@@ -18,7 +18,12 @@ I am doing a "Stump the CFChump" series. I recently passed the [ColdFusion 9 exa
 
 What will display when this code is ran?
 
-\[code language="coldfusion"\] <cfset myvar = 4> <cfoutput> #++myvar# - #myvar--# </cfoutput> \[/code\]
+\[code language="coldfusion"\]
+<cfset myvar = 4>
+<cfoutput>
+#++myvar# - #myvar--#
+</cfoutput>
+\\[/code\]
 
 ### Answers
 

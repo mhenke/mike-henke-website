@@ -14,28 +14,66 @@ I glossed over some important convention before in our series. CFWheels expects 
 
 ### Database Code
 
-Lets drop our old table and create it along with a types table using this code. \[code language="coldfusion"\]DROP TABLE IF EXISTS contactomatic.contacts; CREATE TABLE 'contactomatic'.'contacts' ( 'id' INTEGER UNSIGNED NOT NULL AUTO\_INCREMENT, 'name' VARCHAR(45) NOT NULL, 'typeid' INTEGER UNSIGNED NOT NULL, PRIMARY KEY ('id') ) ENGINE = InnoDB;\[/code\] \[code language="coldfusion"\]DROP TABLE IF EXISTS contactomatic.tbl\_typesofcontact; CREATE TABLE 'contactomatic'.'tbl\_typesofcontact' ( 'typeid' INTEGER UNSIGNED NOT NULL AUTO\_INCREMENT, 'title\_for\_type\_of\_contact' VARCHAR(45) NOT NULL, PRIMARY KEY ('typeid') ) ENGINE = InnoDB;\[/code\] \[code language="coldfusion"\]INSERT INTO contactomatic.tbl\_typesofcontact (title\_for\_type\_of\_contact) VALUES('Friend');\[/code\] \[code language="coldfusion"\]INSERT INTO contactomatic.tbl\_typesofcontact (title\_for\_type\_of\_contact) VALUES('Enemy');\[/code\] \[code language="coldfusion"\]INSERT INTO contactomatic.tbl\_typesofcontact (title\_for\_type\_of\_contact) VALUES('Co-Worker');\[/code\]
+Lets drop our old table and create it along with a types table using this code. \[code language="coldfusion"\]
+DROP TABLE IF EXISTS contactomatic.contacts;CREATE TABLE 'contactomatic'.'contacts' ( 'id' INTEGER UNSIGNED NOT NULL AUTO_INCREMENT, 'name' VARCHAR(<span class="cc_numeric">45) NOT NULL, 'typeid' INTEGER UNSIGNED NOT NULL, PRIMARY KEY ('id') ) ENGINE = InnoDB;
+\\[/code\] \[code language="coldfusion"\]
+DROP TABLE IF EXISTS contactomatic.tbl_typesofcontact; CREATE TABLE 'contactomatic'.'tbl_typesofcontact' ( 'typeid' INTEGER UNSIGNED NOT NULL AUTO_INCREMENT, 'title_for_type_of_contact' VARCHAR(<span class="cc_numeric">45) NOT NULL, PRIMARY KEY ('typeid') ) ENGINE = InnoDB;
+\\[/code\] \[code language="coldfusion"\]
+INSERT INTO contactomatic.tbl_typesofcontact (title_for_type_of_contact) VALUES('Friend');
+\\[/code\] \[code language="coldfusion"\]
+INSERT INTO contactomatic.tbl_typesofcontact (title_for_type_of_contact) VALUES('Enemy');
+\\[/code\] \[code language="coldfusion"\]
+INSERT INTO contactomatic.tbl_typesofcontact (title_for_type_of_contact) VALUES('Co-Worker');
+\\[/code\]
 
 ### Types Model
 
-In our /controller/contact.cfc add this code to the \[code language="coldfusion"\]new\[/code\] action. \[code language="coldfusion"\]\[/code\] While we are in this file, replace the code in the list action with this: \[code language="coldfusion"\] \[/code\] And now lets check our add form. \[code language="coldfusion"\]URL Rewriting On = http://localhost/contact/new?reload=true\[/code\] \[code language="coldfusion"\]URL Rewriting Partial = http://localhost/index.cfm/contact/new?reload=true\[/code\] \[code language="coldfusion"\]URL Rewriting Off = http://localhost/index.cfm?controller=contact&action=new\[/code\] ![](images/cfwheels5_1.jpg)
+In our /controller/contact.cfc add this code to the \[code language="coldfusion"\]
+new
+\\[/code\] action. \[code language="coldfusion"\]
+<cfset types = model("type").findAll() />
+\\[/code\] While we are in this file, replace the code in the list action with this: \[code language="coldfusion"\]
+<cfset allContacts = model("contact").findAll(include="type") /><cfdump var="#allContacts#"><cfabort>
+\\[/code\] And now lets check our add form. \[code language="coldfusion"\]
+URL Rewriting On = http://localhost/contact/new?reload=true
+\\[/code\] \[code language="coldfusion"\]
+URL Rewriting Partial = http://localhost/index.cfm/contact/new?reload=true
+\\[/code\] \[code language="coldfusion"\]
+URL Rewriting Off = http://localhost/index.cfm?controller=contact&action=new
+\\[/code\] ![](images/cfwheels5_1.jpg)
 
 ### Table Naming
 
-Well, you can see CFWheels assumes we have a types table since our newly created model cfc's name is type. Our table's name is actually tbl\_typesofcontact, we could rename the cfc to tbl\_typesofcontact.cfc, but CFWheels convention also says our table name should be plural. Lets tell (configure) CFWheels we already have a table name that doesn't fit in CFWheel's conventions. Add this code to our type.cfc in the models folder. \[code language="coldfusion"\] \[/code\] Ã¿ As you can see, we tell CFWheels our table's actual name. Also we give the long column name, title\_for\_type\_of\_contact, a shorter name, title. See how easy it is to override CFWheel's table conventions. It would have been easier if initially our table was named contacttypes and the model cfc contacttype.cfc but sometimes this won't be an option. Reload our page and you should now see our old form but look @ our debug information ![](images/cfwheels5_2.jpg) Notice we have a new query. This was created by the code, \[code language="coldfusion"\]\[/code\], we added to our \[code language="coldfusion"\]new\[/code\] action in /controllers/contact.cfc.
+Well, you can see CFWheels assumes we have a types table since our newly created model cfc's name is type. Our table's name is actually tbl\_typesofcontact, we could rename the cfc to tbl\_typesofcontact.cfc, but CFWheels convention also says our table name should be plural. Lets tell (configure) CFWheels we already have a table name that doesn't fit in CFWheel's conventions. Add this code to our type.cfc in the models folder. \[code language="coldfusion"\]
+<cffunction name="init"><cfset table("tbl_typesofcontact") /><cfset property(name="title", column="title_for_type_of_contact") /></cffunction>
+\\[/code\] Ã¿ As you can see, we tell CFWheels our table's actual name. Also we give the long column name, title\_for\_type\_of\_contact, a shorter name, title. See how easy it is to override CFWheel's table conventions. It would have been easier if initially our table was named contacttypes and the model cfc contacttype.cfc but sometimes this won't be an option. Reload our page and you should now see our old form but look @ our debug information ![](images/cfwheels5_2.jpg) Notice we have a new query. This was created by the code, \[code language="coldfusion"\]
+<cfset types = model("type").findAll() />
+\\[/code\], we added to our \[code language="coldfusion"\]
+new
+\\[/code\] action in /controllers/contact.cfc.
 
 ### Select Helper
 
 Lets add our select box populated from this query to our form using a CFWheels helper. Replace in /view/new.cfm \[code language="coldfusion"\]
-
-#textField(objectName="newContact", property="type", label="Type")#
-
-\[/code\] With \[code language="coldfusion"\]
-
-#select(objectName="newContact", property="typeid", options=types, label="Type", includeBlank="")#
-
-\[/code\] The select helper takes our blank new object, the typeid column (property), the types object, and we add a label of Type. For more information on Helper Forms, look through the code in \\wheels\\view\\forms.cfm. Load the page again, and now you should see the select dop down box. Lets submit the form. ![](images/cfwheels5_4.jpg) Weird, we selected a valid contact type from our new select drop down box, but our validation is catching it. This is because the value the form is submitting is actually the typeid not the title. Well, lets change our validation and add an association to mark typeid as a foreign key. In our model/contact.cfc change the code to match this. \[code language="coldfusion"\] \[/code\] We basically made sure the typeid is present instead of type and declared a datebase relationship (association). Following CFWheels convention, we could use \[code language="coldfusion"\]\[/code\] if we followed our CFWheels naming convention for the primary key of a table but instead of id, we have typeid so we need to tell CFWheels. Lets try to submit the form again. ![](images/cfwheels5_5.jpg) We are making progress, looks like the form submitted and executed our cfdump and cfabort in /controllers/contact.cfc
+<span class="cc_normaltag"><div>#textField(objectName="newContact", property="type", label="Type")#<span class="cc_normaltag"></div>
+\\[/code\] With \[code language="coldfusion"\]
+<span class="cc_normaltag"><div>#select(objectName="newContact", property="typeid", options=types, label="Type", includeBlank="")#<span class="cc_normaltag"></div>
+\\[/code\] The select helper takes our blank new object, the typeid column (property), the types object, and we add a label of Type. For more information on Helper Forms, look through the code in \\wheels\\view\\forms.cfm. Load the page again, and now you should see the select dop down box. Lets submit the form. ![](images/cfwheels5_4.jpg) Weird, we selected a valid contact type from our new select drop down box, but our validation is catching it. This is because the value the form is submitting is actually the typeid not the title. Well, lets change our validation and add an association to mark typeid as a foreign key. In our model/contact.cfc change the code to match this. \[code language="coldfusion"\]
+<cfcomponent extends="Model" output="false"><cffunction name="init"><cfset validatesPresenceOf(property="name",message="Name is Required") /><cfset validatesPresenceOf(property="typeid",message="Type of Contact is Required") /><cfset validatesUniquenessOf(property="name", message="Name is already present") /><cfset belongsTo(name="type", foreignKey="typeid")></cffunction></cfcomponent>
+\\[/code\] We basically made sure the typeid is present instead of type and declared a datebase relationship (association). Following CFWheels convention, we could use \[code language="coldfusion"\]
+<cfset belongTo("type")>
+\\[/code\] if we followed our CFWheels naming convention for the primary key of a table but instead of id, we have typeid so we need to tell CFWheels. Lets try to submit the form again. ![](images/cfwheels5_5.jpg) We are making progress, looks like the form submitted and executed our cfdump and cfabort in /controllers/contact.cfc
 
 ### Association
 
-Here is where our association we set in /models/contact.cfc comes to play. CFWheels ORM joins the tbl\_typesofcontact table with the contacts table. This happens because we added the association declaring the foriegn key in our /models/contacts.cfc and in creating the query, we told it to include type. \[code language="coldfusion"\]\[/code\] Remove \[code language="coldfusion"\]\[/code\] from /controllers/contact.cfc in the list action and reload our list. \[code language="coldfusion"\]URL Rewriting On = http://localhost/contact/list?reload=true\[/code\] \[code language="coldfusion"\]URL Rewriting Partial = http://localhost/index.cfm/contact/list?reload=true\[/code\] \[code language="coldfusion"\]URL Rewriting Off = http://localhost/index.cfm?controller=contact&action=list&reload=true\[/code\] ![](images/cfwheels5_6.jpg) More on [Associations](http://cfwheels.org/docs/chapter/associations) We did alot of work with the built in ORM. You did a good job. Next post, we will cover the return differences between some built in ORM calls and the logic why, how to specify the return columns, specify the where clause, and create advance queries. Hopefully after that, we will cover editing and deleting records.
+Here is where our association we set in /models/contact.cfc comes to play. CFWheels ORM joins the tbl\_typesofcontact table with the contacts table. This happens because we added the association declaring the foriegn key in our /models/contacts.cfc and in creating the query, we told it to include type. \[code language="coldfusion"\]
+<cfset allContacts = model("contact").findAll(include="type") />
+\\[/code\] Remove \[code language="coldfusion"\]
+<cfdump var="#allContacts#"><cfabort>
+\\[/code\] from /controllers/contact.cfc in the list action and reload our list. \[code language="coldfusion"\]
+URL Rewriting On = http://localhost/contact/list?reload=true
+\\[/code\] \[code language="coldfusion"\]
+URL Rewriting Partial = http://localhost/index.cfm/contact/list?reload=true
+\\[/code\] \[code language="coldfusion"\]
+URL Rewriting Off = http://localhost/index.cfm?controller=contact&action=list&reload=true
+\\[/code\] ![](images/cfwheels5_6.jpg) More on [Associations](http://cfwheels.org/docs/chapter/associations) We did alot of work with the built in ORM. You did a good job. Next post, we will cover the return differences between some built in ORM calls and the logic why, how to specify the return columns, specify the where clause, and create advance queries. Hopefully after that, we will cover editing and deleting records.

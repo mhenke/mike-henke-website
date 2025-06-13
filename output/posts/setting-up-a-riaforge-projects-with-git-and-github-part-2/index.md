@@ -25,11 +25,23 @@ After submitting you will be taken back to the master page of your new GitHub re
 Let's configure our local system now and create a SSH public key. This will be used to authenticate you when doing push and pull commands to git. Open up the command prompt and run these commands. Replace your information with mine.  
 Click return/yes on any popups.  
   
-\[code language="coldfusion"\]git config --global user.name "mhenke"\[/code\] \[code language="coldfusion"\]git config --global user.email "henke.mike@gmail.com"\[/code\] \[code language="coldfusion"\]ssh-keygen -t rsa\[/code\] \[code language="coldfusion"\]git config --global core.autocrlf true\[/code\] This \[code language="coldfusion"\]ssh-keygen\[/code\] command will create a .ssh folder and two files inside it. This folder is located at "C:\\Users\\Owner\\.ssh" for me. Inside are two files, id\_rsa and id\_rsa.pub. The first is your private key and the second is your public key.  
+\[code language="coldfusion"\]
+git config --global user.name "mhenke"
+\\[/code\] \[code language="coldfusion"\]
+git config --global user.email "henke.mike@gmail.com"
+\\[/code\] \[code language="coldfusion"\]
+ssh-keygen -t rsa
+\\[/code\] \[code language="coldfusion"\]
+git config --global core.autocrlf true
+\\[/code\] This \[code language="coldfusion"\]
+ssh-keygen
+\\[/code\] command will create a .ssh folder and two files inside it. This folder is located at "C:\\Users\\Owner\\.ssh" for me. Inside are two files, id\_rsa and id\_rsa.pub. The first is your private key and the second is your public key.  
   
 Let's test the authentication. Go back to your command prompt and type in this command.  
   
-\[code language="coldfusion"\]ssh git@github.com\[/code\] Hopefully you see something like this.  
+\[code language="coldfusion"\]
+ssh git@github.com
+\\[/code\] Hopefully you see something like this.  
   
 ![](images/git2_4.jpg)
 
@@ -47,7 +59,9 @@ Next we will copy the key shown in PuttyGen and paste it into GitHub. If you are
   
 One last thing while here on the GitHub Account page, scroll back toward the top and you should see a "Your User Information" panel. Select the "Global Git Config" link. GitHub is user friendly and will prove snippets for you to copy, paste, and run. Copy the second line and run it in your command prompt.  
   
-\[code language="coldfusion"\]git config --global github.token xxxxxxxxGITHUBTOKENxxxxxxxxxxx\[/code\]
+\[code language="coldfusion"\]
+git config --global github.token xxxxxxxxGITHUBTOKENxxxxxxxxxxx
+\\[/code\]
 
 ### Cloning
 
@@ -57,7 +71,11 @@ Let's wrap up the long entry by running cloning our git repository. Navigate on 
   
 This is the work around error, I mentioned. Create a text file and paste in this.  
   
-\[code language="coldfusion"\] start "start pageant" /B "C:\\Program Files\\TortoiseGit\\bin\\pageant.exe" "C:/Users/Owner/.ssh/id\_rsa.ppk"\[/code\] \[code language="coldfusion"\]exit\[/code\]  
+\[code language="coldfusion"\]
+start "start pageant" /B "C:\Program Files\TortoiseGit\bin\pageant.exe" "C:/Users/Owner/.ssh/id_rsa.ppk"
+\\[/code\] \[code language="coldfusion"\]
+exit
+\\[/code\]  
 And save it as github.bat. Create a shortcut and put it in your startup or if you want just run the batch when you are using GitHub. Run the batch file now and you should see an new icon your Notification area.  
   
 Now rerun our clone command in our dos prompt.  

@@ -12,18 +12,6 @@ This week, I have been reviewing new features from the last [Adobe ColdFusion](
 
 ACF9 makes caching page fragments even easier with two new attributes, dependsOn and stripWhiteSpace, for the cfcache instruction. dependsOn can take a list of variables that upon change will result in an update to the cached fragment or page. stripWhiteSpace strip any unnecessary white space characters from a cached page fragment to save memory usage when caching a page fragement.
 
-\[code language="coldfusion"\] ArrayFind(), [ArrayContains()](http://help.adobe.com/en_US/ColdFusion/9.0/CFMLRef/WS2EF4F7C2-F41D-42fe-940D-B7C0212FF3D9.html), and [ArrayDelete()](http://help.adobe.com/en_US/ColdFusion/9.0/CFMLRef/WS50C09438-2E46-44f8-8DD7-457CD2E31435.html).
-
-- ArrayFind searches on an array for a specified object. The function can search for simple objects such as strings or numbers and complex objects such as structures and returns the index in the array of the first match, or 0, if there is no match.
-- ArrayContains searches an array for the presence of a specified object and returns **yes**, if the specified object exists in the array.
-- ArrayDelete deletes an element from an array and returns **yes**, on successful deletion of the array element.
-
- 
-
-## Working with LOCAL scope in functions
-
-This enhancement is demostrated in Chapter 4: CFC Enhancements and shows the new LOCAL scope in a function so you don't have data leaking. And also how now you can var anywhere in the function.
-
 \[code language="coldfusion"\]
-
-\[/code\]
+<cfcache timespan=createtimespan(0,0,0.10) dependson="URL.id" stripWhiteSpace="true>
+\\[/code\]

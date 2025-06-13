@@ -25,8 +25,20 @@ B. [best comment explanation](http://mikehenke.com/post.cfm/stump-the-cfchump-1#
 What will display when this code is ran?
 
 \[code language="coldfusion"\]
+<cfset myvar = "Hello ">
 
-#myvar# \[/code\]
+<cfif 2 eq true>
+ <cfset myvar = myvar & "Carrie">
+<cfelseif 2 eq false>
+ <cfset myvar = myvar & "Brody">
+<cfelse>
+ <cfset myvar = myvar & "Saul">
+</cfif>
+
+<cfoutput>
+#myvar#
+</cfoutput>
+\\[/code\]
 
 ### Answers
 

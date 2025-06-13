@@ -34,11 +34,17 @@ stylesheets - cascading style sheets are put here. Enjoy, embrace [convention ov
 
 ### Request Handling
 
-CFWheels maps requests to your code. Think [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer "REST")\-like. CFWheels will most likely use a "partial URL Rewrite" to access your application. For our contact application, the URL may look something like this \[code language="coldfusion"\]http://localhost/index.cfm/contact/list\[/code\]. This will list our contacts. If your web server doesn't support cgi.path\_info, you may get something like this \[code language="coldfusion"\]http://localhost/index.cfm?controller=contact&action=list\[/code\]
+CFWheels maps requests to your code. Think [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer "REST")\-like. CFWheels will most likely use a "partial URL Rewrite" to access your application. For our contact application, the URL may look something like this \[code language="coldfusion"\]
+http://localhost/index.cfm/contact/list
+\\[/code\]. This will list our contacts. If your web server doesn't support cgi.path\_info, you may get something like this \[code language="coldfusion"\]
+http://localhost/index.cfm?controller=contact&action=list
+\\[/code\]
 
 ### URL Rewriting
 
-That partial URL Rewrite is nice but how about \[code language="coldfusion"\]http://localhost/contact/list\[/code\]? This is possible if you are using Apache or IIS, sorry built in web services with JRUN or Tomcat. You can still get the goodness of convention over configuration so don't worry.  
+That partial URL Rewrite is nice but how about \[code language="coldfusion"\]
+http://localhost/contact/list
+\\[/code\]? This is possible if you are using Apache or IIS, sorry built in web services with JRUN or Tomcat. You can still get the goodness of convention over configuration so don't worry.  
   
 To see how to setup URL Rewriting, read [this](http://cfwheels.org/docs/chapter/url-rewriting).  
   

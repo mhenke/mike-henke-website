@@ -23,8 +23,28 @@ C. [best comment explanation](http://mikehenke.com/post.cfm/stump-the-cfchump-3#
 
 ### Question
 
-What tag and attribute would you use to set the maximum number of rows returned to 10 in the code below? \[code language="coldfusion"\] <cfstoredproc procedure="foo\_proc" dataSource = "MY\_SYBASE\_TEST" username = "sa" password = "" dbServer = "scup" dbName = "pubs2" returnCode = "Yes" debug = "Yes"> <!--- cfprocresult tags ---> <cfprocresult name="RS1"> <!--- cfprocparam tags ---> <cfprocparam type="IN" cfsqltype="CF\_SQL\_INTEGER" value="1"> <cfprocparam type="OUT" cfsqltype="CF\_SQL\_DATE" variable="FOO"> <!--- Close the cfstoredproc tag. ---> </cfprocparam> \[/code\]  
+What tag and attribute would you use to set the maximum number of rows returned to 10 in the code below? \[code language="coldfusion"\]
+<cfstoredproc procedure="foo_proc"
+dataSource = "MY_SYBASE_TEST" username = "sa"
+password = "" dbServer = "scup" dbName = "pubs2"
+returnCode = "Yes" debug = "Yes">
+<!--- cfprocresult tags --->
+<cfprocresult name="RS1">
+<!--- cfprocparam tags --->
+<cfprocparam type="IN" cfsqltype="CF_SQL_INTEGER" value="1">
+<cfprocparam type="OUT" cfsqltype="CF_SQL_DATE" variable="FOO">
+<!--- Close the cfstoredproc tag. --->
+</cfprocparam>
+\\[/code\]  
 
 ### Answers
 
-A. \[code language="coldfusion"\]<cfstoredproc maxrows="10" ...=""></cfstoredproc>\[/code\] B. \[code language="coldfusion"\]<cfprocresult maxrows="10" ...="" ></cfprocresult>\[/code\] C. \[code language="coldfusion"\]<cfprocparam type="IN" maxrows="10" ...=""></cfprocparam>\[/code\] D. \[code language="coldfusion"\] <cfprocparam type="OUT" maxrows="10" ...=""></cfprocparam>\[/code\]
+A. \[code language="coldfusion"\]
+<cfstoredproc maxrows="10" ...=""></cfstoredproc>
+\\[/code\] B. \[code language="coldfusion"\]
+<cfprocresult maxrows="10" ...="" ></cfprocresult>
+\\[/code\] C. \[code language="coldfusion"\]
+<cfprocparam type="IN" maxrows="10" ...=""></cfprocparam>
+\\[/code\] D. \[code language="coldfusion"\]
+<cfprocparam type="OUT" maxrows="10" ...=""></cfprocparam>
+\\[/code\]

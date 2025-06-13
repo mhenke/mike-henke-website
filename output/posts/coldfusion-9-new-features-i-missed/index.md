@@ -28,27 +28,70 @@ To see even more click on the "All Feature" tab from the link above. Now let's f
 
 In CF9, we don't have to define the datasource in the cfquery instruction anymore like:
 
-\[code language="coldfusion"\] SELECT \* FROM Artists ORDER BY Artists.LastName, Artists.FirstName, Artists.ArtistID \[/code\]
+\[code language="coldfusion"\]
+<cfquery name="rsArtists" datasource="cfartgallery">
+SELECT *
+FROM Artists
+ORDER BY Artists.LastName, Artists.FirstName, Artists.ArtistID
+</cfquery>
+\\[/code\]
 
 We can define a default datasource in the Application.cfc and skip the datasource attribute in the cfquery instruction.
 
 \[code language="coldfusion"\]
+<cfset this.datasource = "cfartgallery" />
 
-SELECT \* FROM Artists ORDER BY Artists.LastName, Artists.FirstName, Artists.ArtistID \[/code\]
+<cfquery name="rsArtists">
+SELECT *
+FROM Artists
+ORDER BY Artists.LastName, Artists.FirstName, Artists.ArtistID
+</cfquery>
+\\[/code\]
 
 ### Using ternary and chained operations
 
 These language improvements help with less verbose code while enhancing readiblity.
 
 \[code language="coldfusion"\]
+<!--- old way
+<cfset totalPieces = 0 />
+<cfset numberSold = 0 />
+--->
 
-#rsArtists.ArtName# #YesNoFormat(rsArtists.IsSold)# \[/code\]
+<cfset totalPieces = numberSold = 0 />
+
+<cfoutput>   
+<!---  old way
+<cfif Val(rsArtists.IsSold)>
+<cfset numberSold ++ />
+</cfif>
+--->
+
+<cfset numberSold = Val(rsArtists.IsSold) ? ++ numberSold : numberSold />
+
+<cfset totalPieces ++ />
+
+<!--- old way
+<tr class="<cfif totalPieces MOD 2 EQ 0>evenRow<cfelse>oddRow</cfif>">
+--->
+
+<tr class="#(totalPieces MOD 2 EQ 0) ? "evenRow" : "oddRow"#">
+<td>#rsArtists.ArtName#</td>
+<td>#YesNoFormat(rsArtists.IsSold)#</td>
+</tr>
+<cfoutput>
+\\[/code\]
 
 ### Using New
 
 One of my complaints of using CFC is the verbose, cumbersome way to use them. The New instruction removes these barriers for me.
 
-\[code language="coldfusion"\] \[/code\]
+\[code language="coldfusion"\]
+<!--- old way
+<cfset MyCFC = CreateObject("component", "Chapter3.cfcs.MyCFC").init() />
+--->
+<cfset MyCFC = new Chapter3.cfcs.MyCFC() />
+\\[/code\]
 
 ## Conclusion
 

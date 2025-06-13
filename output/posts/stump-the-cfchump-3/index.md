@@ -24,7 +24,13 @@ A. [best comment explanation](http://mikehenke.com/post.cfm/stump-the-cfchump-2b
 
 What variable would you use to show the cumulative time required to process the query below?
 
-\[code language="coldfusion"\] SELECT PARKNAME, REGION, STATE FROM Parks ORDER BY ParkName, State \[/code\]
+\[code language="coldfusion"\]
+<cfquery name="GetParks" datasource="cfdocexamples"  result="GetResults"> 
+    SELECT PARKNAME, REGION, STATE 
+    FROM Parks 
+    ORDER BY ParkName, State 
+</cfquery>
+\\[/code\]
 
 ### Answers
 
