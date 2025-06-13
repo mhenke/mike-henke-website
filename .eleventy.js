@@ -7,24 +7,25 @@ module.exports = function (eleventyConfig) {
     'codeBlockTransform',
     function (content, outputPath) {
       if (outputPath && outputPath.endsWith('.html')) {
-        // Match HTML-encoded code blocks: <p>[code language="..."]</p><p>content</p><p>[/code]</p>
-        const htmlCodeBlockRegex =
-          /<p>\[code\s+language=&quot;([^&]+)&quot;\]<\/p>\s*<p>([\s\S]*?)<\/p>\s*<p>\[\/code\]<\/p>/gi;
-
-        // Also match single-line HTML encoded blocks: <p>[code language="..."] content [/code]</p>
-        const singleLineRegex =
-          /<p>\[code\s+language=&quot;([^&]+)&quot;\]\s*([\s\S]*?)\s*\[\/code\]<\/p>/gi;
-
         // Function to create code block HTML
         function createCodeBlock(language, code) {
-          // Clean up the code content
-          const cleanCode = code
+          // Clean up the code content - remove any HTML tags that might have been included
+          let cleanCode = code
             .trim()
+            .replace(/<\/?p[^>]*>/gi, '') // Remove paragraph tags
             .replace(/&lt;/g, '<')
             .replace(/&gt;/g, '>')
             .replace(/&amp;/g, '&')
             .replace(/&quot;/g, '"')
             .replace(/&#39;/g, "'");
+
+          // Remove trailing content that shouldn't be in code blocks
+          cleanCode = cleanCode
+            .replace(/\s*\\?\[\/code\].*$/s, '') // Remove any trailing [/code] and everything after
+            .replace(/\s*###.*$/s, '') // Remove trailing ### headers and everything after
+            .replace(/\s*[A-Z]\.\s*.*$/s, '') // Remove trailing answer labels and everything after
+            .replace(/\s*<h3>.*$/s, '') // Remove trailing h3 tags and everything after
+            .trim();
 
           // Escape HTML for display
           const escapedCode = cleanCode
@@ -36,8 +37,8 @@ module.exports = function (eleventyConfig) {
 
           // Map language aliases to Prism language classes
           const languageMap = {
-            coldfusion: 'language-cfscript',
-            cfml: 'language-cfscript',
+            coldfusion: 'language-coldfusion',
+            cfml: 'language-coldfusion',
             cfscript: 'language-cfscript',
             javascript: 'language-javascript',
             js: 'language-javascript',
@@ -67,24 +68,79 @@ module.exports = function (eleventyConfig) {
 </div>`;
         }
 
-        // Apply both transformations
         let transformedContent = content;
 
-        // Transform multi-paragraph HTML-encoded blocks
+        // Step 1: Clean up multiple consecutive closing tags first
         transformedContent = transformedContent.replace(
-          htmlCodeBlockRegex,
+          /\\?\[\/code\](\s*\\?\[\/code\])+/gi,
+          '\\[/code]'
+        );
+
+        // Step 2: Handle inline code blocks that are NOT properly separated
+        // Look for code blocks that start after text (not after a > or paragraph break)
+        transformedContent = transformedContent.replace(
+          /(\w)\s+\[code\s+language=(?:&quot;|")([^"&]+)(?:&quot;|")\]/gi,
+          '$1</p>\n\n<p>[code language="$2"]'
+        );
+
+        // Step 3: Handle code blocks that are concatenated with answer labels
+        transformedContent = transformedContent.replace(
+          /\\?\[\/code\]\s*([A-Z]\.\s*)\[code\s+language=(?:&quot;|")([^"&]+)(?:&quot;|")\]/gi,
+          '\\[/code]</p>\n\n<p>$1</p>\n\n<p>[code language="$2"]'
+        );
+
+        // Step 4: Handle code blocks followed by answer labels
+        transformedContent = transformedContent.replace(
+          /\\?\[\/code\]\s+([A-Z]\.\s*)/gi,
+          '\\[/code]</p>\n\n<p>$1'
+        );
+
+        // Step 5: Main transformation - match and convert code blocks
+        const codeBlockRegex =
+          /\[code\s+language=(?:&quot;|")([^"&]+)(?:&quot;|")\]([\s\S]*?)\\?\[\/code\]/gi;
+
+        transformedContent = transformedContent.replace(
+          codeBlockRegex,
           (match, language, code) => {
-            return createCodeBlock(language, code);
+            // Stop at certain patterns that shouldn't be in code blocks
+            let cleanedCode = code;
+
+            // First, look for any trailing [/code] patterns and everything after them
+            const codeEndMatch = cleanedCode.match(/\\?\[\/code\]/);
+            if (codeEndMatch) {
+              cleanedCode = cleanedCode.substring(0, codeEndMatch.index);
+            }
+
+            // Then check for other stop patterns
+            const stopPatterns = [
+              /\s+###/, // Stop at headers
+              /\s+[A-Z]\.\s/, // Stop at answer labels
+              /<h3>/, // Stop at h3 tags
+            ];
+
+            for (const pattern of stopPatterns) {
+              const patternMatch = cleanedCode.match(pattern);
+              if (patternMatch) {
+                cleanedCode = cleanedCode.substring(0, patternMatch.index);
+                break;
+              }
+            }
+
+            return createCodeBlock(language, cleanedCode);
           }
         );
 
-        // Transform single-line HTML-encoded blocks
+        // Step 6: Clean up any malformed HTML from preprocessing
         transformedContent = transformedContent.replace(
-          singleLineRegex,
-          (match, language, code) => {
-            return createCodeBlock(language, code);
-          }
+          /<\/p>\s*<\/p>/g,
+          '</p>'
         );
+        transformedContent = transformedContent.replace(/<p>\s*<p>/g, '<p>');
+        transformedContent = transformedContent.replace(
+          /<\/p>\s*<p>\s*<\/p>\s*<p>/g,
+          '</p>\n\n<p>'
+        );
+        transformedContent = transformedContent.replace(/<p><\/p>/g, '');
 
         return transformedContent;
       }

@@ -1,9 +1,9 @@
 ---
-title: "Stump the CFChump - 2"
+title: 'Stump the CFChump - 2'
 date: 2012-11-29
-categories: 
-  - "cfchump"
-  - "ColdFusion"
+categories:
+  - 'cfchump'
+  - 'ColdFusion'
 ---
 
 I am doing a "Stump the CFChump" series. I recently passed the [ColdFusion 9 exam](http://blogs.adobe.com/adc/2010/11/coldfusion-9-certification-exam-now-available.html) and this is material I learned while studying. I have several [CodeSchool](http://www.codeschool.com/) gift cards to giveaway so comments who answer correctly I'll email you the discount code. ["Stump the Chumps"](/www.cartalk.com/content/stump-chumps) is from the "Car Talk" so I am spinning that title for ColdFusion. These are questions that stumped me when studying.
@@ -24,7 +24,7 @@ B. [best comment explanation](http://mikehenke.com/post.cfm/stump-the-cfchump-1#
 
 What will display when this code is ran?
 
-\[code language="coldfusion"\]
+```coldfusion
 <cfset myvar = "Hello ">
 
 <cfif 2 eq true>
@@ -38,7 +38,7 @@ What will display when this code is ran?
 <cfoutput>
 #myvar#
 </cfoutput>
-\\[/code\]
+```
 
 ### Answers
 
