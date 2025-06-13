@@ -404,11 +404,49 @@
         if (typeof Prism !== 'undefined') {
             Prism.plugins.autoloader.languages_path = 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/';
             
-            // Add language aliases for better ColdFusion support
+            // Add language aliases and custom ColdFusion support
             if (Prism.languages) {
-                // Map CFML variations to existing languages
-                Prism.languages.coldfusion = Prism.languages.markup;
-                Prism.languages.cfml = Prism.languages.markup;
+                // Create a better ColdFusion language definition
+                Prism.languages.coldfusion = Prism.languages.extend('markup', {
+                    'cf-tag': {
+                        pattern: /<\/?cf[a-z]+(?:\s[^>]*)?\/?>/i,
+                        inside: {
+                            'tag': {
+                                pattern: /<\/?cf[a-z]+/i,
+                                inside: {
+                                    'punctuation': /^<\/?/,
+                                    'namespace': /^cf/
+                                }
+                            },
+                            'attr-name': /[a-z-]+(?=\s*=)/i,
+                            'attr-value': {
+                                pattern: /=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/i,
+                                inside: {
+                                    'punctuation': [/^=/, /^['"]|['"]$/]
+                                }
+                            },
+                            'punctuation': /\/?>/
+                        }
+                    },
+                    'cf-script': {
+                        pattern: /#[^#]*#/,
+                        inside: {
+                            'punctuation': /^#|#$/,
+                            'keyword': /\b(?:var|if|else|elseif|for|while|function|return|true|false|null)\b/i,
+                            'string': /("|')(?:\\.|(?!\1)[^\\\r\n])*\1/,
+                            'number': /\b0x[\da-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:e[+-]?\d+)?/i,
+                            'operator': /[<>]=?|[!=]=?=?|--?|\+\+?|&&?|\|\|?|[?*/~^%]/,
+                            'punctuation': /[{}[\];(),.:]/
+                        }
+                    },
+                    'cf-function': {
+                        pattern: /\b[a-zA-Z_]\w*(?=\s*\()/,
+                        alias: 'function'
+                    }
+                });
+                
+                // Map other CFML variations
+                Prism.languages.cfml = Prism.languages.coldfusion;
                 Prism.languages.cfscript = Prism.languages.javascript;
             }
         }
