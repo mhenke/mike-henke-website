@@ -9,7 +9,7 @@ module.exports = function (eleventyConfig) {
       if (outputPath && outputPath.endsWith('.html')) {
         // Function to create code block HTML
         function createCodeBlock(language, code) {
-          // Clean up the code content - remove any HTML tags that might have been included
+          // Clean up the code content
           let cleanCode = code
             .trim()
             .replace(/<\/?p[^>]*>/gi, '') // Remove paragraph tags
@@ -18,14 +18,6 @@ module.exports = function (eleventyConfig) {
             .replace(/&amp;/g, '&')
             .replace(/&quot;/g, '"')
             .replace(/&#39;/g, "'");
-
-          // Remove trailing content that shouldn't be in code blocks
-          cleanCode = cleanCode
-            .replace(/\s*\\?\[\/code\].*$/s, '') // Remove any trailing [/code] and everything after
-            .replace(/\s*###.*$/s, '') // Remove trailing ### headers and everything after
-            .replace(/\s*[A-Z]\.\s*.*$/s, '') // Remove trailing answer labels and everything after
-            .replace(/\s*<h3>.*$/s, '') // Remove trailing h3 tags and everything after
-            .trim();
 
           // Escape HTML for display
           const escapedCode = cleanCode
@@ -70,76 +62,66 @@ module.exports = function (eleventyConfig) {
 
         let transformedContent = content;
 
-        // Step 1: Clean up multiple consecutive closing tags first
+        // Step 1: Normalize escaped closing tags - fix \\[/code] to [/code]
         transformedContent = transformedContent.replace(
-          /\\?\[\/code\](\s*\\?\[\/code\])+/gi,
-          '\\[/code]'
+          /\\\\?\[\/code\]/gi,
+          '[/code]'
         );
 
-        // Step 2: Handle inline code blocks that are NOT properly separated
-        // Look for code blocks that start after text (not after a > or paragraph break)
+        // Step 2: Fix inline code blocks that should be on their own lines
+        // Pattern: text [code language="..."] - add paragraph breaks
         transformedContent = transformedContent.replace(
-          /(\w)\s+\[code\s+language=(?:&quot;|")([^"&]+)(?:&quot;|")\]/gi,
-          '$1</p>\n\n<p>[code language="$2"]'
+          /(\w)\s+(\[code\s+language=(?:&quot;|")([^"&]+)(?:&quot;|")\])/gi,
+          '$1</p>\n\n<p>$2'
         );
 
-        // Step 3: Handle code blocks that are concatenated with answer labels
+        // Step 3: Fix code blocks that end with text on same line
+        // Pattern: [/code] text - add paragraph breaks
         transformedContent = transformedContent.replace(
-          /\\?\[\/code\]\s*([A-Z]\.\s*)\[code\s+language=(?:&quot;|")([^"&]+)(?:&quot;|")\]/gi,
-          '\\[/code]</p>\n\n<p>$1</p>\n\n<p>[code language="$2"]'
+          /(\[\/code\])\s+(\w)/gi,
+          '$1</p>\n\n<p>$2'
         );
 
-        // Step 4: Handle code blocks followed by answer labels
+        // Step 4: Handle incomplete code blocks - those without closing tags
+        // Look for code blocks followed by markdown headers, images, or new paragraphs
         transformedContent = transformedContent.replace(
-          /\\?\[\/code\]\s+([A-Z]\.\s*)/gi,
-          '\\[/code]</p>\n\n<p>$1'
-        );
+          /(\[code\s+language=(?:&quot;|")([^"&]+)(?:&quot;|")\])([\s\S]*?)(?=\n\s*###|\n\s*!\[|\n\s*\[|\n\s*[A-Z][a-z]|\n\s*<|$)/gi,
+          (match, openTag, language, code) => {
+            // Only transform if there's no [/code] tag in the captured content
+            if (!/\[\/code\]/i.test(code)) {
+              // Clean the code content - stop at certain patterns
+              let cleanedCode = code
+                .replace(/\s*You may remember.*$/s, '') // Stop at explanatory text
+                .replace(/\s*![^)]*\).*$/s, '') // Stop at images
+                .replace(/\s*Pretty neat.*$/s, '') // Stop at commentary
+                .replace(/\s*Lets.*$/s, '') // Stop at new sections
+                .replace(/\s*Now lets.*$/s, '') // Stop at new sections
+                .trim();
 
-        // Step 5: Main transformation - match and convert code blocks
-        const codeBlockRegex =
-          /\[code\s+language=(?:&quot;|")([^"&]+)(?:&quot;|")\]([\s\S]*?)\\?\[\/code\]/gi;
-
-        transformedContent = transformedContent.replace(
-          codeBlockRegex,
-          (match, language, code) => {
-            // Stop at certain patterns that shouldn't be in code blocks
-            let cleanedCode = code;
-
-            // First, look for any trailing [/code] patterns and everything after them
-            const codeEndMatch = cleanedCode.match(/\\?\[\/code\]/);
-            if (codeEndMatch) {
-              cleanedCode = cleanedCode.substring(0, codeEndMatch.index);
+              return createCodeBlock(language, cleanedCode);
             }
-
-            // Then check for other stop patterns
-            const stopPatterns = [
-              /\s+###/, // Stop at headers
-              /\s+[A-Z]\.\s/, // Stop at answer labels
-              /<h3>/, // Stop at h3 tags
-            ];
-
-            for (const pattern of stopPatterns) {
-              const patternMatch = cleanedCode.match(pattern);
-              if (patternMatch) {
-                cleanedCode = cleanedCode.substring(0, patternMatch.index);
-                break;
-              }
-            }
-
-            return createCodeBlock(language, cleanedCode);
+            return match;
           }
         );
 
-        // Step 6: Clean up any malformed HTML from preprocessing
+        // Step 5: Handle proper code blocks with closing tags
+        transformedContent = transformedContent.replace(
+          /\[code\s+language=(?:&quot;|")([^"&]+)(?:&quot;|")\]([\s\S]*?)\[\/code\]/gi,
+          (match, language, code) => {
+            return createCodeBlock(language, code);
+          }
+        );
+
+        // Step 6: Clean up any remaining malformed patterns
+        // Remove orphaned [/code] tags that weren't matched
+        transformedContent = transformedContent.replace(/\[\/code\]/gi, '');
+
+        // Clean up HTML structure issues
         transformedContent = transformedContent.replace(
           /<\/p>\s*<\/p>/g,
           '</p>'
         );
         transformedContent = transformedContent.replace(/<p>\s*<p>/g, '<p>');
-        transformedContent = transformedContent.replace(
-          /<\/p>\s*<p>\s*<\/p>\s*<p>/g,
-          '</p>\n\n<p>'
-        );
         transformedContent = transformedContent.replace(/<p><\/p>/g, '');
 
         return transformedContent;
