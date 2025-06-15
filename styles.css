@@ -1441,13 +1441,11 @@ address a:hover {
 /* Search result styling */
 .search-result-categories {
   margin: var(--spacing-xs) 0;
-  display: flex;
+  display: inline-flex;
   flex-wrap: wrap;
   gap: var(--spacing-xs);
   align-items: center;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
+  width: auto;
 }
 
 .search-result-categories .category-tag {
@@ -1981,10 +1979,9 @@ footer p {
   box-sizing: border-box;
 }
 
+/* Removed hover effect to prevent overlapping with search message text */
 .pagefind-ui__result[class*='svelte']:hover {
-  box-shadow: var(--shadow-accent-lg), var(--shadow-lg);
-  border-color: var(--color-hover-border);
-  transform: translateY(-2px);
+  /* Disabled to prevent overlap issues */
 }
 
 .pagefind-ui__result[class*='svelte']:last-child {
@@ -2026,8 +2023,8 @@ footer p {
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-medium);
   text-align: center;
-  padding: var(--spacing-xs) 0;
-  margin: 0 0 var(--spacing-xs) 0;
+  padding: var(--spacing-md) 0;
+  margin: 0 0 var(--spacing-xl) 0;
 }
 
 /* Enhanced "Load More" button styling */
@@ -2071,16 +2068,14 @@ footer p {
 
 /* Override default Pagefind UI result padding */
 .pagefind-ui__result[class*='svelte'][class*='svelte'] {
-  padding: 0 !important;
+  padding: var(--spacing-lg) var(--spacing-xl) !important;
 }
 
 /* More specific override for Pagefind UI result padding */
 .pagefind-ui__result.svelte-4xnkmf.svelte-4xnkmf {
-  padding: 0 !important;
+  padding: var(--spacing-lg) var(--spacing-xl) !important;
   list-style-type: none;
-  display: flex;
-  align-items: flex-start;
-  gap: min(calc(40px * var(--pagefind-ui-scale)), 3%);
+  display: block;
   border-top: none !important;
 }
 
