@@ -1444,11 +1444,11 @@ address a:hover {
   --animation-delay: var(--animation-delay-long);
 }
 
-/* Category Tags - Optimized with variables */
+/* Category Tags - White text with blue outline */
 .category-tag {
   display: inline-block;
   background-color: transparent;
-  color: var(--color-primary);
+  color: var(--color-text);
   padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: var(--border-radius-xs);
   font-size: var(--font-size-sm);
@@ -1504,9 +1504,18 @@ address a:hover {
 
 .search-result-categories .category-tag {
   font-size: var(--font-size-sm);
-  padding: var(--spacing-xs) var(--spacing-xs);
+  padding: var(--spacing-xs) 0.75rem;
+  font-weight: var(--font-weight-medium);
+  border: 1.5px solid var(--color-primary);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-subtle);
   word-break: keep-all;
   white-space: nowrap;
+}
+
+.search-result-categories .category-tag:hover,
+.search-result-categories .category-tag:focus {
+  border-color: var(--color-primary-dark);
 }
 
 .search-result-date {
