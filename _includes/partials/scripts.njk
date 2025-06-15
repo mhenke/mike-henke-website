@@ -123,10 +123,12 @@
                         
                         const categories = categoryData.split(',');
                         categories.forEach(cat => {
-                            const categorySpan = document.createElement('span');
-                            categorySpan.className = 'category-tag';
-                            categorySpan.textContent = cat.trim();
-                            categoryDiv.appendChild(categorySpan);
+                            const categoryLink = document.createElement('a');
+                            categoryLink.className = 'category-tag';
+                            const slug = cat.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+                            categoryLink.href = `/blog/category/${slug}/`;
+                            categoryLink.textContent = cat.trim();
+                            categoryDiv.appendChild(categoryLink);
                         });
                         
                         titleElement.insertAdjacentElement('afterend', categoryDiv);
