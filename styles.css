@@ -2023,8 +2023,8 @@ footer p {
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-medium);
   text-align: center;
-  padding: var(--spacing-md) 0;
-  margin: 0 0 var(--spacing-xl) 0;
+  padding: var(--spacing-sm) 0;
+  margin: var(--spacing-sm) 0 var(--spacing-xl) 0;
 }
 
 /* Enhanced "Load More" button styling */
