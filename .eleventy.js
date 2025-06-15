@@ -2,131 +2,103 @@ const { DateTime } = require('luxon');
 const { URL } = require('url');
 
 module.exports = function (eleventyConfig) {
-  // Code block transform - Convert [code language="..."] shortcodes to Prism-ready HTML
+  // Simplified code block transform
   eleventyConfig.addTransform(
     'codeBlockTransform',
     function (content, outputPath) {
-      if (outputPath && outputPath.endsWith('.html')) {
-        // Function to create code block HTML
-        function createCodeBlock(language, code) {
-          // Clean up the code content
-          let cleanCode = code
-            .trim()
-            .replace(/<\/?p[^>]*>/gi, '') // Remove paragraph tags
-            .replace(/&lt;/g, '<')
-            .replace(/&gt;/g, '>')
-            .replace(/&amp;/g, '&')
-            .replace(/&quot;/g, '"')
-            .replace(/&#39;/g, "'");
+      if (!outputPath || !outputPath.endsWith('.html')) {
+        return content;
+      }
 
-          // Escape HTML for display
-          const escapedCode = cleanCode
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#39;');
+      function createCodeBlock(language, code) {
+        // Clean and normalize the code content
+        const cleanCode = code
+          .trim()
+          // Remove HTML paragraph tags that might have been added
+          .replace(/<\/?p[^>]*>/gi, '')
+          // Decode HTML entities
+          .replace(/&lt;/g, '<')
+          .replace(/&gt;/g, '>')
+          .replace(/&amp;/g, '&')
+          .replace(/&quot;/g, '"')
+          .replace(/&#39;/g, "'");
 
-          // Map language aliases to Prism language classes
-          const languageMap = {
-            coldfusion: 'language-coldfusion',
-            cfml: 'language-coldfusion',
-            cfscript: 'language-cfscript',
-            javascript: 'language-javascript',
-            js: 'language-javascript',
-            java: 'language-java',
-            sql: 'language-sql',
-            xml: 'language-xml',
-            html: 'language-html',
-            css: 'language-css',
-            python: 'language-python',
-            bash: 'language-bash',
-            shell: 'language-bash',
-            json: 'language-json',
-          };
+        // Escape for HTML display
+        const escapedCode = cleanCode
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
 
-          const prismLanguage =
-            languageMap[language.toLowerCase()] ||
-            `language-${language.toLowerCase()}`;
+        // Language mapping for Prism
+        const languageMap = {
+          coldfusion: 'language-coldfusion',
+          cfml: 'language-coldfusion',
+          cfscript: 'language-cfscript',
+          javascript: 'language-javascript',
+          js: 'language-javascript',
+          java: 'language-java',
+          sql: 'language-sql',
+          xml: 'language-xml',
+          html: 'language-html',
+          css: 'language-css',
+          python: 'language-python',
+          bash: 'language-bash',
+          shell: 'language-bash',
+          json: 'language-json',
+        };
 
-          return `<div class="code-block">
+        const prismClass =
+          languageMap[language.toLowerCase()] ||
+          `language-${language.toLowerCase()}`;
+
+        return `<div class="code-block">
   <div class="code-header">
     <span class="code-language">${language.toUpperCase()}</span>
     <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
       <i class="fas fa-copy"></i>
     </button>
   </div>
-  <pre class="line-numbers"><code class="${prismLanguage}">${escapedCode}</code></pre>
+  <pre class="line-numbers"><code class="${prismClass}">${escapedCode}</code></pre>
 </div>`;
-        }
-
-        let transformedContent = content;
-
-        // Step 1: Normalize escaped closing tags - fix \\[/code] to [/code]
-        transformedContent = transformedContent.replace(
-          /\\\\?\[\/code\]/gi,
-          '[/code]'
-        );
-
-        // Step 2: Fix inline code blocks that should be on their own lines
-        // Pattern: text [code language="..."] - add paragraph breaks
-        transformedContent = transformedContent.replace(
-          /(\w)\s+(\[code\s+language=(?:&quot;|")([^"&]+)(?:&quot;|")\])/gi,
-          '$1</p>\n\n<p>$2'
-        );
-
-        // Step 3: Fix code blocks that end with text on same line
-        // Pattern: [/code] text - add paragraph breaks
-        transformedContent = transformedContent.replace(
-          /(\[\/code\])\s+(\w)/gi,
-          '$1</p>\n\n<p>$2'
-        );
-
-        // Step 4: Handle incomplete code blocks - those without closing tags
-        // Look for code blocks followed by markdown headers, images, or new paragraphs
-        transformedContent = transformedContent.replace(
-          /(\[code\s+language=(?:&quot;|")([^"&]+)(?:&quot;|")\])([\s\S]*?)(?=\n\s*###|\n\s*!\[|\n\s*\[|\n\s*[A-Z][a-z]|\n\s*<|$)/gi,
-          (match, openTag, language, code) => {
-            // Only transform if there's no [/code] tag in the captured content
-            if (!/\[\/code\]/i.test(code)) {
-              // Clean the code content - stop at certain patterns
-              let cleanedCode = code
-                .replace(/\s*You may remember.*$/s, '') // Stop at explanatory text
-                .replace(/\s*![^)]*\).*$/s, '') // Stop at images
-                .replace(/\s*Pretty neat.*$/s, '') // Stop at commentary
-                .replace(/\s*Lets.*$/s, '') // Stop at new sections
-                .replace(/\s*Now lets.*$/s, '') // Stop at new sections
-                .trim();
-
-              return createCodeBlock(language, cleanedCode);
-            }
-            return match;
-          }
-        );
-
-        // Step 5: Handle proper code blocks with closing tags
-        transformedContent = transformedContent.replace(
-          /\[code\s+language=(?:&quot;|")([^"&]+)(?:&quot;|")\]([\s\S]*?)\[\/code\]/gi,
-          (match, language, code) => {
-            return createCodeBlock(language, code);
-          }
-        );
-
-        // Step 6: Clean up any remaining malformed patterns
-        // Remove orphaned [/code] tags that weren't matched
-        transformedContent = transformedContent.replace(/\[\/code\]/gi, '');
-
-        // Clean up HTML structure issues
-        transformedContent = transformedContent.replace(
-          /<\/p>\s*<\/p>/g,
-          '</p>'
-        );
-        transformedContent = transformedContent.replace(/<p>\s*<p>/g, '<p>');
-        transformedContent = transformedContent.replace(/<p><\/p>/g, '');
-
-        return transformedContent;
       }
-      return content;
+
+      let result = content;
+
+      // Step 1: Remove ALL backslashes around brackets completely
+      result = result.replace(/\\+(\[)/g, '$1');
+      result = result.replace(/(\])\\+/g, '$1');
+      result = result.replace(/\\+(\])/g, '$1');
+
+      // Step 2: Handle the main patterns
+      // Pattern 1: [code language="lang"]content[/code]
+      result = result.replace(
+        /\[code\s+language\s*=\s*["']([^"']+)["'][^\]]*\]([\s\S]*?)\[\/code\]/gi,
+        (match, language, code) => createCodeBlock(language, code)
+      );
+
+      // Pattern 2: [code language=lang] (without quotes)
+      result = result.replace(
+        /\[code\s+language\s*=\s*([^\s\]]+)[^\]]*\]([\s\S]*?)\[\/code\]/gi,
+        (match, language, code) => createCodeBlock(language, code)
+      );
+
+      // Pattern 3: [code="lang"] (alternate syntax)
+      result = result.replace(
+        /\[code\s*=\s*["']([^"']+)["']\s*\]([\s\S]*?)\[\/code\]/gi,
+        (match, language, code) => createCodeBlock(language, code)
+      );
+
+      // Step 3: Clean up any remaining orphaned tags
+      result = result.replace(/\[(?:\/)?code[^\]]*\]/gi, '');
+
+      // Step 4: Clean up excessive paragraph tags
+      result = result.replace(/<\/p>\s*<\/p>/g, '</p>');
+      result = result.replace(/<p>\s*<p>/g, '<p>');
+      result = result.replace(/<p>\s*<\/p>/g, '');
+
+      return result;
     }
   );
 
@@ -178,12 +150,226 @@ module.exports = function (eleventyConfig) {
     }
   });
 
+  // Debug transform to see what content we're getting
+  eleventyConfig.addTransform('debugContent', function (content, outputPath) {
+    if (outputPath && outputPath.includes('cfwheels-application-part-3')) {
+      console.log('🔍 CFWheels Part 3 content check:');
+      console.log(
+        'Has ![](images/cfwheels3_4.jpg):',
+        content.includes('![](images/cfwheels3_4.jpg)')
+      );
+      console.log('Has <img src=:', content.includes('<img src='));
+      console.log('File extension processed as:', this.inputPath || 'unknown');
+    }
+    return content;
+  });
+
+  // Markdown image processing - modify markdown-it to handle image paths
+  eleventyConfig.amendLibrary('md', function (mdLib) {
+    // Override the default image renderer
+    const defaultImageRenderer =
+      mdLib.renderer.rules.image ||
+      function (tokens, idx, options, env, self) {
+        return self.renderToken(tokens, idx, options);
+      };
+
+    mdLib.renderer.rules.image = function (tokens, idx, options, env, self) {
+      const token = tokens[idx];
+      const srcIndex = token.attrIndex('src');
+      const altIndex = token.attrIndex('alt');
+
+      if (srcIndex >= 0) {
+        const src = token.attrs[srcIndex][1];
+
+        // Log all images for CFWheels part 3 post
+        if (
+          env?.page?.inputPath &&
+          env.page.inputPath.includes('cfwheels-application-part-3')
+        ) {
+          console.log('🎯 CFWheels Part 3 image found:', src);
+        }
+
+        // Only process relative image paths that start with 'images/'
+        if (src.startsWith('images/')) {
+          const pathPrefix =
+            process.env?.NODE_ENV === 'production' ? '/mike-henke-website' : '';
+
+          // Extract post slug from available data
+          let postSlug = '';
+
+          if (
+            env?.page?.inputPath &&
+            env.page.inputPath.includes('output/posts/')
+          ) {
+            const pathParts = env.page.inputPath.split('/');
+            const outputIndex = pathParts.indexOf('output');
+            if (outputIndex !== -1 && pathParts[outputIndex + 1] === 'posts') {
+              postSlug = pathParts[outputIndex + 2];
+            }
+          }
+
+          if (postSlug) {
+            const imageName = src.replace('images/', '');
+            // Route images to the blog directory structure
+            const newSrc = `${pathPrefix}/blog/${postSlug}/images/${imageName}`;
+            token.attrs[srcIndex][1] = newSrc;
+
+            if (
+              env?.page?.inputPath &&
+              env.page.inputPath.includes('cfwheels-application-part-3')
+            ) {
+              console.log(
+                '🔄 CFWheels Part 3 image transformed:',
+                src,
+                '→',
+                newSrc
+              );
+            }
+          }
+        }
+      }
+
+      // Ensure we always render the image tag properly
+      const token_o = tokens[idx];
+      let aIndex = token_o.attrIndex('alt');
+      let alt = '';
+
+      if (aIndex >= 0) {
+        alt = token_o.attrs[aIndex][1];
+      } else if (token_o.content) {
+        alt = token_o.content;
+      }
+
+      // Get the final src value
+      const finalSrc = token_o.attrs[srcIndex][1];
+
+      // Return a proper HTML img tag
+      return `<img src="${finalSrc}" alt="${alt}" loading="lazy">`;
+    };
+  });
+
+  // Remove the markdown image transform since we're handling it in markdown-it now
+
+  // Image path transform for WordPress posts
+  eleventyConfig.addTransform(
+    'imagePathTransform',
+    function (content, outputPath) {
+      if (!outputPath || !outputPath.endsWith('.html')) {
+        return content;
+      }
+
+      // Only transform WordPress post pages
+      if (outputPath.includes('/blog/') || outputPath.includes('/posts/')) {
+        const pathPrefix =
+          process.env?.NODE_ENV === 'production' ? '/mike-henke-website' : '';
+
+        // Transform relative image paths to absolute paths
+        content = content.replace(
+          /<img([^>]*)\ssrc=["']images\/([^"']+)["']/g,
+          (match, attrs, imageName) => {
+            // Extract the post slug from the output path
+            const pathParts = outputPath.split('/');
+            const postSlug = pathParts[pathParts.length - 2]; // Get the directory name
+
+            const newPath = `${pathPrefix}/blog/${postSlug}/images/${imageName}`;
+            return `<img${attrs} src="${newPath}"`;
+          }
+        );
+
+        // Also handle markdown-style images that might have been converted
+        content = content.replace(
+          /src=["']\.\/images\/([^"']+)["']/g,
+          (match, imageName) => {
+            const pathParts = outputPath.split('/');
+            const postSlug = pathParts[pathParts.length - 2];
+
+            const newPath = `${pathPrefix}/blog/${postSlug}/images/${imageName}`;
+            return `src="${newPath}"`;
+          }
+        );
+      }
+
+      return content;
+    }
+  );
+
+  // Fallback transform to convert any remaining markdown images that weren't processed by markdown-it
+  eleventyConfig.addTransform(
+    'fallbackImageTransform',
+    function (content, outputPath) {
+      if (!outputPath || !outputPath.endsWith('.html')) {
+        return content;
+      }
+
+      // Only process WordPress post pages
+      if (outputPath.includes('/blog/') || outputPath.includes('/posts/')) {
+        const pathPrefix =
+          process.env?.NODE_ENV === 'production' ? '/mike-henke-website' : '';
+
+        // Transform remaining markdown image syntax to HTML img tags
+        content = content.replace(
+          /!\[\]\(images\/([^)]+)\)/g,
+          (match, imageName) => {
+            // Extract the post slug from the output path
+            const pathParts = outputPath.split('/');
+            let postSlug = '';
+
+            // Find the post slug in the path
+            for (let i = 0; i < pathParts.length; i++) {
+              if (pathParts[i] === 'blog' && pathParts[i + 1]) {
+                postSlug = pathParts[i + 1];
+                break;
+              }
+            }
+
+            if (postSlug) {
+              const newSrc = `${pathPrefix}/blog/${postSlug}/images/${imageName}`;
+
+              if (outputPath.includes('cfwheels-application-part-3')) {
+                console.log(
+                  '🔄 Fallback image transform:',
+                  match,
+                  '→',
+                  `<img src="${newSrc}" alt="" loading="lazy">`
+                );
+              }
+
+              return `<img src="${newSrc}" alt="" loading="lazy">`;
+            }
+
+            return match; // Return unchanged if we can't determine the post slug
+          }
+        );
+      }
+
+      return content;
+    }
+  );
+
   // Passthrough copy for static assets
   eleventyConfig.addPassthroughCopy('styles.css');
   eleventyConfig.addPassthroughCopy('favicon.ico');
   eleventyConfig.addPassthroughCopy({ _pagefind: 'pagefind' });
   eleventyConfig.addPassthroughCopy('assets'); // Assets folder including images
-  eleventyConfig.addPassthroughCopy('output/**/*.{jpg,jpeg,png,gif,svg,webp}'); // WordPress images
+
+  // Copy WordPress post images to blog directory structure
+  // Instead of copying to output/posts/*, we copy to blog/* to match the URL structure
+  const fs = require('fs');
+  const path = require('path');
+  const glob = require('glob');
+
+  // Find all image directories in output/posts/*/images/
+  const imageDirs = glob.sync('output/posts/*/images/');
+  
+  imageDirs.forEach(dir => {
+    // Extract post slug from path: output/posts/POST-SLUG/images/
+    const postSlug = dir.split('/')[2];
+    
+    // Set up passthrough copy from source to blog destination
+    eleventyConfig.addPassthroughCopy({
+      [`output/posts/${postSlug}/images/`]: `blog/${postSlug}/images/`
+    });
+  });
 
   // WordPress export collections
   eleventyConfig.addCollection('wordpressPosts', function (collectionApi) {
@@ -192,6 +378,22 @@ module.exports = function (eleventyConfig) {
       .sort((a, b) => {
         return new Date(b.data.date) - new Date(a.data.date);
       });
+  });
+
+  // Add custom permalink for WordPress posts to route them to /blog/
+  eleventyConfig.addGlobalData('eleventyComputed', {
+    permalink: (data) => {
+      // Only apply to WordPress posts
+      if (data.page?.inputPath?.includes('output/posts/')) {
+        const pathParts = data.page.inputPath.split('/');
+        const outputIndex = pathParts.indexOf('output');
+        if (outputIndex !== -1 && pathParts[outputIndex + 1] === 'posts') {
+          const postSlug = pathParts[outputIndex + 2];
+          return `/blog/${postSlug}/`;
+        }
+      }
+      return data.permalink;
+    },
   });
 
   eleventyConfig.addCollection('wordpressPages', function (collectionApi) {
@@ -261,8 +463,10 @@ module.exports = function (eleventyConfig) {
 
     return postsByCategory;
   });
+
   // console log to terminal the NODE_ENV
   console.log('NODE_ENV:', process.env?.NODE_ENV);
+
   return {
     pathPrefix:
       process.env?.NODE_ENV === 'production' ? '/mike-henke-website' : '/',
