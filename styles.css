@@ -382,7 +382,7 @@ p {
 
 /* Content section with top margin - replaces style="margin-top: 30px;" */
 .content-section-top-margin {
-  margin-top: var(--spacing-xl);
+  margin-top: 3.5rem !important;
 }
 
 /* Back to blog link styling - replaces inline styles */
@@ -1012,11 +1012,11 @@ section {
 }
 
 .timeline-number {
-  font-family: var(--font-primary);
-  font-weight: var(--font-weight-bold);
-  font-size: var(--font-size-2xl);
-  color: var(--color-background);
-  letter-spacing: var(--letter-spacing-subtle);
+  position: relative;
+  z-index: 2;
+  background: none;
+  border: none;
+  /* No line or border inside the number */
 }
 
 .timeline-content {
@@ -1184,6 +1184,12 @@ section {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--spacing-lg);
+  overflow: visible !important;
+  scrollbar-width: none !important;
+}
+
+.frameworks-grid::-webkit-scrollbar {
+  display: none !important;
 }
 
 .framework-item {
