@@ -360,14 +360,14 @@ module.exports = function (eleventyConfig) {
 
   // Find all image directories in output/posts/*/images/
   const imageDirs = glob.sync('output/posts/*/images/');
-  
-  imageDirs.forEach(dir => {
+
+  imageDirs.forEach((dir) => {
     // Extract post slug from path: output/posts/POST-SLUG/images/
     const postSlug = dir.split('/')[2];
-    
+
     // Set up passthrough copy from source to blog destination
     eleventyConfig.addPassthroughCopy({
-      [`output/posts/${postSlug}/images/`]: `blog/${postSlug}/images/`
+      [`output/posts/${postSlug}/images/`]: `blog/${postSlug}/images/`,
     });
   });
 
