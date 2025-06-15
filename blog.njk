@@ -6,11 +6,12 @@ permalink: /blog/index.html
 <section class="content-section-boxed content-section-top-margin">
     <h1 class="section-title">Blog Posts</h1>
     <div class="section-underline"></div>
-    <ul>
+    <div class="blog-post-list">
         {%- for post in collections.allPosts -%}
-            <li class="blog-post-item">
-                <a href="{{ post.url | url }}">{{ post.data.title }}</a>
-                <p class="blog-post-date"><em>{{ post.date | date('LLLL d, yyyy') }}</em></p>
+            <article class="blog-post-card">
+                <h2 class="blog-post-title">
+                    <a href="{{ post.url | url }}">{{ post.data.title }}</a>
+                </h2>
                 {% if post.data.categories %}
                     <div class="blog-post-categories">
                         {% for category in post.data.categories %}
@@ -18,7 +19,13 @@ permalink: /blog/index.html
                         {% endfor %}
                     </div>
                 {% endif %}
-            </li>
+                {% if post.data.excerpt %}
+                    <p class="blog-post-excerpt">{{ post.data.excerpt }}</p>
+                {% else %}
+                    <p class="blog-post-excerpt">{{ post.content | striptags | truncate(300, true, "...") }}</p>
+                {% endif %}
+                <p class="blog-post-date"><em>Published: {{ post.date | date('LLLL d, yyyy') }}</em></p>
+            </article>
         {%- endfor -%}
-    </ul>
+    </div>
 </section>

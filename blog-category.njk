@@ -16,11 +16,12 @@ eleventyComputed:
         <a href="{{ '/blog' | url }}" class="category-page-back-link">← Back to All Posts</a>
     </p>
     
-    <ul>
+    <div class="blog-post-list">
         {%- for post in collections.postsByCategory[pagination.items[0]].posts -%}
-            <li class="blog-post-item">
-                <a href="{{ post.url | url }}">{{ post.data.title }}</a>
-                <p class="blog-post-date"><em>{{ post.date | date('LLLL d, yyyy') }}</em></p>
+            <article class="blog-post-card">
+                <h2 class="blog-post-title">
+                    <a href="{{ post.url | url }}">{{ post.data.title }}</a>
+                </h2>
                 {% if post.data.categories %}
                     <div class="blog-post-categories">
                         {% for category in post.data.categories %}
@@ -28,9 +29,15 @@ eleventyComputed:
                         {% endfor %}
                     </div>
                 {% endif %}
-            </li>
+                {% if post.data.excerpt %}
+                    <p class="blog-post-excerpt">{{ post.data.excerpt }}</p>
+                {% else %}
+                    <p class="blog-post-excerpt">{{ post.content | striptags | truncate(300, true, "...") }}</p>
+                {% endif %}
+                <p class="blog-post-date"><em>Published: {{ post.date | date('LLLL d, yyyy') }}</em></p>
+            </article>
         {%- endfor -%}
-    </ul>
+    </div>
     
     <p class="category-post-count">
         <strong>{{ collections.postsByCategory[pagination.items[0]].posts.length }}</strong> post{% if collections.postsByCategory[pagination.items[0]].posts.length != 1 %}s{% endif %} in this category
