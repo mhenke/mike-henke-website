@@ -998,6 +998,45 @@ section {
   z-index: 2;
   position: relative;
   border: var(--border-width-default) solid var(--color-primary);
+  /* Prevent any unwanted pseudo-elements or lines */
+  overflow: hidden;
+}
+
+.timeline-square::before,
+.timeline-square::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Ensure timeline square and number stay clean on hover */
+.timeline-square:hover,
+.timeline-square:focus,
+.timeline-item:hover .timeline-square,
+.timeline-content:hover ~ .timeline-marker-group .timeline-square {
+  background: var(--color-primary) !important;
+  border: var(--border-width-default) solid var(--color-primary) !important;
+  box-shadow: var(--shadow-accent-lg), var(--shadow-md) !important;
+}
+
+.timeline-number:hover,
+.timeline-number:focus,
+.timeline-item:hover .timeline-number,
+.timeline-content:hover ~ .timeline-marker-group .timeline-number {
+  background: none !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+}
+
+.timeline-number:hover::before,
+.timeline-number:hover::after,
+.timeline-number:focus::before,
+.timeline-number:focus::after,
+.timeline-item:hover .timeline-number::before,
+.timeline-item:hover .timeline-number::after {
+  display: none !important;
+  content: none !important;
 }
 
 .timeline-connector {
@@ -1014,9 +1053,18 @@ section {
 .timeline-number {
   position: relative;
   z-index: 2;
-  background: none;
-  border: none;
-  /* No line or border inside the number */
+  background: none !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+  /* Prevent any lines, borders, or pseudo-elements from appearing */
+}
+
+.timeline-number::before,
+.timeline-number::after {
+  display: none !important;
+  content: none !important;
 }
 
 .timeline-content {
