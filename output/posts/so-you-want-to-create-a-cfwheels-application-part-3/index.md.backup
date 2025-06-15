@@ -2,11 +2,11 @@
 title: "So you want to create a CFWheels application? ( Part 3 )"
 date: 2009-07-30
 categories: 
- - "cfwheels"
- - "ColdFusion"
+  - "cfwheels"
+  - "ColdFusion"
 ---
 
-This [CFWheels](http://cfwheels.org/) series is heavily borrowed from [Dan Wilson](http://www.nodans.com)'s "So You Want to" series about [Model Glue](http://model-glue.com):Unity.  This entry matches to this [post](http://www.nodans.com/index.cfm/2007/1/21/So-you-want-to-create-a-ModelGlueUnity-application--Part-3-). Previously in this series, we [installed CFWheels](http://mikehenke.com/post.cfm/so-you-want-to-install-cfwheels), [discussed some basic conventions over configuration and concepts](http://mikehenke.com/post.cfm/so-you-want-to-create-a-cfwheels-application-part-1) in CFWheels, and [added our basic flow and navigation](http://mikehenke.com/post.cfm/so-you-want-to-create-a-cfwheels-application-part-2). Our Contact-O-Matic is moving right along (this last sentence was borrowed from Dan's post.) In this segment of our regularly scheduled programming (again borrowed), we will setup a Contactomatic database with tables, add the contact form, and contact list.
+This [CFWheels](http://cfwheels.org/) series is heavily borrowed from [Dan Wilson](http://www.nodans.com)'s "So You Want to" series about [Model Glue](http://model-glue.com):Unity.Â  This entry matches to this [post](http://www.nodans.com/index.cfm/2007/1/21/So-you-want-to-create-a-ModelGlueUnity-application--Part-3-). Previously in this series, we [installed CFWheels](http://mikehenke.com/post.cfm/so-you-want-to-install-cfwheels), [discussed some basic conventions over configuration and concepts](http://mikehenke.com/post.cfm/so-you-want-to-create-a-cfwheels-application-part-1) in CFWheels, and [added our basic flow and navigation](http://mikehenke.com/post.cfm/so-you-want-to-create-a-cfwheels-application-part-2). Our Contact-O-Matic is moving right along (this last sentence was borrowed from Dan's post.) In this segment of our regularly scheduled programming (again borrowed), we will setup a Contactomatic database with tables, add the contact form, and contact list.
 
 ### Database Setup
 
@@ -16,7 +16,7 @@ DROP TABLE IF EXISTS 'contactomatic'.'contacts';CREATE TABLE 'contactomatic'.'c
 
 ### Config
 
-CFWheels simplifies alot of time consuming steps we have gotten use to in developing ColdFusion application using conventions (or assumptions) of our database and naming.  Don't worry, we can override these assumptions/conventions if needed. Our first convention we encounter in CFWheels assumes our datasource name is the same as the webroot folder name. We will override that in config/development/settings.cfm . Place this code in that file. \[code language="coldfusion"\]
+CFWheels simplifies alot of time consuming steps we have gotten use to in developing ColdFusion application using conventions (or assumptions) of our database and naming.Â  Don't worry, we can override these assumptions/conventions if needed. Our first convention we encounter in CFWheels assumes our datasource name is the same as the webroot folder name. We will override that in config/development/settings.cfm . Place this code in that file. \[code language="coldfusion"\]
 <cfset set(dataSourceName="contactomatic")>
 \\[/code\] More on [configuration and defaults](http://cfwheels.org/docs/chapter/configuration-and-defaults).
 
@@ -48,7 +48,7 @@ select * from contacts
 
 ### Create View
 
-Lets drive on and create the new view page.  It will have a form to add new contacts, but before we do that let's modify the new action by commenting out this code. \[code language="coldfusion"\]
+Lets drive on and create the new view page.Â  It will have a form to add new contacts, but before we do that let's modify the new action by commenting out this code. \[code language="coldfusion"\]
 <!---  <cfset newContact.name = "Mike Henke" /> <cfset newContact.type = "Friend" /> <cfset newContact.save() /> <cfset renderNothing() /> --->
 \\[/code\] Now lets add new.cfm in the Views folder and place this code in it. \[code language="coldfusion"\]
 <cfoutput>#includePartial("banner")#<cfoutput>#flash("success")#</cfoutput>#startFormTag(action="create")#<div>#textField(objectName="newContact", property="name", label="Contact")#</div><div>#textField(objectName="newContact", property="type", label="Type")#</div><div>#submitTag()#</div>#endFormTag()#</cfoutput>
