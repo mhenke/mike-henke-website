@@ -1,7 +1,7 @@
 <!-- Shared navigation for all layouts -->
 <nav class="navbar" role="navigation" aria-label="Main navigation">
     <div class="navbar-container">
-        <div class="navbar-brand" role="banner">Mike Henke</div>
+        <a href="{{ '/' | url }}" class="navbar-brand" role="banner" aria-label="Mike Henke - Return to homepage">Mike Henke</a>
         
         <!-- New Hamburger Menu Toggle -->
         <button class="navbar-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
@@ -11,7 +11,7 @@
         <ul class="navbar-links" id="nav-menu" role="menubar">
             <!-- Mobile menu header with close button -->
             <div class="mobile-menu-header">
-                <div class="menu-brand">Mike Henke</div>
+                <a href="{{ '/' | url }}" class="menu-brand" aria-label="Mike Henke - Return to homepage">Mike Henke</a>
                 <button class="menu-close" aria-label="Close navigation menu">
                     <i class="fas fa-times" aria-hidden="true"></i>
                 </button>

@@ -151,7 +151,10 @@
                         const dateP = document.createElement('p');
                         dateP.className = 'blog-post-date';
                         dateP.innerHTML = `<em>Published: ${dateData}</em>`;
-                        excerptElement.insertAdjacentElement('afterend', dateP);
+                        
+                        // Insert at the very end of the result (after excerpt) like blog list page
+                        const resultContainer = result.querySelector('.pagefind-ui__result-inner') || result;
+                        resultContainer.appendChild(dateP);
                     }
                 }
             });
