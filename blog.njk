@@ -22,7 +22,7 @@ permalink: /blog/index.html
                 {% if post.data.excerpt %}
                     <p class="blog-post-excerpt">{{ post.data.excerpt }}</p>
                 {% else %}
-                    <p class="blog-post-excerpt">{{ post.content | striptags | truncate(300, true, "...") }}</p>
+                    <p class="blog-post-excerpt">{{ post.content | blogExcerpt(300) }}</p>
                 {% endif %}
                 <p class="blog-post-date"><em>Published: {{ post.date | date('LLLL d, yyyy') }}</em></p>
             </article>

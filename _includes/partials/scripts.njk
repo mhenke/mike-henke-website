@@ -111,15 +111,24 @@
                 // Remove default meta tags
                 metaTags.forEach(tag => tag.remove());
                 
-                // Find the title element to insert our custom elements after
+                // Find the title element and excerpt to check for existing content
                 const titleElement = result.querySelector('.pagefind-ui__result-title');
                 const excerptElement = result.querySelector('.pagefind-ui__result-excerpt');
                 
-                if (titleElement) {
-                    // Add custom category display
-                    if (categoryData) {
+                if (titleElement && excerptElement) {
+                    // Check if categories or dates are already in the excerpt content or as DOM elements
+                    const excerptText = excerptElement.textContent || '';
+                    const hasCategories = excerptText.includes('Categories:') || 
+                                        excerptText.includes('Category:') ||
+                                        result.querySelector('.blog-post-categories');
+                    const hasDate = excerptText.includes('Published:') || 
+                                  excerptText.includes('Published on') ||
+                                  result.querySelector('.blog-post-date');
+                    
+                    // Only add categories if they're not already present
+                    if (categoryData && !hasCategories) {
                         const categoryDiv = document.createElement('div');
-                        categoryDiv.className = 'search-result-categories';
+                        categoryDiv.className = 'blog-post-categories';
                         
                         const categories = categoryData.split(',');
                         categories.forEach(cat => {
@@ -134,10 +143,10 @@
                         titleElement.insertAdjacentElement('afterend', categoryDiv);
                     }
                     
-                    // Add custom date display
-                    if (dateData && excerptElement) {
+                    // Only add date if it's not already present
+                    if (dateData && !hasDate) {
                         const dateP = document.createElement('p');
-                        dateP.className = 'search-result-date';
+                        dateP.className = 'blog-post-date';
                         dateP.innerHTML = `<em>Published: ${dateData}</em>`;
                         excerptElement.insertAdjacentElement('afterend', dateP);
                     }

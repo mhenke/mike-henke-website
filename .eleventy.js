@@ -346,6 +346,74 @@ module.exports = function (eleventyConfig) {
     }
   );
 
+  // HTML entity decoding transform for blog content
+  eleventyConfig.addTransform(
+    'htmlEntityDecoder',
+    function (content, outputPath) {
+      if (!outputPath || !outputPath.endsWith('.html')) {
+        return content;
+      }
+
+      // Only apply to blog post pages to avoid affecting other content
+      if (outputPath.includes('/blog/') || outputPath.includes('/posts/')) {
+        // Decode common HTML entities in the content
+        let decodedContent = content
+          .replace(/&quot;/g, '"')
+          .replace(/&#39;/g, "'")
+          .replace(/&apos;/g, "'")
+          .replace(/&lt;/g, '<')
+          .replace(/&gt;/g, '>')
+          .replace(/&amp;/g, '&'); // Keep this last to avoid double-decoding
+
+        return decodedContent;
+      }
+
+      return content;
+    }
+  );
+
+  // Custom filter for blog excerpts that removes code blocks and decodes HTML entities
+  eleventyConfig.addFilter('blogExcerpt', function (content, length = 300) {
+    if (!content) return '';
+
+    // First, remove code blocks completely (both original [code] syntax and generated HTML)
+    let cleanContent = content
+      // Remove [code] blocks that haven't been processed yet
+      .replace(/\[code[^\]]*\][\s\S]*?\[\/code\]/gi, ' ')
+      // Remove generated code block HTML
+      .replace(/<div class="code-block">[\s\S]*?<\/div>/gi, ' ')
+      // Remove any remaining [code] orphan tags
+      .replace(/\[(?:\/)?code[^\]]*\]/gi, ' ')
+      // Remove HTML tags
+      .replace(/<[^>]*>/g, ' ')
+      // Decode HTML entities
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .replace(/&apos;/g, "'")
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&amp;/g, '&') // Keep this last to avoid double-decoding
+      // Clean up whitespace
+      .replace(/\s+/g, ' ')
+      .trim();
+
+    // Truncate to specified length
+    if (cleanContent.length > length) {
+      // Find the last complete word within the length limit
+      const truncated = cleanContent.substring(0, length);
+      const lastSpace = truncated.lastIndexOf(' ');
+
+      if (lastSpace > length * 0.8) {
+        // If we found a space reasonably close to the end
+        return truncated.substring(0, lastSpace) + '...';
+      } else {
+        return truncated + '...';
+      }
+    }
+
+    return cleanContent;
+  });
+
   // Passthrough copy for static assets
   eleventyConfig.addPassthroughCopy('styles.css');
   eleventyConfig.addPassthroughCopy('favicon.ico');
