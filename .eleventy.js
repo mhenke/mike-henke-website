@@ -49,6 +49,14 @@ module.exports = function (eleventyConfig) {
           json: 'language-json',
         };
 
+        // Debug: Log the language variable to see what it contains
+        if (language.includes('"') || language.includes("'")) {
+          console.log(
+            '🐛 Language with quotes detected:',
+            JSON.stringify(language)
+          );
+        }
+
         const prismClass =
           languageMap[language.toLowerCase()] ||
           `language-${language.toLowerCase()}`;
@@ -74,8 +82,12 @@ module.exports = function (eleventyConfig) {
       // Step 2: Handle the main patterns
       // Pattern 1: [code language="lang"]content[/code]
       result = result.replace(
-        /\[code\s+language\s*=\s*["']([^"']+)["'][^\]]*\]([\s\S]*?)\[\/code\]/gi,
-        (match, language, code) => createCodeBlock(language, code)
+        /\[code\s+language\s*=\s*["'""]([^"'""]+)["'"""][^\]]*\]([\s\S]*?)\[\/code\]/gi,
+        (match, language, code) => {
+          // Clean the language of any remaining quotes
+          const cleanLanguage = language.replace(/^["'""]|["'""]$/g, '');
+          return createCodeBlock(cleanLanguage, code);
+        }
       );
 
       // Pattern 2: [code language=lang] (without quotes)
@@ -86,8 +98,12 @@ module.exports = function (eleventyConfig) {
 
       // Pattern 3: [code="lang"] (alternate syntax)
       result = result.replace(
-        /\[code\s*=\s*["']([^"']+)["']\s*\]([\s\S]*?)\[\/code\]/gi,
-        (match, language, code) => createCodeBlock(language, code)
+        /\[code\s*=\s*["'""]([^"'""]+)["'""]\s*\]([\s\S]*?)\[\/code\]/gi,
+        (match, language, code) => {
+          // Clean the language of any remaining quotes
+          const cleanLanguage = language.replace(/^["'""]|["'""]$/g, '');
+          return createCodeBlock(cleanLanguage, code);
+        }
       );
 
       // Step 3: Clean up any remaining orphaned tags
