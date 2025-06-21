@@ -135,7 +135,10 @@
                             const categoryLink = document.createElement('a');
                             categoryLink.className = 'category-tag';
                             const slug = cat.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-                            categoryLink.href = `/blog/category/${slug}/`;
+                            
+                            // Handle base path for GitHub Pages deployment
+                            const basePath = window.location.pathname.includes('/mike-henke-website/') ? '/mike-henke-website' : '';
+                            categoryLink.href = `${basePath}/blog/category/${slug}/`;
                             categoryLink.textContent = cat.trim();
                             categoryDiv.appendChild(categoryLink);
                         });
