@@ -621,6 +621,8 @@ p {
     overflow-y: auto;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
+    align-items: stretch; /* Ensure items stretch full width */
+    justify-content: flex-start; /* Align items to top */
   }
 
   .navbar-links.active {
@@ -679,14 +681,7 @@ p {
     color: var(--color-primary);
     letter-spacing: var(--letter-spacing-wide);
     display: block !important; /* Override desktop hiding */
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-
-  .menu-brand:hover,
-  .menu-brand:focus {
-    color: var(--color-primary-dark);
-    text-decoration: none;
+    padding: var(--spacing-sm);
   }
 
   .navbar-links li {
@@ -709,26 +704,36 @@ p {
     transition: all 0.2s ease;
     min-height: 60px;
     gap: var(--spacing-md);
+    text-align: left;
   }
 
   .navbar-links a i {
     font-size: var(--font-size-lg);
-    width: 20px;
+    width: 24px;
+    height: 24px;
     text-align: center;
-    color: var(--color-primary);
-    transition: color 0.2s ease;
-    display: inline !important; /* Override desktop hiding */
+    color: var(--color-text);
+    transition: all 0.2s ease;
+    display: inline-flex !important; /* Override desktop hiding */
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
   }
 
   .navbar-links a span {
     flex: 1;
     text-align: left;
     display: inline !important; /* Override desktop hiding */
+    margin-left: 0; /* Ensure no margin pushing text right */
   }
 
   /* Show both icon and text for search on mobile */
   .navbar-links a[aria-label='Search'] i {
-    display: inline !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
   }
 
   .navbar-links a[aria-label='Search'] span {
@@ -748,7 +753,9 @@ p {
 
   .navbar-links a:hover i,
   .navbar-links a:focus i {
-    color: var(--color-primary);
+    background-color: var(--color-primary);
+    color: var(--color-text);
+    border-color: var(--color-primary);
   }
 
   /* Search item specific styling */
