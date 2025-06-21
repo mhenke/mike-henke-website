@@ -550,6 +550,15 @@ p {
   justify-content: center;
 }
 
+/* Hide icons and show only text on desktop */
+.navbar-links a i {
+  display: none;
+}
+
+.navbar-links a span {
+  display: inline;
+}
+
 .navbar-links a:hover {
   color: var(--color-primary);
 }
@@ -570,19 +579,24 @@ p {
   width: 100%;
 }
 
-/* Search icon specific styling */
+/* Search icon specific styling - show icon on desktop */
 .navbar-links a[aria-label='Search'] {
   min-width: 44px;
   height: 44px;
   padding: var(--spacing-sm);
 }
 
-.navbar-links a[aria-label='Search']::after {
-  display: none; /* No underline for search icon */
+.navbar-links a[aria-label='Search'] i {
+  display: inline; /* Show search icon on desktop */
+  font-size: var(--font-size-base);
 }
 
-.navbar-links a[aria-label='Search'] i {
-  font-size: var(--font-size-base);
+.navbar-links a[aria-label='Search'] span {
+  display: none; /* Hide search text on desktop */
+}
+
+.navbar-links a[aria-label='Search']::after {
+  display: none; /* No underline for search icon */
 }
 
 /* Mobile Navigation Override */
@@ -686,6 +700,7 @@ p {
   .navbar-links a {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     width: 100%;
     padding: var(--spacing-lg) var(--spacing-xl);
     border-radius: 0;
@@ -693,6 +708,31 @@ p {
     font-weight: var(--font-weight-medium);
     transition: all 0.2s ease;
     min-height: 60px;
+    gap: var(--spacing-md);
+  }
+
+  .navbar-links a i {
+    font-size: var(--font-size-lg);
+    width: 20px;
+    text-align: center;
+    color: var(--color-primary);
+    transition: color 0.2s ease;
+    display: inline !important; /* Override desktop hiding */
+  }
+
+  .navbar-links a span {
+    flex: 1;
+    text-align: left;
+    display: inline !important; /* Override desktop hiding */
+  }
+
+  /* Show both icon and text for search on mobile */
+  .navbar-links a[aria-label='Search'] i {
+    display: inline !important;
+  }
+
+  .navbar-links a[aria-label='Search'] span {
+    display: inline !important;
   }
 
   .navbar-links a::after {
@@ -701,21 +741,24 @@ p {
 
   .navbar-links a:hover,
   .navbar-links a:focus {
-    background-color: var(--color-primary);
-    color: var(--color-background);
+    background-color: var(--color-surface);
+    color: var(--color-text);
     transform: none;
   }
 
-  /* Search icon styling for mobile */
+  .navbar-links a:hover i,
+  .navbar-links a:focus i {
+    color: var(--color-primary);
+  }
+
+  /* Search item specific styling */
   .navbar-links a[aria-label='Search'] {
     justify-content: flex-start;
     gap: var(--spacing-md);
   }
 
   .navbar-links a[aria-label='Search']::before {
-    content: 'Search';
-    font-family: var(--font-primary);
-    font-weight: var(--font-weight-medium);
+    display: none;
   }
 
   /* Mobile overlay - allow seeing background content at top */
