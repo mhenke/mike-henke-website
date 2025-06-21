@@ -712,7 +712,7 @@ p {
     width: 24px;
     height: 24px;
     text-align: center;
-    color: var(--color-text);
+    color: var(--color-text-secondary);
     transition: all 0.2s ease;
     display: inline-flex !important; /* Override desktop hiding */
     align-items: center;
@@ -1286,10 +1286,6 @@ section {
 
 .skill-row:active {
   transform: var(--active-transform);
-}
-
-.skill-percent {
-  color: var(--color-text-secondary);
 }
 
 .progress-bar {
