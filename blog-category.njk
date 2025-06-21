@@ -12,6 +12,8 @@ eleventyComputed:
     <h1 class="section-title">Posts in "{{ collections.postsByCategory[pagination.items[0]].name }}"</h1>
     <div class="section-underline"></div>
     
+    <h2 class="category-post-count-header">{{ collections.postsByCategory[pagination.items[0]].posts.length }} post{% if collections.postsByCategory[pagination.items[0]].posts.length != 1 %}s{% endif %} in {{ collections.postsByCategory[pagination.items[0]].name }}</h2>
+    
     <p class="category-page-back-link">
         <a href="{{ '/blog' | url }}" class="category-page-back-link">← Back to All Posts</a>
     </p>
@@ -32,14 +34,10 @@ eleventyComputed:
                 {% if post.data.excerpt %}
                     <p class="blog-post-excerpt">{{ post.data.excerpt }}</p>
                 {% else %}
-                    <p class="blog-post-excerpt">{{ post.content | striptags | truncate(300, true, "...") }}</p>
+                    <p class="blog-post-excerpt">{{ post.content | blogExcerpt(300) }}</p>
                 {% endif %}
                 <p class="blog-post-date"><em>Published: {{ post.date | date('LLLL d, yyyy') }}</em></p>
             </article>
         {%- endfor -%}
     </div>
-    
-    <p class="category-post-count">
-        <strong>{{ collections.postsByCategory[pagination.items[0]].posts.length }}</strong> post{% if collections.postsByCategory[pagination.items[0]].posts.length != 1 %}s{% endif %} in this category
-    </p>
 </section>

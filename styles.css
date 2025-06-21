@@ -400,6 +400,14 @@ p {
 }
 
 /* Category page specific styling */
+.category-post-count-header {
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+  margin: var(--spacing-lg) 0;
+  letter-spacing: var(--letter-spacing-subtle);
+}
+
 .category-page-back-link {
   color: var(--color-primary);
   text-decoration: none;
@@ -877,11 +885,7 @@ section {
     border-color var(--transition-normal), transform var(--transition-normal);
 }
 
-.hero-image img:hover {
-  box-shadow: var(--shadow-accent-lg), var(--shadow-lg);
-  border-color: var(--color-hover-border);
-  transform: translateY(-4px);
-}
+/* Removed hover effect since pointer events are disabled */
 
 .hero-description {
   grid-area: description;
