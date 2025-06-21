@@ -192,6 +192,18 @@ This CSS file follows a clean, organized structure:
   max-width: 100%;
 }
 
+/* Override non-standard zoom properties with standard transforms */
+/* This addresses browser warnings about non-standard 'zoom' property */
+[style*='zoom'] {
+  zoom: normal !important;
+  transform-origin: 0 0;
+}
+
+/* Pagefind search results - ensure no zoom usage */
+.pagefind-ui * {
+  zoom: normal !important;
+}
+
 html {
   scroll-behavior: smooth;
   height: 100%;
@@ -462,6 +474,14 @@ p {
   color: var(--color-primary);
   letter-spacing: var(--letter-spacing-wide);
   z-index: 1001;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.navbar-brand:hover,
+.navbar-brand:focus {
+  color: var(--color-primary-dark);
+  text-decoration: none;
 }
 
 /* Modern Hamburger Menu System */
@@ -645,6 +665,14 @@ p {
     color: var(--color-primary);
     letter-spacing: var(--letter-spacing-wide);
     display: block !important; /* Override desktop hiding */
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .menu-brand:hover,
+  .menu-brand:focus {
+    color: var(--color-primary-dark);
+    text-decoration: none;
   }
 
   .navbar-links li {

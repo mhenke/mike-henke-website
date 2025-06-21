@@ -356,16 +356,30 @@ module.exports = function (eleventyConfig) {
 
       // Only apply to blog post pages to avoid affecting other content
       if (outputPath.includes('/blog/') || outputPath.includes('/posts/')) {
-        // Decode common HTML entities in the content
-        let decodedContent = content
-          .replace(/&quot;/g, '"')
-          .replace(/&#39;/g, "'")
-          .replace(/&apos;/g, "'")
-          .replace(/&lt;/g, '<')
-          .replace(/&gt;/g, '>')
-          .replace(/&amp;/g, '&'); // Keep this last to avoid double-decoding
+        // Split content by code blocks to avoid decoding entities within them
+        const codeBlockRegex = /<div class="code-block">.*?<\/div>/gs;
+        const parts = content.split(codeBlockRegex);
+        const codeBlocks = content.match(codeBlockRegex) || [];
 
-        return decodedContent;
+        // Decode HTML entities only in non-code-block content
+        const decodedParts = parts.map((part) => {
+          return part
+            .replace(/&quot;/g, '"')
+            .replace(/&#39;/g, "'")
+            .replace(/&apos;/g, "'");
+          // Note: NOT decoding &lt;, &gt;, &amp; as these might be needed for proper HTML display
+        });
+
+        // Reassemble content with original code blocks
+        let result = '';
+        for (let i = 0; i < decodedParts.length; i++) {
+          result += decodedParts[i];
+          if (i < codeBlocks.length) {
+            result += codeBlocks[i];
+          }
+        }
+
+        return result;
       }
 
       return content;
@@ -413,6 +427,79 @@ module.exports = function (eleventyConfig) {
 
     return cleanContent;
   });
+
+  // WordPress shortcode processor transform
+  eleventyConfig.addTransform(
+    'wordpressShortcodeProcessor',
+    function (content, outputPath) {
+      if (!outputPath || !outputPath.endsWith('.html')) {
+        return content;
+      }
+
+      let result = content;
+
+      // Remove escaped backslashes from shortcodes first
+      result = result.replace(/\\(\[|\])/g, '$1');
+
+      // Process common WordPress shortcodes and convert to HTML or remove
+
+      // Layout shortcodes - convert to semantic HTML
+      result = result.replace(/\[row\]/g, '<div class="row">');
+      result = result.replace(/\[\/row\]/g, '</div>');
+      result = result.replace(/\[span(\d+)\]/g, '<div class="span-$1">');
+      result = result.replace(/\[\/span(\d+)\]/g, '</div>');
+
+      // Remove page blocks and layout wrapper shortcodes
+      result = result.replace(/\[page_block[^\]]*\]/g, '');
+      result = result.replace(/\[\/page_block\]/g, '');
+      result = result.replace(
+        /\[lazy_load_box[^\]]*\]/g,
+        '<div class="content-box">'
+      );
+      result = result.replace(/\[\/lazy_load_box\]/g, '</div>');
+
+      // Convert title boxes to proper headings
+      result = result.replace(
+        /\[title_box title="([^"]*)"[^\]]*\]/g,
+        '<h2 class="section-title">$1</h2>'
+      );
+
+      // Convert service boxes to article elements
+      result = result.replace(
+        /\[service_box title="([^"]*)"[^>]*text="([^"]*)"[^\]]*\]/g,
+        '<article class="service-box"><h3>$1</h3><p>$2</p></article>'
+      );
+
+      // Convert buttons to proper HTML
+      result = result.replace(
+        /\[button text="([^"]*)" link="([^"]*)"[^\]]*\]/g,
+        '<a href="$2" class="btn btn-primary">$1</a>'
+      );
+
+      // Remove masonry view shortcodes (complex layout that needs manual handling)
+      result = result.replace(
+        /\[masonry_view[^\]]*\]/g,
+        '<!-- Masonry view content removed -->'
+      );
+
+      // Remove content box wrapper shortcodes
+      result = result.replace(
+        /\[content_box[^\]]*\]/g,
+        '<div class="content-section">'
+      );
+      result = result.replace(/\[\/content_box\]/g, '</div>');
+
+      // Remove extra wrap shortcodes
+      result = result.replace(/\[extra_wrap\]/g, '');
+      result = result.replace(/\[\/extra_wrap\]/g, '');
+
+      // Clean up any remaining unprocessed shortcodes
+      result = result.replace(/\[[a-zA-Z_-]+[^\]]*\]/g, '');
+      result = result.replace(/\[\/[a-zA-Z_-]+\]/g, '');
+
+      return result;
+    }
+  );
 
   // Passthrough copy for static assets
   eleventyConfig.addPassthroughCopy('styles.css');
