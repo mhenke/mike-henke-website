@@ -525,7 +525,7 @@ p {
     height: 100dvh; /* Use dynamic viewport height for better mobile support */
     background-color: var(--color-surface);
     flex-direction: column;
-    padding: 0;
+    padding: 0 0 var(--spacing-xl) 0; /* Add bottom padding for better scrolling */
     transition: right var(--transition-normal);
     z-index: 1002;
     gap: 0;
@@ -538,6 +538,9 @@ p {
     /* Improve scrolling on iOS */
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
+    /* Additional scrolling improvements */
+    overscroll-behavior: contain;
+    scroll-behavior: smooth;
   }
 
   .navbar-links.active {
@@ -680,6 +683,8 @@ p {
     .navbar-links {
       /* Reduce header height in landscape for more content space */
       --mobile-menu-header-height: 60px;
+      /* Ensure adequate padding for scrolling */
+      padding-bottom: var(--spacing-xl);
     }
 
     .mobile-menu-header {
@@ -696,6 +701,11 @@ p {
     .menu-brand {
       font-size: var(--font-size-base);
     }
+
+    /* Ensure last menu item has extra space for better scrolling */
+    .navbar-links li:last-child {
+      margin-bottom: var(--spacing-lg);
+    }
   }
 
   /* Specific fix for landscape scrolling issues */
@@ -704,22 +714,21 @@ p {
       /* Ensure the menu can scroll properly in very short landscape viewports */
       max-height: 100vh;
       max-height: 100dvh;
+      padding-bottom: var(--spacing-xl);
     }
 
     .navbar-links li:last-child {
       /* Add extra bottom padding for the last item in landscape */
-      padding-bottom: var(--spacing-lg);
+      padding-bottom: var(--spacing-xl);
+    }
+
+    .navbar-links li:last-child a {
+      margin-bottom: var(--spacing-lg);
     }
   }
 
   /* Additional touch improvements for mobile */
   @media (max-width: 1023px) {
-    .navbar-links {
-      /* Ensure proper touch scrolling */
-      overscroll-behavior: contain;
-      scroll-behavior: smooth;
-    }
-
     /* Add padding at bottom for easier scrolling */
     .navbar-links::after {
       content: '';
@@ -1813,7 +1822,8 @@ footer p {
 article[role='article'] header {
   margin-bottom: var(--spacing-lg);
 }
-
+*
+-+
 /* ================================
      SEARCH STYLING - SIMPLIFIED
      ================================ */
