@@ -11,9 +11,8 @@ Quick wins applied:
 - Improved organization and removed bloat
 
 RESPONSIVE BREAKPOINTS:
-- Mobile: 320px - 767px (default styles)
+- Mobile: 320px - 1023px (default styles)
 - Small phones: max-width 480px
-- Tablet & up: min-width 768px
 - Desktop & up: min-width 1024px
 ================================================================================
 */
@@ -511,7 +510,7 @@ p {
 }
 
 /* Mobile Navigation */
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
   .navbar-toggle {
     display: block;
   }
@@ -522,6 +521,7 @@ p {
     right: -100%;
     width: var(--mobile-menu-width);
     height: 100vh;
+    height: 100dvh; /* Use dynamic viewport height for better mobile support */
     background-color: var(--color-surface);
     flex-direction: column;
     padding: 0;
@@ -534,6 +534,9 @@ p {
     -webkit-overflow-scrolling: touch;
     align-items: stretch;
     justify-content: flex-start;
+    /* Improve scrolling on iOS */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
   }
 
   .navbar-links.active {
@@ -551,7 +554,7 @@ p {
     align-items: center;
     justify-content: space-between;
     padding: 0 var(--spacing-xl);
-    z-index: 1001;
+    z-index: 1003; /* Higher than menu content */
     flex-shrink: 0;
   }
 
@@ -669,6 +672,60 @@ p {
     overflow: hidden;
     position: fixed;
     width: 100%;
+  }
+
+  /* Mobile landscape optimizations */
+  @media (max-width: 1023px) and (orientation: landscape) {
+    .navbar-links {
+      /* Reduce header height in landscape for more content space */
+      --mobile-menu-header-height: 60px;
+    }
+    
+    .mobile-menu-header {
+      height: 60px;
+      padding: 0 var(--spacing-lg);
+    }
+    
+    .navbar-links a {
+      /* Reduce vertical padding in landscape mode */
+      padding: var(--spacing-md) var(--spacing-xl);
+      min-height: 50px;
+    }
+    
+    .menu-brand {
+      font-size: var(--font-size-base);
+    }
+  }
+
+  /* Specific fix for landscape scrolling issues */
+  @media (max-width: 1023px) and (orientation: landscape) and (max-height: 500px) {
+    .navbar-links {
+      /* Ensure the menu can scroll properly in very short landscape viewports */
+      max-height: 100vh;
+      max-height: 100dvh;
+    }
+    
+    .navbar-links li:last-child {
+      /* Add extra bottom padding for the last item in landscape */
+      padding-bottom: var(--spacing-lg);
+    }
+  }
+
+  /* Additional touch improvements for mobile */
+  @media (max-width: 1023px) {
+    .navbar-links {
+      /* Ensure proper touch scrolling */
+      overscroll-behavior: contain;
+      scroll-behavior: smooth;
+    }
+    
+    /* Add padding at bottom for easier scrolling */
+    .navbar-links::after {
+      content: '';
+      display: block;
+      height: var(--spacing-xl);
+      flex-shrink: 0;
+    }
   }
 }
 
@@ -856,7 +913,7 @@ section {
 }
 
 /* Desktop Hero Layout */
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .hero-section {
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
@@ -1072,7 +1129,7 @@ section {
   letter-spacing: var(--letter-spacing-subtle);
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
   .career-grid {
     grid-template-columns: 1fr;
     gap: var(--spacing-2xl);
@@ -1116,14 +1173,14 @@ section {
 }
 
 /* Responsive Skills Layout */
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .skills-columns {
     grid-template-columns: repeat(3, 1fr);
     gap: var(--spacing-xl);
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
   .skills-columns {
     grid-template-columns: 1fr;
     gap: var(--spacing-lg);
@@ -1809,7 +1866,7 @@ footer p {
 }
 
 /* Responsive code blocks */
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
   .code-block {
     margin: var(--space-md) calc(-1 * var(--space-md));
     border-radius: 0;

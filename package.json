@@ -9,8 +9,8 @@
     "build": "eleventy && npx pagefind --site _site --verbose",
     "build:prod": "npm run clean && NODE_ENV=production eleventy && npx pagefind --site _site --verbose",
     "start": "npm run clean && eleventy --serve --watch",
-    "dev": "npm run clean && eleventy --serve --watch",
-    "dev:search": "npm run clean && eleventy && npx pagefind --site _site && eleventy --serve --watch"
+    "dev": "npm run clean && eleventy && npx pagefind --site _site && eleventy --serve --watch",
+    "dev:nosearch": "npm run clean && eleventy --serve --watch"
   },
   "keywords": [
     "portfolio",
