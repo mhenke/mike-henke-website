@@ -410,17 +410,9 @@
             }
         }
     });
-</script>
 
-<!-- PrismJS syntax highlighting scripts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
-
-<script>
-    // Copy code functionality for code blocks
-    function copyCode(button) {
+    // Copy code functionality for code blocks - Global functions
+    window.copyCode = function(button) {
         const codeBlock = button.closest('.code-block');
         if (!codeBlock) return;
         
@@ -432,19 +424,19 @@
         // Use the modern clipboard API if available
         if (navigator.clipboard && window.isSecureContext) {
             navigator.clipboard.writeText(textToCopy).then(() => {
-                showCopySuccess(button);
+                window.showCopySuccess(button);
             }).catch(err => {
                 console.error('Failed to copy code: ', err);
-                fallbackCopyCode(textToCopy, button);
+                window.fallbackCopyCode(textToCopy, button);
             });
         } else {
             // Fallback for older browsers
-            fallbackCopyCode(textToCopy, button);
+            window.fallbackCopyCode(textToCopy, button);
         }
-    }
+    };
     
     // Fallback copy method for older browsers
-    function fallbackCopyCode(text, button) {
+    window.fallbackCopyCode = function(text, button) {
         const textArea = document.createElement('textarea');
         textArea.value = text;
         textArea.style.position = 'fixed';
@@ -456,16 +448,16 @@
         
         try {
             document.execCommand('copy');
-            showCopySuccess(button);
+            window.showCopySuccess(button);
         } catch (err) {
             console.error('Failed to copy code: ', err);
         } finally {
             document.body.removeChild(textArea);
         }
-    }
+    };
     
     // Show copy success feedback
-    function showCopySuccess(button) {
+    window.showCopySuccess = function(button) {
         const originalIcon = button.innerHTML;
         button.innerHTML = '<i class="fas fa-check"></i>';
         button.classList.add('copy-success');
@@ -474,8 +466,15 @@
             button.innerHTML = originalIcon;
             button.classList.remove('copy-success');
         }, 2000);
-    }
-    
+    };
+</script>
+
+<!-- PrismJS syntax highlighting scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
+<script>
     // Initialize PrismJS after DOM is loaded
     document.addEventListener('DOMContentLoaded', function() {
         // Configure PrismJS autoloader
