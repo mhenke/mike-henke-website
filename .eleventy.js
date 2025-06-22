@@ -118,6 +118,71 @@ module.exports = function (eleventyConfig) {
     }
   );
 
+  // Podcast and embed transform - MUST run before wordpressShortcodeProcessor
+  eleventyConfig.addTransform(
+    'podcastEmbedTransform',
+    function (content, outputPath) {
+      if (!outputPath || !outputPath.endsWith('.html')) {
+        return content;
+      }
+
+      let result = content;
+
+      // Step 1: Remove backslashes around brackets for podcast and embed tags
+      result = result.replace(
+        /\\+(\[(?:podcast|embed|\/podcast|\/embed)\])/g,
+        '$1'
+      );
+
+      // Step 2: Handle podcast tags - convert to HTML5 audio player
+      result = result.replace(
+        /\[podcast\](.*?)\[\/podcast\]/gi,
+        (match, audioUrl) => {
+          const cleanUrl = audioUrl.trim();
+          return `<div class="podcast-player">
+  <audio controls preload="metadata" style="width: 100%; max-width: 600px;">
+    <source src="${cleanUrl}" type="audio/mpeg">
+    <p>Your browser does not support the audio element. <a href="${cleanUrl}">Download the podcast</a></p>
+  </audio>
+</div>`;
+        }
+      );
+
+      // Step 3: Handle embed tags - convert YouTube URLs to embeds
+      result = result.replace(
+        /\[embed\](.*?)\[\/embed\]/gi,
+        (match, embedUrl) => {
+          const cleanUrl = embedUrl.trim();
+
+          // Extract YouTube video ID from various YouTube URL formats
+          const youtubeRegex =
+            /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i;
+          const youtubeMatch = cleanUrl.match(youtubeRegex);
+
+          if (youtubeMatch) {
+            const videoId = youtubeMatch[1];
+            return `<div class="video-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000; margin: 20px 0;">
+  <iframe 
+    src="https://www.youtube.com/embed/${videoId}" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+  </iframe>
+</div>`;
+          }
+
+          // If not YouTube, return a generic embed link
+          return `<div class="generic-embed">
+  <p><a href="${cleanUrl}" target="_blank" rel="noopener noreferrer">View embedded content: ${cleanUrl}</a></p>
+</div>`;
+        }
+      );
+
+      return result;
+    }
+  );
+
   // Date filter using Luxon
   eleventyConfig.addFilter('date', (dateObj, format) => {
     if (dateObj === 'now') {
