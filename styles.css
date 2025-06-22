@@ -1936,7 +1936,7 @@ footer p {
 
 .blog-post-date em {
   font-style: normal;
-  color: var(--color-text-secondary);
+  color: var(--color-primary);
 }
 
 /* Legacy blog post items - keep for backward compatibility */
@@ -1979,7 +1979,7 @@ footer p {
 
 .blog-post-date em {
   font-style: normal;
-  color: var(--color-text-secondary);
+  color: var(--color-primary);
 }
 
 /* ================================
@@ -2284,5 +2284,5 @@ footer p {
 
 .pagefind-ui__result[class*='svelte'] .blog-post-date em {
   font-style: normal;
-  color: var(--color-text-secondary);
+  color: var(--color-primary);
 }
