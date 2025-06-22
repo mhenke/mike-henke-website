@@ -91,16 +91,14 @@
 
         // Function to process search results and apply custom styling
         function processSearchResults() {
-            const results = document.querySelectorAll('.pagefind-ui__result');
-            console.log(`Processing ${results.length} search results`);
+            const results = document.querySelectorAll('.pagefind-ui__result:not([data-processed="true"])');
+            console.log(`Processing ${results.length} new search results`);
+            
+            if (results.length === 0) {
+                return; // No new results to process
+            }
             
             results.forEach((result, index) => {
-                // Skip if already processed
-                if (result.dataset.processed === 'true') {
-                    console.log(`Result ${index} already processed, skipping`);
-                    return;
-                }
-                
                 console.log(`Processing result ${index}`);
                 
                 // Find and process default meta tags
@@ -122,7 +120,7 @@
                 
                 console.log(`Extracted - Categories: "${categoryData}", Date: "${dateData}"`);
                 
-                // Remove default meta tags
+                // Remove default meta tags immediately
                 metaTags.forEach(tag => tag.remove());
                 
                 // Find the title element and excerpt
@@ -130,7 +128,7 @@
                 const excerptElement = result.querySelector('.pagefind-ui__result-excerpt');
                 
                 if (titleElement && excerptElement) {
-                    // More aggressive cleaning of excerpt content
+                    // Clean excerpt content
                     let excerptText = excerptElement.innerHTML || '';
                     
                     // Remove any categories/dates that might be embedded in the excerpt
@@ -146,16 +144,10 @@
                     const existingCategories = result.querySelector('.blog-post-categories');
                     const existingDate = result.querySelector('.blog-post-date');
                     
-                    if (existingCategories) {
-                        console.log(`Removing existing categories for result ${index}`);
-                        existingCategories.remove();
-                    }
-                    if (existingDate) {
-                        console.log(`Removing existing date for result ${index}`);
-                        existingDate.remove();
-                    }
+                    if (existingCategories) existingCategories.remove();
+                    if (existingDate) existingDate.remove();
                     
-                    // Always add categories if we have category data
+                    // Add categories if we have category data
                     if (categoryData) {
                         console.log(`Adding categories for result ${index}: ${categoryData}`);
                         const categoryDiv = document.createElement('div');
@@ -182,7 +174,7 @@
                         titleElement.insertAdjacentElement('afterend', categoryDiv);
                     }
                     
-                    // Always add date if we have date data
+                    // Add date if we have date data
                     if (dateData) {
                         console.log(`Adding date for result ${index}: ${dateData}`);
                         const dateP = document.createElement('p');
@@ -252,12 +244,10 @@
                         
                         if (foundNewResults) {
                             console.log('New search results detected, processing...');
-                            // Use longer timeout to ensure all results are rendered
+                            // Single timeout with consistent delay for better timing
                             setTimeout(() => {
                                 processSearchResults();
-                                // Also process again after a longer delay in case of delayed rendering
-                                setTimeout(() => processSearchResults(), 200);
-                            }, 100);
+                            }, 150);
                         }
                     });
                     
@@ -266,11 +256,16 @@
                         subtree: true 
                     });
                     
+                    // Process any existing results that might have loaded before observer setup
+                    setTimeout(() => {
+                        processSearchResults();
+                    }, 100);
+                    
                     // Also process results when search input changes (as backup)
                     const searchInput = searchElement.querySelector('input[type="search"]');
                     if (searchInput) {
                         searchInput.addEventListener('input', () => {
-                            setTimeout(() => processSearchResults(), 500);
+                            setTimeout(() => processSearchResults(), 300);
                         });
                     }
                 }

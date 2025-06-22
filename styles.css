@@ -1654,7 +1654,7 @@ footer p {
 
 .pagefind-ui__result[class*='svelte'] {
   margin-bottom: var(--spacing-xl);
-  padding: var(--spacing-lg) var(--spacing-xl);
+  padding: var(--spacing-lg) var(--spacing-xl) !important; /* Override default pagefind padding */
   background-color: var(--color-surface-light);
   border-radius: var(--border-radius-lg);
   border: var(--border-width-thick) solid var(--color-border);
@@ -1662,6 +1662,10 @@ footer p {
   transition: all var(--transition-normal);
   width: 100%;
   box-sizing: border-box;
+  /* Reset any excessive default padding */
+  list-style-type: none !important;
+  display: block !important;
+  gap: unset !important;
 }
 
 .pagefind-ui__result[class*='svelte']:last-child {
@@ -1833,4 +1837,22 @@ footer p {
   .code-block code {
     font-size: var(--text-xs);
   }
+}
+
+/* Override problematic default pagefind styling */
+.pagefind-ui__result.svelte-4xnkmf.svelte-4xnkmf {
+  padding: var(--spacing-lg) var(--spacing-xl) !important;
+  gap: unset !important;
+  display: block !important;
+  list-style-type: none !important;
+  align-items: unset !important;
+}
+
+/* Ensure consistent spacing for all search result variants */
+.pagefind-ui__result[class*='svelte-'] {
+  padding: var(--spacing-lg) var(--spacing-xl) !important;
+  margin-bottom: var(--spacing-xl) !important;
+  display: block !important;
+  gap: unset !important;
+  list-style-type: none !important;
 }
