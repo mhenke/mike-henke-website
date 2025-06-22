@@ -1870,8 +1870,8 @@ article[role='article'] header {
 }
 
 .pagefind-ui__search-clear {
-  background-color: var(--color-text-muted);
-  color: var(--color-background) !important;
+  background: none;
+  color: var(--color-text-muted);
   border: none;
   padding: var(--spacing-xs) var(--spacing-sm);
   font-size: var(--font-size-xs);
@@ -1879,66 +1879,27 @@ article[role='article'] header {
   cursor: pointer;
   font-family: var(--font-primary);
   font-weight: var(--font-weight-medium);
-  transition: all var(--transition-fast);
-  position: relative;
-  min-width: 32px;
-  min-height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  transition: color var(--transition-fast);
 }
 
 .pagefind-ui__search-clear:hover {
-  background-color: var(--color-primary);
-  color: var(--color-background) !important;
-  transform: scale(1.05);
+  color: var(--color-primary);
 }
 
 .pagefind-ui__search-clear:active {
-  background-color: var(--color-primary-dark);
-  color: var(--color-background) !important;
-  transform: scale(0.98);
+  color: var(--color-primary);
 }
 
-/* Enhanced search form styling */
 .pagefind-ui__form {
   position: relative;
   margin-bottom: var(--spacing-lg);
 }
 
-/* Ensure clear button is properly positioned */
-.pagefind-ui__form .pagefind-ui__search-clear {
-  position: absolute;
-  right: 8px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
-}
-
-/* Add loading state styling */
-.pagefind-ui__search-input[aria-describedby] {
-  background-image: linear-gradient(
-    90deg,
-    transparent,
-    rgba(25, 212, 254, 0.1),
-    transparent
-  );
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
-}
-
-/* Improve focus states */
-.pagefind-ui__search-input:focus + .pagefind-ui__search-clear,
-.pagefind-ui__search-clear:focus {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
+.pagefind-ui__message {
+  color: var(--color-text-secondary);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  text-align: center;
+  padding: var(--space-sm) 0;
+  margin: var(--space-xs) 0;
 }
