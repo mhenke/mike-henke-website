@@ -312,7 +312,7 @@ module.exports = function (eleventyConfig) {
         // Extract the post slug from the output path
         const pathParts = outputPath.split('/');
         let postSlug = '';
-        
+
         // Find the post slug in the path
         for (let i = 0; i < pathParts.length; i++) {
           if (pathParts[i] === 'blog' && pathParts[i + 1]) {
@@ -341,13 +341,10 @@ module.exports = function (eleventyConfig) {
               }
             )
             // Remaining markdown image syntax
-            .replace(
-              /!\[\]\(images\/([^)]+)\)/g,
-              (match, imageName) => {
-                const newSrc = `${pathPrefix}/blog/${postSlug}/images/${imageName}`;
-                return `<img src="${newSrc}" alt="" loading="lazy">`;
-              }
-            );
+            .replace(/!\[\]\(images\/([^)]+)\)/g, (match, imageName) => {
+              const newSrc = `${pathPrefix}/blog/${postSlug}/images/${imageName}`;
+              return `<img src="${newSrc}" alt="" loading="lazy">`;
+            });
         }
       }
 
@@ -527,8 +524,10 @@ module.exports = function (eleventyConfig) {
   // Set up image passthrough copy lazily
   try {
     if (fs.existsSync('output/posts')) {
-      const imageDirs = glob.sync('output/posts/*/images/', { ignore: ['node_modules/**'] });
-      
+      const imageDirs = glob.sync('output/posts/*/images/', {
+        ignore: ['node_modules/**'],
+      });
+
       imageDirs.forEach((dir) => {
         const postSlug = dir.split('/')[2];
         if (postSlug) {
@@ -539,7 +538,10 @@ module.exports = function (eleventyConfig) {
       });
     }
   } catch (error) {
-    console.warn('Warning: Could not set up image passthrough copy:', error.message);
+    console.warn(
+      'Warning: Could not set up image passthrough copy:',
+      error.message
+    );
   }
 
   // WordPress export collections
