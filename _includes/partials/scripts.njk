@@ -92,12 +92,16 @@
         // Function to process search results and apply custom styling
         function processSearchResults() {
             const results = document.querySelectorAll('.pagefind-ui__result');
+            console.log(`Processing ${results.length} search results`);
             
-            results.forEach(result => {
+            results.forEach((result, index) => {
                 // Skip if already processed
                 if (result.dataset.processed === 'true') {
+                    console.log(`Result ${index} already processed, skipping`);
                     return;
                 }
+                
+                console.log(`Processing result ${index}`);
                 
                 // Find and process default meta tags
                 const metaTags = result.querySelectorAll('.pagefind-ui__result-tag');
@@ -106,12 +110,17 @@
                 
                 metaTags.forEach(tag => {
                     const metaType = tag.getAttribute('data-pagefind-ui-meta');
+                    const tagText = tag.textContent || '';
+                    console.log(`Found meta tag: ${metaType} = ${tagText}`);
+                    
                     if (metaType === 'category' || metaType === 'categories') {
-                        categoryData = tag.textContent.replace('Category: ', '').trim();
+                        categoryData = tagText.replace(/^(Category|Categories):\s*/i, '').trim();
                     } else if (metaType === 'date') {
-                        dateData = tag.textContent.replace('Date: ', '').trim();
+                        dateData = tagText.replace(/^Date:\s*/i, '').trim();
                     }
                 });
+                
+                console.log(`Extracted - Categories: "${categoryData}", Date: "${dateData}"`);
                 
                 // Remove default meta tags
                 metaTags.forEach(tag => tag.remove());
@@ -121,19 +130,40 @@
                 const excerptElement = result.querySelector('.pagefind-ui__result-excerpt');
                 
                 if (titleElement && excerptElement) {
-                    // Check if categories or dates are already in the DOM (not just text content)
+                    // More aggressive cleaning of excerpt content
+                    let excerptText = excerptElement.innerHTML || '';
+                    
+                    // Remove any categories/dates that might be embedded in the excerpt
+                    excerptText = excerptText
+                        .replace(/Categories?:\s*[^.]*?(?=\s{2,}|\.|$)/gi, '')
+                        .replace(/Published:\s*[^.]*?(?=\s{2,}|\.|$)/gi, '')
+                        .replace(/\s+/g, ' ')
+                        .trim();
+                    
+                    excerptElement.innerHTML = excerptText;
+                    
+                    // Remove any existing formatted categories/dates from the result
                     const existingCategories = result.querySelector('.blog-post-categories');
                     const existingDate = result.querySelector('.blog-post-date');
                     
-                    // Add categories if they don't exist and we have category data
-                    if (categoryData && !existingCategories) {
+                    if (existingCategories) {
+                        console.log(`Removing existing categories for result ${index}`);
+                        existingCategories.remove();
+                    }
+                    if (existingDate) {
+                        console.log(`Removing existing date for result ${index}`);
+                        existingDate.remove();
+                    }
+                    
+                    // Always add categories if we have category data
+                    if (categoryData) {
+                        console.log(`Adding categories for result ${index}: ${categoryData}`);
                         const categoryDiv = document.createElement('div');
                         categoryDiv.className = 'blog-post-categories';
-                        categoryDiv.innerHTML = 'Categories: ';
                         
                         const categories = categoryData.split(',');
-                        categories.forEach((cat, index) => {
-                            if (index > 0) {
+                        categories.forEach((cat, catIndex) => {
+                            if (catIndex > 0) {
                                 categoryDiv.appendChild(document.createTextNode(' '));
                             }
                             
@@ -152,13 +182,14 @@
                         titleElement.insertAdjacentElement('afterend', categoryDiv);
                     }
                     
-                    // Add date if it doesn't exist and we have date data
-                    if (dateData && !existingDate) {
+                    // Always add date if we have date data
+                    if (dateData) {
+                        console.log(`Adding date for result ${index}: ${dateData}`);
                         const dateP = document.createElement('p');
                         dateP.className = 'blog-post-date';
                         dateP.innerHTML = `<em>Published: ${dateData}</em>`;
                         
-                        // Insert date at the very end (after excerpt) to match blog listing page
+                        // Insert date at the very end (after excerpt)
                         const resultContainer = result.querySelector('.pagefind-ui__result-inner') || result;
                         resultContainer.appendChild(dateP);
                     }
@@ -166,6 +197,7 @@
                 
                 // Mark as processed to avoid duplicate processing
                 result.dataset.processed = 'true';
+                console.log(`Result ${index} marked as processed`);
             });
         }
 
@@ -194,31 +226,51 @@
                 
                 const pagefindUI = new PagefindUI(searchConfig);
                 
-                // If we're on the search page, process results after they load
-                if (window.location.pathname.includes('/search/')) {
-                    // Listen for search results updates
-                    const searchElement = document.getElementById("search");
+                // Process results after they load (works on any page with search)
+                const searchElement = document.getElementById("search");
+                if (searchElement) {
+                    console.log('Setting up search results observer');
+                    
+                    // Listen for search results updates with improved detection
                     const observer = new MutationObserver((mutations) => {
+                        let foundNewResults = false;
+                        
                         mutations.forEach((mutation) => {
                             if (mutation.addedNodes.length > 0) {
                                 // Check if search results were added
                                 const hasResults = Array.from(mutation.addedNodes).some(node => 
                                     node.nodeType === 1 && 
-                                    (node.classList.contains('pagefind-ui__result') || 
-                                     node.querySelector && node.querySelector('.pagefind-ui__result'))
+                                    (node.classList && node.classList.contains('pagefind-ui__result') || 
+                                     (node.querySelector && node.querySelector('.pagefind-ui__result')))
                                 );
                                 
                                 if (hasResults) {
-                                    setTimeout(() => processSearchResults(), 50);
+                                    foundNewResults = true;
                                 }
                             }
                         });
+                        
+                        if (foundNewResults) {
+                            console.log('New search results detected, processing...');
+                            // Use longer timeout to ensure all results are rendered
+                            setTimeout(() => {
+                                processSearchResults();
+                                // Also process again after a longer delay in case of delayed rendering
+                                setTimeout(() => processSearchResults(), 200);
+                            }, 100);
+                        }
                     });
                     
-                    if (searchElement) {
-                        observer.observe(searchElement, { 
-                            childList: true, 
-                            subtree: true 
+                    observer.observe(searchElement, { 
+                        childList: true, 
+                        subtree: true 
+                    });
+                    
+                    // Also process results when search input changes (as backup)
+                    const searchInput = searchElement.querySelector('input[type="search"]');
+                    if (searchInput) {
+                        searchInput.addEventListener('input', () => {
+                            setTimeout(() => processSearchResults(), 500);
                         });
                     }
                 }
