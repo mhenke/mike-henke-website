@@ -94,6 +94,11 @@
             const results = document.querySelectorAll('.pagefind-ui__result');
             
             results.forEach(result => {
+                // Skip if already processed
+                if (result.dataset.processed === 'true') {
+                    return;
+                }
+                
                 // Find and process default meta tags
                 const metaTags = result.querySelectorAll('.pagefind-ui__result-tag');
                 let categoryData = '';
@@ -111,27 +116,27 @@
                 // Remove default meta tags
                 metaTags.forEach(tag => tag.remove());
                 
-                // Find the title element and excerpt to check for existing content
+                // Find the title element and excerpt
                 const titleElement = result.querySelector('.pagefind-ui__result-title');
                 const excerptElement = result.querySelector('.pagefind-ui__result-excerpt');
                 
                 if (titleElement && excerptElement) {
-                    // Check if categories or dates are already in the excerpt content or as DOM elements
-                    const excerptText = excerptElement.textContent || '';
-                    const hasCategories = excerptText.includes('Categories:') || 
-                                        excerptText.includes('Category:') ||
-                                        result.querySelector('.blog-post-categories');
-                    const hasDate = excerptText.includes('Published:') || 
-                                  excerptText.includes('Published on') ||
-                                  result.querySelector('.blog-post-date');
+                    // Check if categories or dates are already in the DOM (not just text content)
+                    const existingCategories = result.querySelector('.blog-post-categories');
+                    const existingDate = result.querySelector('.blog-post-date');
                     
-                    // Only add categories if they're not already present
-                    if (categoryData && !hasCategories) {
+                    // Add categories if they don't exist and we have category data
+                    if (categoryData && !existingCategories) {
                         const categoryDiv = document.createElement('div');
                         categoryDiv.className = 'blog-post-categories';
+                        categoryDiv.innerHTML = 'Categories: ';
                         
                         const categories = categoryData.split(',');
-                        categories.forEach(cat => {
+                        categories.forEach((cat, index) => {
+                            if (index > 0) {
+                                categoryDiv.appendChild(document.createTextNode(' '));
+                            }
+                            
                             const categoryLink = document.createElement('a');
                             categoryLink.className = 'category-tag';
                             const slug = cat.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
@@ -143,20 +148,24 @@
                             categoryDiv.appendChild(categoryLink);
                         });
                         
+                        // Insert categories right after the title
                         titleElement.insertAdjacentElement('afterend', categoryDiv);
                     }
                     
-                    // Only add date if it's not already present
-                    if (dateData && !hasDate) {
+                    // Add date if it doesn't exist and we have date data
+                    if (dateData && !existingDate) {
                         const dateP = document.createElement('p');
                         dateP.className = 'blog-post-date';
                         dateP.innerHTML = `<em>Published: ${dateData}</em>`;
                         
-                        // Insert at the very end of the result (after excerpt) like blog list page
+                        // Insert date at the very end (after excerpt) to match blog listing page
                         const resultContainer = result.querySelector('.pagefind-ui__result-inner') || result;
                         resultContainer.appendChild(dateP);
                     }
                 }
+                
+                // Mark as processed to avoid duplicate processing
+                result.dataset.processed = 'true';
             });
         }
 

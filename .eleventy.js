@@ -528,7 +528,10 @@ module.exports = function (eleventyConfig) {
       let result = content;
 
       // Step 1: Remove backslashes around brackets for podcast and embed tags
-      result = result.replace(/\\+(\[(?:podcast|embed|\/podcast|\/embed)\])/g, '$1');
+      result = result.replace(
+        /\\+(\[(?:podcast|embed|\/podcast|\/embed)\])/g,
+        '$1'
+      );
 
       // Step 2: Handle podcast tags - convert to HTML5 audio player
       result = result.replace(
@@ -549,11 +552,12 @@ module.exports = function (eleventyConfig) {
         /\[embed\](.*?)\[\/embed\]/gi,
         (match, embedUrl) => {
           const cleanUrl = embedUrl.trim();
-          
+
           // Extract YouTube video ID from various YouTube URL formats
-          const youtubeRegex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i;
+          const youtubeRegex =
+            /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i;
           const youtubeMatch = cleanUrl.match(youtubeRegex);
-          
+
           if (youtubeMatch) {
             const videoId = youtubeMatch[1];
             return `<div class="video-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000; margin: 20px 0;">
@@ -566,7 +570,7 @@ module.exports = function (eleventyConfig) {
   </iframe>
 </div>`;
           }
-          
+
           // If not YouTube, return a generic embed link
           return `<div class="generic-embed">
   <p><a href="${cleanUrl}" target="_blank" rel="noopener noreferrer">View embedded content: ${cleanUrl}</a></p>

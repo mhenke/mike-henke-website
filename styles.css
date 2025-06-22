@@ -1535,6 +1535,10 @@ address a:hover {
 .blog-post-card .blog-post-categories {
   margin-top: 0;
   margin-bottom: var(--spacing-md);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  align-items: center;
 }
 
 /* Search result styling */
@@ -2257,4 +2261,28 @@ footer p {
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
+}
+
+/* Search result metadata styling - match blog listing page */
+.pagefind-ui__result[class*='svelte'] .blog-post-categories {
+  margin-top: 0;
+  margin-bottom: var(--spacing-md);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  align-items: center;
+}
+
+.pagefind-ui__result[class*='svelte'] .blog-post-date {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-regular);
+  margin: var(--spacing-xs) 0 0 0;
+  letter-spacing: var(--letter-spacing-subtle);
+  opacity: 0.9;
+}
+
+.pagefind-ui__result[class*='svelte'] .blog-post-date em {
+  font-style: normal;
+  color: var(--color-text-secondary);
 }
