@@ -16,7 +16,7 @@
                 <h1 data-pagefind-meta="title">{{ title }}</h1>
                 <p class="blog-post-date"><em>Published on <time datetime="{{ date | date('yyyy-MM-dd') }}" data-pagefind-meta="date">{{ date | date('LLLL d, yyyy') }}</time></em></p>
                 {% if categories %}
-                    <div class="blog-post-categories">Categories:
+                    <div class="blog-post-categories">
                         {% for category in categories %}
                             <a href="{{ ('/blog/category/' + (category | slugify) + '/') | url }}" class="category-tag" data-pagefind-meta="category">{{ category }}</a>
                         {% endfor %}

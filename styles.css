@@ -1510,7 +1510,7 @@ address a:hover {
 /* Blog post categories */
 .blog-post-categories {
   margin-top: var(--spacing-sm);
-  margin-bottom: 0;
+  margin-bottom: var(--spacing-md);
   display: flex;
   flex-wrap: wrap;
   gap: var(--spacing-xs);
@@ -2227,6 +2227,15 @@ footer p {
   box-shadow: var(--shadow-lg);
 }
 
+/* Search result title spacing */
+.pagefind-ui__result-title[class*='svelte'] {
+  margin-bottom: var(--spacing-md) !important;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading);
+  color: var(--color-text-primary);
+}
+
 /* Enhanced search term highlighting */
 .pagefind-ui__result-excerpt[class*='svelte'] mark,
 .pagefind-ui__result-title[class*='svelte'] mark {
@@ -2264,6 +2273,7 @@ footer p {
 }
 
 /* Search result metadata styling - match blog listing page */
+.pagefind-ui__result .blog-post-categories,
 .pagefind-ui__result[class*='svelte'] .blog-post-categories {
   margin-top: 0;
   margin-bottom: var(--spacing-md);
@@ -2285,4 +2295,13 @@ footer p {
 .pagefind-ui__result[class*='svelte'] .blog-post-date em {
   font-style: normal;
   color: var(--color-primary);
+}
+
+/* Search result title spacing */
+.pagefind-ui__result-title[class*='svelte'] {
+  margin-bottom: var(--spacing-md) !important;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading);
+  color: var(--color-text-primary);
 }
