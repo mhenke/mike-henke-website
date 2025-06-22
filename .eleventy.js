@@ -49,21 +49,25 @@ module.exports = function (eleventyConfig) {
           json: 'language-json',
         };
 
-        // Debug: Log the language variable to see what it contains
-        if (language.includes('"') || language.includes("'")) {
-          console.log(
-            '🐛 Language with quotes detected:',
-            JSON.stringify(language)
-          );
-        }
+        // Clean the language for display - decode HTML entities and remove quotes
+        let cleanLanguage = language
+          // First decode HTML entities
+          .replace(/&quot;/g, '"')
+          .replace(/&#39;/g, "'")
+          .replace(/&amp;/g, '&')
+          .replace(/&lt;/g, '<')
+          .replace(/&gt;/g, '>')
+          // Then remove quotes from start/end - including smart quotes
+          .replace(/^["'""`""]|["'""`""]$/g, '')
+          .trim();
 
         const prismClass =
-          languageMap[language.toLowerCase()] ||
-          `language-${language.toLowerCase()}`;
+          languageMap[cleanLanguage.toLowerCase()] ||
+          `language-${cleanLanguage.toLowerCase()}`;
 
         return `<div class="code-block">
   <div class="code-header">
-    <span class="code-language">${language.toUpperCase()}</span>
+    <span class="code-language">${cleanLanguage.toUpperCase()}</span>
     <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
       <i class="fas fa-copy"></i>
     </button>
@@ -231,20 +235,6 @@ module.exports = function (eleventyConfig) {
     }
   });
 
-  // Debug transform to see what content we're getting
-  eleventyConfig.addTransform('debugContent', function (content, outputPath) {
-    if (outputPath && outputPath.includes('cfwheels-application-part-3')) {
-      console.log('🔍 CFWheels Part 3 content check:');
-      console.log(
-        'Has ![](images/cfwheels3_4.jpg):',
-        content.includes('![](images/cfwheels3_4.jpg)')
-      );
-      console.log('Has <img src=:', content.includes('<img src='));
-      console.log('File extension processed as:', this.inputPath || 'unknown');
-    }
-    return content;
-  });
-
   // Markdown image processing - modify markdown-it to handle image paths
   eleventyConfig.amendLibrary('md', function (mdLib) {
     // Override the default image renderer
@@ -261,14 +251,6 @@ module.exports = function (eleventyConfig) {
 
       if (srcIndex >= 0) {
         const src = token.attrs[srcIndex][1];
-
-        // Log all images for CFWheels part 3 post
-        if (
-          env?.page?.inputPath &&
-          env.page.inputPath.includes('cfwheels-application-part-3')
-        ) {
-          console.log('🎯 CFWheels Part 3 image found:', src);
-        }
 
         // Only process relative image paths that start with 'images/'
         if (src.startsWith('images/')) {
@@ -294,18 +276,6 @@ module.exports = function (eleventyConfig) {
             // Route images to the blog directory structure
             const newSrc = `${pathPrefix}/blog/${postSlug}/images/${imageName}`;
             token.attrs[srcIndex][1] = newSrc;
-
-            if (
-              env?.page?.inputPath &&
-              env.page.inputPath.includes('cfwheels-application-part-3')
-            ) {
-              console.log(
-                '🔄 CFWheels Part 3 image transformed:',
-                src,
-                '→',
-                newSrc
-              );
-            }
           }
         }
       }
@@ -405,15 +375,6 @@ module.exports = function (eleventyConfig) {
 
             if (postSlug) {
               const newSrc = `${pathPrefix}/blog/${postSlug}/images/${imageName}`;
-
-              if (outputPath.includes('cfwheels-application-part-3')) {
-                console.log(
-                  '🔄 Fallback image transform:',
-                  match,
-                  '→',
-                  `<img src="${newSrc}" alt="" loading="lazy">`
-                );
-              }
 
               return `<img src="${newSrc}" alt="" loading="lazy">`;
             }
@@ -764,9 +725,6 @@ module.exports = function (eleventyConfig) {
 
     return postsByCategory;
   });
-
-  // console log to terminal the NODE_ENV
-  console.log('NODE_ENV:', process.env?.NODE_ENV);
 
   return {
     pathPrefix:
