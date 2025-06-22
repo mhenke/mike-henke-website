@@ -1726,6 +1726,8 @@ footer p {
   padding: var(--space-sm) var(--space-md);
   background: var(--color-surface-light);
   border-bottom: 1px solid var(--color-border);
+  padding-left: var(--spacing-md);
+  padding-right: var(--spacing-md);
 }
 
 .code-language {
@@ -1740,7 +1742,6 @@ footer p {
   background: transparent;
   border: 1px solid var(--color-border);
   color: var(--color-text-muted);
-  padding: var(--space-xs) var(--space-sm);
   border-radius: var(--radius-xs);
   cursor: pointer;
   transition: all var(--duration-fast) var(--ease);
@@ -1748,6 +1749,10 @@ footer p {
   display: flex;
   align-items: center;
   gap: var(--space-xs);
+}
+
+.code-copy i {
+  margin-right: 4px;
 }
 
 .code-copy:hover {
@@ -1771,7 +1776,9 @@ footer p {
   padding: var(--space-md);
   background: transparent;
   overflow-x: auto;
+  overflow-y: hidden;
   line-height: 1.5;
+  max-height: none;
 }
 
 .code-block code {
@@ -1779,6 +1786,10 @@ footer p {
   font-size: var(--text-sm);
   background: transparent;
   padding: 0;
+  white-space: pre;
+  overflow-wrap: normal;
+  word-break: normal;
+}
 }
 
 /* PrismJS Line Numbers */
