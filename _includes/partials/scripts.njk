@@ -91,7 +91,16 @@
 
         // Function to process search results and apply custom styling
         function processSearchResults() {
-            const results = document.querySelectorAll('.pagefind-ui__result:not([data-processed="true"])');
+            let results;
+            try {
+                results = document.querySelectorAll('.pagefind-ui__result:not([data-processed="true"])');
+            } catch (error) {
+                console.error('Error with search results selector:', error);
+                // Fallback: get all results and filter manually
+                const allResults = document.querySelectorAll('.pagefind-ui__result');
+                results = Array.from(allResults).filter(result => !result.hasAttribute('data-processed'));
+            }
+            
             console.log(`Processing ${results.length} new search results`);
             
             if (results.length === 0) {
