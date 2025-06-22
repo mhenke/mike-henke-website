@@ -2,7 +2,7 @@ const { DateTime } = require('luxon');
 const { URL } = require('url');
 
 module.exports = function (eleventyConfig) {
-  // Simplified code block transform
+  // Optimized code block transform
   eleventyConfig.addTransform(
     'codeBlockTransform',
     function (content, outputPath) {
@@ -10,13 +10,16 @@ module.exports = function (eleventyConfig) {
         return content;
       }
 
+      // Skip if no code blocks present
+      if (!content.includes('[code')) {
+        return content;
+      }
+
       function createCodeBlock(language, code) {
         // Clean and normalize the code content
         const cleanCode = code
           .trim()
-          // Remove HTML paragraph tags that might have been added
           .replace(/<\/?p[^>]*>/gi, '')
-          // Decode HTML entities
           .replace(/&lt;/g, '<')
           .replace(/&gt;/g, '>')
           .replace(/&amp;/g, '&')
@@ -30,6 +33,16 @@ module.exports = function (eleventyConfig) {
           .replace(/>/g, '&gt;')
           .replace(/"/g, '&quot;')
           .replace(/'/g, '&#39;');
+
+        // Clean the language for display
+        let cleanLanguage = language
+          .replace(/&quot;/g, '"')
+          .replace(/&#39;/g, "'")
+          .replace(/&amp;/g, '&')
+          .replace(/&lt;/g, '<')
+          .replace(/&gt;/g, '>')
+          .replace(/^["'""`""]|["'""`""]$/g, '')
+          .trim();
 
         // Language mapping for Prism
         const languageMap = {
@@ -49,18 +62,6 @@ module.exports = function (eleventyConfig) {
           json: 'language-json',
         };
 
-        // Clean the language for display - decode HTML entities and remove quotes
-        let cleanLanguage = language
-          // First decode HTML entities
-          .replace(/&quot;/g, '"')
-          .replace(/&#39;/g, "'")
-          .replace(/&amp;/g, '&')
-          .replace(/&lt;/g, '<')
-          .replace(/&gt;/g, '>')
-          // Then remove quotes from start/end - including smart quotes
-          .replace(/^["'""`""]|["'""`""]$/g, '')
-          .trim();
-
         const prismClass =
           languageMap[cleanLanguage.toLowerCase()] ||
           `language-${cleanLanguage.toLowerCase()}`;
@@ -78,45 +79,39 @@ module.exports = function (eleventyConfig) {
 
       let result = content;
 
-      // Step 1: Remove ALL backslashes around brackets completely
-      result = result.replace(/\\+(\[)/g, '$1');
-      result = result.replace(/(\])\\+/g, '$1');
-      result = result.replace(/\\+(\])/g, '$1');
+      // Remove backslashes around brackets
+      result = result.replace(/\\+(\[|\])/g, '$1');
 
-      // Step 2: Handle the main patterns
-      // Pattern 1: [code language="lang"]content[/code]
-      result = result.replace(
-        /\[code\s+language\s*=\s*["'""]([^"'""]+)["'"""][^\]]*\]([\s\S]*?)\[\/code\]/gi,
-        (match, language, code) => {
-          // Clean the language of any remaining quotes
-          const cleanLanguage = language.replace(/^["'""]|["'""]$/g, '');
-          return createCodeBlock(cleanLanguage, code);
-        }
-      );
+      // Process code blocks with single regex pass
+      result = result
+        // Pattern 1: [code language="lang"]content[/code]
+        .replace(
+          /\[code\s+language\s*=\s*["'""]([^"'""]+)["'"""][^\]]*\]([\s\S]*?)\[\/code\]/gi,
+          (match, language, code) => {
+            const cleanLanguage = language.replace(/^["'""]|["'""]$/g, '');
+            return createCodeBlock(cleanLanguage, code);
+          }
+        )
+        // Pattern 2: [code language=lang] (without quotes)
+        .replace(
+          /\[code\s+language\s*=\s*([^\s\]]+)[^\]]*\]([\s\S]*?)\[\/code\]/gi,
+          (match, language, code) => createCodeBlock(language, code)
+        )
+        // Pattern 3: [code="lang"] (alternate syntax)
+        .replace(
+          /\[code\s*=\s*["'""]([^"'""]+)["'""]\s*\]([\s\S]*?)\[\/code\]/gi,
+          (match, language, code) => {
+            const cleanLanguage = language.replace(/^["'""]|["'""]$/g, '');
+            return createCodeBlock(cleanLanguage, code);
+          }
+        );
 
-      // Pattern 2: [code language=lang] (without quotes)
-      result = result.replace(
-        /\[code\s+language\s*=\s*([^\s\]]+)[^\]]*\]([\s\S]*?)\[\/code\]/gi,
-        (match, language, code) => createCodeBlock(language, code)
-      );
-
-      // Pattern 3: [code="lang"] (alternate syntax)
-      result = result.replace(
-        /\[code\s*=\s*["'""]([^"'""]+)["'""]\s*\]([\s\S]*?)\[\/code\]/gi,
-        (match, language, code) => {
-          // Clean the language of any remaining quotes
-          const cleanLanguage = language.replace(/^["'""]|["'""]$/g, '');
-          return createCodeBlock(cleanLanguage, code);
-        }
-      );
-
-      // Step 3: Clean up any remaining orphaned tags
-      result = result.replace(/\[(?:\/)?code[^\]]*\]/gi, '');
-
-      // Step 4: Clean up excessive paragraph tags
-      result = result.replace(/<\/p>\s*<\/p>/g, '</p>');
-      result = result.replace(/<p>\s*<p>/g, '<p>');
-      result = result.replace(/<p>\s*<\/p>/g, '');
+      // Clean up remaining orphaned tags and excessive paragraphs
+      result = result
+        .replace(/\[(?:\/)?code[^\]]*\]/gi, '')
+        .replace(/<\/p>\s*<\/p>/g, '</p>')
+        .replace(/<p>\s*<p>/g, '<p>')
+        .replace(/<p>\s*<\/p>/g, '');
 
       return result;
     }
@@ -301,9 +296,9 @@ module.exports = function (eleventyConfig) {
 
   // Remove the markdown image transform since we're handling it in markdown-it now
 
-  // Image path transform for WordPress posts
+  // Combined image processing transform for WordPress posts
   eleventyConfig.addTransform(
-    'imagePathTransform',
+    'combinedImageTransform',
     function (content, outputPath) {
       if (!outputPath || !outputPath.endsWith('.html')) {
         return content;
@@ -314,74 +309,46 @@ module.exports = function (eleventyConfig) {
         const pathPrefix =
           process.env?.NODE_ENV === 'production' ? '/mike-henke-website' : '';
 
-        // Transform relative image paths to absolute paths
-        content = content.replace(
-          /<img([^>]*)\ssrc=["']images\/([^"']+)["']/g,
-          (match, attrs, imageName) => {
-            // Extract the post slug from the output path
-            const pathParts = outputPath.split('/');
-            const postSlug = pathParts[pathParts.length - 2]; // Get the directory name
-
-            const newPath = `${pathPrefix}/blog/${postSlug}/images/${imageName}`;
-            return `<img${attrs} src="${newPath}"`;
+        // Extract the post slug from the output path
+        const pathParts = outputPath.split('/');
+        let postSlug = '';
+        
+        // Find the post slug in the path
+        for (let i = 0; i < pathParts.length; i++) {
+          if (pathParts[i] === 'blog' && pathParts[i + 1]) {
+            postSlug = pathParts[i + 1];
+            break;
           }
-        );
+        }
 
-        // Also handle markdown-style images that might have been converted
-        content = content.replace(
-          /src=["']\.\/images\/([^"']+)["']/g,
-          (match, imageName) => {
-            const pathParts = outputPath.split('/');
-            const postSlug = pathParts[pathParts.length - 2];
-
-            const newPath = `${pathPrefix}/blog/${postSlug}/images/${imageName}`;
-            return `src="${newPath}"`;
-          }
-        );
-      }
-
-      return content;
-    }
-  );
-
-  // Fallback transform to convert any remaining markdown images that weren't processed by markdown-it
-  eleventyConfig.addTransform(
-    'fallbackImageTransform',
-    function (content, outputPath) {
-      if (!outputPath || !outputPath.endsWith('.html')) {
-        return content;
-      }
-
-      // Only process WordPress post pages
-      if (outputPath.includes('/blog/') || outputPath.includes('/posts/')) {
-        const pathPrefix =
-          process.env?.NODE_ENV === 'production' ? '/mike-henke-website' : '';
-
-        // Transform remaining markdown image syntax to HTML img tags
-        content = content.replace(
-          /!\[\]\(images\/([^)]+)\)/g,
-          (match, imageName) => {
-            // Extract the post slug from the output path
-            const pathParts = outputPath.split('/');
-            let postSlug = '';
-
-            // Find the post slug in the path
-            for (let i = 0; i < pathParts.length; i++) {
-              if (pathParts[i] === 'blog' && pathParts[i + 1]) {
-                postSlug = pathParts[i + 1];
-                break;
+        if (postSlug) {
+          // Transform all image variations in one pass
+          content = content
+            // HTML img tags with relative paths
+            .replace(
+              /<img([^>]*)\ssrc=["']images\/([^"']+)["']/g,
+              (match, attrs, imageName) => {
+                const newPath = `${pathPrefix}/blog/${postSlug}/images/${imageName}`;
+                return `<img${attrs} src="${newPath}"`;
               }
-            }
-
-            if (postSlug) {
-              const newSrc = `${pathPrefix}/blog/${postSlug}/images/${imageName}`;
-
-              return `<img src="${newSrc}" alt="" loading="lazy">`;
-            }
-
-            return match; // Return unchanged if we can't determine the post slug
-          }
-        );
+            )
+            // Markdown-style images with relative paths
+            .replace(
+              /src=["']\.\/images\/([^"']+)["']/g,
+              (match, imageName) => {
+                const newPath = `${pathPrefix}/blog/${postSlug}/images/${imageName}`;
+                return `src="${newPath}"`;
+              }
+            )
+            // Remaining markdown image syntax
+            .replace(
+              /!\[\]\(images\/([^)]+)\)/g,
+              (match, imageName) => {
+                const newSrc = `${pathPrefix}/blog/${postSlug}/images/${imageName}`;
+                return `<img src="${newSrc}" alt="" loading="lazy">`;
+              }
+            );
+        }
       }
 
       return content;
@@ -543,70 +510,7 @@ module.exports = function (eleventyConfig) {
     }
   );
 
-  // Podcast and embed transform
-  eleventyConfig.addTransform(
-    'podcastEmbedTransform',
-    function (content, outputPath) {
-      if (!outputPath || !outputPath.endsWith('.html')) {
-        return content;
-      }
-
-      let result = content;
-
-      // Step 1: Remove backslashes around brackets for podcast and embed tags
-      result = result.replace(
-        /\\+(\[(?:podcast|embed|\/podcast|\/embed)\])/g,
-        '$1'
-      );
-
-      // Step 2: Handle podcast tags - convert to HTML5 audio player
-      result = result.replace(
-        /\[podcast\](.*?)\[\/podcast\]/gi,
-        (match, audioUrl) => {
-          const cleanUrl = audioUrl.trim();
-          return `<div class="podcast-player">
-  <audio controls preload="metadata" style="width: 100%; max-width: 600px;">
-    <source src="${cleanUrl}" type="audio/mpeg">
-    <p>Your browser does not support the audio element. <a href="${cleanUrl}">Download the podcast</a></p>
-  </audio>
-</div>`;
-        }
-      );
-
-      // Step 3: Handle embed tags - convert YouTube URLs to embeds
-      result = result.replace(
-        /\[embed\](.*?)\[\/embed\]/gi,
-        (match, embedUrl) => {
-          const cleanUrl = embedUrl.trim();
-
-          // Extract YouTube video ID from various YouTube URL formats
-          const youtubeRegex =
-            /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i;
-          const youtubeMatch = cleanUrl.match(youtubeRegex);
-
-          if (youtubeMatch) {
-            const videoId = youtubeMatch[1];
-            return `<div class="video-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000; margin: 20px 0;">
-  <iframe 
-    src="https://www.youtube.com/embed/${videoId}" 
-    frameborder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-    allowfullscreen
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-  </iframe>
-</div>`;
-          }
-
-          // If not YouTube, return a generic embed link
-          return `<div class="generic-embed">
-  <p><a href="${cleanUrl}" target="_blank" rel="noopener noreferrer">View embedded content: ${cleanUrl}</a></p>
-</div>`;
-        }
-      );
-
-      return result;
-    }
-  );
+  // Duplicate podcastEmbedTransform removed - already defined above
 
   // Passthrough copy for static assets
   eleventyConfig.addPassthroughCopy('styles.css');
@@ -615,23 +519,28 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy('assets'); // Assets folder including images
 
   // Copy WordPress post images to blog directory structure
-  // Instead of copying to output/posts/*, we copy to blog/* to match the URL structure
+  // Use lazy loading to avoid blocking during config
   const fs = require('fs');
   const path = require('path');
   const glob = require('glob');
 
-  // Find all image directories in output/posts/*/images/
-  const imageDirs = glob.sync('output/posts/*/images/');
-
-  imageDirs.forEach((dir) => {
-    // Extract post slug from path: output/posts/POST-SLUG/images/
-    const postSlug = dir.split('/')[2];
-
-    // Set up passthrough copy from source to blog destination
-    eleventyConfig.addPassthroughCopy({
-      [`output/posts/${postSlug}/images/`]: `blog/${postSlug}/images/`,
-    });
-  });
+  // Set up image passthrough copy lazily
+  try {
+    if (fs.existsSync('output/posts')) {
+      const imageDirs = glob.sync('output/posts/*/images/', { ignore: ['node_modules/**'] });
+      
+      imageDirs.forEach((dir) => {
+        const postSlug = dir.split('/')[2];
+        if (postSlug) {
+          eleventyConfig.addPassthroughCopy({
+            [`output/posts/${postSlug}/images/`]: `blog/${postSlug}/images/`,
+          });
+        }
+      });
+    }
+  } catch (error) {
+    console.warn('Warning: Could not set up image passthrough copy:', error.message);
+  }
 
   // WordPress export collections
   eleventyConfig.addCollection('wordpressPosts', function (collectionApi) {
