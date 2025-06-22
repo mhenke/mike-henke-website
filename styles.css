@@ -1860,7 +1860,7 @@ article[role='article'] header {
 }
 
 .pagefind-ui__search-input:focus {
-  border-color: var(--color-primary);
+  border-color: var(--color-text-tertiary);
   outline: none;
   box-shadow: 0 0 0 2px rgba(25, 212, 254, 0.2);
 }
