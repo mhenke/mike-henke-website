@@ -579,26 +579,6 @@ p {
   width: 100%;
 }
 
-/* Search icon specific styling - show icon on desktop */
-.navbar-links a[aria-label='Search'] {
-  min-width: 44px;
-  height: 44px;
-  padding: var(--spacing-sm);
-}
-
-.navbar-links a[aria-label='Search'] i {
-  display: inline; /* Show search icon on desktop */
-  font-size: var(--font-size-base);
-}
-
-.navbar-links a[aria-label='Search'] span {
-  display: none; /* Hide search text on desktop */
-}
-
-.navbar-links a[aria-label='Search']::after {
-  display: none; /* No underline for search icon */
-}
-
 /* Mobile Navigation Override */
 @media (max-width: 767px) {
   .navbar-toggle {
@@ -712,7 +692,7 @@ p {
     width: 24px;
     height: 24px;
     text-align: center;
-    color: var(--color-text-secondary);
+    color: var(--color-text);
     transition: all 0.2s ease;
     display: inline-flex !important; /* Override desktop hiding */
     align-items: center;
@@ -725,19 +705,6 @@ p {
     text-align: left;
     display: inline !important; /* Override desktop hiding */
     margin-left: 0; /* Ensure no margin pushing text right */
-  }
-
-  /* Show both icon and text for search on mobile */
-  .navbar-links a[aria-label='Search'] i {
-    display: inline-flex !important;
-    align-items: center;
-    justify-content: center;
-    width: 24px;
-    height: 24px;
-  }
-
-  .navbar-links a[aria-label='Search'] span {
-    display: inline !important;
   }
 
   .navbar-links a::after {
@@ -756,16 +723,6 @@ p {
     background-color: var(--color-primary);
     color: var(--color-text);
     border-color: var(--color-primary);
-  }
-
-  /* Search item specific styling */
-  .navbar-links a[aria-label='Search'] {
-    justify-content: flex-start;
-    gap: var(--spacing-md);
-  }
-
-  .navbar-links a[aria-label='Search']::before {
-    display: none;
   }
 
   /* Mobile overlay - allow seeing background content at top */
@@ -1288,6 +1245,10 @@ section {
   transform: var(--active-transform);
 }
 
+.skill-percent {
+  color: var(--color-text-secondary);
+}
+
 .progress-bar {
   height: 8px;
   background-color: var(--color-border);
@@ -1762,23 +1723,6 @@ footer p {
     transform: translateY(-2px);
   }
 
-  /* Search icon styling */
-  .navbar-links a[aria-label='Search'] {
-    padding: var(--spacing-sm);
-    min-width: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .navbar-links a[aria-label='Search']::after {
-    display: none; /* No underline for icon */
-  }
-
-  .navbar-links a[aria-label='Search'] i {
-    font-size: var(--font-size-base);
-  }
-
   .hero-section {
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
@@ -1866,15 +1810,6 @@ footer p {
   .navbar-links a {
     padding: var(--spacing-md) var(--spacing-lg);
     font-size: var(--font-size-base);
-  }
-
-  /* Search icon styling for large desktop */
-  .navbar-links a[aria-label='Search'] {
-    padding: var(--spacing-md);
-    min-width: var(--touch-target-large);
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
   .hero-section {
