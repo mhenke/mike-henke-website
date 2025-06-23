@@ -101,36 +101,54 @@
                 results = Array.from(allResults).filter(result => !result.hasAttribute('data-processed'));
             }
             
-            console.log(`Processing ${results.length} new search results`);
+            console.log(`Found ${results.length} unprocessed search results`);
             
             if (results.length === 0) {
                 return; // No new results to process
             }
             
+            let processedCount = 0;
+            
             results.forEach((result, index) => {
-                console.log(`Processing result ${index}`);
-                
-                // Find and process default meta tags
-                const metaTags = result.querySelectorAll('.pagefind-ui__result-tag');
-                let categoryData = '';
-                let dateData = '';
-                
-                metaTags.forEach(tag => {
-                    const metaType = tag.getAttribute('data-pagefind-ui-meta');
-                    const tagText = tag.textContent || '';
-                    console.log(`Found meta tag: ${metaType} = ${tagText}`);
+                try {
+                    // Ensure result is fully rendered by checking for required elements
+                    const titleElement = result.querySelector('.pagefind-ui__result-title');
+                    const excerptElement = result.querySelector('.pagefind-ui__result-excerpt');
                     
-                    if (metaType === 'category' || metaType === 'categories') {
-                        categoryData = tagText.replace(/^(Category|Categories):\s*/i, '').trim();
-                    } else if (metaType === 'date') {
-                        dateData = tagText.replace(/^Date:\s*/i, '').trim();
+                    if (!titleElement || !excerptElement) {
+                        console.log(`Result ${index} not fully loaded yet (missing title or excerpt), skipping...`);
+                        return; // Skip this result, it will be processed on next attempt
                     }
-                });
-                
-                console.log(`Extracted - Categories: "${categoryData}", Date: "${dateData}"`);
-                
-                // Remove default meta tags immediately
-                metaTags.forEach(tag => tag.remove());
+                    
+                    // Ensure elements have content
+                    if (!titleElement.textContent?.trim() || !excerptElement.textContent?.trim()) {
+                        console.log(`Result ${index} elements are empty, skipping...`);
+                        return;
+                    }
+                    
+                    console.log(`Processing fully loaded result ${index}`);
+                    
+                    // Find and process default meta tags
+                    const metaTags = result.querySelectorAll('.pagefind-ui__result-tag');
+                    let categoryData = '';
+                    let dateData = '';
+                    
+                    metaTags.forEach(tag => {
+                        const metaType = tag.getAttribute('data-pagefind-ui-meta');
+                        const tagText = tag.textContent || '';
+                        console.log(`Found meta tag: ${metaType} = ${tagText}`);
+                        
+                        if (metaType === 'category' || metaType === 'categories') {
+                            categoryData = tagText.replace(/^(Category|Categories):\s*/i, '').trim();
+                        } else if (metaType === 'date') {
+                            dateData = tagText.replace(/^Date:\s*/i, '').trim();
+                        }
+                    });
+                    
+                    console.log(`Extracted - Categories: "${categoryData}", Date: "${dateData}"`);
+                    
+                    // Remove default meta tags
+                    metaTags.forEach(tag => tag.remove());
                 
                 // Find the title element and excerpt
                 const titleElement = result.querySelector('.pagefind-ui__result-title');
@@ -194,12 +212,26 @@
                         const resultContainer = result.querySelector('.pagefind-ui__result-inner') || result;
                         resultContainer.appendChild(dateP);
                     }
+                    
+                    // Mark as processed to avoid duplicate processing
+                    result.dataset.processed = 'true';
+                    processedCount++;
+                    console.log(`Result ${index} marked as processed`);
+                    
+                } catch (error) {
+                    console.error(`Error processing search result ${index}:`, error);
+                    // Still mark as processed to avoid infinite retry
+                    result.dataset.processed = 'true';
                 }
-                
-                // Mark as processed to avoid duplicate processing
-                result.dataset.processed = 'true';
-                console.log(`Result ${index} marked as processed`);
             });
+            
+            console.log(`Successfully processed ${processedCount} out of ${results.length} search results`);
+            
+            // If some results weren't processed, schedule another attempt
+            if (processedCount < results.length) {
+                console.log(`Scheduling retry for ${results.length - processedCount} unprocessed results`);
+                setTimeout(() => processSearchResults(), 200);
+            }
         }
 
         // Initialize Pagefind Search if search element exists
@@ -232,9 +264,11 @@
                 if (searchElement) {
                     console.log('Setting up search results observer');
                     
-                    // Listen for search results updates with improved detection
+                    let processingTimeout;
+                    
+                    // Single robust observer with debouncing
                     const observer = new MutationObserver((mutations) => {
-                        let foundNewResults = false;
+                        let shouldProcess = false;
                         
                         mutations.forEach((mutation) => {
                             if (mutation.addedNodes.length > 0) {
@@ -246,17 +280,24 @@
                                 );
                                 
                                 if (hasResults) {
-                                    foundNewResults = true;
+                                    shouldProcess = true;
                                 }
                             }
                         });
                         
-                        if (foundNewResults) {
-                            console.log('New search results detected, processing...');
-                            // Single timeout with consistent delay for better timing
-                            setTimeout(() => {
+                        if (shouldProcess) {
+                            console.log('New search results detected, scheduling processing...');
+                            
+                            // Clear any existing timeout to debounce rapid changes
+                            if (processingTimeout) {
+                                clearTimeout(processingTimeout);
+                            }
+                            
+                            // Process after DOM has settled
+                            processingTimeout = setTimeout(() => {
+                                console.log('Processing search results...');
                                 processSearchResults();
-                            }, 150);
+                            }, 100);
                         }
                     });
                     
@@ -266,15 +307,12 @@
                     });
                     
                     // Process any existing results that might have loaded before observer setup
-                    setTimeout(() => {
-                        processSearchResults();
-                    }, 100);
-                    
-                    // Also process results when search input changes (as backup)
+                    setTimeout(() => processSearchResults(), 100);
                     const searchInput = searchElement.querySelector('input[type="search"]');
                     if (searchInput) {
                         searchInput.addEventListener('input', () => {
-                            setTimeout(() => processSearchResults(), 300);
+                            setTimeout(() => processSearchResults(), 400);
+                            setTimeout(() => processSearchResults(), 800);
                         });
                     }
                 }
