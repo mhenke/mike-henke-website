@@ -541,6 +541,7 @@ p {
     min-height: calc(var(--touch-target) + var(--spacing-md));
     gap: var(--spacing-md);
     text-align: left;
+    color: var(--color-text); /* Ensure text is bright white */
   }
 
   .navbar-links a i {
@@ -548,7 +549,7 @@ p {
     width: 24px;
     height: 24px;
     text-align: center;
-    color: var(--color-text);
+    color: var(--color-text); /* Bright white icons */
     transition: all var(--transition-fast);
     display: inline-flex;
     align-items: center;
@@ -561,6 +562,8 @@ p {
     text-align: left;
     display: inline;
     margin-left: 0;
+    color: var(--color-text); /* Explicit bright white text */
+    font-weight: var(--font-weight-medium);
   }
 
   .navbar-links a::after {
@@ -569,16 +572,19 @@ p {
 
   .navbar-links a:hover,
   .navbar-links a:focus {
-    background-color: var(--color-surface);
-    color: var(--color-text);
+    background-color: rgba(25, 212, 254, 0.1); /* Subtle blue background on hover */
+    color: var(--color-text); /* Keep text bright white on hover */
     transform: none;
   }
 
   .navbar-links a:hover i,
   .navbar-links a:focus i {
-    background-color: var(--color-primary);
-    color: var(--color-text);
-    border-color: var(--color-primary);
+    color: var(--color-primary); /* Icons turn blue on hover */
+  }
+
+  .navbar-links a:hover span,
+  .navbar-links a:focus span {
+    color: var(--color-primary); /* Text turns blue on hover */
   }
 
   .nav-overlay {
