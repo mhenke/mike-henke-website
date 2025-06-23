@@ -178,13 +178,18 @@ hr {
 .hero-section,
 .content-section,
 .content-section-boxed,
-main,
-section,
-div {
+main {
   max-width: 100%;
   overflow-wrap: break-word;
   word-wrap: break-word;
   overflow-x: hidden;
+}
+
+/* Prevent overflow on sections but allow y-overflow for normal scrolling */
+section {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 /* Text wrapping */
@@ -811,7 +816,6 @@ section {
   width: 100%;
   scroll-margin-top: calc(var(--spacing-2xl) + 80px);
   border-radius: var(--border-radius-xl);
-  transform: translate3d(0, 0, 0);
   transition: box-shadow var(--transition-normal);
   box-sizing: border-box;
   overflow-x: hidden;
@@ -1266,6 +1270,10 @@ section {
   transition: width 1s ease-out;
 }
 
+.progress-bar.animate span {
+  width: var(--progress-width, 0%);
+}
+
 /* Framework Grid */
 .frameworks-grid {
   display: grid;
@@ -1477,9 +1485,10 @@ section {
   transition: all var(--transition-normal);
   cursor: pointer;
   position: relative;
-  overflow: hidden;
   animation: slideInUp var(--transition-slow) ease-out;
   animation-fill-mode: both;
+  overflow: hidden;
+  isolation: isolate;
 }
 
 .contact-item::before {
@@ -1496,10 +1505,10 @@ section {
     transparent
   );
   transition: left var(--transition-slow);
+  border-radius: var(--border-radius-md);
 }
 
 .contact-item:hover {
-  transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
   border-color: var(--color-primary);
 }
@@ -1509,7 +1518,6 @@ section {
 }
 
 .contact-item:active {
-  transform: translateY(-2px);
   border-color: var(--color-primary);
 }
 
