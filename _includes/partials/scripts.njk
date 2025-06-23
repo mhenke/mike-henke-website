@@ -149,10 +149,8 @@
                     
                     // Remove default meta tags
                     metaTags.forEach(tag => tag.remove());
-                
-                // Find the title element and excerpt
-                const titleElement = result.querySelector('.pagefind-ui__result-title');
-                const excerptElement = result.querySelector('.pagefind-ui__result-excerpt');
+                    
+                    // Use the existing titleElement and excerptElement from above
                 
                 if (titleElement && excerptElement) {
                     // Clean excerpt content
@@ -334,6 +332,9 @@
                 if (span && targetWidth) {
                     // Add animate class to enable transitions
                     progressBar.classList.add('animate');
+                    
+                    // Set the CSS custom property and animate
+                    progressBar.style.setProperty('--progress-width', targetWidth + '%');
                     
                     // Set the target width after a small delay to trigger animation
                     setTimeout(() => {
