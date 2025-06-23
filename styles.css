@@ -1338,7 +1338,7 @@ section {
 
 .framework-item:hover svg,
 .framework-item:focus svg {
-  transform: var(--hover-scale);
+  transform: scale(1.1) rotate(5deg);
   transition-delay: var(--delay-short);
 }
 
@@ -1358,7 +1358,7 @@ section {
 .framework-item:hover svg,
 .framework-item:focus i,
 .framework-item:focus svg {
-  transform: var(--hover-scale);
+  transform: scale(1.1) rotate(5deg);
   color: var(--color-primary);
   transition-delay: var(--delay-short);
 }
@@ -1410,7 +1410,7 @@ section {
 }
 
 .methodology-item:hover i {
-  transform: var(--hover-scale);
+  transform: scale(1.1) rotate(5deg);
   color: var(--color-primary);
 }
 
@@ -1739,7 +1739,7 @@ address a:hover {
 /* Footer */
 footer {
   padding: var(--spacing-2xl) 0;
-  margin-top: var(--spacing-4xl);
+  margin-top: var(--spacing-sm);
   text-align: center;
   border-top: var(--border-width-thin) solid var(--color-border);
 }
