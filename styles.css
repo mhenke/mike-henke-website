@@ -1683,7 +1683,7 @@ section {
   background-color: var(--color-surface);
   padding: var(--spacing-2xl);
   box-shadow: var(--shadow-lg);
-  margin: var(--spacing-3xl) auto;
+  margin: 0 auto var(--spacing-3xl) auto;
   max-width: var(--max-width-content);
   width: 100%;
   scroll-margin-top: calc(var(--spacing-2xl) + var(--nav-height));
