@@ -311,7 +311,7 @@ p {
 }
 
 /* ================================
-   5. NAVIGATION SYSTEM - Semantic variables applied
+   5. NAVIGATION SYSTEM - FIXED MOBILE FUNCTIONALITY
    ================================ */
 .navbar {
   background-color: var(--color-surface);
@@ -348,7 +348,7 @@ p {
   text-decoration: none;
 }
 
-/* HAMBURGER MENU - Using semantic sizing */
+/* HAMBURGER MENU - Fixed functionality */
 .navbar-toggle {
   display: none;
   position: relative;
@@ -360,6 +360,9 @@ p {
   z-index: var(--z-nav-toggle);
   padding: var(--spacing-xs);
   transition: opacity var(--transition-normal);
+  /* Ensure it's clickable */
+  pointer-events: auto;
+  touch-action: manipulation;
 }
 
 .navbar-toggle:focus {
@@ -371,6 +374,8 @@ p {
   font-size: var(--font-size-lg);
   color: var(--color-text);
   transition: color var(--transition-normal);
+  /* Prevent icon from blocking clicks */
+  pointer-events: none;
 }
 
 .navbar-toggle:hover i {
@@ -439,10 +444,15 @@ p {
   width: 100%;
 }
 
-/* MOBILE NAVIGATION - Using semantic variables */
+/* MOBILE NAVIGATION - FIXED ALL FUNCTIONALITY ISSUES */
 @media (max-width: 1023px) {
   .navbar-toggle {
     display: block;
+    /* Ensure it's properly clickable */
+    position: relative;
+    z-index: var(--z-nav-toggle);
+    pointer-events: auto;
+    touch-action: manipulation;
   }
 
   .navbar-links {
@@ -468,10 +478,15 @@ p {
     transform: translateZ(0);
     overscroll-behavior: contain;
     scroll-behavior: smooth;
+    /* CRITICAL: Ensure menu is clickable when open */
+    pointer-events: auto;
   }
 
   .navbar-links.active {
     right: 0;
+    /* Ensure it's visible and clickable */
+    pointer-events: auto;
+    visibility: visible;
   }
 
   .mobile-menu-header {
@@ -502,6 +517,9 @@ p {
     font-size: var(--font-size-lg);
     border-radius: var(--border-radius-sm);
     transition: all var(--transition-fast);
+    /* Ensure close button works */
+    pointer-events: auto;
+    touch-action: manipulation;
   }
 
   .menu-close:hover,
@@ -522,6 +540,8 @@ p {
 
   .navbar-links li {
     border-bottom: var(--border-width-thin) solid var(--color-border);
+    /* Ensure list items are clickable */
+    pointer-events: auto;
   }
 
   .navbar-links li:last-child {
@@ -541,7 +561,11 @@ p {
     min-height: calc(var(--touch-target) + var(--spacing-md));
     gap: var(--spacing-md);
     text-align: left;
-    color: var(--color-text); /* Ensure text is bright white */
+    /* CRITICAL: Bright white text and ensure links work */
+    color: var(--color-text);
+    text-decoration: none;
+    pointer-events: auto;
+    touch-action: manipulation;
   }
 
   .navbar-links a i {
@@ -549,12 +573,14 @@ p {
     width: 24px;
     height: 24px;
     text-align: center;
-    color: var(--color-text); /* Bright white icons */
+    color: var(--color-text);
     transition: all var(--transition-fast);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     background-color: transparent;
+    /* Don't block clicks */
+    pointer-events: none;
   }
 
   .navbar-links a span {
@@ -562,8 +588,10 @@ p {
     text-align: left;
     display: inline;
     margin-left: 0;
-    color: var(--color-text); /* Explicit bright white text */
+    color: var(--color-text);
     font-weight: var(--font-weight-medium);
+    /* Don't block clicks */
+    pointer-events: none;
   }
 
   .navbar-links a::after {
@@ -572,19 +600,19 @@ p {
 
   .navbar-links a:hover,
   .navbar-links a:focus {
-    background-color: rgba(25, 212, 254, 0.1); /* Subtle blue background on hover */
-    color: var(--color-text); /* Keep text bright white on hover */
+    background-color: rgba(25, 212, 254, 0.1);
+    color: var(--color-primary);
     transform: none;
   }
 
   .navbar-links a:hover i,
   .navbar-links a:focus i {
-    color: var(--color-primary); /* Icons turn blue on hover */
+    color: var(--color-primary);
   }
 
   .navbar-links a:hover span,
   .navbar-links a:focus span {
-    color: var(--color-primary); /* Text turns blue on hover */
+    color: var(--color-primary);
   }
 
   .nav-overlay {
@@ -598,11 +626,14 @@ p {
     opacity: 0;
     visibility: hidden;
     transition: all var(--transition-normal);
+    /* Make sure overlay is clickable to close menu */
+    pointer-events: none;
   }
 
   .nav-overlay.active {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
   }
 
   body.nav-open {
