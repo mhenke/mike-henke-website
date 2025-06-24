@@ -89,144 +89,37 @@
             });
         }
 
-        // Function to process search results and apply custom styling
+        // Process search results for consistent formatting
         function processSearchResults() {
-            let results;
-            try {
-                results = document.querySelectorAll('.pagefind-ui__result:not([data-processed="true"])');
-            } catch (error) {
-                console.error('Error with search results selector:', error);
-                // Fallback: get all results and filter manually
-                const allResults = document.querySelectorAll('.pagefind-ui__result');
-                results = Array.from(allResults).filter(result => !result.hasAttribute('data-processed'));
-            }
+            const results = document.querySelectorAll('.pagefind-ui__result:not([data-enhanced])');
             
-            console.log(`Found ${results.length} unprocessed search results`);
+            console.log(`Processing ${results.length} new search results`);
             
-            if (results.length === 0) {
-                return; // No new results to process
-            }
-            
-            let processedCount = 0;
-            
-            results.forEach((result, index) => {
-                try {
-                    // Ensure result is fully rendered by checking for required elements
-                    const titleElement = result.querySelector('.pagefind-ui__result-title');
-                    const excerptElement = result.querySelector('.pagefind-ui__result-excerpt');
-                    
-                    if (!titleElement || !excerptElement) {
-                        console.log(`Result ${index} not fully loaded yet (missing title or excerpt), skipping...`);
-                        return; // Skip this result, it will be processed on next attempt
-                    }
-                    
-                    // Ensure elements have content
-                    if (!titleElement.textContent?.trim() || !excerptElement.textContent?.trim()) {
-                        console.log(`Result ${index} elements are empty, skipping...`);
-                        return;
-                    }
-                    
-                    console.log(`Processing fully loaded result ${index}`);
-                    
-                    // Find and process default meta tags
-                    const metaTags = result.querySelectorAll('.pagefind-ui__result-tag');
-                    let categoryData = '';
-                    let dateData = '';
-                    
-                    metaTags.forEach(tag => {
-                        const metaType = tag.getAttribute('data-pagefind-ui-meta');
-                        const tagText = tag.textContent || '';
-                        console.log(`Found meta tag: ${metaType} = ${tagText}`);
-                        
-                        if (metaType === 'category' || metaType === 'categories') {
-                            categoryData = tagText.replace(/^(Category|Categories):\s*/i, '').trim();
-                        } else if (metaType === 'date') {
-                            dateData = tagText.replace(/^Date:\s*/i, '').trim();
-                        }
-                    });
-                    
-                    console.log(`Extracted - Categories: "${categoryData}", Date: "${dateData}"`);
-                    
-                    // Remove default meta tags
-                    metaTags.forEach(tag => tag.remove());
-                    
-                    // Clean excerpt content
-                    let excerptText = excerptElement.innerHTML || '';
-                    
-                    // Remove any categories/dates that might be embedded in the excerpt
-                    excerptText = excerptText
-                        .replace(/Categories?:\s*[^.]*?(?=\s{2,}|\.|$)/gi, '')
-                        .replace(/Published:\s*[^.]*?(?=\s{2,}|\.|$)/gi, '')
-                        .replace(/\s+/g, ' ')
-                        .trim();
-                    
-                    excerptElement.innerHTML = excerptText;
-                    
-                    // Remove any existing formatted categories/dates from the result
-                    const existingCategories = result.querySelector('.blog-post-categories');
-                    const existingDate = result.querySelector('.blog-post-date');
-                    
-                    if (existingCategories) existingCategories.remove();
-                    if (existingDate) existingDate.remove();
-                    
-                    // Add categories if we have category data
-                    if (categoryData) {
-                        console.log(`Adding categories for result ${index}: ${categoryData}`);
-                        const categoryDiv = document.createElement('div');
-                        categoryDiv.className = 'blog-post-categories';
-                        
-                        const categories = categoryData.split(',');
-                        categories.forEach((cat, catIndex) => {
-                            if (catIndex > 0) {
-                                categoryDiv.appendChild(document.createTextNode(' '));
-                            }
-                            
-                            const categoryLink = document.createElement('a');
-                            categoryLink.className = 'category-tag';
-                            const slug = cat.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-                            
-                            // Handle base path for GitHub Pages deployment
-                            const basePath = window.location.pathname.includes('/mike-henke-website/') ? '/mike-henke-website' : '';
-                            categoryLink.href = `${basePath}/blog/category/${slug}/`;
-                            categoryLink.textContent = cat.trim();
-                            categoryDiv.appendChild(categoryLink);
-                        });
-                        
-                        // Insert categories right after the title
-                        titleElement.insertAdjacentElement('afterend', categoryDiv);
-                    }
-                    
-                    // Add date if we have date data
-                    if (dateData) {
-                        console.log(`Adding date for result ${index}: ${dateData}`);
-                        const dateP = document.createElement('p');
-                        dateP.className = 'blog-post-date';
-                        dateP.innerHTML = `<em>Published: ${dateData}</em>`;
-                        
-                        // Insert date at the very end (after excerpt)
-                        const resultContainer = result.querySelector('.pagefind-ui__result-inner') || result;
-                        resultContainer.appendChild(dateP);
-                    }
-                    
-                    // Mark as processed to avoid duplicate processing
-                    result.dataset.processed = 'true';
-                    processedCount++;
-                    console.log(`Result ${index} marked as processed`);
-                    
-                } catch (error) {
-                    console.error(`Error processing search result ${index}:`, error);
-                    // Still mark as processed to avoid infinite retry
-                    result.dataset.processed = 'true';
+            results.forEach(result => {
+                // Add our blog post card styling to match the existing blog listings
+                result.classList.add('blog-post-card');
+                
+                // Enhance the existing title
+                const title = result.querySelector('.pagefind-ui__result-title');
+                if (title) {
+                    title.classList.add('blog-post-title');
                 }
+                
+                // Enhance the existing excerpt
+                const excerpt = result.querySelector('.pagefind-ui__result-excerpt');
+                if (excerpt) {
+                    excerpt.classList.add('blog-post-excerpt');
+                }
+                
+                // Style existing meta tags as categories
+                const metaTags = result.querySelectorAll('.pagefind-ui__result-tag');
+                metaTags.forEach(tag => {
+                    tag.classList.add('category-tag');
+                });
+                
+                // Mark as enhanced to avoid duplicate processing
+                result.setAttribute('data-enhanced', 'true');
             });
-            
-            console.log(`Successfully processed ${processedCount} out of ${results.length} search results`);
-            
-            // If some results weren't processed, schedule another attempt
-            if (processedCount < results.length) {
-                console.log(`Scheduling retry for ${results.length - processedCount} unprocessed results`);
-                setTimeout(() => processSearchResults(), 200);
-            }
         }
 
         // Initialize Pagefind Search if search element exists
@@ -243,7 +136,32 @@
                     autofocus: true,
                     debounceTimeoutMs: 300,
                     bundlePath: bundlePath,
-                    excerptLength: 30
+                    excerptLength: 30,
+                    // Process each result to enhance metadata and structure
+                    processResult: function(result) {
+                        console.log('Processing result:', result);
+                        
+                        // Extract publish date from URL structure if available
+                        if (result.url && result.url.includes('/blog/')) {
+                            const urlParts = result.url.split('/');
+                            const dateMatch = result.url.match(/\/blog\/(\d{4}-\d{2}-\d{2})-/);
+                            if (dateMatch) {
+                                result.meta.date = dateMatch[1];
+                            }
+                        }
+                        
+                        // Ensure we have a category for styling
+                        if (!result.meta.category && result.meta.tags && result.meta.tags.length > 0) {
+                            result.meta.category = result.meta.tags[0];
+                        }
+                        
+                        // Clean up title if needed
+                        if (result.meta.title) {
+                            result.meta.title = result.meta.title.replace(/\s+/g, ' ').trim();
+                        }
+                        
+                        return result;
+                    }
                 };
 
                 // Add custom result template for search page
