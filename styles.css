@@ -1460,6 +1460,7 @@ section {
 .framework-item:focus svg {
   transform: var(--hover-scale) rotate(5deg);
   color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(25, 212, 254, 0.4);
 }
 
 .framework-item span {
@@ -1522,6 +1523,7 @@ section {
 .methodology-item:hover i {
   transform: var(--hover-scale) rotate(5deg);
   color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(25, 212, 254, 0.4);
 }
 
 .button-container {
