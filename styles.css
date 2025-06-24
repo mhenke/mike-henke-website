@@ -35,6 +35,7 @@ Status: Fully functional - drop-in replacement for original
   --color-accent-bg: rgba(25, 212, 254, 0.1);
   --color-accent-bg-light: rgba(25, 212, 254, 0.05);
   --color-accent-bg-medium: rgba(25, 212, 254, 0.2);
+  --color-accent-bg-glow: rgba(25, 212, 254, 0.15);
 
   /* TYPOGRAPHY SYSTEM - Unchanged (already good) */
   --font-primary: 'Montserrat', Arial, Helvetica, sans-serif;
@@ -887,7 +888,7 @@ section {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(25, 212, 254, 0.15),
+    var(--color-accent-bg-glow),
     transparent
   );
   transition: left var(--transition-slow);
@@ -1090,7 +1091,7 @@ section {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(25, 212, 254, 0.2),
+    var(--color-accent-bg-medium),
     transparent
   );
   transition: left var(--transition-slow);
@@ -1152,7 +1153,7 @@ section {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(25, 212, 254, 0.05),
+    var(--color-accent-bg-light),
     transparent
   );
   transition: left var(--transition-slow);
@@ -1704,7 +1705,7 @@ section {
 
 .contact-details a:hover {
   color: var(--color-primary);
-  background: rgba(25, 212, 254, 0.1);
+  background: var(--color-accent-bg);
 }
 
 .contact-details a:hover::after {
@@ -1970,7 +1971,7 @@ article[role='article'] header {
 .pagefind-ui__search-input:focus {
   border-color: var(--color-text-tertiary);
   outline: none;
-  box-shadow: 0 0 0 2px rgba(25, 212, 254, 0.2);
+  box-shadow: 0 0 0 2px var(--color-accent-bg-medium);
 }
 
 .pagefind-ui__search-input:hover {
