@@ -1130,6 +1130,25 @@ section {
   left: 100%;
 }
 
+/* Linked hover effects - hovering square affects content and vice versa */
+.timeline-item:hover .timeline-square {
+  transform: var(--hover-scale) rotate(5deg);
+  box-shadow: var(--shadow-accent), 0 6px 16px rgba(25, 212, 254, 0.4);
+}
+
+.timeline-item:hover .timeline-square::before {
+  left: 100%;
+}
+
+.timeline-item:hover .timeline-content {
+  box-shadow: var(--shadow-accent), var(--shadow-lg);
+  border-color: var(--color-primary);
+}
+
+.timeline-item:hover .timeline-content::before {
+  left: 100%;
+}
+
 .timeline-content h3 {
   color: var(--color-text);
   font-size: var(--font-size-2xl);
