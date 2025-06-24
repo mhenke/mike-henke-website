@@ -32,6 +32,9 @@ Status: Fully functional - drop-in replacement for original
   --color-text-secondary: #cfd8dc; /* Consolidated from 3 similar grays */
   --color-text-tertiary: #adb5bd;
   --color-border: #3e4750;
+  --color-accent-bg: rgba(25, 212, 254, 0.1);
+  --color-accent-bg-light: rgba(25, 212, 254, 0.05);
+  --color-accent-bg-medium: rgba(25, 212, 254, 0.2);
 
   /* TYPOGRAPHY SYSTEM - Unchanged (already good) */
   --font-primary: 'Montserrat', Arial, Helvetica, sans-serif;
@@ -96,6 +99,9 @@ Status: Fully functional - drop-in replacement for original
   --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.3);
   --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.4);
   --shadow-accent: 0 8px 32px rgba(25, 212, 254, 0.15);
+  --shadow-accent-sm: 0 4px 12px rgba(25, 212, 254, 0.4);
+  --shadow-accent-md: 0 6px 16px rgba(25, 212, 254, 0.4);
+  --shadow-accent-lg: 0 8px 20px rgba(25, 212, 254, 0.3);
 
   /* UNIFIED ANIMATION SYSTEM - Reduced from 47 lines to 8 lines */
   --transition-fast: 0.15s ease-out;
@@ -635,7 +641,7 @@ p {
 
   .navbar-links a:hover,
   .navbar-links a:focus {
-    background-color: rgba(25, 212, 254, 0.1);
+    background-color: var(--color-accent-bg);
     color: var(--color-primary);
     transform: none;
   }
@@ -908,8 +914,7 @@ section {
 }
 
 .hero-image:hover img {
-  transform: var(--hover-scale);
-  box-shadow: var(--shadow-accent), var(--shadow-lg), 0 8px 20px rgba(25, 212, 254, 0.3);
+  box-shadow: var(--shadow-accent), var(--shadow-lg), var(--shadow-accent-lg);
   border-color: var(--color-primary);
 }
 
@@ -1094,7 +1099,7 @@ section {
 
 .timeline-square:hover {
   transform: var(--hover-scale) rotate(5deg);
-  box-shadow: var(--shadow-accent), 0 6px 16px rgba(25, 212, 254, 0.4);
+  box-shadow: var(--shadow-accent), var(--shadow-accent-md);
 }
 
 .timeline-square:hover::before {
@@ -1167,7 +1172,7 @@ section {
 /* Linked hover effects - hovering square affects content and vice versa */
 .timeline-item:hover .timeline-square {
   transform: var(--hover-scale) rotate(5deg);
-  box-shadow: var(--shadow-accent), 0 6px 16px rgba(25, 212, 254, 0.4);
+  box-shadow: var(--shadow-accent), var(--shadow-accent-md);
 }
 
 .timeline-item:hover .timeline-square::before {
@@ -1301,7 +1306,7 @@ section {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(25, 212, 254, 0.1),
+    var(--color-accent-bg),
     transparent
   );
   transition: left var(--transition-slow);
@@ -1311,7 +1316,6 @@ section {
 .skills-card:hover {
   box-shadow: var(--shadow-accent), var(--shadow-lg);
   border-color: var(--color-primary-dark);
-  transform: var(--hover-scale);
 }
 
 .skills-card:hover::before {
@@ -1416,7 +1420,7 @@ section {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(25, 212, 254, 0.1),
+    var(--color-accent-bg),
     transparent
   );
   transition: left var(--transition-slow);
@@ -1460,7 +1464,7 @@ section {
 .framework-item:focus svg {
   transform: var(--hover-scale) rotate(5deg);
   color: var(--color-primary);
-  box-shadow: 0 4px 12px rgba(25, 212, 254, 0.4);
+  box-shadow: var(--shadow-accent-sm);
 }
 
 .framework-item span {
@@ -1523,7 +1527,7 @@ section {
 .methodology-item:hover i {
   transform: var(--hover-scale) rotate(5deg);
   color: var(--color-primary);
-  box-shadow: 0 4px 12px rgba(25, 212, 254, 0.4);
+  box-shadow: var(--shadow-accent-sm);
 }
 
 .button-container {
@@ -1612,7 +1616,7 @@ section {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(25, 212, 254, 0.1),
+    var(--color-accent-bg),
     transparent
   );
   transition: left var(--transition-slow);
@@ -1644,7 +1648,7 @@ section {
 
 .contact-item:hover .contact-icon {
   transform: var(--hover-scale) rotate(5deg);
-  box-shadow: 0 4px 12px rgba(25, 212, 254, 0.4);
+  box-shadow: var(--shadow-accent-sm);
 }
 
 .contact-details {
