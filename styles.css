@@ -1951,6 +1951,10 @@ article[role='article'] header {
   --pagefind-ui-background: var(--color-background);
   --pagefind-ui-border: var(--color-border);
   --pagefind-ui-tag: var(--color-primary);
+  --pagefind-ui-border-width: 2px;
+  --pagefind-ui-border-radius: var(--border-radius-md);
+  --pagefind-ui-font: var(--font-primary);
+  font-family: var(--font-primary);
 }
 
 .pagefind-ui__search-input {
@@ -1968,6 +1972,15 @@ article[role='article'] header {
   transition: all var(--transition-fast);
 }
 
+.pagefind-ui__search-input::placeholder {
+  color: var(--color-text-secondary);
+  opacity: 0.8;
+}
+
+.pagefind-ui__search-input:focus::placeholder {
+  opacity: 0.5;
+}
+
 .pagefind-ui__search-input:focus {
   border-color: var(--color-text-tertiary);
   outline: none;
@@ -1978,164 +1991,121 @@ article[role='article'] header {
   border-color: var(--color-text-secondary);
 }
 
-.pagefind-ui__search-clear {
-  background: none;
-  color: var(--color-text-secondary);
-  border: none;
-  padding: var(--spacing-xs) var(--spacing-sm);
-  font-size: var(--font-size-xs);
-  border-radius: var(--border-radius-sm);
-  cursor: pointer;
-  font-family: var(--font-primary);
-  font-weight: var(--font-weight-medium);
-  transition: color var(--transition-fast);
+/* Enhanced Search Results - Match Blog Card Layout */
+
+/* Override default pagefind styles with higher specificity */
+.pagefind-ui__results .pagefind-ui__result {
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: none !important;
+  display: block !important;
 }
 
-.pagefind-ui__search-clear:hover {
-  color: var(--color-primary);
-}
-
-/* ================================
-   14. FOOTER - Using semantic variables
-   ================================ */
-footer {
-  padding: var(--spacing-2xl) 0;
-  margin-top: var(--spacing-sm);
-  text-align: center;
-  border-top: var(--border-width-thin) solid var(--color-border);
-}
-
-footer p {
-  color: var(--color-text-secondary);
-  font-size: var(--font-size-sm);
-  margin: 0;
-}
-
-.pagefind-ui__message {
-  color: var(--color-text-secondary);
-  font-family: var(--font-primary);
-  font-size: var(--font-size-sm);
-  text-align: center;
-  padding: var(--spacing-sm) 0;
-  margin: var(--spacing-xs) 0;
-}
-
-/* SEARCH RESULTS STYLING - Enhanced Pagefind results to match blog post cards */
-.pagefind-ui__result.blog-post-card {
-  margin-bottom: var(--spacing-xl);
-  padding: var(--spacing-lg) var(--spacing-xl);
-  background-color: var(--color-surface-light);
-  border-radius: var(--border-radius-lg);
-  border: var(--border-width-thick) solid var(--color-border);
-  box-shadow: var(--shadow-md);
-  transition: all var(--transition-normal);
+/* Search results that have been enhanced to match blog cards */
+.pagefind-ui__results .blog-post-card {
+  /* Use the existing blog card styles - override any default pagefind styling */
+  margin-bottom: var(--spacing-xl) !important;
+  padding: var(--spacing-lg) var(--spacing-xl) !important;
+  background-color: var(--color-surface-light) !important;
+  border-radius: var(--border-radius-lg) !important;
+  border: var(--border-width-thick) solid var(--color-border) !important;
+  box-shadow: var(--shadow-md) !important;
+  transition: all var(--transition-normal) !important;
   width: 100%;
   box-sizing: border-box;
 }
 
-.pagefind-ui__result.blog-post-card:last-child {
-  margin-bottom: 0;
+.pagefind-ui__results .blog-post-card:hover {
+  box-shadow: var(--shadow-lg) !important;
+  border-color: var(--color-primary-dark) !important;
+  transform: none !important; /* Remove default pagefind transform */
 }
 
-.pagefind-ui__result.blog-post-card:hover {
-  box-shadow: var(--shadow-lg);
-  border-color: var(--color-primary-dark);
+/* Search results for non-blog pages */
+.pagefind-ui__results .search-result-page {
+  background-color: var(--color-surface-light) !important;
+  border: 2px solid var(--color-border) !important;
+  border-radius: var(--border-radius-lg) !important;
+  padding: var(--spacing-xl) !important;
+  margin-bottom: var(--spacing-xl) !important;
+  transition: all var(--transition-normal) !important;
+  box-shadow: var(--shadow-md) !important;
+  display: block !important;
 }
 
-.pagefind-ui__result-title.blog-post-title {
-  margin: 0 0 var(--spacing-sm) 0;
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-medium);
-  line-height: 1.3;
+.pagefind-ui__results .search-result-page:hover {
+  border-color: var(--color-primary-dark) !important;
+  box-shadow: var(--shadow-lg) !important;
+  transform: translateY(-2px) !important;
 }
 
-.pagefind-ui__result-title.blog-post-title a {
-  color: var(--color-text);
-  text-decoration: none;
-  transition: color var(--transition-fast);
-  display: inline;
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-medium);
-  font-family: var(--font-primary);
-  line-height: 1.3;
+/* Enhanced search results category tags styling */
+.pagefind-ui__results .blog-post-categories {
+  margin: var(--spacing-sm) 0 !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: var(--spacing-xs) !important;
 }
 
-.pagefind-ui__result-title.blog-post-title a:hover,
-.pagefind-ui__result-title.blog-post-title a:focus {
-  color: var(--color-primary);
-  text-decoration: none;
+.pagefind-ui__results .category-tag {
+  background-color: var(--color-primary) !important;
+  color: var(--color-background) !important;
+  padding: var(--spacing-xs) var(--spacing-sm) !important;
+  border-radius: var(--border-radius-sm) !important;
+  font-size: var(--font-size-xs) !important;
+  font-weight: var(--font-weight-medium) !important;
+  text-decoration: none !important;
+  transition: all var(--transition-fast) !important;
+  text-transform: uppercase !important;
+  letter-spacing: var(--letter-spacing-subtle) !important;
+  cursor: pointer !important;
+  display: inline-block !important;
 }
 
-.pagefind-ui__result-excerpt.blog-post-excerpt {
-  color: var(--color-text-secondary);
-  font-size: var(--font-size-base);
-  margin: var(--spacing-md) 0 var(--spacing-sm) 0;
-  line-height: 1.6;
-  font-family: var(--font-primary);
+.pagefind-ui__results .category-tag:hover {
+  background-color: var(--color-primary-dark) !important;
+  transform: translateY(-1px) !important;
 }
 
-.pagefind-ui__result-tags .category-tag {
-  display: inline-block;
-  background-color: transparent;
-  color: var(--color-text);
-  padding: var(--spacing-xs) calc(var(--spacing-sm) + var(--spacing-xs));
-  border-radius: var(--border-radius-xs);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  margin-right: var(--spacing-xs);
-  margin-bottom: var(--spacing-xs);
-  border: var(--border-width-thin) solid var(--color-primary);
-  text-decoration: none;
-  transition: all var(--transition-fast);
-  line-height: 1.2;
-  letter-spacing: var(--letter-spacing-subtle);
+/* Search result blog post titles */
+.pagefind-ui__results .blog-post-title {
+  font-size: var(--font-size-xl) !important;
+  font-weight: var(--font-weight-bold) !important;
+  margin: 0 0 var(--spacing-sm) 0 !important;
+  line-height: var(--line-height-tight) !important;
 }
 
-.pagefind-ui__result-tags .category-tag:hover {
-  background-color: var(--color-primary);
-  color: var(--color-background);
-  text-decoration: none;
+.pagefind-ui__results .blog-post-title a {
+  color: var(--color-text) !important;
+  text-decoration: none !important;
+  transition: color var(--transition-fast) !important;
 }
 
-/* Search result metadata styling */
-.pagefind-ui__result-nested,
-.pagefind-ui__result-data {
-  margin-top: var(--spacing-sm);
-  padding-top: var(--spacing-sm);
-  border-top: var(--border-width-thin) solid var(--color-border);
+.pagefind-ui__results .blog-post-title a:hover {
+  color: var(--color-primary) !important;
 }
 
-.pagefind-ui__result-nested h4,
-.pagefind-ui__result-data h4 {
-  color: var(--color-text-secondary);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  margin: 0 0 var(--spacing-xs) 0;
-  text-transform: uppercase;
-  letter-spacing: var(--letter-spacing-wide);
+/* Search result excerpts */
+.pagefind-ui__results .blog-post-excerpt {
+  color: var(--color-text-secondary) !important;
+  font-size: var(--font-size-base) !important;
+  line-height: var(--line-height-relaxed) !important;
+  margin: var(--spacing-sm) 0 !important;
 }
 
-/* Ensure search results are consistent across different states */
-.pagefind-ui__results > * {
-  margin-bottom: var(--spacing-xl);
+/* Search result dates */
+.pagefind-ui__results .blog-post-date {
+  color: var(--color-text-tertiary) !important;
+  font-size: var(--font-size-sm) !important;
+  margin: var(--spacing-sm) 0 0 0 !important;
 }
 
-.pagefind-ui__results > *:last-child {
-  margin-bottom: 0;
+/* Hide default pagefind result elements that we're replacing */
+.pagefind-ui__results .pagefind-ui__result-title,
+.pagefind-ui__results .pagefind-ui__result-excerpt,
+.pagefind-ui__results .pagefind-ui__result-tags {
+  display: none !important;
 }
 
-/* ================================
-   14. FOOTER - Using semantic variables
-   ================================ */
-footer {
-  padding: var(--spacing-2xl) 0;
-  margin-top: var(--spacing-sm);
-  text-align: center;
-  border-top: var(--border-width-thin) solid var(--color-border);
-}
-
-footer p {
-  color: var(--color-text-secondary);
-  font-size: var(--font-size-sm);
-  margin: 0;
-}
+/* End Enhanced Search Results */

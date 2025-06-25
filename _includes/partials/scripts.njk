@@ -89,36 +89,151 @@
             });
         }
 
-        // Process search results for consistent formatting
+        // Process search results to match blog card structure and styling
         function processSearchResults() {
-            const results = document.querySelectorAll('.pagefind-ui__result:not([data-enhanced])');
+            const allResults = document.querySelectorAll('.pagefind-ui__result');
+            const results = Array.from(allResults).filter(result => !result.hasAttribute('data-enhanced'));
             
-            console.log(`Processing ${results.length} new search results`);
+            console.log('Processing ' + results.length + ' new search results');
             
             results.forEach(result => {
-                // Add our blog post card styling to match the existing blog listings
-                result.classList.add('blog-post-card');
+                const originalTitle = result.querySelector('.pagefind-ui__result-title');
+                const originalExcerpt = result.querySelector('.pagefind-ui__result-excerpt');
+                const originalUrl = result.querySelector('.pagefind-ui__result-link');
+                const originalTags = result.querySelector('.pagefind-ui__result-tags');
                 
-                // Enhance the existing title
-                const title = result.querySelector('.pagefind-ui__result-title');
-                if (title) {
-                    title.classList.add('blog-post-title');
+                if (!originalTitle || !originalUrl) {
+                    result.setAttribute('data-enhanced', 'true');
+                    return;
+                }
+
+                // Extract data from the original elements
+                const titleText = originalTitle.textContent.trim();
+                const excerptText = originalExcerpt ? originalExcerpt.textContent.trim() : '';
+                let href = originalUrl.href;
+                
+                // Fix URL to use relative path and correct port
+                if (href.includes('localhost:8080')) {
+                    href = href.replace('http://localhost:8080', '');
+                } else if (href.includes('localhost:')) {
+                    href = href.replace(/http:\/\/localhost:\d+/, '');
                 }
                 
-                // Enhance the existing excerpt
-                const excerpt = result.querySelector('.pagefind-ui__result-excerpt');
-                if (excerpt) {
-                    excerpt.classList.add('blog-post-excerpt');
+                const isBlogPost = href.includes('/blog/');
+                
+                // Extract categories and date - simple fallbacks
+                let categories = [];
+                let publishDate = '';
+                
+                // Extract categories from visible tag elements
+                if (originalTags) {
+                    const tagElements = originalTags.querySelectorAll('.pagefind-ui__result-tag');
+                    categories = Array.from(tagElements)
+                        .map(tag => tag.textContent.trim())
+                        .filter(tag => tag.length > 0 && !tag.includes('/'));
                 }
                 
-                // Style existing meta tags as categories
-                const metaTags = result.querySelectorAll('.pagefind-ui__result-tag');
-                metaTags.forEach(tag => {
-                    tag.classList.add('category-tag');
-                });
+                // Extract date from URL for blog posts
+                if (isBlogPost) {
+                    const dateMatch = href.match(/\/blog\/(\d{4}-\d{2}-\d{2})-/);
+                    if (dateMatch) {
+                        const date = new Date(dateMatch[1]);
+                        publishDate = date.toLocaleDateString('en-US', { 
+                            year: 'numeric', 
+                            month: 'long', 
+                            day: 'numeric' 
+                        });
+                    }
+                }
+                
+                // Simple category fallback for blog posts
+                if (isBlogPost && categories.length === 0) {
+                    if (titleText.toLowerCase().includes('coldfusion')) {
+                        categories.push('ColdFusion');
+                    } else if (titleText.toLowerCase().includes('javascript')) {
+                        categories.push('JavaScript');
+                    } else {
+                        categories.push('Blog');
+                    }
+                }
+                
+                // Clean up categories
+                categories = categories.map(cat => cat.trim()).filter(cat => cat.length > 0);
+                
+                // Create new structure matching blog card format
+                const newStructure = document.createElement('article');
+                newStructure.className = isBlogPost ? 'blog-post-card' : 'search-result-page';
+                
+                // Build the HTML structure to match blog.njk template
+                let htmlContent = `
+                    <h2 class="blog-post-title">
+                        <a href="${href}">${titleText}</a>
+                    </h2>
+                `;
+                
+                // Add categories for blog posts
+                if (isBlogPost && categories.length > 0) {
+                    htmlContent += `
+                        <div class="blog-post-categories">
+                            ${categories.map(category => {
+                                const categorySlug = category.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+                                return `<a href="/blog/category/${categorySlug}/" class="category-tag">${category}</a>`;
+                            }).join('')}
+                        </div>
+                    `;
+                }
+                
+                // Add excerpt
+                if (excerptText) {
+                    // Clean up excerpt - remove any "Published on..." text and metadata
+                    let cleanExcerpt = excerptText
+                        .replace(/^.*?Published on.*?\d{4}\.?\s*/i, '') // Remove "Published on..."
+                        .replace(/^test\s*/i, '') // Remove category at start
+                        .replace(/\s*COLDFUSION.*$/i, '') // Remove code language metadata
+                        .replace(/\s*JAVASCRIPT.*$/i, '') // Remove JavaScript metadata
+                        .replace(/\s*HTML.*$/i, '') // Remove HTML metadata
+                        .replace(/\s*CSS.*$/i, '') // Remove CSS metadata
+                        .replace(/\s*SQL.*$/i, '') // Remove SQL metadata
+                        .replace(/\s*JAVA.*$/i, '') // Remove Java metadata
+                        .replace(/\s*PHP.*$/i, '') // Remove PHP metadata
+                        .replace(/\s*PYTHON.*$/i, '') // Remove Python metadata
+                        .replace(/\s*XML.*$/i, '') // Remove XML metadata
+                        .replace(/\s*JSON.*$/i, '') // Remove JSON metadata
+                        .trim();
+                    
+                    if (!cleanExcerpt) {
+                        cleanExcerpt = excerptText; // fallback to original if cleaning removes everything
+                    }
+                    htmlContent += `
+                        <p class="blog-post-excerpt">${cleanExcerpt}</p>
+                    `;
+                }
+                
+                // Add publish date for blog posts
+                if (isBlogPost && publishDate) {
+                    htmlContent += `
+                        <p class="blog-post-date"><em>Published: ${publishDate}</em></p>
+                    `;
+                }
+                
+                newStructure.innerHTML = htmlContent;
+                
+                // Add smooth entrance animation
+                newStructure.style.opacity = '0';
+                newStructure.style.transform = 'translateY(20px)';
+                
+                // Replace the original result with our new structure
+                result.parentNode.replaceChild(newStructure, result);
+                
+                // Animate in after replacement
+                setTimeout(() => {
+                    newStructure.style.transition = 'all 0.4s ease-out';
+                    newStructure.style.opacity = '1';
+                    newStructure.style.transform = 'translateY(0)';
+                }, 50 + Math.random() * 100); // Stagger animations slightly
                 
                 // Mark as enhanced to avoid duplicate processing
-                result.setAttribute('data-enhanced', 'true');
+                newStructure.setAttribute('data-enhanced', 'true');
             });
         }
 
@@ -133,41 +248,40 @@
                     showSubResults: true,
                     showEmptyFilters: false,
                     resetStyles: false,
-                    autofocus: true,
+                    autofocus: window.location.pathname.includes('/search/'),
                     debounceTimeoutMs: 300,
                     bundlePath: bundlePath,
-                    excerptLength: 30,
-                    // Process each result to enhance metadata and structure
-                    processResult: function(result) {
-                        console.log('Processing result:', result);
-                        
-                        // Extract publish date from URL structure if available
-                        if (result.url && result.url.includes('/blog/')) {
-                            const urlParts = result.url.split('/');
-                            const dateMatch = result.url.match(/\/blog\/(\d{4}-\d{2}-\d{2})-/);
-                            if (dateMatch) {
-                                result.meta.date = dateMatch[1];
-                            }
-                        }
-                        
-                        // Ensure we have a category for styling
-                        if (!result.meta.category && result.meta.tags && result.meta.tags.length > 0) {
-                            result.meta.category = result.meta.tags[0];
-                        }
-                        
-                        // Clean up title if needed
-                        if (result.meta.title) {
-                            result.meta.title = result.meta.title.replace(/\s+/g, ' ').trim();
-                        }
-                        
-                        return result;
-                    }
+                    excerptLength: 25,
+                    pageSize: 8,
+                    showImages: false,
+                    translations: {
+                        placeholder: "Search articles, posts, and pages...",
+                        clear_search: "Clear",
+                        load_more: "Load more results",
+                        search_label: "Search this site",
+                        filters_label: "Filters",
+                        zero_results: "No results found for [SEARCH_TERM]",
+                        many_results: "[COUNT] results for [SEARCH_TERM]",
+                        one_result: "1 result for [SEARCH_TERM]",
+                        alt_search: "No results for [SEARCH_TERM]. Showing results for [DIFFERENT_TERM] instead",
+                        search_suggestion: "No results for [SEARCH_TERM]. Try one of the following searches:",
+                        searching: "Searching for [SEARCH_TERM]..."
+                    },
+                    resetStyles: false,
+                    autofocus: window.location.pathname.includes('/search/'),
+                    debounceTimeoutMs: 300,
+                    bundlePath: bundlePath,
+                    excerptLength: 25,
+                    pageSize: 8,
+                    showImages: false
                 };
 
                 // Add custom result template for search page
                 if (window.location.pathname.includes('/search/')) {
                     searchConfig.showImages = false;
                     searchConfig.showSubResults = true;
+                    searchConfig.excerptLength = 30;
+                    searchConfig.pageSize = 10;
                 }
                 
                 const pagefindUI = new PagefindUI(searchConfig);
@@ -234,6 +348,52 @@
             } catch (error) {
                 console.error('Failed to initialize PagefindUI:', error);
             }
+        }
+
+        // Enhanced Search Keyboard Shortcuts and Accessibility
+        document.addEventListener('keydown', function(event) {
+            // Ctrl/Cmd + K to focus search
+            if ((event.ctrlKey || event.metaKey) && event.key === 'k') {
+                event.preventDefault();
+                const searchInput = document.querySelector('.pagefind-ui__search-input');
+                if (searchInput) {
+                    searchInput.focus();
+                    searchInput.select();
+                }
+            }
+            
+            // Escape to clear search when input is focused
+            if (event.key === 'Escape') {
+                const searchInput = document.querySelector('.pagefind-ui__search-input');
+                if (searchInput && document.activeElement === searchInput) {
+                    searchInput.value = '';
+                    searchInput.dispatchEvent(new Event('input', { bubbles: true }));
+                }
+            }
+        });
+        
+        // Add search shortcut hint
+        const searchInput = document.querySelector('.pagefind-ui__search-input');
+        if (searchInput && window.location.pathname.includes('/search/')) {
+            searchInput.setAttribute('title', 'Use Ctrl+K to focus search, Escape to clear');
+            
+            // Add subtle hint after the search loads
+            setTimeout(() => {
+                const searchContainer = document.getElementById('search');
+                if (searchContainer && !searchContainer.querySelector('.search-hint')) {
+                    const hint = document.createElement('p');
+                    hint.className = 'search-hint';
+                    hint.style.cssText = `
+                        text-align: center; 
+                        color: var(--color-text-secondary); 
+                        font-size: var(--font-size-xs); 
+                        margin-top: var(--spacing-sm);
+                        opacity: 0.7;
+                    `;
+                    hint.innerHTML = '<kbd style="background: var(--color-surface-light); padding: 2px 6px; border-radius: 3px; font-size: 11px;">Ctrl+K</kbd> to focus • <kbd style="background: var(--color-surface-light); padding: 2px 6px; border-radius: 3px; font-size: 11px;">Esc</kbd> to clear';
+                    searchContainer.appendChild(hint);
+                }
+            }, 1000);
         }
 
         // Animated Progress Bars - Intersection Observer
@@ -444,38 +604,48 @@
                 // Create a better ColdFusion language definition
                 Prism.languages.coldfusion = Prism.languages.extend('markup', {
                     'cf-tag': {
-                        pattern: /<\/?cf[a-z]+(?:\s[^>]*)?\/?>/i,
+                        pattern: new RegExp('<\\/?cf[a-z]+(?:\\s[^>]*)?\\/?>', 'i'),
                         inside: {
                             'tag': {
-                                pattern: /<\/?cf[a-z]+/i,
+                                pattern: new RegExp('<\\/?cf[a-z]+', 'i'),
                                 inside: {
                                     'punctuation': /^<\/?/,
                                     'namespace': /^cf/
                                 }
                             },
-                            'attr-name': /[a-z-]+(?=\s*=)/i,
+                            'attr-name': {
+                                pattern: new RegExp('(?:[a-z]|-)+(?=\\s*=)', 'i')
+                            },
                             'attr-value': {
-                                pattern: /=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/i,
+                                pattern: new RegExp('=\\s*(?:"[^"]*"|\'[^\']*\'|[^\\s>]+)', 'i'),
                                 inside: {
-                                    'punctuation': [/^=/, /^['"]|['"]$/]
+                                    'punctuation': [/^=/, new RegExp('^[\'"]|[\'"]$')]
                                 }
                             },
                             'punctuation': /\/?>/
                         }
                     },
                     'cf-script': {
-                        pattern: /#[^#]*#/,
+                        pattern: new RegExp('#[^#]*#', ''),
                         inside: {
                             'punctuation': /^#|#$/,
                             'keyword': /\b(?:var|if|else|elseif|for|while|function|return|true|false|null)\b/i,
-                            'string': /("|')(?:\\.|(?!\1)[^\\\r\n])*\1/,
-                            'number': /\b0x[\da-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:e[+-]?\d+)?/i,
-                            'operator': /[<>]=?|[!=]=?=?|--?|\+\+?|&&?|\|\|?|[?*/~^%]/,
-                            'punctuation': /[{}[\];(),.:]/
+                            'string': {
+                                pattern: new RegExp('("|\')\(?:\\\\.|(?!\\1)[^\\\\\\r\\n]\)*\\1', '')
+                            },
+                            'number': {
+                                pattern: new RegExp('\\b0x[\\da-f]+\\b|(?:\\b\\d+\\.?\\d*|\\B\\.\\d+)(?:e[+-]?\\d+)?', 'i')
+                            },
+                            'operator': {
+                                pattern: new RegExp('[<>]=?|[!=]=?=?|--?|\\+\\+?|&&?|\\|\\|?|[?*/~^%]')
+                            },
+                            'punctuation': {
+                                pattern: new RegExp('[{}\\[\\];(),.:]+')
+                            }
                         }
                     },
                     'cf-function': {
-                        pattern: /\b[a-zA-Z_]\w*(?=\s*\()/,
+                        pattern: new RegExp('\\b[a-zA-Z_]\\w*(?=\\s*\\()', ''),
                         alias: 'function'
                     }
                 });
