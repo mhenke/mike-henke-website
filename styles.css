@@ -2049,23 +2049,26 @@ article[role='article'] header {
 }
 
 .pagefind-ui__results .category-tag {
-  background-color: var(--color-primary) !important;
-  color: var(--color-background) !important;
+  background-color: transparent !important;
+  color: var(--color-text) !important;
+  border: var(--border-width-thin) solid var(--color-primary) !important;
   padding: var(--spacing-xs) var(--spacing-sm) !important;
-  border-radius: var(--border-radius-sm) !important;
-  font-size: var(--font-size-xs) !important;
-  font-weight: var(--font-weight-medium) !important;
+  border-radius: var(--border-radius-xs) !important;
+  font-size: var(--font-size-sm) !important;
+  font-weight: var(--font-weight-regular) !important;
   text-decoration: none !important;
-  transition: all var(--transition-fast) !important;
-  text-transform: uppercase !important;
-  letter-spacing: var(--letter-spacing-subtle) !important;
-  cursor: pointer !important;
+  margin-right: var(--spacing-xs) !important;
+  margin-bottom: var(--spacing-xs) !important;
+  line-height: 1.1 !important;
+  letter-spacing: normal !important;
+  cursor: default !important;
   display: inline-block !important;
 }
 
 .pagefind-ui__results .category-tag:hover {
-  background-color: var(--color-primary-dark) !important;
-  transform: translateY(-1px) !important;
+  /* No hover effects for search result category tags since they're not clickable */
+  background-color: transparent !important;
+  color: var(--color-text) !important;
 }
 
 /* Search result blog post titles */
