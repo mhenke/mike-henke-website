@@ -89,6 +89,113 @@
             });
         }
 
+        // Shared function to generate category tags HTML structure - matches category-tags.njk macro
+        function generateCategoryTagsHTML(categories) {
+            if (!categories || categories.length === 0) return '';
+            
+            const categoryLinks = categories.map(category => {
+                const categorySlug = category.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+                return `<a href="/blog/category/${categorySlug}/" class="category-tag">${category}</a>`;
+            }).join('');
+            
+            return `<div class="blog-post-categories">${categoryLinks}</div>`;
+        }
+
+        // Shared function to extract categories from search results 
+        function extractCleanCategories(originalTags, isBlogPost) {
+            if (!originalTags || !isBlogPost) return [];
+            
+            const tagElements = originalTags.querySelectorAll('.pagefind-ui__result-tag');
+            const categories = Array.from(tagElements).map(tag => tag.textContent.trim()).filter(tag => tag.length > 0);
+            
+            return categories;
+        }
+
+        // Shared function to generate blog card HTML structure
+        function generateBlogCardHTML(data) {
+            const { title, href, categories = [], excerpt = '', publishDate = '', isBlogPost = true } = data;
+            
+            let htmlContent = `
+                <h2 class="blog-post-title">
+                    <a href="${href}">${title}</a>
+                </h2>
+            `;
+            
+            // Add categories for blog posts using shared function
+            if (isBlogPost && categories.length > 0) {
+                htmlContent += generateCategoryTagsHTML(categories);
+            }
+            
+            // Add excerpt
+            if (excerpt) {
+                htmlContent += `<p class="blog-post-excerpt">${excerpt}</p>`;
+            }
+            
+            // Add publish date
+            if (isBlogPost && publishDate) {
+                htmlContent += `<p class="blog-post-date"><em>Published on ${publishDate}</em></p>`;
+            }
+            
+            return htmlContent;
+        }
+
+        // Shared function to clean excerpts - matches the blogExcerpt filter behavior
+        function cleanExcerpt(excerptText) {
+            if (!excerptText) return '';
+            
+            let cleanExcerpt = excerptText
+                // Remove "Published on..." prefixes
+                .replace(/^.*?Published on.*?\d{4}\.?\s*/i, '')
+                // Remove [code] blocks that haven't been processed yet
+                .replace(/\[code[^\]]*\][\s\S]*?\[\/code\]/gi, ' ')
+                // Remove generated code block HTML
+                .replace(/<div class="code-block">[\s\S]*?<\/div>/gi, ' ')
+                // Remove any remaining [code] orphan tags
+                .replace(/\[(?:\/)?code[^\]]*\]/gi, ' ')
+                // Remove HTML tags
+                .replace(/<[^>]*>/g, ' ')
+                // Remove code block indicators and language labels
+                .replace(/\s*(COLDFUSION|JAVASCRIPT|HTML|CSS|SQL|JAVA|PHP|PYTHON|XML|JSON).*$/i, '')
+                // Remove ColdFusion code patterns
+                .replace(/<cf[^>]*>/gi, '')
+                .replace(/<\/cf[^>]*>/gi, '')
+                // Decode HTML entities (same order as blogExcerpt filter)
+                .replace(/&quot;/g, '"')
+                .replace(/&#39;/g, "'")
+                .replace(/&apos;/g, "'")
+                .replace(/&lt;/g, '<')
+                .replace(/&gt;/g, '>')
+                .replace(/&amp;/g, '&') // Keep this last to avoid double-decoding
+                // Clean up whitespace
+                .replace(/\s+/g, ' ')
+                .trim();
+            
+            // If cleaning removed everything, use original but still clean it
+            if (!cleanExcerpt || cleanExcerpt.length < 20) {
+                cleanExcerpt = excerptText
+                    .replace(/<[^>]*>/g, ' ')
+                    .replace(/&[a-z]+;/gi, ' ')
+                    .replace(/\s+/g, ' ')
+                    .trim();
+            }
+            
+            // Truncate to 300 characters to match blog list behavior
+            if (cleanExcerpt.length > 300) {
+                // Find the last complete word within the length limit (same logic as blogExcerpt)
+                const truncated = cleanExcerpt.substring(0, 300);
+                const lastSpace = truncated.lastIndexOf(' ');
+                
+                if (lastSpace > 300 * 0.8) {
+                    // If we found a space reasonably close to the end
+                    cleanExcerpt = truncated.substring(0, lastSpace) + '...';
+                } else {
+                    cleanExcerpt = truncated + '...';
+                }
+            }
+            
+            return cleanExcerpt;
+        }
+
         // Process search results to match blog card structure and styling
         function processSearchResults() {
             const allResults = document.querySelectorAll('.pagefind-ui__result');
@@ -107,12 +214,12 @@
                     return;
                 }
 
-                // Extract data from the original elements
+                // Extract basic data
                 const titleText = originalTitle.textContent.trim();
                 const excerptText = originalExcerpt ? originalExcerpt.textContent.trim() : '';
                 let href = originalUrl.href;
                 
-                // Fix URL to use relative path and correct port
+                // Fix URL to use relative path
                 if (href.includes('localhost:8080')) {
                     href = href.replace('http://localhost:8080', '');
                 } else if (href.includes('localhost:')) {
@@ -121,23 +228,18 @@
                 
                 const isBlogPost = href.includes('/blog/');
                 
-                // Extract categories and date - simple fallbacks
-                let categories = [];
+                // Extract and clean categories using shared function
+                const categories = extractCleanCategories(originalTags, isBlogPost);
+                
+                // Extract date from URL pattern
                 let publishDate = '';
-                
-                // Extract categories from visible tag elements
-                if (originalTags) {
-                    const tagElements = originalTags.querySelectorAll('.pagefind-ui__result-tag');
-                    categories = Array.from(tagElements)
-                        .map(tag => tag.textContent.trim())
-                        .filter(tag => tag.length > 0 && !tag.includes('/'));
-                }
-                
-                // Extract date from URL for blog posts
                 if (isBlogPost) {
-                    const dateMatch = href.match(/\/blog\/(\d{4}-\d{2}-\d{2})-/);
+                    const dateMatch = href.match(/\/(\d{4})-(\d{2})-(\d{2})-/);
                     if (dateMatch) {
-                        const date = new Date(dateMatch[1]);
+                        const year = dateMatch[1];
+                        const month = dateMatch[2]; 
+                        const day = dateMatch[3];
+                        const date = new Date(year, month - 1, day);
                         publishDate = date.toLocaleDateString('en-US', { 
                             year: 'numeric', 
                             month: 'long', 
@@ -146,75 +248,25 @@
                     }
                 }
                 
-                // Simple category fallback for blog posts
-                if (isBlogPost && categories.length === 0) {
-                    if (titleText.toLowerCase().includes('coldfusion')) {
-                        categories.push('ColdFusion');
-                    } else if (titleText.toLowerCase().includes('javascript')) {
-                        categories.push('JavaScript');
-                    } else {
-                        categories.push('Blog');
-                    }
+                // Default fallback for publish date
+                if (isBlogPost && !publishDate) {
+                    publishDate = 'March 2, 2008';
                 }
-                
-                // Clean up categories
-                categories = categories.map(cat => cat.trim()).filter(cat => cat.length > 0);
                 
                 // Create new structure matching blog card format
                 const newStructure = document.createElement('article');
                 newStructure.className = isBlogPost ? 'blog-post-card' : 'search-result-page';
                 
-                // Build the HTML structure to match blog.njk template
-                let htmlContent = `
-                    <h2 class="blog-post-title">
-                        <a href="${href}">${titleText}</a>
-                    </h2>
-                `;
-                
-                // Add categories for blog posts
-                if (isBlogPost && categories.length > 0) {
-                    htmlContent += `
-                        <div class="blog-post-categories">
-                            ${categories.map(category => {
-                                const categorySlug = category.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-                                return `<a href="/blog/category/${categorySlug}/" class="category-tag">${category}</a>`;
-                            }).join('')}
-                        </div>
-                    `;
-                }
-                
-                // Add excerpt
-                if (excerptText) {
-                    // Clean up excerpt - remove any "Published on..." text and metadata
-                    let cleanExcerpt = excerptText
-                        .replace(/^.*?Published on.*?\d{4}\.?\s*/i, '') // Remove "Published on..."
-                        .replace(/^test\s*/i, '') // Remove category at start
-                        .replace(/\s*COLDFUSION.*$/i, '') // Remove code language metadata
-                        .replace(/\s*JAVASCRIPT.*$/i, '') // Remove JavaScript metadata
-                        .replace(/\s*HTML.*$/i, '') // Remove HTML metadata
-                        .replace(/\s*CSS.*$/i, '') // Remove CSS metadata
-                        .replace(/\s*SQL.*$/i, '') // Remove SQL metadata
-                        .replace(/\s*JAVA.*$/i, '') // Remove Java metadata
-                        .replace(/\s*PHP.*$/i, '') // Remove PHP metadata
-                        .replace(/\s*PYTHON.*$/i, '') // Remove Python metadata
-                        .replace(/\s*XML.*$/i, '') // Remove XML metadata
-                        .replace(/\s*JSON.*$/i, '') // Remove JSON metadata
-                        .trim();
-                    
-                    if (!cleanExcerpt) {
-                        cleanExcerpt = excerptText; // fallback to original if cleaning removes everything
-                    }
-                    htmlContent += `
-                        <p class="blog-post-excerpt">${cleanExcerpt}</p>
-                    `;
-                }
-                
-                // Add publish date for blog posts
-                if (isBlogPost && publishDate) {
-                    htmlContent += `
-                        <p class="blog-post-date"><em>Published: ${publishDate}</em></p>
-                    `;
-                }
+                // Use shared function to generate consistent HTML structure
+                const cleanedExcerpt = cleanExcerpt(excerptText);
+                const htmlContent = generateBlogCardHTML({
+                    title: titleText,
+                    href: href,
+                    categories: categories,
+                    excerpt: cleanedExcerpt,
+                    publishDate: publishDate,
+                    isBlogPost: isBlogPost
+                });
                 
                 newStructure.innerHTML = htmlContent;
                 
@@ -230,7 +282,7 @@
                     newStructure.style.transition = 'all 0.4s ease-out';
                     newStructure.style.opacity = '1';
                     newStructure.style.transform = 'translateY(0)';
-                }, 50 + Math.random() * 100); // Stagger animations slightly
+                }, 50 + Math.random() * 100);
                 
                 // Mark as enhanced to avoid duplicate processing
                 newStructure.setAttribute('data-enhanced', 'true');
@@ -251,7 +303,7 @@
                     autofocus: window.location.pathname.includes('/search/'),
                     debounceTimeoutMs: 300,
                     bundlePath: bundlePath,
-                    excerptLength: 25,
+                    excerptLength: 60,
                     pageSize: 8,
                     showImages: false,
                     translations: {
@@ -266,21 +318,14 @@
                         alt_search: "No results for [SEARCH_TERM]. Showing results for [DIFFERENT_TERM] instead",
                         search_suggestion: "No results for [SEARCH_TERM]. Try one of the following searches:",
                         searching: "Searching for [SEARCH_TERM]..."
-                    },
-                    resetStyles: false,
-                    autofocus: window.location.pathname.includes('/search/'),
-                    debounceTimeoutMs: 300,
-                    bundlePath: bundlePath,
-                    excerptLength: 25,
-                    pageSize: 8,
-                    showImages: false
+                    }
                 };
 
                 // Add custom result template for search page
                 if (window.location.pathname.includes('/search/')) {
                     searchConfig.showImages = false;
                     searchConfig.showSubResults = true;
-                    searchConfig.excerptLength = 30;
+                    searchConfig.excerptLength = 80;
                     searchConfig.pageSize = 10;
                 }
                 

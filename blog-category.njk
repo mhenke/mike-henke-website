@@ -8,6 +8,7 @@ layout: layouts/base.njk
 eleventyComputed:
   title: "{{ collections.postsByCategory[pagination.items[0]].name }} Posts"
 ---
+{% from "partials/blog-card.njk" import blogCard %}
 <section class="content-section-boxed content-section-top-margin">
     <h1 class="section-title">Posts in "{{ collections.postsByCategory[pagination.items[0]].name }}"</h1>
     <div class="section-underline"></div>
@@ -20,24 +21,7 @@ eleventyComputed:
     
     <div class="blog-post-list">
         {%- for post in collections.postsByCategory[pagination.items[0]].posts -%}
-            <article class="blog-post-card">
-                <h2 class="blog-post-title">
-                    <a href="{{ post.url | url }}">{{ post.data.title }}</a>
-                </h2>
-                {% if post.data.categories %}
-                    <div class="blog-post-categories">
-                        {% for category in post.data.categories %}
-                            <a href="{{ ('/blog/category/' + (category | slugify) + '/') | url }}" class="category-tag">{{ category }}</a>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-                {% if post.data.excerpt %}
-                    <p class="blog-post-excerpt">{{ post.data.excerpt }}</p>
-                {% else %}
-                    <p class="blog-post-excerpt">{{ post.content | blogExcerpt(300) }}</p>
-                {% endif %}
-                <p class="blog-post-date"><em>Published: {{ post.date | date('LLLL d, yyyy') }}</em></p>
-            </article>
+            {{ blogCard(post) }}
         {%- endfor -%}
     </div>
 </section>

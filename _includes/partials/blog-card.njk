@@ -1,0 +1,16 @@
+{% from "partials/category-tags.njk" import categoryTags %}
+
+{% macro blogCard(post) %}
+<article class="blog-post-card">
+    <h2 class="blog-post-title">
+        <a href="{{ post.url | url }}">{{ post.data.title }}</a>
+    </h2>
+    {{ categoryTags(post.data.categories) }}
+    {% if post.data.excerpt %}
+        <p class="blog-post-excerpt">{{ post.data.excerpt }}</p>
+    {% else %}
+        <p class="blog-post-excerpt">{{ post.content | blogExcerpt(300) }}</p>
+    {% endif %}
+    <p class="blog-post-date"><em>Published on {{ post.date | date('LLLL d, yyyy') }}</em></p>
+</article>
+{% endmacro %}
