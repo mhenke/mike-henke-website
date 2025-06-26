@@ -172,63 +172,68 @@
             return `<div class="blog-post-categories">${categoryHTML}</div>`;
         }
 
-        // Simple function to clean excerpt text
+        // Simple function to clean excerpt text - matches server-side blogExcerpt filter exactly
         function cleanExcerpt(text, categories = []) {
             if (!text) return '';
             
-            let cleaned = text
-                .replace(/^.*?Published on.*?\d{4}\.?\s*/i, '') // Remove date prefix
-                .replace(/\[code[^\]]*\][\s\S]*?\[\/code\]/gi, ' ') // Remove code blocks
-                .replace(/<[^>]*>/g, ' ') // Remove HTML tags
-                .replace(/&[a-z]+;/gi, ' ') // Remove HTML entities
-                .replace(/\s+/g, ' ') // Normalize whitespace
-                .trim();
+            let cleanContent = text;
             
-            // Remove categories from the beginning if they were extracted
+            // First, remove categories from the beginning if they were extracted
             if (categories.length > 0) {
                 // Create a pattern that matches all categories at the start
                 const categoryWords = categories.map(cat => cat.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
                 
                 // Try to remove all categories as a group first
-                const allCategoriesPattern = new RegExp(`^${categoryWords.join('\\s+')}\\s+`, 'i');
-                cleaned = cleaned.replace(allCategoriesPattern, '');
+                const allCategoriesPattern = new RegExp(`^${categoryWords.join('\\s+')}\\s*\\.?\\s*`, 'i');
+                cleanContent = cleanContent.replace(allCategoriesPattern, '');
                 
                 // If that didn't work, remove each category individually from the start
                 categoryWords.forEach(escapedCategory => {
-                    const individualRegex = new RegExp(`^${escapedCategory}\\s+`, 'i');
-                    cleaned = cleaned.replace(individualRegex, '');
+                    const individualRegex = new RegExp(`^${escapedCategory}\\s*\\.?\\s*`, 'i');
+                    cleanContent = cleanContent.replace(individualRegex, '');
                 });
-                
-                // Also try removing any combination at the start
-                let wordsAtStart = cleaned.split(/\s+/).slice(0, categories.length + 2);
-                for (let category of categories) {
-                    if (wordsAtStart.length > 0 && wordsAtStart[0].toLowerCase() === category.toLowerCase()) {
-                        wordsAtStart.shift();
-                    }
-                }
-                
-                // If we removed some words, reconstruct the cleaned text
-                if (wordsAtStart.length < categories.length + 2) {
-                    const remainingWords = cleaned.split(/\s+/);
-                    const wordsToRemove = categories.length - (wordsAtStart.length - 2);
-                    if (wordsToRemove > 0) {
-                        cleaned = remainingWords.slice(wordsToRemove).join(' ');
-                    }
-                }
             }
             
-            // Truncate to reasonable length and add ellipsis
-            if (cleaned.length > 300) {
-                const truncated = cleaned.substring(0, 300);
+            // Remove "Published on [date]" pattern from the beginning
+            cleanContent = cleanContent.replace(/^.*?Published on.*?\d{4}\.?\s*/i, '');
+            
+            // Now apply the same cleaning as server-side blogExcerpt filter
+            cleanContent = cleanContent
+                // Remove [code] blocks that haven't been processed yet
+                .replace(/\[code[^\]]*\][\s\S]*?\[\/code\]/gi, ' ')
+                // Remove generated code block HTML
+                .replace(/<div class="code-block">[\s\S]*?<\/div>/gi, ' ')
+                // Remove any remaining [code] orphan tags
+                .replace(/\[(?:\/)?code[^\]]*\]/gi, ' ')
+                // Remove HTML tags
+                .replace(/<[^>]*>/g, ' ')
+                // Decode HTML entities
+                .replace(/&quot;/g, '"')
+                .replace(/&#39;/g, "'")
+                .replace(/&apos;/g, "'")
+                .replace(/&lt;/g, '<')
+                .replace(/&gt;/g, '>')
+                .replace(/&amp;/g, '&') // Keep this last to avoid double-decoding
+                // Clean up whitespace
+                .replace(/\s+/g, ' ')
+                .trim();
+
+            // Truncate to specified length (match server-side logic exactly)
+            const length = 300; // Match server-side default length
+            if (cleanContent.length > length) {
+                // Find the last complete word within the length limit
+                const truncated = cleanContent.substring(0, length);
                 const lastSpace = truncated.lastIndexOf(' ');
-                if (lastSpace > 250) {
-                    cleaned = truncated.substring(0, lastSpace) + '...';
+
+                if (lastSpace > length * 0.8) {
+                    // If we found a space reasonably close to the end (match server-side threshold)
+                    return truncated.substring(0, lastSpace) + '...';
                 } else {
-                    cleaned = truncated + '...';
+                    return truncated + '...';
                 }
             }
-            
-            return cleaned;
+
+            return cleanContent;
         }
 
         // Simple function to process search results
@@ -320,9 +325,17 @@
                     autofocus: window.location.pathname.includes('/search/'),
                     debounceTimeoutMs: 300,
                     bundlePath: bundlePath,
-                    excerptLength: 60,
+                    excerptLength: 200, // Increase to get more context
                     pageSize: 8,
                     showImages: false,
+                    processResult: function(result) {
+                        // For blog posts, try to get excerpt from beginning rather than contextual
+                        if (result.url.includes('/blog/')) {
+                            // This will be processed by our processSearchResults function
+                            return result;
+                        }
+                        return result;
+                    },
                     translations: {
                         placeholder: "Search articles, posts, and pages...",
                         clear_search: "Clear",
