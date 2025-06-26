@@ -115,7 +115,7 @@
             
             const categoryLinks = categories.map(category => {
                 const categorySlug = category.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-                return `<a href="/blog/category/${categorySlug}/" class="category-tag" data-pagefind-meta="category">${category}</a>`;
+                return `<a href="/blog/category/${categorySlug}/" class="category-tag">${category}</a>`;
             }).join('');
             
             return `<div class="blog-post-categories">${categoryLinks}</div>`;
@@ -216,35 +216,12 @@
             return cleanExcerpt;
         }
 
-        // Update search results summary with proper search term
-        function updateResultsSummary() {
-            const searchInput = document.querySelector('.pagefind-ui__search-input');
-            const resultsSummary = document.querySelector('.pagefind-ui__results-area .pagefind-ui__message');
-            
-            if (searchInput && resultsSummary) {
-                const searchTerm = searchInput.value.trim();
-                const resultCount = document.querySelectorAll('.pagefind-ui__result').length;
-                
-                if (searchTerm && resultCount > 0) {
-                    const summaryText = resultCount === 1 
-                        ? `1 result for "${searchTerm}"` 
-                        : `${resultCount} results for "${searchTerm}"`;
-                    
-                    resultsSummary.textContent = summaryText;
-                }
-            }
-        }
-
         // Process search results to match blog card structure and styling
         function processSearchResults() {
-            // Only process individual result items, not the results summary/counter
-            const allResults = document.querySelectorAll('.pagefind-ui__result:not(.pagefind-ui__result--grouped)');
+            const allResults = document.querySelectorAll('.pagefind-ui__result');
             const results = Array.from(allResults).filter(result => !result.hasAttribute('data-enhanced'));
             
             console.log('Processing ' + results.length + ' new search results');
-            
-            // Update results summary with proper search term
-            updateResultsSummary();
             
             results.forEach(result => {
                 const originalTitle = result.querySelector('.pagefind-ui__result-title');
