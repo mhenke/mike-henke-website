@@ -2,7 +2,7 @@
 {% if categories %}
     <div class="blog-post-categories">
         {% for category in categories %}
-            <a href="{{ ('/blog/category/' + (category | slugify) + '/') | url }}" class="category-tag" data-pagefind-meta="category">{{ category }}</a>
+            <a href="{{ ('/blog/category/' + (category | slugify) + '/') | url }}" class="category-tag">{{ category }}</a>
         {% endfor %}
     </div>
 {% endif %}
