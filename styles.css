@@ -21,6 +21,16 @@ Status: Fully functional - drop-in replacement for original
 /* ================================
    1. CSS CUSTOM PROPERTIES - CLEANED & RATIONALIZED
    ================================ */
+
+/* 
+MAINTAINABILITY NOTE: Consider splitting this large CSS file into modules:
+- variables.css (custom properties)
+- base.css (resets, typography)
+- components.css (buttons, cards, navigation)
+- layouts.css (grid systems, sections)
+- utilities.css (helper classes)
+- pagefind.css (search-specific styles)
+*/
 :root {
   /* STREAMLINED COLOR SYSTEM - Removed duplicates */
   --color-primary: #19d4fe;
@@ -1936,12 +1946,63 @@ article[role='article'] header {
 }
 
 /* ================================
-   13. SEARCH STYLING - Consolidated
+   13. SEARCH STYLING - Consolidated + Error Handling
    ================================ */
 #search {
   width: 100%;
   max-width: 100%;
   position: relative;
+}
+
+/* Search Error States */
+.search-error,
+.blog-post-card.error {
+  background-color: var(--color-surface-light);
+  border-left: 4px solid #ff6b6b;
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  margin: var(--spacing-lg) 0;
+}
+
+.search-error h3,
+.blog-post-card.error p {
+  color: #ff6b6b;
+  margin-bottom: var(--spacing-sm);
+}
+
+.search-error p {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.search-error a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+/* Search Fallback Styling */
+.search-fallback {
+  background-color: var(--color-surface-light);
+  border: 2px solid var(--color-border);
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius-lg);
+  margin: var(--spacing-lg) 0;
+  text-align: center;
+}
+
+.search-fallback h2 {
+  color: var(--color-text);
+  margin-bottom: var(--spacing-md);
+}
+
+.search-fallback ul {
+  text-align: left;
+  max-width: 400px;
+  margin: var(--spacing-lg) auto 0;
+}
+
+.search-fallback li {
+  margin-bottom: var(--spacing-sm);
 }
 
 .pagefind-ui {
@@ -2145,5 +2206,57 @@ footer[role="contentinfo"] p {
   
   footer[role="contentinfo"] p {
     font-size: var(--font-size-xs);
+  }
+}
+
+/* ================================
+   FOOTER - Performance Optimized Additions
+   ================================ */
+.site-footer {
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  margin-top: var(--spacing-4xl);
+  padding: var(--spacing-xl) 0;
+}
+
+.footer-content {
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+  text-align: center;
+}
+
+.footer-content p {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
+}
+
+.footer-link {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+  transition: color var(--transition-fast);
+}
+
+.footer-link:hover,
+.footer-link:focus {
+  color: var(--color-primary);
+}
+
+@media (max-width: 767px) {
+  .footer-nav {
+    gap: var(--spacing-md);
+  }
+  
+  .footer-content {
+    padding: 0 var(--spacing-md);
   }
 }

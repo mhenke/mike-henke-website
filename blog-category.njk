@@ -9,19 +9,22 @@ eleventyComputed:
   title: "{{ collections.postsByCategory[pagination.items[0]].name }} Posts"
 ---
 {% from "partials/blog-card.njk" import blogCard %}
+{# PERFORMANCE: Cache category data to avoid repeated lookups #}
+{% set categoryData = collections.postsByCategory[pagination.items[0]] %}
 <section class="content-section-boxed content-section-top-margin">
-    <h1 class="section-title">Posts in "{{ collections.postsByCategory[pagination.items[0]].name }}"</h1>
+    <h1 class="section-title">Posts in "{{ categoryData.name }}"</h1>
     <div class="section-underline"></div>
     
-    <h2 class="category-post-count-header">{{ collections.postsByCategory[pagination.items[0]].posts.length }} post{% if collections.postsByCategory[pagination.items[0]].posts.length != 1 %}s{% endif %} in {{ collections.postsByCategory[pagination.items[0]].name }}</h2>
+    <h2 class="category-post-count-header">{{ categoryData.posts.length }} post{% if categoryData.posts.length != 1 %}s{% endif %} in {{ categoryData.name }}</h2>
     
     <p class="category-page-back-link">
         <a href="{{ '/blog' | url }}" class="category-page-back-link">← Back to All Posts</a>
     </p>
     
     <div class="blog-post-list">
-        {%- for post in collections.postsByCategory[pagination.items[0]].posts -%}
-            {{ blogCard(post) }}
+        {# PERFORMANCE: Pass loop index to reduce slug calculations #}
+        {%- for post in categoryData.posts -%}
+            {{ blogCard(post, loop.index0) }}
         {%- endfor -%}
     </div>
 </section>

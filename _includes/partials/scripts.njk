@@ -89,7 +89,33 @@
             });
         }
 
-        // Initialize Pagefind Search if search element exists
+        // SEARCH CONFIGURATION CONSTANTS
+        const SEARCH_CONFIG = {
+            DEBOUNCE_MS: 300,
+            EXCERPT_LENGTH: 200,
+            PAGE_SIZE: 8,
+            RESULT_PROCESSING_DELAY: 500,
+            INIT_DELAY: 200
+        };
+
+        // Enhanced error handling wrapper
+        function withErrorHandling(fn, context = '') {
+            return function(...args) {
+                try {
+                    return fn.apply(this, args);
+                } catch (error) {
+                    console.error(`Error in ${context}:`, error);
+                    // Announce error to screen readers
+                    const announcement = document.getElementById('sr-announcements');
+                    if (announcement) {
+                        announcement.textContent = `Search error: ${error.message}`;
+                    }
+                    return null;
+                }
+            };
+        }
+
+        // Function to extract categories from search results
         function extractCategories(result) {
             // First try to get categories from Pagefind metadata
             const metaData = result.data?.meta;

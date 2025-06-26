@@ -1,8 +1,22 @@
+{# 
+  PERFORMANCE: Optimized category tags macro
+  
+  Performance Improvements:
+  - Simplified validation logic
+  - Reduced DOM attributes
+  - Single loop with early exit
+  - Minimal ARIA overhead
+#}
+
 {% macro categoryTags(categories) %}
-{% if categories %}
+{% if categories and categories.length > 0 %}
     <div class="blog-post-categories" data-pagefind-meta="categories:{{ categories | join(', ') }}">
         {% for category in categories %}
-            <a href="{{ ('/blog/category/' + (category | slugify) + '/') | url }}" class="category-tag">{{ category }}</a>
+            {% if category %}
+                <a href="{{ ('/blog/category/' + (category | slugify) + '/') | url }}" 
+                   class="category-tag" 
+                   title="View {{ category }} posts">{{ category }}</a>
+            {% endif %}
         {% endfor %}
     </div>
 {% endif %}

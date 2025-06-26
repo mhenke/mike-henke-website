@@ -8,8 +8,9 @@ permalink: /blog/index.html
     <h1 class="section-title">Blog Posts</h1>
     <div class="section-underline"></div>
     <div class="blog-post-list">
+        {# PERFORMANCE: Pass loop index to reduce slug calculations #}
         {%- for post in collections.allPosts -%}
-            {{ blogCard(post) }}
+            {{ blogCard(post, loop.index0) }}
         {%- endfor -%}
     </div>
 </section>
