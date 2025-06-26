@@ -1,7 +1,5 @@
 {% macro blogExcerpt(post, length = 300) %}
-{% if post.data.excerpt %}
-    <p class="blog-post-excerpt">{{ post.data.excerpt }}</p>
-{% else %}
-    <p class="blog-post-excerpt">{{ post.content | blogExcerpt(length) }}</p>
-{% endif %}
+<p class="blog-post-excerpt">
+    {{ (post.data.excerpt or post.content) | blogExcerpt(length) }}
+</p>
 {% endmacro %}

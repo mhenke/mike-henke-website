@@ -89,238 +89,228 @@
             });
         }
 
-        // Shared function to generate blog excerpt HTML structure - matches blog-excerpt.njk macro
-        function generateBlogExcerptHTML(excerpt) {
-            if (!excerpt) return '';
-            
-            return `<p class="blog-post-excerpt">${excerpt}</p>`;
-        }
-
-        // Shared function to generate publish date HTML structure - matches publish-date.njk macro
-        function generatePublishDateHTML(date) {
-            if (!date) return '';
-            
-            return `<p class="blog-post-date">
-                <em>Published on 
-                    <time datetime="${date}" data-pagefind-meta="date">
-                        ${date}
-                    </time>
-                </em>
-            </p>`;
-        }
-
-        // Shared function to generate category tags HTML structure - matches category-tags.njk macro
-        function generateCategoryTagsHTML(categories) {
-            if (!categories || categories.length === 0) return '';
-            
-            const categoryLinks = categories.map(category => {
-                const categorySlug = category.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-                return `<a href="/blog/category/${categorySlug}/" class="category-tag">${category}</a>`;
-            }).join('');
-            
-            return `<div class="blog-post-categories">${categoryLinks}</div>`;
-        }
-
-        // Shared function to extract categories from search results 
-        function extractCleanCategories(originalTags, isBlogPost) {
-            if (!originalTags || !isBlogPost) return [];
-            
-            // Get the entire search result to access the excerpt
-            const result = originalTags.closest('.pagefind-ui__result');
-            const excerpt = result ? result.querySelector('.pagefind-ui__result-excerpt') : null;
-            
-            if (!excerpt) return [];
-            
-            const excerptText = excerpt.textContent;
-            
-            // Extract categories from the pattern "Published on [date] [categories]"
-            const match = excerptText.match(/Published on [^.]+?(\d{4})\s+([^.]+?)(?:\s+Here|$)/);
-            if (!match) return [];
-            
-            const categoryText = match[2].trim();
-            
-            // Split on spaces and clean up
-            return categoryText.split(/\s+/)
-                .filter(cat => cat.length > 2) // Remove short words
-                .filter(cat => !cat.toLowerCase().match(/^(is|a|an|the|and|or|but|in|on|at|to|for|of|with|by)$/))
-                .map(cat => cat.replace(/[^\w-]/g, '')); // Clean up punctuation
-        }
-
-        // Shared function to generate blog card HTML structure - matches blog-card.njk macro
-        function generateBlogCardHTML(data) {
-            const { title, href, categories = [], excerpt = '', publishDate = '', isBlogPost = true } = data;
-            
-            let htmlContent = `
-                <h2 class="blog-post-title">
-                    <a href="${href}">${title}</a>
-                </h2>
-            `;
-            
-            // Add categories for blog posts using shared function
-            if (isBlogPost && categories.length > 0) {
-                htmlContent += generateCategoryTagsHTML(categories);
+        // Initialize Pagefind Search if search element exists
+        function extractCategories(result) {
+            // First try to get categories from Pagefind metadata
+            const metaData = result.data?.meta;
+            if (metaData && metaData.categories) {
+                // If categories is a string, split it; if array, use as-is
+                return typeof metaData.categories === 'string' 
+                    ? metaData.categories.split(',').map(cat => cat.trim())
+                    : metaData.categories;
             }
             
-            // Add excerpt using shared function
-            if (excerpt) {
-                htmlContent += generateBlogExcerptHTML(excerpt);
-            }
-            
-            // Add publish date using shared function
-            if (isBlogPost && publishDate) {
-                htmlContent += generatePublishDateHTML(publishDate);
-            }
-            
-            return htmlContent;
-        }
-
-        // Shared function to clean excerpts - matches the blogExcerpt filter behavior
-        function cleanExcerpt(excerptText) {
-            if (!excerptText) return '';
-            
-            let cleanExcerpt = excerptText
-                // Remove "Published on..." prefixes
-                .replace(/^.*?Published on.*?\d{4}\.?\s*/i, '')
-                // Remove [code] blocks that haven't been processed yet
-                .replace(/\[code[^\]]*\][\s\S]*?\[\/code\]/gi, ' ')
-                // Remove generated code block HTML
-                .replace(/<div class="code-block">[\s\S]*?<\/div>/gi, ' ')
-                // Remove any remaining [code] orphan tags
-                .replace(/\[(?:\/)?code[^\]]*\]/gi, ' ')
-                // Remove HTML tags
-                .replace(/<[^>]*>/g, ' ')
-                // Remove code block indicators and language labels
-                .replace(/\s*(COLDFUSION|JAVASCRIPT|HTML|CSS|SQL|JAVA|PHP|PYTHON|XML|JSON).*$/i, '')
-                // Remove ColdFusion code patterns
-                .replace(/<cf[^>]*>/gi, '')
-                .replace(/<\/cf[^>]*>/gi, '')
-                // Decode HTML entities (same order as blogExcerpt filter)
-                .replace(/&quot;/g, '"')
-                .replace(/&#39;/g, "'")
-                .replace(/&apos;/g, "'")
-                .replace(/&lt;/g, '<')
-                .replace(/&gt;/g, '>')
-                .replace(/&amp;/g, '&') // Keep this last to avoid double-decoding
-                // Clean up whitespace
-                .replace(/\s+/g, ' ')
-                .trim();
-            
-            // If cleaning removed everything, use original but still clean it
-            if (!cleanExcerpt || cleanExcerpt.length < 20) {
-                cleanExcerpt = excerptText
-                    .replace(/<[^>]*>/g, ' ')
-                    .replace(/&[a-z]+;/gi, ' ')
-                    .replace(/\s+/g, ' ')
-                    .trim();
-            }
-            
-            // Truncate to 300 characters to match blog list behavior
-            if (cleanExcerpt.length > 300) {
-                // Find the last complete word within the length limit (same logic as blogExcerpt)
-                const truncated = cleanExcerpt.substring(0, 300);
-                const lastSpace = truncated.lastIndexOf(' ');
+            // Try to extract categories from the beginning of the excerpt text
+            const excerptElement = result.querySelector('.pagefind-ui__result-excerpt');
+            if (excerptElement) {
+                const excerptText = excerptElement.textContent.trim();
                 
-                if (lastSpace > 300 * 0.8) {
-                    // If we found a space reasonably close to the end
-                    cleanExcerpt = truncated.substring(0, lastSpace) + '...';
-                } else {
-                    cleanExcerpt = truncated + '...';
-                }
-            }
-            
-            return cleanExcerpt;
-        }
-
-        // Process search results to match blog card structure and styling
-        function processSearchResults() {
-            const allResults = document.querySelectorAll('.pagefind-ui__result');
-            const results = Array.from(allResults).filter(result => !result.hasAttribute('data-enhanced'));
-            
-            console.log('Processing ' + results.length + ' new search results');
-            
-            results.forEach(result => {
-                const originalTitle = result.querySelector('.pagefind-ui__result-title');
-                const originalExcerpt = result.querySelector('.pagefind-ui__result-excerpt');
-                const originalUrl = result.querySelector('.pagefind-ui__result-link');
-                const originalTags = result.querySelector('.pagefind-ui__result-tags');
+                // Look for category pattern at the beginning of excerpt
+                // Categories are usually single words or short phrases before the main content
+                const words = excerptText.split(/\s+/);
+                const categories = [];
                 
-                if (!originalTitle || !originalUrl) {
-                    result.setAttribute('data-enhanced', 'true');
-                    return;
-                }
-
-                // Extract basic data
-                const titleText = originalTitle.textContent.trim();
-                const excerptText = originalExcerpt ? originalExcerpt.textContent.trim() : '';
-                let href = originalUrl.href;
-                
-                // Fix URL to use relative path
-                if (href.includes('localhost:8080')) {
-                    href = href.replace('http://localhost:8080', '');
-                } else if (href.includes('localhost:')) {
-                    href = href.replace(/http:\/\/localhost:\d+/, '');
-                }
-                
-                const isBlogPost = href.includes('/blog/');
-                
-                // Extract categories using simple approach
-                const categories = extractCleanCategories(originalTags, isBlogPost);
-                
-                // Extract date from URL pattern
-                let publishDate = '';
-                if (isBlogPost) {
-                    const dateMatch = href.match(/\/(\d{4})-(\d{2})-(\d{2})-/);
-                    if (dateMatch) {
-                        const year = dateMatch[1];
-                        const month = dateMatch[2]; 
-                        const day = dateMatch[3];
-                        const date = new Date(year, month - 1, day);
-                        publishDate = date.toLocaleDateString('en-US', { 
-                            year: 'numeric', 
-                            month: 'long', 
-                            day: 'numeric' 
-                        });
+                // Take words from the beginning that look like categories (short, capitalized, etc.)
+                for (let i = 0; i < Math.min(words.length, 6); i++) {
+                    const word = words[i];
+                    
+                    // Stop if we hit common starting words for actual content
+                    if (/^(here|this|the|a|an|in|on|at|for|with|by|from|to|of|and|or|but|if|when|where|how|what|why|who|i|you|we|they|he|she|it)$/i.test(word)) {
+                        break;
+                    }
+                    
+                    // Stop if word contains punctuation (likely start of sentence)
+                    if (/[.!?:;,]/.test(word)) {
+                        break;
+                    }
+                    
+                    // Add word as potential category if it's not too long
+                    if (word.length <= 20 && word.length >= 2) {
+                        categories.push(word);
+                    } else {
+                        break;
                     }
                 }
                 
-                // Default fallback for publish date
-                if (isBlogPost && !publishDate) {
-                    publishDate = 'March 2, 2008';
+                if (categories.length > 0) {
+                    return categories;
                 }
+            }
+            
+            // Fallback: look for category tags in the result HTML
+            const categoryTags = result.querySelectorAll('.category-tag');
+            if (categoryTags.length > 0) {
+                return Array.from(categoryTags).map(tag => tag.textContent.trim());
+            }
+            
+            // Last resort: try to find in pagefind result tags
+            const resultTags = result.querySelectorAll('.pagefind-ui__result-tag');
+            const categories = [];
+            resultTags.forEach(tag => {
+                const text = tag.textContent;
+                // Look for category-like metadata
+                if (text.includes('Category:') || text.includes('Categories:')) {
+                    const categoryMatch = text.match(/Categories?:\s*(.+)/i);
+                    if (categoryMatch) {
+                        categories.push(...categoryMatch[1].split(',').map(cat => cat.trim()));
+                    }
+                }
+            });
+            
+            return categories;
+        }
+
+        // Simple function to create category tags HTML
+        function createCategoryTags(categories) {
+            if (!categories || categories.length === 0) return '';
+            
+            const categoryHTML = categories.map(category => {
+                const slug = category.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+                return `<a href="/blog/category/${slug}/" class="category-tag">${category}</a>`;
+            }).join('');
+            
+            return `<div class="blog-post-categories">${categoryHTML}</div>`;
+        }
+
+        // Simple function to clean excerpt text
+        function cleanExcerpt(text, categories = []) {
+            if (!text) return '';
+            
+            let cleaned = text
+                .replace(/^.*?Published on.*?\d{4}\.?\s*/i, '') // Remove date prefix
+                .replace(/\[code[^\]]*\][\s\S]*?\[\/code\]/gi, ' ') // Remove code blocks
+                .replace(/<[^>]*>/g, ' ') // Remove HTML tags
+                .replace(/&[a-z]+;/gi, ' ') // Remove HTML entities
+                .replace(/\s+/g, ' ') // Normalize whitespace
+                .trim();
+            
+            // Remove categories from the beginning if they were extracted
+            if (categories.length > 0) {
+                // Create a pattern that matches all categories at the start
+                const categoryWords = categories.map(cat => cat.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
                 
-                // Create new structure matching blog card format
-                const newStructure = document.createElement('article');
-                newStructure.className = isBlogPost ? 'blog-post-card' : 'search-result-page';
+                // Try to remove all categories as a group first
+                const allCategoriesPattern = new RegExp(`^${categoryWords.join('\\s+')}\\s+`, 'i');
+                cleaned = cleaned.replace(allCategoriesPattern, '');
                 
-                // Use shared function to generate consistent HTML structure
-                const cleanedExcerpt = cleanExcerpt(excerptText);
-                const htmlContent = generateBlogCardHTML({
-                    title: titleText,
-                    href: href,
-                    categories: categories,
-                    excerpt: cleanedExcerpt,
-                    publishDate: publishDate,
-                    isBlogPost: isBlogPost
+                // If that didn't work, remove each category individually from the start
+                categoryWords.forEach(escapedCategory => {
+                    const individualRegex = new RegExp(`^${escapedCategory}\\s+`, 'i');
+                    cleaned = cleaned.replace(individualRegex, '');
                 });
                 
-                newStructure.innerHTML = htmlContent;
+                // Also try removing any combination at the start
+                let wordsAtStart = cleaned.split(/\s+/).slice(0, categories.length + 2);
+                for (let category of categories) {
+                    if (wordsAtStart.length > 0 && wordsAtStart[0].toLowerCase() === category.toLowerCase()) {
+                        wordsAtStart.shift();
+                    }
+                }
                 
-                // Add smooth entrance animation
-                newStructure.style.opacity = '0';
-                newStructure.style.transform = 'translateY(20px)';
+                // If we removed some words, reconstruct the cleaned text
+                if (wordsAtStart.length < categories.length + 2) {
+                    const remainingWords = cleaned.split(/\s+/);
+                    const wordsToRemove = categories.length - (wordsAtStart.length - 2);
+                    if (wordsToRemove > 0) {
+                        cleaned = remainingWords.slice(wordsToRemove).join(' ');
+                    }
+                }
+            }
+            
+            // Truncate to reasonable length and add ellipsis
+            if (cleaned.length > 300) {
+                const truncated = cleaned.substring(0, 300);
+                const lastSpace = truncated.lastIndexOf(' ');
+                if (lastSpace > 250) {
+                    cleaned = truncated.substring(0, lastSpace) + '...';
+                } else {
+                    cleaned = truncated + '...';
+                }
+            }
+            
+            return cleaned;
+        }
+
+        // Simple function to process search results
+        function processSearchResults(searchResults = null) {
+            const allResults = document.querySelectorAll('.pagefind-ui__result');
+            const results = Array.from(allResults).filter(result => !result.hasAttribute('data-enhanced'));
+            
+            results.forEach((result, index) => {
+                const titleElement = result.querySelector('.pagefind-ui__result-title');
+                const excerptElement = result.querySelector('.pagefind-ui__result-excerpt');
+                const linkElement = result.querySelector('.pagefind-ui__result-link');
                 
-                // Replace the original result with our new structure
-                result.parentNode.replaceChild(newStructure, result);
+                if (!titleElement || !linkElement) return;
                 
-                // Animate in after replacement
-                setTimeout(() => {
-                    newStructure.style.transition = 'all 0.4s ease-out';
-                    newStructure.style.opacity = '1';
-                    newStructure.style.transform = 'translateY(0)';
-                }, 50 + Math.random() * 100);
+                const href = linkElement.href.replace(/http:\/\/localhost:\d+/, '');
+                const isBlogPost = href.includes('/blog/');
                 
-                // Mark as enhanced to avoid duplicate processing
-                newStructure.setAttribute('data-enhanced', 'true');
+                if (isBlogPost) {
+                    // Transform the result to look like a blog card
+                    result.classList.add('blog-post-card');
+                    
+                    // Get the original title text and link
+                    const originalTitle = titleElement.textContent;
+                    const originalLink = linkElement.href;
+                    
+                    // Replace title element content but keep the element
+                    titleElement.tagName = 'H2'; // This won't work, we need to replace the element
+                    
+                    // Create new h2 element to replace the title
+                    const newTitle = document.createElement('h2');
+                    newTitle.className = 'blog-post-title';
+                    newTitle.innerHTML = `<a href="${href}">${originalTitle}</a>`;
+                    
+                    // Replace the original title element
+                    titleElement.parentNode.replaceChild(newTitle, titleElement);
+                    
+                    // Add categories after title
+                    const categories = extractCategories(result);
+                    console.log('Extracted categories:', categories);
+                    if (categories.length > 0) {
+                        const categoryDiv = document.createElement('div');
+                        categoryDiv.className = 'blog-post-categories';
+                        
+                        // Create category links individually to ensure proper attributes
+                        categories.forEach(category => {
+                            const categoryLink = document.createElement('a');
+                            const slug = category.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+                            categoryLink.href = `/blog/category/${slug}/`;
+                            categoryLink.className = 'category-tag';
+                            categoryLink.textContent = category;
+                            
+                            // Ensure links are clickable and styled properly
+                            categoryLink.style.pointerEvents = 'auto';
+                            categoryLink.style.cursor = 'pointer';
+                            
+                            categoryDiv.appendChild(categoryLink);
+                        });
+                        
+                        newTitle.insertAdjacentElement('afterend', categoryDiv);
+                    }
+                    
+                    // Clean and replace excerpt content
+                    if (excerptElement) {
+                        const originalExcerpt = excerptElement.textContent;
+                        console.log('Original excerpt:', originalExcerpt);
+                        const cleanedExcerpt = cleanExcerpt(originalExcerpt, categories);
+                        console.log('Cleaned excerpt:', cleanedExcerpt);
+                        excerptElement.className = 'blog-post-excerpt';
+                        excerptElement.innerHTML = cleanedExcerpt;
+                    }
+                    
+                    // Add publish date (extract from original excerpt text if available)
+                    const dateMatch = result.textContent.match(/(\w+ \d{1,2}, \d{4})/);
+                    if (dateMatch) {
+                        const dateElement = document.createElement('p');
+                        dateElement.className = 'blog-post-date';
+                        dateElement.innerHTML = `<em>Published on <time datetime="${new Date(dateMatch[1]).toISOString().split('T')[0]}" data-pagefind-meta="date">${dateMatch[1]}</time></em>`;
+                        result.appendChild(dateElement);
+                    }
+                }
+                
+                result.setAttribute('data-enhanced', 'true');
             });
         }
 
@@ -347,12 +337,12 @@
                         load_more: "Load more results",
                         search_label: "Search this site",
                         filters_label: "Filters",
-                        zero_results: "No results found for [SEARCH_TERM]",
-                        many_results: "[COUNT] results for [SEARCH_TERM]",
-                        one_result: "1 result for [SEARCH_TERM]",
-                        alt_search: "No results for [SEARCH_TERM]. Showing results for [DIFFERENT_TERM] instead",
-                        search_suggestion: "No results for [SEARCH_TERM]. Try one of the following searches:",
-                        searching: "Searching for [SEARCH_TERM]..."
+                        zero_results: "No results found for \"[SEARCH_TERM]\"",
+                        many_results: "[COUNT] results for \"[SEARCH_TERM]\"",
+                        one_result: "1 result for \"[SEARCH_TERM]\"",
+                        alt_search: "No results for \"[SEARCH_TERM]\". Showing results for \"[DIFFERENT_TERM]\" instead",
+                        search_suggestion: "No results for \"[SEARCH_TERM]\". Try one of the following searches:",
+                        searching: "Searching for \"[SEARCH_TERM]\"..."
                     }
                 };
 
@@ -366,62 +356,31 @@
                 
                 const pagefindUI = new PagefindUI(searchConfig);
                 
-                // Process results after they load (works on any page with search)
+                // Simple approach to process search results and fix message
                 const searchElement = document.getElementById("search");
                 if (searchElement) {
-                    console.log('Setting up search results observer');
-                    
-                    let processingTimeout;
-                    
-                    // Single robust observer with debouncing
-                    const observer = new MutationObserver((mutations) => {
-                        let shouldProcess = false;
-                        
-                        mutations.forEach((mutation) => {
-                            if (mutation.addedNodes.length > 0) {
-                                // Check if search results were added
-                                const hasResults = Array.from(mutation.addedNodes).some(node => 
-                                    node.nodeType === 1 && 
-                                    (node.classList && node.classList.contains('pagefind-ui__result') || 
-                                     (node.querySelector && node.querySelector('.pagefind-ui__result')))
-                                );
-                                
-                                if (hasResults) {
-                                    shouldProcess = true;
-                                }
-                            }
-                        });
-                        
-                        if (shouldProcess) {
-                            console.log('New search results detected, scheduling processing...');
-                            
-                            // Clear any existing timeout to debounce rapid changes
-                            if (processingTimeout) {
-                                clearTimeout(processingTimeout);
-                            }
-                            
-                            // Process after DOM has settled
-                            processingTimeout = setTimeout(() => {
-                                console.log('Processing search results...');
-                                processSearchResults();
-                            }, 100);
-                        }
-                    });
-                    
-                    observer.observe(searchElement, { 
-                        childList: true, 
-                        subtree: true 
-                    });
-                    
-                    // Process any existing results that might have loaded before observer setup
-                    setTimeout(() => processSearchResults(), 100);
                     const searchInput = searchElement.querySelector('input[type="search"]');
                     if (searchInput) {
                         searchInput.addEventListener('input', () => {
-                            setTimeout(() => processSearchResults(), 400);
-                            setTimeout(() => processSearchResults(), 800);
+                            setTimeout(() => {
+                                processSearchResults();
+                                
+                                // Fix the search message display
+                                const message = document.querySelector('.pagefind-ui__message');
+                                const results = document.querySelectorAll('.pagefind-ui__result');
+                                const searchTerm = searchInput.value.trim();
+                                
+                                if (message && searchTerm && results.length > 0) {
+                                    const count = results.length;
+                                    const resultText = count === 1 ? 'result' : 'results';
+                                    message.textContent = `${count} ${resultText} for "${searchTerm}"`;
+                                }
+                            }, 500);
                         });
                     }
+                    
+                    // Process any existing results
+                    setTimeout(() => processSearchResults(), 200);
                 }
                 
                 console.log('PagefindUI initialized successfully');
