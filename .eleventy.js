@@ -1,7 +1,18 @@
 const { DateTime } = require('luxon');
 const { URL } = require('url');
 
+/**
+ * MAINTAINABILITY NOTE: This configuration file is becoming quite large (650+ lines).
+ * Consider splitting into modules:
+ * - transforms/ (for content transforms)
+ * - filters/ (for template filters)
+ * - collections/ (for data collections)
+ * - utils/ (for helper functions)
+ */
+
 module.exports = function (eleventyConfig) {
+  // Performance: Only run transforms when needed
+  const isDevelopment = process.env.NODE_ENV !== 'production';
   // Optimized code block transform
   eleventyConfig.addTransform(
     'codeBlockTransform',

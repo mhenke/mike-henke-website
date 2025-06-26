@@ -1,0 +1,44 @@
+{# 
+  PERFORMANCE: Optimized base layout with conditional resource loading
+  
+  Performance features:
+  - Conditional script loading
+  - Lazy-loaded non-critical resources  
+  - Minimized DOM complexity
+  - Efficient CSS/JS delivery
+#}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "partials/head.njk" %}
+</head>
+<body>
+    <!-- Skip Navigation Links for Screen Readers -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    {% include "partials/navigation.njk" %}
+    
+    <main id="main-content" role="main">
+        <!-- ARIA live region for screen reader announcements -->
+        <div id="sr-announcements" aria-live="polite" aria-atomic="true" class="sr-only"></div>
+        {{ content | safe }}
+    </main>
+    
+    {% include "partials/footer.njk" %}
+    
+    {# PERFORMANCE: Load scripts conditionally #}
+    {% if page.url.includes('/search/') %}
+        <!-- Load search scripts only on search page -->
+        <script src="{{ '/pagefind/pagefind-ui.js' | url }}" defer></script>
+    {% endif %}
+    
+    {% if page.url.includes('/blog/') %}
+        <!-- Load syntax highlighting only on blog pages -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" defer></script>
+    {% endif %}
+    
+    <!-- Load main scripts with defer for better performance -->
+    {% include "partials/scripts.njk" %}
+</body>
+</html>
