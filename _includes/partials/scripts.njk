@@ -89,13 +89,33 @@
             });
         }
 
+        // Shared function to generate blog excerpt HTML structure - matches blog-excerpt.njk macro
+        function generateBlogExcerptHTML(excerpt) {
+            if (!excerpt) return '';
+            
+            return `<p class="blog-post-excerpt">${excerpt}</p>`;
+        }
+
+        // Shared function to generate publish date HTML structure - matches publish-date.njk macro
+        function generatePublishDateHTML(date) {
+            if (!date) return '';
+            
+            return `<p class="blog-post-date">
+                <em>Published on 
+                    <time datetime="${date}" data-pagefind-meta="date">
+                        ${date}
+                    </time>
+                </em>
+            </p>`;
+        }
+
         // Shared function to generate category tags HTML structure - matches category-tags.njk macro
         function generateCategoryTagsHTML(categories) {
             if (!categories || categories.length === 0) return '';
             
             const categoryLinks = categories.map(category => {
                 const categorySlug = category.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-                return `<a href="/blog/category/${categorySlug}/" class="category-tag">${category}</a>`;
+                return `<a href="/blog/category/${categorySlug}/" class="category-tag" data-pagefind-meta="category">${category}</a>`;
             }).join('');
             
             return `<div class="blog-post-categories">${categoryLinks}</div>`;
@@ -111,7 +131,7 @@
             return categories;
         }
 
-        // Shared function to generate blog card HTML structure
+        // Shared function to generate blog card HTML structure - matches blog-card.njk macro
         function generateBlogCardHTML(data) {
             const { title, href, categories = [], excerpt = '', publishDate = '', isBlogPost = true } = data;
             
@@ -126,14 +146,14 @@
                 htmlContent += generateCategoryTagsHTML(categories);
             }
             
-            // Add excerpt
+            // Add excerpt using shared function
             if (excerpt) {
-                htmlContent += `<p class="blog-post-excerpt">${excerpt}</p>`;
+                htmlContent += generateBlogExcerptHTML(excerpt);
             }
             
-            // Add publish date
+            // Add publish date using shared function
             if (isBlogPost && publishDate) {
-                htmlContent += `<p class="blog-post-date"><em>Published on ${publishDate}</em></p>`;
+                htmlContent += generatePublishDateHTML(publishDate);
             }
             
             return htmlContent;
@@ -228,7 +248,7 @@
                 
                 const isBlogPost = href.includes('/blog/');
                 
-                // Extract and clean categories using shared function
+                // Extract categories using simple approach
                 const categories = extractCleanCategories(originalTags, isBlogPost);
                 
                 // Extract date from URL pattern

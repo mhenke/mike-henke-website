@@ -1,0 +1,11 @@
+{% macro publishDate(date, includeTime = false) %}
+{% if date %}
+    <p class="blog-post-date">
+        <em>Published on 
+            <time datetime="{{ date | date('yyyy-MM-dd') }}" data-pagefind-meta="date">
+                {{ date | date('LLLL d, yyyy') }}
+            </time>
+        </em>
+    </p>
+{% endif %}
+{% endmacro %}

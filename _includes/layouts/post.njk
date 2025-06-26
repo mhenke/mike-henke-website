@@ -14,7 +14,8 @@
         <article class="content-section-boxed content-section-top-margin" role="article" data-pagefind-body>
             <header>
                 <h1 data-pagefind-meta="title">{{ title }}</h1>
-                <p class="blog-post-date"><em>Published on <time datetime="{{ date | date('yyyy-MM-dd') }}" data-pagefind-meta="date">{{ date | date('LLLL d, yyyy') }}</time></em></p>
+                {% import "partials/publish-date.njk" as dateMacros %}
+                {{ dateMacros.publishDate(date) }}
                 {% import "partials/category-tags.njk" as categoryMacros %}
                 {{ categoryMacros.categoryTags(categories) }}
             </header>
