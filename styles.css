@@ -2061,14 +2061,17 @@ article[role='article'] header {
   margin-bottom: var(--spacing-xs) !important;
   line-height: 1.1 !important;
   letter-spacing: normal !important;
-  cursor: default !important;
+  cursor: pointer !important;
   display: inline-block !important;
+  transition: all 0.2s ease !important;
 }
 
 .pagefind-ui__results .category-tag:hover {
-  /* No hover effects for search result category tags since they're not clickable */
-  background-color: transparent !important;
-  color: var(--color-text) !important;
+  background-color: var(--color-primary) !important;
+  color: var(--color-background) !important;
+  border-color: var(--color-primary) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
 }
 
 /* Search result blog post titles */
