@@ -125,10 +125,25 @@
         function extractCleanCategories(originalTags, isBlogPost) {
             if (!originalTags || !isBlogPost) return [];
             
-            const tagElements = originalTags.querySelectorAll('.pagefind-ui__result-tag');
-            const categories = Array.from(tagElements).map(tag => tag.textContent.trim()).filter(tag => tag.length > 0);
+            // Get the entire search result to access the excerpt
+            const result = originalTags.closest('.pagefind-ui__result');
+            const excerpt = result ? result.querySelector('.pagefind-ui__result-excerpt') : null;
             
-            return categories;
+            if (!excerpt) return [];
+            
+            const excerptText = excerpt.textContent;
+            
+            // Extract categories from the pattern "Published on [date] [categories]"
+            const match = excerptText.match(/Published on [^.]+?(\d{4})\s+([^.]+?)(?:\s+Here|$)/);
+            if (!match) return [];
+            
+            const categoryText = match[2].trim();
+            
+            // Split on spaces and clean up
+            return categoryText.split(/\s+/)
+                .filter(cat => cat.length > 2) // Remove short words
+                .filter(cat => !cat.toLowerCase().match(/^(is|a|an|the|and|or|but|in|on|at|to|for|of|with|by)$/))
+                .map(cat => cat.replace(/[^\w-]/g, '')); // Clean up punctuation
         }
 
         // Shared function to generate blog card HTML structure - matches blog-card.njk macro
