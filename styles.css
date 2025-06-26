@@ -2115,3 +2115,35 @@ article[role='article'] header {
 }
 
 /* End Enhanced Search Results */
+
+/* ================================
+   FOOTER STYLING
+   ================================ */
+footer[role="contentinfo"] {
+  background-color: var(--color-surface);
+  border-top: var(--border-width-thin) solid var(--color-border);
+  padding: var(--spacing-xl) var(--spacing-md);
+  margin-top: var(--spacing-xxl);
+  text-align: center;
+  font-family: var(--font-primary);
+}
+
+footer[role="contentinfo"] p {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: var(--letter-spacing-subtle);
+}
+
+/* Responsive footer adjustments */
+@media (max-width: 768px) {
+  footer[role="contentinfo"] {
+    padding: var(--spacing-lg) var(--spacing-sm);
+    margin-top: var(--spacing-xl);
+  }
+  
+  footer[role="contentinfo"] p {
+    font-size: var(--font-size-xs);
+  }
+}
