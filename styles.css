@@ -146,6 +146,9 @@ MAINTAINABILITY NOTE: Consider splitting this large CSS file into modules:
 
 .pagefind-ui * {
   zoom: normal;
+  transition: none !important;
+  animation: none !important;
+  transform: none !important;
 }
 
 html {
