@@ -8,7 +8,7 @@ layout: layouts/base-optimized.njk
 eleventyComputed:
   title: "{{ collections.postsByCategory[pagination.items[0]].name }} Posts"
 ---
-{% from "partials/blog-card.njk" import blogCard %}
+{% from "macros/blog-card.njk" import blogCard %}
 {# PERFORMANCE: Cache category data to avoid repeated lookups #}
 {% set categoryData = collections.postsByCategory[pagination.items[0]] %}
 <section class="content-section-boxed content-section-top-margin">

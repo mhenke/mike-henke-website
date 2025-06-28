@@ -85,7 +85,7 @@ npm run build
 
 ```
 ├── _includes/           # Eleventy templates and partials
-│   ├── layouts/        # Page layouts (base.njk, post.njk)
+│   ├── layouts/        # Page layouts (base-optimized.njk, post.njk)
 │   └── partials/       # Reusable components (navigation, footer, scripts)
 ├── assets/             # Static assets (images, icons, resume)
 ├── output/posts/       # Blog posts (markdown files)
