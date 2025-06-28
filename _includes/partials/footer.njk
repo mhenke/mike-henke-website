@@ -1,16 +1,13 @@
+{% from "macros/navigation.njk" import footerLinks %}
 {# PERFORMANCE: Minimal footer with cached year #}
 {% set currentYear = "now" | date("yyyy") %}
 <footer role="contentinfo" class="site-footer">
     <div class="footer-content">
         <p>&copy; {{ currentYear }} Mike Henke. All Rights Reserved.</p>
         
-        {# PERFORMANCE: Only show social links on main pages #}
-        {% if page.url == '/' or page.url.includes('/blog/') %}
+        {# PERFORMANCE: Show navigation links on all pages for consistency #}
         <nav class="footer-nav" aria-label="Footer navigation">
-            <a href="{{ '/' | url }}#contact" class="footer-link">Contact</a>
-            <a href="{{ '/blog/' | url }}" class="footer-link">Blog</a>
-            <a href="{{ '/search/' | url }}" class="footer-link">Search</a>
+            {{ footerLinks() }}
         </nav>
-        {% endif %}
     </div>
 </footer>

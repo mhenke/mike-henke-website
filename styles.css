@@ -1639,10 +1639,12 @@ section {
   transition: all var(--transition-normal);
   cursor: pointer;
   position: relative;
-  animation: slideInUp var(--transition-slow) ease-out;
-  animation-fill-mode: both;
   overflow: hidden;
   isolation: isolate;
+  opacity: 0;
+  transform: translateY(var(--spacing-2xl));
+  transition: all var(--transition-normal);
+  transition-delay: var(--animation-delay, 0s);
 }
 
 .contact-item::before {
@@ -1748,6 +1750,16 @@ section {
 
 .contact-details a:hover::after {
   transform: scaleX(1);
+}
+
+/* Contact Animation Styles */
+.contact-item.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.contact-item.animate .contact-icon {
+  transform: scale(1);
 }
 
 /* RESPONSIVE CONTACT ADJUSTMENTS */
@@ -2208,7 +2220,7 @@ article[role='article'] header {
 /* ================================
    FOOTER STYLING
    ================================ */
-footer[role="contentinfo"] {
+footer[role='contentinfo'] {
   background-color: var(--color-surface);
   border-top: var(--border-width-thin) solid var(--color-border);
   padding: var(--spacing-xl) var(--spacing-md);
@@ -2217,7 +2229,7 @@ footer[role="contentinfo"] {
   font-family: var(--font-primary);
 }
 
-footer[role="contentinfo"] p {
+footer[role='contentinfo'] p {
   margin: 0;
   color: var(--color-text-secondary);
   font-size: var(--font-size-sm);
@@ -2227,12 +2239,12 @@ footer[role="contentinfo"] p {
 
 /* Responsive footer adjustments */
 @media (max-width: 768px) {
-  footer[role="contentinfo"] {
+  footer[role='contentinfo'] {
     padding: var(--spacing-lg) var(--spacing-sm);
     margin-top: var(--spacing-xl);
   }
-  
-  footer[role="contentinfo"] p {
+
+  footer[role='contentinfo'] p {
     font-size: var(--font-size-xs);
   }
 }
@@ -2323,7 +2335,7 @@ footer[role="contentinfo"] p {
   .footer-nav {
     gap: var(--spacing-md);
   }
-  
+
   .footer-content {
     padding: var(--spacing-lg);
     margin: 0 var(--spacing-md);
