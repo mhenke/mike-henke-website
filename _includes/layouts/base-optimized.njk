@@ -15,6 +15,7 @@
 <body>
     <!-- Skip Navigation Links for Screen Readers -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
+    <a href="#nav-menu" class="skip-link">Skip to navigation</a>
     
     {% include "partials/navigation.njk" %}
     
@@ -26,19 +27,17 @@
     
     {% include "partials/footer.njk" %}
     
-    {# PERFORMANCE: Load scripts conditionally #}
+    {# PERFORMANCE: Load core scripts on all pages #}
+    {% include "partials/scripts-core.njk" %}
+    
+    {# PERFORMANCE: Load search scripts only on search page #}
     {% if page.url.includes('/search/') %}
-        <!-- Load search scripts only on search page -->
-        <script src="{{ '/pagefind/pagefind-ui.js' | url }}" defer></script>
+        {% include "partials/scripts-search.njk" %}
     {% endif %}
     
-    {% if page.url.includes('/blog/') %}
-        <!-- Load syntax highlighting only on blog pages -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" defer></script>
+    {# PERFORMANCE: Load blog scripts only on blog pages or pages with code blocks #}
+    {% if page.url.includes('/blog/') or content.includes('[code') or content.includes('<pre') %}
+        {% include "partials/scripts-blog.njk" %}
     {% endif %}
-    
-    <!-- Load main scripts with defer for better performance -->
-    {% include "partials/scripts.njk" %}
 </body>
 </html>

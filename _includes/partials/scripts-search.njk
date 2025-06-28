@@ -1,0 +1,388 @@
+<!-- Search functionality scripts -->
+<script src="{{ '/pagefind/pagefind-ui.js' | url }}" type="text/javascript" defer></script>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        // SEARCH CONFIGURATION CONSTANTS
+        const SEARCH_CONFIG = {
+            DEBOUNCE_MS: 300,
+            EXCERPT_LENGTH: 200,
+            PAGE_SIZE: 8,
+            RESULT_PROCESSING_DELAY: 500,
+            INIT_DELAY: 200
+        };
+
+        // Enhanced error handling wrapper
+        function withErrorHandling(fn, context = '') {
+            return function(...args) {
+                try {
+                    return fn.apply(this, args);
+                } catch (error) {
+                    console.error(`Error in ${context}:`, error);
+                    // Announce error to screen readers
+                    const announcement = document.getElementById('sr-announcements');
+                    if (announcement) {
+                        announcement.textContent = `Search error: ${error.message}`;
+                    }
+                    return null;
+                }
+            };
+        }
+
+        // Function to extract categories from search results
+        function extractCategories(result) {
+            // First try to get categories from Pagefind metadata
+            const metaData = result.data?.meta;
+            if (metaData && metaData.categories) {
+                // If categories is a string, split it; if array, use as-is
+                return typeof metaData.categories === 'string' 
+                    ? metaData.categories.split(',').map(cat => cat.trim())
+                    : metaData.categories;
+            }
+            
+            // Try to extract categories from the beginning of the excerpt text
+            const excerptElement = result.querySelector('.pagefind-ui__result-excerpt');
+            if (excerptElement) {
+                const excerptText = excerptElement.textContent.trim();
+                
+                // Look for category pattern at the beginning of excerpt
+                // Categories are usually single words or short phrases before the main content
+                const words = excerptText.split(/\s+/);
+                const categories = [];
+                
+                // Take words from the beginning that look like categories (short, capitalized, etc.)
+                for (let i = 0; i < Math.min(words.length, 6); i++) {
+                    const word = words[i];
+                    
+                    // Stop if we hit common starting words for actual content
+                    if (/^(here|this|the|a|an|in|on|at|for|with|by|from|to|of|and|or|but|if|when|where|how|what|why|who|i|you|we|they|he|she|it)$/i.test(word)) {
+                        break;
+                    }
+                    
+                    // Stop if word contains punctuation (likely start of sentence)
+                    if (/[.!?:;,]/.test(word)) {
+                        break;
+                    }
+                    
+                    // Add word as potential category if it's not too long
+                    if (word.length <= 20 && word.length >= 2) {
+                        categories.push(word);
+                    } else {
+                        break;
+                    }
+                }
+                
+                if (categories.length > 0) {
+                    return categories;
+                }
+            }
+            
+            // Fallback: look for category tags in the result HTML
+            const categoryTags = result.querySelectorAll('.category-tag');
+            if (categoryTags.length > 0) {
+                return Array.from(categoryTags).map(tag => tag.textContent.trim());
+            }
+            
+            // Last resort: try to find in pagefind result tags
+            const resultTags = result.querySelectorAll('.pagefind-ui__result-tag');
+            const categories = [];
+            resultTags.forEach(tag => {
+                const text = tag.textContent;
+                // Look for category-like metadata
+                if (text.includes('Category:') || text.includes('Categories:')) {
+                    const categoryMatch = text.match(/Categories?:\s*(.+)/i);
+                    if (categoryMatch) {
+                        categories.push(...categoryMatch[1].split(',').map(cat => cat.trim()));
+                    }
+                }
+            });
+            
+            return categories;
+        }
+
+        // Simple function to create category tags HTML
+        function createCategoryTags(categories) {
+            if (!categories || categories.length === 0) return '';
+            
+            // Get the correct base path based on current location
+            const basePath = window.location.pathname.includes('/mike-henke-website/') ? '/mike-henke-website' : '';
+            
+            const categoryHTML = categories.map(category => {
+                const slug = category.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+                return `<a href="${basePath}/blog/category/${slug}/" class="category-tag">${category}</a>`;
+            }).join('');
+            
+            return `<div class="blog-post-categories">${categoryHTML}</div>`;
+        }
+
+        // Simple function to clean excerpt text - matches server-side blogExcerpt filter exactly
+        function cleanExcerpt(text, categories = []) {
+            if (!text) return '';
+            
+            let cleanContent = text;
+            
+            // First, remove categories from the beginning if they were extracted
+            if (categories.length > 0) {
+                // Create a pattern that matches all categories at the start
+                const categoryWords = categories.map(cat => cat.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+                
+                // Try to remove all categories as a group first
+                const allCategoriesPattern = new RegExp(`^${categoryWords.join('\\s+')}\\s*\\.?\\s*`, 'i');
+                cleanContent = cleanContent.replace(allCategoriesPattern, '');
+                
+                // If that didn't work, remove each category individually from the start
+                categoryWords.forEach(escapedCategory => {
+                    const individualRegex = new RegExp(`^${escapedCategory}\\s*\\.?\\s*`, 'i');
+                    cleanContent = cleanContent.replace(individualRegex, '');
+                });
+            }
+            
+            // Remove "Published on [date]" pattern from the beginning
+            cleanContent = cleanContent.replace(/^.*?Published on.*?\d{4}\.?\s*/i, '');
+            
+            // Now apply the same cleaning as server-side blogExcerpt filter
+            cleanContent = cleanContent
+                // Remove [code] blocks that haven't been processed yet
+                .replace(/\[code[^\]]*\][\s\S]*?\[\/code\]/gi, ' ')
+                // Remove generated code block HTML
+                .replace(/<div class="code-block">[\s\S]*?<\/div>/gi, ' ')
+                // Remove any remaining [code] orphan tags
+                .replace(/\[(?:\/)?code[^\]]*\]/gi, ' ')
+                // Remove HTML tags
+                .replace(/<[^>]*>/g, ' ')
+                // Decode HTML entities
+                .replace(/&quot;/g, '"')
+                .replace(/&#39;/g, "'")
+                .replace(/&apos;/g, "'")
+                .replace(/&lt;/g, '<')
+                .replace(/&gt;/g, '>')
+                .replace(/&amp;/g, '&') // Keep this last to avoid double-decoding
+                // Clean up whitespace
+                .replace(/\s+/g, ' ')
+                .trim();
+
+            // Truncate to specified length (match server-side logic exactly)
+            const length = 300; // Match server-side default length
+            if (cleanContent.length > length) {
+                // Find the last complete word within the length limit
+                const truncated = cleanContent.substring(0, length);
+                const lastSpace = truncated.lastIndexOf(' ');
+
+                if (lastSpace > length * 0.8) {
+                    // If we found a space reasonably close to the end (match server-side threshold)
+                    return truncated.substring(0, lastSpace) + '...';
+                } else {
+                    return truncated + '...';
+                }
+            }
+
+            return cleanContent;
+        }
+
+        // Simple function to process search results
+        function processSearchResults(searchResults = null) {
+            const allResults = document.querySelectorAll('.pagefind-ui__result');
+            const results = Array.from(allResults).filter(result => !result.hasAttribute('data-enhanced'));
+            
+            results.forEach((result, index) => {
+                const titleElement = result.querySelector('.pagefind-ui__result-title');
+                const excerptElement = result.querySelector('.pagefind-ui__result-excerpt');
+                const linkElement = result.querySelector('.pagefind-ui__result-link');
+                
+                if (!titleElement || !linkElement) return;
+                
+                const href = linkElement.href.replace(/http:\/\/localhost:\d+/, '');
+                const isBlogPost = href.includes('/blog/');
+                
+                if (isBlogPost) {
+                    // Transform the result to look like a blog card
+                    result.classList.add('blog-post-card');
+                    
+                    // Get the original title text and link
+                    const originalTitle = titleElement.textContent;
+                    const originalLink = linkElement.href;
+                    
+                    // Replace title element content but keep the element
+                    titleElement.tagName = 'H2'; // This won't work, we need to replace the element
+                    
+                    // Create new h2 element to replace the title
+                    const newTitle = document.createElement('h2');
+                    newTitle.className = 'blog-post-title';
+                    newTitle.innerHTML = `<a href="${href}">${originalTitle}</a>`;
+                    
+                    // Replace the original title element
+                    titleElement.parentNode.replaceChild(newTitle, titleElement);
+                    
+                    // Add categories after title
+                    const categories = extractCategories(result);
+                    if (categories.length > 0) {
+                        const categoryDiv = document.createElement('div');
+                        categoryDiv.className = 'blog-post-categories';
+                        
+                        // Get the correct base path based on current location
+                        const basePath = window.location.pathname.includes('/mike-henke-website/') ? '/mike-henke-website' : '';
+                        
+                        // Create category links individually to ensure proper attributes
+                        categories.forEach(category => {
+                            const categoryLink = document.createElement('a');
+                            const slug = category.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+                            categoryLink.href = `${basePath}/blog/category/${slug}/`;
+                            categoryLink.className = 'category-tag';
+                            categoryLink.textContent = category;
+                            categoryDiv.appendChild(categoryLink);
+                        });
+                        
+                        newTitle.insertAdjacentElement('afterend', categoryDiv);
+                    }
+                    
+                    // Clean and replace excerpt content
+                    if (excerptElement) {
+                        const originalExcerpt = excerptElement.textContent;
+                        const cleanedExcerpt = cleanExcerpt(originalExcerpt, categories);
+                        excerptElement.className = 'blog-post-excerpt';
+                        excerptElement.innerHTML = cleanedExcerpt;
+                    }
+                    
+                    // Add publish date (extract from original excerpt text if available)
+                    const dateMatch = result.textContent.match(/(\w+ \d{1,2}, \d{4})/);
+                    if (dateMatch) {
+                        const dateElement = document.createElement('p');
+                        dateElement.className = 'blog-post-date';
+                        dateElement.innerHTML = `<em>Published on <time datetime="${new Date(dateMatch[1]).toISOString().split('T')[0]}" data-pagefind-meta="date">${dateMatch[1]}</time></em>`;
+                        result.appendChild(dateElement);
+                    }
+                }
+                
+                result.setAttribute('data-enhanced', 'true');
+            });
+        }
+
+        // Initialize Pagefind Search if search element exists
+        if (document.getElementById("search")) {
+            try {
+                // Auto-detect bundle path or use explicit path
+                const bundlePath = window.location.pathname.includes('/search/') ? '../pagefind/' : '/pagefind/';
+                
+                const searchConfig = { 
+                    element: "#search", 
+                    showSubResults: true,
+                    showEmptyFilters: false,
+                    resetStyles: false,
+                    autofocus: window.location.pathname.includes('/search/'),
+                    debounceTimeoutMs: 300,
+                    bundlePath: bundlePath,
+                    excerptLength: 200, // Increase to get more context
+                    pageSize: 8,
+                    showImages: false,
+                    processResult: function(result) {
+                        // For blog posts, try to get excerpt from beginning rather than contextual
+                        if (result.url.includes('/blog/')) {
+                            // This will be processed by our processSearchResults function
+                            return result;
+                        }
+                        return result;
+                    },
+                    translations: {
+                        placeholder: "Search articles, posts, and pages...",
+                        clear_search: "Clear",
+                        load_more: "Load more results",
+                        search_label: "Search this site",
+                        filters_label: "Filters",
+                        zero_results: "No results found for \"[SEARCH_TERM]\"",
+                        many_results: "[COUNT] results for \"[SEARCH_TERM]\"",
+                        one_result: "1 result for \"[SEARCH_TERM]\"",
+                        alt_search: "No results for \"[SEARCH_TERM]\". Showing results for \"[DIFFERENT_TERM]\" instead",
+                        search_suggestion: "No results for \"[SEARCH_TERM]\". Try one of the following searches:",
+                        searching: "Searching for \"[SEARCH_TERM]\"..."
+                    }
+                };
+
+                // Add custom result template for search page
+                if (window.location.pathname.includes('/search/')) {
+                    searchConfig.showImages = false;
+                    searchConfig.showSubResults = true;
+                    searchConfig.excerptLength = 80;
+                    searchConfig.pageSize = 10;
+                }
+                
+                const pagefindUI = new PagefindUI(searchConfig);
+                
+                // Simple approach to process search results and fix message
+                const searchElement = document.getElementById("search");
+                if (searchElement) {
+                    const searchInput = searchElement.querySelector('input[type="search"]');
+                    if (searchInput) {
+                        searchInput.addEventListener('input', () => {
+                            setTimeout(() => {
+                                processSearchResults();
+                                
+                                // Fix the search message display
+                                const message = document.querySelector('.pagefind-ui__message');
+                                const results = document.querySelectorAll('.pagefind-ui__result');
+                                const searchTerm = searchInput.value.trim();
+                                
+                                if (message && searchTerm && results.length > 0) {
+                                    const count = results.length;
+                                    const resultText = count === 1 ? 'result' : 'results';
+                                    message.textContent = `${count} ${resultText} for "${searchTerm}"`;
+                                }
+                            }, 500);
+                        });
+                    }
+                    
+                    // Process any existing results
+                    setTimeout(() => processSearchResults(), 200);
+                }
+                
+                console.log('PagefindUI initialized successfully');
+            } catch (error) {
+                console.error('Failed to initialize PagefindUI:', error);
+            }
+        }
+
+        // Enhanced Search Keyboard Shortcuts and Accessibility
+        document.addEventListener('keydown', function(event) {
+            // Ctrl/Cmd + K to focus search
+            if ((event.ctrlKey || event.metaKey) && event.key === 'k') {
+                event.preventDefault();
+                const searchInput = document.querySelector('.pagefind-ui__search-input');
+                if (searchInput) {
+                    searchInput.focus();
+                    searchInput.select();
+                }
+            }
+            
+            // Escape to clear search when input is focused
+            if (event.key === 'Escape') {
+                const searchInput = document.querySelector('.pagefind-ui__search-input');
+                if (searchInput && document.activeElement === searchInput) {
+                    searchInput.value = '';
+                    searchInput.dispatchEvent(new Event('input', { bubbles: true }));
+                }
+            }
+        });
+        
+        // Add search shortcut hint
+        const searchInput = document.querySelector('.pagefind-ui__search-input');
+        if (searchInput && window.location.pathname.includes('/search/')) {
+            searchInput.setAttribute('title', 'Use Ctrl+K to focus search, Escape to clear');
+            
+            // Add subtle hint after the search loads
+            setTimeout(() => {
+                const searchContainer = document.getElementById('search');
+                if (searchContainer && !searchContainer.querySelector('.search-hint')) {
+                    const hint = document.createElement('p');
+                    hint.className = 'search-hint';
+                    hint.style.cssText = `
+                        text-align: center; 
+                        color: var(--color-text-secondary); 
+                        font-size: var(--font-size-xs); 
+                        margin-top: var(--spacing-sm);
+                        opacity: 0.7;
+                    `;
+                    hint.innerHTML = '<kbd style="background: var(--color-surface-light); padding: 2px 6px; border-radius: 3px; font-size: 11px;">Ctrl+K</kbd> to focus • <kbd style="background: var(--color-surface-light); padding: 2px 6px; border-radius: 3px; font-size: 11px;">Esc</kbd> to clear';
+                    searchContainer.appendChild(hint);
+                }
+            }, 1000);
+        }
+    });
+</script>

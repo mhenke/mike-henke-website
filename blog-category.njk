@@ -4,7 +4,7 @@ pagination:
   size: 1
   addAllPagesToCollections: true
 permalink: "/blog/category/{{ pagination.items[0] }}/index.html"
-layout: layouts/base.njk
+layout: layouts/base-optimized.njk
 eleventyComputed:
   title: "{{ collections.postsByCategory[pagination.items[0]].name }} Posts"
 ---
