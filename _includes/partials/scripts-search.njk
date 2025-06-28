@@ -4,10 +4,10 @@
     window.addEventListener('DOMContentLoaded', (event) => {
         // SEARCH CONFIGURATION CONSTANTS
         const SEARCH_CONFIG = {
-            DEBOUNCE_MS: 300,
+            DEBOUNCE_MS: 200,
             EXCERPT_LENGTH: 200,
             PAGE_SIZE: 8,
-            RESULT_PROCESSING_DELAY: 500,
+            RESULT_PROCESSING_DELAY: 250,
             INIT_DELAY: 200
         };
 
@@ -178,7 +178,7 @@
             return cleanContent;
         }
 
-        // Simple function to process search results
+        // Simple function to process search results with consistent animations
         function processSearchResults(searchResults = null) {
             const allResults = document.querySelectorAll('.pagefind-ui__result');
             const results = Array.from(allResults).filter(result => !result.hasAttribute('data-enhanced'));
@@ -253,6 +253,7 @@
                 }
                 
                 result.setAttribute('data-enhanced', 'true');
+                // No animation - results appear instantly
             });
         }
 
@@ -268,15 +269,13 @@
                     showEmptyFilters: false,
                     resetStyles: false,
                     autofocus: window.location.pathname.includes('/search/'),
-                    debounceTimeoutMs: 300,
+                    debounceTimeoutMs: 0, // Disable built-in debouncing since we handle it
                     bundlePath: bundlePath,
-                    excerptLength: 200, // Increase to get more context
+                    excerptLength: 200,
                     pageSize: 8,
                     showImages: false,
                     processResult: function(result) {
-                        // For blog posts, try to get excerpt from beginning rather than contextual
                         if (result.url.includes('/blog/')) {
-                            // This will be processed by our processSearchResults function
                             return result;
                         }
                         return result;
@@ -287,12 +286,12 @@
                         load_more: "Load more results",
                         search_label: "Search this site",
                         filters_label: "Filters",
-                        zero_results: "No results found for \"[SEARCH_TERM]\"",
-                        many_results: "[COUNT] results for \"[SEARCH_TERM]\"",
-                        one_result: "1 result for \"[SEARCH_TERM]\"",
-                        alt_search: "No results for \"[SEARCH_TERM]\". Showing results for \"[DIFFERENT_TERM]\" instead",
-                        search_suggestion: "No results for \"[SEARCH_TERM]\". Try one of the following searches:",
-                        searching: "Searching for \"[SEARCH_TERM]\"..."
+                        zero_results: "",  // Disable default messages
+                        many_results: "",  // We'll handle these ourselves
+                        one_result: "",    // To prevent flash
+                        alt_search: "",
+                        search_suggestion: "",
+                        searching: ""      // Disable default searching message
                     }
                 };
 
@@ -306,28 +305,90 @@
                 
                 const pagefindUI = new PagefindUI(searchConfig);
                 
-                // Simple approach to process search results and fix message
+                // Simplified search processing with reliable message control
                 const searchElement = document.getElementById("search");
                 if (searchElement) {
-                    const searchInput = searchElement.querySelector('input[type="search"]');
-                    if (searchInput) {
-                        searchInput.addEventListener('input', () => {
-                            setTimeout(() => {
-                                processSearchResults();
-                                
-                                // Fix the search message display
-                                const message = document.querySelector('.pagefind-ui__message');
-                                const results = document.querySelectorAll('.pagefind-ui__result');
+                    let debounceTimer = null;
+                    
+                    const setMessage = (text) => {
+                        const message = document.querySelector('.pagefind-ui__message');
+                        if (message) {
+                            message.textContent = text;
+                            message.style.visibility = text ? 'visible' : 'hidden';
+                        }
+                    };
+                    
+                    const updateFinalMessage = (searchTerm) => {
+                        const results = document.querySelectorAll('.pagefind-ui__result');
+                        if (searchTerm && results.length > 0) {
+                            const count = results.length;
+                            const resultText = count === 1 ? 'result' : 'results';
+                            setMessage(`${count} ${resultText} for "${searchTerm}"`);
+                        } else if (searchTerm) {
+                            setMessage(`No results found for "${searchTerm}"`);
+                        } else {
+                            setMessage('');
+                        }
+                    };
+                    
+                    // Monitor for search input changes
+                    const observer = new MutationObserver(() => {
+                        const searchInput = searchElement.querySelector('input[type="search"]');
+                        if (searchInput && !searchInput.hasAttribute('data-processed')) {
+                            searchInput.setAttribute('data-processed', 'true');
+                            
+                            searchInput.addEventListener('input', () => {
                                 const searchTerm = searchInput.value.trim();
                                 
-                                if (message && searchTerm && results.length > 0) {
-                                    const count = results.length;
-                                    const resultText = count === 1 ? 'result' : 'results';
-                                    message.textContent = `${count} ${resultText} for "${searchTerm}"`;
+                                // Clear any existing timer
+                                if (debounceTimer) {
+                                    clearTimeout(debounceTimer);
                                 }
-                            }, 500);
-                        });
-                    }
+                                
+                                // Show searching state immediately
+                                if (searchTerm) {
+                                    setMessage('Searching...');
+                                } else {
+                                    setMessage('');
+                                }
+                                
+                                // Debounced processing
+                                debounceTimer = setTimeout(() => {
+                                    processSearchResults();
+                                    updateFinalMessage(searchTerm);
+                                }, 400);
+                            });
+                        }
+                    });
+                    
+                    observer.observe(searchElement, { childList: true, subtree: true });
+                    
+                    // Initial setup if input already exists
+                    setTimeout(() => {
+                        const searchInput = searchElement.querySelector('input[type="search"]');
+                        if (searchInput && !searchInput.hasAttribute('data-processed')) {
+                            searchInput.setAttribute('data-processed', 'true');
+                            
+                            searchInput.addEventListener('input', () => {
+                                const searchTerm = searchInput.value.trim();
+                                
+                                if (debounceTimer) {
+                                    clearTimeout(debounceTimer);
+                                }
+                                
+                                if (searchTerm) {
+                                    setMessage('Searching...');
+                                } else {
+                                    setMessage('');
+                                }
+                                
+                                debounceTimer = setTimeout(() => {
+                                    processSearchResults();
+                                    updateFinalMessage(searchTerm);
+                                }, 400);
+                            });
+                        }
+                    }, 100);
                     
                     // Process any existing results
                     setTimeout(() => processSearchResults(), 200);

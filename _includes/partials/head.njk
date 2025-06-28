@@ -51,6 +51,28 @@
 <!-- PERFORMANCE: Load search CSS only on search page -->
 {% if page.url.includes('/search/') %}
 <link href="{{ '/pagefind/pagefind-ui.css' | url }}" rel="stylesheet">
+<style>
+/* Prevent search message flash with instant visibility control */
+.pagefind-ui__message {
+    transition: none !important; /* Remove any built-in transitions */
+}
+
+/* No animation for search result cards - instant appearance */
+.pagefind-ui__result {
+    /* Apply blog-post-card styling for consistency */
+    margin-bottom: var(--spacing-xl, 32px);
+    padding: var(--spacing-lg, 24px) var(--spacing-xl, 32px);
+    background-color: var(--color-surface-light, #2a2f36);
+    border-radius: var(--border-radius-lg, 18px);
+    border: 2px solid var(--color-border, #3e4750);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pagefind-ui__result:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-color: var(--color-primary, #19d4fe);
+}
+</style>
 {% endif %}
 
 <!-- Favicon -->
