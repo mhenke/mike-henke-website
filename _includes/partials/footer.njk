@@ -3,11 +3,11 @@
 {% set currentYear = "now" | date("yyyy") %}
 <footer role="contentinfo" class="site-footer">
     <div class="footer-content">
-        <p>&copy; {{ currentYear }} Mike Henke. All Rights Reserved.</p>
-        
-        {# PERFORMANCE: Show navigation links on all pages for consistency #}
+        {# PERFORMANCE: Show navigation links first for better mobile UX #}
         <nav class="footer-nav" aria-label="Footer navigation">
             {{ footerLinks() }}
         </nav>
+        
+        <p>&copy; {{ currentYear }} Mike Henke. All Rights Reserved.</p>
     </div>
 </footer>
