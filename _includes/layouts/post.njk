@@ -14,9 +14,9 @@
         <article class="content-section-boxed content-section-top-margin" role="article" data-pagefind-body>
             <header>
                 <h1 data-pagefind-meta="title">{{ title }}</h1>
-                {% import "partials/publish-date.njk" as dateMacros %}
+                {% import "macros/publish-date.njk" as dateMacros %}
                 {{ dateMacros.publishDate(date) }}
-                {% import "partials/category-tags.njk" as categoryMacros %}
+                {% import "macros/category-tags.njk" as categoryMacros %}
                 {{ categoryMacros.categoryTags(categories) }}
             </header>
             <hr>
