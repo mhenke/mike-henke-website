@@ -649,8 +649,7 @@ module.exports = function (eleventyConfig) {
   });
 
   return {
-    pathPrefix:
-      process.env?.NODE_ENV === 'production' ? '/mike-henke-website' : '/',
+    pathPrefix: '/mike-henke-website',
     dir: {
       input: '.',
       includes: '_includes',

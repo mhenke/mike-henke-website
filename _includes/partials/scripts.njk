@@ -190,9 +190,12 @@
         function createCategoryTags(categories) {
             if (!categories || categories.length === 0) return '';
             
+            // Get the correct base path based on current location
+            const basePath = window.location.pathname.includes('/mike-henke-website/') ? '/mike-henke-website' : '';
+            
             const categoryHTML = categories.map(category => {
                 const slug = category.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-                return `<a href="/blog/category/${slug}/" class="category-tag">${category}</a>`;
+                return `<a href="${basePath}/blog/category/${slug}/" class="category-tag">${category}</a>`;
             }).join('');
             
             return `<div class="blog-post-categories">${categoryHTML}</div>`;
@@ -302,11 +305,14 @@
                         const categoryDiv = document.createElement('div');
                         categoryDiv.className = 'blog-post-categories';
                         
+                        // Get the correct base path based on current location
+                        const basePath = window.location.pathname.includes('/mike-henke-website/') ? '/mike-henke-website' : '';
+                        
                         // Create category links individually to ensure proper attributes
                         categories.forEach(category => {
                             const categoryLink = document.createElement('a');
                             const slug = category.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-                            categoryLink.href = `/blog/category/${slug}/`;
+                            categoryLink.href = `${basePath}/blog/category/${slug}/`;
                             categoryLink.className = 'category-tag';
                             categoryLink.textContent = category;
                             categoryDiv.appendChild(categoryLink);
@@ -594,6 +600,46 @@
                 // Fallback: animate immediately if Intersection Observer not supported
                 frameworkItems.forEach((item) => {
                     animateFrameworkItem(item);
+                });
+            }
+        }
+
+        // Animated Timeline Items - Intersection Observer
+        const timelineItems = document.querySelectorAll('.timeline-item[data-animation-delay]');
+        
+        if (timelineItems.length > 0) {
+            const animateTimelineItem = (item) => {
+                const delay = item.getAttribute('data-animation-delay') || '0s';
+                item.style.setProperty('--animation-delay', delay);
+                item.classList.add('animate');
+            };
+
+            // Check if Intersection Observer is supported
+            if ('IntersectionObserver' in window) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px 0px -10% 0px', // Trigger when 90% visible
+                    threshold: 0.1
+                };
+
+                const timelineObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting && !entry.target.classList.contains('animate')) {
+                            animateTimelineItem(entry.target);
+                            // Stop observing this element once animated
+                            timelineObserver.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                // Start observing all timeline items
+                timelineItems.forEach((item) => {
+                    timelineObserver.observe(item);
+                });
+            } else {
+                // Fallback: animate immediately if Intersection Observer not supported
+                timelineItems.forEach((item) => {
+                    animateTimelineItem(item);
                 });
             }
         }
