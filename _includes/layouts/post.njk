@@ -45,6 +45,11 @@
     </main>
     
     {% include "partials/footer.njk" %}
-    {% include "partials/scripts.njk" %}
+    
+    {# PERFORMANCE: Load core scripts on all pages #}
+    {% include "partials/scripts-core.njk" %}
+    
+    {# PERFORMANCE: Blog posts always need syntax highlighting #}
+    {% include "partials/scripts-blog.njk" %}
 </body>
 </html>

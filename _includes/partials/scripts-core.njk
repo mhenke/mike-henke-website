@@ -1,0 +1,360 @@
+<!-- Core scripts needed on all pages -->
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        // New Mobile Navigation Toggle
+        const navToggle = document.querySelector('.navbar-toggle');
+        const navLinks = document.querySelector('.navbar-links');
+        const navOverlay = document.querySelector('.nav-overlay');
+        const menuClose = document.querySelector('.menu-close');
+        
+        if (navToggle && navLinks) {
+            // Store scroll position for restoration
+            let scrollPosition = 0;
+
+            function openMobileMenu() {
+                scrollPosition = window.pageYOffset;
+                navToggle.setAttribute('aria-expanded', 'true');
+                navLinks.classList.add('active');
+                navToggle.classList.add('active');
+                if (navOverlay) {
+                    navOverlay.classList.add('active');
+                }
+                document.body.classList.add('nav-open');
+                document.body.style.top = `-${scrollPosition}px`;
+            }
+
+            function closeMobileMenu() {
+                navLinks.classList.remove('active');
+                navToggle.classList.remove('active');
+                navToggle.setAttribute('aria-expanded', 'false');
+                if (navOverlay) {
+                    navOverlay.classList.remove('active');
+                }
+                document.body.classList.remove('nav-open');
+                document.body.style.top = '';
+                if (scrollPosition) {
+                    window.scrollTo(0, scrollPosition);
+                    scrollPosition = 0;
+                }
+            }
+
+            // Hamburger menu toggle
+            navToggle.addEventListener('click', () => {
+                const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+                
+                if (!isExpanded) {
+                    openMobileMenu();
+                } else {
+                    closeMobileMenu();
+                }
+            });
+
+            // Close button in mobile menu
+            if (menuClose) {
+                menuClose.addEventListener('click', () => {
+                    closeMobileMenu();
+                });
+            }
+
+            // Close mobile menu when clicking on a nav link
+            const navLinkItems = navLinks.querySelectorAll('a');
+            navLinkItems.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth < 768) {
+                        closeMobileMenu();
+                    }
+                });
+            });
+
+            // Close mobile menu when clicking on overlay
+            if (navOverlay) {
+                navOverlay.addEventListener('click', () => {
+                    closeMobileMenu();
+                });
+            }
+
+            // Close mobile menu when pressing Escape key
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && navLinks.classList.contains('active')) {
+                    closeMobileMenu();
+                }
+            });
+
+            // Handle window resize - close mobile menu if switching to desktop
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 768) {
+                    closeMobileMenu();
+                }
+            });
+        }
+
+        // Animated Progress Bars - Intersection Observer
+        const progressBars = document.querySelectorAll('.progress-bar[data-width]');
+        
+        if (progressBars.length > 0) {
+            const animateProgressBar = (progressBar) => {
+                const targetWidth = progressBar.getAttribute('data-width');
+                const span = progressBar.querySelector('span');
+                
+                if (span && targetWidth) {
+                    // Add animate class to enable transitions
+                    progressBar.classList.add('animate');
+                    
+                    // Set the CSS custom property and animate
+                    progressBar.style.setProperty('--progress-width', targetWidth + '%');
+                    
+                    // Set the target width after a small delay to trigger animation
+                    setTimeout(() => {
+                        span.style.width = targetWidth + '%';
+                    }, 50);
+                }
+            };
+
+            // Check if Intersection Observer is supported
+            if ('IntersectionObserver' in window) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px 0px -10% 0px', // Trigger when 90% visible
+                    threshold: 0.1
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting && !entry.target.classList.contains('animate')) {
+                            animateProgressBar(entry.target);
+                            // Stop observing this element once animated
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                // Start observing all progress bars
+                progressBars.forEach((progressBar) => {
+                    observer.observe(progressBar);
+                });
+            } else {
+                // Fallback: animate immediately if Intersection Observer not supported
+                progressBars.forEach((progressBar) => {
+                    animateProgressBar(progressBar);
+                });
+            }
+        }
+
+        // Animated Methodology Items - Intersection Observer
+        const methodologyItems = document.querySelectorAll('.methodology-item[data-animation-delay]');
+        
+        if (methodologyItems.length > 0) {
+            const animateMethodologyItem = (item) => {
+                const delay = item.getAttribute('data-animation-delay') || '0s';
+                item.style.setProperty('--animation-delay', delay);
+                item.classList.add('animate');
+            };
+
+            // Check if Intersection Observer is supported
+            if ('IntersectionObserver' in window) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px 0px -10% 0px', // Trigger when 90% visible
+                    threshold: 0.1
+                };
+
+                const methodologyObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting && !entry.target.classList.contains('animate')) {
+                            animateMethodologyItem(entry.target);
+                            // Stop observing this element once animated
+                            methodologyObserver.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                // Start observing all methodology items
+                methodologyItems.forEach((item) => {
+                    methodologyObserver.observe(item);
+                });
+            } else {
+                // Fallback: animate immediately if Intersection Observer not supported
+                methodologyItems.forEach((item) => {
+                    animateMethodologyItem(item);
+                });
+            }
+        }
+
+        // Animated Framework Items - Intersection Observer
+        const frameworkItems = document.querySelectorAll('.framework-item[data-animation-delay]');
+        
+        if (frameworkItems.length > 0) {
+            const animateFrameworkItem = (item) => {
+                const delay = item.getAttribute('data-animation-delay') || '0s';
+                item.style.setProperty('--animation-delay', delay);
+                item.classList.add('animate');
+            };
+
+            // Check if Intersection Observer is supported
+            if ('IntersectionObserver' in window) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px 0px -10% 0px', // Trigger when 90% visible
+                    threshold: 0.1
+                };
+
+                const frameworkObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting && !entry.target.classList.contains('animate')) {
+                            animateFrameworkItem(entry.target);
+                            // Stop observing this element once animated
+                            frameworkObserver.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                // Start observing all framework items
+                frameworkItems.forEach((item) => {
+                    frameworkObserver.observe(item);
+                });
+            } else {
+                // Fallback: animate immediately if Intersection Observer not supported
+                frameworkItems.forEach((item) => {
+                    animateFrameworkItem(item);
+                });
+            }
+        }
+
+        // Animated Timeline Items - Intersection Observer
+        const timelineItems = document.querySelectorAll('.timeline-item[data-animation-delay]');
+        
+        if (timelineItems.length > 0) {
+            const animateTimelineItem = (item) => {
+                const delay = item.getAttribute('data-animation-delay') || '0s';
+                item.style.setProperty('--animation-delay', delay);
+                item.classList.add('animate');
+            };
+
+            // Check if Intersection Observer is supported
+            if ('IntersectionObserver' in window) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px 0px -10% 0px', // Trigger when 90% visible
+                    threshold: 0.1
+                };
+
+                const timelineObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting && !entry.target.classList.contains('animate')) {
+                            animateTimelineItem(entry.target);
+                            // Stop observing this element once animated
+                            timelineObserver.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                // Start observing all timeline items
+                timelineItems.forEach((item) => {
+                    timelineObserver.observe(item);
+                });
+            } else {
+                // Fallback: animate immediately if Intersection Observer not supported
+                timelineItems.forEach((item) => {
+                    animateTimelineItem(item);
+                });
+            }
+        }
+
+        // Animated Contact Items - Intersection Observer
+        const contactItems = document.querySelectorAll('.contact-item[data-animation-delay]');
+        
+        if (contactItems.length > 0) {
+            const animateContactItem = (item) => {
+                const delay = item.getAttribute('data-animation-delay') || '0s';
+                item.style.setProperty('--animation-delay', delay);
+                item.classList.add('animate');
+            };
+
+            // Check if Intersection Observer is supported
+            if ('IntersectionObserver' in window) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px 0px -10% 0px', // Trigger when 90% visible
+                    threshold: 0.1
+                };
+
+                const contactObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting && !entry.target.classList.contains('animate')) {
+                            animateContactItem(entry.target);
+                            // Stop observing this element once animated
+                            contactObserver.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                // Start observing all contact items
+                contactItems.forEach((item) => {
+                    contactObserver.observe(item);
+                });
+            } else {
+                // Fallback: animate immediately if Intersection Observer not supported
+                contactItems.forEach((item) => {
+                    animateContactItem(item);
+                });
+            }
+        }
+    });
+
+    // Copy code functionality for code blocks - Global functions
+    window.copyCode = function(button) {
+        const codeBlock = button.closest('.code-block');
+        if (!codeBlock) return;
+        
+        const code = codeBlock.querySelector('code');
+        if (!code) return;
+        
+        const textToCopy = code.textContent;
+        
+        // Use the modern clipboard API if available
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                window.showCopySuccess(button);
+            }).catch(err => {
+                console.error('Failed to copy code: ', err);
+                window.fallbackCopyCode(textToCopy, button);
+            });
+        } else {
+            // Fallback for older browsers
+            window.fallbackCopyCode(textToCopy, button);
+        }
+    };
+    
+    // Fallback copy method for older browsers
+    window.fallbackCopyCode = function(text, button) {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        textArea.style.top = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        
+        try {
+            document.execCommand('copy');
+            window.showCopySuccess(button);
+        } catch (err) {
+            console.error('Failed to copy code: ', err);
+        } finally {
+            document.body.removeChild(textArea);
+        }
+    };
+    
+    // Show copy success feedback
+    window.showCopySuccess = function(button) {
+        const originalIcon = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-check"></i>';
+        button.classList.add('copy-success');
+        
+        setTimeout(() => {
+            button.innerHTML = originalIcon;
+            button.classList.remove('copy-success');
+        }, 2000);
+    };
+</script>
