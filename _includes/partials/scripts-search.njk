@@ -253,8 +253,17 @@
                 }
                 
                 result.setAttribute('data-enhanced', 'true');
-                // No animation - results appear instantly
             });
+            
+            // Animate the entire result containers (not just the blog cards inside)
+            setTimeout(() => {
+                const resultContainers = document.querySelectorAll('.pagefind-ui__result');
+                resultContainers.forEach((container, index) => {
+                    setTimeout(() => {
+                        container.classList.add('animate');
+                    }, 50 + (index * 100)); // Stagger the animations
+                });
+            }, 50);
         }
 
         // Initialize Pagefind Search if search element exists

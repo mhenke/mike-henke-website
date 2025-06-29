@@ -2104,6 +2104,16 @@ article[role='article'] header {
   margin: 0 !important;
   background: none !important;
   display: block !important;
+  /* Initial state for entire result container - slide from top */
+  opacity: 0;
+  transform: translateY(-30px);
+  transition: all 0.4s ease-out;
+}
+
+.pagefind-ui__results .pagefind-ui__result.animate {
+  /* Animated state for entire result container */
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Search results that have been enhanced to match blog cards */
@@ -2115,15 +2125,19 @@ article[role='article'] header {
   border-radius: var(--border-radius-lg) !important;
   border: var(--border-width-thick) solid var(--color-border) !important;
   box-shadow: var(--shadow-md) !important;
-  transition: all var(--transition-normal) !important;
   width: 100%;
   box-sizing: border-box;
+  /* Remove any initial transform/opacity that might interfere with container animation */
+  opacity: 1 !important;
+  transform: none !important;
+  transition: box-shadow var(--transition-normal), border-color var(--transition-normal) !important;
 }
 
 .pagefind-ui__results .blog-post-card:hover {
   box-shadow: var(--shadow-lg) !important;
   border-color: var(--color-primary-dark) !important;
-  transform: none !important; /* Remove default pagefind transform */
+  /* Only allow subtle hover transform, not entrance animation */
+  transform: translateY(-2px) !important;
 }
 
 /* Search results for non-blog pages */
