@@ -260,8 +260,7 @@ module.exports = function (eleventyConfig) {
 
         // Only process relative image paths that start with 'images/'
         if (src.startsWith('images/')) {
-          const pathPrefix =
-            process.env?.NODE_ENV === 'production' ? '/mike-henke-website' : '';
+          // No pathPrefix needed for Netlify deployment
 
           // Extract post slug from available data
           let postSlug = '';
@@ -279,8 +278,8 @@ module.exports = function (eleventyConfig) {
 
           if (postSlug) {
             const imageName = src.replace('images/', '');
-            // Route images to the blog directory structure
-            const newSrc = `${pathPrefix}/blog/${postSlug}/images/${imageName}`;
+            // Route images to the root directory structure (not /blog/)
+            const newSrc = `/${postSlug}/images/${imageName}`;
             token.attrs[srcIndex][1] = newSrc;
           }
         }
@@ -315,31 +314,44 @@ module.exports = function (eleventyConfig) {
         return content;
       }
 
-      // Only transform WordPress post pages
-      if (outputPath.includes('/blog/') || outputPath.includes('/posts/')) {
-        const pathPrefix =
-          process.env?.NODE_ENV === 'production' ? '/mike-henke-website' : '';
+      // Only transform WordPress post pages (now at root level)
+      if (
+        outputPath.includes('output/posts/') ||
+        outputPath.match(/\/_site\/[^\/]+\/index\.html$/)
+      ) {
+        // No pathPrefix needed for Netlify deployment
 
         // Extract the post slug from the output path
         const pathParts = outputPath.split('/');
         let postSlug = '';
 
-        // Find the post slug in the path
-        for (let i = 0; i < pathParts.length; i++) {
-          if (pathParts[i] === 'blog' && pathParts[i + 1]) {
-            postSlug = pathParts[i + 1];
-            break;
+        // For root-level posts, find the slug differently
+        if (outputPath.includes('_site/')) {
+          // Extract from _site/post-slug/index.html pattern
+          const siteIndex = pathParts.indexOf('_site');
+          if (
+            siteIndex !== -1 &&
+            pathParts[siteIndex + 1] &&
+            pathParts[siteIndex + 1] !== 'blog'
+          ) {
+            postSlug = pathParts[siteIndex + 1];
+          }
+        } else if (outputPath.includes('output/posts/')) {
+          // Extract from source path during processing
+          const outputIndex = pathParts.indexOf('output');
+          if (outputIndex !== -1 && pathParts[outputIndex + 1] === 'posts') {
+            postSlug = pathParts[outputIndex + 2];
           }
         }
 
         if (postSlug) {
-          // Transform all image variations in one pass
+          // Transform all image variations in one pass - route to root level
           content = content
             // HTML img tags with relative paths
             .replace(
               /<img([^>]*)\ssrc=["']images\/([^"']+)["']/g,
               (match, attrs, imageName) => {
-                const newPath = `${pathPrefix}/blog/${postSlug}/images/${imageName}`;
+                const newPath = `/${postSlug}/images/${imageName}`;
                 return `<img${attrs} src="${newPath}"`;
               }
             )
@@ -347,13 +359,13 @@ module.exports = function (eleventyConfig) {
             .replace(
               /src=["']\.\/images\/([^"']+)["']/g,
               (match, imageName) => {
-                const newPath = `${pathPrefix}/blog/${postSlug}/images/${imageName}`;
+                const newPath = `/${postSlug}/images/${imageName}`;
                 return `src="${newPath}"`;
               }
             )
             // Remaining markdown image syntax
             .replace(/!\[\]\(images\/([^)]+)\)/g, (match, imageName) => {
-              const newSrc = `${pathPrefix}/blog/${postSlug}/images/${imageName}`;
+              const newSrc = `/${postSlug}/images/${imageName}`;
               return `<img src="${newSrc}" alt="" loading="lazy">`;
             });
         }
@@ -541,16 +553,10 @@ module.exports = function (eleventyConfig) {
       );
 
       // Pattern 2: /post.cfm/slug -> /slug/
-      result = result.replace(
-        /\/post\.cfm\/([^"'\s\)]+)/gi,
-        '/$1/'
-      );
+      result = result.replace(/\/post\.cfm\/([^"'\s\)]+)/gi, '/$1/');
 
       // Pattern 3: post.cfm/slug -> /slug/ (for cases without leading slash)
-      result = result.replace(
-        /(?<!\/|:)post\.cfm\/([^"'\s\)]+)/gi,
-        '/$1/'
-      );
+      result = result.replace(/(?<!\/|:)post\.cfm\/([^"'\s\)]+)/gi, '/$1/');
 
       // Pattern 4: Fix any remaining mikehenke.com domains to be relative
       result = result.replace(
@@ -572,33 +578,43 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ _pagefind: 'pagefind' });
   eleventyConfig.addPassthroughCopy('assets'); // Assets folder including images
 
-  // Copy WordPress post images to blog directory structure
-  // Use lazy loading to avoid blocking during config
+  // Copy WordPress post images to their new locations
   const fs = require('fs');
   const path = require('path');
-  const glob = require('glob');
 
-  // Set up image passthrough copy lazily
-  try {
-    if (fs.existsSync('output/posts')) {
-      const imageDirs = glob.sync('output/posts/*/images/', {
-        ignore: ['node_modules/**'],
-      });
+  // Comprehensive passthrough copy for post images
+  // We need to set these up during config, not during build
+  if (fs.existsSync('./output/posts/')) {
+    try {
+      const postsDir = './output/posts/';
+      const postDirs = fs
+        .readdirSync(postsDir, { withFileTypes: true })
+        .filter((dirent) => dirent.isDirectory())
+        .map((dirent) => dirent.name);
 
-      imageDirs.forEach((dir) => {
-        const postSlug = dir.split('/')[2];
-        if (postSlug) {
+      postDirs.forEach((postSlug) => {
+        const imagesPath = path.join(postsDir, postSlug, 'images');
+        if (fs.existsSync(imagesPath)) {
+          // Copy images from output/posts/post-slug/images/* to _site/post-slug/images/*
           eleventyConfig.addPassthroughCopy({
-            [`output/posts/${postSlug}/images/`]: `blog/${postSlug}/images/`,
+            [`output/posts/${postSlug}/images`]: `${postSlug}/images`,
           });
         }
       });
+
+      console.log(
+        `✅ Configured image copying for ${postDirs.filter((slug) =>
+          fs.existsSync(path.join(postsDir, slug, 'images'))
+        ).length} posts with images`
+      );
+    } catch (error) {
+      console.warn(
+        '⚠️ Warning: Could not configure post image copying:',
+        error.message
+      );
     }
-  } catch (error) {
-    console.warn(
-      'Warning: Could not set up image passthrough copy:',
-      error.message
-    );
+  } else {
+    console.log('📝 Note: No output/posts directory found. Skipping image setup.');
   }
 
   // WordPress export collections
@@ -695,7 +711,6 @@ module.exports = function (eleventyConfig) {
   });
 
   return {
-    pathPrefix: '/mike-henke-website',
     dir: {
       input: '.',
       includes: '_includes',
