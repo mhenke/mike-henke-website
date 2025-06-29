@@ -603,9 +603,11 @@ module.exports = function (eleventyConfig) {
       });
 
       console.log(
-        `✅ Configured image copying for ${postDirs.filter((slug) =>
-          fs.existsSync(path.join(postsDir, slug, 'images'))
-        ).length} posts with images`
+        `✅ Configured image copying for ${
+          postDirs.filter((slug) =>
+            fs.existsSync(path.join(postsDir, slug, 'images'))
+          ).length
+        } posts with images`
       );
     } catch (error) {
       console.warn(
@@ -614,7 +616,9 @@ module.exports = function (eleventyConfig) {
       );
     }
   } else {
-    console.log('📝 Note: No output/posts directory found. Skipping image setup.');
+    console.log(
+      '📝 Note: No output/posts directory found. Skipping image setup.'
+    );
   }
 
   // WordPress export collections
