@@ -334,7 +334,10 @@ module.exports = function (eleventyConfig) {
           if (
             siteIndex !== -1 &&
             pathParts[siteIndex + 1] &&
-            pathParts[siteIndex + 1] !== 'blog'
+            pathParts[siteIndex + 1] !== 'blog' &&
+            pathParts[siteIndex + 1] !== 'category' &&
+            pathParts[siteIndex + 1] !== 'search' &&
+            pathParts[siteIndex + 1] !== 'wordpress-pages'
           ) {
             postSlug = pathParts[siteIndex + 1];
           }
@@ -597,9 +600,9 @@ module.exports = function (eleventyConfig) {
       postDirs.forEach((postSlug) => {
         const imagesPath = path.join(postsDir, postSlug, 'images');
         if (fs.existsSync(imagesPath)) {
-          // Copy images from output/posts/post-slug/images/* to _site/blog/post-slug/images/*
+          // Copy images from output/posts/post-slug/images/* to _site/post-slug/images/*
           eleventyConfig.addPassthroughCopy({
-            [`output/posts/${postSlug}/images`]: `blog/${postSlug}/images`,
+            [`output/posts/${postSlug}/images`]: `${postSlug}/images`,
           });
         }
       });
@@ -641,7 +644,7 @@ module.exports = function (eleventyConfig) {
         const outputIndex = pathParts.indexOf('output');
         if (outputIndex !== -1 && pathParts[outputIndex + 1] === 'posts') {
           const postSlug = pathParts[outputIndex + 2];
-          return `/${postSlug}/`; // Root level instead of /blog/
+          return `/${postSlug}/`; // Root level structure
         }
       }
       return data.permalink;
