@@ -108,7 +108,7 @@
             
             const categoryHTML = categories.map(category => {
                 const slug = category.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-                return `<a href="${basePath}/blog/category/${slug}/" class="category-tag">${category}</a>`;
+                return `<a href="${basePath}/category/${slug}/" class="category-tag">${category}</a>`;
             }).join('');
             
             return `<div class="blog-post-categories">${categoryHTML}</div>`;
@@ -191,7 +191,17 @@
                 if (!titleElement || !linkElement) return;
                 
                 const href = linkElement.href.replace(/http:\/\/localhost:\d+/, '');
-                const isBlogPost = href.includes('/blog/');
+                
+                // Check if this is a blog post by looking for categories metadata or URL patterns
+                // Since blog posts are now at root level, we need a different detection method
+                const isBlogPost = (
+                    // Check if result has category metadata (blog posts have categories)
+                    result.textContent.includes('Categories:') ||
+                    result.querySelector('.pagefind-ui__result-tag')?.textContent.includes('Categories:') ||
+                    // Check for typical blog post URL patterns (not /blog/, /search/, /category/, etc.)
+                    (!href.includes('/blog/') && !href.includes('/search/') && !href.includes('/category/') && 
+                     href !== '/' && href.match(/^\/[^\/]+\/$/) && !href.includes('/pages/'))
+                );
                 
                 if (isBlogPost) {
                     // Transform the result to look like a blog card
@@ -225,7 +235,7 @@
                         categories.forEach(category => {
                             const categoryLink = document.createElement('a');
                             const slug = category.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-                            categoryLink.href = `${basePath}/blog/category/${slug}/`;
+                            categoryLink.href = `${basePath}/category/${slug}/`;
                             categoryLink.className = 'category-tag';
                             categoryLink.textContent = category;
                             categoryDiv.appendChild(categoryLink);
@@ -284,9 +294,7 @@
                     pageSize: 8,
                     showImages: false,
                     processResult: function(result) {
-                        if (result.url.includes('/blog/')) {
-                            return result;
-                        }
+                        // All results are processed the same way now
                         return result;
                     },
                     translations: {
