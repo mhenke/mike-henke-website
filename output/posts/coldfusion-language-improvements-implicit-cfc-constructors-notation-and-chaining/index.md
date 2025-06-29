@@ -7,7 +7,7 @@ categories:
   - "ColdFusion"
 ---
 
-I attended [CFObjective ANZ](http://www.cfobjective.com.au/) this past week. Terrence Ryan announced [a lot of cool news about ColdFusion](/post.cfm/coldfusion-news-from-cfoanz-keynote-twister-thunder-more). I am going to doing a series over these announcements. The first post was about upcoming improvements with [CFFile update and For in loop CFScript support of Queries](http://mikehenke.com/post.cfm/coldfusion-language-improvements-content-within-cffile-and-for-in-loop-of-queries-in-cfscript). This post will show slides about CFC improvements with implicit constructors, notation, and chaining.   This first slides show how you would code the cfc to take advantage of implicit constructors.
+I attended [CFObjective ANZ](http://www.cfobjective.com.au/) this past week. Terrence Ryan announced [a lot of cool news about ColdFusion](/coldfusion-news-from-cfoanz-keynote-twister-thunder-more). I am going to doing a series over these announcements. The first post was about upcoming improvements with [CFFile update and For in loop CFScript support of Queries](http://mikehenke.com/coldfusion-language-improvements-content-within-cffile-and-for-in-loop-of-queries-in-cfscript). This post will show slides about CFC improvements with implicit constructors, notation, and chaining.   This first slides show how you would code the cfc to take advantage of implicit constructors.
 
 | [![](images/P1000934.JPG)](https://picasaweb.google.com/lh/photo/H06n7McoymofT-4EqzLXyg?feat=embedwebsite) |
 | --- |

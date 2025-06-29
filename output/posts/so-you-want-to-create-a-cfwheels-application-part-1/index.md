@@ -8,7 +8,7 @@ categories:
 
 This series is heavily borrowed from [Dan Wilson](http://www.nodans.com/ "Dan Wilson")'s "So You Want to" series about [Model Glue](http://www.model-glue.com/ "Model Glue"):Unity.  This entry matches to [this post](http://www.nodans.com/index.cfm/2007/1/19/So-you-want-to-create-a-ModelGlueUnity-application--Part-1- "this post"). 
  
-We will create an application to manage contacts starting from scratch. If you haven't installed [CFWheels](http://www.CFWheels.org), check [this post](/post.cfm/so-you-want-to-install-cfwheels "this post"). 
+We will create an application to manage contacts starting from scratch. If you haven't installed [CFWheels](http://www.CFWheels.org), check [this post](/so-you-want-to-install-cfwheels "this post"). 
  
 Our application will reside in the web root, accessed by the URL http://localhost . Lets look @ the files installed with CFWheels, talk about Request Handling ,and URL Rewriting.
 

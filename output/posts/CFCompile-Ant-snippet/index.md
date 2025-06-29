@@ -41,4 +41,4 @@ Related Posts:
 
 [Use eclipse, ant and cfcompile.bat to precompile your code](http://www.webdevref.com/blog/index.cfm?t=Use_eclipse,_ant_and_cfcompile.bat_to_precompile_your_code&mode=entry&entry=79C9D104-12CC-9590-8A5C8AA23FF93A8B&dv=link)
 
-[Snarling radioactive ants!](http://hofo.com/post.cfm/snarling-radioactive-ants "Permalink to Snarling radioactive ants!")
+[Snarling radioactive ants!](http://hofo.com/snarling-radioactive-ants "Permalink to Snarling radioactive ants!")

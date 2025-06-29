@@ -6,7 +6,7 @@ categories:
  - "ColdFusion"
 ---
 
-This [CFWheels](http://cfwheels.org/) series is heavily borrowed from [Dan Wilson](http://www.nodans.com)'s "So You Want to" series about [Model Glue](http://model-glue.com):Unity.  This entry matches to this [post](http://www.nodans.com/index.cfm/2007/1/21/So-you-want-to-create-a-ModelGlueUnity-application--Part-3-). Previously in this series, we [installed CFWheels](http://mikehenke.com/post.cfm/so-you-want-to-install-cfwheels), [discussed some basic conventions over configuration and concepts](http://mikehenke.com/post.cfm/so-you-want-to-create-a-cfwheels-application-part-1) in CFWheels, and [added our basic flow and navigation](http://mikehenke.com/post.cfm/so-you-want-to-create-a-cfwheels-application-part-2). Our Contact-O-Matic is moving right along (this last sentence was borrowed from Dan's post.) In this segment of our regularly scheduled programming (again borrowed), we will setup a Contactomatic database with tables, add the contact form, and contact list.
+This [CFWheels](http://cfwheels.org/) series is heavily borrowed from [Dan Wilson](http://www.nodans.com)'s "So You Want to" series about [Model Glue](http://model-glue.com):Unity.  This entry matches to this [post](http://www.nodans.com/index.cfm/2007/1/21/So-you-want-to-create-a-ModelGlueUnity-application--Part-3-). Previously in this series, we [installed CFWheels](http://mikehenke.com/so-you-want-to-install-cfwheels), [discussed some basic conventions over configuration and concepts](http://mikehenke.com/so-you-want-to-create-a-cfwheels-application-part-1) in CFWheels, and [added our basic flow and navigation](http://mikehenke.com/so-you-want-to-create-a-cfwheels-application-part-2). Our Contact-O-Matic is moving right along (this last sentence was borrowed from Dan's post.) In this segment of our regularly scheduled programming (again borrowed), we will setup a Contactomatic database with tables, add the contact form, and contact list.
 
 ### Database Setup
 
@@ -54,7 +54,7 @@ Lets drive on and create the new view page.  It will have a form to add new con
 <cfoutput>#includePartial("banner")#<cfoutput>#flash("success")#</cfoutput>#startFormTag(action="create")#<div>#textField(objectName="newContact", property="name", label="Contact")#</div><div>#textField(objectName="newContact", property="type", label="Type")#</div><div>#submitTag()#</div>#endFormTag()#</cfoutput>
 \\[/code\] You may remember the \[code language="coldfusion"\]
 includePartial
-\\[/code\] from [Part 2](http://mikehenke.com/post.cfm/so-you-want-to-create-a-cfwheels-application-part-2). It acts a cfinclude with special powers. We added our banner for navigation this way. The rest of the code looks like ColdFusion functions. They are actually CFWheels Helpers. \[code language="coldfusion"\]
+\\[/code\] from [Part 2](http://mikehenke.com/so-you-want-to-create-a-cfwheels-application-part-2). It acts a cfinclude with special powers. We added our banner for navigation this way. The rest of the code looks like ColdFusion functions. They are actually CFWheels Helpers. \[code language="coldfusion"\]
 startFormTag()
 \\[/code\] starts the form tag with an action of create. Pretty intuitive, huh. Take a guess on what \[code language="coldfusion"\]
 textField()

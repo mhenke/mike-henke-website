@@ -24,4 +24,4 @@ There is plenty of information on the web about using git and github.
 
 ### More Information
 
-[Git, Github, ColdFusion, and Open Source](http://coldfusiondarklord.com/post.cfm/git-github-coldfusion-and-open-source) [Why Git Hub](http://winterdom.com/2008/08/whygithub) [Why GitHub Will Overtake SourceForge](http://www.pjhyett.com/posts/232-why-github-will-overtake-sourceforge) [Why Github and Friends Matter](http://www.smerpology.org/sprocket/article/1258/why-github-and-friends-matter)
+[Git, Github, ColdFusion, and Open Source](http://coldfusiondarklord.com/git-github-coldfusion-and-open-source) [Why Git Hub](http://winterdom.com/2008/08/whygithub) [Why GitHub Will Overtake SourceForge](http://www.pjhyett.com/posts/232-why-github-will-overtake-sourceforge) [Why Github and Friends Matter](http://www.smerpology.org/sprocket/article/1258/why-github-and-friends-matter)

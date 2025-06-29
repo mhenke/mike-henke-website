@@ -13,7 +13,7 @@ Being the end of the month, I'll also mention monthly updates of [ColdFusion](ht
 
 ## [**Git** Training in DC - July](http://github.com/blog/654-git-training-in-dc-july)
 
-## [FW/1 1.1 is one step away](http://corfield.org/blog/post.cfm/fw-1-1-1-is-one-step-away)
+## [FW/1 1.1 is one step away](http://corfield.org/blog/fw-1-1-1-is-one-step-away)
 
 ### Recently Created Repositories[  
 ](http://github.com/languages/ColdFusion/created)

@@ -36,7 +36,7 @@
     {% endif %}
     
     {# PERFORMANCE: Load blog scripts only on blog pages or pages with code blocks #}
-    {% if page.url.includes('/blog/') or content.includes('[code') or content.includes('<pre') %}
+    {% if layout == 'layouts/post.njk' or (page.inputPath and page.inputPath.includes('output/posts/')) or content.includes('[code') or content.includes('<pre') %}
         {% include "partials/scripts-blog.njk" %}
     {% endif %}
 </body>

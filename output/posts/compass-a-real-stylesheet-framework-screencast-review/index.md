@@ -13,4 +13,4 @@ categories:
 
 [Compass: A Real Stylesheet Framework](http://vimeo.com/4335944) from [Chris Eppstein](http://vimeo.com/user1651762) on [Vimeo](http://vimeo.com).
 
-For getting started with Compass and Sass on Coldfusion checkout my post, [Compass, SASS, and ColdFusion (or creating more maintainable css)](http://mikehenke.com/post.cfm/compass-sass-and-coldfusion-or-creating-more-maintainable-css)
+For getting started with Compass and Sass on Coldfusion checkout my post, [Compass, SASS, and ColdFusion (or creating more maintainable css)](http://mikehenke.com/compass-sass-and-coldfusion-or-creating-more-maintainable-css)

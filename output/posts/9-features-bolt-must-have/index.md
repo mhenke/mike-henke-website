@@ -59,7 +59,7 @@ Another simple but important user experience when using Eclipse. Aptanta is thou
 
  
 
-Adobe needs to stress the foundation is Eclipse for Bolt users. This is where additional power of knowing Eclipse comes into play such as "[Working with local history](http://help.eclipse.org/ganymede/topic/org.eclipse.platform.doc.user/tasks/tasks-1f.htm?resultof=%22%6c%6f%63%61%6c%22%20%22%68%69%73%74%6f%72%79%22%20%22%68%69%73%74%6f%72%69%22%20)." See My post about [Top 6 underused Eclipse shortcuts](/post.cfm/Top-6-underused-Eclipse-shortcuts-for-CFEclipse).
+Adobe needs to stress the foundation is Eclipse for Bolt users. This is where additional power of knowing Eclipse comes into play such as "[Working with local history](http://help.eclipse.org/ganymede/topic/org.eclipse.platform.doc.user/tasks/tasks-1f.htm?resultof=%22%6c%6f%63%61%6c%22%20%22%68%69%73%74%6f%72%79%22%20%22%68%69%73%74%6f%72%69%22%20)." See My post about [Top 6 underused Eclipse shortcuts](/Top-6-underused-Eclipse-shortcuts-for-CFEclipse).
 
  
 

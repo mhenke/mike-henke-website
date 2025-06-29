@@ -17,7 +17,7 @@ I am doing a "Stump the CFChump" series. I recently passed the [ColdFusion 9 exa
 
 ### Answer
 
-C. [best comment explanation](http://mikehenke.com/post.cfm/stump-the-cfchump-3#comment-71669624-A9D0-4A03-95967CF8B3BA2955)
+C. [best comment explanation](http://mikehenke.com/stump-the-cfchump-3#comment-71669624-A9D0-4A03-95967CF8B3BA2955)
 
 ## Stump the CFChump 4
 

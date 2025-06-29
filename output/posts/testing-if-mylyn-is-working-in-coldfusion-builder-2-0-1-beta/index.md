@@ -3,7 +3,7 @@ title: "Testing if Mylyn is working in ColdFusion Builder 2.0.1 beta"
 date: 2012-02-18
 ---
 
-I post on [installing ColdFusion Builder 2.0.1 beta and Mylyn](http://mikehenke.com/post.cfm/coldfusion-builder-2-0-1-beta-and-mylyn). This post will show how to test it is working.
+I post on [installing ColdFusion Builder 2.0.1 beta and Mylyn](http://mikehenke.com/coldfusion-builder-2-0-1-beta-and-mylyn). This post will show how to test it is working.
 
 ## create new local task
 

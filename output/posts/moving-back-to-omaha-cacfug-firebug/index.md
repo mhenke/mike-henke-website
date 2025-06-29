@@ -6,7 +6,7 @@ categories:
   - "ColdFusion"
 ---
 
-Well, if you follow my blog you may remember I [moved to Washington, DC](http://mikehenke.com/post.cfm/dc-or-bust) nearly 2 years ago. It has been an interesting time. I have seen [many embassies](http://www.thingstododc.com/), been on lots of [walking tours](http://www.washingtonwalks.com), and many boat cruises on the Potomac along with seeing all the memorials and some Smithsonians. I really enjoyed the [Southeast Minnesota Honor flights](http://www.semnhonorflight.org/). I think I helped with five. With that said, I am moving back to Omaha after accepting a position that looks very interesting and will allow me to mentor a younger developer while hopefully implementing a lot of [Wheels projects](http://www.cfwheels.org) on new applications while expanding the position and leading more developers as the company grows.
+Well, if you follow my blog you may remember I [moved to Washington, DC](http://mikehenke.com/dc-or-bust) nearly 2 years ago. It has been an interesting time. I have seen [many embassies](http://www.thingstododc.com/), been on lots of [walking tours](http://www.washingtonwalks.com), and many boat cruises on the Potomac along with seeing all the memorials and some Smithsonians. I really enjoyed the [Southeast Minnesota Honor flights](http://www.semnhonorflight.org/). I think I helped with five. With that said, I am moving back to Omaha after accepting a position that looks very interesting and will allow me to mentor a younger developer while hopefully implementing a lot of [Wheels projects](http://www.cfwheels.org) on new applications while expanding the position and leading more developers as the company grows.
 
 ## CACFUG
 

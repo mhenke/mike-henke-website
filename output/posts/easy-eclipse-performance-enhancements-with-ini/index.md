@@ -7,7 +7,7 @@ categories:
   - "Eclipse"
 ---
 
-I have a post "[Turbo Charging Eclipse](http://mikehenke.com/post.cfm/Turbo-charging-Eclipse)" and this is a follow up to show my current eclipse.ini file. I had someone recently mention my suggestions really improved their Eclipse experience. _**Warning:**_ Before modifying your eclipse.ini be sure to back it up. The ini file is notoriously easy to mess up with a misplaced space or carriage return.
+I have a post "[Turbo Charging Eclipse](http://mikehenke.com/Turbo-charging-Eclipse)" and this is a follow up to show my current eclipse.ini file. I had someone recently mention my suggestions really improved their Eclipse experience. _**Warning:**_ Before modifying your eclipse.ini be sure to back it up. The ini file is notoriously easy to mess up with a misplaced space or carriage return.
 
 ## Break down of my ini  
 

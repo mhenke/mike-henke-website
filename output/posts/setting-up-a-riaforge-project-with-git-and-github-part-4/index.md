@@ -6,7 +6,7 @@ categories:
   - "github"
 ---
 
-[Riaforge](http://www.riaforge.org) recently added an input field for external source control sites and [Github](http://www.github.com/) now [recognizes ColdFusion syntax](/post.cfm/github-recognizes-cfml). With these two announcements, I will demonstrate how to edit your Riaforge project information for Github. I will use [jTidy cfc](http://jtidy.riaforge.org/) for the example. Filling from top to bottom of the Edit project page, you will proceed normally until **External Project URL** and **External Download URL**.
+[Riaforge](http://www.riaforge.org) recently added an input field for external source control sites and [Github](http://www.github.com/) now [recognizes ColdFusion syntax](/github-recognizes-cfml). With these two announcements, I will demonstrate how to edit your Riaforge project information for Github. I will use [jTidy cfc](http://jtidy.riaforge.org/) for the example. Filling from top to bottom of the Edit project page, you will proceed normally until **External Project URL** and **External Download URL**.
 
 ### Example
 

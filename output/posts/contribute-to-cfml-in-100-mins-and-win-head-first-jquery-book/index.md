@@ -6,7 +6,7 @@ categories:
   - "jquery"
 ---
 
-Time for another Contribute and Win contest. The last [Contribute and Win](http://mikehenke.com/post.cfm/contribute-win-a-chance-for-object-oriented-programming) seemed a great success. I had many awesome contributes. Same rules as before, I will randomly select a contributor to "[CFML in 100 minutes](https://github.com/mhenke/CFML-in-100-minutes)". You can commit once or multiple times but you will only be entered in once. I will giveaway a copy of "[Head First jQuery](http://www.amazon.com/gp/product/1449393217)" to lucky contributor of "[CFML in 100 minutes](https://github.com/mhenke/CFML-in-100-minutes)".
+Time for another Contribute and Win contest. The last [Contribute and Win](http://mikehenke.com/contribute-win-a-chance-for-object-oriented-programming) seemed a great success. I had many awesome contributes. Same rules as before, I will randomly select a contributor to "[CFML in 100 minutes](https://github.com/mhenke/CFML-in-100-minutes)". You can commit once or multiple times but you will only be entered in once. I will giveaway a copy of "[Head First jQuery](http://www.amazon.com/gp/product/1449393217)" to lucky contributor of "[CFML in 100 minutes](https://github.com/mhenke/CFML-in-100-minutes)".
 
 ### Spot a typo or code example not working
 

@@ -9,7 +9,7 @@ categories:
   - "git"
 ---
 
-This is a 4 part series over [Git](http://git-scm.com/) and [GitHub](http://github.com/) with [Riaforge](http://www.riaforge.org/). So far we [installed some software](/post.cfm/setting-up-a-riaforge-projects-with-git-and-github-part-1), [registered for a free GitHub account, created a repository, and cloned it](/post.cfm/setting-up-a-riaforge-projects-with-git-and-github-part-2).  
+This is a 4 part series over [Git](http://git-scm.com/) and [GitHub](http://github.com/) with [Riaforge](http://www.riaforge.org/). So far we [installed some software](/setting-up-a-riaforge-projects-with-git-and-github-part-1), [registered for a free GitHub account, created a repository, and cloned it](/setting-up-a-riaforge-projects-with-git-and-github-part-2).  
   
 Lets demonstrate the power of GitHub, anyone can make contributes to a project on GitHub. We will be using [CWheels](http://cfwheels.org/) on GitHub to create a fork and send a pull request of our changes to CFWheels.
 
@@ -27,7 +27,7 @@ We will start with a fresh local ColdFusion multi server instance to place the c
 
 ### Cloning our CFWheels Fork
 
-We cloned a newly create GitHub repository through the command prompt in the [last post](/post.cfm/setting-up-a-riaforge-projects-with-git-and-github-part-2) but we also installed two other git clients. One integrating with Eclipse, [eGit](http://www.eclipse.org/egit/), and the other with Windows Explorer, [TortoiseGit](http://code.google.com/p/tortoisegit/) (TG).  
+We cloned a newly create GitHub repository through the command prompt in the [last post](/setting-up-a-riaforge-projects-with-git-and-github-part-2) but we also installed two other git clients. One integrating with Eclipse, [eGit](http://www.eclipse.org/egit/), and the other with Windows Explorer, [TortoiseGit](http://code.google.com/p/tortoisegit/) (TG).  
   
 Navigate to your webroot (mine is C:\\JRun4\\servers\\CFWheels\\cfusion.ear\\cfusion.war ) and right click on the folder or inside the folder to create the git repository. This screenshot is the former and shows how TG is integrated into Windows Explorer. Select "Git Create repository here"  
   

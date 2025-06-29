@@ -6,7 +6,7 @@ categories:
   - "git"
 ---
 
-This is a series over using [Riaforge](http://riaforge.org/) with [Git](http://git-scm.com/) and [GitHub](https://github.com/). So far we [installed some software](/post.cfm/setting-up-a-riaforge-projects-with-git-and-github-part-1), next we will register for a free GitHub, create a repository, and clone it.  
+This is a series over using [Riaforge](http://riaforge.org/) with [Git](http://git-scm.com/) and [GitHub](https://github.com/). So far we [installed some software](/setting-up-a-riaforge-projects-with-git-and-github-part-1), next we will register for a free GitHub, create a repository, and clone it.  
   
 Registering will only take a couple seconds. Go to the [signup page](https://github.com/signup/free).  
   
