@@ -518,7 +518,52 @@ module.exports = function (eleventyConfig) {
     }
   );
 
-  // Duplicate podcastEmbedTransform removed - already defined above
+  // Transform to fix legacy /post.cfm/ links
+  eleventyConfig.addTransform(
+    'legacyLinkTransform',
+    function (content, outputPath) {
+      if (!outputPath || !outputPath.endsWith('.html')) {
+        return content;
+      }
+
+      // Skip if no legacy links present
+      if (!content.includes('/post.cfm/') && !content.includes('post.cfm/')) {
+        return content;
+      }
+
+      let result = content;
+
+      // Fix various patterns of legacy links
+      // Pattern 1: http://mikehenke.com/post.cfm/slug -> /slug/
+      result = result.replace(
+        /https?:\/\/mikehenke\.com\/post\.cfm\/([^"'\s\)]+)/gi,
+        '/$1/'
+      );
+
+      // Pattern 2: /post.cfm/slug -> /slug/
+      result = result.replace(
+        /\/post\.cfm\/([^"'\s\)]+)/gi,
+        '/$1/'
+      );
+
+      // Pattern 3: post.cfm/slug -> /slug/ (for cases without leading slash)
+      result = result.replace(
+        /(?<!\/|:)post\.cfm\/([^"'\s\)]+)/gi,
+        '/$1/'
+      );
+
+      // Pattern 4: Fix any remaining mikehenke.com domains to be relative
+      result = result.replace(
+        /https?:\/\/mikehenke\.com\/([^"'\s\)]+)/gi,
+        '/$1'
+      );
+
+      // Clean up any double slashes that might have been created
+      result = result.replace(/\/\/+/g, '/');
+
+      return result;
+    }
+  );
 
   // Passthrough copy for static assets
   eleventyConfig.addPassthroughCopy('styles.css');
