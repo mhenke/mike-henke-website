@@ -260,7 +260,8 @@ module.exports = function (eleventyConfig) {
 
         // Only process relative image paths that start with 'images/'
         if (src.startsWith('images/')) {
-          // No pathPrefix needed for Netlify deployment
+          const pathPrefix =
+            process.env?.NODE_ENV === 'production' ? '/mike-henke-website' : '';
 
           // Extract post slug from available data
           let postSlug = '';
@@ -279,7 +280,7 @@ module.exports = function (eleventyConfig) {
           if (postSlug) {
             const imageName = src.replace('images/', '');
             // Route images to the root directory structure (not /blog/)
-            const newSrc = `/${postSlug}/images/${imageName}`;
+            const newSrc = `${pathPrefix}/${postSlug}/images/${imageName}`;
             token.attrs[srcIndex][1] = newSrc;
           }
         }
@@ -319,7 +320,8 @@ module.exports = function (eleventyConfig) {
         outputPath.includes('output/posts/') ||
         outputPath.match(/\/_site\/[^\/]+\/index\.html$/)
       ) {
-        // No pathPrefix needed for Netlify deployment
+        const pathPrefix =
+          process.env?.NODE_ENV === 'production' ? '/mike-henke-website' : '';
 
         // Extract the post slug from the output path
         const pathParts = outputPath.split('/');
@@ -351,7 +353,7 @@ module.exports = function (eleventyConfig) {
             .replace(
               /<img([^>]*)\ssrc=["']images\/([^"']+)["']/g,
               (match, attrs, imageName) => {
-                const newPath = `/${postSlug}/images/${imageName}`;
+                const newPath = `${pathPrefix}/${postSlug}/images/${imageName}`;
                 return `<img${attrs} src="${newPath}"`;
               }
             )
@@ -359,13 +361,13 @@ module.exports = function (eleventyConfig) {
             .replace(
               /src=["']\.\/images\/([^"']+)["']/g,
               (match, imageName) => {
-                const newPath = `/${postSlug}/images/${imageName}`;
+                const newPath = `${pathPrefix}/${postSlug}/images/${imageName}`;
                 return `src="${newPath}"`;
               }
             )
             // Remaining markdown image syntax
             .replace(/!\[\]\(images\/([^)]+)\)/g, (match, imageName) => {
-              const newSrc = `/${postSlug}/images/${imageName}`;
+              const newSrc = `${pathPrefix}/${postSlug}/images/${imageName}`;
               return `<img src="${newSrc}" alt="" loading="lazy">`;
             });
         }
@@ -595,9 +597,9 @@ module.exports = function (eleventyConfig) {
       postDirs.forEach((postSlug) => {
         const imagesPath = path.join(postsDir, postSlug, 'images');
         if (fs.existsSync(imagesPath)) {
-          // Copy images from output/posts/post-slug/images/* to _site/post-slug/images/*
+          // Copy images from output/posts/post-slug/images/* to _site/blog/post-slug/images/*
           eleventyConfig.addPassthroughCopy({
-            [`output/posts/${postSlug}/images`]: `${postSlug}/images`,
+            [`output/posts/${postSlug}/images`]: `blog/${postSlug}/images`,
           });
         }
       });
@@ -715,6 +717,8 @@ module.exports = function (eleventyConfig) {
   });
 
   return {
+    pathPrefix:
+      process.env.NODE_ENV === 'production' ? '/mike-henke-website' : '',
     dir: {
       input: '.',
       includes: '_includes',
