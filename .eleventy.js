@@ -260,8 +260,7 @@ module.exports = function (eleventyConfig) {
 
         // Only process relative image paths that start with 'images/'
         if (src.startsWith('images/')) {
-          const pathPrefix =
-            process.env?.NODE_ENV === 'production' ? '/mike-henke-website' : '';
+          const pathPrefix = '';
 
           // Extract post slug from available data
           let postSlug = '';
@@ -320,8 +319,7 @@ module.exports = function (eleventyConfig) {
         outputPath.includes('output/posts/') ||
         outputPath.match(/\/_site\/[^\/]+\/index\.html$/)
       ) {
-        const pathPrefix =
-          process.env?.NODE_ENV === 'production' ? '/mike-henke-website' : '';
+        const pathPrefix = '';
 
         // Extract the post slug from the output path
         const pathParts = outputPath.split('/');

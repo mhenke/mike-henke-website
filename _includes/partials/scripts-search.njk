@@ -103,8 +103,8 @@
         function createCategoryTags(categories) {
             if (!categories || categories.length === 0) return '';
             
-            // Get the correct base path based on current location
-            const basePath = window.location.pathname.includes('/mike-henke-website/') ? '/mike-henke-website' : '';
+            // No base path needed since we're on the main domain now
+            const basePath = '';
             
             const categoryHTML = categories.map(category => {
                 const slug = category.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
@@ -228,8 +228,8 @@
                         const categoryDiv = document.createElement('div');
                         categoryDiv.className = 'blog-post-categories';
                         
-                        // Get the correct base path based on current location
-                        const basePath = window.location.pathname.includes('/mike-henke-website/') ? '/mike-henke-website' : '';
+                        // No base path needed since we're on the main domain now
+                        const basePath = '';
                         
                         // Create category links individually to ensure proper attributes
                         categories.forEach(category => {
