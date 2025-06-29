@@ -13,7 +13,7 @@
     <div class="blog-post-categories" data-pagefind-meta="categories:{{ categories | join(', ') }}">
         {% for category in categories %}
             {% if category %}
-                <a href="{{ ('/blog/category/' + (category | slugify) + '/') | url }}" 
+                <a href="{{ ('/category/' + (category | slugify) + '/') | url }}" 
                    class="category-tag" 
                    title="View {{ category }} posts">{{ category }}</a>
             {% endif %}

@@ -1,0 +1,6 @@
+# Netlify redirects for URL structure changes
+# Blog posts: /blog/post-name/ → /post-name/
+/blog/:post/ /:post/ 301
+
+# Categories: /blog/category/category-name/ → /category/category-name/
+/blog/category/:category/ /category/:category/ 301

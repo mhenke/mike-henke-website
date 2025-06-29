@@ -523,6 +523,7 @@ module.exports = function (eleventyConfig) {
   // Passthrough copy for static assets
   eleventyConfig.addPassthroughCopy('styles.css');
   eleventyConfig.addPassthroughCopy('favicon.ico');
+  eleventyConfig.addPassthroughCopy('_redirects'); // Netlify redirects
   eleventyConfig.addPassthroughCopy({ _pagefind: 'pagefind' });
   eleventyConfig.addPassthroughCopy('assets'); // Assets folder including images
 
@@ -564,7 +565,7 @@ module.exports = function (eleventyConfig) {
       });
   });
 
-  // Add custom permalink for WordPress posts to route them to /blog/
+  // Add custom permalink for WordPress posts to route them to root level
   eleventyConfig.addGlobalData('eleventyComputed', {
     permalink: (data) => {
       // Only apply to WordPress posts
@@ -573,7 +574,7 @@ module.exports = function (eleventyConfig) {
         const outputIndex = pathParts.indexOf('output');
         if (outputIndex !== -1 && pathParts[outputIndex + 1] === 'posts') {
           const postSlug = pathParts[outputIndex + 2];
-          return `/blog/${postSlug}/`;
+          return `/${postSlug}/`; // Root level instead of /blog/
         }
       }
       return data.permalink;
