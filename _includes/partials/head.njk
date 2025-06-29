@@ -9,7 +9,7 @@
 <meta name="robots" content="index, follow">
 
 {# PERFORMANCE: Open Graph only on blog/article pages #}
-{% if title == 'Blog' or page.url.startsWith('/blog/') %}
+{% if title == 'Blog' or layout == 'layouts/post.njk' %}
 <meta property="og:type" content="article">
 <meta property="og:title" content="{{ title }}">
 <meta property="og:description" content="{{ description or 'Technical blog about web development by Mike Henke.' }}">
@@ -33,14 +33,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
 <!-- PERFORMANCE: Load Font Awesome only if needed -->
-{% if page.url == '/' or page.url.includes('/blog/') or layout == 'layouts/post.njk' %}
+{% if page.url == '/' or layout == 'layouts/post.njk' or (page.inputPath and page.inputPath.includes('output/posts/')) %}
 <link rel="stylesheet" 
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" 
       crossorigin="anonymous">
 {% endif %}
 
 <!-- PERFORMANCE: Load syntax highlighting only on blog pages -->
-{% if page.url.includes('/blog/') or layout == 'layouts/post.njk' %}
+{% if layout == 'layouts/post.njk' or (page.inputPath and page.inputPath.includes('output/posts/')) %}
 <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" 
       rel="stylesheet" crossorigin="anonymous">
 {% endif %}
@@ -79,7 +79,7 @@
 <link rel="icon" href="{{ '/favicon.ico' | url }}">
 
 {# PERFORMANCE: Minimal JSON-LD only where needed #}
-{% if title == 'Blog' or page.url.startsWith('/blog/') %}
+{% if title == 'Blog' or layout == 'layouts/post.njk' %}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",

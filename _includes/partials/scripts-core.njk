@@ -360,7 +360,7 @@
 </script>
 
 <!-- PERFORMANCE: Load Prism.js only on blog pages with code blocks -->
-{% if page.url.includes('/blog/') or layout == 'layouts/post.njk' %}
+{% if layout == 'layouts/post.njk' or (page.inputPath and page.inputPath.includes('output/posts/')) %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" crossorigin="anonymous"></script>

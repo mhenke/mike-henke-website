@@ -285,8 +285,8 @@
                     // Check if result has category metadata (blog posts have categories)
                     result.textContent.includes('Categories:') ||
                     result.querySelector('.pagefind-ui__result-tag')?.textContent.includes('Categories:') ||
-                    // Check for typical blog post URL patterns (not /blog/, /search/, /category/, etc.)
-                    (!href.includes('/blog/') && !href.includes('/search/') && !href.includes('/category/') && 
+                    // Check for typical blog post URL patterns (not /search/, /category/, etc.)
+                    (!href.includes('/search/') && !href.includes('/category/') && 
                      href !== '/' && href.match(/^\/[^\/]+\/$/) && !href.includes('/pages/'))
                 );
                 
