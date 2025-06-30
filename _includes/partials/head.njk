@@ -76,6 +76,7 @@
 {% endif %}
 
 <!-- Environment indicator (only in staging/dev) -->
+<!-- DEBUG: site.environment = {{ site.environment }} NODE_ENV = {{ site.environment }} -->
 {% if site.environment != 'production' %}
 <style>
   body::before {
