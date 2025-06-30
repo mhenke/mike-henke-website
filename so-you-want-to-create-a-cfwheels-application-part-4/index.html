@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Shared head section for all layouts -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>So you want to create a CFWheels application? ( Part 4)</title>
+<meta name="description" content="Mike Henke - Full-stack web and mobile developer with 15+ years of experience. Specializing in JavaScript, Python, React, and modern web technologies.">
+<meta name="author" content="Mike Henke">
+<meta name="robots" content="index, follow">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="So you want to create a CFWheels application? ( Part 4)">
+<meta property="og:description" content="Technical blog about web development by Mike Henke.">
+<meta property="og:url" content="https://mikehenke.com/so-you-want-to-create-a-cfwheels-application-part-4/">
+<meta property="og:site_name" content="Mike Henke">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="So you want to create a CFWheels application? ( Part 4)">
+<meta name="twitter:description" content="Technical blog about web development by Mike Henke.">
+
+
+<!-- PERFORMANCE: DNS prefetch for faster font loading -->
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//fonts.gstatic.com">
+<link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+
+<!-- Preconnect to external domains -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- PERFORMANCE: Critical font loading only -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- PERFORMANCE: Load Font Awesome only if needed -->
+
+<link rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" 
+      crossorigin="anonymous">
+
+
+<!-- PERFORMANCE: Load syntax highlighting only on blog pages -->
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" 
+      rel="stylesheet" crossorigin="anonymous">
+
+
+<!-- Critical CSS first -->
+<link rel="stylesheet" href="/styles.css">
+
+<!-- PERFORMANCE: Load search CSS only on search page -->
+
+
+<!-- Environment indicator (only in staging/dev) -->
+<!-- DEBUG: site.environment = production NODE_ENV = production -->
+
+
+<!-- Favicon -->
+<link rel="icon" href="/favicon.ico">
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Mike Henke's Blog",
+  "url": "https://mikehenke.com/so-you-want-to-create-a-cfwheels-application-part-4/",
+  "author": {"@type": "Person", "name": "Mike Henke"}
+}
+</script>
+
+
+</head>
+<body>
+    <!-- Skip Navigation Links for Screen Readers -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <a href="#nav-menu" class="skip-link">Skip to navigation</a>
+    
+    
+<!-- Shared navigation for all layouts -->
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar-container">
+        <a href="/" class="navbar-brand" role="banner" aria-label="Mike Henke - Return to homepage">Mike Henke</a>
+        
+        <!-- New Hamburger Menu Toggle -->
+        <button class="navbar-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+            <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+        
+        <ul class="navbar-links" id="nav-menu" role="menubar">
+            <!-- Mobile menu header with close button -->
+            <div class="mobile-menu-header">
+                <span class="menu-brand">Mike Henke</span>
+                <button class="menu-close" aria-label="Close navigation menu">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+            
+            
+    <li><a href="/" role="menuitem"><i class="fas fa-home" aria-hidden="true"></i><span>Home</span></a></li>
+    <li><a href="/#about" role="menuitem"><i class="fas fa-user" aria-hidden="true"></i><span>About</span></a></li>
+    <li><a href="/#skills" role="menuitem"><i class="fas fa-code" aria-hidden="true"></i><span>Skills</span></a></li>
+    <li><a href="/#career" role="menuitem"><i class="fas fa-briefcase" aria-hidden="true"></i><span>Career</span></a></li>
+    <li><a href="/blog/" role="menuitem"><i class="fas fa-blog" aria-hidden="true"></i><span>Blog</span></a></li>
+    <li><a href="/#contact" role="menuitem"><i class="fas fa-envelope" aria-hidden="true"></i><span>Contact</span></a></li>
+    <li><a href="/search/" role="menuitem"><i class="fas fa-search" aria-hidden="true"></i><span>Search</span></a></li>
+
+        </ul>
+    </div>
+    
+    <!-- Mobile overlay -->
+    <div class="nav-overlay"></div>
+</nav>
+
+    
+    <main id="main-content" role="main">
+        <article class="content-section-boxed content-section-top-margin" role="article" data-pagefind-body>
+            <header>
+                <h1 data-pagefind-meta="title">So you want to create a CFWheels application? ( Part 4)</h1>
+                
+                
+
+<p class="blog-post-date">
+    <em>Published on 
+        <time datetime="2009-08-03" data-pagefind-meta="date">
+            August 3, 2009
+        </time>
+    </em>
+</p>
+
+
+                
+                
+
+    <div class="blog-post-categories" data-pagefind-meta="categories:cfwheels, ColdFusion">
+        
+            
+                <a href="/category/cfwheels/" 
+                   class="category-tag" 
+                   title="View cfwheels posts">cfwheels</a>
+            
+        
+            
+                <a href="/category/coldfusion/" 
+                   class="category-tag" 
+                   title="View ColdFusion posts">ColdFusion</a>
+            
+        
+    </div>
+
+
+            </header>
+            <hr>
+            <div>
+                <p>This <a href="http://cfwheels.org/">CFWheels</a> series is heavily borrowed from <a href="http://www.nodans.com/">Dan Wilson</a>'s &quot;So You Want to&quot; series about <a href="http://www.model-glue.com/">Model Glue</a>:Unity. This entry matches to this <a href="http://www.nodans.com/index.cfm/2007/1/22/So-you-want-to-create-a-ModelGlueUnity-application--Part-4-">post</a>. Previously in this series, we <a href="/so-you-want-to-install-cfwheels">installed CFWheels</a>, <a href="/so-you-want-to-create-a-cfwheels-application-part-1">discussed some basic conventions and concepts</a> in CFWheels, <a href="/so-you-want-to-create-a-cfwheels-application-part-2">added our basic flow and navigation</a>, and most recently created <a href="/so-you-want-to-create-a-cfwheels-application-part-3" title="add and list our contacts">add and list functionality</a> to our contacts. Our Contact-O-Matic is moving right along (this last sentence was borrowed from Dan's post.) In the last segment, we tested the 'success' path and were routed to the contact list. Now let's try the 'failure' path, add some validation, and refactor our code. Remember to get our form, we will use one of these URLs depending on the <a href="http://cfwheels.org/docs/chapter/url-rewriting" title="URL Rewriting">URL Rewriting</a> you setup. <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">URL Rewriting On = http://localhost/contact/new</code></pre>
+</div><br>
+<div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">URL Rewriting Partial = http://localhost/index.cfm/contact/new</code></pre>
+</div><br>
+<div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">URL Rewriting Off = http://localhost/index.cfm?controller=contact&amp;action=new</code></pre>
+</div> So what happens if we submit a blank form? <img src="/so-you-want-to-create-a-cfwheels-application-part-4/images/cfwheels4_1.jpg" alt="" loading="lazy"></p>
+<h3>Validation</h3>
+<p>D'oh, so we need some validation apparently. Luckily for us, we are learning CFWheels which has built in validation to help us with saves, creates, and updates. In our model cfc of the contacts table, located at Models/contact.cfc, add this code: <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">&lt;cffunction name=&quot;init&quot;&gt;
+&lt;cfset validatesPresenceOf(property=&quot;name&quot;,message=&quot;Name is Required&quot;) /&gt;
+&lt;cfset validatesPresenceOf(property=&quot;type&quot;,message=&quot;Type of Contact is Required&quot;) /&gt;
+&lt;cfset validatesUniquenessOf(property=&quot;name&quot;, message=&quot;Name is already present&quot;) /&gt;
+&lt;cfset validatesInclusionOf(property=&quot;type&quot;,list=&quot;Friend,Enemy,Co-Worker&quot;,message=&quot;Type of Contact must be Friend, Enemy, or Co-Worker&quot;) /&gt;
+&lt;/cffunction&gt;</code></pre>
+</div> By now you can see CFWheels is pretty intuitive with their naming, so validatesPresenceOf does just that, we could pass in a list of properties but for Contact-O-Matic that isn't needed. Review the file \wheels\model\validations.cfm in our application for information on the different validation options. To read more about <a href="http://www.cfwheels.org/docs/chapter/object-validation" title="Object Validation">Object Validation</a>. In /Controllers/contact.cfc replace our previous create action with this code. <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">&lt;cffunction name=&quot;create&quot;&gt;
+&lt;cfset newContact = model(&quot;Contact&quot;).new(params.newContact)&gt;
+&lt;cfif newContact.Save()&gt;
+&lt;cfset flashInsert(success=&quot;User #params.newContact.name# created successfully.&quot;) /&gt;
+&lt;cfset redirectTo(action=&quot;list&quot;) /&gt;
+&lt;cfelse&gt;
+&lt;cfset renderPage(action=&quot;new&quot;) /&gt;
+&lt;/cfif&gt;
+&lt;/cffunction&gt;</code></pre>
+</div> Now replace <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">#flash(&quot;success&quot;)#</code></pre>
+</div> with <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">#errorMessagesFor(&quot;newContact&quot;)#</code></pre>
+</div> in /Views/new.cfm And finally lets test our failure. You should see this. <img src="/so-you-want-to-create-a-cfwheels-application-part-4/images/cfwheels4_2.jpg" alt="" loading="lazy"> If not, add <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">&amp;reload=true</code></pre>
+</div> to your URL. This tells CFWheels to reload the entire framework. If you are still not seeing the message, recheck our code. Some points I'd like to cover, we changed <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">&lt;cfset model(&quot;Contact&quot;).create(params.newContact)&gt;</code></pre>
+</div> to <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">&lt;cfset newContact = model(&quot;Contact&quot;).new(params.newContact)&gt;</code></pre>
+</div>. This creates a newContact object based on the contact model. Then we call the save action on it. This will return true for successful or false for unsuccessful. Based on this, we either go to the list action or show the new view which has our form. Notice with <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">renderPage()</code></pre>
+</div>, the process just includes the new view page for new action. If it ran the new action code, we would have a blank form but CFWheels keeps our scope to repopulate the form on <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">renderPage()</code></pre>
+</div>. One other thing, notice our URL is now at <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">http://localhost/index.cfm/contact/create</code></pre>
+</div>. This is because our form submits to the create action since we did a <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">renderPage()</code></pre>
+</div> on false the page keeps loading and shows our error messages.</p>
+<h3>Refactor</h3>
+<p>Now a little refactoring, you may remember we left our index action and view in a mess. Delete the index action in Controllers/contact.cfc and put this code in Views/contact/index.cfm . <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">&lt;cfoutput&gt;
+&lt;h1&gt;Contact-O-Matic&lt;/h1&gt;
+This application is to manage contacts. It demonstrates how to build an application using &lt;a href=&quot;http://www.cfwheels.org&quot;&gt;CFWheels&lt;/a&gt;
+To add a contact #linkTo(text=&quot;click here&quot;,controller=&quot;contact&quot;,action=&quot;new&quot;)#.
+To see a list of our contacts, #linkTo(text=&quot;click here&quot;,controller=&quot;contact&quot;,action=&quot;list&quot;)#.
+&lt;/cfoutput&gt;</code></pre>
+</div> And run the page, hopefully you will see the screenshot below our URL choices. <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">URL Rewriting On = http://localhost/contact/</code></pre>
+</div>  
+<div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">URL Rewriting Partial = http://localhost/index.cfm/contact</code></pre>
+</div>  
+<div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">URL Rewriting Off = http://localhost/index.cfm?controller=contact&amp;action=index</code></pre>
+</div> <img src="/so-you-want-to-create-a-cfwheels-application-part-4/images/cfwheels4_3.jpg" alt="" loading="lazy"> You maybe wondering how this worked since we deleted the index action in Controller/contacts.cfc. CFWheels convention allows this. It knows to get the view without a controller defined. The <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">linkto()</code></pre>
+</div> is a CFWheels helper. It should create the correct link for CFWheels based on your URL Rewrite. More on the (http://cfwheels.org/docs/chapter/linking-pages "Linking Pages").
+<h3>More Refactoring</h3>
+<p>You may have noticed our navigation wasn't working, we created a <a href="http://cfwheels.org/docs/chapter/partials" title="Partial">Partial</a> called _Banner.cfm and placed it in the Views/contact/ folder. Replace the current code with this <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">&lt;cfoutput&gt;
+&lt;div id=&quot;banner&quot;&gt;
+Contact-O-Matic
+&lt;ul id=&quot;navlist&quot;&gt;
+&lt;li &lt;cfif params.action IS &quot;home&quot;&gt;id=&quot;current&quot;&lt;/cfif&gt; &gt;#linkTo(text=&quot;Home&quot;,controller=&quot;contact&quot;,action=&quot;index&quot;)#&lt;/li&gt;
+&lt;li &lt;cfif params.action IS &quot;list&quot;&gt;id=&quot;current&quot;&lt;/cfif&gt;&gt;#linkTo(text=&quot;Contact List&quot;,controller=&quot;contact&quot;,action=&quot;list&quot;)#&lt;/li&gt;
+&lt;li &lt;cfif ListContains(&quot;new,create&quot;, params.action)&gt;id=&quot;current&quot;&lt;/cfif&gt; &gt;#linkTo(text=&quot;Contact&quot;,controller=&quot;contact&quot;,action=&quot;new&quot;)#&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/cfoutput&gt;</code></pre>
+</div> And last thing for today, change menu.css in the stylesheets folder. Replace this code <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">#navlist li a
+{
+background: white;
+border-bottom: 1px solid white;
+}</code></pre>
+</div> with this code <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">#navlist #current a
+{
+background: white;
+border-bottom: 1px solid white;
+}</code></pre>
+</div> Now the menu banner should be working fine. <img src="/so-you-want-to-create-a-cfwheels-application-part-4/images/cfwheels4_4.jpg" alt="" loading="lazy"> Go ahead, add some contacts to our Contact-O-Matic, make sure our validation is working, and the links. Pat yourself on the back, you have done a good job. Next time in the series, we will cover the ORM in more detail, adding an update and delete page, and contact type table.
+
+            </div>
+            <hr>
+            <footer>
+                <p><a href="/blog" class="back-to-blog-link" aria-label="Return to blog listing">← Back to Blog</a></p>
+            </footer>
+            <div id="disqus_thread" role="complementary" aria-label="Comments section"></div>
+            <script>
+                var disqus_config = function () {
+                    this.page.url = "https://mikehenke.com/so-you-want-to-create-a-cfwheels-application-part-4/";
+                    this.page.identifier = "so-you-want-to-create-a-cfwheels-application-part-4";
+                };
+                (function() {
+                    var d = document, s = d.createElement('script');
+                    s.src = 'https://mike-henke.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </article>
+    </main>
+    
+    
+
+
+<footer role="contentinfo" class="site-footer">
+    <div class="footer-content">
+        
+        <nav class="footer-nav" aria-label="Footer navigation">
+            
+    <a href="/" class="footer-link">Home</a>
+    <a href="/#about" class="footer-link">About</a>
+    <a href="/#skills" class="footer-link">Skills</a>
+    <a href="/#career" class="footer-link">Career</a>
+    <a href="/blog/" class="footer-link">Blog</a>
+    <a href="/#contact" class="footer-link">Contact</a>
+    <a href="/search/" class="footer-link">Search</a>
+
+        </nav>
+        
+        <p>&copy; 2025 Mike Henke. All Rights Reserved.</p>
+    </div>
+</footer>
+
+    
+    
+    <!-- Core scripts needed on all pages -->
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        // New Mobile Navigation Toggle
+        const navToggle = document.querySelector('.navbar-toggle');
+        const navLinks = document.querySelector('.navbar-links');
+        const navOverlay = document.querySelector('.nav-overlay');
+        const menuClose = document.querySelector('.menu-close');
+        
+        if (navToggle && navLinks) {
+            // Store scroll position for restoration
+            let scrollPosition = 0;
+
+            function openMobileMenu() {
+                scrollPosition = window.pageYOffset;
+                navToggle.setAttribute('aria-expanded', 'true');
+                navLinks.classList.add('active');
+                navToggle.classList.add('active');
+                if (navOverlay) {
+                    navOverlay.classList.add('active');
+                }
+                document.body.classList.add('nav-open');
+                document.body.style.top = `-${scrollPosition}px`;
+            }
+
+            function closeMobileMenu() {
+                navLinks.classList.remove('active');
+                navToggle.classList.remove('active');
+                navToggle.setAttribute('aria-expanded', 'false');
+                if (navOverlay) {
+                    navOverlay.classList.remove('active');
+                }
+                document.body.classList.remove('nav-open');
+                document.body.style.top = '';
+                if (scrollPosition) {
+                    window.scrollTo(0, scrollPosition);
+                    scrollPosition = 0;
+                }
+            }
+
+            // Hamburger menu toggle
+            navToggle.addEventListener('click', () => {
+                const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+                
+                if (!isExpanded) {
+                    openMobileMenu();
+                } else {
+                    closeMobileMenu();
+                }
+            });
+
+            // Close button in mobile menu
+            if (menuClose) {
+                menuClose.addEventListener('click', () => {
+                    closeMobileMenu();
+                });
+            }
+
+            // Close mobile menu when clicking on a nav link
+            const navLinkItems = navLinks.querySelectorAll('a');
+            navLinkItems.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth < 768) {
+                        closeMobileMenu();
+                    }
+                });
+            });
+
+            // Close mobile menu when clicking on overlay
+            if (navOverlay) {
+                navOverlay.addEventListener('click', () => {
+                    closeMobileMenu();
+                });
+            }
+
+            // Close mobile menu when pressing Escape key
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && navLinks.classList.contains('active')) {
+                    closeMobileMenu();
+                }
+            });
+
+            // Handle window resize - close mobile menu if switching to desktop
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 768) {
+                    closeMobileMenu();
+                }
+            });
+        }
+
+        // Animated Progress Bars - Intersection Observer
+        const progressBars = document.querySelectorAll('.progress-bar');
+        
+        if (progressBars.length > 0) {
+            const animateProgressBar = (progressBar) => {
+                const targetWidth = progressBar.getAttribute('data-width');
+                const span = progressBar.querySelector('span');
+                
+                if (span && targetWidth) {
+                    // Add animate class to enable transitions
+                    progressBar.classList.add('animate');
+                    
+                    // Set the CSS custom property and animate
+                    progressBar.style.setProperty('--progress-width', targetWidth + '%');
+                    
+                    // Set the target width after a small delay to trigger animation
+                    setTimeout(() => {
+                        span.style.width = targetWidth + '%';
+                    }, 50);
+                }
+            };
+
+            // Check if Intersection Observer is supported
+            if ('IntersectionObserver' in window) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px 0px -10% 0px', // Trigger when 90% visible
+                    threshold: 0.1
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting && !entry.target.classList.contains('animate')) {
+                            animateProgressBar(entry.target);
+                            // Stop observing this element once animated
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                // Start observing all progress bars
+                progressBars.forEach((progressBar) => {
+                    observer.observe(progressBar);
+                });
+            } else {
+                // Fallback: animate immediately if Intersection Observer not supported
+                progressBars.forEach((progressBar) => {
+                    animateProgressBar(progressBar);
+                });
+            }
+        }
+
+        // Animated Methodology Items - Intersection Observer
+        const methodologyItems = document.querySelectorAll('.methodology-item');
+        
+        if (methodologyItems.length > 0) {
+            const animateMethodologyItem = (item) => {
+                const delay = item.getAttribute('data-animation-delay') || '0s';
+                item.style.setProperty('--animation-delay', delay);
+                item.classList.add('animate');
+            };
+
+            // Check if Intersection Observer is supported
+            if ('IntersectionObserver' in window) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px 0px -10% 0px', // Trigger when 90% visible
+                    threshold: 0.1
+                };
+
+                const methodologyObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting && !entry.target.classList.contains('animate')) {
+                            animateMethodologyItem(entry.target);
+                            // Stop observing this element once animated
+                            methodologyObserver.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                // Start observing all methodology items
+                methodologyItems.forEach((item) => {
+                    methodologyObserver.observe(item);
+                });
+            } else {
+                // Fallback: animate immediately if Intersection Observer not supported
+                methodologyItems.forEach((item) => {
+                    animateMethodologyItem(item);
+                });
+            }
+        }
+
+        // Animated Framework Items - Intersection Observer
+        const frameworkItems = document.querySelectorAll('.framework-item');
+        
+        if (frameworkItems.length > 0) {
+            const animateFrameworkItem = (item) => {
+                const delay = item.getAttribute('data-animation-delay') || '0s';
+                item.style.setProperty('--animation-delay', delay);
+                item.classList.add('animate');
+            };
+
+            // Check if Intersection Observer is supported
+            if ('IntersectionObserver' in window) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px 0px -10% 0px', // Trigger when 90% visible
+                    threshold: 0.1
+                };
+
+                const frameworkObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting && !entry.target.classList.contains('animate')) {
+                            animateFrameworkItem(entry.target);
+                            // Stop observing this element once animated
+                            frameworkObserver.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                // Start observing all framework items
+                frameworkItems.forEach((item) => {
+                    frameworkObserver.observe(item);
+                });
+            } else {
+                // Fallback: animate immediately if Intersection Observer not supported
+                frameworkItems.forEach((item) => {
+                    animateFrameworkItem(item);
+                });
+            }
+        }
+
+        // Animated Timeline Items - Intersection Observer
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        
+        if (timelineItems.length > 0) {
+            const animateTimelineItem = (item) => {
+                const delay = item.getAttribute('data-animation-delay') || '0s';
+                item.style.setProperty('--animation-delay', delay);
+                item.classList.add('animate');
+            };
+
+            // Check if Intersection Observer is supported
+            if ('IntersectionObserver' in window) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px 0px -10% 0px', // Trigger when 90% visible
+                    threshold: 0.1
+                };
+
+                const timelineObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting && !entry.target.classList.contains('animate')) {
+                            animateTimelineItem(entry.target);
+                            // Stop observing this element once animated
+                            timelineObserver.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                // Start observing all timeline items
+                timelineItems.forEach((item) => {
+                    timelineObserver.observe(item);
+                });
+            } else {
+                // Fallback: animate immediately if Intersection Observer not supported
+                timelineItems.forEach((item) => {
+                    animateTimelineItem(item);
+                });
+            }
+        }
+
+        // Animated Contact Items - Intersection Observer
+        const contactItems = document.querySelectorAll('.contact-item');
+        
+        if (contactItems.length > 0) {
+            const animateContactItem = (item) => {
+                const delay = item.getAttribute('data-animation-delay') || '0s';
+                item.style.setProperty('--animation-delay', delay);
+                item.classList.add('animate');
+            };
+
+            // Check if Intersection Observer is supported
+            if ('IntersectionObserver' in window) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px 0px -10% 0px', // Trigger when 90% visible
+                    threshold: 0.1
+                };
+
+                const contactObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting && !entry.target.classList.contains('animate')) {
+                            animateContactItem(entry.target);
+                            // Stop observing this element once animated
+                            contactObserver.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                // Start observing all contact items
+                contactItems.forEach((item) => {
+                    contactObserver.observe(item);
+                });
+            } else {
+                // Fallback: animate immediately if Intersection Observer not supported
+                contactItems.forEach((item) => {
+                    animateContactItem(item);
+                });
+            }
+        }
+    });
+
+    // Copy code functionality for code blocks - Global functions
+    window.copyCode = function(button) {
+        const codeBlock = button.closest('.code-block');
+        if (!codeBlock) return;
+        
+        const code = codeBlock.querySelector('code');
+        if (!code) return;
+        
+        const textToCopy = code.textContent;
+        
+        // Use the modern clipboard API if available
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                window.showCopySuccess(button);
+            }).catch(err => {
+                console.error('Failed to copy code: ', err);
+                window.fallbackCopyCode(textToCopy, button);
+            });
+        } else {
+            // Fallback for older browsers
+            window.fallbackCopyCode(textToCopy, button);
+        }
+    };
+    
+    // Fallback copy method for older browsers
+    window.fallbackCopyCode = function(text, button) {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        textArea.style.top = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        
+        try {
+            document.execCommand('copy');
+            window.showCopySuccess(button);
+        } catch (err) {
+            console.error('Failed to copy code: ', err);
+        } finally {
+            document.body.removeChild(textArea);
+        }
+    };
+    
+    // Show copy success feedback
+    window.showCopySuccess = function(button) {
+        const originalIcon = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-check"></i>';
+        button.classList.add('copy-success');
+        
+        setTimeout(() => {
+            button.innerHTML = originalIcon;
+            button.classList.remove('copy-success');
+        }, 2000);
+    };
+</script>
+
+<!-- PERFORMANCE: Load Prism.js only on blog pages with code blocks -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" crossorigin="anonymous"></script>
+
+
+    
+    
+    <!-- PrismJS syntax highlighting scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
+<script>
+    // Initialize PrismJS after DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        // Configure PrismJS autoloader
+        if (typeof Prism !== 'undefined') {
+            Prism.plugins.autoloader.languages_path = 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/';
+            
+            // Add language aliases and custom ColdFusion support
+            if (Prism.languages) {
+                // Create a better ColdFusion language definition
+                Prism.languages.coldfusion = Prism.languages.extend('markup', {
+                    'cf-tag': {
+                        pattern: new RegExp('<\\/?cf+(?:\\s[^>]*)?\\/?>', 'i'),
+                        inside: {
+                            'tag': {
+                                pattern: new RegExp('<\\/?cf+', 'i'),
+                                inside: {
+                                    'punctuation': /^<\/?/,
+                                    'namespace': /^cf/
+                                }
+                            },
+                            'attr-name': {
+                                pattern: new RegExp('(?:|-)+(?=\\s*=)', 'i')
+                            },
+                            'attr-value': {
+                                pattern: new RegExp('=\\s*(?:"[^"]*"|\'[^\']*\'|[^\\s>]+)', 'i'),
+                                inside: {
+                                    'punctuation': [/^=/, new RegExp('^[\'"]|[\'"]$')]
+                                }
+                            },
+                            'punctuation': /\/?>/
+                        }
+                    },
+                    'cf-script': {
+                        pattern: new RegExp('#[^#]*#', ''),
+                        inside: {
+                            'punctuation': /^#|#$/,
+                            'keyword': /\b(?:var|if|else|elseif|for|while|function|return|true|false|null)\b/i,
+                            'string': {
+                                pattern: new RegExp('("|\')\(?:\\\\.|(?!\\1)[^\\\\\\r\\n]\)*\\1', '')
+                            },
+                            'number': {
+                                pattern: new RegExp('\\b0x[\\da-f]+\\b|(?:\\b\\d+\\.?\\d*|\\B\\.\\d+)(?:e[+-]?\\d+)?', 'i')
+                            },
+                            'operator': {
+                                pattern: new RegExp('[<>]=?|[!=]=?=?|--?|\\+\\+?|&&?|\\|\\|?|[?*/~^%]')
+                            },
+                            'punctuation': {
+                                pattern: new RegExp('[{}[];(),.:]+')
+                            }
+                        }
+                    },
+                    'cf-function': {
+                        pattern: new RegExp('\\b\\w*(?=\\s*\\()', ''),
+                        alias: 'function'
+                    }
+                });
+                
+                // Map other CFML variations
+                Prism.languages.cfml = Prism.languages.coldfusion;
+                Prism.languages.cfscript = Prism.languages.javascript;
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

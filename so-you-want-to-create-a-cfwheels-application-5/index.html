@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Shared head section for all layouts -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>So you want to create a CFWheels application? (Part 5)</title>
+<meta name="description" content="Mike Henke - Full-stack web and mobile developer with 15+ years of experience. Specializing in JavaScript, Python, React, and modern web technologies.">
+<meta name="author" content="Mike Henke">
+<meta name="robots" content="index, follow">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="So you want to create a CFWheels application? (Part 5)">
+<meta property="og:description" content="Technical blog about web development by Mike Henke.">
+<meta property="og:url" content="https://mikehenke.com/so-you-want-to-create-a-cfwheels-application-5/">
+<meta property="og:site_name" content="Mike Henke">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="So you want to create a CFWheels application? (Part 5)">
+<meta name="twitter:description" content="Technical blog about web development by Mike Henke.">
+
+
+<!-- PERFORMANCE: DNS prefetch for faster font loading -->
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//fonts.gstatic.com">
+<link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+
+<!-- Preconnect to external domains -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- PERFORMANCE: Critical font loading only -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- PERFORMANCE: Load Font Awesome only if needed -->
+
+<link rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" 
+      crossorigin="anonymous">
+
+
+<!-- PERFORMANCE: Load syntax highlighting only on blog pages -->
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" 
+      rel="stylesheet" crossorigin="anonymous">
+
+
+<!-- Critical CSS first -->
+<link rel="stylesheet" href="/styles.css">
+
+<!-- PERFORMANCE: Load search CSS only on search page -->
+
+
+<!-- Environment indicator (only in staging/dev) -->
+<!-- DEBUG: site.environment = production NODE_ENV = production -->
+
+
+<!-- Favicon -->
+<link rel="icon" href="/favicon.ico">
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Mike Henke's Blog",
+  "url": "https://mikehenke.com/so-you-want-to-create-a-cfwheels-application-5/",
+  "author": {"@type": "Person", "name": "Mike Henke"}
+}
+</script>
+
+
+</head>
+<body>
+    <!-- Skip Navigation Links for Screen Readers -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <a href="#nav-menu" class="skip-link">Skip to navigation</a>
+    
+    
+<!-- Shared navigation for all layouts -->
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar-container">
+        <a href="/" class="navbar-brand" role="banner" aria-label="Mike Henke - Return to homepage">Mike Henke</a>
+        
+        <!-- New Hamburger Menu Toggle -->
+        <button class="navbar-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+            <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+        
+        <ul class="navbar-links" id="nav-menu" role="menubar">
+            <!-- Mobile menu header with close button -->
+            <div class="mobile-menu-header">
+                <span class="menu-brand">Mike Henke</span>
+                <button class="menu-close" aria-label="Close navigation menu">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+            
+            
+    <li><a href="/" role="menuitem"><i class="fas fa-home" aria-hidden="true"></i><span>Home</span></a></li>
+    <li><a href="/#about" role="menuitem"><i class="fas fa-user" aria-hidden="true"></i><span>About</span></a></li>
+    <li><a href="/#skills" role="menuitem"><i class="fas fa-code" aria-hidden="true"></i><span>Skills</span></a></li>
+    <li><a href="/#career" role="menuitem"><i class="fas fa-briefcase" aria-hidden="true"></i><span>Career</span></a></li>
+    <li><a href="/blog/" role="menuitem"><i class="fas fa-blog" aria-hidden="true"></i><span>Blog</span></a></li>
+    <li><a href="/#contact" role="menuitem"><i class="fas fa-envelope" aria-hidden="true"></i><span>Contact</span></a></li>
+    <li><a href="/search/" role="menuitem"><i class="fas fa-search" aria-hidden="true"></i><span>Search</span></a></li>
+
+        </ul>
+    </div>
+    
+    <!-- Mobile overlay -->
+    <div class="nav-overlay"></div>
+</nav>
+
+    
+    <main id="main-content" role="main">
+        <article class="content-section-boxed content-section-top-margin" role="article" data-pagefind-body>
+            <header>
+                <h1 data-pagefind-meta="title">So you want to create a CFWheels application? (Part 5)</h1>
+                
+                
+
+<p class="blog-post-date">
+    <em>Published on 
+        <time datetime="2009-08-11" data-pagefind-meta="date">
+            August 11, 2009
+        </time>
+    </em>
+</p>
+
+
+                
+                
+
+    <div class="blog-post-categories" data-pagefind-meta="categories:cfwheels, ColdFusion">
+        
+            
+                <a href="/category/cfwheels/" 
+                   class="category-tag" 
+                   title="View cfwheels posts">cfwheels</a>
+            
+        
+            
+                <a href="/category/coldfusion/" 
+                   class="category-tag" 
+                   title="View ColdFusion posts">ColdFusion</a>
+            
+        
+    </div>
+
+
+            </header>
+            <hr>
+            <div>
+                <p>This <a href="http://cfwheels.org/">CFWheels</a> series is heavy borrowed from <a href="http://www.nodans.com/">Dan Wilson</a>'s &quot;So You Want to&quot; series about <a href="http://www.model-glue.com/">Model Glue</a>:Unity and matches to this <a href="http://www.nodans.com/index.cfm/2007/1/26/So-you-want-to-create-a-ModelGlueUnity-application--Part-5-." title="post">post</a> Previously in this series, we <a href="http://mikehenke.com/so-you-want-to-install-cfwheels">installed CFWheels</a>, <a href="http://mikehenke.com/so-you-want-to-create-a-cfwheels-application-part-1" title="discussed some concepts">discussed some concepts</a> in CFWheels, <a href="http://mikehenke.com/so-you-want-to-create-a-cfwheels-application-part-2">added our basic flow</a> and navigation, created <a href="http://mikehenke.com/so-you-want-to-create-a-cfwheels-application-part-3" title="add and list our contacts">add and list functionality</a>, and <a href="http://mikehenke.com/so-you-want-to-create-a-cfwheels-application-part-4" title="validation">validation</a> to our Contact-O-Matic Application. Next in the series, we will cover the built in ORM of CFWheels. An <a href="http://en.wikipedia.org/wiki/Object-relational_mapping" title="orm">Object Relation Mapper</a> (ORM) is used to translate between our <a href="http://en.wikipedia.org/wiki/Relational_Database" title="Relational Database">Relational Database</a> and our <a href="http://en.wikipedia.org/wiki/Object_oriented_programming" title="Object Oriented programming">Object Oriented programming</a>. One nice thing, it is simplifies common <a href="http://en.wikipedia.org/wiki/SQL" title="sql">sql</a> statements thus saving us time and reducing sql errors. More complex SQL will still need to be coded. Don't think you won't have to learn SQL, the ORM can't do everything better but it will make the mundane tasks simplier.</p>
+<h3>CFWheel ORM</h3>
+<p>I glossed over some important convention before in our series. CFWheels expects the table name to be plural like contacts, a primary keys in the tables, and the primary key column to be name id. Our Contacts table meets all these. We can override the table name and primary key column name but CFWheels does need a primary key.</p>
+<h3>Database Code</h3>
+<p>Lets drop our old table and create it along with a types table using this code. <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">DROP TABLE IF EXISTS contactomatic.contacts;
+CREATE TABLE &#39;contactomatic&#39;.&#39;contacts&#39; ( &#39;id&#39; INTEGER UNSIGNED NOT NULL AUTO_INCREMENT, &#39;name&#39; VARCHAR(&lt;span class=&quot;cc_numeric&quot;&gt;45) NOT NULL, &#39;typeid&#39; INTEGER UNSIGNED NOT NULL, PRIMARY KEY (&#39;id&#39;) ) ENGINE = InnoDB;</code></pre>
+</div> <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">DROP TABLE IF EXISTS contactomatic.tbl_typesofcontact; CREATE TABLE &#39;contactomatic&#39;.&#39;tbl_typesofcontact&#39; ( &#39;typeid&#39; INTEGER UNSIGNED NOT NULL AUTO_INCREMENT, &#39;title_for_type_of_contact&#39; VARCHAR(&lt;span class=&quot;cc_numeric&quot;&gt;45) NOT NULL, PRIMARY KEY (&#39;typeid&#39;) ) ENGINE = InnoDB;</code></pre>
+</div> <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">INSERT INTO contactomatic.tbl_typesofcontact (title_for_type_of_contact) VALUES(&#39;Friend&#39;);</code></pre>
+</div> <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">INSERT INTO contactomatic.tbl_typesofcontact (title_for_type_of_contact) VALUES(&#39;Enemy&#39;);</code></pre>
+</div> <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">INSERT INTO contactomatic.tbl_typesofcontact (title_for_type_of_contact) VALUES(&#39;Co-Worker&#39;);</code></pre>
+</div></p>
+<h3>Types Model</h3>
+<p>In our /controller/contact.cfc add this code to the <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">new</code></pre>
+</div> action. <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">&lt;cfset types = model(&quot;type&quot;).findAll() /&gt;</code></pre>
+</div> While we are in this file, replace the code in the list action with this: <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">&lt;cfset allContacts = model(&quot;contact&quot;).findAll(include=&quot;type&quot;) /&gt;
+&lt;cfdump var=&quot;#allContacts#&quot;&gt;&lt;cfabort&gt;</code></pre>
+</div> And now lets check our add form. <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">URL Rewriting On = http://localhost/contact/new?reload=true</code></pre>
+</div> <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">URL Rewriting Partial = http://localhost/index.cfm/contact/new?reload=true</code></pre>
+</div> <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">URL Rewriting Off = http://localhost/index.cfm?controller=contact&amp;action=new</code></pre>
+</div> <img src="/so-you-want-to-create-a-cfwheels-application-5/images/cfwheels5_1.jpg" alt="" loading="lazy"></p>
+<h3>Table Naming</h3>
+<p>Well, you can see CFWheels assumes we have a types table since our newly created model cfc's name is type. Our table's name is actually tbl_typesofcontact, we could rename the cfc to tbl_typesofcontact.cfc, but CFWheels convention also says our table name should be plural. Lets tell (configure) CFWheels we already have a table name that doesn't fit in CFWheel's conventions. Add this code to our type.cfc in the models folder. <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">&lt;cffunction name=&quot;init&quot;&gt;
+&lt;cfset table(&quot;tbl_typesofcontact&quot;) /&gt;
+&lt;cfset property(name=&quot;title&quot;, column=&quot;title_for_type_of_contact&quot;) /&gt;
+&lt;/cffunction&gt;</code></pre>
+</div> Ã¿ As you can see, we tell CFWheels our table's actual name. Also we give the long column name, title_for_type_of_contact, a shorter name, title. See how easy it is to override CFWheel's table conventions. It would have been easier if initially our table was named contacttypes and the model cfc contacttype.cfc but sometimes this won't be an option. Reload our page and you should now see our old form but look @ our debug information <img src="/so-you-want-to-create-a-cfwheels-application-5/images/cfwheels5_2.jpg" alt="" loading="lazy"> Notice we have a new query. This was created by the code, <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">&lt;cfset types = model(&quot;type&quot;).findAll() /&gt;</code></pre>
+</div>, we added to our <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">new</code></pre>
+</div> action in /controllers/contact.cfc.</p>
+<h3>Select Helper</h3>
+<p>Lets add our select box populated from this query to our form using a CFWheels helper. Replace in /view/new.cfm <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">&lt;span class=&quot;cc_normaltag&quot;&gt;&lt;div&gt;#textField(objectName=&quot;newContact&quot;, property=&quot;type&quot;, label=&quot;Type&quot;)#&lt;span class=&quot;cc_normaltag&quot;&gt;&lt;/div&gt;</code></pre>
+</div> With <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">&lt;span class=&quot;cc_normaltag&quot;&gt;&lt;div&gt;#select(objectName=&quot;newContact&quot;, property=&quot;typeid&quot;, options=types, label=&quot;Type&quot;, includeBlank=&quot;&quot;)#&lt;span class=&quot;cc_normaltag&quot;&gt;&lt;/div&gt;</code></pre>
+</div> The select helper takes our blank new object, the typeid column (property), the types object, and we add a label of Type. For more information on Helper Forms, look through the code in \wheels\view\forms.cfm. Load the page again, and now you should see the select dop down box. Lets submit the form. <img src="/so-you-want-to-create-a-cfwheels-application-5/images/cfwheels5_4.jpg" alt="" loading="lazy"> Weird, we selected a valid contact type from our new select drop down box, but our validation is catching it. This is because the value the form is submitting is actually the typeid not the title. Well, lets change our validation and add an association to mark typeid as a foreign key. In our model/contact.cfc change the code to match this. <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">&lt;cfcomponent extends=&quot;Model&quot; output=&quot;false&quot;&gt;
+&lt;cffunction name=&quot;init&quot;&gt;
+&lt;cfset validatesPresenceOf(property=&quot;name&quot;,message=&quot;Name is Required&quot;) /&gt;
+&lt;cfset validatesPresenceOf(property=&quot;typeid&quot;,message=&quot;Type of Contact is Required&quot;) /&gt;
+&lt;cfset validatesUniquenessOf(property=&quot;name&quot;, message=&quot;Name is already present&quot;) /&gt;
+&lt;cfset belongsTo(name=&quot;type&quot;, foreignKey=&quot;typeid&quot;)&gt;
+&lt;/cffunction&gt;
+&lt;/cfcomponent&gt;</code></pre>
+</div> We basically made sure the typeid is present instead of type and declared a datebase relationship (association). Following CFWheels convention, we could use <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">&lt;cfset belongTo(&quot;type&quot;)&gt;</code></pre>
+</div> if we followed our CFWheels naming convention for the primary key of a table but instead of id, we have typeid so we need to tell CFWheels. Lets try to submit the form again. <img src="/so-you-want-to-create-a-cfwheels-application-5/images/cfwheels5_5.jpg" alt="" loading="lazy"> We are making progress, looks like the form submitted and executed our cfdump and cfabort in /controllers/contact.cfc</p>
+<h3>Association</h3>
+<p>Here is where our association we set in /models/contact.cfc comes to play. CFWheels ORM joins the tbl_typesofcontact table with the contacts table. This happens because we added the association declaring the foriegn key in our /models/contacts.cfc and in creating the query, we told it to include type. <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">&lt;cfset allContacts = model(&quot;contact&quot;).findAll(include=&quot;type&quot;) /&gt;</code></pre>
+</div> Remove <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">&lt;cfdump var=&quot;#allContacts#&quot;&gt;&lt;cfabort&gt;</code></pre>
+</div> from /controllers/contact.cfc in the list action and reload our list. <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">URL Rewriting On = http://localhost/contact/list?reload=true</code></pre>
+</div> <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">URL Rewriting Partial = http://localhost/index.cfm/contact/list?reload=true</code></pre>
+</div> <div class="code-block">
+  <div class="code-header">
+    <span class="code-language">COLDFUSION</span>
+    <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+  <pre class="line-numbers"><code class="language-coldfusion">URL Rewriting Off = http://localhost/index.cfm?controller=contact&amp;action=list&amp;reload=true</code></pre>
+</div> <img src="/so-you-want-to-create-a-cfwheels-application-5/images/cfwheels5_6.jpg" alt="" loading="lazy"> More on <a href="http://cfwheels.org/docs/chapter/associations">Associations</a> We did alot of work with the built in ORM. You did a good job. Next post, we will cover the return differences between some built in ORM calls and the logic why, how to specify the return columns, specify the where clause, and create advance queries. Hopefully after that, we will cover editing and deleting records.</p>
+
+            </div>
+            <hr>
+            <footer>
+                <p><a href="/blog" class="back-to-blog-link" aria-label="Return to blog listing">← Back to Blog</a></p>
+            </footer>
+            <div id="disqus_thread" role="complementary" aria-label="Comments section"></div>
+            <script>
+                var disqus_config = function () {
+                    this.page.url = "https://mikehenke.com/so-you-want-to-create-a-cfwheels-application-5/";
+                    this.page.identifier = "so-you-want-to-create-a-cfwheels-application-5";
+                };
+                (function() {
+                    var d = document, s = d.createElement('script');
+                    s.src = 'https://mike-henke.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </article>
+    </main>
+    
+    
+
+
+<footer role="contentinfo" class="site-footer">
+    <div class="footer-content">
+        
+        <nav class="footer-nav" aria-label="Footer navigation">
+            
+    <a href="/" class="footer-link">Home</a>
+    <a href="/#about" class="footer-link">About</a>
+    <a href="/#skills" class="footer-link">Skills</a>
+    <a href="/#career" class="footer-link">Career</a>
+    <a href="/blog/" class="footer-link">Blog</a>
+    <a href="/#contact" class="footer-link">Contact</a>
+    <a href="/search/" class="footer-link">Search</a>
+
+        </nav>
+        
+        <p>&copy; 2025 Mike Henke. All Rights Reserved.</p>
+    </div>
+</footer>
+
+    
+    
+    <!-- Core scripts needed on all pages -->
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        // New Mobile Navigation Toggle
+        const navToggle = document.querySelector('.navbar-toggle');
+        const navLinks = document.querySelector('.navbar-links');
+        const navOverlay = document.querySelector('.nav-overlay');
+        const menuClose = document.querySelector('.menu-close');
+        
+        if (navToggle && navLinks) {
+            // Store scroll position for restoration
+            let scrollPosition = 0;
+
+            function openMobileMenu() {
+                scrollPosition = window.pageYOffset;
+                navToggle.setAttribute('aria-expanded', 'true');
+                navLinks.classList.add('active');
+                navToggle.classList.add('active');
+                if (navOverlay) {
+                    navOverlay.classList.add('active');
+                }
+                document.body.classList.add('nav-open');
+                document.body.style.top = `-${scrollPosition}px`;
+            }
+
+            function closeMobileMenu() {
+                navLinks.classList.remove('active');
+                navToggle.classList.remove('active');
+                navToggle.setAttribute('aria-expanded', 'false');
+                if (navOverlay) {
+                    navOverlay.classList.remove('active');
+                }
+                document.body.classList.remove('nav-open');
+                document.body.style.top = '';
+                if (scrollPosition) {
+                    window.scrollTo(0, scrollPosition);
+                    scrollPosition = 0;
+                }
+            }
+
+            // Hamburger menu toggle
+            navToggle.addEventListener('click', () => {
+                const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+                
+                if (!isExpanded) {
+                    openMobileMenu();
+                } else {
+                    closeMobileMenu();
+                }
+            });
+
+            // Close button in mobile menu
+            if (menuClose) {
+                menuClose.addEventListener('click', () => {
+                    closeMobileMenu();
+                });
+            }
+
+            // Close mobile menu when clicking on a nav link
+            const navLinkItems = navLinks.querySelectorAll('a');
+            navLinkItems.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth < 768) {
+                        closeMobileMenu();
+                    }
+                });
+            });
+
+            // Close mobile menu when clicking on overlay
+            if (navOverlay) {
+                navOverlay.addEventListener('click', () => {
+                    closeMobileMenu();
+                });
+            }
+
+            // Close mobile menu when pressing Escape key
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && navLinks.classList.contains('active')) {
+                    closeMobileMenu();
+                }
+            });
+
+            // Handle window resize - close mobile menu if switching to desktop
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 768) {
+                    closeMobileMenu();
+                }
+            });
+        }
+
+        // Animated Progress Bars - Intersection Observer
+        const progressBars = document.querySelectorAll('.progress-bar');
+        
+        if (progressBars.length > 0) {
+            const animateProgressBar = (progressBar) => {
+                const targetWidth = progressBar.getAttribute('data-width');
+                const span = progressBar.querySelector('span');
+                
+                if (span && targetWidth) {
+                    // Add animate class to enable transitions
+                    progressBar.classList.add('animate');
+                    
+                    // Set the CSS custom property and animate
+                    progressBar.style.setProperty('--progress-width', targetWidth + '%');
+                    
+                    // Set the target width after a small delay to trigger animation
+                    setTimeout(() => {
+                        span.style.width = targetWidth + '%';
+                    }, 50);
+                }
+            };
+
+            // Check if Intersection Observer is supported
+            if ('IntersectionObserver' in window) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px 0px -10% 0px', // Trigger when 90% visible
+                    threshold: 0.1
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting && !entry.target.classList.contains('animate')) {
+                            animateProgressBar(entry.target);
+                            // Stop observing this element once animated
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                // Start observing all progress bars
+                progressBars.forEach((progressBar) => {
+                    observer.observe(progressBar);
+                });
+            } else {
+                // Fallback: animate immediately if Intersection Observer not supported
+                progressBars.forEach((progressBar) => {
+                    animateProgressBar(progressBar);
+                });
+            }
+        }
+
+        // Animated Methodology Items - Intersection Observer
+        const methodologyItems = document.querySelectorAll('.methodology-item');
+        
+        if (methodologyItems.length > 0) {
+            const animateMethodologyItem = (item) => {
+                const delay = item.getAttribute('data-animation-delay') || '0s';
+                item.style.setProperty('--animation-delay', delay);
+                item.classList.add('animate');
+            };
+
+            // Check if Intersection Observer is supported
+            if ('IntersectionObserver' in window) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px 0px -10% 0px', // Trigger when 90% visible
+                    threshold: 0.1
+                };
+
+                const methodologyObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting && !entry.target.classList.contains('animate')) {
+                            animateMethodologyItem(entry.target);
+                            // Stop observing this element once animated
+                            methodologyObserver.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                // Start observing all methodology items
+                methodologyItems.forEach((item) => {
+                    methodologyObserver.observe(item);
+                });
+            } else {
+                // Fallback: animate immediately if Intersection Observer not supported
+                methodologyItems.forEach((item) => {
+                    animateMethodologyItem(item);
+                });
+            }
+        }
+
+        // Animated Framework Items - Intersection Observer
+        const frameworkItems = document.querySelectorAll('.framework-item');
+        
+        if (frameworkItems.length > 0) {
+            const animateFrameworkItem = (item) => {
+                const delay = item.getAttribute('data-animation-delay') || '0s';
+                item.style.setProperty('--animation-delay', delay);
+                item.classList.add('animate');
+            };
+
+            // Check if Intersection Observer is supported
+            if ('IntersectionObserver' in window) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px 0px -10% 0px', // Trigger when 90% visible
+                    threshold: 0.1
+                };
+
+                const frameworkObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting && !entry.target.classList.contains('animate')) {
+                            animateFrameworkItem(entry.target);
+                            // Stop observing this element once animated
+                            frameworkObserver.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                // Start observing all framework items
+                frameworkItems.forEach((item) => {
+                    frameworkObserver.observe(item);
+                });
+            } else {
+                // Fallback: animate immediately if Intersection Observer not supported
+                frameworkItems.forEach((item) => {
+                    animateFrameworkItem(item);
+                });
+            }
+        }
+
+        // Animated Timeline Items - Intersection Observer
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        
+        if (timelineItems.length > 0) {
+            const animateTimelineItem = (item) => {
+                const delay = item.getAttribute('data-animation-delay') || '0s';
+                item.style.setProperty('--animation-delay', delay);
+                item.classList.add('animate');
+            };
+
+            // Check if Intersection Observer is supported
+            if ('IntersectionObserver' in window) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px 0px -10% 0px', // Trigger when 90% visible
+                    threshold: 0.1
+                };
+
+                const timelineObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting && !entry.target.classList.contains('animate')) {
+                            animateTimelineItem(entry.target);
+                            // Stop observing this element once animated
+                            timelineObserver.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                // Start observing all timeline items
+                timelineItems.forEach((item) => {
+                    timelineObserver.observe(item);
+                });
+            } else {
+                // Fallback: animate immediately if Intersection Observer not supported
+                timelineItems.forEach((item) => {
+                    animateTimelineItem(item);
+                });
+            }
+        }
+
+        // Animated Contact Items - Intersection Observer
+        const contactItems = document.querySelectorAll('.contact-item');
+        
+        if (contactItems.length > 0) {
+            const animateContactItem = (item) => {
+                const delay = item.getAttribute('data-animation-delay') || '0s';
+                item.style.setProperty('--animation-delay', delay);
+                item.classList.add('animate');
+            };
+
+            // Check if Intersection Observer is supported
+            if ('IntersectionObserver' in window) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px 0px -10% 0px', // Trigger when 90% visible
+                    threshold: 0.1
+                };
+
+                const contactObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting && !entry.target.classList.contains('animate')) {
+                            animateContactItem(entry.target);
+                            // Stop observing this element once animated
+                            contactObserver.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                // Start observing all contact items
+                contactItems.forEach((item) => {
+                    contactObserver.observe(item);
+                });
+            } else {
+                // Fallback: animate immediately if Intersection Observer not supported
+                contactItems.forEach((item) => {
+                    animateContactItem(item);
+                });
+            }
+        }
+    });
+
+    // Copy code functionality for code blocks - Global functions
+    window.copyCode = function(button) {
+        const codeBlock = button.closest('.code-block');
+        if (!codeBlock) return;
+        
+        const code = codeBlock.querySelector('code');
+        if (!code) return;
+        
+        const textToCopy = code.textContent;
+        
+        // Use the modern clipboard API if available
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                window.showCopySuccess(button);
+            }).catch(err => {
+                console.error('Failed to copy code: ', err);
+                window.fallbackCopyCode(textToCopy, button);
+            });
+        } else {
+            // Fallback for older browsers
+            window.fallbackCopyCode(textToCopy, button);
+        }
+    };
+    
+    // Fallback copy method for older browsers
+    window.fallbackCopyCode = function(text, button) {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        textArea.style.top = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        
+        try {
+            document.execCommand('copy');
+            window.showCopySuccess(button);
+        } catch (err) {
+            console.error('Failed to copy code: ', err);
+        } finally {
+            document.body.removeChild(textArea);
+        }
+    };
+    
+    // Show copy success feedback
+    window.showCopySuccess = function(button) {
+        const originalIcon = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-check"></i>';
+        button.classList.add('copy-success');
+        
+        setTimeout(() => {
+            button.innerHTML = originalIcon;
+            button.classList.remove('copy-success');
+        }, 2000);
+    };
+</script>
+
+<!-- PERFORMANCE: Load Prism.js only on blog pages with code blocks -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" crossorigin="anonymous"></script>
+
+
+    
+    
+    <!-- PrismJS syntax highlighting scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
+<script>
+    // Initialize PrismJS after DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        // Configure PrismJS autoloader
+        if (typeof Prism !== 'undefined') {
+            Prism.plugins.autoloader.languages_path = 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/';
+            
+            // Add language aliases and custom ColdFusion support
+            if (Prism.languages) {
+                // Create a better ColdFusion language definition
+                Prism.languages.coldfusion = Prism.languages.extend('markup', {
+                    'cf-tag': {
+                        pattern: new RegExp('<\\/?cf+(?:\\s[^>]*)?\\/?>', 'i'),
+                        inside: {
+                            'tag': {
+                                pattern: new RegExp('<\\/?cf+', 'i'),
+                                inside: {
+                                    'punctuation': /^<\/?/,
+                                    'namespace': /^cf/
+                                }
+                            },
+                            'attr-name': {
+                                pattern: new RegExp('(?:|-)+(?=\\s*=)', 'i')
+                            },
+                            'attr-value': {
+                                pattern: new RegExp('=\\s*(?:"[^"]*"|\'[^\']*\'|[^\\s>]+)', 'i'),
+                                inside: {
+                                    'punctuation': [/^=/, new RegExp('^[\'"]|[\'"]$')]
+                                }
+                            },
+                            'punctuation': /\/?>/
+                        }
+                    },
+                    'cf-script': {
+                        pattern: new RegExp('#[^#]*#', ''),
+                        inside: {
+                            'punctuation': /^#|#$/,
+                            'keyword': /\b(?:var|if|else|elseif|for|while|function|return|true|false|null)\b/i,
+                            'string': {
+                                pattern: new RegExp('("|\')\(?:\\\\.|(?!\\1)[^\\\\\\r\\n]\)*\\1', '')
+                            },
+                            'number': {
+                                pattern: new RegExp('\\b0x[\\da-f]+\\b|(?:\\b\\d+\\.?\\d*|\\B\\.\\d+)(?:e[+-]?\\d+)?', 'i')
+                            },
+                            'operator': {
+                                pattern: new RegExp('[<>]=?|[!=]=?=?|--?|\\+\\+?|&&?|\\|\\|?|[?*/~^%]')
+                            },
+                            'punctuation': {
+                                pattern: new RegExp('[{}[];(),.:]+')
+                            }
+                        }
+                    },
+                    'cf-function': {
+                        pattern: new RegExp('\\b\\w*(?=\\s*\\()', ''),
+                        alias: 'function'
+                    }
+                });
+                
+                // Map other CFML variations
+                Prism.languages.cfml = Prism.languages.coldfusion;
+                Prism.languages.cfscript = Prism.languages.javascript;
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

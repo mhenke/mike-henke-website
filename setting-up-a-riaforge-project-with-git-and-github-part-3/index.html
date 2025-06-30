@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Shared head section for all layouts -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Setting Up a Riaforge Project with Git and GitHub (Part 3)</title>
+<meta name="description" content="Mike Henke - Full-stack web and mobile developer with 15+ years of experience. Specializing in JavaScript, Python, React, and modern web technologies.">
+<meta name="author" content="Mike Henke">
+<meta name="robots" content="index, follow">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Setting Up a Riaforge Project with Git and GitHub (Part 3)">
+<meta property="og:description" content="Technical blog about web development by Mike Henke.">
+<meta property="og:url" content="https://mikehenke.com/setting-up-a-riaforge-project-with-git-and-github-part-3/">
+<meta property="og:site_name" content="Mike Henke">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Setting Up a Riaforge Project with Git and GitHub (Part 3)">
+<meta name="twitter:description" content="Technical blog about web development by Mike Henke.">
+
+
+<!-- PERFORMANCE: DNS prefetch for faster font loading -->
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//fonts.gstatic.com">
+<link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+
+<!-- Preconnect to external domains -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- PERFORMANCE: Critical font loading only -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- PERFORMANCE: Load Font Awesome only if needed -->
+
+<link rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" 
+      crossorigin="anonymous">
+
+
+<!-- PERFORMANCE: Load syntax highlighting only on blog pages -->
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" 
+      rel="stylesheet" crossorigin="anonymous">
+
+
+<!-- Critical CSS first -->
+<link rel="stylesheet" href="/styles.css">
+
+<!-- PERFORMANCE: Load search CSS only on search page -->
+
+
+<!-- Environment indicator (only in staging/dev) -->
+<!-- DEBUG: site.environment = production NODE_ENV = production -->
+
+
+<!-- Favicon -->
+<link rel="icon" href="/favicon.ico">
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Mike Henke's Blog",
+  "url": "https://mikehenke.com/setting-up-a-riaforge-project-with-git-and-github-part-3/",
+  "author": {"@type": "Person", "name": "Mike Henke"}
+}
+</script>
+
+
+</head>
+<body>
+    <!-- Skip Navigation Links for Screen Readers -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <a href="#nav-menu" class="skip-link">Skip to navigation</a>
+    
+    
+<!-- Shared navigation for all layouts -->
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar-container">
+        <a href="/" class="navbar-brand" role="banner" aria-label="Mike Henke - Return to homepage">Mike Henke</a>
+        
+        <!-- New Hamburger Menu Toggle -->
+        <button class="navbar-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+            <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+        
+        <ul class="navbar-links" id="nav-menu" role="menubar">
+            <!-- Mobile menu header with close button -->
+            <div class="mobile-menu-header">
+                <span class="menu-brand">Mike Henke</span>
+                <button class="menu-close" aria-label="Close navigation menu">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+            
+            
+    <li><a href="/" role="menuitem"><i class="fas fa-home" aria-hidden="true"></i><span>Home</span></a></li>
+    <li><a href="/#about" role="menuitem"><i class="fas fa-user" aria-hidden="true"></i><span>About</span></a></li>
+    <li><a href="/#skills" role="menuitem"><i class="fas fa-code" aria-hidden="true"></i><span>Skills</span></a></li>
+    <li><a href="/#career" role="menuitem"><i class="fas fa-briefcase" aria-hidden="true"></i><span>Career</span></a></li>
+    <li><a href="/blog/" role="menuitem"><i class="fas fa-blog" aria-hidden="true"></i><span>Blog</span></a></li>
+    <li><a href="/#contact" role="menuitem"><i class="fas fa-envelope" aria-hidden="true"></i><span>Contact</span></a></li>
+    <li><a href="/search/" role="menuitem"><i class="fas fa-search" aria-hidden="true"></i><span>Search</span></a></li>
+
+        </ul>
+    </div>
+    
+    <!-- Mobile overlay -->
+    <div class="nav-overlay"></div>
+</nav>
+
+    
+    <main id="main-content" role="main">
+        <article class="content-section-boxed content-section-top-margin" role="article" data-pagefind-body>
+            <header>
+                <h1 data-pagefind-meta="title">Setting Up a Riaforge Project with Git and GitHub (Part 3)</h1>
+                
+                
+
+<p class="blog-post-date">
+    <em>Published on 
+        <time datetime="2009-10-20" data-pagefind-meta="date">
+            October 20, 2009
+        </time>
+    </em>
+</p>
+
+
+                
+                
+
+    <div class="blog-post-categories" data-pagefind-meta="categories:CFEclipse, ColdFusion, coldfusion-builder, Eclipse, git">
+        
+            
+                <a href="/category/cfeclipse/" 
+                   class="category-tag" 
+                   title="View CFEclipse posts">CFEclipse</a>
+            
+        
+            
+                <a href="/category/coldfusion/" 
+                   class="category-tag" 
+                   title="View ColdFusion posts">ColdFusion</a>
+            
+        
+            
+                <a href="/category/coldfusion-builder/" 
+                   class="category-tag" 
+                   title="View coldfusion-builder posts">coldfusion-builder</a>
+            
+        
+            
+                <a href="/category/eclipse/" 
+                   class="category-tag" 
+                   title="View Eclipse posts">Eclipse</a>
+            
+        
+            
+                <a href="/category/git/" 
+                   class="category-tag" 
+                   title="View git posts">git</a>
+            
+        
+    </div>
+
+
+            </header>
+            <hr>
+            <div>
+                <p>This is a 4 part series over <a href="http://git-scm.com/">Git</a> and <a href="http://github.com/">GitHub</a> with <a href="http://www.riaforge.org/">Riaforge</a>. So far we <a href="/setting-up-a-riaforge-projects-with-git-and-github-part-1">installed some software</a>, <a href="/setting-up-a-riaforge-projects-with-git-and-github-part-2">registered for a free GitHub account, created a repository, and cloned it</a>.</p>
+<p>Lets demonstrate the power of GitHub, anyone can make contributes to a project on GitHub. We will be using <a href="http://cfwheels.org/">CWheels</a> on GitHub to create a fork and send a pull request of our changes to CFWheels.</p>
+<h3>Forking Bad, Think Again</h3>
+<p><a href="http://en.wikipedia.org/wiki/Fork_%28software_development%29">Forking</a>? You may thing forking is bad. Recently, <a href="http://cfhour.com/">CFHour()</a> podcast even mentioned that forking isn't good but they are wrong. They are likely using a source control system that makes branching and forking difficult. Forking in git is encouraged. Git makes it easy to merge forks whenever.</p>
+<h3>Forking made easy</h3>
+<p>Log into GitHub with your username and password, then go to CFWheels on GitHub (<a href="http://github.com/rip747/CFWheels">http://github.com/rip747/CFWheels</a>). You will notice this page is slightly different then the repository home page we created. This has only a public clone url and a fork button. Click on that fork button. <img src="/setting-up-a-riaforge-project-with-git-and-github-part-3/images/git3pic12.jpg" alt="" loading="lazy"> In a couple seconds, you should have your own CFWheels fork. When completed, notice CFWheels is now under your name (my example is <a href="http://github.com/mhenke/CFWheels">http://github.com/mhenke/CFWheels</a>) Copy your new clone url. Mine is git@github.com:mhenke/cfwheels.git, yours should be similar.</p>
+<h3>Set Up</h3>
+<p>We will start with a fresh local ColdFusion multi server instance to place the code in. Also please have everything working from the previous posts.</p>
+<h3>Cloning our CFWheels Fork</h3>
+<p>We cloned a newly create GitHub repository through the command prompt in the <a href="/setting-up-a-riaforge-projects-with-git-and-github-part-2">last post</a> but we also installed two other git clients. One integrating with Eclipse, <a href="http://www.eclipse.org/egit/">eGit</a>, and the other with Windows Explorer, <a href="http://code.google.com/p/tortoisegit/">TortoiseGit</a> (TG).</p>
+<p>Navigate to your webroot (mine is C:\JRun4\servers\CFWheels\cfusion.ear\cfusion.war ) and right click on the folder or inside the folder to create the git repository. This screenshot is the former and shows how TG is integrated into Windows Explorer. Select &quot;Git Create repository here&quot;</p>
+<p><img src="/setting-up-a-riaforge-project-with-git-and-github-part-3/images/git3pic1.jpg" alt="" loading="lazy"></p>
+<p>As you have noticed, a folder called .git has been created. If using the command prompt, we would have navigated into the folder and run &quot;git init&quot;.</p>
+<h3>Adding A Remote</h3>
+<p>Now we will tell this git instance about our CFWheels fork on GitHub by adding a remote reference. If using the command prompt, we would run &quot;git remote add origin git://git@github.com:mhenke/cfwheels.git&quot; within our webroot. Using TG, right click in the webroot, select TortoiseGit --&gt; Settings.</p>
+<p><img src="/setting-up-a-riaforge-project-with-git-and-github-part-3/images/git3pic2.jpg" alt="" loading="lazy"></p>
+<p>Then in the dialog box, select Remote under Git, press &quot;Add New&quot;, and paste in our CFWheels fork url we copied previously, click &quot;Apply&quot;, then &quot;Ok&quot;.</p>
+<p><img src="/setting-up-a-riaforge-project-with-git-and-github-part-3/images/git3pic3.jpg" alt="" loading="lazy"></p>
+<h3>Fetching our CFWheels Fork</h3>
+<p>Now we will do a fetch. Git has three commands dealing with remote repositories. Push and Fetch are opposites and do what the sound like. Pull actually does a Fetch plus a merge. Committing is only to our local repository.</p>
+<p>Right-click in the webroot and select Fetch. A dialog box should appear and select OK.</p>
+<p><img src="/setting-up-a-riaforge-project-with-git-and-github-part-3/images/git3pic4.jpg" alt="" loading="lazy"></p>
+<p>We could have created our remote with the &quot;Manage Remotes&quot; on the fetch dialog box. Close the Git Command Progress dialog window, but notice the git command for the command prompt. TG actually created two branches also.</p>
+<p><img src="/setting-up-a-riaforge-project-with-git-and-github-part-3/images/git3pic5.jpg" alt="" loading="lazy"></p>
+<p>You may be disappointed when you check the webroot since no files were created. We actually have to tell git what branch to switch/checkout. Right click in our webroot folder and select TortoiseGit --&gt; Switch/Checkout.</p>
+<p><img src="/setting-up-a-riaforge-project-with-git-and-github-part-3/images/git3pic6.jpg" alt="" loading="lazy"></p>
+<p>Make sure to use the master branch and press Ok. Now we have files to work with.</p>
+<p><img src="/setting-up-a-riaforge-project-with-git-and-github-part-3/images/git3pic6b.jpg" alt="" loading="lazy"></p>
+<h3>Setting up eGit</h3>
+<p>We have to create a symbolic link used by eGit to .ssh called ssh. If you are using Vista, open the command prompt and navigate to the folder containing the .ssh folder you created in Part 2 (mine is &quot;C:\Users\Owner\&quot;). Run this command &quot;mklink /D ssh .ssh&quot;. If you are using XP, download this program &quot;<a href="http://www.softpedia.com/get/System/System-Miscellaneous/Junction-Link-Magic.shtml">Junction Link Magic 1.0</a>&quot; and create a link to .ssh from ssh.</p>
+<h3>Setting up a global ignore</h3>
+<p>Let's add an global ignore file before making changes. I placed mine in C:\JRun4\servers . In the command prompt, navigate to our CFWheels webroot with the git repository. Run &quot;git status&quot;. Notice the untracked files, these are files we don't want to add to the repository and aren't staged yet. Any changes need to be staged to be committed. This is different from SVN since if we modify a file and commit it would get commit to the SVN repository. Git has an extra space called stage. This is nice if we want to customize our commit. <img src="/setting-up-a-riaforge-project-with-git-and-github-part-3/images/git3pic8.jpg" alt="" loading="lazy"> My .gitignore files contains this: # Ignore these folders and sub content<br>
+CFIDE/*</p>
+<p>META-INF/*</p>
+<p>WEB-INF/*</p>
+<p># Ignore all dotfiles...<br>
+.*</p>
+<p># except for .gitignore<br>
+!.gitignore /.*/*<br>
+So let's add the global exclude file by running git config --global core.excludesfile &quot;C:\JRun4\servers\.gitignore&quot;. In the command prompt, do another &quot;git status&quot;, notice only one file is shown as untracked. If we wanted to commit that file, we would &quot;git add settings.xml&quot; and it would be tracked but still not staged.</p>
+<p><img src="/setting-up-a-riaforge-project-with-git-and-github-part-3/images/git3pic9.jpg" alt="" loading="lazy"></p>
+<h3>Make an Awesome Contribution</h3>
+<p>With that done, open Eclipse, create a project to our CFWheels webroot. Then right-click on the project and select Team --&gt; Share Project. In the Share Project dialog box, select Git, then our CFWheel repository, and click Finish. You can now make commits to our local repository by right clicking on the project folder, selecting Team, then Commit. When we want to push to our remote repository on GitHub, right click on the project folder, select Team, then Push To.</p>
+<h3>Push To Walkthrough</h3>
+<p><img src="/setting-up-a-riaforge-project-with-git-and-github-part-3/images/git3pic10.jpg" alt="" loading="lazy"></p>
+<p>Select Next and Yes a couple times on the SS2 Messages. Usually, I push &quot;Add all bracnhes spec&quot; but some reason, it didn't work this time so I selected items from source ref and destination ref, clicked add spec. and then Finish. <img src="/setting-up-a-riaforge-project-with-git-and-github-part-3/images/git3pic11.jpg" alt="" loading="lazy"></p>
+<p>I am going to wrap this post up. You can see my awesome contribute here <a href="http://github.com/mhenke/cfwheels/commits/master">http://github.com/mhenke/cfwheels/commits/master</a>. Next I would click on the pull request button on my CFWheels fork page to notify CFWheels about the changes.</p>
+<h3>Screencasts and Videos to Watch</h3>
+<p><a href="http://www.teachmetocode.com/screencasts/5">Getting started with GitHub (Teach Me To Code)</a> <a href="http://gitcasts.com/">GitCasts</a> <a href="http://www.pragprog.com/screencasts/v-scgithub/insider-guide-to-github">Insider Guide to GitHub screencasts with Scott Chacon</a></p>
+
+            </div>
+            <hr>
+            <footer>
+                <p><a href="/blog" class="back-to-blog-link" aria-label="Return to blog listing">← Back to Blog</a></p>
+            </footer>
+            <div id="disqus_thread" role="complementary" aria-label="Comments section"></div>
+            <script>
+                var disqus_config = function () {
+                    this.page.url = "https://mikehenke.com/setting-up-a-riaforge-project-with-git-and-github-part-3/";
+                    this.page.identifier = "setting-up-a-riaforge-project-with-git-and-github-part-3";
+                };
+                (function() {
+                    var d = document, s = d.createElement('script');
+                    s.src = 'https://mike-henke.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </article>
+    </main>
+    
+    
+
+
+<footer role="contentinfo" class="site-footer">
+    <div class="footer-content">
+        
+        <nav class="footer-nav" aria-label="Footer navigation">
+            
+    <a href="/" class="footer-link">Home</a>
+    <a href="/#about" class="footer-link">About</a>
+    <a href="/#skills" class="footer-link">Skills</a>
+    <a href="/#career" class="footer-link">Career</a>
+    <a href="/blog/" class="footer-link">Blog</a>
+    <a href="/#contact" class="footer-link">Contact</a>
+    <a href="/search/" class="footer-link">Search</a>
+
+        </nav>
+        
+        <p>&copy; 2025 Mike Henke. All Rights Reserved.</p>
+    </div>
+</footer>
+
+    
+    
+    <!-- Core scripts needed on all pages -->
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        // New Mobile Navigation Toggle
+        const navToggle = document.querySelector('.navbar-toggle');
+        const navLinks = document.querySelector('.navbar-links');
+        const navOverlay = document.querySelector('.nav-overlay');
+        const menuClose = document.querySelector('.menu-close');
+        
+        if (navToggle && navLinks) {
+            // Store scroll position for restoration
+            let scrollPosition = 0;
+
+            function openMobileMenu() {
+                scrollPosition = window.pageYOffset;
+                navToggle.setAttribute('aria-expanded', 'true');
+                navLinks.classList.add('active');
+                navToggle.classList.add('active');
+                if (navOverlay) {
+                    navOverlay.classList.add('active');
+                }
+                document.body.classList.add('nav-open');
+                document.body.style.top = `-${scrollPosition}px`;
+            }
+
+            function closeMobileMenu() {
+                navLinks.classList.remove('active');
+                navToggle.classList.remove('active');
+                navToggle.setAttribute('aria-expanded', 'false');
+                if (navOverlay) {
+                    navOverlay.classList.remove('active');
+                }
+                document.body.classList.remove('nav-open');
+                document.body.style.top = '';
+                if (scrollPosition) {
+                    window.scrollTo(0, scrollPosition);
+                    scrollPosition = 0;
+                }
+            }
+
+            // Hamburger menu toggle
+            navToggle.addEventListener('click', () => {
+                const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+                
+                if (!isExpanded) {
+                    openMobileMenu();
+                } else {
+                    closeMobileMenu();
+                }
+            });
+
+            // Close button in mobile menu
+            if (menuClose) {
+                menuClose.addEventListener('click', () => {
+                    closeMobileMenu();
+                });
+            }
+
+            // Close mobile menu when clicking on a nav link
+            const navLinkItems = navLinks.querySelectorAll('a');
+            navLinkItems.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth < 768) {
+                        closeMobileMenu();
+                    }
+                });
+            });
+
+            // Close mobile menu when clicking on overlay
+            if (navOverlay) {
+                navOverlay.addEventListener('click', () => {
+                    closeMobileMenu();
+                });
+            }
+
+            // Close mobile menu when pressing Escape key
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && navLinks.classList.contains('active')) {
+                    closeMobileMenu();
+                }
+            });
+
+            // Handle window resize - close mobile menu if switching to desktop
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 768) {
+                    closeMobileMenu();
+                }
+            });
+        }
+
+        // Animated Progress Bars - Intersection Observer
+        const progressBars = document.querySelectorAll('.progress-bar');
+        
+        if (progressBars.length > 0) {
+            const animateProgressBar = (progressBar) => {
+                const targetWidth = progressBar.getAttribute('data-width');
+                const span = progressBar.querySelector('span');
+                
+                if (span && targetWidth) {
+                    // Add animate class to enable transitions
+                    progressBar.classList.add('animate');
+                    
+                    // Set the CSS custom property and animate
+                    progressBar.style.setProperty('--progress-width', targetWidth + '%');
+                    
+                    // Set the target width after a small delay to trigger animation
+                    setTimeout(() => {
+                        span.style.width = targetWidth + '%';
+                    }, 50);
+                }
+            };
+
+            // Check if Intersection Observer is supported
+            if ('IntersectionObserver' in window) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px 0px -10% 0px', // Trigger when 90% visible
+                    threshold: 0.1
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting && !entry.target.classList.contains('animate')) {
+                            animateProgressBar(entry.target);
+                            // Stop observing this element once animated
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                // Start observing all progress bars
+                progressBars.forEach((progressBar) => {
+                    observer.observe(progressBar);
+                });
+            } else {
+                // Fallback: animate immediately if Intersection Observer not supported
+                progressBars.forEach((progressBar) => {
+                    animateProgressBar(progressBar);
+                });
+            }
+        }
+
+        // Animated Methodology Items - Intersection Observer
+        const methodologyItems = document.querySelectorAll('.methodology-item');
+        
+        if (methodologyItems.length > 0) {
+            const animateMethodologyItem = (item) => {
+                const delay = item.getAttribute('data-animation-delay') || '0s';
+                item.style.setProperty('--animation-delay', delay);
+                item.classList.add('animate');
+            };
+
+            // Check if Intersection Observer is supported
+            if ('IntersectionObserver' in window) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px 0px -10% 0px', // Trigger when 90% visible
+                    threshold: 0.1
+                };
+
+                const methodologyObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting && !entry.target.classList.contains('animate')) {
+                            animateMethodologyItem(entry.target);
+                            // Stop observing this element once animated
+                            methodologyObserver.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                // Start observing all methodology items
+                methodologyItems.forEach((item) => {
+                    methodologyObserver.observe(item);
+                });
+            } else {
+                // Fallback: animate immediately if Intersection Observer not supported
+                methodologyItems.forEach((item) => {
+                    animateMethodologyItem(item);
+                });
+            }
+        }
+
+        // Animated Framework Items - Intersection Observer
+        const frameworkItems = document.querySelectorAll('.framework-item');
+        
+        if (frameworkItems.length > 0) {
+            const animateFrameworkItem = (item) => {
+                const delay = item.getAttribute('data-animation-delay') || '0s';
+                item.style.setProperty('--animation-delay', delay);
+                item.classList.add('animate');
+            };
+
+            // Check if Intersection Observer is supported
+            if ('IntersectionObserver' in window) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px 0px -10% 0px', // Trigger when 90% visible
+                    threshold: 0.1
+                };
+
+                const frameworkObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting && !entry.target.classList.contains('animate')) {
+                            animateFrameworkItem(entry.target);
+                            // Stop observing this element once animated
+                            frameworkObserver.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                // Start observing all framework items
+                frameworkItems.forEach((item) => {
+                    frameworkObserver.observe(item);
+                });
+            } else {
+                // Fallback: animate immediately if Intersection Observer not supported
+                frameworkItems.forEach((item) => {
+                    animateFrameworkItem(item);
+                });
+            }
+        }
+
+        // Animated Timeline Items - Intersection Observer
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        
+        if (timelineItems.length > 0) {
+            const animateTimelineItem = (item) => {
+                const delay = item.getAttribute('data-animation-delay') || '0s';
+                item.style.setProperty('--animation-delay', delay);
+                item.classList.add('animate');
+            };
+
+            // Check if Intersection Observer is supported
+            if ('IntersectionObserver' in window) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px 0px -10% 0px', // Trigger when 90% visible
+                    threshold: 0.1
+                };
+
+                const timelineObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting && !entry.target.classList.contains('animate')) {
+                            animateTimelineItem(entry.target);
+                            // Stop observing this element once animated
+                            timelineObserver.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                // Start observing all timeline items
+                timelineItems.forEach((item) => {
+                    timelineObserver.observe(item);
+                });
+            } else {
+                // Fallback: animate immediately if Intersection Observer not supported
+                timelineItems.forEach((item) => {
+                    animateTimelineItem(item);
+                });
+            }
+        }
+
+        // Animated Contact Items - Intersection Observer
+        const contactItems = document.querySelectorAll('.contact-item');
+        
+        if (contactItems.length > 0) {
+            const animateContactItem = (item) => {
+                const delay = item.getAttribute('data-animation-delay') || '0s';
+                item.style.setProperty('--animation-delay', delay);
+                item.classList.add('animate');
+            };
+
+            // Check if Intersection Observer is supported
+            if ('IntersectionObserver' in window) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px 0px -10% 0px', // Trigger when 90% visible
+                    threshold: 0.1
+                };
+
+                const contactObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting && !entry.target.classList.contains('animate')) {
+                            animateContactItem(entry.target);
+                            // Stop observing this element once animated
+                            contactObserver.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                // Start observing all contact items
+                contactItems.forEach((item) => {
+                    contactObserver.observe(item);
+                });
+            } else {
+                // Fallback: animate immediately if Intersection Observer not supported
+                contactItems.forEach((item) => {
+                    animateContactItem(item);
+                });
+            }
+        }
+    });
+
+    // Copy code functionality for code blocks - Global functions
+    window.copyCode = function(button) {
+        const codeBlock = button.closest('.code-block');
+        if (!codeBlock) return;
+        
+        const code = codeBlock.querySelector('code');
+        if (!code) return;
+        
+        const textToCopy = code.textContent;
+        
+        // Use the modern clipboard API if available
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                window.showCopySuccess(button);
+            }).catch(err => {
+                console.error('Failed to copy code: ', err);
+                window.fallbackCopyCode(textToCopy, button);
+            });
+        } else {
+            // Fallback for older browsers
+            window.fallbackCopyCode(textToCopy, button);
+        }
+    };
+    
+    // Fallback copy method for older browsers
+    window.fallbackCopyCode = function(text, button) {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        textArea.style.top = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        
+        try {
+            document.execCommand('copy');
+            window.showCopySuccess(button);
+        } catch (err) {
+            console.error('Failed to copy code: ', err);
+        } finally {
+            document.body.removeChild(textArea);
+        }
+    };
+    
+    // Show copy success feedback
+    window.showCopySuccess = function(button) {
+        const originalIcon = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-check"></i>';
+        button.classList.add('copy-success');
+        
+        setTimeout(() => {
+            button.innerHTML = originalIcon;
+            button.classList.remove('copy-success');
+        }, 2000);
+    };
+</script>
+
+<!-- PERFORMANCE: Load Prism.js only on blog pages with code blocks -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" crossorigin="anonymous"></script>
+
+
+    
+    
+    <!-- PrismJS syntax highlighting scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
+<script>
+    // Initialize PrismJS after DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        // Configure PrismJS autoloader
+        if (typeof Prism !== 'undefined') {
+            Prism.plugins.autoloader.languages_path = 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/';
+            
+            // Add language aliases and custom ColdFusion support
+            if (Prism.languages) {
+                // Create a better ColdFusion language definition
+                Prism.languages.coldfusion = Prism.languages.extend('markup', {
+                    'cf-tag': {
+                        pattern: new RegExp('<\\/?cf+(?:\\s[^>]*)?\\/?>', 'i'),
+                        inside: {
+                            'tag': {
+                                pattern: new RegExp('<\\/?cf+', 'i'),
+                                inside: {
+                                    'punctuation': /^<\/?/,
+                                    'namespace': /^cf/
+                                }
+                            },
+                            'attr-name': {
+                                pattern: new RegExp('(?:|-)+(?=\\s*=)', 'i')
+                            },
+                            'attr-value': {
+                                pattern: new RegExp('=\\s*(?:"[^"]*"|\'[^\']*\'|[^\\s>]+)', 'i'),
+                                inside: {
+                                    'punctuation': [/^=/, new RegExp('^[\'"]|[\'"]$')]
+                                }
+                            },
+                            'punctuation': /\/?>/
+                        }
+                    },
+                    'cf-script': {
+                        pattern: new RegExp('#[^#]*#', ''),
+                        inside: {
+                            'punctuation': /^#|#$/,
+                            'keyword': /\b(?:var|if|else|elseif|for|while|function|return|true|false|null)\b/i,
+                            'string': {
+                                pattern: new RegExp('("|\')\(?:\\\\.|(?!\\1)[^\\\\\\r\\n]\)*\\1', '')
+                            },
+                            'number': {
+                                pattern: new RegExp('\\b0x[\\da-f]+\\b|(?:\\b\\d+\\.?\\d*|\\B\\.\\d+)(?:e[+-]?\\d+)?', 'i')
+                            },
+                            'operator': {
+                                pattern: new RegExp('[<>]=?|[!=]=?=?|--?|\\+\\+?|&&?|\\|\\|?|[?*/~^%]')
+                            },
+                            'punctuation': {
+                                pattern: new RegExp('[{}\[\];(),.:]+')
+                            }
+                        }
+                    },
+                    'cf-function': {
+                        pattern: new RegExp('\\b\\w*(?=\\s*\\()', ''),
+                        alias: 'function'
+                    }
+                });
+                
+                // Map other CFML variations
+                Prism.languages.cfml = Prism.languages.coldfusion;
+                Prism.languages.cfscript = Prism.languages.javascript;
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1014 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Shared head section for all layouts -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Mike Henke | Coder. Engineer. Professional.</title>
+<meta name="description" content="Mike Henke - Full-stack web and mobile developer with 15+ years of experience. Specializing in JavaScript, Python, React, and modern web technologies.">
+<meta name="author" content="Mike Henke">
+<meta name="robots" content="index, follow">
+
+
+
+
+<!-- PERFORMANCE: DNS prefetch for faster font loading -->
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//fonts.gstatic.com">
+<link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+
+<!-- Preconnect to external domains -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- PERFORMANCE: Critical font loading only -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- PERFORMANCE: Load Font Awesome only if needed -->
+
+<link rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" 
+      crossorigin="anonymous">
+
+
+<!-- PERFORMANCE: Load syntax highlighting only on blog pages -->
+
+
+<!-- Critical CSS first -->
+<link rel="stylesheet" href="/styles.css">
+
+<!-- PERFORMANCE: Load search CSS only on search page -->
+
+
+<!-- Environment indicator (only in staging/dev) -->
+<!-- DEBUG: site.environment = production NODE_ENV = production -->
+
+
+<!-- Favicon -->
+<link rel="icon" href="/favicon.ico">
+
+
+
+
+</head>
+<body>
+    <!-- Skip Navigation Links for Screen Readers -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <a href="#nav-menu" class="skip-link">Skip to navigation</a>
+    
+    
+<!-- Shared navigation for all layouts -->
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar-container">
+        <a href="/" class="navbar-brand" role="banner" aria-label="Mike Henke - Return to homepage">Mike Henke</a>
+        
+        <!-- New Hamburger Menu Toggle -->
+        <button class="navbar-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+            <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+        
+        <ul class="navbar-links" id="nav-menu" role="menubar">
+            <!-- Mobile menu header with close button -->
+            <div class="mobile-menu-header">
+                <span class="menu-brand">Mike Henke</span>
+                <button class="menu-close" aria-label="Close navigation menu">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+            
+            
+    <li><a href="/" role="menuitem"><i class="fas fa-home" aria-hidden="true"></i><span>Home</span></a></li>
+    <li><a href="/#about" role="menuitem"><i class="fas fa-user" aria-hidden="true"></i><span>About</span></a></li>
+    <li><a href="/#skills" role="menuitem"><i class="fas fa-code" aria-hidden="true"></i><span>Skills</span></a></li>
+    <li><a href="/#career" role="menuitem"><i class="fas fa-briefcase" aria-hidden="true"></i><span>Career</span></a></li>
+    <li><a href="/blog/" role="menuitem"><i class="fas fa-blog" aria-hidden="true"></i><span>Blog</span></a></li>
+    <li><a href="/#contact" role="menuitem"><i class="fas fa-envelope" aria-hidden="true"></i><span>Contact</span></a></li>
+    <li><a href="/search/" role="menuitem"><i class="fas fa-search" aria-hidden="true"></i><span>Search</span></a></li>
+
+        </ul>
+    </div>
+    
+    <!-- Mobile overlay -->
+    <div class="nav-overlay"></div>
+</nav>
+
+    
+    <main id="main-content" role="main">
+        <!-- ARIA live region for screen reader announcements -->
+        <div id="sr-announcements" aria-live="polite" aria-atomic="true" class="sr-only"></div>
+        
+<section class="hero-section" aria-labelledby="hero-title" data-pagefind-body>
+  <div class="hero-text">
+    <h1 id="hero-title">
+      <span class="highlight">
+        <span class="word-solid">Engineer.</span>
+        <span class="word-outline">Mentor.</span><br />
+        <span class="word-white">Strategic Technologist.</span>
+      </span>
+    </h1>
+  </div>
+  <div class="hero-image">
+    <img
+      src="/assets/profile.jpg"
+      alt="Professional headshot of Mike Henke, smiling and wearing business attire"
+    />
+  </div>
+  <div class="hero-description">
+    <p>
+      Delivered $1.8M enterprise initiatives supporting 20K+ users while
+      discovering critical security vulnerabilities. Currently pursuing MS in
+      Cyber Operations with 3.388 GPA.
+    </p>
+  </div>
+  <div class="hero-buttons">
+    <a href="#career" class="btn btn-primary" aria-describedby="career-desc"
+      >View My Career</a
+    >
+    <span id="career-desc" class="sr-only"
+      >Navigate to the career section to see my resume</span
+    >
+    <a href="#contact" class="btn btn-outline" aria-describedby="contact-desc"
+      >Contact Me</a
+    >
+    <span id="contact-desc" class="sr-only"
+      >Navigate to the contact section to get in touch</span
+    >
+  </div>
+</section>
+
+<section id="about" class="content-section-boxed" aria-labelledby="about-title">
+  <h2 id="about-title" class="section-title">About Me</h2>
+  <div class="section-underline" aria-hidden="true"></div>
+  <p>
+    Software Engineer and Mentor with 20+ years developing enterprise
+    applications including 8+ years leading full-stack development at Union
+    Pacific Railroad. Graduate-certified in Cybersecurity with experience
+    delivering training materials and mentoring teams. Developed comprehensive
+    customer-facing applications enhancing operational efficiency.
+  </p>
+</section>
+
+<section
+  id="skills"
+  class="content-section-boxed"
+  aria-labelledby="skills-title"
+>
+  <h2 id="skills-title" class="section-title">My Skills</h2>
+  <div class="section-underline" aria-hidden="true"></div>
+  <div class="skills-columns">
+    <div class="skills-card" role="region" aria-labelledby="prog-lang-title">
+      <h3 id="prog-lang-title">Languages</h3>
+      <div class="skill-row">
+        <span class="skill-label lang">JavaScript</span>
+        <span class="skill-percent" aria-label="95 percent proficiency"
+          >95%</span
+        >
+      </div>
+      <div
+        class="progress-bar"
+        data-width="95"
+        role="progressbar"
+        aria-valuenow="95"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-label="JavaScript skill level: 95%"
+      >
+        <span></span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-label lang">TypeScript</span>
+        <span class="skill-percent" aria-label="90 percent proficiency"
+          >90%</span
+        >
+      </div>
+      <div
+        class="progress-bar"
+        data-width="90"
+        role="progressbar"
+        aria-valuenow="90"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-label="TypeScript skill level: 95%"
+      >
+        <span></span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-label lang">HTML5</span>
+        <span class="skill-percent" aria-label="90 percent proficiency"
+          >90%</span
+        >
+      </div>
+      <div
+        class="progress-bar"
+        data-width="90"
+        role="progressbar"
+        aria-valuenow="90"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-label="HTML5 skill level: 90%"
+      >
+        <span></span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-label lang">CSS3</span>
+        <span class="skill-percent" aria-label="90 percent proficiency"
+          >90%</span
+        >
+      </div>
+      <div
+        class="progress-bar"
+        data-width="90"
+        role="progressbar"
+        aria-valuenow="90"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-label="CSS3 skill level: 90%"
+      >
+        <span></span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-label lang">Python</span>
+        <span class="skill-percent" aria-label="85 percent proficiency"
+          >85%</span
+        >
+      </div>
+      <div
+        class="progress-bar"
+        data-width="85"
+        role="progressbar"
+        aria-valuenow="85"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-label="Python skill level: 85%"
+      >
+        <span></span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-label lang">SQL</span>
+        <span class="skill-percent" aria-label="80 percent proficiency"
+          >80%</span
+        >
+      </div>
+      <div
+        class="progress-bar"
+        data-width="80"
+        role="progressbar"
+        aria-valuenow="80"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-label="SQL skill level: 80%"
+      >
+        <span></span>
+      </div>
+    </div>
+    <div class="skills-card" role="region" aria-labelledby="technologies-title">
+      <h3 id="technologies-title">Technologies</h3>
+      <div class="frameworks-grid">
+        <div class="framework-item" data-animation-delay="0.1s">
+          <i class="fab fa-angular" aria-hidden="true"></i>
+          <span>Angular</span>
+        </div>
+        <div class="framework-item" data-animation-delay="0.2s">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 768 960"
+            aria-hidden="true"
+            role="img"
+            aria-label="Lit logo"
+          >
+            <path
+              d="M192 576l96-288 432 432-144 240-192-192h-96"
+              fill="currentColor"
+            />
+            <path
+              d="M384 768V384l192-192v384m-480 0h96l96 192-96 192L0 768z"
+              fill="currentColor"
+              fill-rule="evenodd"
+            />
+            <path
+              d="M192 576V192L384 0v384m192 576V576l192-192v384M0 768V384l192 192"
+              fill="currentColor"
+            />
+            <path d="M192 960V576l192 192" fill="currentColor" />
+          </svg>
+          <span>Lit</span>
+        </div>
+        <div class="framework-item" data-animation-delay="0.3s">
+          <svg
+            viewBox="0 0 93.2 112"
+            aria-hidden="true"
+            role="img"
+            aria-label="SvelteKit logo"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill="currentColor"
+              d="M87.3,14.8L87.3,14.8C76.9-0.1,56.3-4.5,41.5,5L15.4,21.6c-7.1,4.5-12,11.8-13.5,20c-1.2,6.9-0.2,14,3.1,20.2c-2.2,3.4-3.8,7.2-4.5,11.2C-1,81.5,1,90.2,5.9,97.2c10.4,14.9,30.9,19.3,45.8,9.8l26.1-16.6c7.1-4.5,12-11.8,13.5-20c1.2-6.9,0.2-14-3.1-20.2c2.2-3.4,3.8-7.2,4.5-11.2C94.2,30.5,92.2,21.8,87.3,14.8z M79.8,36.2c-0.2,0.8-0.4,1.6-0.6,2.4l-0.5,1.5l-1.3-1c-3.1-2.3-6.5-4-10.2-5.1l-1-0.3l0.1-1c0.1-1.4-0.3-2.7-1.1-3.9c-1.5-2.2-4.2-3.1-6.7-2.5c-0.6,0.2-1.1,0.4-1.6,0.7L30.8,43.7c-1.3,0.8-2.2,2.1-2.4,3.6c-0.3,1.5,0.1,3.1,1,4.4c1.5,2.2,4.2,3.1,6.7,2.5c0.6-0.2,1.1-0.4,1.6-0.7l10-6.3c1.6-1,3.4-1.8,5.3-2.3c8.4-2.2,17.3,1.1,22.2,8.2c3,4.2,4.2,9.4,3.3,14.5c-0.9,5-3.8,9.4-8.1,12.1L44.2,96.3c-1.6,1-3.4,1.8-5.3,2.3h0c-8.4,2.2-17.3-1.1-22.2-8.2c-3-4.2-4.2-9.4-3.3-14.5c0.2-0.8,0.4-1.6,0.6-2.4l0.5-1.5l1.3,1c3.1,2.3,6.5,4,10.2,5.1l1,0.3l-0.1,1c-0.1,1.4,0.3,2.8,1.1,3.9c1.5,2.2,4.2,3.1,6.7,2.5c0.6-0.2,1.1-0.4,1.6-0.7l26.1-16.6c1.3-0.8,2.2-2.1,2.5-3.6c0.3-1.5-0.1-3.1-1-4.4c-1.5-2.2-4.2-3.1-6.7-2.5c-0.6,0.2-1.1,0.4-1.6,0.7l-10,6.3c-1.6,1-3.4,1.8-5.3,2.3C31.9,69.4,23,66.1,18,58.9c-3-4.2-4.2-9.4-3.3-14.5c0.9-5,3.8-9.4,8.1-12.1L49,15.7c1.6-1,3.4-1.8,5.3-2.3c8.4-2.2,17.3,1.1,22.2,8.2C79.5,25.9,80.7,31.1,79.8,36.2z"
+            />
+          </svg>
+          <span>Svelte</span>
+        </div>
+        <div class="framework-item" data-animation-delay="0.5s">
+          <svg
+            class="framework-icon"
+            viewBox="0 0 256 256"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              d="M119.616813,0.0688905149 C119.066276,0.118932037 117.314565,0.294077364 115.738025,0.419181169 C79.3775171,3.69690087 45.3192571,23.3131775 23.7481916,53.4631946 C11.7364614,70.2271045 4.05395894,89.2428829 1.15112414,109.384595 C0.12512219,116.415429 0,118.492153 0,128.025062 C0,137.557972 0.12512219,139.634696 1.15112414,146.665529 C8.10791789,194.730411 42.3163245,235.11392 88.7116325,250.076335 C97.0197458,252.753556 105.778299,254.580072 115.738025,255.680985 C119.616813,256.106338 136.383187,256.106338 140.261975,255.680985 C157.453763,253.779407 172.017986,249.525878 186.382014,242.194795 C188.584164,241.068861 189.00958,240.768612 188.709286,240.518404 C188.509091,240.36828 179.124927,227.782837 167.86393,212.570214 L147.393939,184.922273 L121.743891,146.965779 C107.630108,126.098464 96.0187683,109.034305 95.9186706,109.034305 C95.8185728,109.009284 95.7184751,125.873277 95.6684262,146.465363 C95.5933529,182.52028 95.5683284,183.971484 95.1178886,184.82219 C94.4672532,186.048207 93.9667644,186.548623 92.915738,187.099079 C92.114956,187.499411 91.4142717,187.574474 87.6355816,187.574474 L83.3063539,187.574474 L82.1552297,186.848872 C81.4044966,186.373477 80.8539589,185.747958 80.4785924,185.022356 L79.9530792,183.896422 L80.0031281,133.729796 L80.0782014,83.5381493 L80.8539589,82.5623397 C81.25435,82.0369037 82.1051808,81.3613431 82.7057674,81.0360732 C83.7317693,80.535658 84.1321603,80.4856165 88.4613881,80.4856165 C93.5663734,80.4856165 94.4172043,80.6857826 95.7434995,82.1369867 C96.1188661,82.5373189 110.007429,103.454675 126.623656,128.650581 C143.239883,153.846488 165.962072,188.250034 177.122972,205.139048 L197.392766,235.839522 L198.418768,235.163961 C207.502639,229.259062 217.112023,220.852086 224.719453,212.09482 C240.910264,193.504394 251.345455,170.835585 254.848876,146.665529 C255.874878,139.634696 256,137.557972 256,128.025062 C256,118.492153 255.874878,116.415429 254.848876,109.384595 C247.892082,61.3197135 213.683675,20.9362052 167.288368,5.97379012 C159.105376,3.32158945 150.396872,1.49507389 140.637341,0.394160408 C138.234995,0.143952798 121.693842,-0.131275573 119.616813,0.0688905149 L119.616813,0.0688905149 Z M172.017986,77.4831252 C173.219159,78.0836234 174.195112,79.2345784 174.545455,80.435575 C174.74565,81.0861148 174.795699,94.9976579 174.74565,126.348671 L174.670577,171.336 L166.73783,159.17591 L158.780059,147.01582 L158.780059,114.313685 C158.780059,93.1711423 158.880156,81.2862808 159.030303,80.7108033 C159.430694,79.3096407 160.306549,78.2087272 161.507722,77.5581875 C162.533724,77.0327515 162.909091,76.98271 166.837928,76.98271 C170.541544,76.98271 171.19218,77.0327515 172.017986,77.4831252 Z"
+              fill="currentColor"
+            />
+          </svg>
+          <span>Next.js</span>
+        </div>
+        <div class="framework-item" data-animation-delay="0.6s">
+          <i class="fab fa-aws" aria-hidden="true"></i>
+          <span>AWS</span>
+        </div>
+        <div class="framework-item" data-animation-delay="0.7s">
+          <i class="fas fa-cubes" aria-hidden="true"></i>
+          <span>Microservices</span>
+        </div>
+      </div>
+    </div>
+    <div class="skills-card" role="region" aria-labelledby="expertise-title">
+      <h3 id="expertise-title">Expertise</h3>
+      <ul
+        role="list"
+        aria-label="Areas of expertise and certifications"
+        class="methodologies-list"
+      >
+        <li
+          class="methodology-item"
+          role="listitem"
+          data-animation-delay="0.1s"
+        >
+          <i class="fas fa-users" aria-hidden="true"></i>
+          <span>Agile Scrum (CSM Certified)</span>
+        </li>
+        <li
+          class="methodology-item"
+          role="listitem"
+          data-animation-delay="0.2s"
+        >
+          <i class="fas fa-shield-alt" aria-hidden="true"></i>
+          <span>Cybersecurity (Google & Graduate Certified)</span>
+        </li>
+        <li
+          class="methodology-item"
+          role="listitem"
+          data-animation-delay="0.3s"
+        >
+          <i class="fas fa-cogs" aria-hidden="true"></i>
+          <span>Full-Stack Development</span>
+        </li>
+        <li
+          class="methodology-item"
+          role="listitem"
+          data-animation-delay="0.4s"
+        >
+          <i class="fas fa-chalkboard-teacher" aria-hidden="true"></i>
+          <span>Developer Training & Mentoring</span>
+        </li>
+        <li
+          class="methodology-item"
+          role="listitem"
+          data-animation-delay="0.5s"
+        >
+          <i class="fas fa-search" aria-hidden="true"></i>
+          <span>IT Auditing & Risk Assessment</span>
+        </li>
+        <li
+          class="methodology-item"
+          role="listitem"
+          data-animation-delay="0.6s"
+        >
+          <i class="fas fa-code-branch" aria-hidden="true"></i>
+          <span>API Design & Integration</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Career Timeline Section - Updated with Enhanced Content -->
+<section
+  id="career"
+  class="content-section-boxed"
+  aria-labelledby="career-title"
+>
+  <h2 id="career-title" class="section-title">My Recent Career</h2>
+  <div class="section-underline" aria-hidden="true"></div>
+  <div style="text-align: center; margin-bottom: 2rem">
+    <h3 style="color: var(--color-primary); font-size: 1.25rem; margin: 0">
+      Union Pacific Railroad
+    </h3>
+    <p
+      style="
+        color: var(--color-text-secondary);
+        font-style: italic;
+        margin: 0.5rem 0 0 0;
+      "
+    >
+      Career Progression • June 2016 - Present
+    </p>
+  </div>
+
+  <!-- Career Grid Layout -->
+  <div class="career-grid">
+    <!-- Professional Photo Column -->
+    <div class="career-photo-column">
+      <img
+        src="/assets/career-photo.png"
+        alt="Professional photo of Mike Henke in workplace setting"
+        class="career-photo"
+        loading="lazy"
+      />
+    </div>
+
+    <!-- Career Timeline Column -->
+    <div class="career-timeline-column">
+      <div class="timeline">
+        <!-- Timeline Line -->
+        <div class="timeline-line" aria-hidden="true"></div>
+
+        <!-- Timeline Item 1 - Current Position -->
+        <div class="timeline-item" role="listitem" data-animation-delay="0.2s">
+          <div class="timeline-marker-group">
+            <div class="timeline-square">
+              <span class="timeline-number" aria-label="Current position"
+                >1</span
+              >
+            </div>
+            <div class="timeline-connector"></div>
+          </div>
+          <div class="timeline-content">
+            <h3>Associate System Engineer (Technology)</h3>
+            <p class="duration">September 2024 - Present</p>
+            <p class="description">
+              Leading development of customer-facing web applications using
+              modern JavaScript frameworks (Lit and Angular). Coordinated
+              monthly tech deep dives with 20+ cross-functional stakeholders and
+              modernized Customer Vision search functionality using Angular 17
+              solutions. Maintained legacy applications including Shipment
+              Dashboard Management while transitioning to modern frameworks.
+            </p>
+          </div>
+        </div>
+
+        <!-- Timeline Item 2 - IT Audit Manager -->
+        <div class="timeline-item" role="listitem" data-animation-delay="0.4s">
+          <div class="timeline-marker-group">
+            <div class="timeline-square">
+              <span class="timeline-number" aria-label="Previous position"
+                >2</span
+              >
+            </div>
+            <div class="timeline-connector"></div>
+          </div>
+          <div class="timeline-content">
+            <h3>Manager I Audit Information Technology (Finance)</h3>
+            <p class="duration">January 2024 - August 2024</p>
+            <p class="description">
+              Directed IT audits and security assessments, executing
+              comprehensive audits on CIS v7 controls over 6-month period.
+              Identified and documented critical SMTP spoofing vulnerability
+              using Python, escalating significant email security risk to Tech
+              leadership. Strengthened cybersecurity posture and application
+              security framework.
+            </p>
+          </div>
+        </div>
+
+        <!-- Timeline Item 3 - Associate System Engineer (Previous) -->
+        <div class="timeline-item" role="listitem" data-animation-delay="0.6s">
+          <div class="timeline-marker-group">
+            <div class="timeline-square">
+              <span class="timeline-number" aria-label="Earlier position"
+                >3</span
+              >
+            </div>
+            <div class="timeline-connector"></div>
+          </div>
+          <div class="timeline-content">
+            <h3>Associate System Engineer (Technology)</h3>
+            <p class="duration">December 2021 - December 2023</p>
+            <p class="description">
+              Architected Shipment Management application using Angular 14,
+              contributing to $1.8M initiative supporting 20K+ users with 1.7M
+              monthly hits. Developed comprehensive customer-facing applications
+              including Shipment Dashboard, Forecast, Track Shipment, and
+              Customer Vision dashboard with analytical insights across shipping
+              operations.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="button-container">
+    <a
+      href="/assets/resume.pdf"
+      class="btn btn-primary"
+      download
+      aria-describedby="resume-btn-desc"
+      >View My Resume</a
+    >
+    <span id="resume-btn-desc" class="sr-only">Download PDF resume file</span>
+  </div>
+</section>
+
+<section
+  id="contact"
+  class="content-section-boxed"
+  aria-labelledby="contact-title"
+>
+  <h2 id="contact-title" class="section-title">Contact</h2>
+  <div class="section-underline" aria-hidden="true"></div>
+
+  <div class="contact-content">
+    <div class="contact-intro">
+      <p>
+        Let's connect! Feel free to reach out through any of the channels below.
+      </p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-item location" data-animation-delay="0.2s">
+        <div class="contact-icon">
+          <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+        </div>
+        <div class="contact-details">
+          <h3>Location</h3>
+          <address>
+            <p>PO BOX 27593</p>
+            <p>Omaha, NE 68127</p>
+          </address>
+        </div>
+      </div>
+
+      <div class="contact-item phone" data-animation-delay="0.3s">
+        <div class="contact-icon">
+          <i class="fas fa-phone" aria-hidden="true"></i>
+        </div>
+        <div class="contact-details">
+          <h3>Phone</h3>
+          <a
+            href="tel:+14025770059"
+            aria-label="Call Michael Henke at 402-577-0059"
+            >+1 402 577 0059</a
+          >
+        </div>
+      </div>
+
+      <div class="contact-item email" data-animation-delay="0.4s">
+        <div class="contact-icon">
+          <i class="fas fa-envelope" aria-hidden="true"></i>
+        </div>
+        <div class="contact-details">
+          <h3>Email</h3>
+          <a
+            href="mailto:henke.mike@gmail.com"
+            aria-label="Send email to Michael Henke"
+            >henke.mike@gmail.com</a
+          >
+        </div>
+      </div>
+
+      <div class="contact-item linkedin" data-animation-delay="0.5s">
+        <div class="contact-icon">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </div>
+        <div class="contact-details">
+          <h3>LinkedIn</h3>
+          <a
+            href="https://linkedin.com/in/henkemike"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="View Michael Henke's LinkedIn profile"
+            >linkedin.com/in/henkemike</a
+          >
+        </div>
+      </div>
+
+      <div class="contact-item github" data-animation-delay="0.6s">
+        <div class="contact-icon">
+          <i class="fab fa-github" aria-hidden="true"></i>
+        </div>
+        <div class="contact-details">
+          <h3>GitHub</h3>
+          <a
+            href="https://github.com/mhenke"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="View Michael Henke's GitHub profile"
+            >github.com/mhenke</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+    </main>
+    
+    
+
+
+<footer role="contentinfo" class="site-footer">
+    <div class="footer-content">
+        
+        <nav class="footer-nav" aria-label="Footer navigation">
+            
+    <a href="/" class="footer-link">Home</a>
+    <a href="/#about" class="footer-link">About</a>
+    <a href="/#skills" class="footer-link">Skills</a>
+    <a href="/#career" class="footer-link">Career</a>
+    <a href="/blog/" class="footer-link">Blog</a>
+    <a href="/#contact" class="footer-link">Contact</a>
+    <a href="/search/" class="footer-link">Search</a>
+
+        </nav>
+        
+        <p>&copy; 2025 Mike Henke. All Rights Reserved.</p>
+    </div>
+</footer>
+
+    
+    
+    <!-- Core scripts needed on all pages -->
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        // New Mobile Navigation Toggle
+        const navToggle = document.querySelector('.navbar-toggle');
+        const navLinks = document.querySelector('.navbar-links');
+        const navOverlay = document.querySelector('.nav-overlay');
+        const menuClose = document.querySelector('.menu-close');
+        
+        if (navToggle && navLinks) {
+            // Store scroll position for restoration
+            let scrollPosition = 0;
+
+            function openMobileMenu() {
+                scrollPosition = window.pageYOffset;
+                navToggle.setAttribute('aria-expanded', 'true');
+                navLinks.classList.add('active');
+                navToggle.classList.add('active');
+                if (navOverlay) {
+                    navOverlay.classList.add('active');
+                }
+                document.body.classList.add('nav-open');
+                document.body.style.top = `-${scrollPosition}px`;
+            }
+
+            function closeMobileMenu() {
+                navLinks.classList.remove('active');
+                navToggle.classList.remove('active');
+                navToggle.setAttribute('aria-expanded', 'false');
+                if (navOverlay) {
+                    navOverlay.classList.remove('active');
+                }
+                document.body.classList.remove('nav-open');
+                document.body.style.top = '';
+                if (scrollPosition) {
+                    window.scrollTo(0, scrollPosition);
+                    scrollPosition = 0;
+                }
+            }
+
+            // Hamburger menu toggle
+            navToggle.addEventListener('click', () => {
+                const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+                
+                if (!isExpanded) {
+                    openMobileMenu();
+                } else {
+                    closeMobileMenu();
+                }
+            });
+
+            // Close button in mobile menu
+            if (menuClose) {
+                menuClose.addEventListener('click', () => {
+                    closeMobileMenu();
+                });
+            }
+
+            // Close mobile menu when clicking on a nav link
+            const navLinkItems = navLinks.querySelectorAll('a');
+            navLinkItems.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth < 768) {
+                        closeMobileMenu();
+                    }
+                });
+            });
+
+            // Close mobile menu when clicking on overlay
+            if (navOverlay) {
+                navOverlay.addEventListener('click', () => {
+                    closeMobileMenu();
+                });
+            }
+
+            // Close mobile menu when pressing Escape key
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && navLinks.classList.contains('active')) {
+                    closeMobileMenu();
+                }
+            });
+
+            // Handle window resize - close mobile menu if switching to desktop
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 768) {
+                    closeMobileMenu();
+                }
+            });
+        }
+
+        // Animated Progress Bars - Intersection Observer
+        const progressBars = document.querySelectorAll('.progress-bar');
+        
+        if (progressBars.length > 0) {
+            const animateProgressBar = (progressBar) => {
+                const targetWidth = progressBar.getAttribute('data-width');
+                const span = progressBar.querySelector('span');
+                
+                if (span && targetWidth) {
+                    // Add animate class to enable transitions
+                    progressBar.classList.add('animate');
+                    
+                    // Set the CSS custom property and animate
+                    progressBar.style.setProperty('--progress-width', targetWidth + '%');
+                    
+                    // Set the target width after a small delay to trigger animation
+                    setTimeout(() => {
+                        span.style.width = targetWidth + '%';
+                    }, 50);
+                }
+            };
+
+            // Check if Intersection Observer is supported
+            if ('IntersectionObserver' in window) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px 0px -10% 0px', // Trigger when 90% visible
+                    threshold: 0.1
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting && !entry.target.classList.contains('animate')) {
+                            animateProgressBar(entry.target);
+                            // Stop observing this element once animated
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                // Start observing all progress bars
+                progressBars.forEach((progressBar) => {
+                    observer.observe(progressBar);
+                });
+            } else {
+                // Fallback: animate immediately if Intersection Observer not supported
+                progressBars.forEach((progressBar) => {
+                    animateProgressBar(progressBar);
+                });
+            }
+        }
+
+        // Animated Methodology Items - Intersection Observer
+        const methodologyItems = document.querySelectorAll('.methodology-item');
+        
+        if (methodologyItems.length > 0) {
+            const animateMethodologyItem = (item) => {
+                const delay = item.getAttribute('data-animation-delay') || '0s';
+                item.style.setProperty('--animation-delay', delay);
+                item.classList.add('animate');
+            };
+
+            // Check if Intersection Observer is supported
+            if ('IntersectionObserver' in window) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px 0px -10% 0px', // Trigger when 90% visible
+                    threshold: 0.1
+                };
+
+                const methodologyObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting && !entry.target.classList.contains('animate')) {
+                            animateMethodologyItem(entry.target);
+                            // Stop observing this element once animated
+                            methodologyObserver.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                // Start observing all methodology items
+                methodologyItems.forEach((item) => {
+                    methodologyObserver.observe(item);
+                });
+            } else {
+                // Fallback: animate immediately if Intersection Observer not supported
+                methodologyItems.forEach((item) => {
+                    animateMethodologyItem(item);
+                });
+            }
+        }
+
+        // Animated Framework Items - Intersection Observer
+        const frameworkItems = document.querySelectorAll('.framework-item');
+        
+        if (frameworkItems.length > 0) {
+            const animateFrameworkItem = (item) => {
+                const delay = item.getAttribute('data-animation-delay') || '0s';
+                item.style.setProperty('--animation-delay', delay);
+                item.classList.add('animate');
+            };
+
+            // Check if Intersection Observer is supported
+            if ('IntersectionObserver' in window) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px 0px -10% 0px', // Trigger when 90% visible
+                    threshold: 0.1
+                };
+
+                const frameworkObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting && !entry.target.classList.contains('animate')) {
+                            animateFrameworkItem(entry.target);
+                            // Stop observing this element once animated
+                            frameworkObserver.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                // Start observing all framework items
+                frameworkItems.forEach((item) => {
+                    frameworkObserver.observe(item);
+                });
+            } else {
+                // Fallback: animate immediately if Intersection Observer not supported
+                frameworkItems.forEach((item) => {
+                    animateFrameworkItem(item);
+                });
+            }
+        }
+
+        // Animated Timeline Items - Intersection Observer
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        
+        if (timelineItems.length > 0) {
+            const animateTimelineItem = (item) => {
+                const delay = item.getAttribute('data-animation-delay') || '0s';
+                item.style.setProperty('--animation-delay', delay);
+                item.classList.add('animate');
+            };
+
+            // Check if Intersection Observer is supported
+            if ('IntersectionObserver' in window) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px 0px -10% 0px', // Trigger when 90% visible
+                    threshold: 0.1
+                };
+
+                const timelineObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting && !entry.target.classList.contains('animate')) {
+                            animateTimelineItem(entry.target);
+                            // Stop observing this element once animated
+                            timelineObserver.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                // Start observing all timeline items
+                timelineItems.forEach((item) => {
+                    timelineObserver.observe(item);
+                });
+            } else {
+                // Fallback: animate immediately if Intersection Observer not supported
+                timelineItems.forEach((item) => {
+                    animateTimelineItem(item);
+                });
+            }
+        }
+
+        // Animated Contact Items - Intersection Observer
+        const contactItems = document.querySelectorAll('.contact-item');
+        
+        if (contactItems.length > 0) {
+            const animateContactItem = (item) => {
+                const delay = item.getAttribute('data-animation-delay') || '0s';
+                item.style.setProperty('--animation-delay', delay);
+                item.classList.add('animate');
+            };
+
+            // Check if Intersection Observer is supported
+            if ('IntersectionObserver' in window) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px 0px -10% 0px', // Trigger when 90% visible
+                    threshold: 0.1
+                };
+
+                const contactObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting && !entry.target.classList.contains('animate')) {
+                            animateContactItem(entry.target);
+                            // Stop observing this element once animated
+                            contactObserver.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                // Start observing all contact items
+                contactItems.forEach((item) => {
+                    contactObserver.observe(item);
+                });
+            } else {
+                // Fallback: animate immediately if Intersection Observer not supported
+                contactItems.forEach((item) => {
+                    animateContactItem(item);
+                });
+            }
+        }
+    });
+
+    // Copy code functionality for code blocks - Global functions
+    window.copyCode = function(button) {
+        const codeBlock = button.closest('.code-block');
+        if (!codeBlock) return;
+        
+        const code = codeBlock.querySelector('code');
+        if (!code) return;
+        
+        const textToCopy = code.textContent;
+        
+        // Use the modern clipboard API if available
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                window.showCopySuccess(button);
+            }).catch(err => {
+                console.error('Failed to copy code: ', err);
+                window.fallbackCopyCode(textToCopy, button);
+            });
+        } else {
+            // Fallback for older browsers
+            window.fallbackCopyCode(textToCopy, button);
+        }
+    };
+    
+    // Fallback copy method for older browsers
+    window.fallbackCopyCode = function(text, button) {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        textArea.style.top = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        
+        try {
+            document.execCommand('copy');
+            window.showCopySuccess(button);
+        } catch (err) {
+            console.error('Failed to copy code: ', err);
+        } finally {
+            document.body.removeChild(textArea);
+        }
+    };
+    
+    // Show copy success feedback
+    window.showCopySuccess = function(button) {
+        const originalIcon = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-check"></i>';
+        button.classList.add('copy-success');
+        
+        setTimeout(() => {
+            button.innerHTML = originalIcon;
+            button.classList.remove('copy-success');
+        }, 2000);
+    };
+</script>
+
+<!-- PERFORMANCE: Load Prism.js only on blog pages with code blocks -->
+
+
+    
+    
+    
+    
+    
+    
+</body>
+</html>
