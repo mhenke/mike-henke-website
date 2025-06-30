@@ -75,6 +75,32 @@
 </style>
 {% endif %}
 
+<!-- Environment indicator (only in staging/dev) -->
+{% if site.environment != 'production' %}
+<style>
+  body::before {
+    content: 'STAGING - {{ site.environment | upper }}';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #ff6b35;
+    color: white;
+    text-align: center;
+    padding: 4px 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    z-index: 10000;
+    letter-spacing: 1px;
+  }
+  
+  body {
+    padding-top: 28px;
+  }
+</style>
+{% endif %}
+
 <!-- Favicon -->
 <link rel="icon" href="{{ '/favicon.ico' | url }}">
 

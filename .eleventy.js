@@ -11,8 +11,10 @@ const { URL } = require('url');
  */
 
 module.exports = function (eleventyConfig) {
-  // Performance: Only run transforms when needed
-  const isDevelopment = process.env.NODE_ENV !== 'production';
+  // Environment detection
+  const isProduction = process.env.NODE_ENV === 'production';
+  const isStaging = process.env.NODE_ENV === 'staging';
+  const isDevelopment = !isProduction && !isStaging;
   // Optimized code block transform
   eleventyConfig.addTransform(
     'codeBlockTransform',
@@ -260,7 +262,7 @@ module.exports = function (eleventyConfig) {
 
         // Only process relative image paths that start with 'images/'
         if (src.startsWith('images/')) {
-          const pathPrefix = '';
+          const pathPrefix = isStaging ? '/mike-henke-website' : '';
 
           // Extract post slug from available data
           let postSlug = '';
@@ -319,7 +321,7 @@ module.exports = function (eleventyConfig) {
         outputPath.includes('output/posts/') ||
         outputPath.match(/\/_site\/[^\/]+\/index\.html$/)
       ) {
-        const pathPrefix = '';
+        const pathPrefix = isStaging ? '/mike-henke-website' : '';
 
         // Extract the post slug from the output path
         const pathParts = outputPath.split('/');
@@ -718,7 +720,10 @@ module.exports = function (eleventyConfig) {
   });
 
   return {
-    pathPrefix: '',
+    // Production: no pathPrefix (custom domain mikehenke.com)
+    // Staging: use pathPrefix for GitHub Pages subdirectory
+    // Development: no pathPrefix (localhost)
+    pathPrefix: isStaging ? '/mike-henke-website' : '',
     dir: {
       input: '.',
       includes: '_includes',
