@@ -194,7 +194,15 @@
             const basePath = '';
             
             const categoryHTML = categories.map(category => {
-                const slug = category.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+                // Create slug but preserve original case for certain categories
+                let slug = category.trim().replace(/[\s\W-]+/g, '-').replace(/^-+|-+$/g, '');
+                
+                // For WordPress compatibility, preserve case for certain categories
+                const preserveCaseCategories = ['CFEclipse', 'ColdFusion', 'CFWheels'];
+                if (!preserveCaseCategories.includes(category)) {
+                    slug = slug.toLowerCase();
+                }
+                
                 return `<a href="${basePath}/category/${slug}/" class="category-tag">${category}</a>`;
             }).join('');
             
@@ -321,7 +329,16 @@
                         // Create category links individually to ensure proper attributes
                         categories.forEach(category => {
                             const categoryLink = document.createElement('a');
-                            const slug = category.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+                            
+                            // Create slug but preserve original case for certain categories
+                            let slug = category.trim().replace(/[\s\W-]+/g, '-').replace(/^-+|-+$/g, '');
+                            
+                            // For WordPress compatibility, preserve case for certain categories
+                            const preserveCaseCategories = ['CFEclipse', 'ColdFusion', 'CFWheels'];
+                            if (!preserveCaseCategories.includes(category)) {
+                                slug = slug.toLowerCase();
+                            }
+                            
                             categoryLink.href = `${basePath}/category/${slug}/`;
                             categoryLink.className = 'category-tag';
                             categoryLink.textContent = category;
