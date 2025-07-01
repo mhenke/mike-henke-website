@@ -11,10 +11,9 @@ const { URL } = require('url');
  */
 
 module.exports = function (eleventyConfig) {
-  // Environment detection
+  // Environment detection - simplified to dev/prod only
   const isProduction = process.env.NODE_ENV === 'production';
-  const isStaging = process.env.NODE_ENV === 'staging';
-  const isDevelopment = !isProduction && !isStaging;
+  const isDevelopment = !isProduction;
 
   // Build performance monitoring
   let buildStartTime;
@@ -302,7 +301,7 @@ module.exports = function (eleventyConfig) {
 
             // Only process relative image paths that start with 'images/'
             if (src && src.startsWith('images/')) {
-              const pathPrefix = isStaging ? '/mike-henke-website' : '';
+              const pathPrefix = '';
 
               // Extract post slug from available data
               let postSlug = '';
@@ -374,7 +373,7 @@ module.exports = function (eleventyConfig) {
         outputPath.includes('output/posts/') ||
         outputPath.match(/\/_site\/[^\/]+\/index\.html$/)
       ) {
-        const pathPrefix = isStaging ? '/mike-henke-website' : '';
+        const pathPrefix = '';
 
         // Extract the post slug from the output path
         const pathParts = outputPath.split('/');
@@ -814,10 +813,8 @@ module.exports = function (eleventyConfig) {
   }
 
   return {
-    // Production: no pathPrefix (custom domain mikehenke.com)
-    // Staging: use pathPrefix for GitHub Pages subdirectory
-    // Development: no pathPrefix (localhost)
-    pathPrefix: isStaging ? '/mike-henke-website' : '',
+    // No pathPrefix needed for custom domain
+    pathPrefix: '',
     dir: {
       input: '.',
       includes: '_includes',

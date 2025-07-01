@@ -22,7 +22,9 @@
     <main id="main-content" role="main">
         <!-- ARIA live region for screen reader announcements -->
         <div id="sr-announcements" aria-live="polite" aria-atomic="true" class="sr-only"></div>
+        {% block content %}
         {{ content | safe }}
+        {% endblock %}
     </main>
     
     {% include "partials/footer.njk" %}

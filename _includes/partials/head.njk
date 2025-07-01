@@ -75,11 +75,11 @@
 </style>
 {% endif %}
 
-<!-- Environment indicator (only in staging/dev) -->
-{% if site.environment != 'production' %}
+<!-- Environment indicator (only in development) -->
+{% if site.environment == 'development' %}
 <style>
   body::before {
-    content: 'STAGING - {{ site.environment | upper }}';
+    content: 'DEVELOPMENT - {{ site.environment | upper }}';
     position: fixed;
     top: 0;
     left: 0;
@@ -87,16 +87,15 @@
     background: #ff6b35;
     color: white;
     text-align: center;
-    padding: 4px 8px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
+    padding: 5px;
     font-size: 12px;
+    font-weight: bold;
     z-index: 10000;
-    letter-spacing: 1px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   }
   
   body {
-    padding-top: 28px;
+    padding-top: 30px;
   }
 </style>
 {% endif %}
