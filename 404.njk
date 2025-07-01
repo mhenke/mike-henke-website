@@ -65,16 +65,6 @@ permalink: /404.html
         </div>
 
         <div class="error-footer">
-            <div class="error-stats">
-                <h4>Fun 404 Facts:</h4>
-                <ul>
-                    <li>📅 This page has been missing since: <span id="missing-since"></span></li>
-                    <li>🔍 Pages searched in vain: <span id="search-count">1,337</span></li>
-                    <li>☕ Cups of coffee consumed while debugging: <span id="coffee-count">∞</span></li>
-                    <li>🐛 Bugs fixed instead of finding this page: <span id="bugs-fixed">42</span></li>
-                </ul>
-            </div>
-            
             <div class="error-contact">
                 <p>If you think this page should exist, <a href="/#contact">let me know</a>! I promise to investigate with the same dedication I bring to hunting down production bugs at 3 AM.</p>
             </div>
@@ -236,38 +226,6 @@ permalink: /404.html
     border-top: 2px solid var(--color-border);
 }
 
-.error-stats {
-    margin-bottom: var(--spacing-3xl);
-}
-
-.error-stats h4 {
-    font-size: var(--font-size-lg);
-    margin-bottom: var(--spacing-lg);
-    color: var(--color-primary);
-    font-weight: var(--font-weight-medium);
-}
-
-.error-stats ul {
-    list-style: none;
-    max-width: 500px;
-    margin: 0 auto;
-}
-
-.error-stats li {
-    font-size: var(--font-size-sm);
-    margin-bottom: var(--spacing-sm);
-    color: var(--color-text-secondary);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.error-stats span {
-    color: var(--color-primary);
-    font-weight: var(--font-weight-medium);
-    font-family: 'Courier New', monospace;
-}
-
 .error-contact {
     max-width: 600px;
     margin: 0 auto;
@@ -301,12 +259,6 @@ permalink: /404.html
         gap: var(--spacing-lg);
     }
     
-    .error-stats li {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: var(--spacing-xs);
-    }
-    
     .code-joke {
         padding: var(--spacing-lg);
     }
@@ -337,38 +289,5 @@ permalink: /404.html
 </style>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Set the missing since date to a random past date
-    const missingSinceElement = document.getElementById('missing-since');
-    if (missingSinceElement) {
-        const now = new Date();
-        const daysAgo = Math.floor(Math.random() * 30) + 1;
-        const missingDate = new Date(now - (daysAgo * 24 * 60 * 60 * 1000));
-        missingSinceElement.textContent = missingDate.toLocaleDateString();
-    }
-    
-    // Animate the counters
-    function animateCounter(elementId, target, suffix = '') {
-        const element = document.getElementById(elementId);
-        if (!element || element.textContent === '∞') return;
-        
-        let current = 0;
-        const increment = target / 50;
-        const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-                element.textContent = target.toLocaleString() + suffix;
-                clearInterval(timer);
-            } else {
-                element.textContent = Math.floor(current).toLocaleString() + suffix;
-            }
-        }, 30);
-    }
-    
-    // Animate counters with random values
-    setTimeout(() => {
-        animateCounter('search-count', Math.floor(Math.random() * 5000) + 1000);
-        animateCounter('bugs-fixed', Math.floor(Math.random() * 100) + 20);
-    }, 500);
-});
+// No additional JavaScript needed for this 404 page
 </script>
