@@ -212,6 +212,24 @@ module.exports = function (eleventyConfig) {
       .replace(/^-+|-+$/g, '');
   });
 
+  // Category slug filter that preserves case for certain categories
+  eleventyConfig.addFilter('categorySlug', function (category) {
+    if (!category) return '';
+
+    let slug = category
+      .trim()
+      .replace(/[\s\W-]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+
+    // For WordPress compatibility, preserve case for certain categories
+    const preserveCaseCategories = ['CFEclipse', 'ColdFusion', 'CFWheels'];
+    if (!preserveCaseCategories.includes(category)) {
+      slug = slug.toLowerCase();
+    }
+
+    return slug;
+  });
+
   // absoluteUrl filter
   eleventyConfig.addFilter('absoluteUrl', function (url, base) {
     try {
@@ -693,11 +711,22 @@ module.exports = function (eleventyConfig) {
     allPosts.forEach(function (post) {
       if (post.data.categories) {
         post.data.categories.forEach(function (category) {
-          const slug = category
-            .toLowerCase()
+          // Create slug but preserve original case for certain categories
+          let slug = category
             .trim()
             .replace(/[\s\W-]+/g, '-')
             .replace(/^-+|-+$/g, '');
+
+          // For WordPress compatibility, preserve case for certain categories
+          const preserveCaseCategories = [
+            'CFEclipse',
+            'ColdFusion',
+            'CFWheels',
+          ];
+          if (!preserveCaseCategories.includes(category)) {
+            slug = slug.toLowerCase();
+          }
+
           if (!postsByCategory[slug]) {
             postsByCategory[slug] = {
               name: category,
