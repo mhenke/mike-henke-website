@@ -1,15 +1,20 @@
 <!-- Disqus comments configuration -->
+<div id="disqus_thread"></div>
 <script>
-    window.disqus_config = function () {
-        this.page.url = "{{ page.url | absoluteUrl(site.url) }}";
-        this.page.identifier = "{{ page.fileSlug }}";
+    /**
+     * RECOMMENDED CONFIGURATION VARIABLES: Using dynamic values from Eleventy
+     * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    var disqus_config = function () {
+        this.page.url = "{{ page.url | absoluteUrl(site.url) }}";  // Your page's canonical URL variable
+        this.page.identifier = "{{ page.fileSlug }}"; // Your page's unique identifier variable
     };
     
-    // Load Disqus embed script
-    (function() {
+    (function() { // DON'T EDIT BELOW THIS LINE
         var d = document, s = d.createElement('script');
-        s.src = 'https://mike-henke.disqus.com/embed.js';
+        s.src = 'https://mikehenke.disqus.com/embed.js';
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
     })();
-</script>
+</div>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>

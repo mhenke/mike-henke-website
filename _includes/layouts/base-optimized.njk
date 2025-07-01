@@ -41,5 +41,10 @@
     {% if layout == 'layouts/post.njk' or (page.inputPath and page.inputPath.includes('output/posts/')) or content.includes('[code') or content.includes('<pre') %}
         {% include "partials/scripts-blog.njk" %}
     {% endif %}
+    
+    {# PERFORMANCE: Load Disqus comment count script on blog-related pages #}
+    {% if page.url == '/blog/' or layout == 'layouts/post.njk' or (page.inputPath and page.inputPath.includes('output/posts/')) %}
+        <script id="dsq-count-scr" src="//mikehenke.disqus.com/count.js" async></script>
+    {% endif %}
 </body>
 </html>
