@@ -597,7 +597,7 @@ module.exports = function (eleventyConfig) {
     }
   );
 
-  // Transform to fix legacy /post.cfm/ links
+  // Transform to fix legacy /post.cfm/ links and protect external URLs
   eleventyConfig.addTransform(
     'legacyLinkTransform',
     function (content, outputPath) {
@@ -605,12 +605,20 @@ module.exports = function (eleventyConfig) {
         return content;
       }
 
-      // Skip if no legacy links present - optimized check
-      if (!content.includes('post.cfm') && !content.includes('mikehenke.com')) {
-        return content;
-      }
-
       let result = content;
+
+      // FIRST: Fix incorrectly prefixed external URLs (production Netlify issue)
+      // This must run before other URL processing
+      result = result.replace(/https:\/\/mikehenke\.com\/(fonts\.googleapis\.com[^"'\s]*)/g, 'https://$1');
+      result = result.replace(/https:\/\/mikehenke\.com\/(cdnjs\.cloudflare\.com[^"'\s]*)/g, 'https://$1');
+      result = result.replace(/https:\/\/mikehenke\.com\/(www\.youtube\.com[^"'\s]*)/g, 'https://$1');
+      result = result.replace(/https:\/\/mikehenke\.com\/(youtube\.com[^"'\s]*)/g, 'https://$1');
+      result = result.replace(/https:\/\/mikehenke\.com\/(disqus\.com[^"'\s]*)/g, 'https://$1');
+
+      // Skip further processing if no legacy links present
+      if (!result.includes('post.cfm') && !result.includes('mikehenke.com/')) {
+        return result;
+      }
 
       // Fix various patterns of legacy links
       // Pattern 1: http://mikehenke.com/post.cfm/slug -> /slug/
@@ -626,8 +634,9 @@ module.exports = function (eleventyConfig) {
       result = result.replace(/(?<!\/|:)post\.cfm\/([^"'\s\)]+)/gi, '/$1/');
 
       // Pattern 4: Fix any remaining mikehenke.com domains to be relative
+      // BUT exclude external domains that were incorrectly prefixed
       result = result.replace(
-        /https?:\/\/mikehenke\.com\/([^"'\s\)]+)/gi,
+        /https?:\/\/mikehenke\.com\/(?!(?:fonts\.|cdnjs\.|www\.youtube\.|youtube\.|disqus\.))([^"'\s\)]+)/gi,
         '/$1'
       );
 
