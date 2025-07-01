@@ -107,8 +107,8 @@
             const basePath = '';
             
             const categoryHTML = categories.map(category => {
-                // Create slug without any case manipulation
-                let slug = category.trim().replace(/[\s\W-]+/g, '-').replace(/^-+|-+$/g, '');
+                // Use category exactly as written, no manipulation
+                let slug = category.trim();
                 
                 return `<a href="${basePath}/category/${slug}/" class="category-tag">${category}</a>`;
             }).join('');
@@ -237,8 +237,8 @@
                         categories.forEach(category => {
                             const categoryLink = document.createElement('a');
                             
-                            // Create slug without any case manipulation
-                            let slug = category.trim().replace(/[\s\W-]+/g, '-').replace(/^-+|-+$/g, '');
+                            // Use category exactly as written, no manipulation
+                            let slug = category.trim();
                             
                             categoryLink.href = `${basePath}/category/${slug}/`;
                             categoryLink.className = 'category-tag';
