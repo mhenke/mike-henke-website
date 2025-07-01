@@ -21,27 +21,30 @@
 {% endif %}
 
 <!-- PERFORMANCE: DNS prefetch for faster font loading -->
-<link rel="dns-prefetch" href="//fonts.googleapis.com">
-<link rel="dns-prefetch" href="//fonts.gstatic.com">
-<link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 
 <!-- Preconnect to external domains -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <!-- PERFORMANCE: Critical font loading only -->
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+{%- set googleFontsUrl = "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" -%}
+<link href="{{ googleFontsUrl }}" rel="stylesheet">
 
 <!-- PERFORMANCE: Load Font Awesome only if needed -->
 {% if page.url == '/' or layout == 'layouts/post.njk' or (page.inputPath and page.inputPath.includes('output/posts/')) %}
+{%- set fontAwesomeUrl = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" -%}
 <link rel="stylesheet" 
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" 
+      href="{{ fontAwesomeUrl }}" 
       crossorigin="anonymous">
 {% endif %}
 
 <!-- PERFORMANCE: Load syntax highlighting only on blog pages -->
 {% if layout == 'layouts/post.njk' or (page.inputPath and page.inputPath.includes('output/posts/')) %}
-<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" 
+{%- set prismCssUrl = "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" -%}
+<link href="{{ prismCssUrl }}" 
       rel="stylesheet" crossorigin="anonymous">
 {% endif %}
 
