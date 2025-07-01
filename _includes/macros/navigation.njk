@@ -10,10 +10,16 @@
 
 {% macro footerLinks() %}
     <a href="{{ '/' | url }}" class="footer-link">Home</a>
+    <span class="footer-separator">•</span>
     <a href="{{ '/' | url }}#about" class="footer-link">About</a>
+    <span class="footer-separator">•</span>
     <a href="{{ '/' | url }}#skills" class="footer-link">Skills</a>
+    <span class="footer-separator">•</span>
     <a href="{{ '/' | url }}#career" class="footer-link">Career</a>
+    <span class="footer-separator">•</span>
     <a href="{{ '/blog/' | url }}" class="footer-link">Blog</a>
+    <span class="footer-separator">•</span>
     <a href="{{ '/' | url }}#contact" class="footer-link">Contact</a>
+    <span class="footer-separator">•</span>
     <a href="{{ '/search/' | url }}" class="footer-link">Search</a>
 {% endmacro %}
