@@ -631,8 +631,8 @@ module.exports = function (eleventyConfig) {
         '/$1'
       );
 
-      // Clean up any double slashes that might have been created
-      result = result.replace(/\/\/+/g, '/');
+      // Clean up any double slashes that might have been created, but preserve protocol schemes
+      result = result.replace(/(?<!https?:)\/\/+/g, '/');
 
       return result;
     }
