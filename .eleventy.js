@@ -20,9 +20,11 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.on('eleventy.before', function() {
     buildStartTime = Date.now();
     if (isDevelopment) {
-      console.log('🚀 Starting Eleventy build...');
-    }
-  });
+      console.log('🚀 Starting Eleventy build          // Create slug without any case manipulation
+          let slug = category
+            .trim()
+            .replace(/[\s\W-]+/g, '-')
+            .replace(/^-+|-+$/g, '');});
 
   eleventyConfig.on('eleventy.after', function() {
     if (buildStartTime && isDevelopment) {
@@ -226,28 +228,16 @@ module.exports = function (eleventyConfig) {
   // Slugify filter for category URLs
   eleventyConfig.addFilter('slugify', function (str) {
     return str
-      .toLowerCase()
       .trim()
-      .replace(/[\s\W-]+/g, '-')
-      .replace(/^-+|-+$/g, '');
   });
 
-  // Category slug filter that preserves case for certain categories
+  // Category slug filter - no case manipulation, preserve original case
   eleventyConfig.addFilter('categorySlug', function (category) {
     if (!category) return '';
 
-    let slug = category
-      .trim()
-      .replace(/[\s\W-]+/g, '-')
-      .replace(/^-+|-+$/g, '');
-
-    // For WordPress compatibility, preserve case for certain categories
-    const preserveCaseCategories = ['CFEclipse', 'ColdFusion', 'CFWheels'];
-    if (!preserveCaseCategories.includes(category)) {
-      slug = slug.toLowerCase();
-    }
-
-    return slug;
+    // Simply clean special characters while preserving original case
+    return category
+      .trim();
   });
 
   // absoluteUrl filter
@@ -784,16 +774,6 @@ module.exports = function (eleventyConfig) {
             .trim()
             .replace(/[\s\W-]+/g, '-')
             .replace(/^-+|-+$/g, '');
-
-          // For WordPress compatibility, preserve case for certain categories
-          const preserveCaseCategories = [
-            'CFEclipse',
-            'ColdFusion',
-            'CFWheels',
-          ];
-          if (!preserveCaseCategories.includes(category)) {
-            slug = slug.toLowerCase();
-          }
 
           if (!postsByCategory[slug]) {
             postsByCategory[slug] = {
