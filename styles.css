@@ -2093,265 +2093,69 @@ address a:hover {
   font-size: var(--font-size-sm);
 }
 
-/* SEARCH STYLING - Enhanced for Pagefind UI */
+/* SEARCH STYLING - Basic container */
 #search {
   width: 100%;
   max-width: 100%;
   position: relative;
 }
 
-/* PAGEFIND UI COMPLETE STYLING - Comprehensive search interface styling */
-
-/* Search container and input styling */
-.pagefind-ui {
-  --pagefind-ui-scale: 1;
-  --pagefind-ui-primary: var(--color-primary);
-  --pagefind-ui-text: var(--color-text);
-  --pagefind-ui-background: var(--color-surface-light);
-  --pagefind-ui-border: var(--color-border);
-  --pagefind-ui-tag: var(--color-primary);
-  --pagefind-ui-border-width: 2px;
-  --pagefind-ui-border-radius: var(--border-radius-lg);
-  --pagefind-ui-font: var(--font-primary);
-}
-
-/* Search form layout */
-.pagefind-ui__form {
-  display: flex;
-  gap: var(--spacing-sm);
-  align-items: stretch;
-  margin-bottom: var(--spacing-xl);
-}
-
-/* Search input field */
-.pagefind-ui__search-input {
-  background: var(--color-surface-light);
-  border: var(--border-width-thick) solid var(--color-border);
-  border-radius: var(--border-radius-lg);
-  color: var(--color-text);
-  font-family: var(--font-primary);
-  font-size: var(--font-size-base);
-  padding: var(--spacing-md) var(--spacing-lg);
-  width: 100%;
-  box-sizing: border-box;
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.pagefind-ui__search-input:focus {
-  border-color: var(--color-primary);
-  box-shadow: var(--shadow-accent-sm);
-  outline: none;
-}
-
-.pagefind-ui__search-input::placeholder {
-  color: var(--color-text-tertiary);
-  opacity: 1;
-}
-
-/* Search clear button */
-.pagefind-ui__search-clear {
-  background: var(--color-primary);
-  border: none;
-  border-radius: var(--border-radius-md);
-  color: var(--color-background);
-  cursor: pointer;
-  font-family: var(--font-primary);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  padding: var(--spacing-xs) var(--spacing-sm);
-  transition: all var(--transition-fast);
-  height: auto;
-  min-height: 32px;
-}
-
-.pagefind-ui__search-clear:hover {
-  background: var(--color-primary-dark);
-  transform: var(--hover-lift);
-}
-
-/* Search messages */
-.pagefind-ui__message {
-  color: var(--color-text-secondary);
-  font-family: var(--font-primary);
-  font-size: var(--font-size-base);
-  text-align: center;
-  margin: var(--spacing-lg) 0;
-  transition: none;
-}
-
-/* Search results container */
-.pagefind-ui__results {
-  margin-top: var(--spacing-xl);
-}
-
-/* Individual search result styling - matches blog cards exactly */
-.pagefind-ui__result {
-  margin-bottom: var(--spacing-xl);
-  padding: var(--spacing-lg) var(--spacing-xl);
-  background-color: var(--color-surface-light);
-  border-radius: var(--border-radius-lg);
-  border: var(--border-width-thick) solid var(--color-border);
-  box-shadow: var(--shadow-md);
-  transition: all var(--transition-normal);
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.pagefind-ui__result:last-child {
-  margin-bottom: 0;
-}
-
-.pagefind-ui__result:hover {
-  box-shadow: var(--shadow-lg);
-  border-color: var(--color-primary-dark);
-  transform: var(--hover-lift);
-}
-
-/* Search result link styling */
-.pagefind-ui__result-link {
-  color: inherit;
-  text-decoration: none;
-  display: block;
-}
-
 /* ================================
    ENHANCED PAGEFIND SEARCH RESULTS - Match Blog Card Layout
    ================================ */
 
-/* Override default pagefind styles with higher specificity */
+/* Fix Pagefind UI drawer container issues */
+.pagefind-ui__drawer {
+  max-width: none !important;
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.pagefind-ui__results {
+  max-width: none !important;
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  display: block !important;
+}
+
+/* Override default pagefind result containers */
 .pagefind-ui__results .pagefind-ui__result {
   border: none !important;
   padding: 0 !important;
-  margin: 0 !important;
+  margin: 0 0 var(--spacing-xl) 0 !important;
   background: none !important;
-  display: block !important;
-  /* Initial state for entire result container - slide from top */
-  opacity: 0;
-  transform: translateY(-30px);
-  transition: all 0.4s ease-out;
+  box-shadow: none !important;
 }
 
-.pagefind-ui__results .pagefind-ui__result.animate {
-  /* Animated state for entire result container */
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Search results that have been enhanced to match blog cards */
+/* Style search results that use blog card structure */
 .pagefind-ui__results .blog-post-card {
-  /* Use the existing blog card styles - override any default pagefind styling */
   margin-bottom: var(--spacing-xl) !important;
   padding: var(--spacing-lg) var(--spacing-xl) !important;
   background-color: var(--color-surface-light) !important;
   border-radius: var(--border-radius-lg) !important;
   border: var(--border-width-thick) solid var(--color-border) !important;
   box-shadow: var(--shadow-md) !important;
-  width: 100%;
-  box-sizing: border-box;
-  /* Remove any initial transform/opacity that might interfere with container animation */
-  opacity: 1 !important;
-  transform: none !important;
-  transition: box-shadow var(--transition-normal), border-color var(--transition-normal) !important;
+  transition: all var(--transition-normal) !important;
 }
 
 .pagefind-ui__results .blog-post-card:hover {
   box-shadow: var(--shadow-lg) !important;
   border-color: var(--color-primary-dark) !important;
-  /* Only allow subtle hover transform, not entrance animation */
   transform: translateY(-2px) !important;
 }
 
-/* Search results for non-blog pages */
-.pagefind-ui__results .search-result-page {
-  background-color: var(--color-surface-light) !important;
-  border: 2px solid var(--color-border) !important;
-  border-radius: var(--border-radius-lg) !important;
-  padding: var(--spacing-xl) !important;
-  margin-bottom: var(--spacing-xl) !important;
-  transition: all var(--transition-normal) !important;
-  box-shadow: var(--shadow-md) !important;
-  display: block !important;
-}
-
-.pagefind-ui__results .search-result-page:hover {
-  border-color: var(--color-primary-dark) !important;
-  box-shadow: var(--shadow-lg) !important;
-  transform: translateY(-2px) !important;
-}
-
-/* Enhanced search results category tags styling */
-.pagefind-ui__results .blog-post-categories {
-  margin: var(--spacing-sm) 0 !important;
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: var(--spacing-xs) !important;
-}
-
-.pagefind-ui__results .category-tag {
-  background-color: transparent !important;
-  color: var(--color-text) !important;
-  border: var(--border-width-thin) solid var(--color-primary) !important;
-  padding: var(--spacing-xs) var(--spacing-sm) !important;
-  border-radius: var(--border-radius-xs) !important;
-  font-size: var(--font-size-sm) !important;
-  font-weight: var(--font-weight-regular) !important;
-  text-decoration: none !important;
-  margin-right: var(--spacing-xs) !important;
-  margin-bottom: var(--spacing-xs) !important;
-  line-height: 1.1 !important;
-  letter-spacing: normal !important;
-  cursor: pointer !important;
-  display: inline-block !important;
-  transition: all 0.2s ease !important;
-}
-
-.pagefind-ui__results .category-tag:hover {
-  background-color: var(--color-primary) !important;
-  color: var(--color-background) !important;
-  border-color: var(--color-primary) !important;
-  transform: translateY(-1px) !important;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
-}
-
-/* Search result blog post titles */
-.pagefind-ui__results .blog-post-title {
-  font-size: var(--font-size-xl) !important;
-  font-weight: var(--font-weight-bold) !important;
-  margin: 0 0 var(--spacing-sm) 0 !important;
-  line-height: var(--line-height-tight) !important;
-}
-
-.pagefind-ui__results .blog-post-title a {
-  color: var(--color-text) !important;
-  text-decoration: none !important;
-  transition: color var(--transition-fast) !important;
-}
-
-.pagefind-ui__results .blog-post-title a:hover {
-  color: var(--color-primary) !important;
-}
-
-/* Search result excerpts */
-.pagefind-ui__results .blog-post-excerpt {
-  color: var(--color-text-secondary) !important;
-  font-size: var(--font-size-base) !important;
-  line-height: var(--line-height-relaxed) !important;
-  margin: var(--spacing-sm) 0 !important;
-}
-
-/* Search result dates */
-.pagefind-ui__results .blog-post-date {
-  color: var(--color-text-tertiary) !important;
-  font-size: var(--font-size-sm) !important;
-  margin: var(--spacing-sm) 0 0 0 !important;
-}
-
-/* Hide default pagefind result elements that we're replacing */
+/* Hide default pagefind result elements */
 .pagefind-ui__results .pagefind-ui__result-title,
 .pagefind-ui__results .pagefind-ui__result-excerpt,
 .pagefind-ui__results .pagefind-ui__result-tags {
   display: none !important;
-}
 }
 
 /* ================================
