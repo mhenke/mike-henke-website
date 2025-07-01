@@ -15,6 +15,22 @@ module.exports = function (eleventyConfig) {
   const isProduction = process.env.NODE_ENV === 'production';
   const isStaging = process.env.NODE_ENV === 'staging';
   const isDevelopment = !isProduction && !isStaging;
+
+  // Build performance monitoring
+  let buildStartTime;
+  eleventyConfig.on('eleventy.before', function() {
+    buildStartTime = Date.now();
+    if (isDevelopment) {
+      console.log('🚀 Starting Eleventy build...');
+    }
+  });
+
+  eleventyConfig.on('eleventy.after', function() {
+    if (buildStartTime && isDevelopment) {
+      const buildTime = Date.now() - buildStartTime;
+      console.log(`✅ Build completed in ${buildTime}ms`);
+    }
+  });
   // Optimized code block transform
   eleventyConfig.addTransform(
     'codeBlockTransform',
@@ -135,6 +151,11 @@ module.exports = function (eleventyConfig) {
     'podcastEmbedTransform',
     function (content, outputPath) {
       if (!outputPath || !outputPath.endsWith('.html')) {
+        return content;
+      }
+
+      // Early return if no podcast or embed content present
+      if (!content.includes('[podcast') && !content.includes('[embed')) {
         return content;
       }
 
@@ -263,65 +284,74 @@ module.exports = function (eleventyConfig) {
 
   // Markdown image processing - modify markdown-it to handle image paths
   eleventyConfig.amendLibrary('md', function (mdLib) {
-    // Override the default image renderer
-    const defaultImageRenderer =
-      mdLib.renderer.rules.image ||
-      function (tokens, idx, options, env, self) {
-        return self.renderToken(tokens, idx, options);
-      };
+    try {
+      // Override the default image renderer
+      const defaultImageRenderer =
+        mdLib.renderer.rules.image ||
+        function (tokens, idx, options, env, self) {
+          return self.renderToken(tokens, idx, options);
+        };
 
-    mdLib.renderer.rules.image = function (tokens, idx, options, env, self) {
-      const token = tokens[idx];
-      const srcIndex = token.attrIndex('src');
-      const altIndex = token.attrIndex('alt');
+      mdLib.renderer.rules.image = function (tokens, idx, options, env, self) {
+        try {
+          const token = tokens[idx];
+          const srcIndex = token.attrIndex('src');
+          
+          if (srcIndex >= 0) {
+            const src = token.attrs[srcIndex][1];
 
-      if (srcIndex >= 0) {
-        const src = token.attrs[srcIndex][1];
+            // Only process relative image paths that start with 'images/'
+            if (src && src.startsWith('images/')) {
+              const pathPrefix = isStaging ? '/mike-henke-website' : '';
 
-        // Only process relative image paths that start with 'images/'
-        if (src.startsWith('images/')) {
-          const pathPrefix = isStaging ? '/mike-henke-website' : '';
+              // Extract post slug from available data
+              let postSlug = '';
 
-          // Extract post slug from available data
-          let postSlug = '';
+              if (
+                env?.page?.inputPath &&
+                env.page.inputPath.includes('output/posts/')
+              ) {
+                const pathParts = env.page.inputPath.split('/');
+                const outputIndex = pathParts.indexOf('output');
+                if (outputIndex !== -1 && pathParts[outputIndex + 1] === 'posts') {
+                  postSlug = pathParts[outputIndex + 2];
+                }
+              }
 
-          if (
-            env?.page?.inputPath &&
-            env.page.inputPath.includes('output/posts/')
-          ) {
-            const pathParts = env.page.inputPath.split('/');
-            const outputIndex = pathParts.indexOf('output');
-            if (outputIndex !== -1 && pathParts[outputIndex + 1] === 'posts') {
-              postSlug = pathParts[outputIndex + 2];
+              if (postSlug) {
+                const imageName = src.replace('images/', '');
+                // Route images to the root directory structure (not /blog/)
+                const newSrc = `${pathPrefix}/${postSlug}/images/${imageName}`;
+                token.attrs[srcIndex][1] = newSrc;
+              }
             }
           }
 
-          if (postSlug) {
-            const imageName = src.replace('images/', '');
-            // Route images to the root directory structure (not /blog/)
-            const newSrc = `${pathPrefix}/${postSlug}/images/${imageName}`;
-            token.attrs[srcIndex][1] = newSrc;
+          // Ensure we always render the image tag properly
+          const token_o = tokens[idx];
+          let aIndex = token_o.attrIndex('alt');
+          let alt = '';
+
+          if (aIndex >= 0) {
+            alt = token_o.attrs[aIndex][1] || '';
+          } else if (token_o.content) {
+            alt = token_o.content;
           }
+
+          // Get the final src value safely
+          const finalSrc = (srcIndex >= 0 && token_o.attrs[srcIndex]) ? token_o.attrs[srcIndex][1] : '';
+
+          // Return a proper HTML img tag
+          return `<img src="${finalSrc}" alt="${alt}" loading="lazy">`;
+        } catch (renderError) {
+          console.warn('⚠️ Warning: Error rendering image in markdown:', renderError.message);
+          // Fallback to default renderer
+          return defaultImageRenderer(tokens, idx, options, env, self);
         }
-      }
-
-      // Ensure we always render the image tag properly
-      const token_o = tokens[idx];
-      let aIndex = token_o.attrIndex('alt');
-      let alt = '';
-
-      if (aIndex >= 0) {
-        alt = token_o.attrs[aIndex][1];
-      } else if (token_o.content) {
-        alt = token_o.content;
-      }
-
-      // Get the final src value
-      const finalSrc = token_o.attrs[srcIndex][1];
-
-      // Return a proper HTML img tag
-      return `<img src="${finalSrc}" alt="${alt}" loading="lazy">`;
-    };
+      };
+    } catch (error) {
+      console.warn('⚠️ Warning: Could not configure markdown image renderer:', error.message);
+    }
   });
 
   // Remove the markdown image transform since we're handling it in markdown-it now
@@ -331,6 +361,11 @@ module.exports = function (eleventyConfig) {
     'combinedImageTransform',
     function (content, outputPath) {
       if (!outputPath || !outputPath.endsWith('.html')) {
+        return content;
+      }
+
+      // Early return if no image content to process
+      if (!content.includes('images/') && !content.includes('![](')) {
         return content;
       }
 
@@ -403,6 +438,11 @@ module.exports = function (eleventyConfig) {
     'htmlEntityDecoder',
     function (content, outputPath) {
       if (!outputPath || !outputPath.endsWith('.html')) {
+        return content;
+      }
+
+      // Early return if no HTML entities to decode
+      if (!content.includes('&quot;') && !content.includes('&#39;') && !content.includes('&apos;')) {
         return content;
       }
 
@@ -488,6 +528,11 @@ module.exports = function (eleventyConfig) {
         return content;
       }
 
+      // Early return if no shortcodes present
+      if (!content.includes('[') || !content.includes(']')) {
+        return content;
+      }
+
       let result = content;
 
       // Remove escaped backslashes from shortcodes first
@@ -561,8 +606,8 @@ module.exports = function (eleventyConfig) {
         return content;
       }
 
-      // Skip if no legacy links present
-      if (!content.includes('/post.cfm/') && !content.includes('post.cfm/')) {
+      // Skip if no legacy links present - optimized check
+      if (!content.includes('post.cfm') && !content.includes('mikehenke.com')) {
         return content;
       }
 
@@ -607,41 +652,56 @@ module.exports = function (eleventyConfig) {
 
   // Comprehensive passthrough copy for post images
   // We need to set these up during config, not during build
-  if (fs.existsSync('./output/posts/')) {
+  try {
+    const postsDir = './output/posts/';
+    
+    // Check directory existence only once
+    if (!fs.existsSync(postsDir)) {
+      if (isDevelopment) {
+        console.log('📝 Note: No output/posts directory found. Skipping image setup.');
+      }
+      return;
+    }
+
+    let postDirs = [];
     try {
-      const postsDir = './output/posts/';
-      const postDirs = fs
-        .readdirSync(postsDir, { withFileTypes: true })
+      // More efficient directory reading
+      postDirs = fs.readdirSync(postsDir, { withFileTypes: true })
         .filter((dirent) => dirent.isDirectory())
         .map((dirent) => dirent.name);
+    } catch (readError) {
+      console.warn('⚠️ Warning: Could not read posts directory:', readError.message);
+      return;
+    }
 
-      postDirs.forEach((postSlug) => {
+    // Batch process with fewer file system calls
+    let configuredCount = 0;
+    const imageConfigs = [];
+    
+    for (const postSlug of postDirs) {
+      try {
         const imagesPath = path.join(postsDir, postSlug, 'images');
         if (fs.existsSync(imagesPath)) {
-          // Copy images from output/posts/post-slug/images/* to _site/post-slug/images/*
-          eleventyConfig.addPassthroughCopy({
+          imageConfigs.push({
             [`output/posts/${postSlug}/images`]: `${postSlug}/images`,
           });
+          configuredCount++;
         }
-      });
-
-      console.log(
-        `✅ Configured image copying for ${
-          postDirs.filter((slug) =>
-            fs.existsSync(path.join(postsDir, slug, 'images'))
-          ).length
-        } posts with images`
-      );
-    } catch (error) {
-      console.warn(
-        '⚠️ Warning: Could not configure post image copying:',
-        error.message
-      );
+      } catch (copyError) {
+        console.warn(`⚠️ Warning: Could not check images for ${postSlug}:`, copyError.message);
+      }
     }
-  } else {
-    console.log(
-      '📝 Note: No output/posts directory found. Skipping image setup.'
-    );
+
+    // Add all configurations at once
+    imageConfigs.forEach(config => {
+      eleventyConfig.addPassthroughCopy(config);
+    });
+
+    if (isDevelopment && configuredCount > 0) {
+      console.log(`✅ Configured image copying for ${configuredCount} posts with images`);
+    }
+  } catch (error) {
+    console.warn('⚠️ Warning: Error during image configuration setup:', error.message);
   }
 
   // WordPress export collections
@@ -747,6 +807,11 @@ module.exports = function (eleventyConfig) {
 
     return postsByCategory;
   });
+
+  // Performance optimizations for production builds
+  if (isProduction) {
+    eleventyConfig.setQuietMode(true);
+  }
 
   return {
     // Production: no pathPrefix (custom domain mikehenke.com)
