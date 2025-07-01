@@ -30,12 +30,16 @@ jobs:
         run: NODE_ENV=staging npm run build:staging
 
       - name: Deploy to GitHub Pages (staging)
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./_site
-          publish_branch: gh-pages
-          # NO CNAME for staging - keeps it at mhenke.github.io/mike-henke-website
+          destination_dir: staging
+          # Option 1: Use GitHub Pages subdirectory (current approach)
+          # This deploys to mhenke.github.io/mike-henke-website/staging
+          
+          # Option 2: Uncomment below for staging subdomain (requires DNS setup)
+          # cname: staging.mikehenke.com
 
   # Deploy production to custom domain
   deploy-production:
@@ -59,9 +63,9 @@ jobs:
         run: NODE_ENV=production npm run build:prod
 
       - name: Deploy to GitHub Pages (production)
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./_site
-          publish_branch: gh-pages
           cname: mikehenke.com
+          force_orphan: true
