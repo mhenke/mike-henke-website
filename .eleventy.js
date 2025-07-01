@@ -20,11 +20,9 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.on('eleventy.before', function() {
     buildStartTime = Date.now();
     if (isDevelopment) {
-      console.log('🚀 Starting Eleventy build          // Create slug without any case manipulation
-          let slug = category
-            .trim()
-            .replace(/[\s\W-]+/g, '-')
-            .replace(/^-+|-+$/g, '');});
+      console.log('🚀 Starting Eleventy build...');
+    }
+  });
 
   eleventyConfig.on('eleventy.after', function() {
     if (buildStartTime && isDevelopment) {
@@ -225,19 +223,15 @@ module.exports = function (eleventyConfig) {
     return DateTime.fromJSDate(dateObj).toFormat(format);
   });
 
-  // Slugify filter for category URLs
+  // Slugify filter for category URLs - no manipulation, use as-is
   eleventyConfig.addFilter('slugify', function (str) {
-    return str
-      .trim()
+    return str.trim();
   });
 
-  // Category slug filter - no case manipulation, preserve original case
+  // Category slug filter - no manipulation, preserve exactly as written
   eleventyConfig.addFilter('categorySlug', function (category) {
     if (!category) return '';
-
-    // Simply clean special characters while preserving original case
-    return category
-      .trim();
+    return category.trim();
   });
 
   // absoluteUrl filter
@@ -769,11 +763,8 @@ module.exports = function (eleventyConfig) {
     allPosts.forEach(function (post) {
       if (post.data.categories) {
         post.data.categories.forEach(function (category) {
-          // Create slug but preserve original case for certain categories
-          let slug = category
-            .trim()
-            .replace(/[\s\W-]+/g, '-')
-            .replace(/^-+|-+$/g, '');
+          // Use category exactly as written, no manipulation
+          let slug = category.trim();
 
           if (!postsByCategory[slug]) {
             postsByCategory[slug] = {
