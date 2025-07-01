@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  # Deploy staging to GitHub Pages subdirectory
+  # Deploy staging to GitHub Pages subdirectory (recommended for single repo)
   deploy-staging:
     if: github.ref == 'refs/heads/staging'
     runs-on: ubuntu-latest
@@ -29,17 +29,13 @@ jobs:
       - name: Build for staging
         run: NODE_ENV=staging npm run build:staging
 
-      - name: Deploy to GitHub Pages (staging)
+      - name: Deploy to GitHub Pages (staging subdirectory)
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./_site
           destination_dir: staging
-          # Option 1: Use GitHub Pages subdirectory (current approach)
-          # This deploys to mhenke.github.io/mike-henke-website/staging
-          
-          # Option 2: Uncomment below for staging subdomain (requires DNS setup)
-          # cname: staging.mikehenke.com
+          # Deploys to: mhenke.github.io/mike-henke-website/staging
 
   # Deploy production to custom domain
   deploy-production:
