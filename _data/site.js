@@ -7,8 +7,6 @@ module.exports = {
   url:
     process.env.NODE_ENV === 'production'
       ? 'https://mikehenke.com'
-      : process.env.NODE_ENV === 'staging'
-      ? 'https://mhenke.github.io/mike-henke-website'
       : 'http://localhost:8080',
 
   environment: process.env.NODE_ENV || 'development',

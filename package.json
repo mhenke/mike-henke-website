@@ -6,12 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf _site",
+    "start": "NODE_ENV=development npx @11ty/eleventy --serve --watch",
     "dev": "NODE_ENV=development npx @11ty/eleventy --serve --watch",
-    "build": "NODE_ENV=development npx @11ty/eleventy",
-    "build:staging": "NODE_ENV=staging npx @11ty/eleventy && npx pagefind --site _site --verbose",
-    "build:prod": "NODE_ENV=production npx @11ty/eleventy && npx pagefind --site _site --verbose",
-    "deploy:staging": "NODE_ENV=staging npx @11ty/eleventy",
-    "start": "npm run clean && eleventy --serve --watch",
+    "build": "NODE_ENV=production npx @11ty/eleventy && npx pagefind --site _site --verbose",
+    "build:dev": "NODE_ENV=development npx @11ty/eleventy",
+    "serve": "npx @11ty/eleventy --serve",
     "dev:nosearch": "npm run clean && eleventy --serve --watch"
   },
   "keywords": [

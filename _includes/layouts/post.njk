@@ -1,60 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% include "partials/head.njk" %}
-</head>
-<body>
-    <!-- Skip Navigation Links for Screen Readers -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    <a href="#nav-menu" class="skip-link">Skip to navigation</a>
+{% extends "layouts/base-optimized.njk" %}
+
+{% block content %}
+<article class="content-section-boxed content-section-top-margin" role="article" data-pagefind-body>
+    <header>
+        <h1 data-pagefind-meta="title">{{ title }}</h1>
+        {% import "macros/publish-date.njk" as dateMacros %}
+        {{ dateMacros.publishDate(date) }}
+        {% import "macros/category-tags.njk" as categoryMacros %}
+        {{ categoryMacros.categoryTags(categories) }}
+    </header>
+    <hr>
+    <div>
+        {{ content | safe }}
+    </div>
     
-    {% include "partials/navigation.njk" %}
+    {# Author bio section #}
+    {% import "macros/written-by.njk" as authorMacros %}
+    {{ authorMacros.writtenBy() }}
     
-    <main id="main-content" role="main">
-        <article class="content-section-boxed content-section-top-margin" role="article" data-pagefind-body>
-            <header>
-                <h1 data-pagefind-meta="title">{{ title }}</h1>
-                {% import "macros/publish-date.njk" as dateMacros %}
-                {{ dateMacros.publishDate(date) }}
-                {% import "macros/category-tags.njk" as categoryMacros %}
-                {{ categoryMacros.categoryTags(categories) }}
-            </header>
-            <hr>
-            <div>
-                {{ content | safe }}
-            </div>
-            
-            {# Author bio section #}
-            {% import "macros/written-by.njk" as authorMacros %}
-            {{ authorMacros.writtenBy() }}
-            
-            <hr>
-            <footer>
-                <p><a href="{{ '/blog' | url }}" class="back-to-blog-link" aria-label="Return to blog listing">← Back to Blog</a></p>
-            </footer>
-            <div id="disqus_thread" role="complementary" aria-label="Comments section"></div>
-            <script>
-                var disqus_config = function () {
-                    this.page.url = "{{ page.url | absoluteUrl(site.url) }}";
-                    this.page.identifier = "{{ page.fileSlug }}";
-                };
-                (function() {
-                    var d = document, s = d.createElement('script');
-                    s.src = 'https://mike-henke.disqus.com/embed.js';
-                    s.setAttribute('data-timestamp', +new Date());
-                    (d.head || d.body).appendChild(s);
-                })();
-            </script>
-            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        </article>
-    </main>
+    <hr>
+    <footer>
+        <p><a href="{{ '/blog' | url }}" class="back-to-blog-link" aria-label="Return to blog listing">← Back to Blog</a></p>
+    </footer>
     
-    {% include "partials/footer.njk" %}
-    
-    {# PERFORMANCE: Load core scripts on all pages #}
-    {% include "partials/scripts-core.njk" %}
-    
-    {# PERFORMANCE: Blog posts always need syntax highlighting #}
-    {% include "partials/scripts-blog.njk" %}
-</body>
-</html>
+    {# Comments section #}
+    <div id="disqus_thread" role="complementary" aria-label="Comments section"></div>
+    {% include "partials/disqus-config.njk" %}
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article>
+{% endblock %}
