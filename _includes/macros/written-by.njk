@@ -1,0 +1,38 @@
+{# Written by author bio macro for blog posts #}
+{% macro writtenBy(author = "Mike Henke", showImage = true) %}
+<div class="author-bio">
+    {% if showImage %}
+    <div class="author-image">
+        <img src="{{ '/assets/profile.jpg' | url }}" alt="Mike Henke" loading="lazy">
+    </div>
+    {% endif %}
+    
+    <div class="author-content">
+        <h4 class="author-name">Written by {{ author }}</h4>
+        <div class="author-description">
+            <p>Mike Henke (pronounced "hang-kee") is a full-stack web and mobile developer with 15+ years of experience. Originally focused on ColdFusion development and databases since 1999, he has evolved with the web development landscape to embrace modern JavaScript, Python, React, and cloud technologies.</p>
+            
+            <p>Currently based in the Omaha area (previously Washington, DC), Mike specializes in building scalable web applications, API development, and modern frontend frameworks. When not coding, he enjoys exploring new technologies, sharing knowledge, and spending time with his wife and three children.</p>
+            
+            <div class="author-links">
+                <a href="/#about" class="author-link" aria-label="Learn more about Mike">
+                    <i class="fas fa-user" aria-hidden="true"></i>
+                    <span>About</span>
+                </a>
+                <a href="/#career" class="author-link" aria-label="View Mike's career timeline">
+                    <i class="fas fa-briefcase" aria-hidden="true"></i>
+                    <span>Career</span>
+                </a>
+                <a href="/blog/" class="author-link" aria-label="Browse all blog posts">
+                    <i class="fas fa-blog" aria-hidden="true"></i>
+                    <span>All Posts</span>
+                </a>
+                <a href="/#contact" class="author-link" aria-label="Contact Mike">
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                    <span>Contact</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endmacro %}
