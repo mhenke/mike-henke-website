@@ -23,6 +23,11 @@
             <div>
                 {{ content | safe }}
             </div>
+            
+            {# Author bio section #}
+            {% import "macros/written-by.njk" as authorMacros %}
+            {{ authorMacros.writtenBy() }}
+            
             <hr>
             <footer>
                 <p><a href="{{ '/blog' | url }}" class="back-to-blog-link" aria-label="Return to blog listing">← Back to Blog</a></p>
