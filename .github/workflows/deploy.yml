@@ -2,41 +2,12 @@ name: Build and Deploy
 
 on:
   push:
-    branches: [main, staging]
+    branches: [main]
   pull_request:
     branches: [main]
   workflow_dispatch:
 
 jobs:
-  # Deploy staging to GitHub Pages subdirectory (recommended for single repo)
-  deploy-staging:
-    if: github.ref == 'refs/heads/staging'
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build for staging
-        run: NODE_ENV=staging npm run build:staging
-
-      - name: Deploy to GitHub Pages (staging subdirectory)
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site
-          destination_dir: staging
-          # Deploys to: mhenke.github.io/mike-henke-website/staging
-
   # Deploy production to custom domain
   deploy-production:
     if: github.ref == 'refs/heads/main'
