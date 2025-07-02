@@ -69,30 +69,78 @@ document.addEventListener('DOMContentLoaded', function() {
         const allResults = document.querySelectorAll('.pagefind-ui__result');
         const results = Array.from(allResults).filter(result => !result.hasAttribute('data-enhanced'));
         
-        results.forEach(result => {
-            // Mark as processed
-            result.setAttribute('data-enhanced', 'true');
-            
-            const link = result.querySelector('.pagefind-ui__result-link');
-            if (!link) return;
-            
-            const url = link.getAttribute('href');
-            const isBlogPost = url.match(new RegExp('^/[^/]+/$')) && 
-                              !url.includes('/search/') && 
-                              !url.includes('/category/') && 
-                              url !== '/';
-            
-            if (isBlogPost) {
-                // Add CSS class for styling
-                result.classList.add('search-result-blog-post');
+        console.log(`Enhancing ${results.length} search results out of ${allResults.length} total results`);
+        
+        results.forEach((result, index) => {
+            try {
+                // Mark as processed early to prevent reprocessing
+                result.setAttribute('data-enhanced', 'true');
                 
-                // Add categories - this is the only DOM manipulation we need
+                const link = result.querySelector('.pagefind-ui__result-link');
+                if (!link) {
+                    console.warn(`Result ${index}: No link found`);
+                    return;
+                }
+                
+                const url = link.getAttribute('href');
+                if (!url) {
+                    console.warn(`Result ${index}: No URL found`);
+                    return;
+                }
+                
+                const isBlogPost = url.match(new RegExp('^/[^/]+/$')) && 
+                                  !url.includes('/search/') && 
+                                  !url.includes('/category/') && 
+                                  url !== '/';
+                
+                console.log(`Result ${index}: URL=${url}, isBlogPost=${isBlogPost}`);
+                
+                if (isBlogPost) {
+                // Completely rebuild the structure to match blog cards
                 const categories = extractCategoriesForUrl(url);
-                if (categories.length > 0) {
-                    const title = result.querySelector('.pagefind-ui__result-title');
-                    if (title && !result.querySelector('.result-categories')) {
+                
+                // Get original data
+                const originalTitle = result.querySelector('.pagefind-ui__result-title a');
+                const originalExcerpt = result.querySelector('.pagefind-ui__result-excerpt');
+                
+                if (originalTitle && originalExcerpt) {
+                    const titleText = originalTitle.textContent;
+                    const excerptText = originalExcerpt.textContent;
+                    const href = originalTitle.getAttribute('href');
+                    
+                    // Extract date from metadata
+                    let publishDate = '';
+                    if (result.meta && result.meta.date) {
+                        try {
+                            const date = new Date(result.meta.date);
+                            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                            publishDate = date.toLocaleDateString('en-US', options);
+                        } catch (e) {
+                            console.warn('Could not parse date:', result.meta.date);
+                        }
+                    }
+                    
+                    // Clear the existing content
+                    result.innerHTML = '';
+                    
+                    // Add blog card classes
+                    result.classList.add('blog-post-card');
+                    
+                    // Create the new structure exactly like blog cards
+                    const titleElement = document.createElement('h3');
+                    titleElement.className = 'blog-post-title';
+                    
+                    const titleLink = document.createElement('a');
+                    titleLink.href = href;
+                    titleLink.textContent = titleText;
+                    titleElement.appendChild(titleLink);
+                    
+                    result.appendChild(titleElement);
+                    
+                    // Add categories if they exist
+                    if (categories.length > 0) {
                         const categoryContainer = document.createElement('div');
-                        categoryContainer.className = 'result-categories';
+                        categoryContainer.className = 'blog-post-categories';
                         
                         categories.forEach(category => {
                             const categoryLink = document.createElement('a');
@@ -102,11 +150,97 @@ document.addEventListener('DOMContentLoaded', function() {
                             categoryContainer.appendChild(categoryLink);
                         });
                         
-                        title.insertAdjacentElement('afterend', categoryContainer);
+                        result.appendChild(categoryContainer);
+                    }
+                    
+                    // Add excerpt
+                    const excerptElement = document.createElement('p');
+                    excerptElement.className = 'blog-post-excerpt';
+                    excerptElement.textContent = excerptText;
+                    result.appendChild(excerptElement);
+                    
+                    // Add publication date if available
+                    if (publishDate) {
+                        const metaElement = document.createElement('footer');
+                        metaElement.className = 'blog-post-meta';
+                        
+                        const timeElement = document.createElement('time');
+                        timeElement.textContent = `Published on ${publishDate}`;
+                        
+                        metaElement.appendChild(timeElement);
+                        result.appendChild(metaElement);
                     }
                 }
+            } else {
+                console.log(`Result ${index}: Not a blog post, skipping enhancement`);
+            }
+                
+            } catch (error) {
+                console.error(`Error enhancing result ${index}:`, error);
+                // Remove the enhanced marker so it can be retried
+                result.removeAttribute('data-enhanced');
             }
         });
+        
+        console.log(`Enhancement complete. Total enhanced results: ${document.querySelectorAll('.pagefind-ui__result[data-enhanced="true"]').length}`);
+    }
+    
+    // Add function to update results count
+    function updateResultsCount() {
+        const resultsContainer = document.querySelector('.pagefind-ui__results');
+        const messageElement = document.querySelector('.pagefind-ui__message');
+        
+        if (resultsContainer && messageElement) {
+            const resultElements = resultsContainer.querySelectorAll('.pagefind-ui__result');
+            const resultCount = resultElements.length;
+            
+            // Get search term
+            const searchInput = document.querySelector('.pagefind-ui__search-input');
+            const searchTerm = searchInput ? searchInput.value.trim() : '';
+            
+            if (searchTerm && resultCount > 0) {
+                // Create or update custom results message
+                let customMessage = document.querySelector('.custom-search-message');
+                if (!customMessage) {
+                    customMessage = document.createElement('div');
+                    customMessage.className = 'custom-search-message';
+                    messageElement.parentNode.insertBefore(customMessage, messageElement);
+                }
+                
+                const resultText = resultCount === 1 ? 'result' : 'results';
+                customMessage.innerHTML = `
+                    <p style="color: var(--color-text-secondary); font-family: 'Montserrat', Arial, Helvetica, sans-serif; text-align: center; margin: var(--spacing-lg) 0; font-size: var(--font-size-sm);">
+                        <strong>${resultCount}</strong> ${resultText} found for "<em>${searchTerm}</em>"
+                    </p>
+                `;
+                
+                // Hide the default message
+                messageElement.style.display = 'none';
+            } else if (searchTerm && resultCount === 0) {
+                // Show no results message
+                let customMessage = document.querySelector('.custom-search-message');
+                if (!customMessage) {
+                    customMessage = document.createElement('div');
+                    customMessage.className = 'custom-search-message';
+                    messageElement.parentNode.insertBefore(customMessage, messageElement);
+                }
+                
+                customMessage.innerHTML = `
+                    <p style="color: var(--color-text-secondary); font-family: 'Montserrat', Arial, Helvetica, sans-serif; text-align: center; margin: var(--spacing-lg) 0;">
+                        No results found for "<em>${searchTerm}</em>". Try different keywords or browse <a href="/blog/" style="color: var(--color-primary);">all posts</a>.
+                    </p>
+                `;
+                
+                messageElement.style.display = 'none';
+            } else {
+                // Clear custom message when no search term
+                const customMessage = document.querySelector('.custom-search-message');
+                if (customMessage) {
+                    customMessage.remove();
+                }
+                messageElement.style.display = '';
+            }
+        }
     }
     
     // Simple cache for categories (much cleaner than before)
@@ -155,24 +289,52 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const pagefindUI = new PagefindUI(searchConfig);
             
-            // Enhanced results after Pagefind renders - using MutationObserver
+            // Enhanced results after Pagefind renders - improved timing
             const searchElement = document.getElementById("search");
+            let enhanceTimeout;
+            
             const observer = new MutationObserver(function(mutations) {
                 let resultsChanged = false;
                 mutations.forEach(function(mutation) {
-                    if (mutation.type === 'childList' && 
-                        mutation.target.closest('.pagefind-ui__results')) {
-                        resultsChanged = true;
+                    if (mutation.type === 'childList') {
+                        // Check if results container or its children changed
+                        const target = mutation.target;
+                        if (target.classList && (
+                            target.classList.contains('pagefind-ui__results') ||
+                            target.closest('.pagefind-ui__results') ||
+                            target.querySelector('.pagefind-ui__result')
+                        )) {
+                            resultsChanged = true;
+                        }
                     }
                 });
                 
                 if (resultsChanged) {
-                    // Small delay to ensure DOM is ready
-                    setTimeout(enhanceResults, 50);
+                    // Clear previous timeout to avoid multiple calls
+                    clearTimeout(enhanceTimeout);
+                    
+                    // Multiple timeouts to catch all result rendering phases
+                    enhanceTimeout = setTimeout(() => {
+                        enhanceResults();
+                        updateResultsCount();
+                        
+                        // Second pass after a longer delay to catch any late-loading results
+                        setTimeout(() => {
+                            enhanceResults();
+                            updateResultsCount();
+                        }, 200);
+                    }, 100);
                 }
             });
             
-            observer.observe(searchElement, { childList: true, subtree: true });
+            observer.observe(searchElement, { 
+                childList: true, 
+                subtree: true,
+                attributes: false,
+                attributeOldValue: false,
+                characterData: false,
+                characterDataOldValue: false
+            });
             
         } catch (error) {
             console.error('Failed to initialize search:', error);
@@ -201,5 +363,28 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize
     initializeSearch();
+    
+    // Fallback: Check for unenhanced results periodically
+    let fallbackChecks = 0;
+    const maxFallbackChecks = 10;
+    
+    function fallbackEnhancement() {
+        if (fallbackChecks >= maxFallbackChecks) return;
+        
+        const unenhancedResults = document.querySelectorAll('.pagefind-ui__result:not([data-enhanced])');
+        if (unenhancedResults.length > 0) {
+            console.log(`Fallback enhancement: Found ${unenhancedResults.length} unenhanced results`);
+            enhanceResults();
+            updateResultsCount();
+        }
+        
+        fallbackChecks++;
+        if (fallbackChecks < maxFallbackChecks) {
+            setTimeout(fallbackEnhancement, 500);
+        }
+    }
+    
+    // Start fallback checks after a delay
+    setTimeout(fallbackEnhancement, 1000);
 });
 </script>
