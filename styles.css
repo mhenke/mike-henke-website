@@ -894,7 +894,7 @@ p {
 section {
   margin: 0 auto var(--spacing-3xl) auto;
   max-width: var(--max-width-content);
-  width: 100%;
+  )width: 100%;
   padding: 0 var(--spacing-lg);
   box-sizing: border-box;
   overflow-x: hidden;
@@ -902,9 +902,8 @@ section {
 
 .content-section-boxed {
   background-color: var(--color-surface);
-  padding: var(--spacing-2xl);
+  padding: var(--spacing-lg) var(--spacing-xl);
   box-shadow: var(--shadow-lg);
-  margin: var(--spacing-3xl) auto;
   max-width: var(--max-width-content);
   width: 100%;
   scroll-margin-top: calc(var(--spacing-2xl) + var(--nav-height));
@@ -955,7 +954,7 @@ section {
    8. HERO SECTION - Semantic variables applied
    ================================ */
 .hero-section {
-  padding: var(--spacing-4xl) var(--spacing-lg);
+  padding: var(--spacing-2xl) var(--spacing-lg);
   text-align: center;
   display: grid;
   grid-template-columns: 1fr;
@@ -964,7 +963,7 @@ section {
     'image'
     'description'
     'buttons';
-  gap: var(--spacing-2xl);
+  gap: var(--spacing-lg);
   align-items: center;
   max-width: var(--max-width-content);
   margin: 0 auto;
@@ -1057,9 +1056,9 @@ section {
       'text image'
       'description image'
       'buttons image';
-    gap: var(--spacing-3xl);
+    gap: var(--spacing-2xl);
     text-align: left;
-    padding: var(--spacing-4xl) var(--spacing-xl);
+    padding: var(--spacing-2xl) var(--spacing-xl);
   }
 
   .hero-text h1 {
@@ -1084,8 +1083,8 @@ section {
 /* LARGE DESKTOP HERO LAYOUT */
 @media (min-width: 1200px) {
   .hero-section {
-    padding: var(--spacing-4xl) var(--spacing-2xl);
-    gap: var(--spacing-4xl);
+    padding: var(--spacing-2xl) var(--spacing-xl);
+    gap: var(--spacing-xl);
   }
 
   .hero-text h1 {
@@ -1581,27 +1580,27 @@ section {
 
 .contact-intro {
   text-align: center;
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
 }
 
 .contact-intro p {
-  font-size: var(--font-size-md);
+  font-size: var(--font-size-base);
   color: var(--color-text-secondary);
-  line-height: 1.5;
+  line-height: 1.4;
 }
 
 .contact-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: var(--spacing-lg);
-  margin-top: var(--spacing-lg);
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-md);
 }
 
 .contact-item {
   display: flex;
   align-items: flex-start;
-  gap: var(--spacing-lg);
-  padding: var(--spacing-lg);
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
   background: var(--color-surface-light);
   border-radius: var(--border-radius-md);
   border: var(--border-width-medium) solid transparent;
