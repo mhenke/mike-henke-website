@@ -1233,7 +1233,10 @@ section {
 
 /* Linked hover effects - hovering square affects content and vice versa */
 .timeline-item:hover .timeline-square,
-.timeline-item .timeline-content:hover ~ .timeline-marker-group .timeline-square,
+.timeline-item
+  .timeline-content:hover
+  ~ .timeline-marker-group
+  .timeline-square,
 .timeline-item:has(.timeline-content:hover) .timeline-square {
   transform: var(--hover-scale) rotate(5deg);
   box-shadow: var(--shadow-accent-sm);
@@ -1624,7 +1627,7 @@ section {
 .contact-item:hover {
   box-shadow: var(--shadow-lg);
   border-color: var(--color-primary);
-  transform: var(--hover-lift);
+  transform: var(--hover-slide);
 }
 
 .contact-icon {
@@ -1641,8 +1644,7 @@ section {
   transition: all var(--transition-normal);
 }
 
-.contact-item:hover .contact-icon,
-.contact-item.animate:hover .contact-icon {
+.contact-item:hover .contact-icon {
   transform: var(--hover-scale) rotate(5deg);
   box-shadow: var(--shadow-accent-sm);
 }
@@ -1713,8 +1715,19 @@ section {
   transform: translateY(0);
 }
 
+.contact-item.animate:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary);
+  transform: var(--hover-slide);
+}
+
 .contact-item.animate .contact-icon {
   transform: scale(1);
+}
+
+.contact-item.animate:hover .contact-icon {
+  transform: var(--hover-scale) rotate(5deg) !important;
+  box-shadow: var(--shadow-accent-sm);
 }
 
 /* Contact Text Layout */
@@ -2371,16 +2384,10 @@ address a:hover {
 /* Search statistics and messages - simplified */
 .custom-search-message {
   margin: var(--spacing-lg) 0;
-  text-align: center;
 }
 
 .custom-search-message p {
-  margin: 0;
-  padding: var(--spacing-sm) var(--spacing-md);
-  background-color: var(--color-surface-light);
-  border-radius: var(--border-radius-xs);
   color: var(--color-text-secondary);
-  font-size: var(--font-size-sm);
 }
 
 /* Search message styling */
@@ -2416,26 +2423,6 @@ address a:hover {
   margin-bottom: var(--spacing-lg);
   opacity: 0.7;
   transition: opacity var(--transition-fast);
-}
-
-/* Search form container - with relative positioning for clear button */
-.pagefind-ui__form {
-  background-color: var(--color-surface-light);
-  border-radius: var(--border-radius-md);
-  padding: var(--spacing-lg);
-  margin-bottom: var(--spacing-lg);
-  border: 1px solid var(--color-border);
-  position: relative;
-}
-
-/* Search container with controlled layout */
-.search-container {
-  width: 100%;
-  max-width: 100%;
-  position: relative;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
 }
 
 /* Position shortcuts right after search form */
