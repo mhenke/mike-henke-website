@@ -7,23 +7,24 @@ permalink: /search/index.html
 <section class="content-section-boxed content-section-top-margin">
     <h1 class="section-title">Search Site</h1>
     <div class="section-underline"></div>
-    <p style="text-align: center; color: var(--color-text-secondary); margin-bottom: var(--spacing-xl); font-size: var(--font-size-base);">
+    <p class="search-description">
         Search through all articles, posts, and pages. Use keywords, phrases, or specific topics to find what you're looking for.
     </p>
     
     <div class="search-container">
-    <div class="search-shortcuts" style="text-align: center; color: var(--color-text-tertiary); margin-top: var(--spacing-sm); font-size: var(--font-size-xs);">
-            <kbd style="background: var(--color-surface-light); padding: 1px 4px; border-radius: 2px; font-family: monospace; border: 1px solid var(--color-border); font-size: 10px;">Ctrl+K</kbd> focus • <kbd style="background: var(--color-surface-light); padding: 1px 4px; border-radius: 2px; font-family: monospace; border: 1px solid var(--color-border); font-size: 10px;">Esc</kbd> clear
-        </div>
+        <div>
         <div id="search" role="search" aria-label="Site search" aria-live="polite">
+        </div>
+        <div class="search-shortcuts">
+            <kbd class="search-kbd">Ctrl+K</kbd> focus • <kbd class="search-kbd">Esc</kbd> clear
         </div>
     </div>
     
     <noscript>
-        <div style="background-color: var(--color-accent-bg); border-radius: var(--border-radius-md); padding: var(--spacing-lg); text-align: center; margin-top: var(--spacing-lg); border: 2px solid var(--color-primary);">
-            <p style="color: var(--color-text-primary); margin: 0; font-weight: var(--font-weight-medium);">
-                <i class="fas fa-exclamation-triangle" style="color: var(--color-primary); margin-right: var(--spacing-sm);"></i>
-                Search requires JavaScript. Please <a href="/blog/" style="color: var(--color-primary); font-weight: var(--font-weight-bold);">browse all posts</a> or enable JavaScript for search functionality.
+        <div class="search-noscript-alert">
+            <p class="search-noscript-text">
+                <i class="fas fa-exclamation-triangle search-noscript-icon"></i>
+                Search requires JavaScript. Please <a href="/blog/" class="search-noscript-link">browse all posts</a> or enable JavaScript for search functionality.
             </p>
         </div>
     </noscript>

@@ -172,7 +172,7 @@ module.exports = function (eleventyConfig) {
         (match, audioUrl) => {
           const cleanUrl = audioUrl.trim();
           return `<div class="podcast-player">
-  <audio controls preload="metadata" style="width: 100%; max-width: 600px;">
+  <audio controls preload="metadata">
     <source src="${cleanUrl}" type="audio/mpeg">
     <p>Your browser does not support the audio element. <a href="${cleanUrl}">Download the podcast</a></p>
   </audio>
@@ -193,13 +193,12 @@ module.exports = function (eleventyConfig) {
 
           if (youtubeMatch) {
             const videoId = youtubeMatch[1];
-            return `<div class="video-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000; margin: 20px 0;">
+            return `<div class="video-embed">
   <iframe 
     src="https://www.youtube.com/embed/${videoId}" 
     frameborder="0" 
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-    allowfullscreen
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+    allowfullscreen>
   </iframe>
 </div>`;
           }
