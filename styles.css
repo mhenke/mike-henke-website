@@ -2109,7 +2109,7 @@ address a:hover {
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
-
+}
 
 /* Search results inherit blog card styling - only override display properties */
 .pagefind-ui__results .blog-post-card {
@@ -2258,7 +2258,6 @@ address a:hover {
 
 /* Search container and form styling */
 
-
 /* Search input styling - clean and simple */
 .pagefind-ui__search-input {
   background-color: var(--color-background) !important;
@@ -2266,7 +2265,8 @@ address a:hover {
   border-radius: var(--border-radius-md) !important;
   color: var(--color-text-secondary) !important;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif !important;
-  padding: var(--spacing-md) 60px var(--spacing-md) var(--spacing-md) var(--spacing-lg) !important;
+  padding: var(--spacing-md) 60px var(--spacing-md) var(--spacing-md)
+    var(--spacing-lg) !important;
   font-size: 1rem !important;
   width: 100% !important;
   min-height: 48px !important;
@@ -2391,7 +2391,6 @@ address a:hover {
   flex-direction: column;
 }
 
-
 /* Position shortcuts right after search form */
 .search-shortcuts {
   order: 2;
@@ -2407,3 +2406,49 @@ address a:hover {
   font-size: 10px !important;
   padding: 1px 4px !important;
   margin: 0 1px !important;
+}
+
+/* ================================
+   FOOTER STYLING
+   ================================ */
+.site-footer {
+  background-color: var(--color-surface);
+  border-top: var(--border-width-thin) solid var(--color-border);
+  padding: var(--spacing-2xl) 0;
+  margin-top: var(--spacing-4xl);
+  color: var(--color-text-secondary);
+}
+
+.footer-content {
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+  text-align: center;
+}
+
+.footer-nav {
+  margin-bottom: var(--spacing-lg);
+}
+
+.footer-link {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  transition: color var(--transition-fast);
+}
+
+.footer-link:hover {
+  color: var(--color-primary);
+}
+
+.footer-separator {
+  color: var(--color-border);
+  margin: 0 var(--spacing-sm);
+}
+
+.footer-content p {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+  margin: 0;
+}
