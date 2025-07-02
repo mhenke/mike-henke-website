@@ -1188,7 +1188,7 @@ section {
 
 .timeline-square:hover {
   transform: var(--hover-scale) rotate(5deg);
-  box-shadow: var(--shadow-accent), var(--shadow-accent-md);
+  box-shadow: var(--shadow-accent-sm);
 }
 
 .timeline-connector {
@@ -1232,9 +1232,11 @@ section {
 }
 
 /* Linked hover effects - hovering square affects content and vice versa */
-.timeline-item:hover .timeline-square {
+.timeline-item:hover .timeline-square,
+.timeline-item .timeline-content:hover ~ .timeline-marker-group .timeline-square,
+.timeline-item:has(.timeline-content:hover) .timeline-square {
   transform: var(--hover-scale) rotate(5deg);
-  box-shadow: var(--shadow-accent), var(--shadow-accent-md);
+  box-shadow: var(--shadow-accent-sm);
 }
 
 .timeline-item:hover .timeline-content {
@@ -1292,6 +1294,13 @@ section {
 
 .timeline-item.animate .timeline-square {
   transform: scale(1);
+}
+
+.timeline-item.animate .timeline-square:hover,
+.timeline-item.animate:hover .timeline-square,
+.timeline-item.animate:has(.timeline-content:hover) .timeline-square {
+  transform: var(--hover-scale) rotate(5deg) !important;
+  box-shadow: var(--shadow-accent-sm);
 }
 
 .timeline-item.animate .timeline-content {
@@ -1632,7 +1641,8 @@ section {
   transition: all var(--transition-normal);
 }
 
-.contact-item:hover .contact-icon {
+.contact-item:hover .contact-icon,
+.contact-item.animate:hover .contact-icon {
   transform: var(--hover-scale) rotate(5deg);
   box-shadow: var(--shadow-accent-sm);
 }
