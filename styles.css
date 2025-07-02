@@ -1591,7 +1591,7 @@ section {
 
 .contact-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--spacing-md);
   margin-top: var(--spacing-md);
 }
@@ -1707,11 +1707,49 @@ section {
   transform: scale(1);
 }
 
+/* Contact Text Layout */
+.contact-item {
+  min-width: 0; /* Allow flexbox to shrink items if needed */
+}
+
+.contact-details {
+  min-width: 0; /* Allow text content to be constrained */
+}
+
+.contact-details h3 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.contact-details a,
+.contact-details p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* RESPONSIVE CONTACT ADJUSTMENTS */
+@media (max-width: 1200px) {
+  .contact-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+  }
+}
+
 @media (max-width: 1023px) {
   .contact-grid {
     grid-template-columns: 1fr;
     gap: var(--spacing-md);
+  }
+
+  /* Allow text wrapping on mobile since we have full width */
+  .contact-details h3,
+  .contact-details a,
+  .contact-details p {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
   }
 
   .contact-item {
