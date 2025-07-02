@@ -40,17 +40,17 @@ File: styles.css
   --letter-spacing-wide: clamp(0.3px, 0.8vw, 0.5px);
   --line-height-relaxed: 1.7;
 
-  /* FLUID TYPOGRAPHY - Unchanged (excellent as-is) */
-  --font-size-xs: clamp(0.75rem, 2vw, 0.875rem);
-  --font-size-sm: clamp(0.875rem, 2.5vw, 1rem);
-  --font-size-base: clamp(1rem, 3vw, 1.125rem);
-  --font-size-md: clamp(1.125rem, 3.5vw, 1.25rem);
-  --font-size-lg: clamp(1.25rem, 4vw, 1.5rem);
-  --font-size-xl: clamp(1.5rem, 5vw, 1.875rem);
-  --font-size-2xl: clamp(1.75rem, 6vw, 2.25rem);
-  --font-size-3xl: clamp(2rem, 7vw, 3rem);
-  --font-size-4xl: clamp(2.5rem, 8vw, 3.75rem);
-  --font-size-5xl: clamp(3rem, 10vw, 4.5rem);
+  /* FLUID TYPOGRAPHY - Reduced for better readability */
+  --font-size-xs: clamp(0.7rem, 1.5vw, 0.8rem);
+  --font-size-sm: clamp(0.8rem, 2vw, 0.9rem);
+  --font-size-base: clamp(0.9rem, 2.5vw, 1rem);
+  --font-size-md: clamp(1rem, 3vw, 1.1rem);
+  --font-size-lg: clamp(1.1rem, 3.5vw, 1.25rem);
+  --font-size-xl: clamp(1.25rem, 4vw, 1.5rem);
+  --font-size-2xl: clamp(1.5rem, 5vw, 1.875rem);
+  --font-size-3xl: clamp(1.75rem, 6vw, 2.25rem);
+  --font-size-4xl: clamp(2rem, 7vw, 2.75rem);
+  --font-size-5xl: clamp(2.5rem, 8vw, 3.5rem);
 
   /* SPACING SYSTEM - Unchanged (well-designed) */
   --spacing-xs: clamp(0.25rem, 1vw, 0.5rem);
@@ -1572,43 +1572,43 @@ section {
 }
 
 /* ================================
-   11. CONTACT SECTION - Using semantic variables
+   11. CONTACT SECTION - Tightened spacing for better layout
    ================================ */
 .contact-content {
-  max-width: calc(var(--max-width-content) - var(--spacing-5xl));
+  max-width: calc(var(--max-width-content) - var(--spacing-3xl));
   margin: 0 auto;
 }
 
 .contact-intro {
   text-align: center;
-  margin-bottom: var(--spacing-5xl);
+  margin-bottom: var(--spacing-lg);
 }
 
 .contact-intro p {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-md);
   color: var(--color-text-secondary);
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .contact-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--spacing-xl);
-  margin-top: var(--spacing-xl);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
 }
 
 .contact-item {
   display: flex;
   align-items: flex-start;
-  gap: var(--spacing-xl);
-  padding: var(--spacing-xl);
+  gap: var(--spacing-lg);
+  padding: var(--spacing-lg);
   background: var(--color-surface-light);
   border-radius: var(--border-radius-md);
   border: var(--border-width-medium) solid transparent;
   transition: all var(--transition-normal);
   cursor: pointer;
   opacity: 0;
-  transform: translateY(var(--spacing-2xl));
+  transform: translateY(var(--spacing-lg));
   transition-delay: var(--animation-delay, 0s);
   --shimmer-color: var(--color-accent-bg);
 }
@@ -1621,15 +1621,15 @@ section {
 
 .contact-icon {
   flex-shrink: 0;
-  width: calc(var(--icon-size) + var(--spacing-sm));
-  height: calc(var(--icon-size) + var(--spacing-sm));
+  width: calc(var(--icon-size));
+  height: calc(var(--icon-size));
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--color-primary);
   border-radius: 50%;
   color: var(--color-surface);
-  font-size: var(--font-size-md);
+  font-size: var(--font-size-sm);
   transition: all var(--transition-normal);
 }
 
@@ -1644,7 +1644,7 @@ section {
 }
 
 .contact-details h3 {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-md);
   font-weight: var(--font-weight-medium);
   color: var(--color-text);
   margin: 0 0 var(--spacing-xs) 0;
@@ -1658,22 +1658,22 @@ section {
 
 .contact-details address p {
   margin: var(--spacing-xs) 0;
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
-  line-height: 1.5;
+  line-height: 1.4;
 }
 
 .contact-details a {
   color: var(--color-text-secondary);
   text-decoration: none;
-  font-size: var(--font-size-base);
-  line-height: 1.5;
+  font-size: var(--font-size-sm);
+  line-height: 1.4;
   transition: all var(--transition-fast);
   position: relative;
   display: inline-block;
   border-radius: var(--border-radius-xs);
-  padding: 2px var(--spacing-xs);
-  margin: -2px calc(-1 * var(--spacing-xs));
+  padding: 1px var(--spacing-xs);
+  margin: -1px calc(-1 * var(--spacing-xs));
 }
 
 .contact-details a::after {
@@ -1712,34 +1712,34 @@ section {
 @media (max-width: 1023px) {
   .contact-grid {
     grid-template-columns: 1fr;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-md);
   }
 
-  .contact-item {
-    padding: var(--spacing-lg);
-    gap: var(--spacing-lg);
-  }
-
-  .contact-icon {
-    width: var(--touch-target);
-    height: var(--touch-target);
-    font-size: var(--font-size-base);
-  }
-
-  .contact-intro {
-    margin-bottom: var(--spacing-xl);
-  }
-}
-
-@media (max-width: 767px) {
   .contact-item {
     padding: var(--spacing-md);
     gap: var(--spacing-md);
   }
 
   .contact-icon {
-    width: calc(var(--icon-size) + var(--spacing-xs));
-    height: calc(var(--icon-size) + var(--spacing-xs));
+    width: calc(var(--icon-size) - var(--spacing-xs));
+    height: calc(var(--icon-size) - var(--spacing-xs));
+    font-size: var(--font-size-sm);
+  }
+
+  .contact-intro {
+    margin-bottom: var(--spacing-2xl);
+  }
+}
+
+@media (max-width: 767px) {
+  .contact-item {
+    padding: var(--spacing-md);
+    gap: var(--spacing-sm);
+  }
+
+  .contact-icon {
+    width: var(--icon-size);
+    height: var(--icon-size);
     font-size: var(--font-size-sm);
   }
 
@@ -2415,7 +2415,6 @@ address a:hover {
   background-color: var(--color-surface);
   border-top: var(--border-width-thin) solid var(--color-border);
   padding: var(--spacing-2xl) 0;
-  margin-top: var(--spacing-4xl);
   color: var(--color-text-secondary);
 }
 
@@ -2427,7 +2426,7 @@ address a:hover {
 }
 
 .footer-nav {
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-sm);
 }
 
 .footer-link {
