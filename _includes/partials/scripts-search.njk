@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 const resultText = resultCount === 1 ? 'result' : 'results';
                 customMessage.innerHTML = `
-                    <p style="color: var(--color-text-secondary); font-size: var(--font-size-lg);">
+                    <p class="search-no-results-text">
                         <strong>${resultCount}</strong> ${resultText} found for "<em>${searchTerm}</em>"
                     </p>
                 `;
@@ -226,8 +226,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 
                 customMessage.innerHTML = `
-                    <p style="color: var(--color-text-secondary); font-size: var(--font-size-lg);">
-                        No results found for "<em>${searchTerm}</em>". Try different keywords or browse <a href="/blog/" style="color: var(--color-primary);">all posts</a>.
+                    <p class="search-no-results-text">
+                        No results found for "<em>${searchTerm}</em>". Try different keywords or browse <a href="/blog/" class="search-no-results-link">all posts</a>.
                     </p>
                 `;
                 
