@@ -4,6 +4,7 @@
 <article class="content-section-boxed content-section-top-margin" role="article" data-pagefind-body>
     <header>
         <h1 data-pagefind-meta="title">{{ title }}</h1>
+        <span data-pagefind-meta="custom_excerpt" style="display: none;">{{ content | blogExcerpt }}</span>
         {% import "macros/publish-date.njk" as dateMacros %}
         {{ dateMacros.publishDate(date) }}
         {% import "macros/category-tags.njk" as categoryMacros %}

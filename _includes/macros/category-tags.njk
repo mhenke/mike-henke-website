@@ -10,9 +10,11 @@
 
 {% macro categoryTags(categories) %}
 {% if categories and categories.length > 0 %}
-    <div class="blog-post-categories" data-pagefind-meta="categories:{{ categories | join(', ') }}">
+    <div class="blog-post-categories">
+        {# Output each category as a separate Pagefind filter element #}
         {% for category in categories %}
             {% if category %}
+                <span class="pagefind-category-filter" data-pagefind-filter="category">{{ category }}</span>
                 <a href="{{ ('/category/' + (category | categorySlug) + '/') | url }}" 
                    class="category-tag" 
                    title="View {{ category }} posts">{{ category }}</a>

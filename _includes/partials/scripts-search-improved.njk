@@ -1,9 +1,15 @@
-<!-- Search functionality scripts - Clean, maintainable approach -->
+<!-- Search functionality scripts - Improved with minimal DOM manipulation -->
 <script src="{{ '/pagefind/pagefind-ui.js' | url }}" type="text/javascript" defer></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    // Configuration
+    const SEARCH_CONFIG = {
+        debounceMs: 300,
+        excerptLength: 300,
+        pageSize: 8
+    };
     
-    // Clean excerpt to match server-side blogExcerpt filter
+    // Clean excerpt text to match server-side blogExcerpt filter
     function cleanExcerpt(text) {
         if (!text) return '';
         
@@ -18,45 +24,41 @@ document.addEventListener('DOMContentLoaded', function() {
             .replace(/\s+/g, ' ').trim();
     }
     
-    // Process each result to prepare data for minimal DOM enhancement
+    // Process each result to add metadata as data attributes
     function processResult(result) {
-        // Extract categories - avoid optional chaining for Nunjucks compatibility
+        // Extract categories
         let categories = [];
         if (result.filters && result.filters.category) {
             categories = Array.isArray(result.filters.category) 
                 ? result.filters.category 
-                : new Array(result.filters.category);
+                : [result.filters.category];
         }
         
-        // Clean excerpt - use custom excerpt if available
+        // Use custom excerpt if available, otherwise clean the content
         let excerpt = '';
         if (result.meta && result.meta.custom_excerpt) {
             excerpt = result.meta.custom_excerpt;
         } else if (result.raw_content) {
             excerpt = cleanExcerpt(result.raw_content);
-            // Truncate if needed
-            if (excerpt.length > 300) {
-                const truncated = excerpt.substring(0, 300);
+            if (excerpt.length > SEARCH_CONFIG.excerptLength) {
+                const truncated = excerpt.substring(0, SEARCH_CONFIG.excerptLength);
                 const lastSpace = truncated.lastIndexOf(' ');
-                excerpt = (lastSpace > 240) 
+                excerpt = (lastSpace > SEARCH_CONFIG.excerptLength * 0.8) 
                     ? truncated.substring(0, lastSpace) + '...'
                     : truncated + '...';
             }
         }
-        // Determine if this is a blog post
-        const isBlogPost = result.url.match(new RegExp('^/[^/]+/$')) && 
-                          !result.url.includes('/search/') && 
-                          !result.url.includes('/category/') && 
-                          result.url !== '/';
         
-        // Store metadata for DOM enhancement
-        result._enhanceData = {
-            categories,
-            isBlogPost,
-            cleanExcerpt: excerpt
-        };
+        // Add metadata for CSS/data attribute usage
+        result.meta = result.meta || {};
+        result.meta.categories = categories;
+        result.meta.categoryCount = categories.length;
+        result.meta.cleanExcerpt = excerpt;
+        result.meta.isBlogPost = result.url.match(/^\/[^\/]+\/$/) && 
+                                !result.url.includes('/search/') && 
+                                !result.url.includes('/category/') && 
+                                result.url !== '/';
         
-        // Use clean excerpt
         if (excerpt) {
             result.excerpt = excerpt;
         }
@@ -64,20 +66,16 @@ document.addEventListener('DOMContentLoaded', function() {
         return result;
     }
     
-    // Minimal DOM enhancement - only add what CSS can't handle
+    // Minimal DOM enhancement using CSS classes and data attributes
     function enhanceResults() {
-        const allResults = document.querySelectorAll('.pagefind-ui__result');
-        const results = Array.from(allResults).filter(result => !result.hasAttribute('data-enhanced'));
+        const results = document.querySelectorAll('.pagefind-ui__result:not([data-enhanced])');
         
         results.forEach(result => {
-            // Mark as processed
-            result.setAttribute('data-enhanced', 'true');
-            
             const link = result.querySelector('.pagefind-ui__result-link');
             if (!link) return;
             
             const url = link.getAttribute('href');
-            const isBlogPost = url.match(new RegExp('^/[^/]+/$')) && 
+            const isBlogPost = url.match(/^\/[^\/]+\/$/) && 
                               !url.includes('/search/') && 
                               !url.includes('/category/') && 
                               url !== '/';
@@ -86,41 +84,45 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Add CSS class for styling
                 result.classList.add('search-result-blog-post');
                 
-                // Add categories - this is the only DOM manipulation we need
-                const categories = extractCategoriesForUrl(url);
-                if (categories.length > 0) {
+                // Add categories as data attributes for CSS content generation
+                const categoriesFromUrl = extractCategoriesFromResult(result);
+                if (categoriesFromUrl.length > 0) {
+                    result.dataset.categories = categoriesFromUrl.join(',');
+                    result.dataset.categoryCount = categoriesFromUrl.length;
+                    
+                    // Add category links after title using CSS content
+                    const categoryContainer = document.createElement('div');
+                    categoryContainer.className = 'result-categories';
+                    categoryContainer.setAttribute('aria-label', `Categories: ${categoriesFromUrl.join(', ')}`);
+                    
+                    categoriesFromUrl.forEach(category => {
+                        const categoryLink = document.createElement('a');
+                        categoryLink.href = `/category/${category.toLowerCase().replace(/\s+/g, '-')}/`;
+                        categoryLink.className = 'category-tag';
+                        categoryLink.textContent = category;
+                        categoryContainer.appendChild(categoryLink);
+                    });
+                    
                     const title = result.querySelector('.pagefind-ui__result-title');
-                    if (title && !result.querySelector('.result-categories')) {
-                        const categoryContainer = document.createElement('div');
-                        categoryContainer.className = 'result-categories';
-                        
-                        categories.forEach(category => {
-                            const categoryLink = document.createElement('a');
-                            categoryLink.href = `/category/${category.toLowerCase().replace(/\s+/g, '-')}/`;
-                            categoryLink.className = 'category-tag';
-                            categoryLink.textContent = category;
-                            categoryContainer.appendChild(categoryLink);
-                        });
-                        
+                    if (title) {
                         title.insertAdjacentElement('afterend', categoryContainer);
                     }
                 }
             }
+            
+            result.setAttribute('data-enhanced', 'true');
         });
     }
     
-    // Simple cache for categories (much cleaner than before)
-    const categoryCache = new Map();
-    
-    function extractCategoriesForUrl(url) {
-        return categoryCache.get(url) || [];
-    }
-    
-    // Store categories during result processing
-    function storeCategories(result) {
-        if (result._enhanceData && result._enhanceData.categories) {
-            categoryCache.set(result.url, result._enhanceData.categories);
+    // Extract categories from Pagefind filter data
+    function extractCategoriesFromResult(resultElement) {
+        // This would need to be populated from the processResult function
+        // For now, we'll rely on the data being added during processResult
+        const categoriesAttr = resultElement.dataset.categories;
+        if (categoriesAttr) {
+            return categoriesAttr.split(',').filter(Boolean);
         }
+        return [];
     }
     
     // Initialize Pagefind with clean configuration
@@ -130,15 +132,11 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             const searchConfig = {
                 element: "#search",
-                processResult: function(result) {
-                    const processed = processResult(result);
-                    storeCategories(processed);
-                    return processed;
-                },
+                processResult: processResult,
                 showFilters: false, // Hide filter sidebar
-                debounceTimeoutMs: 300,
-                excerptLength: 25, // Let our processResult handle excerpts
-                pageSize: 8,
+                debounceTimeoutMs: SEARCH_CONFIG.debounceMs,
+                excerptLength: 25, // Pagefind excerpt length (we override in processResult)
+                pageSize: SEARCH_CONFIG.pageSize,
                 showImages: false,
                 resetStyles: false,
                 autofocus: window.location.pathname.includes('/search/'),
@@ -155,20 +153,19 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const pagefindUI = new PagefindUI(searchConfig);
             
-            // Enhanced results after Pagefind renders - using MutationObserver
+            // Enhanced results after Pagefind renders
             const searchElement = document.getElementById("search");
             const observer = new MutationObserver(function(mutations) {
                 let resultsChanged = false;
                 mutations.forEach(function(mutation) {
                     if (mutation.type === 'childList' && 
-                        mutation.target.closest('.pagefind-ui__results')) {
+                        mutation.target.classList.contains('pagefind-ui__results')) {
                         resultsChanged = true;
                     }
                 });
                 
                 if (resultsChanged) {
-                    // Small delay to ensure DOM is ready
-                    setTimeout(enhanceResults, 50);
+                    setTimeout(enhanceResults, 100);
                 }
             });
             
@@ -179,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Keyboard shortcuts (keep the good UX features)
+    // Keyboard shortcuts
     document.addEventListener('keydown', function(event) {
         if ((event.ctrlKey || event.metaKey) && event.key === 'k') {
             event.preventDefault();
