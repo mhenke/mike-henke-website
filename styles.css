@@ -1,20 +1,8 @@
 /* 
 ================================================================================
-MIKE HENKE PORTFOLIO - IMPROVED CSS (IMMEDIATE REFACTOR)
+MIKE HENKE PORTFOLIO - CSS
 ================================================================================
-File: styles-improved.css
-Changes: 
-✅ Removed 12+ duplicate/redundant custom properties
-✅ Replaced 25+ magic numbers with semantic variables  
-✅ Removed 6 !important declarations
-✅ Consolidated 8 similar animation patterns
-✅ Streamlined color system (9 colors → 6 semantic colors)
-✅ Fixed incomplete declarations
-✅ FIXED: Mobile hamburger menu z-index layering issue
-✅ FIXED: Navigation overlay no longer covers hamburger menu
-✅ FIXED: Mobile menu links now fully functional and clickable
-Size reduction: ~200 lines smaller, much more maintainable
-Status: Fully functional - drop-in replacement for original
+File: styles.css
 ================================================================================
 */
 
@@ -22,15 +10,6 @@ Status: Fully functional - drop-in replacement for original
    1. CSS CUSTOM PROPERTIES - CLEANED & RATIONALIZED
    ================================ */
 
-/* 
-MAINTAINABILITY NOTE: Consider splitting this large CSS file into modules:
-- variables.css (custom properties)
-- base.css (resets, typography)
-- components.css (buttons, cards, navigation)
-- layouts.css (grid systems, sections)
-- utilities.css (helper classes)
-- pagefind.css (search-specific styles)
-*/
 :root {
   /* STREAMLINED COLOR SYSTEM - Enhanced with better contrast */
   --color-primary: #19d4fe;
@@ -103,8 +82,8 @@ MAINTAINABILITY NOTE: Consider splitting this large CSS file into modules:
   --timeline-line-width: 5px;
   --timeline-line-offset: calc(var(--timeline-marker) / 2 + var(--spacing-lg));
   --mobile-menu-width: 280px;
-  --hero-image-mobile: 400px;
-  --hero-image-desktop: 600px;
+  --hero-image-mobile: 300px;
+  --hero-image-desktop: 400px;
 
   /* BORDER SYSTEM - Standardized widths */
   --border-width: 3px;
@@ -2287,7 +2266,7 @@ address a:hover {
   border-radius: var(--border-radius-md) !important;
   color: var(--color-text-secondary) !important;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif !important;
-  padding: var(--spacing-md) 60px var(--spacing-md) var(--spacing-lg) !important;
+  padding: var(--spacing-md) 60px var(--spacing-md) var(--spacing-md) var(--spacing-lg) !important;
   font-size: 1rem !important;
   width: 100% !important;
   min-height: 48px !important;
@@ -2428,6 +2407,3 @@ address a:hover {
   font-size: 10px !important;
   padding: 1px 4px !important;
   margin: 0 1px !important;
-}
-
-/* Clean up - remove redundant rules */
