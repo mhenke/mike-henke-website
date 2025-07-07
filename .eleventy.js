@@ -1,5 +1,6 @@
 const { DateTime } = require('luxon');
 const { URL } = require('url');
+const purgeCSS = require("eleventy-plugin-purgecss");
 
 /**
  * MAINTAINABILITY NOTE: This configuration file is becoming quite large (650+ lines).
@@ -595,6 +596,11 @@ module.exports = function (eleventyConfig) {
       return result;
     }
   );
+
+  // Add PurgeCSS plugin for production builds only
+  if (isProduction) {
+    eleventyConfig.addPlugin(purgeCSS);
+  }
 
   // Passthrough copy for static assets
   eleventyConfig.addPassthroughCopy('styles.css');
