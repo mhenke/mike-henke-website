@@ -1,0 +1,12 @@
+<script>
+// Search configuration generated at build time
+window.SEARCH_CONFIG = {
+    ...{{ search | dump | safe }},
+    bundlePath: '{{ "/pagefind/" | url }}',
+    searchPath: '{{ "/search/" | url }}',
+    baseUrl: '{{ site.url | default("") }}',
+    isSearchPage: {{ 'true' if page.url == '/search/' else 'false' }},
+    currentPath: '{{ page.url }}',
+    buildTime: '{{ "now" | date("iso") }}'
+};
+</script>
