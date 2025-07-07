@@ -144,7 +144,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         
                         categories.forEach(category => {
                             const categoryLink = document.createElement('a');
-                            categoryLink.href = `/category/${category.toLowerCase().replace(/\s+/g, '-')}/`;
+                            // Use correct category slug format - preserve case, just trim whitespace (matches categorySlug filter)
+                            categoryLink.href = `/category/${category.trim()}/`;
                             categoryLink.className = 'category-tag';
                             categoryLink.textContent = category;
                             categoryContainer.appendChild(categoryLink);

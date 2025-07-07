@@ -1,6 +1,6 @@
 const { DateTime } = require('luxon');
 const { URL } = require('url');
-const purgeCSS = require("eleventy-plugin-purgecss");
+const purgeCSS = require('eleventy-plugin-purgecss');
 
 /**
  * MAINTAINABILITY NOTE: This configuration file is becoming quite large (650+ lines).
