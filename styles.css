@@ -2458,7 +2458,8 @@ address a:hover {
 
 @media (max-width: 768px) {
   .frameworks-grid {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: var(--spacing-md);
   }
 
   .content-section-boxed {
