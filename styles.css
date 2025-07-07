@@ -1,61 +1,11 @@
-/* 
-================================================================================
-MIKE HENKE PORTFOLIO - CSS (OPTIMIZED & REFACTORED)
-================================================================================
-File: styles.css
-================================================================================
-
-🚀 OPTIMIZATION SUMMARY (File Size Reduction: ~15-20%)
-
-✅ COMPLETED OPTIMIZATIONS:
-1. ENHANCED CSS CUSTOM PROPERTIES
-   - Added systematic transition utilities (--transition-all, --transition-colors, etc.)
-   - Added combined transform utilities (--hover-scale-rotate, --hover-lift-scale)
-   - Consolidated 15+ duplicate transition declarations
-
-2. UTILITY CLASSES SYSTEM
-   - Added hover effect utilities (.hover-lift, .hover-scale, .hover-scale-rotate, etc.)
-   - Added animation delay utilities (.animate-delay-1 through .animate-delay-5)
-   - Added responsive grid utilities (.grid-1-col, .grid-2-col, .grid-3-col)
-   - Added transition utilities (.transition-all, .transition-fast, etc.)
-   - Replaced 20+ duplicate hover patterns with reusable utilities
-
-3. CONSOLIDATED MEDIA QUERIES
-   - Unified responsive grid breakpoints (reduces 8+ duplicate media queries)
-   - Consolidated mobile and tablet spacing adjustments
-   - Systematic font size adjustments for mobile devices
-
-4. OPTIMIZED HOVER EFFECTS
-   - Standardized all "scale + rotate + shadow" patterns to use --hover-scale-rotate
-   - Consolidated transition declarations using utility variables
-   - Replaced ~25 instances of duplicate hover transforms
-
-5. ENHANCED MAINTAINABILITY
-   - Consistent naming conventions for all utility classes
-   - Systematic approach to transitions and transforms
-   - Better code organization and reusability
-
-📊 PERFORMANCE IMPACT:
-- Reduced CSS complexity by ~400-500 lines of duplicate code
-- Improved consistency across all interactive elements
-- Better browser caching through consolidated utility classes
-- Maintained all existing functionality and visual effects
-
-*/
-
-/* ================================
-   1. CSS CUSTOM PROPERTIES - CLEANED & RATIONALIZED
-   ================================ */
-
 :root {
-  /* STREAMLINED COLOR SYSTEM - Enhanced with better contrast */
   --color-primary: #19d4fe;
   --color-primary-dark: #0fb8e0;
   --color-background: #181a1b;
   --color-surface: #22313a;
   --color-surface-light: #2a2a2a;
   --color-text: #ffffff;
-  --color-text-secondary: #cfd8dc; /* Consolidated from 3 similar grays */
+  --color-text-secondary: #cfd8dc;
   --color-text-tertiary: #adb5bd;
   --color-border: #3e4750;
   --color-accent-bg: rgba(25, 212, 254, 0.1);
@@ -63,7 +13,6 @@ File: styles.css
   --color-focus: rgba(25, 212, 254, 0.4);
   --color-error: #f87171;
 
-  /* TYPOGRAPHY SYSTEM - Enhanced with missing properties */
   --font-primary: 'Montserrat', Arial, Helvetica, sans-serif;
   --font-weight-regular: 400;
   --font-weight-medium: 600;
@@ -72,7 +21,6 @@ File: styles.css
   --letter-spacing-wide: clamp(0.3px, 0.8vw, 0.5px);
   --line-height-relaxed: 1.7;
 
-  /* FLUID TYPOGRAPHY - Reduced for better readability */
   --font-size-xs: clamp(0.7rem, 1.5vw, 0.8rem);
   --font-size-sm: clamp(0.8rem, 2vw, 0.9rem);
   --font-size-base: clamp(0.9rem, 2.5vw, 1rem);
@@ -83,7 +31,6 @@ File: styles.css
   --font-size-3xl: clamp(1.75rem, 6vw, 2.25rem);
   --font-size-4xl: clamp(2rem, 7vw, 2.75rem);
 
-  /* SPACING SYSTEM - Unchanged (well-designed) */
   --spacing-xs: clamp(0.25rem, 1vw, 0.5rem);
   --spacing-sm: clamp(0.5rem, 2vw, 0.75rem);
   --spacing-md: clamp(0.75rem, 2.5vw, 1rem);
@@ -94,13 +41,9 @@ File: styles.css
   --spacing-4xl: clamp(2.5rem, 7vw, 4rem);
   --spacing-5xl: clamp(3rem, 8vw, 5rem);
 
-  /* LAYOUT CONSTRAINTS */
   --max-width-content: clamp(320px, 95vw, 1200px);
   --max-width-text: clamp(280px, 90vw, 65ch);
 
-  /* BREAKPOINT SYSTEM - Standardized */
-
-  /* SEMANTIC SIZING - Replaced magic numbers */
   --icon-size: clamp(32px, 4vw, 40px);
   --touch-target: 44px;
   --nav-height: 80px;
@@ -112,7 +55,6 @@ File: styles.css
   --hero-image-mobile: 300px;
   --hero-image-desktop: 400px;
 
-  /* BORDER SYSTEM - Standardized widths */
   --border-width: 3px;
   --border-width-thin: 1px;
   --border-width-medium: 2px;
@@ -123,7 +65,6 @@ File: styles.css
   --border-radius-lg: 18px;
   --border-radius-xl: 24px;
 
-  /* SHADOW SYSTEM - Consolidated similar shadows */
   --shadow-md: 0 8px 16px rgba(0, 0, 0, 0.2);
   --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.3);
   --shadow-accent: 0 8px 32px rgba(25, 212, 254, 0.15);
@@ -131,36 +72,28 @@ File: styles.css
   --shadow-accent-md: 0 6px 16px rgba(25, 212, 254, 0.4);
   --shadow-accent-lg: 0 8px 20px rgba(25, 212, 254, 0.3);
 
-  /* ENHANCED ANIMATION SYSTEM - Modern transitions and transforms */
   --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* SYSTEMATIC TRANSITION UTILITIES */
   --transition-all: all var(--transition-normal);
   --transition-shadow-border: box-shadow var(--transition-normal),
     border-color var(--transition-normal);
   --transition-colors: background-color var(--transition-fast),
     color var(--transition-fast);
 
-  /* TRANSFORM UTILITIES */
   --hover-lift: translateY(-2px);
   --hover-scale: scale(1.05);
   --hover-slide: translateX(4px);
   --hover-rotate: rotate(5deg);
 
-  /* COMBINED TRANSFORMS */
   --hover-scale-rotate: var(--hover-scale) var(--hover-rotate);
 
-  /* Z-INDEX SCALE - Fixed layering for mobile menu */
   --z-nav: 1000;
   --z-nav-overlay: 1001;
   --z-nav-menu: 1002;
   --z-nav-toggle: 1003;
 }
 
-/* ================================
-   2. GLOBAL RESET & BASE STYLES
-   ================================ */
 * {
   margin: 0;
   padding: 0;
@@ -168,19 +101,16 @@ File: styles.css
   max-width: 100%;
 }
 
-/* ENHANCED FOCUS INDICATORS - Better accessibility */
 *:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
   border-radius: var(--border-radius-xs);
 }
 
-/* Remove default focus styles for mouse users */
 *:focus:not(:focus-visible) {
   outline: none;
 }
 
-/* High contrast focus for buttons and interactive elements */
 button:focus-visible,
 a:focus-visible,
 input:focus-visible,
@@ -189,11 +119,6 @@ select:focus-visible {
   outline: 3px solid var(--color-focus);
   outline-offset: 2px;
   box-shadow: 0 0 0 1px var(--color-surface), 0 0 8px var(--color-focus);
-}
-
-[style*='zoom'] {
-  zoom: normal;
-  transform-origin: 0 0;
 }
 
 .pagefind-ui * {
@@ -209,7 +134,6 @@ html {
   overflow-x: hidden;
 }
 
-/* ACCESSIBILITY - Respect user preferences for motion */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -225,7 +149,6 @@ html {
   }
 }
 
-/* MODERN SCROLLBAR STYLING */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -250,7 +173,6 @@ html {
   background: var(--color-surface);
 }
 
-/* Firefox scrollbar styling */
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--color-border) var(--color-surface);
@@ -271,7 +193,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* MODERN SELECTION STYLING */
 ::selection {
   background-color: var(--color-primary);
   color: var(--color-background);
@@ -293,7 +214,6 @@ hr {
   margin-bottom: var(--spacing-md);
 }
 
-/* OVERFLOW PREVENTION - Consolidated selectors */
 .navbar-container,
 .hero-section,
 .content-section,
@@ -306,14 +226,11 @@ section {
   overflow-x: hidden;
 }
 
-/* TEXT WRAPPING - Consolidated selectors */
 p,
 h1,
 h2,
 h3,
 h4,
-h5,
-h6,
 span,
 div {
   word-wrap: break-word;
@@ -333,7 +250,6 @@ a:focus {
   text-decoration: underline;
 }
 
-/* SKIP LINKS - Unchanged (good accessibility) */
 .skip-link {
   position: absolute;
   top: calc(-1 * var(--touch-target));
@@ -351,15 +267,10 @@ a:focus {
   top: var(--spacing-xs);
 }
 
-/* ================================
-   3. TYPOGRAPHY - Unchanged (good as-is)
-   ================================ */
 h1,
 h2,
 h3,
-h4,
-h5,
-h6 {
+h4 {
   font-family: var(--font-primary);
   font-weight: var(--font-weight-bold);
   line-height: 1.2;
@@ -380,31 +291,12 @@ h3 {
 h4 {
   font-size: var(--font-size-xl);
 }
-h5 {
-  font-size: var(--font-size-lg);
-}
-h6 {
-  font-size: var(--font-size-md);
-}
 
 p {
   margin-bottom: var(--spacing-md);
   line-height: 1.7;
 }
 
-/* ================================
-   4. UTILITY CLASSES - Streamlined with Hover Effects & Animations
-   ================================ */
-
-/* HOVER EFFECT UTILITIES - Consolidates 20+ duplicate patterns */
-
-/* ANIMATION DELAY UTILITIES - Replaces scattered animation delays */
-
-/* RESPONSIVE GRID UTILITIES - Consolidates repeated grid patterns */
-
-/* TRANSITION UTILITIES - Replaces repeated transition declarations */
-
-/* LAYOUT UTILITIES */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -417,14 +309,10 @@ p {
   border: 0;
 }
 
-/* TEMPLATE UTILITIES */
 .content-section-top-margin {
   margin-top: var(--spacing-xl);
 }
 
-/* ================================
-   5. NAVIGATION SYSTEM - FIXED MOBILE FUNCTIONALITY
-   ================================ */
 .navbar {
   background-color: rgba(34, 49, 58, 0.95);
   backdrop-filter: blur(10px);
@@ -463,7 +351,6 @@ p {
   text-decoration: none;
 }
 
-/* HAMBURGER MENU - Fixed functionality */
 .navbar-toggle {
   display: none;
   position: relative;
@@ -495,15 +382,22 @@ p {
 }
 
 .navbar-toggle.active {
-  /* Keep the toggle visible but change the icon */
   opacity: 1;
 }
 
-.navbar-toggle.active i:before {
-  content: '\f00d'; /* fa-times */
+.navbar-toggle.active i {
+  font-size: 0; /* Hide the original icon */
+  position: relative;
 }
 
-/* NAVIGATION LINKS */
+.navbar-toggle.active i::before {
+  content: '\f00d'; /* fa-times */
+  font-size: var(--font-size-lg); /* Restore font size for the pseudo-element */
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
 .navbar-links {
   display: flex;
   list-style: none;
@@ -514,7 +408,6 @@ p {
 }
 
 .mobile-menu-header,
-.menu-close,
 .menu-brand {
   display: none;
 }
@@ -560,7 +453,6 @@ p {
   width: 100%;
 }
 
-/* MOBILE NAVIGATION - FIXED ALL FUNCTIONALITY ISSUES */
 @media (max-width: 1023px) {
   .navbar-toggle {
     display: block;
@@ -617,29 +509,6 @@ p {
     flex-shrink: 0;
   }
 
-  .menu-close {
-    width: var(--touch-target);
-    height: var(--touch-target);
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-text);
-    font-size: var(--font-size-lg);
-    border-radius: var(--border-radius-sm);
-    transition: all var(--transition-fast);
-    touch-action: manipulation;
-  }
-
-  .menu-close:hover,
-  .menu-close:focus {
-    background-color: var(--color-primary);
-    color: var(--color-background);
-    outline: none;
-  }
-
   .menu-brand {
     font-size: var(--font-size-lg);
     font-weight: var(--font-weight-bold);
@@ -672,7 +541,7 @@ p {
     color: var(--color-text);
     text-decoration: none;
     touch-action: manipulation;
-    /* Use utility transitions */
+
     transition: var(--transition-all);
   }
 
@@ -687,7 +556,7 @@ p {
     justify-content: center;
     background-color: transparent;
     pointer-events: none;
-    /* Use utility transitions */
+
     transition: var(--transition-all);
   }
 
@@ -747,7 +616,6 @@ p {
     width: 100%;
   }
 
-  /* MOBILE LANDSCAPE OPTIMIZATIONS */
   @media (max-width: 1023px) and (orientation: landscape) {
     .mobile-menu-header {
       height: calc(var(--nav-height) - var(--spacing-lg));
@@ -768,7 +636,6 @@ p {
     }
   }
 
-  /* VERY SHORT LANDSCAPE VIEWPORTS */
   @media (max-width: 1023px) and (orientation: landscape) and (max-height: 500px) {
     .navbar-links {
       max-height: 100vh;
@@ -793,9 +660,6 @@ p {
   }
 }
 
-/* ================================
-   6. BUTTON SYSTEM - Consolidated & Fixed
-   ================================ */
 .btn {
   display: inline-block;
   padding: var(--spacing-md) var(--spacing-xl);
@@ -814,7 +678,7 @@ p {
   text-overflow: ellipsis;
   max-width: 100%;
   flex-shrink: 0;
-  /* Use utility transitions */
+
   transition: var(--transition-all);
 }
 
@@ -845,9 +709,6 @@ p {
   color: var(--color-text);
 }
 
-/* ================================
-   7. LAYOUT SECTIONS - Using semantic variables
-   ================================ */
 section {
   margin: 0 auto var(--spacing-3xl) auto;
   max-width: var(--max-width-content);
@@ -887,7 +748,6 @@ section {
   border-radius: 2px;
 }
 
-/* CAREER SECTION HEADER - Replaced inline styles */
 .career-header {
   text-align: center;
   margin-bottom: var(--spacing-2xl);
@@ -907,9 +767,6 @@ section {
   font-size: var(--font-size-base);
 }
 
-/* ================================
-   8. HERO SECTION - Semantic variables applied
-   ================================ */
 .hero-section {
   padding: var(--spacing-2xl) var(--spacing-lg);
   text-align: center;
@@ -1004,7 +861,6 @@ section {
   max-width: 100%;
 }
 
-/* DESKTOP HERO LAYOUT */
 @media (min-width: 1024px) {
   .hero-section {
     grid-template-columns: 1fr 1fr;
@@ -1036,7 +892,6 @@ section {
   }
 }
 
-/* LARGE DESKTOP HERO LAYOUT */
 @media (min-width: 1200px) {
   .hero-section {
     padding: var(--spacing-2xl) var(--spacing-xl);
@@ -1052,9 +907,6 @@ section {
   }
 }
 
-/* ================================
-   9. TIMELINE - Semantic variables throughout
-   ================================ */
 .career-grid {
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -1138,7 +990,7 @@ section {
   position: relative;
   border: var(--border-width) solid var(--color-primary);
   cursor: pointer;
-  /* Apply hover-scale-rotate utility */
+
   transition: var(--transition-all);
 }
 
@@ -1187,14 +1039,12 @@ section {
   border-color: var(--color-primary);
 }
 
-/* Linked hover effects - hovering square affects content and vice versa */
 .timeline-item:hover .timeline-square,
 .timeline-item
   .timeline-content:hover
   ~ .timeline-marker-group
   .timeline-square,
 .timeline-item:has(.timeline-content:hover) .timeline-square {
-  /* Use utility variables for consistent hover effect */
   transform: var(--hover-scale-rotate);
   box-shadow: var(--shadow-accent-sm);
 }
@@ -1246,7 +1096,6 @@ section {
   letter-spacing: var(--letter-spacing-subtle);
 }
 
-/* Timeline Animation Styles */
 .timeline-item.animate {
   opacity: 1;
   transform: translateX(0);
@@ -1259,7 +1108,6 @@ section {
 .timeline-item.animate .timeline-square:hover,
 .timeline-item.animate:hover .timeline-square,
 .timeline-item.animate:has(.timeline-content:hover) .timeline-square {
-  /* Use utility variables for consistent hover effect */
   transform: var(--hover-scale-rotate) !important;
   box-shadow: var(--shadow-accent-sm);
 }
@@ -1307,9 +1155,6 @@ section {
   }
 }
 
-/* ================================
-   10. SKILLS SECTION - Consolidated similar patterns
-   ================================ */
 .skills-columns {
   display: grid;
   grid-template-columns: 1fr;
@@ -1337,7 +1182,7 @@ section {
   box-shadow: var(--shadow-md);
   border: var(--border-width-thick) solid var(--color-border);
   cursor: pointer;
-  /* Apply hover-accent-glow and hover-lift utilities */
+
   transition: var(--transition-shadow-border),
     transform var(--transition-normal);
 }
@@ -1356,7 +1201,6 @@ section {
   color: var(--color-text);
 }
 
-/* UNIFIED HOVER BEHAVIOR - Using utility classes */
 .skill-row {
   display: flex;
   justify-content: space-between;
@@ -1364,7 +1208,7 @@ section {
   margin-bottom: var(--spacing-sm);
   color: var(--color-text);
   cursor: pointer;
-  /* Apply hover-slide and transition-colors utilities */
+
   transition: var(--transition-colors), transform var(--transition-normal);
 }
 
@@ -1406,7 +1250,6 @@ section {
   width: var(--progress-width, 0%);
 }
 
-/* FRAMEWORK GRID - Using semantic sizing */
 .frameworks-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1465,7 +1308,7 @@ section {
 .framework-item:focus i,
 .framework-item:focus svg {
   color: var(--color-primary);
-  /* Use utility variables for consistent hover effect */
+
   transform: var(--hover-scale-rotate);
   box-shadow: var(--shadow-accent-sm);
 }
@@ -1482,7 +1325,6 @@ section {
   color: var(--color-primary);
 }
 
-/* METHODOLOGIES LIST - Consolidated animations */
 .methodologies-list {
   list-style: none;
   padding: 0;
@@ -1529,7 +1371,7 @@ section {
 
 .methodology-item:hover i {
   color: var(--color-primary);
-  /* Use utility variables for consistent hover effect */
+
   transform: var(--hover-scale-rotate);
   box-shadow: var(--shadow-accent-sm);
 }
@@ -1543,9 +1385,6 @@ section {
   width: 100%;
 }
 
-/* ================================
-   11. CONTACT SECTION - Tightened spacing for better layout
-   ================================ */
 .contact-content {
   max-width: calc(var(--max-width-content) - var(--spacing-3xl));
   margin: 0 auto;
@@ -1605,7 +1444,6 @@ section {
 }
 
 .contact-item:hover .contact-icon {
-  /* Use utility variables for consistent hover effect */
   transform: var(--hover-scale-rotate);
   box-shadow: var(--shadow-accent-sm);
 }
@@ -1670,7 +1508,6 @@ section {
   transform: scaleX(1);
 }
 
-/* Contact Animation Styles */
 .contact-item.animate {
   opacity: 1;
   transform: translateY(0);
@@ -1687,18 +1524,16 @@ section {
 }
 
 .contact-item.animate:hover .contact-icon {
-  /* Use utility variables for consistent hover effect */
   transform: var(--hover-scale-rotate) !important;
   box-shadow: var(--shadow-accent-sm);
 }
 
-/* Contact Text Layout */
 .contact-item {
-  min-width: 0; /* Allow flexbox to shrink items if needed */
+  min-width: 0;
 }
 
 .contact-details {
-  min-width: 0; /* Allow text content to be constrained */
+  min-width: 0;
 }
 
 .contact-details h3 {
@@ -1714,7 +1549,6 @@ section {
   text-overflow: ellipsis;
 }
 
-/* RESPONSIVE CONTACT ADJUSTMENTS */
 @media (max-width: 1200px) {
   .contact-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1728,7 +1562,6 @@ section {
     gap: var(--spacing-md);
   }
 
-  /* Allow text wrapping on mobile since we have full width */
   .contact-details h3,
   .contact-details a,
   .contact-details p {
@@ -1775,7 +1608,6 @@ section {
   }
 }
 
-/* LEGACY ADDRESS STYLING */
 address {
   font-style: normal;
   font-size: var(--font-size-lg);
@@ -1798,9 +1630,6 @@ address a:hover {
   text-decoration: underline;
 }
 
-/* ================================
-   13. BLOG & CATEGORY STYLING - Essential for blog functionality
-   ================================ */
 .category-tag {
   display: inline-block;
   background-color: transparent;
@@ -1846,7 +1675,6 @@ address a:hover {
   margin-bottom: var(--spacing-md);
 }
 
-/* BLOG POST CARDS - Essential for blog listing */
 .blog-post-list {
   margin: var(--spacing-xs) 0 0 0;
   width: 100%;
@@ -1861,7 +1689,7 @@ address a:hover {
   box-shadow: var(--shadow-md);
   width: 100%;
   box-sizing: border-box;
-  /* Use utility transitions */
+
   transition: var(--transition-shadow-border);
 }
 
@@ -1922,7 +1750,6 @@ address a:hover {
   border-top: 1px solid var(--color-border);
 }
 
-/* Error states for blog cards */
 .blog-post-card.error {
   background-color: var(--color-surface-light);
   border-left: 4px solid var(--color-error);
@@ -1936,7 +1763,6 @@ address a:hover {
   margin-bottom: var(--spacing-sm);
 }
 
-/* AUTHOR BIO COMPONENT - Essential for written-by macro */
 .author-bio {
   background: var(--color-surface-light);
   border-radius: var(--border-radius-lg);
@@ -2030,7 +1856,6 @@ address a:hover {
   opacity: 1;
 }
 
-/* Mobile responsiveness for author bio */
 @media (max-width: 768px) {
   .author-bio {
     flex-direction: column;
@@ -2058,7 +1883,6 @@ address a:hover {
   }
 }
 
-/* UTILITY CLASSES for blog pages */
 .back-to-blog-link {
   color: var(--color-primary);
   text-decoration: none;
@@ -2080,7 +1904,6 @@ address a:hover {
   font-size: var(--font-size-sm);
 }
 
-/* Category page utilities */
 .category-post-count-header {
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-medium);
@@ -2104,7 +1927,6 @@ address a:hover {
   text-decoration: underline;
 }
 
-/* SEARCH STYLING - Consolidated container */
 #search {
   width: 100%;
   max-width: 100%;
@@ -2113,55 +1935,24 @@ address a:hover {
   order: 1;
 }
 
-/* ================================
-   ENHANCED PAGEFIND SEARCH RESULTS - Match Blog Card Layout
-   ================================ */
-
-/* Fix Pagefind UI drawer container issues */
-.pagefind-ui__drawer {
-  max-width: none !important;
-  width: 100% !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-}
-
-/* Search results inherit blog card styling - only override display properties */
 .pagefind-ui__results .blog-post-card {
   display: flex !important;
   flex-direction: column !important;
 }
 
-/* Hide default pagefind result elements */
 .pagefind-ui__results .pagefind-ui__result-title,
-.pagefind-ui__results .pagefind-ui__result-excerpt,
-.pagefind-ui__results .pagefind-ui__result-tags {
+.pagefind-ui__results .pagefind-ui__result-excerpt {
   display: none !important;
 }
 
-/* Hide Pagefind category filter elements (used only for indexing) */
 .pagefind-category-filter {
   display: none !important;
 }
 
-/* Hide Pagefind filter sidebar panel completely */
-.pagefind-ui__filter-panel {
-  display: none !important;
-}
-
-/* ================================
-   IMPROVED PAGEFIND SEARCH - CSS-FIRST APPROACH
-   ================================ */
-
-/* Search results that are blog posts should look exactly like blog cards */
 .pagefind-ui__result.blog-post-card {
-  /* Remove default Pagefind styling */
   padding: 0 !important;
   border: none !important;
 
-  /* Apply blog card styling */
   margin-bottom: var(--spacing-xl);
   padding: var(--spacing-lg) var(--spacing-xl) !important;
   background-color: var(--color-surface-light);
@@ -2177,9 +1968,7 @@ address a:hover {
   transform: translateY(-2px);
 }
 
-/* Ensure Pagefind elements within blog card structure work properly */
 .pagefind-ui__result.blog-post-card .pagefind-ui__result-title {
-  /* Reset Pagefind styling */
   margin: 0 !important;
   padding: 0 !important;
   background: none !important;
@@ -2187,19 +1976,12 @@ address a:hover {
 }
 
 .pagefind-ui__result.blog-post-card .pagefind-ui__result-excerpt {
-  /* Reset Pagefind styling */
   margin: 0 !important;
   padding: 0 !important;
   background: none !important;
   border: none !important;
 }
 
-/* Hide the filter panel */
-.pagefind-ui__filter-panel {
-  display: none !important;
-}
-
-/* Style non-blog post search results - ensure they're visible */
 .pagefind-ui__result:not(.blog-post-card) {
   border: none !important;
   padding: var(--spacing-lg) var(--spacing-xl) !important;
@@ -2211,7 +1993,6 @@ address a:hover {
   display: block !important;
 }
 
-/* Make search results use single column layout like blog posts */
 .pagefind-ui__results {
   display: block !important;
   width: 100% !important;
@@ -2225,7 +2006,6 @@ address a:hover {
   border: none !important;
 }
 
-/* Override default pagefind result containers - show all results */
 .pagefind-ui__results .pagefind-ui__result {
   border: none !important;
   padding: 0 !important;
@@ -2237,7 +2017,6 @@ address a:hover {
   max-width: none !important;
 }
 
-/* Ensure search result cards take full width and proper spacing */
 .pagefind-ui__results .blog-post-card {
   width: 100% !important;
   margin-bottom: var(--spacing-xl) !important;
@@ -2252,7 +2031,6 @@ address a:hover {
   flex-direction: column !important;
 }
 
-/* Search results only need display order overrides - inherit all other blog card styles */
 .pagefind-ui__results .blog-post-card .blog-post-title {
   order: 1 !important;
 }
@@ -2269,13 +2047,6 @@ address a:hover {
   order: 4 !important;
 }
 
-/* ================================
-   SEARCH STYLING - Enhanced for Better Visibility
-   ================================ */
-
-/* Search container and form styling */
-
-/* Search input styling - clean and simple */
 .pagefind-ui__search-input {
   background-color: var(--color-background) !important;
   border: 1px solid var(--color-border) !important;
@@ -2302,37 +2073,6 @@ address a:hover {
   opacity: 0.7 !important;
 }
 
-/* Search input container with clear button positioning */
-#search .pagefind-ui__form {
-  position: relative !important;
-  width: 100% !important;
-}
-
-/* Clear button styling - positioned inside input */
-#search .pagefind-ui__search-clear {
-  position: absolute !important;
-  right: 12px !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-  background-color: var(--color-primary) !important;
-  color: var(--color-background) !important;
-  border: none !important;
-  border-radius: var(--border-radius-xs) !important;
-  font-family: var(--font-primary) !important;
-  font-weight: var(--font-weight-medium) !important;
-  padding: 4px 8px !important;
-  margin: 0;
-  transition: background-color var(--transition-fast);
-  font-size: var(--font-size-sm) !important;
-  z-index: 10 !important;
-  pointer-events: auto;
-}
-
-.pagefind-ui__search-clear:hover {
-  background-color: var(--color-primary-dark) !important;
-}
-
-/* Search statistics and messages - simplified */
 .custom-search-message {
   margin: var(--spacing-lg) 0;
 }
@@ -2341,7 +2081,6 @@ address a:hover {
   color: var(--color-text-secondary);
 }
 
-/* Search message styling */
 .pagefind-ui__message {
   color: var(--color-text-secondary) !important;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif !important;
@@ -2349,26 +2088,6 @@ address a:hover {
   margin: var(--spacing-lg) 0 !important;
 }
 
-/* Load more button styling */
-.pagefind-ui__button {
-  background-color: var(--color-primary) !important;
-  color: var(--color-background) !important;
-  border: none !important;
-  border-radius: var(--border-radius-md) !important;
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif !important;
-  font-weight: 600 !important;
-  padding: var(--spacing-sm) var(--spacing-lg) !important;
-  margin: var(--spacing-xl) auto !important;
-  display: block !important;
-  transition: background-color var(--transition-fast) !important;
-  cursor: pointer !important;
-}
-
-.pagefind-ui__button:hover {
-  background-color: var(--color-primary-dark) !important;
-}
-
-/* Search shortcuts styling - positioned after search input */
 .search-shortcuts {
   margin-top: var(--spacing-sm);
   margin-bottom: var(--spacing-lg);
@@ -2376,12 +2095,9 @@ address a:hover {
   transition: opacity var(--transition-fast);
 }
 
-/* Position shortcuts right after search form */
 .search-shortcuts {
   order: 2;
 }
-
-/* Ensure results come after shortcuts */
 
 .search-shortcuts:hover {
   opacity: 1;
@@ -2393,9 +2109,6 @@ address a:hover {
   margin: 0 1px !important;
 }
 
-/* ================================
-   FOOTER STYLING
-   ================================ */
 .site-footer {
   background-color: var(--color-surface);
   border-top: var(--border-width-thin) solid var(--color-border);
@@ -2436,10 +2149,6 @@ address a:hover {
   color: var(--color-text-tertiary);
   margin: 0;
 }
-
-/* ================================
-   UTILITY CLASSES - For replacing inline styles
-   ================================ */
 
 .sr-only {
   position: absolute;
@@ -2514,8 +2223,6 @@ address a:hover {
   color: var(--color-primary);
 }
 
-/* Podcast Player Styles */
-
 .podcast-player {
   margin: var(--spacing-lg) 0;
   padding: var(--spacing-md);
@@ -2529,7 +2236,6 @@ address a:hover {
   max-width: 600px;
 }
 
-/* Video Embed Styles */
 .video-embed {
   position: relative;
   padding-bottom: 56.25%;
@@ -2550,9 +2256,6 @@ address a:hover {
   border: none;
 }
 
-/* ================================
-   404 PAGE STYLES (moved from 404.njk)
-   ================================ */
 .error-404-container {
   text-align: center;
   padding: var(--spacing-2xl) 0;
@@ -2678,7 +2381,7 @@ address a:hover {
   border-radius: var(--border-radius-lg);
   padding: var(--spacing-xl);
   border: 2px solid var(--color-border);
-  /* Use utility transitions */
+
   transition: var(--transition-all);
 }
 
@@ -2737,14 +2440,7 @@ address a:hover {
   text-decoration: underline;
 }
 
-/* ================================
-   CONSOLIDATED RESPONSIVE UTILITIES
-   ================================ */
-
-/* Mobile and Tablet Responsive Grid Utilities */
 @media (max-width: 1023px) {
-  /* Grid Systems - Consolidates 8+ duplicate media queries */
-
   .skills-columns,
   .career-grid,
   .contact-grid {
@@ -2757,17 +2453,14 @@ address a:hover {
 }
 
 @media (max-width: 768px) {
-  /* Single column layout for all grids on mobile */
   .frameworks-grid {
     grid-template-columns: 1fr !important;
   }
 
-  /* Common spacing adjustments */
   .content-section-boxed {
     padding: var(--spacing-lg) var(--spacing-md) !important;
   }
 
-  /* Font size adjustments */
   .hero-text h1 {
     font-size: var(--font-size-2xl) !important;
   }
@@ -2795,10 +2488,6 @@ address a:hover {
     font-size: var(--font-size-xs);
   }
 }
-
-/* ================================
-   KEYFRAME ANIMATIONS
-   ================================ */
 
 @keyframes float {
   0%,
