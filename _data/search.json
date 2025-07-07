@@ -1,0 +1,20 @@
+{
+  "debounceMs": 300,
+  "excerptLength": 300,
+  "pageSize": 8,
+  "showImages": false,
+  "showFilters": false,
+  "resetStyles": false,
+  "translations": {
+    "placeholder": "Search articles, posts, and pages...",
+    "clear_search": "Clear",
+    "load_more": "Load more results",
+    "zero_results": "No results found",
+    "many_results": "results found",
+    "one_result": "result found"
+  },
+  "shortcuts": {
+    "search": "ctrl+k",
+    "escape": "escape"
+  }
+}
