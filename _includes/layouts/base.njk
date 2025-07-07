@@ -34,7 +34,7 @@
     
     {# PERFORMANCE: Load search scripts only on search page #}
     {% if page.url.includes('/search/') %}
-        {% include "partials/scripts-search-improved.njk" %}
+        {% include "partials/scripts-search.njk" %}
     {% endif %}
     
     {# PERFORMANCE: Load blog scripts only on blog pages or pages with code blocks #}
