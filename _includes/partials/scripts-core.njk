@@ -5,7 +5,6 @@
         const navToggle = document.querySelector('.navbar-toggle');
         const navLinks = document.querySelector('.navbar-links');
         const navOverlay = document.querySelector('.nav-overlay');
-        const menuClose = document.querySelector('.menu-close');
         
         if (navToggle && navLinks) {
             // Store scroll position for restoration
@@ -48,13 +47,6 @@
                     closeMobileMenu();
                 }
             });
-
-            // Close button in mobile menu
-            if (menuClose) {
-                menuClose.addEventListener('click', () => {
-                    closeMobileMenu();
-                });
-            }
 
             // Close mobile menu when clicking on a nav link
             const navLinkItems = navLinks.querySelectorAll('a');
