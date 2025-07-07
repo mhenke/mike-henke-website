@@ -388,14 +388,18 @@ p {
 .navbar-toggle.active i {
   font-size: 0; /* Hide the original icon */
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .navbar-toggle.active i::before {
   content: '\f00d'; /* fa-times */
-  font-size: var(--font-size-lg); /* Restore font size for the pseudo-element */
+  font-size: var(--font-size-lg);
   position: absolute;
-  left: 0;
-  top: 0;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .navbar-links {
