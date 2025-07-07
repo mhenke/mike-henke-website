@@ -608,6 +608,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy('_redirects'); // Netlify redirects
   eleventyConfig.addPassthroughCopy({ _pagefind: 'pagefind' });
   eleventyConfig.addPassthroughCopy('assets'); // Assets folder including images
+  eleventyConfig.addPassthroughCopy('js'); // JavaScript files for search functionality
 
   // Copy WordPress post images to their new locations
   const fs = require('fs');
@@ -776,6 +777,9 @@ module.exports = function (eleventyConfig) {
   if (isProduction) {
     eleventyConfig.setQuietMode(true);
   }
+
+  // Ignore docs folder to prevent template processing of instruction files
+  eleventyConfig.ignores.add('docs/**');
 
   return {
     // No pathPrefix needed for custom domain

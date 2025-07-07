@@ -8,6 +8,9 @@ yarn-error.log*
 # Eleventy
 _site/
 
+# Pagefind
+pagefind/
+
 # OS generated files
 .DS_Store
 Thumbs.db

@@ -15,48 +15,48 @@
                 // Create a better ColdFusion language definition
                 Prism.languages.coldfusion = Prism.languages.extend('markup', {
                     'cf-tag': {
-                        pattern: new RegExp('<\\/?cf[a-z]+(?:\\s[^>]*)?\\/?>', 'i'),
+                        pattern: /<\/?cf[a-z]+(?:\s[^>]*)?\/?>/i,
                         inside: {
                             'tag': {
-                                pattern: new RegExp('<\\/?cf[a-z]+', 'i'),
+                                pattern: /<\/?cf[a-z]+/i,
                                 inside: {
                                     'punctuation': /^<\/?/,
                                     'namespace': /^cf/
                                 }
                             },
                             'attr-name': {
-                                pattern: new RegExp('(?:[a-z]|-)+(?=\\s*=)', 'i')
+                                pattern: /(?:[a-z]|-)+(?=\s*=)/i
                             },
                             'attr-value': {
-                                pattern: new RegExp('=\\s*(?:"[^"]*"|\'[^\']*\'|[^\\s>]+)', 'i'),
+                                pattern: /=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/i,
                                 inside: {
-                                    'punctuation': [/^=/, new RegExp('^[\'"]|[\'"]$')]
+                                    'punctuation': [/^=/, /^['"]|['"]$/]
                                 }
                             },
                             'punctuation': /\/?>/
                         }
                     },
                     'cf-script': {
-                        pattern: new RegExp('#[^#]*#', ''),
+                        pattern: /#[^#]*#/,
                         inside: {
                             'punctuation': /^#|#$/,
                             'keyword': /\b(?:var|if|else|elseif|for|while|function|return|true|false|null)\b/i,
                             'string': {
-                                pattern: new RegExp('("|\')\(?:\\\\.|(?!\\1)[^\\\\\\r\\n]\)*\\1', '')
+                                pattern: /("|')(?:\\.|(?!\1)[^\\\r\n])*\1/
                             },
                             'number': {
-                                pattern: new RegExp('\\b0x[\\da-f]+\\b|(?:\\b\\d+\\.?\\d*|\\B\\.\\d+)(?:e[+-]?\\d+)?', 'i')
+                                pattern: /\b0x[\da-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:e[+-]?\d+)?/i
                             },
                             'operator': {
-                                pattern: new RegExp('[<>]=?|[!=]=?=?|--?|\\+\\+?|&&?|\\|\\|?|[?*/~^%]')
+                                pattern: /[<>]=?|[!=]=?=?|--?|\+\+?|&&?|\|\|?|[?*/~^%]/
                             },
                             'punctuation': {
-                                pattern: new RegExp('[{}\\[\\];(),.:]+')
+                                pattern: /[{}\[\];(),.:]*/
                             }
                         }
                     },
                     'cf-function': {
-                        pattern: new RegExp('\\b[a-zA-Z_]\\w*(?=\\s*\\()', ''),
+                        pattern: /\b[a-zA-Z_]\w*(?=\s*\()/,
                         alias: 'function'
                     }
                 });
