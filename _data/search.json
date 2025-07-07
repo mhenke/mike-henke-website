@@ -1,15 +1,15 @@
 {
   "debounceMs": 300,
   "excerptLength": 300,
-  "pageSize": 8,
+  "pageSize": 10,
   "showImages": false,
   "showFilters": false,
   "resetStyles": false,
   "translations": {
-    "placeholder": "Search articles, posts, and pages...",
-    "clear_search": "Clear",
+    "placeholder": "Search blog posts, guides, and more...",
+    "clear_search": "Clear search",
     "load_more": "Load more results",
-    "zero_results": "No results found",
+    "zero_results": "No results found for your search.",
     "many_results": "results found",
     "one_result": "result found"
   },
