@@ -32,12 +32,10 @@
 <!-- PERFORMANCE: Critical font loading only -->
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&amp;display=swap" rel="stylesheet">
 
-<!-- PERFORMANCE: Load Font Awesome only if needed -->
-{% if page.url == '/' or layout == 'layouts/post.njk' or (page.inputPath and page.inputPath.includes('output/posts/')) %}
+<!-- PERFORMANCE: Load Font Awesome on all pages for navigation icons -->
 <link rel="stylesheet" 
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" 
       crossorigin="anonymous">
-{% endif %}
 
 <!-- PERFORMANCE: Load syntax highlighting only on blog pages -->
 {% if layout == 'layouts/post.njk' or (page.inputPath and page.inputPath.includes('output/posts/')) %}
