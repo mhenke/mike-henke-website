@@ -14,7 +14,6 @@ File: styles.css
   /* STREAMLINED COLOR SYSTEM - Enhanced with better contrast */
   --color-primary: #19d4fe;
   --color-primary-dark: #0fb8e0;
-  --color-primary-light: #4de1ff;
   --color-background: #181a1b;
   --color-surface: #22313a;
   --color-surface-light: #2a2a2a;
@@ -24,11 +23,7 @@ File: styles.css
   --color-border: #3e4750;
   --color-accent-bg: rgba(25, 212, 254, 0.1);
   --color-accent-bg-light: rgba(25, 212, 254, 0.05);
-  --color-accent-bg-medium: rgba(25, 212, 254, 0.2);
-  --color-accent-bg-glow: rgba(25, 212, 254, 0.15);
   --color-focus: rgba(25, 212, 254, 0.4);
-  --color-success: #4ade80;
-  --color-warning: #facc15;
   --color-error: #f87171;
 
   /* TYPOGRAPHY SYSTEM - Enhanced with missing properties */
@@ -50,7 +45,6 @@ File: styles.css
   --font-size-2xl: clamp(1.5rem, 5vw, 1.875rem);
   --font-size-3xl: clamp(1.75rem, 6vw, 2.25rem);
   --font-size-4xl: clamp(2rem, 7vw, 2.75rem);
-  --font-size-5xl: clamp(2.5rem, 8vw, 3.5rem);
 
   /* SPACING SYSTEM - Unchanged (well-designed) */
   --spacing-xs: clamp(0.25rem, 1vw, 0.5rem);
@@ -68,10 +62,6 @@ File: styles.css
   --max-width-text: clamp(280px, 90vw, 65ch);
 
   /* BREAKPOINT SYSTEM - Standardized */
-  --breakpoint-mobile: 480px;
-  --breakpoint-tablet: 768px;
-  --breakpoint-desktop: 1024px;
-  --breakpoint-large: 1200px;
 
   /* SEMANTIC SIZING - Replaced magic numbers */
   --icon-size: clamp(32px, 4vw, 40px);
@@ -97,10 +87,8 @@ File: styles.css
   --border-radius-xl: 24px;
 
   /* SHADOW SYSTEM - Consolidated similar shadows */
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
   --shadow-md: 0 8px 16px rgba(0, 0, 0, 0.2);
   --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.3);
-  --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.4);
   --shadow-accent: 0 8px 32px rgba(25, 212, 254, 0.15);
   --shadow-accent-sm: 0 4px 12px rgba(25, 212, 254, 0.4);
   --shadow-accent-md: 0 6px 16px rgba(25, 212, 254, 0.4);
@@ -109,13 +97,9 @@ File: styles.css
   /* ENHANCED ANIMATION SYSTEM - Modern transitions and transforms */
   --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-bounce: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   --hover-lift: translateY(-2px);
   --hover-scale: scale(1.05);
-  --hover-scale-small: scale(1.02);
   --hover-slide: translateX(4px);
-  --hover-glow: drop-shadow(0 0 8px rgba(25, 212, 254, 0.3));
 
   /* Z-INDEX SCALE - Fixed layering for mobile menu */
   --z-nav: 1000;
@@ -363,98 +347,12 @@ p {
    ================================ */
 
 /* SHIMMER UTILITY - Consolidated from 6+ duplicate instances */
-.shimmer-effect {
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
-}
-
-.shimmer-effect::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--shimmer-color, var(--color-accent-bg)),
-    transparent
-  );
-  transition: left var(--transition-slow);
-  border-radius: inherit;
-  z-index: 0;
-}
-
-.shimmer-effect:hover::before {
-  left: 100%;
-}
 
 /* UNIFIED ANIMATIONS - Replaced multiple similar animations */
-.fade-in {
-  opacity: 0;
-  animation: fadeIn 0.6s ease-out forwards;
-}
-
-.slide-up {
-  opacity: 0;
-  transform: translateY(var(--spacing-lg));
-  animation: slideUp 0.6s ease-out forwards;
-}
-
-.hover-slide:hover {
-  transform: var(--hover-slide);
-}
-
-.hover-lift:hover {
-  transform: var(--hover-lift);
-}
-
-.hover-scale:hover {
-  transform: var(--hover-scale);
-}
 
 /* Additional shared hover effects */
-.hover-glow:hover {
-  filter: var(--hover-glow);
-}
-
-.hover-border-glow:hover {
-  border-color: var(--color-primary-dark);
-  box-shadow: var(--shadow-lg);
-}
-
-.hover-bg-shift:hover {
-  background-color: var(--color-primary);
-  color: var(--color-background);
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
 /* LAYOUT UTILITIES */
-.flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.flex-between {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 
 .sr-only {
   position: absolute;
@@ -998,7 +896,6 @@ section {
   width: 100%;
   display: flex;
   justify-content: center;
-  --shimmer-color: var(--color-accent-bg-glow);
 }
 
 .hero-image img {
@@ -1183,7 +1080,6 @@ section {
   border: var(--border-width) solid var(--color-primary);
   transition: all var(--transition-normal);
   cursor: pointer;
-  --shimmer-color: var(--color-accent-bg-medium);
 }
 
 .timeline-square:hover {
@@ -1223,7 +1119,6 @@ section {
   transition: box-shadow var(--transition-normal),
     border-color var(--transition-normal);
   cursor: pointer;
-  --shimmer-color: var(--color-accent-bg-light);
 }
 
 .timeline-content:hover {
@@ -1381,7 +1276,6 @@ section {
   transition: box-shadow var(--transition-normal),
     border-color var(--transition-normal), transform var(--transition-normal);
   cursor: pointer;
-  --shimmer-color: var(--color-accent-bg);
 }
 
 .skills-card:hover {
@@ -1473,7 +1367,6 @@ section {
   transform: rotate(-10deg) scale(0.8) translateY(var(--spacing-lg));
   cursor: pointer;
   border: var(--border-width-medium) solid transparent;
-  --shimmer-color: var(--color-accent-bg);
 }
 
 .framework-item.animate {
@@ -1621,7 +1514,6 @@ section {
   opacity: 0;
   transform: translateY(var(--spacing-lg));
   transition-delay: var(--animation-delay, 0s);
-  --shimmer-color: var(--color-accent-bg);
 }
 
 .contact-item:hover {
@@ -2141,12 +2033,6 @@ address a:hover {
   text-decoration: underline;
 }
 
-.category-post-count {
-  margin-top: var(--spacing-xl);
-  color: var(--color-text-tertiary);
-  font-size: var(--font-size-sm);
-}
-
 /* SEARCH STYLING - Consolidated container */
 #search {
   width: 100%;
@@ -2351,12 +2237,6 @@ address a:hover {
   width: 100% !important;
 }
 
-#search .pagefind-ui__search-input-container {
-  position: relative;
-  display: block;
-  width: 100%;
-}
-
 /* Clear button styling - positioned inside input */
 #search .pagefind-ui__search-clear {
   position: absolute !important;
@@ -2489,9 +2369,6 @@ address a:hover {
 /* ================================
    UTILITY CLASSES - For replacing inline styles
    ================================ */
-.text-center {
-  text-align: center;
-}
 
 .sr-only {
   position: absolute;
@@ -2600,14 +2477,6 @@ address a:hover {
   width: 100%;
   height: 100%;
   border: none;
-}
-
-.generic-embed {
-  margin: var(--spacing-lg) 0;
-  padding: var(--spacing-md);
-  background: var(--color-surface-light);
-  border-radius: var(--border-radius-md);
-  text-align: center;
 }
 
 /* ================================

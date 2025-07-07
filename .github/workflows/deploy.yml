@@ -26,8 +26,10 @@ jobs:
       - name: Install Dependencies 👨‍💻
         run: npm ci
 
-      - name: Build Project 🏗️
+      - name: Build Project with PurgeCSS 🏗️
         run: npm run build
+        env:
+          NODE_ENV: production
 
       - name: Upload artifact ⬆️
         uses: actions/upload-pages-artifact@v3 # Updated to v3
