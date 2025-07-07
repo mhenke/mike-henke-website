@@ -12,7 +12,8 @@
     "build:dev": "NODE_ENV=development npx @11ty/eleventy",
     "build:purge": "NODE_ENV=production npx @11ty/eleventy",
     "serve": "npx @11ty/eleventy --serve",
-    "dev:nosearch": "npm run clean && eleventy --serve --watch"
+    "dev:nosearch": "npm run clean && eleventy --serve --watch",
+    "css:cleanup": "node scripts/purgecss-cleanup.mjs"
   },
   "keywords": [
     "portfolio",
