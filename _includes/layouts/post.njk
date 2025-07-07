@@ -1,30 +1,32 @@
 {% extends "layouts/base.njk" %}
 
 {% block content %}
-<article class="content-section-boxed content-section-top-margin" role="article" data-pagefind-body>
-    <header>
-        <h1 data-pagefind-meta="title">{{ title }}</h1>
-        <span data-pagefind-meta="custom_excerpt" class="hidden">{{ content | blogExcerpt }}</span>
-        {% import "macros/publish-date.njk" as dateMacros %}
-        {{ dateMacros.publishDate(date) }}
-        {% import "macros/category-tags.njk" as categoryMacros %}
-        {{ categoryMacros.categoryTags(categories) }}
-    </header>
-    <hr>
-    <div>
-        {{ content | safe }}
-    </div>
-    
-    {# Author bio section #}
-    {% import "macros/written-by.njk" as authorMacros %}
-    {{ authorMacros.writtenBy() }}
-    
-    <hr>
-    <footer>
-        <p><a href="{{ '/blog' | url }}" class="back-to-blog-link" aria-label="Return to blog listing">← Back to Blog</a></p>
-    </footer>
-    
-    {# Comments section #}
-    {% include "partials/disqus-config.njk" %}
-</article>
+<section>
+    <article class="content-section-boxed content-section-top-margin" role="article" data-pagefind-body>
+        <header>
+            <h1 data-pagefind-meta="title">{{ title }}</h1>
+            <span data-pagefind-meta="custom_excerpt" class="hidden">{{ content | blogExcerpt }}</span>
+            {% import "macros/publish-date.njk" as dateMacros %}
+            {{ dateMacros.publishDate(date) }}
+            {% import "macros/category-tags.njk" as categoryMacros %}
+            {{ categoryMacros.categoryTags(categories) }}
+        </header>
+        <hr>
+        <div>
+            {{ content | safe }}
+        </div>
+        
+        {# Author bio section #}
+        {% import "macros/written-by.njk" as authorMacros %}
+        {{ authorMacros.writtenBy() }}
+        
+        <hr>
+        <footer>
+            <p><a href="{{ '/blog' | url }}" class="back-to-blog-link" aria-label="Return to blog listing">← Back to Blog</a></p>
+        </footer>
+        
+        {# Comments section #}
+        {% include "partials/disqus-config.njk" %}
+    </article>
+</section>
 {% endblock %}
