@@ -40,17 +40,21 @@ document.addEventListener('DOMContentLoaded', async () => {
    */
   function createSearchInterface(hasError = false) {
     searchContainer.innerHTML = `
-      <input 
-        type="text" 
-        id="search-input" 
-        class="search-input" 
-        placeholder="Search articles..."
-        autocomplete="off"
-        aria-label="Search articles"
-        ${hasError ? 'disabled' : ''}
-      >
+      <div class="search-input-wrapper">
+        <i class="fas fa-search search-input-icon" aria-hidden="true"></i>
+        <input 
+          type="text" 
+          id="search-input" 
+          class="search-input" 
+          placeholder="Search articles..."
+          autocomplete="off"
+          aria-label="Search articles"
+          ${hasError ? 'disabled' : ''}
+        >
+      </div>
+      <div id="search-results-count" class="search-results-count" aria-live="polite"></div>
       <div id="search-results" class="search-results" role="region" aria-live="polite">
-        ${hasError ? '<p class="search-message">❌ Search is currently unavailable</p>' : ''}
+        ${hasError ? '<p class="search-message"><i class="fas fa-times-circle" aria-hidden="true"></i> Search is currently unavailable</p>' : ''}
       </div>
     `;
 
@@ -58,6 +62,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const searchInput = document.getElementById('search-input');
     const searchResults = document.getElementById('search-results');
+    const searchResultsCount = document.getElementById('search-results-count');
 
     let searchTimeout;
 
@@ -68,12 +73,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       if (query.length === 0) {
         searchResults.innerHTML = '';
+        searchResultsCount.textContent = '';
         return;
       }
 
       if (query.length < 2) {
         searchResults.innerHTML =
-          '<p class="search-message">Type at least 2 characters to search...</p>';
+          '<p class="search-message"><i class="fas fa-info-circle" aria-hidden="true"></i> Type at least 2 characters to search...</p>';
+        searchResultsCount.textContent = '';
         return;
       }
 
@@ -89,9 +96,11 @@ document.addEventListener('DOMContentLoaded', async () => {
    */
   async function performSearch(query) {
     const searchResults = document.getElementById('search-results');
+    const searchResultsCount = document.getElementById('search-results-count');
 
     try {
-      searchResults.innerHTML = '<p class="search-message">🔍 Searching...</p>';
+      searchResults.innerHTML = '<p class="search-message"><i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Searching...</p>';
+      searchResultsCount.textContent = '';
 
       // Check if Pagefind is available
       if (!window.pagefind) {
@@ -103,7 +112,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       if (search.results.length === 0) {
         searchResults.innerHTML =
-          '<p class="search-message">❌ No results found</p>';
+          '<p class="search-message"><i class="fas fa-times-circle" aria-hidden="true"></i> No results found</p>';
+        searchResultsCount.textContent = '0 results for "' + query + '"';
         return;
       }
 
@@ -115,15 +125,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       // Render results as blog cards
       renderBlogCards(results);
+      searchResultsCount.textContent = `${search.results.length} result${search.results.length !== 1 ? 's' : ''} for "${query}"`;
     } catch (error) {
       console.error('Search error:', error);
       if (error.message.includes('Pagefind is not loaded')) {
         searchResults.innerHTML =
-          '<p class="search-message">❌ Search is loading. Please try again in a moment.</p>';
+          '<p class="search-message"><i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Search is loading. Please try again in a moment.</p>';
       } else {
         searchResults.innerHTML =
-          '<p class="search-message">❌ Search failed. Please try again.</p>';
+          '<p class="search-message"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i> Search failed. Please try again.</p>';
       }
+      searchResultsCount.textContent = '';
     }
   }
 

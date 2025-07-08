@@ -10,3 +10,14 @@ permalink: /search/
     <div id="search" role="search" aria-label="Search blog posts and articles"></div>
   </div>
 </div>
+
+{# Ensure Font Awesome is loaded in the base layout's <head>:
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+#}
+
+{# The search input and icon are injected by JS, but if you want a fallback or SSR, use:
+<div class="search-input-wrapper">
+  <i class="fas fa-search search-input-icon" aria-hidden="true"></i>
+  <input type="text" class="search-input" placeholder="Search articles..." aria-label="Search articles" disabled>
+</div>
+#}
