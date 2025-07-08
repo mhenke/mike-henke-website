@@ -1,0 +1,43 @@
+---
+layout: layouts/base.njk
+title: "Presentations"
+description: "Conference talks, presentations, and speaking engagements on web development and technology topics."
+eleventyExcludeFromCollections: true
+permalink: /presentations/
+---
+
+<div class="content-section-boxed content-section-top-margin">
+    <div class="page-header">
+        <h1 class="section-title">Presentations</h1>
+        <p class="section-description">Conference talks, workshops, and speaking engagements covering various topics in web development and technology.</p>
+    </div>
+
+    <div class="posts-grid">
+        {% set presentationsCollection = collections.pages | filterByCategory('presentations') %}
+        {% if presentationsCollection.length > 0 %}
+            {% for post in presentationsCollection | reverse %}
+                <article class="post-card">
+                    <div class="post-content">
+                        <h2 class="post-title">
+                            <a href="{{ post.url }}">{{ post.data.title }}</a>
+                        </h2>
+                        {% if post.data.description %}
+                            <p class="post-excerpt">{{ post.data.description }}</p>
+                        {% endif %}
+                        {% if post.data.date %}
+                            <div class="post-meta">
+                                <time datetime="{{ post.data.date | date('iso') }}">
+                                    {{ post.data.date | date('MMMM d, yyyy') }}
+                                </time>
+                            </div>
+                        {% endif %}
+                    </div>
+                </article>
+            {% endfor %}
+        {% else %}
+            <div class="no-posts">
+                <p>No presentations available yet. Check back soon!</p>
+            </div>
+        {% endif %}
+    </div>
+</div>

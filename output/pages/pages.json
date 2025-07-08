@@ -1,5 +1,5 @@
 {
   "layout": "layouts/post.njk",
-  "permalink": "/wordpress-pages/{{ page.fileSlug }}/",
+  "permalink": "/{{ page.fileSlug }}/",
   "tags": ["pages"]
 }

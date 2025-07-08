@@ -17,7 +17,9 @@
 .search-container {
   padding: var(--spacing-3xl) var(--spacing-2xl); /* Card-like padding */
   text-align: center;
-  max-width: var(--max-width-content); /* Use content max-width like blog page */
+  max-width: var(
+    --max-width-content
+  ); /* Use content max-width like blog page */
   margin: var(--spacing-2xl) auto; /* Add margin like blog cards */
   width: 100%;
   box-sizing: border-box;
@@ -93,7 +95,9 @@
 .search-content .pagefind-ui__search-input:focus {
   outline: none;
   border-color: var(--color-primary);
-  box-shadow: 0 8px 24px rgba(25, 212, 254, 0.25), 0 0 0 3px rgba(25, 212, 254, 0.1);
+  box-shadow:
+    0 8px 24px rgba(25, 212, 254, 0.25),
+    0 0 0 3px rgba(25, 212, 254, 0.1);
   background: var(--color-surface);
 }
 
@@ -239,7 +243,8 @@
 
 .search-content .pagefind-ui__results .blog-post-card:hover,
 .search-content .pagefind-ui__result:hover {
-  box-shadow: var(--shadow-lg), var(--shadow-accent); /* Even stronger hover shadow */
+  box-shadow:
+    var(--shadow-lg), var(--shadow-accent); /* Even stronger hover shadow */
   border-color: var(--color-primary);
   transform: var(--hover-slide);
 }
@@ -294,7 +299,10 @@
   background-color: transparent;
 }
 
-.search-content .pagefind-ui__results .blog-post-categories .category-tag:hover {
+.search-content
+  .pagefind-ui__results
+  .blog-post-categories
+  .category-tag:hover {
   background-color: var(--color-primary);
   color: var(--color-surface);
   transform: var(--hover-lift);
@@ -349,7 +357,9 @@
 #search-input:focus {
   outline: none;
   border-color: var(--color-primary);
-  box-shadow: 0 8px 24px rgba(25, 212, 254, 0.25), 0 0 0 3px rgba(25, 212, 254, 0.1);
+  box-shadow:
+    0 8px 24px rgba(25, 212, 254, 0.25),
+    0 0 0 3px rgba(25, 212, 254, 0.1);
   background: var(--color-surface);
 }
 
@@ -427,11 +437,11 @@
   margin: var(--spacing-lg) 0;
   line-height: 1.6;
   font-family: var(--font-primary);
-  
+
   /* Clean up excerpt formatting */
   text-overflow: ellipsis;
   overflow: hidden;
-  
+
   /* Remove any unwanted quotes or formatting artifacts */
   quotes: none;
 }
@@ -504,7 +514,9 @@
   .search-content .search-input,
   .search-content .pagefind-ui__search-input {
     padding: var(--spacing-lg) var(--spacing-xl);
-    padding-left: calc(var(--spacing-xl) + var(--spacing-lg) + var(--spacing-sm));
+    padding-left: calc(
+      var(--spacing-xl) + var(--spacing-lg) + var(--spacing-sm)
+    );
     font-size: var(--font-size-lg);
     margin-bottom: var(--spacing-lg);
     border-radius: var(--border-radius-xl);
@@ -545,7 +557,7 @@
   }
 
   /* Mobile results count styling */
-  
+
   .pagefind-ui__results-count {
     font-size: var(--font-size-lg);
     padding: var(--spacing-md);
@@ -568,7 +580,9 @@
   .search-content .pagefind-ui__search-input,
   #search-input {
     padding: var(--spacing-md) var(--spacing-lg);
-    padding-left: calc(var(--spacing-lg) + var(--spacing-lg) + var(--spacing-sm));
+    padding-left: calc(
+      var(--spacing-lg) + var(--spacing-lg) + var(--spacing-sm)
+    );
     font-size: var(--font-size-base);
   }
 
@@ -601,11 +615,21 @@
   animation: fadeInUp 0.3s ease-out forwards;
 }
 
-.search-content .pagefind-ui__results .blog-post-card:nth-child(1) { animation-delay: 0.1s; }
-.search-content .pagefind-ui__results .blog-post-card:nth-child(2) { animation-delay: 0.2s; }
-.search-content .pagefind-ui__results .blog-post-card:nth-child(3) { animation-delay: 0.3s; }
-.search-content .pagefind-ui__results .blog-post-card:nth-child(4) { animation-delay: 0.4s; }
-.search-content .pagefind-ui__results .blog-post-card:nth-child(5) { animation-delay: 0.5s; }
+.search-content .pagefind-ui__results .blog-post-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.search-content .pagefind-ui__results .blog-post-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.search-content .pagefind-ui__results .blog-post-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.search-content .pagefind-ui__results .blog-post-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.search-content .pagefind-ui__results .blog-post-card:nth-child(5) {
+  animation-delay: 0.5s;
+}
 
 @keyframes fadeInUp {
   from {
@@ -766,7 +790,6 @@
   letter-spacing: var(--letter-spacing-subtle);
   opacity: 0.9;
 }
-
 
 /* Loading States */
 .search-content .pagefind-ui__loading::before {

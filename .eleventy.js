@@ -265,6 +265,15 @@ module.exports = function (eleventyConfig) {
     }
   });
 
+  // Filter collection by category
+  eleventyConfig.addFilter('filterByCategory', function (collection, category) {
+    if (!collection || !Array.isArray(collection)) return [];
+    return collection.filter((item) => {
+      if (!item.data || !item.data.category) return false;
+      return item.data.category === category;
+    });
+  });
+
   // Markdown image processing - modify markdown-it to handle image paths
   eleventyConfig.amendLibrary('md', function (mdLib) {
     try {
@@ -385,7 +394,10 @@ module.exports = function (eleventyConfig) {
             pathParts[siteIndex + 1] !== 'blog' &&
             pathParts[siteIndex + 1] !== 'category' &&
             pathParts[siteIndex + 1] !== 'search' &&
-            pathParts[siteIndex + 1] !== 'wordpress-pages'
+            pathParts[siteIndex + 1] !== 'wordpress-pages' &&
+            pathParts[siteIndex + 1] !== 'articles' &&
+            pathParts[siteIndex + 1] !== 'presentations' &&
+            pathParts[siteIndex + 1] !== 'wheels-series'
           ) {
             postSlug = pathParts[siteIndex + 1];
           }
