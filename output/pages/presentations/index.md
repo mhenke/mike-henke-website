@@ -7,7 +7,7 @@ description: 'Conference talks, webinars, and slides by Mike Henke on ColdFusion
 
 Explore my talks and presentations on ColdFusion, Eclipse, and web development. I enjoy sharing knowledge at conferences, user groups, and online events.
 
-If you'd like me to present at your organization, please [contact me](/#contactsPage).
+If you'd like me to present at your organization, please [contact me](/#contact).
 
 ### Recorded Sessions
 

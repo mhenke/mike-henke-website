@@ -16,4 +16,4 @@ Welcome to my collection of technical articles, tips, and deep dives into ColdFu
 - [Turbo Charging Eclipse](http://docs.google.com/View?id=dc2sb454_46hr5zqwgs)  
   _Tips and tricks to make Eclipse faster, more stable, and better suited to your development needs._
 
-Have feedback or want to suggest a topic? [Contact me](/#contactsPage).
+Have feedback or want to suggest a topic? [Contact me](/#contact).

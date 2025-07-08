@@ -17,4 +17,4 @@ Follow along to learn CFWheels fundamentals, from installation to advanced featu
 - [So you want to create a CFWheels application? (Part 5)](/so-you-want-to-create-a-cfwheels-application-5)
 - [So you want to create a CFWheels application? (Part 6)](/so-you-want-to-create-a-cfwheels-application-part-6)
 
-Questions or feedback? [Contact me](/#contactsPage).
+Questions or feedback? [Contact me](/#contact).
