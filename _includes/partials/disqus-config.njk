@@ -8,6 +8,18 @@
     var disqus_config = function () {
         this.page.url = "{{ page.url | absoluteUrl(site.url) }}";  // Your page's canonical URL variable
         this.page.identifier = "{{ page.fileSlug }}"; // Your page's unique identifier variable
+        
+        // Help Disqus detect dark theme by setting explicit colors
+        this.callbacks = {
+            onReady: [function() {
+                // Ensure Disqus detects dark theme by setting text color
+                var threadElement = document.getElementById('disqus_thread');
+                if (threadElement) {
+                    threadElement.style.color = '#ffffff';
+                    threadElement.style.backgroundColor = '#22313a';
+                }
+            }]
+        };
     };
     
     (function() { // DON'T EDIT BELOW THIS LINE

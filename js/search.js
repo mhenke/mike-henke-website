@@ -262,7 +262,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     
     const categoryElements = categories
-      .map(category => `<a href="/category/${category.toLowerCase()}/" class="category-tag">${category}</a>`)
+      .map(category => `<a href="/category/${category.trim()}/" class="category-tag">${category}</a>`)
       .join('');
 
     return `<div class="blog-post-categories">${categoryElements}</div>`;

@@ -2055,6 +2055,59 @@ section {
 }
 
 /* ==========================================================================
+   DISQUS COMMENTS STYLING
+   ========================================================================== */
+
+/* Disqus container styling */
+#disqus_thread {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-sm);
+  padding: var(--spacing-lg);
+  margin: var(--spacing-2xl) 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure proper color inheritance for Disqus */
+#disqus_thread,
+#disqus_thread * {
+  color: var(--color-text) !important;
+  background-color: var(--color-surface) !important;
+}
+
+/* Style Disqus links to match site theme */
+#disqus_thread a {
+  color: var(--color-primary) !important;
+  text-decoration: none;
+}
+
+#disqus_thread a:hover {
+  color: var(--color-primary-dark) !important;
+  text-decoration: underline;
+}
+
+/* Force dark theme detection by setting proper text colors */
+#disqus_thread {
+  color: #ffffff;
+  background-color: var(--color-surface);
+}
+
+/* Style the noscript fallback */
+#disqus_thread noscript {
+  background: var(--color-surface-light);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+  border: 1px solid var(--color-border);
+  display: block;
+  text-align: center;
+  color: var(--color-text-secondary);
+}
+
+#disqus_thread noscript a {
+  color: var(--color-primary) !important;
+}
+
+/* ==========================================================================
    EXTERNAL IMPORTS
    ========================================================================== */
 
