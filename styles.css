@@ -89,6 +89,7 @@
   /* Transitions */
   --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-all: all var(--transition-normal);
   --transition-shadow-border:
     box-shadow var(--transition-normal), border-color var(--transition-normal);
@@ -614,7 +615,7 @@ section {
     -ms-backdrop-filter: blur(20px);
     flex-direction: column;
     padding: 0 0 var(--spacing-xl) 0;
-    transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: right var(--transition-slow);
     z-index: var(--z-nav-menu);
     gap: 0;
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
@@ -739,7 +740,7 @@ section {
     z-index: var(--z-nav-overlay);
     opacity: 0;
     visibility: hidden;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all var(--transition-slow);
   }
 
   .nav-overlay.active {
