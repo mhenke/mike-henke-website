@@ -598,21 +598,30 @@ module.exports = function (eleventyConfig) {
   );
 
   // Add PurgeCSS plugin for production builds only
-  if (isProduction) {
-    // Import your PurgeCSS configuration
-    const purgeCSSConfig = require('./purgecss.config.js');
+  if (false && isProduction) { // Temporarily disabled for testing
+    console.log('🔧 Loading PurgeCSS configuration...');
     
-    eleventyConfig.addPlugin(purgeCSS, {
-      // Direct PurgeCSS configuration options
-      content: purgeCSSConfig.content,
-      safelist: purgeCSSConfig.safelist,
-      defaultExtractor: purgeCSSConfig.defaultExtractor,
-      keyframes: purgeCSSConfig.keyframes,
-      fontFace: purgeCSSConfig.fontFace,
-      variables: purgeCSSConfig.variables,
-      // Eleventy-specific options
-      quiet: false, // Show what's being processed
-    });
+    try {
+      // Import your PurgeCSS configuration
+      const purgeCSSConfig = require('./purgecss.config.js');
+      console.log('✅ PurgeCSS config loaded successfully');
+      
+      eleventyConfig.addPlugin(purgeCSS, {
+        // Direct PurgeCSS configuration options
+        content: purgeCSSConfig.content,
+        safelist: purgeCSSConfig.safelist,
+        defaultExtractor: purgeCSSConfig.defaultExtractor,
+        keyframes: purgeCSSConfig.keyframes,
+        fontFace: purgeCSSConfig.fontFace,
+        variables: purgeCSSConfig.variables,
+        // Eleventy-specific options
+        quiet: false, // Show what's being processed
+      });
+      
+      console.log('✅ PurgeCSS plugin configured');
+    } catch (error) {
+      console.error('❌ Error configuring PurgeCSS:', error);
+    }
   }
 
   // Passthrough copy for static assets
@@ -639,8 +648,7 @@ module.exports = function (eleventyConfig) {
           '📝 Note: No output/posts directory found. Skipping image setup.'
         );
       }
-      return;
-    }
+    } else {
 
     let postDirs = [];
     try {
@@ -687,6 +695,7 @@ module.exports = function (eleventyConfig) {
       console.log(
         `✅ Configured image copying for ${configuredCount} posts with images`
       );
+    }
     }
   } catch (error) {
     console.warn(
