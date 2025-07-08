@@ -1,5 +1,4 @@
 ---
-title: 'Presentations'
 date: 2015-06-27
 description: 'Conference talks, webinars, and slides by Mike Henke on ColdFusion, Eclipse, and web development.'
 ---
