@@ -2018,7 +2018,7 @@ section {
   .site-footer {
     padding: var(--spacing-lg) var(--spacing-md);
   }
-  
+
   .footer-nav {
     display: flex;
     flex-wrap: wrap;
@@ -2027,11 +2027,11 @@ section {
     gap: var(--spacing-xs);
     margin-bottom: var(--spacing-md);
   }
-  
+
   .footer-link {
     white-space: nowrap;
   }
-  
+
   .footer-separator {
     margin: 0 var(--spacing-xs);
   }
@@ -2043,11 +2043,11 @@ section {
     flex-direction: column;
     gap: var(--spacing-sm);
   }
-  
+
   .footer-separator {
     display: none;
   }
-  
+
   .footer-link {
     display: block;
     padding: var(--spacing-xs) 0;
