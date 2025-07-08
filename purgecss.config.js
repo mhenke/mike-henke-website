@@ -17,10 +17,7 @@ module.exports = {
   ],
 
   // CSS files to purge
-  css: [
-    './styles.css',
-    './assets/css/search.css'
-  ],
+  css: ['./styles.css', './assets/css/search.css'],
 
   // Safelist important classes that might be dynamically generated
   safelist: [

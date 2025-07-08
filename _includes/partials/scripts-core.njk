@@ -48,8 +48,8 @@
                 }
             });
 
-            // Close mobile menu when clicking on a nav link
-            const navLinkItems = navLinks.querySelectorAll('a');
+            // Close mobile menu when clicking on a nav link (but not dropdown toggles)
+            const navLinkItems = navLinks.querySelectorAll('a:not(.dropdown-toggle)');
             navLinkItems.forEach(link => {
                 link.addEventListener('click', () => {
                     if (window.innerWidth < 768) {
@@ -138,6 +138,16 @@
                         menu.classList.remove('show');
                     });
                 }
+
+                // Close mobile menu when clicking dropdown menu items on mobile
+                const dropdownLinks = menu.querySelectorAll('a');
+                dropdownLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (window.innerWidth < 768) {
+                            closeMobileMenu();
+                        }
+                    });
+                });
             }
         });
 

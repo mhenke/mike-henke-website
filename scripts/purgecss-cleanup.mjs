@@ -27,7 +27,7 @@ const userConfig = require(path.join(projectRoot, 'purgecss.config.js'));
 // Configuration - using your config file with script-specific overrides
 const config = {
   // Source CSS files - now supports multiple files from config
-  cssFiles: userConfig.css.map(cssPath => 
+  cssFiles: userConfig.css.map((cssPath) =>
     path.isAbsolute(cssPath) ? cssPath : path.join(projectRoot, cssPath)
   ),
 
@@ -149,9 +149,9 @@ async function main() {
       const fileName = path.basename(cssFile);
       const backupFile = cssFile.replace(/\.css$/, '.backup.css');
       const cleanedFile = cssFile.replace(/\.css$/, '.cleaned.css');
-      
+
       console.log(`📁 Processing ${fileName}...`);
-      
+
       // Step 1: Create backup
       console.log(`   Creating backup...`);
       await copyFile(cssFile, backupFile);
@@ -213,7 +213,9 @@ async function main() {
         rejectedCss: result.rejectedCss || '',
       });
 
-      console.log(`   ✅ ${fileName} processed: ${originalSize} KB → ${cleanedSize} KB (${savings}% savings)`);
+      console.log(
+        `   ✅ ${fileName} processed: ${originalSize} KB → ${cleanedSize} KB (${savings}% savings)`
+      );
       console.log(`   🗑️  Removed ${rejectedCount} unused selectors\n`);
     }
 
@@ -244,32 +246,39 @@ async function main() {
     // Step 7: Display results
     console.log('📊 CLEANUP RESULTS SUMMARY:');
     console.log(`   Files processed: ${results.length}`);
-    console.log(`   Total original:  ${(totalOriginalSize / 1024).toFixed(2)} KB`);
-    console.log(`   Total cleaned:   ${(totalCleanedSize / 1024).toFixed(2)} KB`);
-    console.log(`   Total savings:   ${totalSavings}% (${totalOriginalSize - totalCleanedSize} bytes)`);
+    console.log(
+      `   Total original:  ${(totalOriginalSize / 1024).toFixed(2)} KB`
+    );
+    console.log(
+      `   Total cleaned:   ${(totalCleanedSize / 1024).toFixed(2)} KB`
+    );
+    console.log(
+      `   Total savings:   ${totalSavings}% (${totalOriginalSize - totalCleanedSize} bytes)`
+    );
     console.log(`   Total rejected:  ${totalRejectedSelectors} selectors`);
 
     // Show individual file results
     if (results.length > 1) {
       console.log('\n� INDIVIDUAL FILE RESULTS:');
-      results.forEach(result => {
-        console.log(`   ${result.fileName}: ${result.originalSize} → ${result.cleanedSize} (${result.sizeSavings})`);
+      results.forEach((result) => {
+        console.log(
+          `   ${result.fileName}: ${result.originalSize} → ${result.cleanedSize} (${result.sizeSavings})`
+        );
       });
     }
 
     console.log(`\n📄 Full report saved to: ${reportFile}`);
-    
+
     // Step 8: Show replacement commands
     console.log('\n🔄 To replace original CSS files with cleaned versions:');
-    results.forEach(result => {
+    results.forEach((result) => {
       console.log(`   mv ${result.cleanedFile} ${result.cssFile}`);
     });
-    
+
     console.log('\n🔙 To restore from backups:');
-    results.forEach(result => {
+    results.forEach((result) => {
       console.log(`   mv ${result.backupFile} ${result.cssFile}`);
     });
-
   } catch (error) {
     console.error('❌ Error during cleanup:', error);
     process.exit(1);
