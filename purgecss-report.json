@@ -1,12 +1,12 @@
 {
-  "timestamp": "2025-07-08T18:38:10.573Z",
+  "timestamp": "2025-07-08T19:24:29.880Z",
   "summary": {
     "totalFiles": 2,
-    "totalOriginalSize": "78.93 KB",
-    "totalCleanedSize": "78.27 KB",
-    "totalSizeSavings": "0.8%",
-    "totalBytesRemoved": 672,
-    "totalRejectedSelectors": 5
+    "totalOriginalSize": "79.54 KB",
+    "totalCleanedSize": "79.44 KB",
+    "totalSizeSavings": "0.1%",
+    "totalBytesRemoved": 106,
+    "totalRejectedSelectors": 0
   },
   "files": [
     {
@@ -14,18 +14,12 @@
       "cssFile": "/home/mhenke/Projects/mike-henke-website/styles.css",
       "backupFile": "/home/mhenke/Projects/mike-henke-website/styles.backup.css",
       "cleanedFile": "/home/mhenke/Projects/mike-henke-website/styles.cleaned.css",
-      "originalSize": "56.37 KB",
-      "cleanedSize": "55.71 KB",
-      "sizeSavings": "1.2%",
-      "bytesRemoved": 672,
-      "rejectedSelectors": [
-        ".error-footer",
-        ".error-contact p",
-        ".error-contact a",
-        ".error-contact a:hover",
-        "\n.error-contact a:focus"
-      ],
-      "rejectedCss": "\n\n.error-footer {\n  border-top: 1px solid var(--color-border);\n  padding-top: var(--spacing-2xl);\n  margin-top: var(--spacing-3xl);\n}\n\n.error-contact p {\n  color: var(--color-text-secondary);\n  font-size: var(--font-size-base);\n  line-height: 1.6;\n  max-width: var(--max-width-text);\n  margin: 0 auto;\n}\n\n.error-contact a {\n  color: var(--color-primary);\n  text-decoration: none;\n  font-weight: var(--font-weight-medium);\n  transition: color var(--transition-fast);\n}\n\n.error-contact a:hover, \n.error-contact a:focus {\n  color: var(--color-primary-dark);\n  text-decoration: underline;\n}"
+      "originalSize": "56.98 KB",
+      "cleanedSize": "56.88 KB",
+      "sizeSavings": "0.2%",
+      "bytesRemoved": 106,
+      "rejectedSelectors": [],
+      "rejectedCss": ""
     },
     {
       "fileName": "search.css",
