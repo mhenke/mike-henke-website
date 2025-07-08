@@ -1,232 +1,207 @@
 /**
- * Search Implementation using PagefindUI with Blog Card Styling
- * Uses processResult for data customization and DOM manipulation for blog card styling
+ * Search Implementation using Pagefind API with Custom Blog Card Templates
+ * Uses the Pagefind API directly to render custom HTML instead of PagefindUI
  */
 
 // Initialize search when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-  const searchElement = document.getElementById('search');
-  if (!searchElement) {
+document.addEventListener('DOMContentLoaded', async () => {
+  const searchContainer = document.getElementById('search');
+  if (!searchContainer) {
     console.error('Search element not found');
     return;
   }
 
-  console.log('Initializing PagefindUI...');
+  console.log('Initializing custom Pagefind search...');
 
-  // Initialize PagefindUI with processResult for data customization
-  const pagefindUI = new PagefindUI({
-    element: '#search',
-    showImages: false,
-    showFilters: false,
-    pageSize: 8,
-    debounceTimeoutMs: 300,
-    processResult: function (result) {
-      console.log('processResult called for:', result);
+  // Initialize Pagefind
+  await initializePagefind();
 
-      // Clean up the excerpt if it exists
-      if (result.excerpt) {
-        result.excerpt = result.excerpt
-          .replace(/<[^>]*>/g, ' ') // Remove HTML tags
-          .replace(/\s+/g, ' ') // Normalize whitespace
-          .trim();
-      }
-
-      // Use custom excerpt if available
-      if (result.meta?.custom_excerpt) {
-        result.excerpt = result.meta.custom_excerpt;
-      }
-
-      // Ensure we have a clean title
-      if (result.meta?.title) {
-        result.title = result.meta.title;
-      }
-
-      // Clean up categories - convert to array if needed
-      if (result.meta?.category) {
-        result.categories = Array.isArray(result.meta.category)
-          ? result.meta.category
-          : [result.meta.category];
-      }
-
-      // Clean up date
-      if (result.meta?.date) {
-        result.date = result.meta.date;
-      }
-
-      console.log('Processed result:', {
-        title: result.title,
-        url: result.url,
-        excerpt: result.excerpt,
-        categories: result.categories,
-        date: result.date,
-      });
-
-      return result;
-    },
-  });
-
-  console.log('PagefindUI initialized successfully');
-
-  // Transform search results to match blog card structure
-  const observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-      if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-        const resultsContainer = document.querySelector(
-          '.pagefind-ui__results'
-        );
-        if (resultsContainer) {
-          transformSearchResults(resultsContainer);
-        }
-      }
-    });
-  });
-
-  // Start observing the search container
-  observer.observe(searchElement, {
-    childList: true,
-    subtree: true,
-  });
+  async function initializePagefind() {
+    try {
+      console.log('Loading Pagefind...');
+      
+      // Import Pagefind dynamically
+      const pagefind = await import('/pagefind/pagefind.js');
+      
+      // Store in window for global access
+      window.pagefind = pagefind;
+      
+      console.log('Pagefind loaded successfully, creating search interface...');
+      createSearchInterface();
+      
+    } catch (error) {
+      console.error('Failed to load Pagefind:', error);
+      // Fallback: create basic search interface with error message
+      createSearchInterface(true);
+    }
+  }
 
   /**
-   * Transform PagefindUI results to match blog card structure
+   * Create the search input and results container
    */
-  function transformSearchResults(resultsContainer) {
-    const results = resultsContainer.querySelectorAll(
-      '.pagefind-ui__result:not(.transformed)'
-    );
+  function createSearchInterface(hasError = false) {
+    searchContainer.innerHTML = `
+      <input 
+        type="text" 
+        id="search-input" 
+        class="search-input" 
+        placeholder="Search articles..."
+        autocomplete="off"
+        aria-label="Search articles"
+        ${hasError ? 'disabled' : ''}
+      >
+      <div id="search-results" class="search-results" role="region" aria-live="polite">
+        ${hasError ? '<p class="search-message">❌ Search is currently unavailable</p>' : ''}
+      </div>
+    `;
 
-    results.forEach((result, index) => {
-      try {
-        transformSingleResult(result, index);
-      } catch (error) {
-        console.error('Error transforming search result:', error);
+    if (hasError) return;
+
+    const searchInput = document.getElementById('search-input');
+    const searchResults = document.getElementById('search-results');
+    
+    let searchTimeout;
+    
+    // Add event listener for search input
+    searchInput.addEventListener('input', (e) => {
+      clearTimeout(searchTimeout);
+      const query = e.target.value.trim();
+      
+      if (query.length === 0) {
+        searchResults.innerHTML = '';
+        return;
       }
+      
+      if (query.length < 2) {
+        searchResults.innerHTML = '<p class="search-message">Type at least 2 characters to search...</p>';
+        return;
+      }
+      
+      // Debounce the search
+      searchTimeout = setTimeout(() => {
+        performSearch(query);
+      }, 300);
     });
   }
 
   /**
-   * Transform a single search result to blog card format
+   * Perform search using Pagefind API
    */
-  function transformSingleResult(result, index) {
-    // Mark as transformed to avoid re-processing
-    result.classList.add('transformed');
-
-    // Extract data from the pagefind result
-    const titleElement = result.querySelector('.pagefind-ui__result-title');
-    const linkElement = result.querySelector('.pagefind-ui__result-link');
-    const excerptElement = result.querySelector('.pagefind-ui__result-excerpt');
-    const tagsElement = result.querySelector('.pagefind-ui__result-tags');
-
-    if (!titleElement || !linkElement) {
-      console.warn('Missing required elements in search result');
-      return;
-    }
-
-    const title = titleElement.textContent.trim();
-    const url = linkElement.getAttribute('href');
-    const excerpt = excerptElement ? excerptElement.textContent.trim() : '';
-
-    // Extract date from meta tags if available
-    let date = null;
-    if (tagsElement) {
-      const dateTags = tagsElement.querySelectorAll(
-        '[data-pagefind-ui-meta="date"]'
+  async function performSearch(query) {
+    const searchResults = document.getElementById('search-results');
+    
+    try {
+      searchResults.innerHTML = '<p class="search-message">🔍 Searching...</p>';
+      
+      // Check if Pagefind is available
+      if (!window.pagefind) {
+        throw new Error('Pagefind is not loaded');
+      }
+      
+      // Perform the search using Pagefind API
+      const search = await window.pagefind.search(query);
+      
+      if (search.results.length === 0) {
+        searchResults.innerHTML = '<p class="search-message">❌ No results found</p>';
+        return;
+      }
+      
+      // Load the first 10 results
+      const resultLimit = Math.min(search.results.length, 10);
+      const results = await Promise.all(
+        search.results.slice(0, resultLimit).map(r => r.data())
       );
-      if (dateTags.length > 0) {
-        const dateText = dateTags[0].textContent.replace('Date: ', '').trim();
-        date = new Date(dateText).toISOString().split('T')[0];
+      
+      // Render results as blog cards
+      renderBlogCards(results);
+      
+    } catch (error) {
+      console.error('Search error:', error);
+      if (error.message.includes('Pagefind is not loaded')) {
+        searchResults.innerHTML = '<p class="search-message">❌ Search is loading. Please try again in a moment.</p>';
+      } else {
+        searchResults.innerHTML = '<p class="search-message">❌ Search failed. Please try again.</p>';
       }
     }
+  }
 
-    // Fallback to extracting date from URL or use current date
-    if (!date) {
-      date = extractDateFromUrl(url) || new Date().toISOString().split('T')[0];
-    }
+  /**
+   * Render search results as blog cards
+   */
+  function renderBlogCards(results) {
+    const searchResults = document.getElementById('search-results');
+    
+    const blogCardsHTML = results.map(result => {
+      return createBlogCard(result);
+    }).join('');
+    
+    searchResults.innerHTML = blogCardsHTML;
+  }
 
-    // Extract categories from URL structure (assuming /category/post-title/ format)
-    const categories = extractCategoriesFromUrl(url);
-
-    // Create blog card HTML structure
-    const blogCardHTML = `
+  /**
+   * Create individual blog card HTML
+   */
+  function createBlogCard(result) {
+    // Extract metadata
+    const title = result.meta.title || extractTitleFromContent(result.content);
+    const url = result.url;
+    const excerpt = result.excerpt || extractExcerpt(result.content);
+    const date = result.meta.date || extractDateFromUrl(url) || getCurrentDate();
+    const category = result.meta.category || extractCategoryFromUrl(url);
+    
+    // Format the date
+    const formattedDate = formatDate(date);
+    
+    // Create category tags if available
+    const categoryTags = category ? createCategoryTags([category]) : '';
+    
+    return `
       <article class="blog-post-card" itemscope itemtype="https://schema.org/BlogPosting">
         <header>
           <h2 class="blog-post-title" itemprop="headline">
             <a href="${url}" itemprop="url">${title}</a>
           </h2>
-          ${categories.length > 0 ? createCategoryTags(categories) : ''}
+          ${categoryTags}
         </header>
         <div class="blog-post-excerpt" itemprop="description">
-          ${excerpt}
+          <p class="blog-post-excerpt">${excerpt}</p>
         </div>
         <footer class="blog-post-meta">
-          <time datetime="${date}" itemprop="datePublished">
-            ${formatDate(date)}
-          </time>
+          <p class="blog-post-date">
+            <em>Published on 
+              <time datetime="${date}" itemprop="datePublished" data-pagefind-meta="date">
+                ${formattedDate}
+              </time>
+            </em>
+          </p>
         </footer>
         <meta itemprop="author" content="Mike Henke">
       </article>
     `;
-
-    // Create a new blog card element and insert it after the result
-    const blogCard = document.createElement('div');
-    blogCard.innerHTML = blogCardHTML;
-    result.insertAdjacentElement('afterend', blogCard.firstElementChild);
-
-    // Hide the original pagefind result
-    result.style.display = 'none';
   }
 
   /**
-   * Extract categories from URL (basic implementation)
+   * Extract title from content if not in meta
    */
-  function extractCategoriesFromUrl(url) {
-    // This is a simple implementation - you might need to adjust based on your URL structure
-    const pathSegments = url.split('/').filter((segment) => segment.length > 0);
-
-    // Look for common category indicators in the URL
-    const categoryIndicators = ['category', 'tag', 'topic'];
-    const categories = [];
-
-    pathSegments.forEach((segment, index) => {
-      if (categoryIndicators.includes(segment) && pathSegments[index + 1]) {
-        categories.push(pathSegments[index + 1]);
-      }
-    });
-
-    // If no categories found via indicators, try to infer from common blog categories
-    if (categories.length === 0) {
-      const possibleCategories = [
-        'Eclipse',
-        'ColdFusion',
-        'CFWheels',
-        'JavaScript',
-        'Development',
-        'Programming',
-        'Web Development',
-        'Tutorial',
-        'Guide',
-      ];
-
-      pathSegments.forEach((segment) => {
-        const normalized =
-          segment.charAt(0).toUpperCase() + segment.slice(1).toLowerCase();
-        if (
-          possibleCategories.some(
-            (cat) =>
-              normalized.includes(cat) ||
-              cat.toLowerCase().includes(segment.toLowerCase())
-          )
-        ) {
-          categories.push(normalized);
-        }
-      });
+  function extractTitleFromContent(content) {
+    const titleMatch = content.match(/<h1[^>]*>(.*?)<\/h1>/i);
+    if (titleMatch) {
+      return titleMatch[1].replace(/<[^>]*>/g, '').trim();
     }
-
-    return categories;
+    return 'Untitled';
   }
 
   /**
-   * Extract date from URL (basic implementation)
+   * Extract excerpt from content
+   */
+  function extractExcerpt(content) {
+    // Remove HTML tags and get first 150 characters
+    const plainText = content.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+    return plainText.length > 150 ? plainText.substring(0, 150) + '...' : plainText;
+  }
+
+  /**
+   * Extract date from URL
    */
   function extractDateFromUrl(url) {
     // Look for date patterns in URL like /2023/01/15/ or /2023-01-15/
@@ -242,21 +217,52 @@ document.addEventListener('DOMContentLoaded', () => {
     const yearMatch = url.match(yearRegex);
 
     if (yearMatch) {
-      return `${yearMatch[1]}-01-01`; // Default to January 1st
+      return `${yearMatch[1]}-01-01`;
     }
 
     return null;
   }
 
   /**
+   * Extract category from URL
+   */
+  function extractCategoryFromUrl(url) {
+    const pathSegments = url.split('/').filter(segment => segment.length > 0);
+    
+    // Look for category in URL path
+    const categoryIndex = pathSegments.findIndex(segment => segment === 'category');
+    if (categoryIndex !== -1 && pathSegments[categoryIndex + 1]) {
+      return pathSegments[categoryIndex + 1];
+    }
+    
+    // Check for common categories in the URL
+    const commonCategories = ['ColdFusion', 'JavaScript', 'Eclipse', 'CFWheels', 'Development'];
+    for (const category of commonCategories) {
+      if (url.toLowerCase().includes(category.toLowerCase())) {
+        return category;
+      }
+    }
+    
+    return null;
+  }
+
+  /**
+   * Get current date in ISO format
+   */
+  function getCurrentDate() {
+    return new Date().toISOString().split('T')[0];
+  }
+
+  /**
    * Create category tags HTML
    */
   function createCategoryTags(categories) {
+    if (!categories || categories.length === 0) {
+      return '';
+    }
+    
     const categoryElements = categories
-      .map(
-        (category) =>
-          `<a href="/category/${category.toLowerCase()}/" class="category-tag">${category}</a>`
-      )
+      .map(category => `<a href="/category/${category.toLowerCase()}/" class="category-tag">${category}</a>`)
       .join('');
 
     return `<div class="blog-post-categories">${categoryElements}</div>`;
@@ -266,11 +272,15 @@ document.addEventListener('DOMContentLoaded', () => {
    * Format date for display
    */
   function formatDate(dateString) {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    });
+    try {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      });
+    } catch (error) {
+      return dateString;
+    }
   }
 });
