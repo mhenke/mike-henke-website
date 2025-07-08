@@ -1,12 +1,12 @@
 {
-  "timestamp": "2025-07-08T15:57:49.487Z",
+  "timestamp": "2025-07-08T18:38:10.573Z",
   "summary": {
     "totalFiles": 2,
-    "totalOriginalSize": "71.29 KB",
-    "totalCleanedSize": "69.59 KB",
-    "totalSizeSavings": "2.4%",
-    "totalBytesRemoved": 1739,
-    "totalRejectedSelectors": 12
+    "totalOriginalSize": "78.93 KB",
+    "totalCleanedSize": "78.27 KB",
+    "totalSizeSavings": "0.8%",
+    "totalBytesRemoved": 672,
+    "totalRejectedSelectors": 5
   },
   "files": [
     {
@@ -14,37 +14,30 @@
       "cssFile": "/home/mhenke/Projects/mike-henke-website/styles.css",
       "backupFile": "/home/mhenke/Projects/mike-henke-website/styles.backup.css",
       "cleanedFile": "/home/mhenke/Projects/mike-henke-website/styles.cleaned.css",
-      "originalSize": "47.09 KB",
-      "cleanedSize": "47.09 KB",
-      "sizeSavings": "0.0%",
-      "bytesRemoved": 0,
-      "rejectedSelectors": [],
-      "rejectedCss": ""
+      "originalSize": "56.37 KB",
+      "cleanedSize": "55.71 KB",
+      "sizeSavings": "1.2%",
+      "bytesRemoved": 672,
+      "rejectedSelectors": [
+        ".error-footer",
+        ".error-contact p",
+        ".error-contact a",
+        ".error-contact a:hover",
+        "\n.error-contact a:focus"
+      ],
+      "rejectedCss": "\n\n.error-footer {\n  border-top: 1px solid var(--color-border);\n  padding-top: var(--spacing-2xl);\n  margin-top: var(--spacing-3xl);\n}\n\n.error-contact p {\n  color: var(--color-text-secondary);\n  font-size: var(--font-size-base);\n  line-height: 1.6;\n  max-width: var(--max-width-text);\n  margin: 0 auto;\n}\n\n.error-contact a {\n  color: var(--color-primary);\n  text-decoration: none;\n  font-weight: var(--font-weight-medium);\n  transition: color var(--transition-fast);\n}\n\n.error-contact a:hover, \n.error-contact a:focus {\n  color: var(--color-primary-dark);\n  text-decoration: underline;\n}"
     },
     {
       "fileName": "search.css",
       "cssFile": "/home/mhenke/Projects/mike-henke-website/assets/css/search.css",
       "backupFile": "/home/mhenke/Projects/mike-henke-website/assets/css/search.backup.css",
       "cleanedFile": "/home/mhenke/Projects/mike-henke-website/assets/css/search.cleaned.css",
-      "originalSize": "24.20 KB",
-      "cleanedSize": "22.50 KB",
-      "sizeSavings": "7.0%",
-      "bytesRemoved": 1739,
-      "rejectedSelectors": [
-        ".search-content .search-results",
-        ".search-results-count",
-        ".search-results-count .search-term",
-        "\n.pagefind-ui__results-count .search-term",
-        "#search-results-count",
-        "#search-results-count.visible",
-        "#search-results-count .search-term",
-        "#search-results",
-        "#search-results:empty::after",
-        "\n  #search-results-count",
-        "\n  .pagefind-ui__results-count .search-term",
-        "\n  #search-results-count .search-term"
-      ],
-      "rejectedCss": "\n.search-content .search-results {\n  margin-top: var(--spacing-2xl);\n  text-align: left;\n}\n.search-results-count {\n  display: block;\n  font-size: var(--font-size-xl);\n  font-weight: var(--font-weight-medium);\n  color: var(--color-text);\n  margin: var(--spacing-xl) auto var(--spacing-2xl) auto;\n  text-align: center;\n  padding: var(--spacing-lg);\n  background: var(--color-surface-light);\n  border-radius: var(--border-radius-lg);\n  border: 2px solid var(--color-border);\n  max-width: none; /* Remove arbitrary max-width constraint */\n}\n.search-results-count .search-term, \n.pagefind-ui__results-count .search-term {\n  color: var(--color-primary);\n  font-weight: var(--font-weight-bold);\n  background: rgba(25, 212, 254, 0.1);\n  padding: 2px 6px;\n  border-radius: var(--border-radius-xs);\n}\n#search-results-count {\n  display: none; /* Hidden by default, shown by JS */\n  font-size: var(--font-size-xl);\n  font-weight: var(--font-weight-medium);\n  color: var(--color-text);\n  margin: var(--spacing-xl) auto var(--spacing-2xl) auto;\n  text-align: center;\n  padding: var(--spacing-lg);\n  background: var(--color-surface-light);\n  border-radius: var(--border-radius-lg);\n  border: 2px solid var(--color-border);\n  max-width: none; /* Remove arbitrary max-width constraint */\n}\n#search-results-count.visible {\n  display: block;\n}\n#search-results-count .search-term {\n  color: var(--color-primary);\n  font-weight: var(--font-weight-bold);\n  background: rgba(25, 212, 254, 0.1);\n  padding: 2px 6px;\n  border-radius: var(--border-radius-xs);\n}\n#search-results {\n  margin-top: var(--spacing-2xl);\n  text-align: left;\n}\n#search-results:empty::after {\n  content: 'Start typing to search articles...';\n  display: block;\n  text-align: center;\n  color: var(--color-text-secondary);\n  font-style: italic;\n  padding: var(--spacing-2xl);\n  background: var(--color-surface-light);\n  border-radius: var(--border-radius-lg);\n  border: 2px dashed var(--color-border);\n  margin-top: var(--spacing-xl);\n}\n@media (max-width: 768px) {\n  .search-results-count, \n  #search-results-count {\n    font-size: var(--font-size-lg);\n    padding: var(--spacing-md);\n    margin: var(--spacing-lg) auto var(--spacing-xl) auto;\n    border-radius: var(--border-radius-lg);\n  }\n}\n@media (max-width: 768px) {\n\n  .search-results-count .search-term, \n  .pagefind-ui__results-count .search-term, \n  #search-results-count .search-term {\n    padding: 3px 8px;\n    border-radius: var(--border-radius-sm);\n  }\n}"
+      "originalSize": "22.56 KB",
+      "cleanedSize": "22.56 KB",
+      "sizeSavings": "0.0%",
+      "bytesRemoved": 0,
+      "rejectedSelectors": [],
+      "rejectedCss": ""
     }
   ],
   "contentScanned": [
