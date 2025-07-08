@@ -597,33 +597,6 @@ module.exports = function (eleventyConfig) {
     }
   );
 
-  // Add PurgeCSS plugin for production builds only
-  if (false && isProduction) { // Temporarily disabled for testing
-    console.log('🔧 Loading PurgeCSS configuration...');
-    
-    try {
-      // Import your PurgeCSS configuration
-      const purgeCSSConfig = require('./purgecss.config.js');
-      console.log('✅ PurgeCSS config loaded successfully');
-      
-      eleventyConfig.addPlugin(purgeCSS, {
-        // Direct PurgeCSS configuration options
-        content: purgeCSSConfig.content,
-        safelist: purgeCSSConfig.safelist,
-        defaultExtractor: purgeCSSConfig.defaultExtractor,
-        keyframes: purgeCSSConfig.keyframes,
-        fontFace: purgeCSSConfig.fontFace,
-        variables: purgeCSSConfig.variables,
-        // Eleventy-specific options
-        quiet: false, // Show what's being processed
-      });
-      
-      console.log('✅ PurgeCSS plugin configured');
-    } catch (error) {
-      console.error('❌ Error configuring PurgeCSS:', error);
-    }
-  }
-
   // Passthrough copy for static assets
   eleventyConfig.addPassthroughCopy('styles.css');
   eleventyConfig.addPassthroughCopy('favicon.ico');
@@ -649,53 +622,52 @@ module.exports = function (eleventyConfig) {
         );
       }
     } else {
-
-    let postDirs = [];
-    try {
-      // More efficient directory reading
-      postDirs = fs
-        .readdirSync(postsDir, { withFileTypes: true })
-        .filter((dirent) => dirent.isDirectory())
-        .map((dirent) => dirent.name);
-    } catch (readError) {
-      console.warn(
-        '⚠️ Warning: Could not read posts directory:',
-        readError.message
-      );
-      return;
-    }
-
-    // Batch process with fewer file system calls
-    let configuredCount = 0;
-    const imageConfigs = [];
-
-    for (const postSlug of postDirs) {
+      let postDirs = [];
       try {
-        const imagesPath = path.join(postsDir, postSlug, 'images');
-        if (fs.existsSync(imagesPath)) {
-          imageConfigs.push({
-            [`output/posts/${postSlug}/images`]: `${postSlug}/images`,
-          });
-          configuredCount++;
-        }
-      } catch (copyError) {
+        // More efficient directory reading
+        postDirs = fs
+          .readdirSync(postsDir, { withFileTypes: true })
+          .filter((dirent) => dirent.isDirectory())
+          .map((dirent) => dirent.name);
+      } catch (readError) {
         console.warn(
-          `⚠️ Warning: Could not check images for ${postSlug}:`,
-          copyError.message
+          '⚠️ Warning: Could not read posts directory:',
+          readError.message
+        );
+        return;
+      }
+
+      // Batch process with fewer file system calls
+      let configuredCount = 0;
+      const imageConfigs = [];
+
+      for (const postSlug of postDirs) {
+        try {
+          const imagesPath = path.join(postsDir, postSlug, 'images');
+          if (fs.existsSync(imagesPath)) {
+            imageConfigs.push({
+              [`output/posts/${postSlug}/images`]: `${postSlug}/images`,
+            });
+            configuredCount++;
+          }
+        } catch (copyError) {
+          console.warn(
+            `⚠️ Warning: Could not check images for ${postSlug}:`,
+            copyError.message
+          );
+        }
+      }
+
+      // Add all configurations at once
+      imageConfigs.forEach((config) => {
+        eleventyConfig.addPassthroughCopy(config);
+      });
+
+      if (isDevelopment && configuredCount > 0) {
+        console.log(
+          `✅ Configured image copying for ${configuredCount} posts with images`
         );
       }
-    }
-
-    // Add all configurations at once
-    imageConfigs.forEach((config) => {
-      eleventyConfig.addPassthroughCopy(config);
-    });
-
-    if (isDevelopment && configuredCount > 0) {
-      console.log(
-        `✅ Configured image copying for ${configuredCount} posts with images`
-      );
-    }
     }
   } catch (error) {
     console.warn(

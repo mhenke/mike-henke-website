@@ -1,13 +1,20 @@
-/* Search Page Styles - Blog Card Integration */
+/* Search Page Styles - Consistent with Site Design */
 
-/* Search Page Layout - Match blog page styling */
+/* Search Page Layout - Match blog page layout with card styling */
 .search-container {
-  margin: 0 auto var(--spacing-3xl) auto;
-  max-width: var(--max-width-content);
+  padding: var(--spacing-3xl) var(--spacing-2xl); /* Card-like padding */
+  text-align: center;
+  max-width: var(--max-width-wide); /* Use wider max-width like blog page */
+  margin: var(--spacing-2xl) auto; /* Add margin like blog cards */
   width: 100%;
-  padding: 0 var(--spacing-lg);
   box-sizing: border-box;
   overflow-x: hidden;
+  /* Add card styling like blog page */
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--border-radius-xl);
+  border: 2px solid var(--color-border);
+  transition: box-shadow var(--transition-normal);
 }
 
 .search-container h1 {
@@ -19,35 +26,580 @@
   letter-spacing: var(--letter-spacing-wide);
 }
 
-/* Add the decorative underline like other sections */
+/* Add the decorative underline consistent with other sections */
 .search-container h1::after {
   content: '';
   display: block;
   width: calc(var(--icon-size) + var(--spacing-lg));
   height: var(--border-width);
   background-color: var(--color-primary);
-  margin: var(--spacing-lg) auto 0 auto;
+  margin: var(--spacing-md) auto var(--spacing-lg) auto; /* Reduced spacing for better flow */
   border-radius: 2px;
 }
 
-/* Search content box - matching content-section-boxed */
+/* Search content area - simplified since container has card styling */
 .search-content {
-  background-color: var(--color-surface);
-  padding: var(--spacing-lg) var(--spacing-xl);
-  box-shadow: var(--shadow-lg);
-  max-width: var(--max-width-content);
-  width: 100%;
-  border-radius: var(--border-radius-xl);
-  transition: box-shadow var(--transition-normal);
+  padding: 0; /* Remove padding since container handles it */
+  background: none; /* Remove background since container handles it */
+  box-shadow: none; /* Remove shadow since container handles it */
+  border-radius: 0; /* Remove border radius since container handles it */
+  border: none; /* Remove border since container handles it */
+  transition: none;
   box-sizing: border-box;
   overflow-x: hidden;
+  max-width: none;
+  margin: 0;
+}
+
+/* Search Input Styling - Modern mobile-first design with wider input */
+.search-content .search-input,
+.search-content .pagefind-ui__search-input {
+  background: var(--color-background);
+  border: 2px solid var(--color-primary);
+  border-radius: var(--border-radius-lg);
+  color: var(--color-text);
+  font-size: var(--font-size-lg);
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-regular);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  padding-left: calc(var(--spacing-xl) + var(--spacing-lg) + var(--spacing-sm)); /* Space for search icon */
+  width: 100%;
+  max-width: 800px; /* Wider input like blog cards */
+  margin: 0 auto var(--spacing-2xl) auto; /* More bottom margin */
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  display: block;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* Remove duplicate search icon rules - handled by wrapper */
+
+.search-content .search-input:focus,
+.search-content .pagefind-ui__search-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 8px 24px rgba(25, 212, 254, 0.25), 0 0 0 3px rgba(25, 212, 254, 0.1);
+  background: var(--color-surface);
+}
+
+.search-content .search-input::placeholder,
+.search-content .pagefind-ui__search-input::placeholder {
+  color: var(--color-text-secondary);
+  font-style: normal;
+  font-weight: var(--font-weight-regular);
+  opacity: 0.8;
+}
+
+/* Create a wrapper for the search input with icon */
+.search-content #search,
+.search-content .pagefind-ui__search {
+  position: relative;
+  max-width: 800px; /* Match input width */
+  margin: 0 auto var(--spacing-2xl) auto; /* More bottom margin */
+}
+
+/* Search icon positioning - ensure it stays fixed */
+.search-content #search::before,
+.search-content .pagefind-ui__search::before {
+  content: '🔍';
+  position: absolute;
+  left: var(--spacing-lg);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  pointer-events: none;
+  z-index: 10; /* Higher z-index to ensure it stays on top */
+  width: var(--font-size-lg); /* Fixed width to prevent layout shifts */
+  text-align: center;
+}
+
+/* Search Results Container */
+.search-content .search-results,
+.search-content .pagefind-ui__results {
+  margin-top: var(--spacing-2xl);
+  text-align: left;
+}
+
+/* Search Results Count - Match mobile design with wider layout */
+.search-results-count,
+.pagefind-ui__results-count {
+  display: block;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+  margin: var(--spacing-xl) auto var(--spacing-2xl) auto;
+  text-align: center;
+  padding: var(--spacing-lg);
+  background: var(--color-surface-light);
+  border-radius: var(--border-radius-lg);
+  border: 2px solid var(--color-border);
+  max-width: 800px; /* Wider like input */
+}
+
+/* Search term highlighting in results count */
+.search-results-count .search-term,
+.pagefind-ui__results-count .search-term {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+  background: rgba(25, 212, 254, 0.1);
+  padding: 2px 6px;
+  border-radius: var(--border-radius-xs);
+}
+
+/* Custom results count for your HTML structure */
+#search-results-count {
+  display: none; /* Hidden by default, shown by JS */
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+  margin: var(--spacing-xl) auto var(--spacing-2xl) auto;
+  text-align: center;
+  padding: var(--spacing-lg);
+  background: var(--color-surface-light);
+  border-radius: var(--border-radius-lg);
+  border: 2px solid var(--color-border);
+  max-width: 800px; /* Match input and card width */
+}
+
+#search-results-count.visible {
+  display: block;
+}
+
+#search-results-count .search-term {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+  background: rgba(25, 212, 254, 0.1);
+  padding: 2px 6px;
+  border-radius: var(--border-radius-xs);
+}
+
+/* Search Messages - Modern styling */
+.search-content .pagefind-ui__message {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  margin: var(--spacing-2xl) 0;
+  text-align: center;
+  padding: var(--spacing-lg);
+  background: var(--color-surface-light);
+  border-radius: var(--border-radius-lg);
+  border: 2px solid var(--color-border);
+}
+
+.search-content .pagefind-ui__loading {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  margin: var(--spacing-2xl) 0;
+  text-align: center;
+  padding: var(--spacing-lg);
+  background: var(--color-surface-light);
+  border-radius: var(--border-radius-lg);
+  border: 2px solid var(--color-border);
+}
+
+/* Search Clear Button - Modern rounded style */
+.search-content .pagefind-ui__clear {
+  background: transparent;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--border-radius-lg);
+  cursor: pointer;
+  font-size: var(--font-size-base);
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-medium);
+  margin-left: var(--spacing-md);
+  transition: all 0.3s ease;
+  min-height: var(--touch-target);
+  letter-spacing: var(--letter-spacing-subtle);
+  text-transform: uppercase;
+  min-width: 80px;
+}
+
+.search-content .pagefind-ui__clear:hover {
+  background: var(--color-primary);
+  color: var(--color-surface);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(25, 212, 254, 0.3);
+}
+
+/* Search result highlighting */
+.search-content .pagefind-ui__result-excerpt mark,
+.search-content .blog-post-excerpt mark {
+  background: rgba(25, 212, 254, 0.2);
+  color: var(--color-primary-dark);
+  padding: 2px 4px;
+  border-radius: var(--border-radius-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Blog Card Styles for Search Results - Match blog page cards exactly with wider layout */
+.search-content .pagefind-ui__results .blog-post-card,
+.search-content .pagefind-ui__result {
+  margin-bottom: var(--spacing-2xl);
+  padding: var(--spacing-3xl) var(--spacing-2xl); /* Even larger padding for wider cards */
+  background-color: var(--color-surface-light);
+  border-radius: var(--border-radius-xl); /* Larger border radius */
+  border: 2px solid var(--color-border);
+  box-shadow: var(--shadow-lg); /* Stronger shadow */
+  width: 100%;
+  box-sizing: border-box;
+  transition: var(--transition-all);
+  max-width: 800px; /* Wider max-width like input */
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 200px; /* Ensure minimum height for better presence */
+}
+
+.search-content .pagefind-ui__results .blog-post-card:hover,
+.search-content .pagefind-ui__result:hover {
+  box-shadow: var(--shadow-xl); /* Even stronger hover shadow */
+  border-color: var(--color-primary);
+  transform: var(--hover-slide);
+}
+
+.search-content .pagefind-ui__results .blog-post-title,
+.search-content .pagefind-ui__result-title {
+  margin: 0 0 var(--spacing-lg) 0; /* More spacing like blog */
+  font-size: var(--font-size-2xl); /* Larger title like blog cards */
+  font-weight: var(--font-weight-bold); /* Bolder like blog */
+  line-height: 1.3;
+}
+
+.search-content .pagefind-ui__results .blog-post-title a {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.search-content .pagefind-ui__results .blog-post-title a:hover,
+.search-content .pagefind-ui__results .blog-post-title a:focus {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.search-content .pagefind-ui__results .blog-post-excerpt {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-base);
+  margin: var(--spacing-md) 0 var(--spacing-sm) 0;
+  line-height: 1.6;
+  font-family: var(--font-primary);
+}
+
+.search-content .pagefind-ui__results .blog-post-categories {
+  margin: var(--spacing-md) 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  align-items: center;
+}
+
+.search-content .pagefind-ui__results .blog-post-categories .category-tag {
+  padding: var(--spacing-xs) var(--spacing-md);
+  font-weight: var(--font-weight-medium);
+  border: var(--border-width-thin) solid var(--color-primary);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-subtle);
+  font-size: var(--font-size-sm);
+  color: var(--color-primary);
+  text-decoration: none;
+  border-radius: var(--border-radius-xs);
+  transition: var(--transition-all);
+  background-color: transparent;
+}
+
+.search-content .pagefind-ui__results .blog-post-categories .category-tag:hover {
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+  transform: var(--hover-lift);
+}
+
+.search-content .pagefind-ui__results .blog-post-meta {
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--color-border);
+}
+
+.search-content .pagefind-ui__results .blog-post-meta time,
+.search-content .pagefind-ui__results .blog-post-date {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: var(--letter-spacing-subtle);
+  opacity: 0.9;
+  font-style: italic;
+}
+
+/* Custom Search Structure Styles */
+
+/* Main search container positioning - wider layout */
+#search {
+  position: relative;
+  max-width: 800px; /* Match input width */
+  margin: 0 auto var(--spacing-2xl) auto; /* More bottom margin */
+}
+
+/* Search input with icon - wider layout */
+#search-input {
+  background: var(--color-background);
+  border: 2px solid var(--color-primary);
+  border-radius: var(--border-radius-lg);
+  color: var(--color-text);
+  font-size: var(--font-size-lg);
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-regular);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  padding-left: calc(var(--spacing-xl) + var(--spacing-lg) + var(--spacing-sm));
+  width: 100%;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  display: block;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+#search-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 8px 24px rgba(25, 212, 254, 0.25), 0 0 0 3px rgba(25, 212, 254, 0.1);
+  background: var(--color-surface);
+}
+
+#search-input::placeholder {
+  color: var(--color-text-secondary);
+  font-style: normal;
+  font-weight: var(--font-weight-regular);
+  opacity: 0.8;
+}
+
+/* Search icon positioning - ensure consistent alignment */
+#search::before {
+  content: '🔍';
+  position: absolute;
+  left: var(--spacing-lg);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  pointer-events: none;
+  z-index: 10; /* Higher z-index to ensure it stays on top */
+  width: var(--font-size-lg); /* Fixed width to prevent layout shifts */
+  text-align: center;
+  line-height: 1; /* Ensure consistent line height */
+}
+
+/* Search results container */
+#search-results {
+  margin-top: var(--spacing-2xl);
+  text-align: left;
+}
+
+/* Empty state styling */
+#search-results:empty::after {
+  content: 'Start typing to search articles...';
+  display: block;
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-style: italic;
+  padding: var(--spacing-2xl);
+  background: var(--color-surface-light);
+  border-radius: var(--border-radius-lg);
+  border: 2px dashed var(--color-border);
   margin-top: var(--spacing-xl);
 }
 
-/* Search Input Styling */
-.search-content .pagefind-ui__search-input {
-  background: var(--color-surface-light);
-  border: var(--border-width-thick) solid var(--color-border);
+/* Pagefind-specific result styling to match blog cards with wider layout */
+.search-content .pagefind-ui__result {
+  margin-bottom: var(--spacing-2xl);
+  padding: var(--spacing-3xl) var(--spacing-2xl); /* Larger padding for wider feel */
+  background-color: var(--color-surface-light);
+  border-radius: var(--border-radius-xl);
+  border: 2px solid var(--color-border);
+  box-shadow: var(--shadow-lg);
+  transition: var(--transition-all);
+  min-height: 200px; /* Ensure good height */
+}
+
+.search-content .pagefind-ui__result:hover {
+  box-shadow: var(--shadow-xl);
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+.search-content .pagefind-ui__result-title {
+  margin: 0 0 var(--spacing-lg) 0;
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.3;
+}
+
+.search-content .pagefind-ui__result-link {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.search-content .pagefind-ui__result-link:hover,
+.search-content .pagefind-ui__result-link:focus {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.search-content .pagefind-ui__result-excerpt {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-lg);
+  margin: var(--spacing-lg) 0;
+  line-height: 1.6;
+  font-family: var(--font-primary);
+}
+
+/* Wider layout adjustments */
+@media (min-width: 1200px) {
+  .search-container {
+    padding: var(--spacing-3xl) var(--spacing-xl);
+  }
+}
+
+@media (min-width: 1400px) {
+  .search-container {
+    max-width: 1400px; /* Even wider on large screens */
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .search-container {
+    padding: var(--spacing-xl) var(--spacing-lg);
+  }
+  
+  .search-content {
+    padding: 0; /* Remove padding to allow full width */
+  }
+}
+
+@media (max-width: 1023px) {
+  .search-container {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+
+  .search-content {
+    padding: var(--spacing-lg);
+  }
+
+  .search-content .pagefind-ui__results .blog-post-card {
+    padding: var(--spacing-lg);
+  }
+
+  .search-content .pagefind-ui__results .blog-post-title {
+    font-size: var(--font-size-lg);
+  }
+}
+
+@media (max-width: 768px) {
+  .search-container {
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+
+  .search-content {
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-lg);
+  }
+
+  .search-content .search-input,
+  .search-content .pagefind-ui__search-input {
+    padding: var(--spacing-lg) var(--spacing-xl);
+    padding-left: calc(var(--spacing-xl) + var(--spacing-lg) + var(--spacing-sm));
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-lg);
+    border-radius: var(--border-radius-xl);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    min-height: 56px; /* Touch-friendly height */
+  }
+
+  .search-content #search::before,
+  .search-content .pagefind-ui__search::before {
+    left: var(--spacing-lg);
+    font-size: var(--font-size-xl);
+    width: var(--font-size-xl); /* Match the font size for consistent width */
+    line-height: 1; /* Ensure consistent line height on mobile */
+  }
+
+  .search-content .pagefind-ui__clear {
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: var(--font-size-base);
+    border-radius: var(--border-radius-lg);
+    min-height: 48px;
+    min-width: 90px;
+  }
+
+  .search-container h1 {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .search-content .pagefind-ui__results .blog-post-card {
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-lg);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  /* Mobile results count styling */
+  .search-results-count,
+  .pagefind-ui__results-count,
+  #search-results-count {
+    font-size: var(--font-size-lg);
+    padding: var(--spacing-md);
+    margin: var(--spacing-lg) auto var(--spacing-xl) auto;
+    border-radius: var(--border-radius-lg);
+  }
+
+  .search-results-count .search-term,
+  .pagefind-ui__results-count .search-term,
+  #search-results-count .search-term {
+    padding: 3px 8px;
+    border-radius: var(--border-radius-sm);
+  }
+}
+
+/* Loading States with consistent icons */
+.search-content .pagefind-ui__loading::before {
+  content: '🔍 ';
+  margin-right: var(--spacing-xs);
+}
+
+.search-content .pagefind-ui__message.pagefind-ui__message--none::before {
+  content: '❌ ';
+  margin-right: var(--spacing-xs);
+}
+
+/* Ensure search results fade in smoothly */
+.search-content .pagefind-ui__results .blog-post-card {
+  opacity: 0;
+  animation: fadeInUp 0.3s ease-out forwards;
+}
+
+.search-content .pagefind-ui__results .blog-post-card:nth-child(1) { animation-delay: 0.1s; }
+.search-content .pagefind-ui__results .blog-post-card:nth-child(2) { animation-delay: 0.2s; }
+.search-content .pagefind-ui__results .blog-post-card:nth-child(3) { animation-delay: 0.3s; }
+.search-content .pagefind-ui__results .blog-post-card:nth-child(4) { animation-delay: 0.4s; }
+.search-content .pagefind-ui__results .blog-post-card:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(var(--spacing-md));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
   border-radius: var(--border-radius-md);
   color: var(--color-text);
   font-size: var(--font-size-lg);
