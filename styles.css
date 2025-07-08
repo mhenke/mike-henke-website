@@ -410,6 +410,7 @@ section {
   z-index: var(--z-nav);
   width: 100%;
   border-bottom: 1px solid rgba(62, 71, 80, 0.3);
+  overflow: visible; /* Allow dropdown to extend beyond navbar */
 }
 
 .navbar-container {
@@ -420,6 +421,7 @@ section {
   justify-content: space-between;
   align-items: center;
   position: relative;
+  overflow: visible; /* Allow dropdown to extend beyond container */
 }
 
 .navbar-brand {
@@ -495,6 +497,7 @@ section {
   padding: 0;
   gap: var(--spacing-lg);
   align-items: center;
+  overflow: visible; /* Allow dropdown to extend beyond navbar */
 }
 
 .mobile-menu-header,
@@ -541,6 +544,21 @@ section {
 
 .navbar-links a:hover::after {
   width: 100%;
+}
+
+/* Always show the dropdown arrow indicator in nav */
+.navbar-links a .dropdown-arrow {
+  display: inline !important;
+  margin-left: var(--spacing-xs);
+  font-size: var(--font-size-sm);
+  color: var(--color-primary);
+  transition: transform var(--transition-normal);
+  vertical-align: middle;
+}
+
+/* Hide other icons in desktop nav, but not the dropdown arrow */
+.navbar-links a i:not(.dropdown-arrow) {
+  display: none;
 }
 
 /* Mobile Navigation */
@@ -817,6 +835,7 @@ section {
 /* Dropdown Container */
 .nav-dropdown {
   position: relative;
+  overflow: visible; /* Allow dropdown to extend beyond container */
 }
 
 /* Dropdown Toggle Button */
