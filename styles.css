@@ -469,25 +469,48 @@ section {
   color: var(--color-primary);
 }
 
-.navbar-toggle.active {
+/* Mobile menu close button styles - clean, modern X */
+.navbar-close {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--color-text);
+  font-size: var(--font-size-lg);
+  cursor: pointer;
+  padding: var(--spacing-xs);
+  margin-left: auto;
+  margin-right: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 1;
+  border-radius: var(--border-radius-xs);
+  transition:
+    color var(--transition-normal),
+    background var(--transition-normal),
+    opacity var(--transition-normal);
+  opacity: 0.85;
+  box-shadow: none;
+  width: var(--icon-size);
+  height: var(--icon-size);
+}
+
+.navbar-close:focus,
+.navbar-close:hover {
+  color: var(--color-primary);
+  background: var(--color-accent-bg);
   opacity: 1;
 }
 
-.navbar-toggle.active i {
-  font-size: 0; /* Hide the original icon */
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.navbar-toggle.active i::before {
-  content: '\f00d'; /* fa-times */
-  font-size: var(--font-size-lg);
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+@media (max-width: 1023px) {
+  .navbar-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    z-index: var(--z-nav-menu);
+  }
 }
 
 .navbar-links {
@@ -566,8 +589,16 @@ section {
   .navbar-toggle {
     display: block;
     position: relative;
-    z-index: var(--z-nav-toggle);
+    z-index: calc(
+      var(--z-nav-menu) - 1
+    ); /* Ensure it's behind the slide-out menu */
     touch-action: manipulation;
+  }
+
+  .navbar-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .navbar-links {
@@ -583,7 +614,7 @@ section {
     -ms-backdrop-filter: blur(20px);
     flex-direction: column;
     padding: 0 0 var(--spacing-xl) 0;
-    transition: right var(--transition-normal);
+    transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: var(--z-nav-menu);
     gap: 0;
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
@@ -708,7 +739,7 @@ section {
     z-index: var(--z-nav-overlay);
     opacity: 0;
     visibility: hidden;
-    transition: all var(--transition-normal);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .nav-overlay.active {

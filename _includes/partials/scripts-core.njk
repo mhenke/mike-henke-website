@@ -80,6 +80,14 @@
             });
         }
 
+        // Add close button handler for mobile menu
+        const navClose = document.querySelector('.navbar-close');
+        if (navClose) {
+            navClose.addEventListener('click', () => {
+                closeMobileMenu();
+            });
+        }
+
         // Dropdown Navigation
         const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
         
