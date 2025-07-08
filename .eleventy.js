@@ -599,7 +599,20 @@ module.exports = function (eleventyConfig) {
 
   // Add PurgeCSS plugin for production builds only
   if (isProduction) {
-    eleventyConfig.addPlugin(purgeCSS);
+    // Import your PurgeCSS configuration
+    const purgeCSSConfig = require('./purgecss.config.js');
+    
+    eleventyConfig.addPlugin(purgeCSS, {
+      // Direct PurgeCSS configuration options
+      content: purgeCSSConfig.content,
+      safelist: purgeCSSConfig.safelist,
+      defaultExtractor: purgeCSSConfig.defaultExtractor,
+      keyframes: purgeCSSConfig.keyframes,
+      fontFace: purgeCSSConfig.fontFace,
+      variables: purgeCSSConfig.variables,
+      // Eleventy-specific options
+      quiet: false, // Show what's being processed
+    });
   }
 
   // Passthrough copy for static assets

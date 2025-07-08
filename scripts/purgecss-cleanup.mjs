@@ -11,15 +11,20 @@
  */
 
 import { copyFile, stat, writeFile } from 'fs/promises';
+import { createRequire } from 'module';
 import path from 'path';
 import { PurgeCSS } from 'purgecss';
 import { fileURLToPath } from 'url';
 
+const require = createRequire(import.meta.url);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const projectRoot = path.join(__dirname, '..');
 
-// Configuration
+// Import your purgecss.config.js
+const userConfig = require(path.join(projectRoot, 'purgecss.config.js'));
+
+// Configuration - using your config file with script-specific overrides
 const config = {
   // Source CSS file
   cssFile: path.join(projectRoot, 'styles.css'),
@@ -31,86 +36,15 @@ const config = {
   cleanedFile: path.join(projectRoot, 'styles.cleaned.css'),
   reportFile: path.join(projectRoot, 'purgecss-report.json'),
 
-  // Content files to scan
-  content: [
-    // Built HTML files (primary source)
-    path.join(projectRoot, '_site/**/*.html'),
+  // Use your config file's content paths (converted to absolute paths)
+  content: userConfig.content.map((contentPath) =>
+    path.isAbsolute(contentPath)
+      ? contentPath
+      : path.join(projectRoot, contentPath)
+  ),
 
-    // Template files
-    path.join(projectRoot, '_includes/**/*.njk'),
-    path.join(projectRoot, '_includes/**/*.html'),
-    path.join(projectRoot, '*.njk'),
-    path.join(projectRoot, 'index.html'),
-
-    // JavaScript files
-    path.join(projectRoot, '_includes/**/*.js'),
-    path.join(projectRoot, 'assets/**/*.js'),
-    path.join(projectRoot, '**/*.js'),
-
-    // Data files
-    path.join(projectRoot, '_data/**/*.js'),
-    path.join(projectRoot, '_data/**/*.json'),
-
-    // Markdown files
-    path.join(projectRoot, '**/*.md'),
-  ],
-
-  // Safelist - classes to never remove
-  safelist: [
-    // Utility classes
-    'sr-only',
-    'hidden',
-
-    // Navigation states
-    'navbar-toggle',
-    'active',
-
-    // Dynamic classes (Pagefind, etc.)
-    /^pagefind-ui/,
-    /^pagefind/,
-
-    // Font Awesome icons
-    /^fa-/,
-    /^fas/,
-    /^far/,
-    /^fab/,
-
-    // CSS custom properties
-    ':root',
-
-    // Pseudo-classes and elements
-    ':before',
-    ':after',
-    ':hover',
-    ':focus',
-    ':active',
-    '::before',
-    '::after',
-    '::placeholder',
-    '::selection',
-    '::-webkit-scrollbar',
-    '::-webkit-scrollbar-track',
-    '::-webkit-scrollbar-thumb',
-    '::-webkit-scrollbar-corner',
-    '::-moz-selection',
-
-    // Error page classes (might not be in _site during build)
-    /^error-/,
-    /^code-/,
-    /^suggestion-/,
-
-    // Search classes
-    /^search-/,
-    'search-shortcuts',
-    'search-kbd',
-    'search-noscript-alert',
-    'search-description',
-    'search-no-results',
-
-    // Podcast and video classes
-    'podcast-player',
-    'video-embed',
-  ],
+  // Use your config file's safelist
+  safelist: userConfig.safelist,
 
   // Skip these directories
   skippedContentGlobs: [
@@ -121,83 +55,90 @@ const config = {
   ],
 };
 
-// Custom extractors for different file types
-const extractors = [
-  {
-    extractor: (content) => {
-      // Enhanced HTML extractor
-      const matches =
-        content.match(/class\s*=\s*["']([^"']+)["']|[\w-]+/g) || [];
-      const classes = [];
+// Custom extractors - use from config file if available, otherwise defaults
+const extractors = userConfig.defaultExtractor
+  ? [
+      {
+        extractor: userConfig.defaultExtractor,
+        extensions: ['html', 'njk', 'js'],
+      },
+    ]
+  : [
+      {
+        extractor: (content) => {
+          // Enhanced HTML extractor
+          const matches =
+            content.match(/class\s*=\s*["']([^"']+)["']|[\w-]+/g) || [];
+          const classes = [];
 
-      matches.forEach((match) => {
-        if (match.includes('class=')) {
-          const classMatch = match.match(/class\s*=\s*["']([^"']+)["']/);
-          if (classMatch) {
-            classes.push(...classMatch[1].split(/\s+/));
-          }
-        } else if (/^[\w-]+$/.test(match)) {
-          classes.push(match);
-        }
-      });
+          matches.forEach((match) => {
+            if (match.includes('class=')) {
+              const classMatch = match.match(/class\s*=\s*["']([^"']+)["']/);
+              if (classMatch) {
+                classes.push(...classMatch[1].split(/\s+/));
+              }
+            } else if (/^[\w-]+$/.test(match)) {
+              classes.push(match);
+            }
+          });
 
-      return classes;
-    },
-    extensions: ['html'],
-  },
-  {
-    extractor: (content) => {
-      // Enhanced NJK extractor - looks for class names in templates
-      const patterns = [
-        /class\s*=\s*["']([^"']+)["']/g,
-        /classList\.add\(['"]([^'"]+)['"]\)/g,
-        /className\s*=\s*["']([^"']+)["']/g,
-        /[\w-]+(?=\s*[{}])/g,
-      ];
+          return classes;
+        },
+        extensions: ['html'],
+      },
+      {
+        extractor: (content) => {
+          // Enhanced NJK extractor - looks for class names in templates
+          const patterns = [
+            /class\s*=\s*["']([^"']+)["']/g,
+            /classList\.add\(['"]([^'"]+)['"]\)/g,
+            /className\s*=\s*["']([^"']+)["']/g,
+            /[\w-]+(?=\s*[{}])/g,
+          ];
 
-      const classes = [];
-      patterns.forEach((pattern) => {
-        let match;
-        while ((match = pattern.exec(content)) !== null) {
-          if (match[1]) {
-            classes.push(...match[1].split(/\s+/));
-          } else {
-            classes.push(match[0]);
-          }
-        }
-      });
+          const classes = [];
+          patterns.forEach((pattern) => {
+            let match;
+            while ((match = pattern.exec(content)) !== null) {
+              if (match[1]) {
+                classes.push(...match[1].split(/\s+/));
+              } else {
+                classes.push(match[0]);
+              }
+            }
+          });
 
-      return classes;
-    },
-    extensions: ['njk'],
-  },
-  {
-    extractor: (content) => {
-      // JavaScript extractor - looks for dynamic class usage
-      const patterns = [
-        /classList\.add\(['"]([^'"]+)['"]\)/g,
-        /classList\.remove\(['"]([^'"]+)['"]\)/g,
-        /classList\.toggle\(['"]([^'"]+)['"]\)/g,
-        /className\s*=\s*['"]([^'"]+)['"]/g,
-        /class\s*=\s*['"]([^'"]+)['"]/g,
-        /['"][\w-]+['"](?=\s*:\s*)/g, // CSS-in-JS patterns
-      ];
+          return classes;
+        },
+        extensions: ['njk'],
+      },
+      {
+        extractor: (content) => {
+          // JavaScript extractor - looks for dynamic class usage
+          const patterns = [
+            /classList\.add\(['"]([^'"]+)['"]\)/g,
+            /classList\.remove\(['"]([^'"]+)['"]\)/g,
+            /classList\.toggle\(['"]([^'"]+)['"]\)/g,
+            /className\s*=\s*['"]([^'"]+)['"]/g,
+            /class\s*=\s*['"]([^'"]+)['"]/g,
+            /['"][\w-]+['"](?=\s*:\s*)/g, // CSS-in-JS patterns
+          ];
 
-      const classes = [];
-      patterns.forEach((pattern) => {
-        let match;
-        while ((match = pattern.exec(content)) !== null) {
-          if (match[1]) {
-            classes.push(...match[1].split(/\s+/));
-          }
-        }
-      });
+          const classes = [];
+          patterns.forEach((pattern) => {
+            let match;
+            while ((match = pattern.exec(content)) !== null) {
+              if (match[1]) {
+                classes.push(...match[1].split(/\s+/));
+              }
+            }
+          });
 
-      return classes;
-    },
-    extensions: ['js'],
-  },
-];
+          return classes;
+        },
+        extensions: ['js'],
+      },
+    ];
 
 async function main() {
   console.log('🚀 Starting PurgeCSS cleanup...\n');
@@ -220,8 +161,8 @@ async function main() {
       css: [config.cssFile],
       safelist: config.safelist,
       extractors: extractors,
-      keyframes: true,
-      variables: true,
+      keyframes: userConfig.keyframes || true,
+      variables: userConfig.variables || true,
       rejected: true,
       rejectedCss: true,
       skippedContentGlobs: config.skippedContentGlobs,

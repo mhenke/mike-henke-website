@@ -26,7 +26,7 @@ jobs:
       - name: Setup Node.js 🟢
         uses: actions/setup-node@v4 # Updated to v4
         with:
-          node-version: '18' # Or your preferred Node.js version
+          node-version: '18.20.5' # Match Volta configuration
           cache: 'npm'
 
       - name: Install Dependencies 👨‍💻
