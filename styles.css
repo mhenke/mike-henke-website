@@ -2695,3 +2695,10 @@ section {
 @import url('assets/css/search.css');
 
 /* ...existing imports... */
+
+#disqus_thread,
+.disqus-container,
+body {
+  background: #fff !important; /* or a light color */
+  color: #222 !important; /* dark text for light background */
+}
