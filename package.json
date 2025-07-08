@@ -1,36 +1,81 @@
 {
   "name": "mike-henke-website",
   "version": "1.0.0",
-  "description": "This is a personal portfolio website for Mike Henke, showcasing his skills, experience, and portfolio projects. The website is built using HTML and CSS, following specific design and coding guidelines.",
+  "description": "Personal portfolio website built with Eleventy, featuring blog functionality and search powered by Pagefind",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/mike-henke-website.git"
+  },
+  "homepage": "https://your-domain.com",
+  "bugs": {
+    "url": "https://github.com/your-username/mike-henke-website/issues"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf _site",
-    "start": "NODE_ENV=development npx @11ty/eleventy --serve --watch",
-    "dev": "NODE_ENV=development npx @11ty/eleventy --serve --watch",
-    "dev:search": "NODE_ENV=development npx @11ty/eleventy && npx pagefind --site _site --verbose && npx @11ty/eleventy --serve --watch",
-    "build": "NODE_ENV=production npx @11ty/eleventy && npx pagefind --site _site --verbose",
-    "build:dev": "NODE_ENV=development npx @11ty/eleventy",
-    "build:search": "NODE_ENV=development npx @11ty/eleventy && npx pagefind --site _site --verbose",
-    "build:purge": "NODE_ENV=production npx @11ty/eleventy",
-    "serve": "npx @11ty/eleventy --serve",
-    "dev:nosearch": "npm run clean && eleventy --serve --watch",
-    "css:cleanup": "node scripts/purgecss-cleanup.mjs"
+    "dev": "npm run clean && cross-env NODE_ENV=development npx @11ty/eleventy --serve --watch",
+    "dev:search": "npm run build:dev && npx pagefind --site _site --verbose && npx @11ty/eleventy --serve --watch",
+    "build": "npm run clean && cross-env NODE_ENV=production npx @11ty/eleventy && npm run search:index",
+    "build:dev": "npm run clean && cross-env NODE_ENV=development npx @11ty/eleventy",
+    "build:production": "npm run clean && cross-env NODE_ENV=production npx @11ty/eleventy",
+    "search:index": "npx pagefind --site _site --verbose",
+    "preview": "npx @11ty/eleventy --serve",
+    "lint": "eslint **/*.js",
+    "lint:fix": "eslint **/*.js --fix",
+    "format": "prettier --write '**/*.{js,css,md,json}'",
+    "format:check": "prettier --check '**/*.{js,css,md,json}'",
+    "css:cleanup": "node scripts/purgecss-cleanup.mjs",
+    "test": "echo \"Add tests here\" && exit 0",
+    "prepare": "husky install",
+    "validate": "npm run lint && npm run format:check",
+    "deploy": "npm run build && echo 'Add deployment commands'",
+    "update-deps": "npm update && npm audit fix"
   },
   "keywords": [
     "portfolio",
     "blog",
     "eleventy",
     "cfwheels",
-    "coldfusion"
+    "coldfusion",
+    "static-site",
+    "jamstack",
+    "search",
+    "pagefind"
   ],
   "author": "Mike Henke",
   "license": "ISC",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "volta": {
+    "node": "18.20.5",
+    "npm": "10.8.2"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "> 1%",
+    "not dead"
+  ],
   "devDependencies": {
-    "@11ty/eleventy": "^3.1.0",
+    "@11ty/eleventy": "^3.1.2",
+    "concurrently": "^9.1.0",
+    "cross-env": "^7.0.3",
     "eleventy-plugin-purgecss": "^0.5.0",
+    "eslint": "^9.16.0",
     "glob": "^11.0.3",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.10",
     "luxon": "^3.6.1",
-    "pagefind": "^1.1.0"
+    "pagefind": "^1.3.0",
+    "prettier": "^3.3.3"
+  },
+  "lint-staged": {
+    "*.{js,css,md,json}": [
+      "prettier --write"
+    ],
+    "*.js": [
+      "eslint --fix"
+    ]
   }
 }

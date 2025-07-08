@@ -1,12 +1,19 @@
 module.exports = {
   // Content files to scan for used CSS selectors
+  // OPTION 1: Conservative narrowing (recommended for stability)
+  // content: [
+  //   './_site/**/*.html', // Final built output (most important)
+  //   './_includes/**/*.njk', // All Nunjucks templates
+  //   './index.html', // Root HTML file
+  //   './*.njk', // Root-level templates (blog.njk, search.njk, etc.)
+  //   './js/**/*.js', // Specific JS directory only
+  //   './assets/**/*.js', // Asset JS files only
+  // ],
+
+  // OPTION 2: Aggressive narrowing (uncomment to use instead)
   content: [
-    './**/*.njk',
-    './**/*.html',
-    './**/*.md',
-    './**/*.js',
-    './output/posts/**/*.md',
-    './_includes/**/*.njk',
+    './_site/**/*.html',       // Final output only
+    './_includes/**/*.njk',    // Templates only
   ],
 
   // CSS files to purge
