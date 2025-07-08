@@ -1,5 +1,18 @@
 /* Search Page Styles - Consistent with Site Design */
 
+/* Hidden utility class for Pagefind metadata */
+.hidden {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  position: absolute !important;
+  left: -9999px !important;
+  top: -9999px !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
 /* Search Page Layout - Match blog page layout with card styling */
 .search-container {
   padding: var(--spacing-3xl) var(--spacing-2xl); /* Card-like padding */
@@ -463,6 +476,32 @@
   margin: var(--spacing-lg) 0;
   line-height: 1.6;
   font-family: var(--font-primary);
+  
+  /* Clean up excerpt formatting */
+  text-overflow: ellipsis;
+  overflow: hidden;
+  
+  /* Remove any unwanted quotes or formatting artifacts */
+  quotes: none;
+}
+
+.search-content .pagefind-ui__result-excerpt::before,
+.search-content .pagefind-ui__result-excerpt::after {
+  content: none;
+}
+
+/* Remove any inline quotes or artifacts from the excerpt */
+.search-content .pagefind-ui__result-excerpt q,
+.search-content .pagefind-ui__result-excerpt blockquote {
+  quotes: none;
+  font-style: normal;
+}
+
+.search-content .pagefind-ui__result-excerpt q::before,
+.search-content .pagefind-ui__result-excerpt q::after,
+.search-content .pagefind-ui__result-excerpt blockquote::before,
+.search-content .pagefind-ui__result-excerpt blockquote::after {
+  content: none;
 }
 
 /* Large desktop layout - matches styles.css pattern */
