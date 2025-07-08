@@ -2,6 +2,12 @@
    CSS CUSTOM PROPERTIES & VARIABLES
    ========================================================================== */
 
+/* Hidden utility class for Pagefind metadata - ensures custom_excerpt spans are not visible */
+.hidden {
+  display: none !important;
+  visibility: hidden !important;
+}
+
 :root {
   /* Colors */
   --color-primary: #19d4fe;
@@ -84,10 +90,10 @@
   --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-all: all var(--transition-normal);
-  --transition-shadow-border: box-shadow var(--transition-normal),
-    border-color var(--transition-normal);
-  --transition-colors: background-color var(--transition-fast),
-    color var(--transition-fast);
+  --transition-shadow-border:
+    box-shadow var(--transition-normal), border-color var(--transition-normal);
+  --transition-colors:
+    background-color var(--transition-fast), color var(--transition-fast);
 
   /* Hover Effects */
   --hover-lift: translateY(-2px);
@@ -133,7 +139,9 @@ textarea:focus-visible,
 select:focus-visible {
   outline: 3px solid var(--color-focus);
   outline-offset: 2px;
-  box-shadow: 0 0 0 1px var(--color-surface), 0 0 8px var(--color-focus);
+  box-shadow:
+    0 0 0 1px var(--color-surface),
+    0 0 8px var(--color-focus);
 }
 
 html {
@@ -859,8 +867,10 @@ section {
   max-width: var(--hero-image-mobile);
   width: 100%;
   height: auto;
-  transition: box-shadow var(--transition-normal),
-    border-color var(--transition-normal), transform var(--transition-normal);
+  transition:
+    box-shadow var(--transition-normal),
+    border-color var(--transition-normal),
+    transform var(--transition-normal);
   cursor: pointer;
   position: relative;
   z-index: 0;
@@ -1090,7 +1100,8 @@ section {
   flex-direction: column;
   justify-content: center;
   min-width: 0;
-  transition: box-shadow var(--transition-normal),
+  transition:
+    box-shadow var(--transition-normal),
     border-color var(--transition-normal);
   cursor: pointer;
 }
@@ -1249,7 +1260,8 @@ section {
   box-shadow: var(--shadow-md);
   border: var(--border-width-thick) solid var(--color-border);
   cursor: pointer;
-  transition: var(--transition-shadow-border),
+  transition:
+    var(--transition-shadow-border),
     transform var(--transition-normal);
 }
 
@@ -1275,7 +1287,9 @@ section {
   margin-bottom: var(--spacing-sm);
   color: var(--color-text);
   cursor: pointer;
-  transition: var(--transition-colors), transform var(--transition-normal);
+  transition:
+    var(--transition-colors),
+    transform var(--transition-normal);
 }
 
 .skill-row:hover,
@@ -2052,6 +2066,59 @@ section {
     display: block;
     padding: var(--spacing-xs) 0;
   }
+}
+
+/* ==========================================================================
+   DISQUS COMMENTS STYLING
+   ========================================================================== */
+
+/* Disqus container styling */
+#disqus_thread {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-sm);
+  padding: var(--spacing-lg);
+  margin: var(--spacing-2xl) 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure proper color inheritance for Disqus */
+#disqus_thread,
+#disqus_thread * {
+  color: var(--color-text) !important;
+  background-color: var(--color-surface) !important;
+}
+
+/* Style Disqus links to match site theme */
+#disqus_thread a {
+  color: var(--color-primary) !important;
+  text-decoration: none;
+}
+
+#disqus_thread a:hover {
+  color: var(--color-primary-dark) !important;
+  text-decoration: underline;
+}
+
+/* Force dark theme detection by setting proper text colors */
+#disqus_thread {
+  color: #ffffff;
+  background-color: var(--color-surface);
+}
+
+/* Style the noscript fallback */
+#disqus_thread noscript {
+  background: var(--color-surface-light);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+  border: 1px solid var(--color-border);
+  display: block;
+  text-align: center;
+  color: var(--color-text-secondary);
+}
+
+#disqus_thread noscript a {
+  color: var(--color-primary) !important;
 }
 
 /* ==========================================================================
