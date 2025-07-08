@@ -12,8 +12,8 @@ module.exports = {
 
   // OPTION 2: Aggressive narrowing (uncomment to use instead)
   content: [
-    './_site/**/*.html',       // Final output only
-    './_includes/**/*.njk',    // Templates only
+    './_site/**/*.html', // Final output only
+    './_includes/**/*.njk', // Templates only
   ],
 
   // CSS files to purge
