@@ -897,7 +897,7 @@ section {
 /* Dropdown Arrow */
 .dropdown-arrow {
   font-size: var(--font-size-xs);
-  transition: transform var(--transition-normal);
+  transition: transform var(--transition-slow);
   color: var(--color-primary);
 }
 
@@ -923,9 +923,9 @@ section {
   visibility: hidden;
   transform: translateY(-10px);
   transition:
-    opacity var(--transition-normal),
-    visibility var(--transition-normal),
-    transform var(--transition-normal);
+    opacity var(--transition-slow),
+    visibility var(--transition-slow),
+    transform var(--transition-slow);
   pointer-events: none;
 }
 
@@ -982,7 +982,7 @@ section {
 
   .dropdown-menu.show {
     max-height: 300px;
-    transition: max-height var(--transition-normal);
+    transition: max-height var(--transition-slow);
   }
 
   .dropdown-menu a {
