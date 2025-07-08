@@ -16,17 +16,18 @@
             {{ content | safe }}
         </div>
         
-        {# Author bio section #}
+        {# Author bio section: always show #}
         {% import "macros/written-by.njk" as authorMacros %}
         {{ authorMacros.writtenBy() }}
-        
         <hr>
         <footer>
-            <p><a href="{{ '/blog' | url }}" class="back-to-blog-link" aria-label="Return to blog listing">← Back to Blog</a></p>
+            {# Only show Back to Blog and Disqus for blog posts #}
+            {% set url = page.url or '' %}
+            {% if (tags or collections.blog) and not url.match('^/(articles|presentations|wheels-series)/?$') %}
+                <p><a href="{{ '/blog' | url }}" class="back-to-blog-link" aria-label="Return to blog listing">&larr; Back to Blog</a></p>
+                {% include "partials/disqus-config.njk" %}
+            {% endif %}
         </footer>
-        
-        {# Comments section #}
-        {% include "partials/disqus-config.njk" %}
     </article>
 </section>
 {% endblock %}
