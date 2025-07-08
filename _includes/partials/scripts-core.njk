@@ -80,6 +80,67 @@
             });
         }
 
+        // Dropdown Navigation
+        const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+        
+        dropdownToggles.forEach(toggle => {
+            const dropdown = toggle.closest('.nav-dropdown');
+            const menu = dropdown.querySelector('.dropdown-menu');
+            
+            if (menu) {
+                // Click handler for dropdown toggle
+                toggle.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+                    
+                    // Close all other dropdowns
+                    dropdownToggles.forEach(otherToggle => {
+                        if (otherToggle !== toggle) {
+                            otherToggle.setAttribute('aria-expanded', 'false');
+                            const otherMenu = otherToggle.closest('.nav-dropdown').querySelector('.dropdown-menu');
+                            if (otherMenu) {
+                                otherMenu.classList.remove('show');
+                            }
+                        }
+                    });
+                    
+                    // Toggle current dropdown
+                    if (isExpanded) {
+                        toggle.setAttribute('aria-expanded', 'false');
+                        menu.classList.remove('show');
+                    } else {
+                        toggle.setAttribute('aria-expanded', 'true');
+                        menu.classList.add('show');
+                    }
+                });
+                
+                // Close dropdown when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!dropdown.contains(e.target)) {
+                        toggle.setAttribute('aria-expanded', 'false');
+                        menu.classList.remove('show');
+                    }
+                });
+                
+                // Close dropdown when pressing Escape
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && menu.classList.contains('show')) {
+                        toggle.setAttribute('aria-expanded', 'false');
+                        menu.classList.remove('show');
+                        toggle.focus();
+                    }
+                });
+                
+                // Close dropdown when mobile menu is opened
+                if (navToggle) {
+                    navToggle.addEventListener('click', () => {
+                        toggle.setAttribute('aria-expanded', 'false');
+                        menu.classList.remove('show');
+                    });
+                }
+            }
+        });
+
         // Animated Progress Bars - Intersection Observer
         const progressBars = document.querySelectorAll('.progress-bar[data-width]');
         
