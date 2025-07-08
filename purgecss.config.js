@@ -17,7 +17,10 @@ module.exports = {
   ],
 
   // CSS files to purge
-  css: ['./styles.css'],
+  css: [
+    './styles.css',
+    './assets/css/search.css'
+  ],
 
   // Safelist important classes that might be dynamically generated
   safelist: [
@@ -56,6 +59,17 @@ module.exports = {
 
     // Language indicator classes for code blocks
     'lang',
+
+    // Search and Pagefind classes
+    /^pagefind/,
+    'search-container',
+    'search-input',
+    'search-result',
+    'result-categories',
+    'category-tag',
+    'reading-time',
+    'search-icon',
+    'search-wrapper',
 
     // Animation and state classes that might be added via JS
     'active',
