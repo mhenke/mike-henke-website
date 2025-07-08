@@ -99,7 +99,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const searchResultsCount = document.getElementById('search-results-count');
 
     try {
-      searchResults.innerHTML = '<p class="search-message"><i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Searching...</p>';
+      searchResults.innerHTML =
+        '<p class="search-message"><i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Searching...</p>';
       searchResultsCount.textContent = '';
 
       // Check if Pagefind is available
