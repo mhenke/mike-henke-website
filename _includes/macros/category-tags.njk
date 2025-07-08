@@ -14,10 +14,10 @@
         {# Output each category as a separate Pagefind filter element #}
         {% for category in categories %}
             {% if category %}
-                <span class="pagefind-category-filter" data-pagefind-filter="category">{{ category }}</span>
                 <a href="{{ ('/category/' + (category | categorySlug) + '/') | url }}" 
                    class="category-tag" 
-                   title="View {{ category }} posts">{{ category }}</a>
+                   title="View {{ category }} posts"
+                   data-pagefind-meta="category">{{ category }}</a>
             {% endif %}
         {% endfor %}
     </div>

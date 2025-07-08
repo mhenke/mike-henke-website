@@ -11,7 +11,7 @@ eleventyComputed:
 {% from "macros/blog-card.njk" import blogCard %}
 {# PERFORMANCE: Cache category data to avoid repeated lookups #}
 {% set categoryData = collections.postsByCategory[pagination.items[0]] %}
-<section class="content-section-boxed content-section-top-margin">
+<section class="content-section-boxed content-section-top-margin" data-pagefind-body>
     <h1 class="section-title">Posts in "{{ categoryData.name }}"</h1>
     <div class="section-underline"></div>
     
