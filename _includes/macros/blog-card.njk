@@ -22,26 +22,20 @@
 <article class="blog-post-card" 
          itemscope 
          itemtype="https://schema.org/BlogPosting">
-    
     <header>
         <h2 class="blog-post-title" itemprop="headline">
             <a href="{{ post.url | url }}" itemprop="url">
                 {{ post.data.title or 'Untitled Post' }}
             </a>
         </h2>
-        
-        {# PERFORMANCE: Only render if categories exist #}
+        {# Only render if categories exist #}
         {% if hasCategories %}
-        <div class="blog-post-categories">
             {{ categoryTags(post.data.categories) }}
-        </div>
         {% endif %}
     </header>
-    
     <div class="blog-post-excerpt" itemprop="description">
         {{ blogExcerpt(post) }}
     </div>
-    
     <footer class="blog-post-meta">
         <time datetime="{{ post.date | date('yyyy-MM-dd') }}" itemprop="datePublished">
             {{ publishDate(post.date) }}
