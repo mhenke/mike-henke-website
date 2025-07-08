@@ -43,7 +43,7 @@
     {% endif %}
     
     {# PERFORMANCE: Load Disqus comment count script on blog-related pages #}
-    {% if page.url == '/blog/' or layout == 'layouts/post.njk' or (page.inputPath and page.inputPath.includes('output/posts/')) %}
+    {% if tags or collections.blog %}
         <script id="dsq-count-scr" src="//mikehenke.disqus.com/count.js" async></script>
     {% endif %}
 </body>

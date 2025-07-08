@@ -21,10 +21,13 @@
                     <i class="fas fa-briefcase" aria-hidden="true"></i>
                     <span>Career</span>
                 </a>
+                {% set url = page.url or '' %}
+                {% if not url.match('^/(articles|presentations|wheels-series)/?$') %}
                 <a href="/blog/" class="author-link" aria-label="Browse all blog posts">
                     <i class="fas fa-blog" aria-hidden="true"></i>
                     <span>All Posts</span>
                 </a>
+                {% endif %}
                 <a href="/#contact" class="author-link" aria-label="Contact Mike">
                     <i class="fas fa-envelope" aria-hidden="true"></i>
                     <span>Contact</span>

@@ -1,5 +1,5 @@
 ---
-title: "Wheels Series"
+title: 'Wheels Series'
 date: 2015-06-27
 description: "A step-by-step series on building applications with CFWheels, inspired by Dan Wilson's Model Glue series."
 ---
