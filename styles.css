@@ -1460,6 +1460,16 @@ section {
     transform var(--transition-normal);
 }
 
+/* Ensure smooth animation for skill bars */
+.skills-card .progress-bar span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background-color: #19d4fe;
+  border-radius: 8px;
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .skills-card:hover,
 .skills-card:focus {
   box-shadow: var(--shadow-accent), var(--shadow-lg);
