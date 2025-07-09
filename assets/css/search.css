@@ -127,16 +127,6 @@
 }
 
 /* Results count below input, above results */
-.search-results-count {
-  display: block;
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-text);
-  margin: var(--spacing-lg) 0 var(--spacing-lg) 0;
-  text-align: center;
-  letter-spacing: var(--letter-spacing-subtle);
-  font-family: var(--font-primary);
-}
 
 /* Search Results Count - Match mobile design with full width layout */
 
@@ -386,25 +376,6 @@
 } */
 
 /* Add styles for Font Awesome search icon in input wrapper */
-.search-input-wrapper {
-  position: relative;
-  width: 100%;
-}
-
-.search-input-icon {
-  position: absolute;
-  left: var(--spacing-xl);
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: var(--font-size-lg);
-  color: var(--color-text-secondary);
-  pointer-events: none;
-  z-index: 10;
-}
-
-.search-input-wrapper .pagefind-ui__search-input {
-  padding-left: calc(var(--spacing-xl) + var(--spacing-lg) + var(--spacing-lg));
-}
 
 /* Search results container */
 
