@@ -1460,12 +1460,12 @@ section {
     transform var(--transition-normal);
 }
 
-/* Ensure smooth animation for skill bars */
+/* Ensure smooth animation for skill bars using CSS variable for transition */
 .skills-card .progress-bar span {
   display: block;
   height: 100%;
   width: 0;
-  background-color: #19d4fe;
+  background-color: var(--color-primary-dark);
   border-radius: 8px;
   transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -2338,8 +2338,8 @@ section {
 
 /* Disqus Readability Enhancements for Dark Theme */
 #disqus_thread {
-  background: #222f36 !important;
-  color: #f3f6fa !important;
+  background: var(--color-background) !important;
+  color: var(--color-text-secondary) !important;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif !important;
   font-size: 1rem;
   line-height: 1.7;
@@ -2348,7 +2348,7 @@ section {
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
 }
 #disqus_thread a {
-  color: #19d4fe !important;
+  color: var(--color-primary) !important;
   text-decoration: underline;
   font-weight: 600;
   letter-spacing: 0.2px;
@@ -2359,16 +2359,16 @@ section {
 #disqus_thread h4,
 #disqus_thread h5,
 #disqus_thread h6 {
-  color: #f3f6fa !important;
+  color: var(--color-text-secondary) !important;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif !important;
   font-weight: 700;
   letter-spacing: 0.3px;
 }
 #disqus_thread input,
 #disqus_thread textarea {
-  background: #181a1b !important;
-  color: #f3f6fa !important;
-  border: 1px solid #3e4750 !important;
+  background: var(--color-background) !important;
+  color: var(--color-text-secondary) !important;
+  border: 1px solid var(--color-border) !important;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif !important;
 }
 
@@ -2381,8 +2381,8 @@ section {
 #disqus_thread .comment__footer,
 #disqus_thread .post-menu,
 #disqus_thread .comment-footer__menu {
-  background: #222f36 !important;
-  color: #f3f6fa !important;
+  background: var(--color-background) !important;
+  color: var(--color-text-secondary) !important;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif !important;
   font-size: 1.08rem;
   line-height: 1.7;
@@ -2390,14 +2390,14 @@ section {
 #disqus_thread .author,
 #disqus_thread .comment__header,
 #disqus_thread .post-byline {
-  color: #19d4fe !important;
+  color: var(--color-primary) !important;
   font-weight: 700;
   letter-spacing: 0.2px;
 }
 #disqus_thread a,
 #disqus_thread .comment__footer a,
 #disqus_thread .post-menu a {
-  color: #19d4fe !important;
+  color: var(--color-primary) !important;
   text-decoration: underline;
   font-weight: 600;
   letter-spacing: 0.2px;
@@ -2407,7 +2407,7 @@ section {
 #disqus_thread .icon-share,
 #disqus_thread .icon-twitter-x,
 #disqus_thread .icon-facebook {
-  color: #19d4fe !important;
+  color: var(--color-primary) !important;
   opacity: 0.85;
 }
 #disqus_thread .post-menu,
@@ -2417,7 +2417,7 @@ section {
 }
 #disqus_thread .post-menu-item a,
 #disqus_thread .comment-footer__action {
-  color: #19d4fe !important;
+  color: var(--color-primary) !important;
   background: none !important;
   border-radius: 6px;
   padding: 2px 8px;
@@ -2425,46 +2425,46 @@ section {
 }
 #disqus_thread .post-menu-item a:hover,
 #disqus_thread .comment-footer__action:hover {
-  background: #22313a !important;
-  color: #fff !important;
+  background: var(--color-surface) !important;
+  color: var(--color-text) !important;
 }
 #disqus_thread .user {
-  background: #181a1b !important;
-  color: #19d4fe !important;
+  background: var(--color-background) !important;
+  color: var(--color-primary) !important;
   font-weight: 700;
   border-radius: 50%;
-  border: 2px solid #19d4fe;
+  border: 2px solid var(--color-primary-dark);
 }
 #disqus_thread .post-message p {
   margin-bottom: 0.7em;
 }
 #disqus_thread .see-more {
-  color: #19d4fe !important;
+  color: var(--color-primary) !important;
   font-weight: 600;
   cursor: pointer;
 }
 #disqus_thread .vote-up,
 #disqus_thread .vote-down {
-  color: #19d4fe !important;
+  color: var(--color-primary) !important;
   background: none !important;
   border-radius: 4px;
   transition: background 0.2s;
 }
 #disqus_thread .vote-up:hover,
 #disqus_thread .vote-down:hover {
-  background: #22313a !important;
-  color: #fff !important;
+  background: var(--color-surface) !important;
+  color: var(--color-text) !important;
 }
 #disqus_thread input,
 #disqus_thread textarea {
-  background: #181a1b !important;
-  color: #f3f6fa !important;
-  border: 1px solid #3e4750 !important;
+  background: var(--color-background) !important;
+  color: var(--color-text-secondary) !important;
+  border: 1px solid var(--color-border) !important;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif !important;
 }
 #disqus_thread ::selection {
-  background: #19d4fe;
-  color: #181a1b;
+  background: var(--color-primary);
+  color: var(--color-background);
 }
 
 /* ==========================================================================

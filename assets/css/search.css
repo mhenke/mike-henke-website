@@ -814,7 +814,6 @@ search-content .pagefind-ui__results .blog-post-meta time {
   opacity: 0.9;
 }
 
-
 /* Loading States */
 
 /* Footer Navigation Styles */
@@ -830,7 +829,7 @@ footer nav {
 
 footer nav a {
   color: var(--color-text-secondary, #bfc9d1);
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-family: var(--font-primary);
   font-weight: 400;
   font-size: 1rem;
   text-decoration: none;
