@@ -16,7 +16,6 @@
 /* Search Page Layout - Match blog page layout with card styling */
 .search-container {
   padding: var(--spacing-3xl) var(--spacing-2xl); /* Card-like padding */
-  text-align: center;
   max-width: var(
     --max-width-content
   ); /* Use content max-width like blog page */
@@ -77,7 +76,9 @@
   font-family: var(--font-primary);
   font-weight: var(--font-weight-regular);
   padding: var(--spacing-lg) var(--spacing-xl);
-  padding-left: calc(var(--spacing-xl) + var(--spacing-lg) + var(--spacing-sm));
+  padding-left: calc(
+    var(--spacing-xl) + var(--spacing-lg) + var(--spacing-lg)
+  ); /* Increase left padding for icon */
   width: 100%;
   max-width: none;
   margin: 0 auto var(--spacing-2xl) auto;
@@ -97,7 +98,7 @@
   border-color: var(--color-primary);
   box-shadow:
     0 8px 24px rgba(25, 212, 254, 0.25),
-    0 0 0 3px rgba(25, 212, 254, 0.1);
+    0 0 0 3px var(--color-accent-bg);
   background: var(--color-surface);
 }
 
@@ -118,28 +119,23 @@
   display: block;
 }
 
-/* Search icon positioning - ensure it stays fixed */
-.search-content #search::before,
-.search-content .pagefind-ui__search::before {
-  content: '🔍';
-  position: absolute;
-  left: var(--spacing-lg);
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: var(--font-size-lg);
-  color: var(--color-text-secondary);
-  pointer-events: none;
-  z-index: 10;
-  width: var(--font-size-lg);
-  text-align: center;
-  line-height: 1;
-}
-
 /* Search Results Container */
 
 .search-content .pagefind-ui__results {
   margin-top: var(--spacing-2xl);
   text-align: left;
+}
+
+/* Results count below input, above results */
+.search-results-count {
+  display: block;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+  margin: var(--spacing-lg) 0 var(--spacing-lg) 0;
+  text-align: center;
+  letter-spacing: var(--letter-spacing-subtle);
+  font-family: var(--font-primary);
 }
 
 /* Search Results Count - Match mobile design with full width layout */
@@ -344,7 +340,9 @@
   font-family: var(--font-primary);
   font-weight: var(--font-weight-regular);
   padding: var(--spacing-lg) var(--spacing-xl);
-  padding-left: calc(var(--spacing-xl) + var(--spacing-lg) + var(--spacing-sm));
+  padding-left: calc(
+    var(--spacing-xl) + var(--spacing-lg) + var(--spacing-lg)
+  ); /* Increase left padding for icon */
   width: 100%;
   box-sizing: border-box;
   transition: all 0.3s ease;
@@ -359,7 +357,7 @@
   border-color: var(--color-primary);
   box-shadow:
     0 8px 24px rgba(25, 212, 254, 0.25),
-    0 0 0 3px rgba(25, 212, 254, 0.1);
+    0 0 0 3px var(--color-accent-bg);
   background: var(--color-surface);
 }
 
@@ -370,11 +368,12 @@
   opacity: 0.8;
 }
 
-/* Search icon positioning - ensure consistent alignment */
-#search::before {
+/* Remove Unicode search icon pseudo-element */
+/* .search-content #search::before,
+.search-content .pagefind-ui__search::before {
   content: '🔍';
   position: absolute;
-  left: var(--spacing-lg);
+  left: var(--spacing-xl);
   top: 50%;
   transform: translateY(-50%);
   font-size: var(--font-size-lg);
@@ -384,6 +383,27 @@
   width: var(--font-size-lg);
   text-align: center;
   line-height: 1;
+} */
+
+/* Add styles for Font Awesome search icon in input wrapper */
+.search-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.search-input-icon {
+  position: absolute;
+  left: var(--spacing-xl);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.search-input-wrapper .pagefind-ui__search-input {
+  padding-left: calc(var(--spacing-xl) + var(--spacing-lg) + var(--spacing-lg));
 }
 
 /* Search results container */
@@ -515,7 +535,7 @@
   .search-content .pagefind-ui__search-input {
     padding: var(--spacing-lg) var(--spacing-xl);
     padding-left: calc(
-      var(--spacing-xl) + var(--spacing-lg) + var(--spacing-sm)
+      var(--spacing-xl) + var(--spacing-lg) + var(--spacing-lg)
     );
     font-size: var(--font-size-lg);
     margin-bottom: var(--spacing-lg);
@@ -598,7 +618,9 @@
   }
 }
 
-/* Loading States with consistent icons */
+/* Loading States */
+/* Remove Unicode emoji icons from loading and empty state messages. Use Font Awesome in HTML/JS instead. */
+/*
 .search-content .pagefind-ui__loading::before {
   content: '🔍 ';
   margin-right: var(--spacing-xs);
@@ -608,6 +630,7 @@
   content: '❌ ';
   margin-right: var(--spacing-xs);
 }
+*/
 
 /* Ensure search results fade in smoothly */
 .search-content .pagefind-ui__results .blog-post-card {
@@ -783,7 +806,7 @@
   border-top: 1px solid var(--color-border);
 }
 
-.search-content .pagefind-ui__results .blog-post-meta time {
+search-content .pagefind-ui__results .blog-post-meta time {
   font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
   font-weight: var(--font-weight-regular);
@@ -792,12 +815,34 @@
 }
 
 /* Loading States */
-.search-content .pagefind-ui__loading::before {
-  content: '🔍 ';
-  margin-right: var(--spacing-xs);
+
+/* Footer Navigation Styles */
+footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem 2.5rem;
+  max-width: 600px;
+  margin: 0 auto 1.5rem auto;
+  padding: 0;
 }
 
-.search-content .pagefind-ui__message.pagefind-ui__message--none::before {
-  content: '❌ ';
-  margin-right: var(--spacing-xs);
+footer nav a {
+  color: var(--color-text-secondary, #bfc9d1);
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+footer nav a:focus,
+footer nav a:hover {
+  color: var(--color-primary);
+  background: var(--color-accent-bg-light);
+  outline: none;
 }

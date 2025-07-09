@@ -1,12 +1,12 @@
 {
-  "timestamp": "2025-07-08T19:24:29.880Z",
+  "timestamp": "2025-07-09T18:38:02.011Z",
   "summary": {
     "totalFiles": 2,
-    "totalOriginalSize": "79.54 KB",
-    "totalCleanedSize": "79.44 KB",
-    "totalSizeSavings": "0.1%",
-    "totalBytesRemoved": 106,
-    "totalRejectedSelectors": 0
+    "totalOriginalSize": "84.74 KB",
+    "totalCleanedSize": "82.56 KB",
+    "totalSizeSavings": "2.6%",
+    "totalBytesRemoved": 2226,
+    "totalRejectedSelectors": 29
   },
   "files": [
     {
@@ -14,24 +14,55 @@
       "cssFile": "/home/mhenke/Projects/mike-henke-website/styles.css",
       "backupFile": "/home/mhenke/Projects/mike-henke-website/styles.backup.css",
       "cleanedFile": "/home/mhenke/Projects/mike-henke-website/styles.cleaned.css",
-      "originalSize": "56.98 KB",
-      "cleanedSize": "56.88 KB",
-      "sizeSavings": "0.2%",
-      "bytesRemoved": 106,
-      "rejectedSelectors": [],
-      "rejectedCss": ""
+      "originalSize": "61.21 KB",
+      "cleanedSize": "59.75 KB",
+      "sizeSavings": "2.4%",
+      "bytesRemoved": 1496,
+      "rejectedSelectors": [
+        "\n#disqus_thread .post-content",
+        "\n#disqus_thread .post-body",
+        "\n#disqus_thread .post-message",
+        "\n#disqus_thread .comment__header",
+        "\n#disqus_thread .comment__footer",
+        "\n#disqus_thread .post-menu",
+        "\n#disqus_thread .comment-footer__menu",
+        "\n#disqus_thread .post-byline",
+        "\n#disqus_thread .comment__footer a",
+        "\n#disqus_thread .post-menu a",
+        "\n#disqus_thread .icon-flag",
+        "\n#disqus_thread .icon-share",
+        "\n#disqus_thread .icon-twitter-x",
+        "\n#disqus_thread .icon-facebook",
+        "#disqus_thread .post-menu",
+        "#disqus_thread .post-menu-item a",
+        "\n#disqus_thread .comment-footer__action",
+        "#disqus_thread .post-menu-item a:hover",
+        "\n#disqus_thread .comment-footer__action:hover",
+        "#disqus_thread .post-message p",
+        "#disqus_thread .see-more",
+        "#disqus_thread .vote-up",
+        "\n#disqus_thread .vote-down",
+        "#disqus_thread .vote-up:hover",
+        "\n#disqus_thread .vote-down:hover"
+      ],
+      "rejectedCss": "\n\n#disqus_thread .post-content, \n#disqus_thread .post-body, \n#disqus_thread .post-message, \n#disqus_thread .comment__header, \n#disqus_thread .comment__footer, \n#disqus_thread .post-menu, \n#disqus_thread .comment-footer__menu {\n  background: var(--color-background) !important;\n  color: var(--color-text-secondary) !important;\n  font-family: 'Montserrat', Arial, Helvetica, sans-serif !important;\n  font-size: 1.08rem;\n  line-height: 1.7;\n}\n\n#disqus_thread .comment__header, \n#disqus_thread .post-byline {\n  color: var(--color-primary) !important;\n  font-weight: 700;\n  letter-spacing: 0.2px;\n}\n\n#disqus_thread .comment__footer a, \n#disqus_thread .post-menu a {\n  color: var(--color-primary) !important;\n  text-decoration: underline;\n  font-weight: 600;\n  letter-spacing: 0.2px;\n}\n\n#disqus_thread .icon-flag, \n#disqus_thread .icon-share, \n#disqus_thread .icon-twitter-x, \n#disqus_thread .icon-facebook {\n  color: var(--color-primary) !important;\n  opacity: 0.85;\n}\n#disqus_thread .post-menu, \n#disqus_thread .comment-footer__menu {\n  background: transparent !important;\n  border: none !important;\n}\n#disqus_thread .post-menu-item a, \n#disqus_thread .comment-footer__action {\n  color: var(--color-primary) !important;\n  background: none !important;\n  border-radius: 6px;\n  padding: 2px 8px;\n  transition: background 0.2s;\n}\n#disqus_thread .post-menu-item a:hover, \n#disqus_thread .comment-footer__action:hover {\n  background: var(--color-surface) !important;\n  color: var(--color-text) !important;\n}\n#disqus_thread .post-message p {\n  margin-bottom: 0.7em;\n}\n#disqus_thread .see-more {\n  color: var(--color-primary) !important;\n  font-weight: 600;\n  cursor: pointer;\n}\n#disqus_thread .vote-up, \n#disqus_thread .vote-down {\n  color: var(--color-primary) !important;\n  background: none !important;\n  border-radius: 4px;\n  transition: background 0.2s;\n}\n#disqus_thread .vote-up:hover, \n#disqus_thread .vote-down:hover {\n  background: var(--color-surface) !important;\n  color: var(--color-text) !important;\n}"
     },
     {
       "fileName": "search.css",
       "cssFile": "/home/mhenke/Projects/mike-henke-website/assets/css/search.css",
       "backupFile": "/home/mhenke/Projects/mike-henke-website/assets/css/search.backup.css",
       "cleanedFile": "/home/mhenke/Projects/mike-henke-website/assets/css/search.cleaned.css",
-      "originalSize": "22.56 KB",
-      "cleanedSize": "22.56 KB",
-      "sizeSavings": "0.0%",
-      "bytesRemoved": 0,
-      "rejectedSelectors": [],
-      "rejectedCss": ""
+      "originalSize": "23.52 KB",
+      "cleanedSize": "22.81 KB",
+      "sizeSavings": "3.0%",
+      "bytesRemoved": 730,
+      "rejectedSelectors": [
+        ".search-results-count",
+        ".search-input-wrapper",
+        ".search-input-icon",
+        ".search-input-wrapper .pagefind-ui__search-input"
+      ],
+      "rejectedCss": "\n.search-results-count {\n  display: block;\n  font-size: var(--font-size-xl);\n  font-weight: var(--font-weight-medium);\n  color: var(--color-text);\n  margin: var(--spacing-lg) 0 var(--spacing-lg) 0;\n  text-align: center;\n  letter-spacing: var(--letter-spacing-subtle);\n  font-family: var(--font-primary);\n}\n.search-input-wrapper {\n  position: relative;\n  width: 100%;\n}\n.search-input-icon {\n  position: absolute;\n  left: var(--spacing-xl);\n  top: 50%;\n  transform: translateY(-50%);\n  font-size: var(--font-size-lg);\n  color: var(--color-text-secondary);\n  pointer-events: none;\n  z-index: 10;\n}\n.search-input-wrapper .pagefind-ui__search-input {\n  padding-left: calc(var(--spacing-xl) + var(--spacing-lg) + var(--spacing-lg));\n}"
     }
   ],
   "contentScanned": [
