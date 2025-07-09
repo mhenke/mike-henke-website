@@ -165,16 +165,20 @@
         if (progressBars.length > 0) {
             const animateProgressBar = (progressBar) => {
                 const targetWidth = progressBar.getAttribute('data-width');
+                const delay = progressBar.getAttribute('data-animation-delay') || '0s';
                 const span = progressBar.querySelector('span');
                 
                 if (span && targetWidth) {
-                    // Set the CSS custom property first
-                    progressBar.style.setProperty('--progress-width', targetWidth + '%');
+                    // Set the animation delay
+                    span.style.setProperty('--animation-delay', delay);
                     
-                    // Add animate class after a brief delay to trigger smooth transition
-                    setTimeout(() => {
-                        progressBar.classList.add('animate');
-                    }, 50);
+                    // Add animate class to enable animation timing
+                    progressBar.classList.add('animate');
+                    
+                    // Use requestAnimationFrame to ensure smooth transition
+                    requestAnimationFrame(() => {
+                        span.style.width = targetWidth + '%';
+                    });
                 }
             };
 

@@ -1520,10 +1520,7 @@ section {
   border-radius: var(--border-radius-xs);
   width: 0;
   transition: width var(--transition-slow) ease-out;
-}
-
-.progress-bar.animate span {
-  width: var(--progress-width, 0%);
+  transition-delay: var(--animation-delay, 0s);
 }
 
 /* Frameworks Grid */
