@@ -168,15 +168,12 @@
                 const span = progressBar.querySelector('span');
                 
                 if (span && targetWidth) {
-                    // Add animate class to enable transitions
-                    progressBar.classList.add('animate');
-                    
-                    // Set the CSS custom property and animate
+                    // Set the CSS custom property first
                     progressBar.style.setProperty('--progress-width', targetWidth + '%');
                     
-                    // Set the target width after a small delay to trigger animation
+                    // Add animate class after a brief delay to trigger smooth transition
                     setTimeout(() => {
-                        span.style.width = targetWidth + '%';
+                        progressBar.classList.add('animate');
                     }, 50);
                 }
             };
