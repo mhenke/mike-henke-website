@@ -128,7 +128,30 @@
 
 /* Results count below input, above results */
 
-/* Search Results Count - Modern, clean, and visually integrated */
+/* Search Results Count - Match mobile design with full width layout */
+
+.pagefind-ui__results-count {
+  display: none;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+  margin: var(--spacing-lg) auto var(--spacing-xl) auto;
+  text-align: center;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--color-surface-light);
+  border-radius: var(--border-radius-lg);
+  border: 2px solid var(--color-border);
+  max-width: none;
+  line-height: 1.4;
+}
+
+.pagefind-ui__results-count:not(:empty) {
+  display: block;
+}
+
+/* Search term highlighting in results count */
+
+/* Custom results count for your HTML structure */
 .search-results-count {
   display: none;
   align-items: center;
@@ -155,35 +178,6 @@
 
 .search-results-count:not(:empty) {
   display: flex;
-}
-
-.search-results-count .fa-search {
-  color: #19d4fe;
-  font-size: 1.3em;
-  margin-right: 0.5rem;
-  vertical-align: middle;
-}
-
-.search-results-count strong {
-  color: #19d4fe;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-}
-
-.search-results-count em {
-  color: var(--color-text-secondary, #bfc9d1);
-  font-style: normal;
-  font-weight: 400;
-  margin-left: 0.25rem;
-}
-
-@media (max-width: 600px) {
-  .search-results-count {
-    font-size: 1.05rem;
-    padding: 0.6rem 1rem;
-    max-width: 98vw;
-    border-radius: 0.75rem;
-  }
 }
 
 /* Search Messages - Modern styling */
@@ -603,7 +597,7 @@
 
   /* Mobile results count styling */
 
-  .search-results-count {
+  .pagefind-ui__results-count {
     font-size: var(--font-size-base);
     padding: var(--spacing-sm) var(--spacing-md);
     margin: var(--spacing-md) auto var(--spacing-lg) auto;
