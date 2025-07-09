@@ -814,15 +814,6 @@ search-content .pagefind-ui__results .blog-post-meta time {
   opacity: 0.9;
 }
 
-/* Animate skill bars smoothly */
-.skills-card .progress-bar span {
-  display: block;
-  height: 100%;
-  width: 0;
-  background-color: #19d4fe;
-  border-radius: 8px;
-  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
-}
 
 /* Loading States */
 
@@ -852,7 +843,7 @@ footer nav a {
 
 footer nav a:focus,
 footer nav a:hover {
-  color: #19d4fe;
-  background: rgba(25, 212, 254, 0.08);
+  color: var(--color-primary);
+  background: var(--color-accent-bg-light);
   outline: none;
 }
