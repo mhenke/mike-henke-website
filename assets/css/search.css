@@ -98,7 +98,7 @@
   border-color: var(--color-primary);
   box-shadow:
     0 8px 24px rgba(25, 212, 254, 0.25),
-    0 0 0 3px rgba(25, 212, 254, 0.1);
+    0 0 0 3px var(--color-accent-bg);
   background: var(--color-surface);
 }
 
@@ -357,7 +357,7 @@
   border-color: var(--color-primary);
   box-shadow:
     0 8px 24px rgba(25, 212, 254, 0.25),
-    0 0 0 3px rgba(25, 212, 254, 0.1);
+    0 0 0 3px var(--color-accent-bg);
   background: var(--color-surface);
 }
 
@@ -806,7 +806,7 @@
   border-top: 1px solid var(--color-border);
 }
 
-.search-content .pagefind-ui__results .blog-post-meta time {
+search-content .pagefind-ui__results .blog-post-meta time {
   font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
   font-weight: var(--font-weight-regular);
@@ -814,4 +814,45 @@
   opacity: 0.9;
 }
 
+/* Animate skill bars smoothly */
+.skills-card .progress-bar span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background-color: #19d4fe;
+  border-radius: 8px;
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 /* Loading States */
+
+/* Footer Navigation Styles */
+footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem 2.5rem;
+  max-width: 600px;
+  margin: 0 auto 1.5rem auto;
+  padding: 0;
+}
+
+footer nav a {
+  color: var(--color-text-secondary, #bfc9d1);
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+footer nav a:focus,
+footer nav a:hover {
+  color: #19d4fe;
+  background: rgba(25, 212, 254, 0.08);
+  outline: none;
+}
