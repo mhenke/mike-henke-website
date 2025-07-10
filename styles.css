@@ -362,11 +362,17 @@ div {
 }
 
 .content-section-top-margin {
-  margin-top: var(--spacing-xl);
+  margin-top: var(--spacing-2xl);
+}
+
+/* Ensure first content section after navigation has proper top spacing */
+main > section:first-child,
+main > .content-section-boxed:first-child {
+  margin-top: var(--spacing-2xl);
 }
 
 section {
-  margin: 0 auto var(--spacing-3xl) auto;
+  margin: var(--spacing-2xl) auto;
   max-width: var(--max-width-content);
   width: 100%;
   padding: 0 var(--spacing-lg);
@@ -385,6 +391,7 @@ section {
   transition: box-shadow var(--transition-normal);
   box-sizing: border-box;
   overflow-x: hidden;
+  margin: 0 auto var(--spacing-2xl) auto;
 }
 
 .section-title {
@@ -515,9 +522,7 @@ section {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
-    top: var(--spacing-md);
-    right: var(--spacing-md);
+    position: relative;
     z-index: var(--z-nav-menu);
   }
 }
@@ -2187,7 +2192,6 @@ section {
   background-color: var(--color-background);
   border-top: var(--border-width-thin) solid var(--color-border);
   padding: var(--spacing-xl) var(--spacing-lg);
-  margin-top: var(--spacing-3xl);
   color: var(--color-text-secondary);
 }
 
