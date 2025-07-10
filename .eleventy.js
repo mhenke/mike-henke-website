@@ -531,6 +531,49 @@ module.exports = function (eleventyConfig) {
     return cleanContent;
   });
 
+  // URL fixing transform - fix malformed URLs from WordPress import
+  eleventyConfig.addTransform(
+    'urlFixTransform',
+    function (content, outputPath) {
+      if (!outputPath || !outputPath.endsWith('.html')) {
+        return content;
+      }
+
+      // Early return if no URLs to fix
+      if (!content.includes('www.') && !content.includes('google.com/reader/view/feed')) {
+        return content;
+      }
+
+      let result = content;
+
+      // Fix 1: Add https:// to www. URLs that are missing protocol
+      result = result.replace(
+        /href=["']www\.([^"']+)["']/g,
+        'href="https://www.$1"'
+      );
+
+      // Fix 2: Replace Google Reader feed URLs with direct URLs
+      result = result.replace(
+        /href=["']https:\/\/www\.google\.com\/reader\/view\/feed\/[^"']*riaforge[^"']*["']/g,
+        'href="https://www.riaforge.org/"'
+      );
+
+      // Fix 3: Update any remaining http:// RIAForge URLs to https://
+      result = result.replace(
+        /href=["']http:\/\/([^"']*\.riaforge\.org[^"']*)["']/g,
+        'href="https://$1"'
+      );
+
+      // Fix 4: Update any remaining http:// googlesitemapxmlgenerator URLs to https://
+      result = result.replace(
+        /href=["']http:\/\/(googlesitemapxmlgenerator\.riaforge\.org[^"']*)["']/g,
+        'href="https://$1"'
+      );
+
+      return result;
+    }
+  );
+
   // WordPress shortcode processor transform
   eleventyConfig.addTransform(
     'wordpressShortcodeProcessor',
