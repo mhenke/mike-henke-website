@@ -247,9 +247,26 @@ h4 {
   font-family: var(--font-primary);
   font-weight: var(--font-weight-bold);
   line-height: 1.2;
+  margin-top: var(--spacing-2xl);
   margin-bottom: var(--spacing-md);
   color: var(--color-text);
   letter-spacing: var(--letter-spacing-subtle);
+}
+
+/* First heading in content should not have top margin */
+h1:first-child,
+h2:first-child,
+h3:first-child,
+h4:first-child {
+  margin-top: 0;
+}
+
+/* Ensure contact/feedback paragraphs are styled as normal text */
+p {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  margin-top: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
 }
 
 h1 {
