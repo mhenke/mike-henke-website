@@ -57,7 +57,7 @@
   background: none;
   box-shadow: none; 
   border-radius: 0; 
-  border: none; /
+  border: none; /* Remove border since container handles it */
   transition: none;
   box-sizing: border-box;
   overflow-x: hidden;
@@ -758,7 +758,7 @@
   border-top: var(--border-width-thin) solid var(--color-border);
 }
 
-search-content .pagefind-ui__results .blog-post-meta time {
+.search-content .pagefind-ui__results .blog-post-meta time {
   font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
   font-weight: var(--font-weight-regular);
