@@ -118,20 +118,6 @@
 }
 
 /* Position the search icon inside the input field */
-.search-input-wrapper {
-  position: relative;
-  width: 100%;
-}
-.search-input-icon {
-  position: absolute;
-  left: var(--spacing-lg);
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: var(--font-size-xl);
-  color: var(--color-text);
-  pointer-events: none;
-  z-index: 2;
-}
 .search-input {
   padding-left: calc(var(--spacing-xl) + var(--spacing-lg) + var(--spacing-lg));
 }
