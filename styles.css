@@ -2043,6 +2043,7 @@ section {
   gap: var(--spacing-xl);
   align-items: flex-start;
   transition: all var(--transition-normal);
+  margin-top: var(--spacing-xl);
 }
 
 .author-bio:hover {
