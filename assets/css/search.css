@@ -53,11 +53,11 @@
 
 /* Search content area - simplified since container has card styling */
 .search-content {
-  padding: 0; /* Remove padding since container handles it */
-  background: none; /* Remove background since container handles it */
-  box-shadow: none; /* Remove shadow since container handles it */
-  border-radius: 0; /* Remove border radius since container handles it */
-  border: none; /* Remove border since container handles it */
+  padding: 0; 
+  background: none;
+  box-shadow: none; 
+  border-radius: 0; 
+  border: none; /
   transition: none;
   box-sizing: border-box;
   overflow-x: hidden;
@@ -78,7 +78,7 @@
   padding: var(--spacing-lg) var(--spacing-xl);
   padding-left: calc(
     var(--spacing-xl) + var(--spacing-lg) + var(--spacing-lg)
-  ); /* Increase left padding for icon */
+  ); 
   width: 100%;
   max-width: none;
   margin: 0 auto var(--spacing-lg) auto;
@@ -89,8 +89,6 @@
   appearance: none;
   -webkit-appearance: none;
 }
-
-/* Remove duplicate search icon rules - handled by wrapper */
 
 .search-content .search-input:focus,
 .search-content .pagefind-ui__search-input:focus {
@@ -126,10 +124,6 @@
   text-align: left;
 }
 
-/* Results count below input, above results */
-
-/* Search Results Count - Match mobile design with full width layout */
-
 .pagefind-ui__results-count {
   display: none;
   font-size: var(--font-size-lg);
@@ -148,10 +142,6 @@
 .pagefind-ui__results-count:not(:empty) {
   display: block;
 }
-
-/* Search term highlighting in results count */
-
-/* Custom results count for your HTML structure */
 
 /* Search Messages - Modern styling */
 .search-content .pagefind-ui__message {
@@ -218,35 +208,35 @@
 .search-content .pagefind-ui__results .blog-post-card,
 .search-content .pagefind-ui__result {
   margin-bottom: var(--spacing-2xl);
-  padding: var(--spacing-3xl) var(--spacing-2xl); /* Even larger padding for wider cards */
+  padding: var(--spacing-3xl) var(--spacing-2xl); 
   background-color: var(--color-surface-light);
-  border-radius: var(--border-radius-xl); /* Larger border radius */
+  border-radius: var(--border-radius-xl); 
   border: var(--border-width-medium) solid var(--color-border);
-  box-shadow: var(--shadow-lg); /* Stronger shadow */
+  box-shadow: var(--shadow-lg); 
   width: 100%;
   box-sizing: border-box;
   transition: var(--transition-all);
-  max-width: none; /* Remove max-width constraint to allow full width */
-  margin-left: 0; /* Remove auto margin */
-  margin-right: 0; /* Remove auto margin */
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
   min-height: calc(
     var(--spacing-5xl) + var(--spacing-4xl)
-  ); /* Ensure minimum height for better presence */
+  );
 }
 
 .search-content .pagefind-ui__results .blog-post-card:hover,
 .search-content .pagefind-ui__result:hover {
   box-shadow:
-    var(--shadow-lg), var(--shadow-accent); /* Even stronger hover shadow */
+    var(--shadow-lg), var(--shadow-accent); 
   border-color: var(--color-primary);
   transform: var(--hover-slide);
 }
 
 .search-content .pagefind-ui__results .blog-post-title,
 .search-content .pagefind-ui__result-title {
-  margin: 0 0 var(--spacing-lg) 0; /* More spacing like blog */
-  font-size: var(--font-size-2xl); /* Larger title like blog cards */
-  font-weight: var(--font-weight-bold); /* Bolder like blog */
+  margin: 0 0 var(--spacing-lg) 0; 
+  font-size: var(--font-size-2xl); 
+  font-weight: var(--font-weight-bold);
   line-height: 1.3;
 }
 
@@ -318,8 +308,6 @@
 }
 
 /* Custom Search Structure Styles */
-
-/* Main search container positioning - full width layout */
 #search {
   position: relative;
   width: 100%;
@@ -339,7 +327,7 @@
   padding: var(--spacing-lg) var(--spacing-xl);
   padding-left: calc(
     var(--spacing-xl) + var(--spacing-lg) + var(--spacing-lg)
-  ); /* Increase left padding for icon */
+  ); 
   width: 100%;
   box-sizing: border-box;
   transition: all 0.3s ease;
@@ -365,16 +353,9 @@
   opacity: 0.8;
 }
 
-/* Add styles for Font Awesome search icon in input wrapper */
-
-/* Search results container */
-
-/* Empty state styling */
-
-/* Pagefind-specific result styling to match blog cards with wider layout */
 .search-content .pagefind-ui__result {
   margin-bottom: var(--spacing-2xl);
-  padding: var(--spacing-3xl) var(--spacing-2xl); /* Larger padding for wider feel */
+  padding: var(--spacing-3xl) var(--spacing-2xl);
   background-color: var(--color-surface-light);
   border-radius: var(--border-radius-xl);
   border: var(--border-width-medium) solid var(--color-border);
@@ -382,11 +363,11 @@
   transition: var(--transition-all);
   min-height: calc(
     var(--spacing-5xl) + var(--spacing-4xl)
-  ); /* Ensure good height */
-  width: 100%; /* Ensure full width */
-  max-width: none; /* Remove max-width constraint */
-  margin-left: 0; /* Remove auto margin */
-  margin-right: 0; /* Remove auto margin */
+  ); 
+  width: 100%;
+  max-width: none; 
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .search-content .pagefind-ui__result:hover {
@@ -420,12 +401,8 @@
   margin: var(--spacing-lg) 0;
   line-height: 1.6;
   font-family: var(--font-primary);
-
-  /* Clean up excerpt formatting */
   text-overflow: ellipsis;
   overflow: hidden;
-
-  /* Remove any unwanted quotes or formatting artifacts */
   quotes: none;
 }
 
@@ -434,7 +411,6 @@
   content: none;
 }
 
-/* Remove any inline quotes or artifacts from the excerpt */
 .search-content .pagefind-ui__result-excerpt q,
 .search-content .pagefind-ui__result-excerpt blockquote {
   quotes: none;
@@ -448,7 +424,6 @@
   content: none;
 }
 
-/* Large desktop layout - matches styles.css pattern */
 @media (min-width: 1200px) {
   .search-container {
     padding: var(--spacing-3xl) var(--spacing-xl);
@@ -504,7 +479,7 @@
     margin-bottom: var(--spacing-lg);
     border-radius: var(--border-radius-xl);
     box-shadow: var(--shadow-lg);
-    min-height: var(--touch-target); /* Touch-friendly height */
+    min-height: var(--touch-target); 
   }
 
   .search-content #search::before,
@@ -540,7 +515,6 @@
   }
 
   /* Mobile results count styling */
-
   .pagefind-ui__results-count {
     font-size: var(--font-size-base);
     padding: var(--spacing-sm) var(--spacing-md);
@@ -580,20 +554,6 @@
     font-size: var(--font-size-base);
   }
 }
-
-/* Loading States */
-/* Remove Unicode emoji icons from loading and empty state messages. Use Font Awesome in HTML/JS instead. */
-/*
-.search-content .pagefind-ui__loading::before {
-  content: '🔍 ';
-  margin-right: var(--spacing-xs);
-}
-
-.search-content .pagefind-ui__message.pagefind-ui__message--none::before {
-  content: '❌ ';
-  margin-right: var(--spacing-xs);
-}
-*/
 
 /* Ensure search results fade in smoothly */
 .search-content .pagefind-ui__results .blog-post-card {
@@ -776,8 +736,6 @@ search-content .pagefind-ui__results .blog-post-meta time {
   letter-spacing: var(--letter-spacing-subtle);
   opacity: 0.9;
 }
-
-/* Loading States */
 
 /* Footer Navigation Styles */
 footer nav {
