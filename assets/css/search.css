@@ -162,7 +162,7 @@
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-medium);
   color: var(--color-text);
-  margin: var(--spacing-lg) auto var(--spacing-xl) auto;
+  margin: 0 auto var(--spacing-lg) auto;
   text-align: center;
   padding: var(--spacing-md) var(--spacing-lg);
   background: var(--color-surface-light);
@@ -540,11 +540,10 @@
     margin-bottom: var(--spacing-lg);
   }
 
-  /* Mobile results count styling */
   .pagefind-ui__results-count {
     font-size: var(--font-size-base);
     padding: var(--spacing-sm) var(--spacing-md);
-    margin: var(--spacing-md) auto var(--spacing-lg) auto;
+    margin: 0 auto var(--spacing-lg) auto;
     border-radius: var(--border-radius-lg);
   }
 }
@@ -567,6 +566,10 @@
       var(--spacing-lg) + var(--spacing-lg) + var(--spacing-sm)
     );
     font-size: var(--font-size-base);
+    margin-bottom: var(--spacing-md);
+  }
+  .pagefind-ui__results-count {
+    margin: 0 auto var(--spacing-md) auto;
   }
 
   .search-content .pagefind-ui__results .blog-post-card,
