@@ -543,8 +543,18 @@
   .pagefind-ui__results-count {
     font-size: var(--font-size-base);
     padding: var(--spacing-sm) var(--spacing-md);
-    margin: 0 auto var(--spacing-lg) auto;
+    margin: 0 auto var(--spacing-lg) auto; /* This line is unchanged */
     border-radius: var(--border-radius-lg);
+  }
+}
+
+.search-results-count {
+  margin: 0 auto var(--spacing-lg) auto;
+}
+
+@media (max-width: 480px) {
+  .search-results-count {
+    margin: 0 auto var(--spacing-md) auto;
   }
 }
 
