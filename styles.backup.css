@@ -247,9 +247,26 @@ h4 {
   font-family: var(--font-primary);
   font-weight: var(--font-weight-bold);
   line-height: 1.2;
+  margin-top: var(--spacing-2xl);
   margin-bottom: var(--spacing-md);
   color: var(--color-text);
   letter-spacing: var(--letter-spacing-subtle);
+}
+
+/* First heading in content should not have top margin */
+h1:first-child,
+h2:first-child,
+h3:first-child,
+h4:first-child {
+  margin-top: 0;
+}
+
+/* Ensure contact/feedback paragraphs are styled as normal text */
+p {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  margin-top: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
 }
 
 h1 {
@@ -362,11 +379,17 @@ div {
 }
 
 .content-section-top-margin {
-  margin-top: var(--spacing-xl);
+  margin-top: var(--spacing-2xl);
+}
+
+/* Ensure first content section after navigation has proper top spacing */
+main > section:first-child,
+main > .content-section-boxed:first-child {
+  margin-top: var(--spacing-2xl);
 }
 
 section {
-  margin: 0 auto var(--spacing-3xl) auto;
+  margin: var(--spacing-2xl) auto;
   max-width: var(--max-width-content);
   width: 100%;
   padding: 0 var(--spacing-lg);
@@ -385,6 +408,7 @@ section {
   transition: box-shadow var(--transition-normal);
   box-sizing: border-box;
   overflow-x: hidden;
+  margin: 0 auto var(--spacing-lg) auto;
 }
 
 .section-title {
@@ -515,9 +539,7 @@ section {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
-    top: var(--spacing-md);
-    right: var(--spacing-md);
+    position: relative;
     z-index: var(--z-nav-menu);
   }
 }
@@ -2187,7 +2209,6 @@ section {
   background-color: var(--color-background);
   border-top: var(--border-width-thin) solid var(--color-border);
   padding: var(--spacing-xl) var(--spacing-lg);
-  margin-top: var(--spacing-3xl);
   color: var(--color-text-secondary);
 }
 
@@ -2373,60 +2394,27 @@ section {
 }
 
 /* Disqus Comment Content Readability (Dark Theme) */
-#disqus_thread,
-#disqus_thread .post-content,
-#disqus_thread .post-body,
-#disqus_thread .post-message,
-#disqus_thread .comment__header,
-#disqus_thread .comment__footer,
-#disqus_thread .post-menu,
-#disqus_thread .comment-footer__menu {
+#disqus_thread {
   background: var(--color-background) !important;
   color: var(--color-text-secondary) !important;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif !important;
   font-size: 1.08rem;
   line-height: 1.7;
 }
-#disqus_thread .author,
-#disqus_thread .comment__header,
-#disqus_thread .post-byline {
+#disqus_thread .author {
   color: var(--color-primary) !important;
   font-weight: 700;
   letter-spacing: 0.2px;
 }
-#disqus_thread a,
-#disqus_thread .comment__footer a,
-#disqus_thread .post-menu a {
+#disqus_thread a {
   color: var(--color-primary) !important;
   text-decoration: underline;
   font-weight: 600;
   letter-spacing: 0.2px;
 }
-#disqus_thread .icon,
-#disqus_thread .icon-flag,
-#disqus_thread .icon-share,
-#disqus_thread .icon-twitter-x,
-#disqus_thread .icon-facebook {
+#disqus_thread .icon {
   color: var(--color-primary) !important;
   opacity: 0.85;
-}
-#disqus_thread .post-menu,
-#disqus_thread .comment-footer__menu {
-  background: transparent !important;
-  border: none !important;
-}
-#disqus_thread .post-menu-item a,
-#disqus_thread .comment-footer__action {
-  color: var(--color-primary) !important;
-  background: none !important;
-  border-radius: 6px;
-  padding: 2px 8px;
-  transition: background 0.2s;
-}
-#disqus_thread .post-menu-item a:hover,
-#disqus_thread .comment-footer__action:hover {
-  background: var(--color-surface) !important;
-  color: var(--color-text) !important;
 }
 #disqus_thread .user {
   background: var(--color-background) !important;
@@ -2434,26 +2422,6 @@ section {
   font-weight: 700;
   border-radius: 50%;
   border: 2px solid var(--color-primary-dark);
-}
-#disqus_thread .post-message p {
-  margin-bottom: 0.7em;
-}
-#disqus_thread .see-more {
-  color: var(--color-primary) !important;
-  font-weight: 600;
-  cursor: pointer;
-}
-#disqus_thread .vote-up,
-#disqus_thread .vote-down {
-  color: var(--color-primary) !important;
-  background: none !important;
-  border-radius: 4px;
-  transition: background 0.2s;
-}
-#disqus_thread .vote-up:hover,
-#disqus_thread .vote-down:hover {
-  background: var(--color-surface) !important;
-  color: var(--color-text) !important;
 }
 #disqus_thread input,
 #disqus_thread textarea {
