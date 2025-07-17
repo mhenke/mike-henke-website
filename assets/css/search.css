@@ -550,11 +550,13 @@
 
 .search-results-count {
   margin: 0 auto var(--spacing-lg) auto;
+  text-align: center;
 }
 
 @media (max-width: 480px) {
   .search-results-count {
     margin: 0 auto var(--spacing-md) auto;
+    text-align: center;
   }
 }
 
