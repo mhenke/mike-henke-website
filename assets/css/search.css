@@ -128,7 +128,7 @@
   top: 50%;
   transform: translateY(-50%);
   font-size: var(--font-size-xl);
-  color: var(--color-icon-light, #f8f9fa);
+  color: var(--color-text);
   pointer-events: none;
   z-index: 2;
 }
