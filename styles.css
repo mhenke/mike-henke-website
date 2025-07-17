@@ -408,7 +408,7 @@ section {
   transition: box-shadow var(--transition-normal);
   box-sizing: border-box;
   overflow-x: hidden;
-  margin: 0 auto var(--spacing-2xl) auto;
+  margin: 0 auto var(--spacing-lg) auto;
 }
 
 .section-title {
