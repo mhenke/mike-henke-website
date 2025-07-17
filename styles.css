@@ -389,8 +389,6 @@ main > .content-section-boxed:first-child {
 }
 
 section {
-  margin: var(--spacing-2xl) auto;
-  max-width: var(--max-width-content);
   width: 100%;
   padding: 0 var(--spacing-lg);
   box-sizing: border-box;
@@ -2040,7 +2038,6 @@ section {
   background: var(--color-surface-light);
   border-radius: var(--border-radius-lg);
   padding: var(--spacing-2xl);
-  margin: var(--spacing-4xl) 0;
   border: var(--border-width-medium) solid var(--color-border);
   display: flex;
   gap: var(--spacing-xl);
@@ -2190,9 +2187,9 @@ section {
   color: var(--color-primary);
   text-decoration: none;
   font-weight: var(--font-weight-medium);
-  margin-bottom: var(--spacing-md);
   display: inline-block;
   transition: color var(--transition-fast);
+  margin-top: 0px;
 }
 
 .category-page-back-link:hover,
