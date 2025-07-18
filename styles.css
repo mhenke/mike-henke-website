@@ -1449,6 +1449,14 @@ section {
   margin-top: var(--spacing-xl);
 }
 
+.achievements-card .methodology-item {
+  align-items: flex-start;
+}
+
+.achievements-card .methodology-item i {
+  margin-top: 2px;
+}
+
 /* ==========================================================================
    SKILLS SECTION
    ========================================================================== */
