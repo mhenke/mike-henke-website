@@ -18,4 +18,3 @@ Thumbs.db
 # IDE / Editor specific
 # .vscode/ # You might want to commit .vscode/settings.json or .vscode/extensions.json
 .idea/
-website_updates.md
