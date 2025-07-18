@@ -1444,6 +1444,107 @@ section {
   }
 }
 
+/* Key Achievements Card Styling */
+.achievements-card {
+  background: var(--color-surface);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-2xl);
+  border: var(--border-width-medium) solid var(--color-border);
+  transition: all var(--transition-normal);
+  margin-top: var(--spacing-xl);
+  opacity: 0;
+  transform: translateY(var(--spacing-lg));
+  animation: slideInUp var(--transition-slow) forwards;
+  animation-delay: 0.1s;
+}
+
+.achievements-card:hover,
+.achievements-card:focus {
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary);
+}
+
+.achievements-card h4 {
+  color: var(--color-text);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  margin: 0 0 var(--spacing-lg) 0;
+  letter-spacing: var(--letter-spacing-subtle);
+}
+
+.achievements-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.achievement-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  opacity: 0;
+  transform: translateX(calc(-1 * var(--spacing-lg)));
+  transition: all var(--transition-normal);
+  animation: slideInLeft var(--transition-slow) forwards;
+}
+
+.achievement-item:nth-child(1) { animation-delay: 0.2s; }
+.achievement-item:nth-child(2) { animation-delay: 0.3s; }
+.achievement-item:nth-child(3) { animation-delay: 0.4s; }
+
+.achievement-item i {
+  color: var(--color-primary);
+  font-size: var(--font-size-lg);
+  transform: scale(0);
+  transition: transform var(--transition-normal);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.2em;
+  animation: scaleIn var(--transition-normal) forwards;
+  animation-delay: inherit;
+}
+
+.achievement-item:hover {
+  transform: var(--hover-slide);
+  color: var(--color-primary);
+}
+
+.achievement-item:hover i {
+  color: var(--color-primary);
+  transform: var(--hover-scale-rotate);
+  box-shadow: var(--shadow-accent-sm);
+}
+
+.achievement-item strong {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+@keyframes slideInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  to {
+    transform: scale(1);
+  }
+}
+
 /* ==========================================================================
    SKILLS SECTION
    ========================================================================== */
