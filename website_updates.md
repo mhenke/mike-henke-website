@@ -1,94 +1,105 @@
-# Website Updates for mikehenke.com
+# Final Website Fixes for mikehenke.com
 
-## **Tagline/Description Update**
+## **1. Fix About Me Section**
 
-**Replace:**
-
-```
-Delivered $1.8M enterprise initiatives supporting 20K+ users while discovering critical security vulnerabilities. Currently pursuing MS in Cyber Operations with 3.388 GPA.
-```
-
-**With:**
+**Change:**
 
 ```
-Analytical problem-solver who delivered $1.8M enterprise initiatives supporting 20K+ users while discovering critical security vulnerabilities. Proven technical leader with resilient adaptability across evolving technology stacks. Currently pursuing MS in Cyber Operations with 3.388 GPA.
+Expert in analytical problem-solving and technical leadership—the kind that transforms legacy challenges into modern solutions and mentors teams through technology transitions most organizations never attempt.
 ```
 
-## **About Me Section Update**
-
-**Replace:**
+**To:**
 
 ```
-Software Engineer and Mentor with 25+ years developing enterprise applications including 8+ years leading full-stack development at Union Pacific Railroad. Graduate-certified in Cybersecurity with experience delivering training materials and mentoring teams. Developed comprehensive customer-facing applications enhancing operational efficiency.
+Expert in analytical problem-solving and technical leadership—the kind that transforms legacy challenges into modern solutions and leads teams through technology transitions most organizations never attempt.
 ```
 
-**With:**
+## **2. Fix Career Descriptions - Remove Repetitive Language**
+
+### **Associate System Engineer (Current) - FIXED:**
+
+**Current (Repetitive):**
 
 ```
-Senior Software Engineer with 20+ years developing enterprise applications at Union Pacific Railroad, where complex systems and mission-critical reliability shape every decision. Expert in analytical problem-solving and technical leadership—the kind that transforms legacy challenges into modern solutions and leads teams through technology transitions most organizations never attempt. Demonstrated resilience by successfully navigating Angular framework evolution (8-17) while maintaining applications serving 20,000+ users. Graduate-certified in Cybersecurity, I combine deep technical expertise with business acumen to build applications that don't just work—they drive operational excellence.
+Leading development of customer-facing web applications using modern JavaScript frameworks (Lit and Angular) with strong analytical approach to complex technical challenges. Coordinated monthly tech deep dives with 20+ cross-functional stakeholders, demonstrating leadership and social influence across development teams. Modernized Customer Vision search functionality using Angular 17 solutions, showing resilience and agility in technology transitions from legacy systems to modern frameworks.
 ```
 
-## **Corrected Associate System Engineer (Previous) Description**
-
-**Replace:**
+**Fixed (Varied Language):**
 
 ```
-Architected Shipment Management application using Angular 14, contributing to $1.8M initiative supporting 20K+ users with 1.7M monthly hits. Developed comprehensive customer-facing applications including Shipment Dashboard, Forecast, Track Shipment, and Customer Vision dashboard with analytical insights across shipping operations.
+Leading development of customer-facing web applications using JavaScript frameworks (Lit and Angular). Coordinating monthly tech deep dives with 20+ cross-functional stakeholders since September 2024. Enhanced Customer Vision search functionality through Angular 17 implementation.
 ```
 
-**With:**
+### **Manager I Audit IT - FIXED:**
+
+**Current (Repetitive):**
 
 ```
-Built Shipment Management application with Angular 14 over 9-month development cycle (2022-2023), contributing to $1.8M initiative supporting 20K+ users with 1.7M monthly hits. Developed enterprise platforms including Shipment Dashboard, Forecast, Track Shipment, and analytics dashboard providing business intelligence across shipping operations. Reduced operational costs by 22%.
+Applied analytical thinking to direct IT audits and security assessments, executing comprehensive audits on CIS v7 controls over 6-month period. Demonstrated problem-solving excellence by identifying and documenting critical SMTP spoofing vulnerability using Python automation, escalating significant email security risk to Tech leadership. Showed leadership and adaptability in strengthening cybersecurity posture across enterprise infrastructure.
 ```
 
-## **Career Section Updates**
-
-**Update Associate System Engineer (Current) Description:**
-
-**Replace:**
+**Fixed (Varied Language):**
 
 ```
-Leading development of customer-facing web applications using modern JavaScript frameworks (Lit and Angular). Coordinated monthly tech deep dives with 20+ cross-functional stakeholders and modernized Customer Vision search functionality using Angular 17 solutions. Maintained legacy applications including Shipment Dashboard Management while transitioning to modern frameworks.
+Directed IT audits and security assessments, executing detailed audits on CIS v7 controls over 6-month period (January-August 2024). Discovered critical SMTP spoofing vulnerability through Python analysis in July 2024, escalating significant email security risk to Tech leadership.
 ```
 
-**With:**
+### **Associate System Engineer (Previous) - FIXED:**
+
+**Current (Repetitive):**
 
 ```
-Leading development of customer-facing web applications using modern JavaScript frameworks (Lit and Angular). Coordinated monthly tech deep dives with 20+ cross-functional stakeholders and modernized Customer Vision search functionality using Angular 17 solutions. Successfully maintained legacy applications while transitioning to modern frameworks.
+Applied analytical thinking to architect Shipment Management application using Angular 14, contributing to $1.8M initiative supporting 20K+ users with 1.7M monthly hits. Demonstrated resilience and agility by successfully transitioning from legacy systems to modern frameworks. Led development of comprehensive customer-facing applications including Shipment Dashboard, Forecast, Track Shipment, and Customer Vision dashboard, providing analytical insights across shipping operations and enhancing business decision-making.
 ```
 
-**Update Manager I Audit Description:**
-
-**Replace:**
+**Fixed (Varied Language):**
 
 ```
-Directed IT audits and security assessments, executing comprehensive audits on CIS v7 controls over 6-month period. Identified and documented critical SMTP spoofing vulnerability using Python, escalating significant email security risk to Tech leadership. Strengthened cybersecurity posture and application security framework.
+Built Shipment Management application with Angular 14 over 9-month development cycle (2022-2023), contributing to $1.8M initiative supporting 20K+ users with 1.7M monthly hits. Developed enterprise platforms including Shipment Dashboard, Forecast, Track Shipment, and analytics dashboard. Reduced operational costs by 22%.
 ```
 
-**With:**
+## **3. Key Achievements Section - STREAMLINED:**
+
+**Current (Too Verbose):**
 
 ```
-Directed IT audits and security assessments, executing comprehensive audits on CIS v7 controls over 6-month period. Discovered critical SMTP spoofing vulnerability using Python analysis, escalating significant email security risk to Tech leadership. Strengthened cybersecurity posture across enterprise infrastructure.
+• Analytical Problem-Solving: Identified critical SMTP spoofing vulnerability using Python automation, preventing potential security breach affecting enterprise infrastructure.
+• Technical Leadership & Social Influence: Led training initiatives for 50+ professionals and coordinated monthly tech deep dives with 20+ cross-functional stakeholders.
+• Resilience & Technology Agility: Successfully navigated technology transitions from legacy systems to modern Angular frameworks (8-17), maintaining $1.8M+ enterprise applications.
 ```
 
-**Update Associate System Engineer (Previous) Description:**
-
-**Replace:**
+**Fixed (Concise & Impactful):**
 
 ```
-Architected Shipment Management application using Angular 14, contributing to $1.8M initiative supporting 20K+ users with 1.7M monthly hits. Developed comprehensive customer-facing applications including Shipment Dashboard, Forecast, Track Shipment, and Customer Vision dashboard with analytical insights across shipping operations.
+• Security Engineering: Discovered critical SMTP spoofing vulnerability using Python analysis (July 2024)
+• Technical Leadership: Trained 50+ professionals and coordinate monthly tech deep dives with 20+ stakeholders
+• Technology Evolution: Successfully transitioned from legacy systems to Angular 8-17 while maintaining $1.8M applications
 ```
 
-**With:**
+## **4. Why These Changes Matter:**
 
-```
-Architected Shipment Management application using Angular 14, contributing to $1.8M initiative supporting 20K+ users with 1.7M monthly hits. Built comprehensive customer-facing applications including Shipment Dashboard, Forecast, Track Shipment, and Customer Vision dashboard providing business intelligence across shipping operations.
-```
+### **Eliminates Repetition:**
 
-These updates will:
-✅ Replace "Mentor" with "Leader" throughout  
-✅ Emphasize the top 3 2025 skills (Analytical Thinking, Leadership & Social Influence, Resilience & Agility)  
-✅ Maintain factual accuracy based on your documents  
-✅ Improve SEO for senior engineering roles  
-✅ Present a cohesive narrative around problem-solving and technical leadership
+- Removes "Applied analytical thinking" (3x), "Demonstrated" (4x), "Showed" (2x)
+- Uses varied action verbs: Leading → Coordinating → Enhanced → Directed → Discovered → Built → Developed
+
+### **Follows Your Tips:**
+
+- ✅ Keeps descriptions under 2 lines
+- ✅ Focuses on relevance and conciseness
+- ✅ Uses varied impactful words
+- ✅ Includes time-based statements
+- ✅ Includes improvement metrics
+
+### **Maintains Factual Accuracy:**
+
+- All claims verified against performance reviews and primary documents
+- Proper verb usage (Built vs Maintained)
+- Accurate timeframes and metrics
+
+### **Professional Impact:**
+
+- Sounds natural, not robotic
+- Easy to scan quickly
+- Each role description is distinct
+- Builds credibility through specificity
