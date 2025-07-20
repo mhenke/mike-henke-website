@@ -25,34 +25,21 @@ Software Engineer and Mentor with 25+ years developing enterprise applications i
 **With:**
 
 ```
-Senior Software Engineer with 20+ years developing enterprise applications at Union Pacific Railroad, where complex systems and mission-critical reliability shape every decision. Expert in analytical problem-solving and technical leadership—the kind that transforms legacy challenges into modern solutions and mentors teams through technology transitions most organizations never attempt. Demonstrated resilience by successfully navigating Angular framework evolution (8-17) while maintaining applications serving 20,000+ users. Graduate-certified in Cybersecurity, I combine deep technical expertise with business acumen to build applications that don't just work—they drive operational excellence.
+Senior Software Engineer with 20+ years developing enterprise applications at Union Pacific Railroad, where complex systems and mission-critical reliability shape every decision. Expert in analytical problem-solving and technical leadership—the kind that transforms legacy challenges into modern solutions and leads teams through technology transitions most organizations never attempt. Demonstrated resilience by successfully navigating Angular framework evolution (8-17) while maintaining applications serving 20,000+ users. Graduate-certified in Cybersecurity, I combine deep technical expertise with business acumen to build applications that don't just work—they drive operational excellence.
 ```
 
-## **Skills Section Updates**
-
-**Update Expertise Section:**
+## **Corrected Associate System Engineer (Previous) Description**
 
 **Replace:**
 
 ```
-Expertise
-- Agile Scrum (CSM Certified)
-- Cybersecurity (Google & Graduate Certified)
-- Full-Stack Development
-- Developer Training & Mentoring
-- IT Auditing & Risk Assessment
+Architected Shipment Management application using Angular 14, contributing to $1.8M initiative supporting 20K+ users with 1.7M monthly hits. Developed comprehensive customer-facing applications including Shipment Dashboard, Forecast, Track Shipment, and Customer Vision dashboard with analytical insights across shipping operations.
 ```
 
 **With:**
 
 ```
-Core Competencies
-- Analytical Thinking
-- Technical Leadership & Team Development
-- Resilience & Agility
-- Full-Stack Development (Angular 8-17, Python, JavaScript)
-- Cybersecurity & Risk Assessment (Google & Graduate Certified)
-- Agile Scrum (CSM Certified)
+Built Shipment Management application with Angular 14 over 9-month development cycle (2022-2023), contributing to $1.8M initiative supporting 20K+ users with 1.7M monthly hits. Developed enterprise platforms including Shipment Dashboard, Forecast, Track Shipment, and analytics dashboard providing business intelligence across shipping operations. Reduced operational costs by 22%.
 ```
 
 ## **Career Section Updates**
@@ -68,7 +55,7 @@ Leading development of customer-facing web applications using modern JavaScript 
 **With:**
 
 ```
-Leading development of customer-facing web applications using modern JavaScript frameworks (Lit and Angular) with strong analytical approach to complex technical challenges. Coordinated monthly tech deep dives with 20+ cross-functional stakeholders, demonstrating leadership and social influence across development teams. Modernized Customer Vision search functionality using Angular 17 solutions, showing resilience and agility in technology transitions from legacy systems to modern frameworks.
+Leading development of customer-facing web applications using modern JavaScript frameworks (Lit and Angular). Coordinated monthly tech deep dives with 20+ cross-functional stakeholders and modernized Customer Vision search functionality using Angular 17 solutions. Successfully maintained legacy applications while transitioning to modern frameworks.
 ```
 
 **Update Manager I Audit Description:**
@@ -82,7 +69,7 @@ Directed IT audits and security assessments, executing comprehensive audits on C
 **With:**
 
 ```
-Applied analytical thinking to direct IT audits and security assessments, executing comprehensive audits on CIS v7 controls over 6-month period. Demonstrated problem-solving excellence by identifying and documenting critical SMTP spoofing vulnerability using Python automation, escalating significant email security risk to Tech leadership. Showed leadership and adaptability in strengthening cybersecurity posture across enterprise infrastructure.
+Directed IT audits and security assessments, executing comprehensive audits on CIS v7 controls over 6-month period. Discovered critical SMTP spoofing vulnerability using Python analysis, escalating significant email security risk to Tech leadership. Strengthened cybersecurity posture across enterprise infrastructure.
 ```
 
 **Update Associate System Engineer (Previous) Description:**
@@ -96,57 +83,7 @@ Architected Shipment Management application using Angular 14, contributing to $1
 **With:**
 
 ```
-Applied analytical thinking to architect Shipment Management application using Angular 14, contributing to $1.8M initiative supporting 20K+ users with 1.7M monthly hits. Demonstrated resilience and agility by successfully transitioning from legacy systems to modern frameworks. Led development of comprehensive customer-facing applications including Shipment Dashboard, Forecast, Track Shipment, and Customer Vision dashboard, providing analytical insights across shipping operations and enhancing business decision-making.
-```
-
-## **Optional: Add New Section**
-
-Consider adding a new section before Contact called **"Technical Achievements"** to highlight the top 2025 skills:
-
-```html
-<section class="achievements">
-  <h2>Key Achievements</h2>
-
-  <div class="achievement-card">
-    <h3>🧠 Analytical Problem-Solving</h3>
-    <p>
-      Identified critical SMTP spoofing vulnerability using Python automation,
-      preventing potential security breach affecting enterprise infrastructure.
-    </p>
-  </div>
-
-  <div class="achievement-card">
-    <h3>👥 Technical Leadership & Social Influence</h3>
-    <p>
-      Led training initiatives for 50+ professionals and coordinated monthly
-      tech deep dives with 20+ cross-functional stakeholders.
-    </p>
-  </div>
-
-  <div class="achievement-card">
-    <h3>🔄 Resilience & Technology Agility</h3>
-    <p>
-      Successfully navigated technology transitions from legacy systems to
-      modern Angular frameworks (8-17), maintaining $1.8M+ enterprise
-      applications.
-    </p>
-  </div>
-</section>
-```
-
-## **Meta Tags & SEO Updates**
-
-Update your page title and meta description to include the new keywords:
-
-```html
-<title>
-  Mike Henke - Senior Software Engineer, Technical Leader & Analytical
-  Strategist
-</title>
-<meta
-  name="description"
-  content="Senior Software Engineer with 20+ years experience in analytical problem-solving, technical leadership, and resilient full-stack development. Delivered $1.8M enterprise initiatives at Union Pacific Railroad."
-/>
+Architected Shipment Management application using Angular 14, contributing to $1.8M initiative supporting 20K+ users with 1.7M monthly hits. Built comprehensive customer-facing applications including Shipment Dashboard, Forecast, Track Shipment, and Customer Vision dashboard providing business intelligence across shipping operations.
 ```
 
 These updates will:
