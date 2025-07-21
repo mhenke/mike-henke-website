@@ -13,15 +13,15 @@ Before documenting ANY information, perform these security checks:
 
 **✅ ONLY DOCUMENT IF ALL CHECKS PASS**
 
-Before we begin any work, please establish our documentation system in the .claude folder:
+Create our documentation system in .claude folder:
 
-1. **Create .claude/session-plan.md** - Your working plan and approach for this session
-2. **Create .claude/changes-log.md** - Track all files modified, added, or removed  
-3. **Create .claude/context-notes.md** - Key insights, decisions, and context for future sessions
+1. **session-plan.md** - Current session's approach and goals
+2. **changes-log.md** - Track all file modifications with timestamps
+3. **context-notes.md** - Key decisions and context for future sessions
 
-For each specific issue/feature we work on, also create:
-- **issues/plan_$ARGUMENTS.md** - Detailed implementation plan
-- **docs/plan_$ARGUMENTS.md** - Requirements and specifications
+For specific features, also create:
+- **issues/plan_$ARGUMENTS.md** (implementation plan)
+- **docs/plan_$ARGUMENTS.md** (requirements)
 
 **Your workflow should be:**
 1. Always start by updating session-plan.md with what we're doing
