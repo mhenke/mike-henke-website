@@ -1,7 +1,7 @@
 ---
 title: "Complete FOSS (kinda) CFML Development Stack with Adobe"
 date: 2011-02-22
-categories: 
+categories:
   - "acf"
   - "CFEclipse"
   - "ColdFusion"
@@ -16,7 +16,7 @@ categories:
 
 ## Creating the war
 
-1) Start the ACF9 installer. I’ll show the installer steps where I changed the defaults. ![](images/foss1.jpg) ![](images/foss2.jpg) ![](images/foss3.jpg) ![](images/foss4.jpg) And when I finish, the installer will create a war file in C:\\ColdFusion9 . 
+1. Start the ACF9 installer. I’ll show the installer steps where I changed the defaults. ![](images/foss1.jpg) ![](images/foss2.jpg) ![](images/foss3.jpg) ![](images/foss4.jpg) And when I finish, the installer will create a war file in C:\\ColdFusion9 . 
 
 ## Renaming and moving the war to Tomcat
 

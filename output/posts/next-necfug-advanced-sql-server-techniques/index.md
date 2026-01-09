@@ -1,7 +1,7 @@
 ---
 title: "next NECFUG - Advanced SQL Server techniques"
 date: 2008-03-19
-categories: 
+categories:
   - "ColdFusion"
   - "NECFUG"
 ---

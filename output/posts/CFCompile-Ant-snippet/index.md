@@ -1,7 +1,7 @@
 ---
 title: "CFCompile Ant snippet"
 date: 2008-06-19
-categories: 
+categories:
   - "Ant"
   - "ColdFusion"
 ---
@@ -10,13 +10,13 @@ I have been working on a build.xml file for work that updates the local working 
 
 Here is a snippet for the checking ColdFusion compiling using cfcompile. I'll release the full build.xml, lib, and buildprops when I have the unscoped var target working.
 
-_<!-- 
-compileCheck  
-Compiles the ColdFusion files for any syntax errors  
+\_<!--
+compileCheck
+Compiles the ColdFusion files for any syntax errors
 \-->  
 <target name="compileCheck">  
-<echo>Check Coldfusion Compile for ${webroot}${temp.dir}${jarfileTstamp}</echo>  
-  
+<echo>Check Coldfusion Compile for ${webroot}${temp.dir}${jarfileTstamp}</echo>
+
 <exec failonerror="true" dir="${cfcompile\_path}" executable="cmd.exe" output="${webroot}${temp.dir}${jarfileTstamp}compile${jarfileTstamp}.txt" >  
 <env key="JAVA\_HOME" value="${JAVA\_HOME}"/>  
 <arg line="/c cfcompile.bat ${webroot}${temp.dir}${jarfileTstamp}" />  

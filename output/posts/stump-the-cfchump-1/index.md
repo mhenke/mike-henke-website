@@ -1,7 +1,7 @@
 ---
 title: "Stump the CFChump - 1"
 date: 2012-11-28
-categories: 
+categories:
   - "cfchump"
   - "ColdFusion"
 ---

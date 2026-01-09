@@ -1,7 +1,7 @@
 ---
 title: "ColdFusion & Github Weekly Update July 8, 2010"
 date: 2010-07-09
-categories: 
+categories:
   - "CFEclipse"
   - "ColdFusion"
   - "coldfusion-builder"

@@ -1,7 +1,7 @@
 ---
 title: "Nebraska ColdFusion Users Group tonight"
 date: 2007-11-27
-categories: 
+categories:
   - "ColdFusion"
 ---
 

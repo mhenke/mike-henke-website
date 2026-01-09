@@ -1,7 +1,7 @@
 ---
 title: "Amazon S3 and JetS3t synchronizing"
 date: 2007-11-06
-categories: 
+categories:
   - "Amazon-S3"
   - "Software"
   - "Ubuntu"

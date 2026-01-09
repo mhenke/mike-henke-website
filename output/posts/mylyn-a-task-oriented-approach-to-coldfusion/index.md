@@ -1,12 +1,12 @@
 ---
 title: "Mylyn: A Task-Oriented Approach to ColdFusion"
 date: 2010-12-15
-categories: 
+categories:
   - "ColdFusion"
   - "Eclipse"
 ---
 
-_"__It isn't a question of whether you'll remember: it's a question of when you'll forget it"_ -
+_"\_\_It isn't a question of whether you'll remember: it's a question of when you'll forget it"_ -
 
 Andrew Hunt and David Thomas, _The Pragmatic Programmer: From Journeyman to Master_   Here is my article "[Mylyn – A Task-Oriented Approach to ColdFusion](https://docs.google.com/View?id=dc2sb454_31g2p9gdct)" released in [Fusion Authority Quarterly Update](http://www.fusionauthority.com/quarterly/) last issue (Vol 3, Issue 2) . If you enjoy this article, please [subscribe](https://secure.houseoffusion.com/Vol3Issue2.cfm) to support Fusion Authority Quarterly Update's high quality effort. Also purchase the [Adobe Coldfusion Anthology](http://www.amazon.com/Adobe-Coldfusion-Anthology-Michael-Dinowitz/dp/1430272155).  
 

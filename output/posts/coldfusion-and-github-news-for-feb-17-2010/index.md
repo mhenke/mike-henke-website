@@ -1,7 +1,7 @@
 ---
 title: "ColdFusion and Github news for Feb 17, 2010"
 date: 2010-02-19
-categories: 
+categories:
   - "ColdFusion"
   - "github"
 ---

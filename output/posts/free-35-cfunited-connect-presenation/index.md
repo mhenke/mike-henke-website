@@ -1,7 +1,7 @@
 ---
 title: "Free 35+ CFUnited Connect presenation"
 date: 2008-06-25
-categories: 
+categories:
   - "ColdFusion"
 ---
 

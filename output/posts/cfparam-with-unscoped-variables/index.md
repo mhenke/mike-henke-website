@@ -1,7 +1,7 @@
 ---
 title: "cfparam with unscoped variables"
 date: 2011-01-04
-categories: 
+categories:
   - "ColdFusion"
 ---
 

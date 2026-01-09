@@ -1,7 +1,7 @@
 ---
 title: "Show Us Ur CFEclipse perspective layout?"
 date: 2007-10-26
-categories: 
+categories:
   - "CFEclipse"
   - "ColdFusion"
   - "Eclipse"

@@ -1,7 +1,7 @@
 ---
 title: "Episode 4: HackMyCF giveaway, FarCry, Evolving Skills and John Madden"
 date: 2011-12-05
-categories: 
+categories:
   - "acf"
   - "cf-objective"
   - "cfwheels"

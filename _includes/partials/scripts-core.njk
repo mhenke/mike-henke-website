@@ -429,5 +429,49 @@
             button.classList.remove('copy-success');
         }, 2000);
     };
+
+    // Back to Top Button
+    window.addEventListener('DOMContentLoaded', () => {
+        const backToTopButton = document.getElementById('back-to-top');
+
+        if (backToTopButton) {
+            const toggleBackToTop = () => {
+                if (window.scrollY > 300) {
+                    backToTopButton.classList.add('visible');
+                    // Add visibility class but keep hidden from screen readers until visible
+                    backToTopButton.setAttribute('aria-hidden', 'false');
+                    backToTopButton.setAttribute('tabindex', '0');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                    // Hide from screen readers when not visible
+                    backToTopButton.setAttribute('aria-hidden', 'true');
+                    backToTopButton.setAttribute('tabindex', '-1');
+                }
+            };
+
+            // Initial check
+            toggleBackToTop();
+
+            // Scroll event listener
+            window.addEventListener('scroll', toggleBackToTop, { passive: true });
+
+            // Click event listener
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+
+                // Move focus to main content after scrolling for better accessibility
+                setTimeout(() => {
+                    const mainContent = document.querySelector('#main-content');
+                    if (mainContent) {
+                        mainContent.setAttribute('tabindex', '-1');
+                        mainContent.focus();
+                    }
+                }, 500); // Wait for scroll animation to potentially finish
+            });
+        }
+    });
 </script>
 

@@ -1,7 +1,7 @@
 ---
 title: "Tales of a first time speaker at cf.Objective 2010"
 date: 2010-04-25
-categories: 
+categories:
   - "cf-objective"
   - "ColdFusion"
 ---

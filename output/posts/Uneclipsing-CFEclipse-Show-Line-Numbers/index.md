@@ -1,7 +1,7 @@
 ---
 title: "Uneclipsing CFEclipse Show Line Numbers"
 date: 2007-12-20
-categories: 
+categories:
   - "CFEclipse"
   - "Eclipse"
 ---

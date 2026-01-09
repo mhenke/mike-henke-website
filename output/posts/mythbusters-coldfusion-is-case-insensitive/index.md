@@ -1,7 +1,7 @@
 ---
 title: "MythBusters: ColdFusion is Case Insensitive"
 date: 2008-01-20
-categories: 
+categories:
   - "ColdFusion"
   - "MythBusters"
 ---

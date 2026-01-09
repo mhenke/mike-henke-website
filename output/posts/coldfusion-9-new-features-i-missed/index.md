@@ -1,7 +1,7 @@
 ---
 title: "ColdFusion 9 New Features - I missed"
 date: 2011-07-31
-categories: 
+categories:
   - "acf"
   - "ColdFusion"
 ---
@@ -30,7 +30,7 @@ In CF9, we don't have to define the datasource in the cfquery instruction anymor
 
 \[code language="coldfusion"\]
 <cfquery name="rsArtists" datasource="cfartgallery">
-SELECT *
+SELECT \*
 FROM Artists
 ORDER BY Artists.LastName, Artists.FirstName, Artists.ArtistID
 </cfquery>
@@ -53,6 +53,7 @@ ORDER BY Artists.LastName, Artists.FirstName, Artists.ArtistID
 These language improvements help with less verbose code while enhancing readiblity.
 
 \[code language="coldfusion"\]
+
 <!--- old way
 <cfset totalPieces = 0 />
 <cfset numberSold = 0 />
@@ -60,7 +61,7 @@ These language improvements help with less verbose code while enhancing readibli
 
 <cfset totalPieces = numberSold = 0 />
 
-<cfoutput>   
+<cfoutput>
 <!---  old way
 <cfif Val(rsArtists.IsSold)>
 <cfset numberSold ++ />
@@ -87,9 +88,11 @@ These language improvements help with less verbose code while enhancing readibli
 One of my complaints of using CFC is the verbose, cumbersome way to use them. The New instruction removes these barriers for me.
 
 \[code language="coldfusion"\]
+
 <!--- old way
 <cfset MyCFC = CreateObject("component", "Chapter3.cfcs.MyCFC").init() />
 --->
+
 <cfset MyCFC = new Chapter3.cfcs.MyCFC() />
 \\[/code\]
 

@@ -1,7 +1,7 @@
 ---
 title: "CF.Objective 2009 - Open Source Enterprise Java and ColdFusion"
 date: 2009-05-16
-categories: 
+categories:
   - "cf-objective"
   - "ColdFusion"
 ---

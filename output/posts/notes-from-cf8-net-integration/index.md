@@ -1,7 +1,7 @@
 ---
 title: "Notes from CF8 .Net Integration"
 date: 2008-05-04
-categories: 
+categories:
   - "ColdFusion"
   - "Presentations"
 ---

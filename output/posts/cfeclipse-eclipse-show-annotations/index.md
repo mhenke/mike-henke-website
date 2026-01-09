@@ -1,7 +1,7 @@
 ---
 title: "CFEclipse / Eclipse - Show Annotations"
 date: 2008-07-23
-categories: 
+categories:
   - "CFEclipse"
   - "Eclipse"
 ---

@@ -1,7 +1,7 @@
 ---
 title: "my cf.objective() 2011 schedule"
 date: 2011-04-21
-categories: 
+categories:
   - "cf-objective"
 ---
 

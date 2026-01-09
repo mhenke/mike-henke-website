@@ -1,7 +1,7 @@
 ---
 title: "Notes from Using ANT: Making your development life more productive"
 date: 2008-05-03
-categories: 
+categories:
   - "Ant"
   - "ColdFusion"
   - "Presentations"

@@ -1,7 +1,7 @@
 ---
 title: "Firebug and ANT make IBM developerWorks"
 date: 2008-05-08
-categories: 
+categories:
   - "Ant"
   - "ColdFusion"
 ---

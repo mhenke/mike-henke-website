@@ -1,7 +1,7 @@
 ---
 title: "Eclipse: Starting fresh a little less Painful"
 date: 2008-10-16
-categories: 
+categories:
   - "CFEclipse"
   - "Eclipse"
 ---

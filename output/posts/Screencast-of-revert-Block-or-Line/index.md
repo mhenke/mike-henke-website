@@ -1,7 +1,7 @@
 ---
 title: "Screencast of revert Block or Line"
 date: 2008-08-20
-categories: 
+categories:
   - "CFEclipse"
   - "Eclipse"
 ---

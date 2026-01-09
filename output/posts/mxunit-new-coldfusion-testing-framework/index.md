@@ -1,7 +1,7 @@
 ---
 title: "MXUnit - New ColdFusion Testing Framework"
 date: 2008-02-13
-categories: 
+categories:
   - "ColdFusion"
   - "Eclipse"
 ---

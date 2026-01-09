@@ -1,7 +1,7 @@
 ---
 title: "So you want to create a CFWheels application? ( Part 4)"
 date: 2009-08-03
-categories: 
+categories:
   - "cfwheels"
   - "ColdFusion"
 ---
@@ -19,9 +19,22 @@ URL Rewriting Off = http://localhost/index.cfm?controller=contact&action=new
 ### Validation
 
 D'oh, so we need some validation apparently. Luckily for us, we are learning CFWheels which has built in validation to help us with saves, creates, and updates. In our model cfc of the contacts table, located at Models/contact.cfc, add this code: \[code language="coldfusion"\]
-<cffunction name="init"><cfset validatesPresenceOf(property="name",message="Name is Required") /><cfset validatesPresenceOf(property="type",message="Type of Contact is Required") /><cfset validatesUniquenessOf(property="name", message="Name is already present") /><cfset validatesInclusionOf(property="type",list="Friend,Enemy,Co-Worker",message="Type of Contact must be Friend, Enemy, or Co-Worker") /></cffunction>
+<cffunction name="init">
+<cfset validatesPresenceOf(property="name",message="Name is Required") />
+<cfset validatesPresenceOf(property="type",message="Type of Contact is Required") />
+<cfset validatesUniquenessOf(property="name", message="Name is already present") />
+<cfset validatesInclusionOf(property="type",list="Friend,Enemy,Co-Worker",message="Type of Contact must be Friend, Enemy, or Co-Worker") />
+</cffunction>
 \\[/code\] By now you can see CFWheels is pretty intuitive with their naming, so validatesPresenceOf does just that, we could pass in a list of properties but for Contact-O-Matic that isn't needed. Review the file \\wheels\\model\\validations.cfm in our application for information on the different validation options. To read more about [Object Validation](http://www.cfwheels.org/docs/chapter/object-validation "Object Validation"). In /Controllers/contact.cfc replace our previous create action with this code. \[code language="coldfusion"\]
-<cffunction name="create"><cfset newContact = model("Contact").new(params.newContact)><cfif newContact.Save()><cfset flashInsert(success="User #params.newContact.name# created successfully.") /><cfset redirectTo(action="list") /><cfelse><cfset renderPage(action="new") /></cfif></cffunction>
+<cffunction name="create">
+<cfset newContact = model("Contact").new(params.newContact)>
+<cfif newContact.Save()>
+<cfset flashInsert(success="User #params.newContact.name# created successfully.") />
+<cfset redirectTo(action="list") />
+<cfelse>
+<cfset renderPage(action="new") />
+</cfif>
+</cffunction>
 \\[/code\] Now replace \[code language="coldfusion"\]
 #flash("success")#
 \\[/code\] with \[code language="coldfusion"\]
@@ -45,7 +58,13 @@ renderPage()
 ### Refactor
 
 Now a little refactoring, you may remember we left our index action and view in a mess. Delete the index action in Controllers/contact.cfc and put this code in Views/contact/index.cfm . \[code language="coldfusion"\]
-<cfoutput><h1>Contact-O-Matic</h1>This application is to manage contacts. It demonstrates how to build an application using <a href="http://www.cfwheels.org">CFWheels</a>To add a contact #linkTo(text="click here",controller="contact",action="new")#.To see a list of our contacts, #linkTo(text="click here",controller="contact",action="list")#.</cfoutput>
+<cfoutput>
+
+<h1>Contact-O-Matic</h1>
+This application is to manage contacts. It demonstrates how to build an application using <a href="http://www.cfwheels.org">CFWheels</a>
+To add a contact #linkTo(text="click here",controller="contact",action="new")#.
+To see a list of our contacts, #linkTo(text="click here",controller="contact",action="list")#.
+</cfoutput>
 \\[/code\] And run the page, hopefully you will see the screenshot below our URL choices. \[code language="coldfusion"\]
 URL Rewriting On = http://localhost/contact/
 \\[/code\]  
@@ -61,9 +80,27 @@ linkto()
 ### More Refactoring
 
 You may have noticed our navigation wasn't working, we created a [Partial](http://cfwheels.org/docs/chapter/partials "Partial") called \_Banner.cfm and placed it in the Views/contact/ folder. Replace the current code with this \[code language="coldfusion"\]
-<cfoutput><div id="banner">Contact-O-Matic<ul id="navlist"><li <cfif params.action IS "home">id="current"</cfif> >#linkTo(text="Home",controller="contact",action="index")#</li><li <cfif params.action IS "list">id="current"</cfif>>#linkTo(text="Contact List",controller="contact",action="list")#</li><li <cfif ListContains("new,create", params.action)>id="current"</cfif> >#linkTo(text="Contact",controller="contact",action="new")#</li></ul></div></cfoutput>
+<cfoutput>
+
+<div id="banner">
+Contact-O-Matic
+<ul id="navlist">
+<li <cfif params.action IS "home">id="current"</cfif> >#linkTo(text="Home",controller="contact",action="index")#</li>
+<li <cfif params.action IS "list">id="current"</cfif>>#linkTo(text="Contact List",controller="contact",action="list")#</li>
+<li <cfif ListContains("new,create", params.action)>id="current"</cfif> >#linkTo(text="Contact",controller="contact",action="new")#</li>
+</ul>
+</div>
+</cfoutput>
 \\[/code\] And last thing for today, change menu.css in the stylesheets folder. Replace this code \[code language="coldfusion"\]
-#navlist li a{background: white;border-bottom: 1px solid white;}
+#navlist li a
+{
+background: white;
+border-bottom: 1px solid white;
+}
 \\[/code\] with this code \[code language="coldfusion"\]
-#navlist #current a{background: white;border-bottom: 1px solid white;}
+#navlist #current a
+{
+background: white;
+border-bottom: 1px solid white;
+}
 \\[/code\] Now the menu banner should be working fine. ![](images/cfwheels4_4.jpg) Go ahead, add some contacts to our Contact-O-Matic, make sure our validation is working, and the links. Pat yourself on the back, you have done a good job. Next time in the series, we will cover the ORM in more detail, adding an update and delete page, and contact type table.

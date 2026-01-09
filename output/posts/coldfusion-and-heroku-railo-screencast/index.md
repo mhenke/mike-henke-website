@@ -1,7 +1,7 @@
 ---
 title: "ColdFusion and Heroku - Railo screencast"
 date: 2013-03-07
-categories: 
+categories:
   - "ColdFusion"
   - "git"
   - "heroku"

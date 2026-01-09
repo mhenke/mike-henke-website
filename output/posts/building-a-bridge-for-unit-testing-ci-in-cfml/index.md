@@ -1,7 +1,7 @@
 ---
 title: "Building a bridge for Unit Testing - CI in CFML"
 date: 2011-12-15
-categories: 
+categories:
   - "ColdFusion"
   - "jenkins"
 ---

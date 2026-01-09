@@ -1,7 +1,7 @@
 ---
 title: "TechOmaha.com find user group meetings and videos in Omaha"
 date: 2012-07-25
-categories: 
+categories:
   - "omaha"
 ---
 

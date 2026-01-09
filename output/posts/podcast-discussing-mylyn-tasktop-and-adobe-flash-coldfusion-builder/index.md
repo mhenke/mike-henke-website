@@ -1,7 +1,7 @@
 ---
 title: "Podcast discussing Mylyn Tasktop and Adobe Flash ColdFusion Builder"
 date: 2011-10-10
-categories: 
+categories:
   - "cf-objective-anz"
   - "cfwheels"
   - "ColdFusion"

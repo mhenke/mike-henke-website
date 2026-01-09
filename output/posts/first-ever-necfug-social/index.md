@@ -1,7 +1,7 @@
 ---
 title: "First ever NECFUG Social!"
 date: 2011-01-24
-categories: 
+categories:
   - "ColdFusion"
 ---
 

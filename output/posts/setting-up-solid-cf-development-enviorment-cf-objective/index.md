@@ -1,7 +1,7 @@
 ---
 title: "Setting Up Solid CF Development Enviorment (CF.Objective)"
 date: 2009-05-14
-categories: 
+categories:
   - "cf-objective"
   - "ColdFusion"
 ---

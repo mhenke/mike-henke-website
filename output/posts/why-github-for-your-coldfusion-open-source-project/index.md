@@ -1,7 +1,7 @@
 ---
 title: "Why Github for your ColdFusion Open Source Project"
 date: 2010-02-22
-categories: 
+categories:
   - "cfwheels"
   - "ColdFusion"
   - "git"

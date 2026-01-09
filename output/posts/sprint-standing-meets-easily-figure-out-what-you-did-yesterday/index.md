@@ -1,7 +1,7 @@
 ---
 title: "sprint standing meets - easily figure out what you did yesterday"
 date: 2011-06-02
-categories: 
+categories:
   - "CFEclipse"
   - "coldfusion-builder"
   - "Mylyn"

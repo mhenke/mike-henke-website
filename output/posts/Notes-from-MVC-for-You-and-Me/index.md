@@ -1,7 +1,7 @@
 ---
 title: "Notes from MVC for You and Me"
 date: 2008-05-03
-categories: 
+categories:
   - "ColdFusion"
   - "Presentations"
 ---

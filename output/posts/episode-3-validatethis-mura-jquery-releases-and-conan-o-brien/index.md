@@ -1,7 +1,7 @@
 ---
 title: "Episode 3: ValidateThis, Mura, jQuery releases and Conan O'Brien"
 date: 2011-11-09
-categories: 
+categories:
   - "ColdFusion"
   - "coldfusion-show"
 ---

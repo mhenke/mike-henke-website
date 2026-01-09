@@ -1,7 +1,7 @@
 ---
 title: "winner announced for contribute and win 2"
 date: 2011-10-18
-categories: 
+categories:
   - "cfmlin100mins"
   - "ColdFusion"
 ---

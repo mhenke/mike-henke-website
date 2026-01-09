@@ -1,7 +1,7 @@
 ---
 title: "Pecha Kucha Presentation at cf.Objective() 2010 video WWII Honor Flights"
 date: 2010-05-06
-categories: 
+categories:
   - "cf-objective"
   - "Presentations"
 ---
@@ -10,4 +10,4 @@ Here is an "extra" part of the [CF.Objective()](http://www.cfobjective.com) 2010
 
 ### Mike Henke's Pecha Kucha Presentation at cf.Objective() 2010 video (7 mins)
 
-\[embed\]http://www.youtube.com/watch?v=AJfYa\_MmN5g\[/embed\] [http://www.youtube.com/watch?v=AJfYa\_MmN5g](http://www.youtube.com/watch?v=AJfYa_MmN5g) Other [PK presentation videos](http://www.silverwareconsulting.com/index.cfm/2010/5/3/View-the-Presentations-from-the-cfObjective-Pecha-Kucha-BOF) from that event.
+\[embed\]http://www.youtube.com/watch?v=AJfYa\_MmN5g\[/embed\] [http://www.youtube.com/watch?v=AJfYa_MmN5g](http://www.youtube.com/watch?v=AJfYa_MmN5g) Other [PK presentation videos](http://www.silverwareconsulting.com/index.cfm/2010/5/3/View-the-Presentations-from-the-cfObjective-Pecha-Kucha-BOF) from that event.

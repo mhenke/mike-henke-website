@@ -1,7 +1,7 @@
 ---
 title: "coldfusion refactor & win @codeschool gift card"
 date: 2012-10-26
-categories: 
+categories:
   - "ColdFusion"
 ---
 

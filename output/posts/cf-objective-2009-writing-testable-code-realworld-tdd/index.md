@@ -1,7 +1,7 @@
 ---
 title: "CF.Objective 2009 - Writing Testable Code: Realworld TDD"
 date: 2009-05-14
-categories: 
+categories:
   - "cf-objective"
   - "ColdFusion"
 ---

@@ -1,7 +1,7 @@
 ---
 title: "CF.Objective 2009 - Approach to Automated Security Testing"
 date: 2009-05-16
-categories: 
+categories:
   - "cf-objective"
   - "ColdFusion"
 ---

@@ -1,7 +1,7 @@
 ---
 title: "ColdFusion Builder Extension Contamination"
 date: 2009-07-17
-categories: 
+categories:
   - "ColdFusion"
   - "coldfusion-builder"
 ---

@@ -1,7 +1,7 @@
 ---
 title: "ColdFusion 9 New Features - I missed Part 2"
 date: 2011-08-04
-categories: 
+categories:
   - "acf"
   - "ColdFusion"
 ---

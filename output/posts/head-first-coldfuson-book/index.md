@@ -1,7 +1,7 @@
 ---
 title: "Head First ColdFuson Book"
 date: 2010-01-17
-categories: 
+categories:
   - "ColdFusion"
   - "git"
 ---

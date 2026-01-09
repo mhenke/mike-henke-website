@@ -1,7 +1,7 @@
 ---
 title: "Adobe labs release public beta IDE based on Eclipse"
 date: 2011-03-03
-categories: 
+categories:
   - "ColdFusion"
   - "coldfusion-builder"
 ---

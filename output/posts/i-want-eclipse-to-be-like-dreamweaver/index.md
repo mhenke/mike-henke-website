@@ -1,7 +1,7 @@
 ---
 title: "I want Eclipse to be like Dreamweaver"
 date: 2011-03-10
-categories: 
+categories:
   - "ColdFusion"
   - "coldfusion-builder"
   - "Eclipse"

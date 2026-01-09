@@ -1,7 +1,7 @@
 ---
 title: "Next Coldfusion User Group meeting in Omaha"
 date: 2008-06-19
-categories: 
+categories:
   - "ColdFusion"
   - "NECFUG"
 ---

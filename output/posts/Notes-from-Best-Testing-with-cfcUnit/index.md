@@ -1,7 +1,7 @@
 ---
 title: "Notes from Best Testing with cfcUnit"
 date: 2008-05-03
-categories: 
+categories:
   - "ColdFusion"
   - "Presentations"
 ---

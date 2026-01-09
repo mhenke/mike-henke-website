@@ -1,7 +1,7 @@
 ---
 title: "CFObjective Day 1 notes"
 date: 2012-05-18
-categories: 
+categories:
   - "cf-objective"
   - "ColdFusion"
 ---

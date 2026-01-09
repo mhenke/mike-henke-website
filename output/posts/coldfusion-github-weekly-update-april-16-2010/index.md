@@ -1,7 +1,7 @@
 ---
 title: "ColdFusion & Github Weekly Update April 16, 2010"
 date: 2010-04-16
-categories: 
+categories:
   - "ColdFusion"
   - "git"
   - "github"

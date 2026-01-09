@@ -1,11 +1,11 @@
 ---
-title: 'So you want to contribute to CFWheels?'
+title: "So you want to contribute to CFWheels?"
 date: 2011-04-24
 categories:
-  - 'cfwheels'
-  - 'ColdFusion'
-  - 'git'
-  - 'github'
+  - "cfwheels"
+  - "ColdFusion"
+  - "git"
+  - "github"
 ---
 
 In this blog series I will be walking through how to contribute to an open source project on [GitHub](https://github.com/). I will assume you:

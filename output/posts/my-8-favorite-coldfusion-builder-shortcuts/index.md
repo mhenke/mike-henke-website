@@ -1,7 +1,7 @@
 ---
 title: "My 8 Favorite ColdFusion Builder Shortcuts"
 date: 2009-07-18
-categories: 
+categories:
   - "CFEclipse"
   - "coldfusion-builder"
 ---
@@ -13,11 +13,11 @@ I haven't been able to use [ColdFusion Builder](http://labs.adobe.com/technologi
 First group is not too amazing and still should be mentioned. They are available in [CFEclipse](http://www.cfeclipse.org) but the wrap in pound signs binding is a different combination.
 
 - ctrl+shift+a - insert cfabort  
-    
+
 - ctrl+shift+d - insert cfdump  
-    
+
 - ctrl+shift+h - wrap in ##  
-    
+
 - ctrl+space - Content Assist (image below is the CFBuilder assist within a cfparam)
 
 ![ColdFusion Builder Content Assist](images/contentAssist.jpg)

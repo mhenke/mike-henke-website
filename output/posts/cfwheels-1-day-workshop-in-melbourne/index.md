@@ -1,7 +1,7 @@
 ---
 title: "CFWheels 1 day Workshop in Melbourne"
 date: 2011-09-05
-categories: 
+categories:
   - "cf-objective-anz"
   - "cfwheels"
   - "ColdFusion"

@@ -1,7 +1,7 @@
 ---
 title: "IDE Talk - CFHour()"
 date: 2009-04-01
-categories: 
+categories:
   - "Ant"
   - "CFEclipse"
   - "ColdFusion"

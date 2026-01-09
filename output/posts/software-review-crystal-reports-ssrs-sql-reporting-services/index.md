@@ -1,7 +1,7 @@
 ---
 title: "Software Review - Crystal Reports / SSRS (SQL Reporting Services)"
 date: 2011-06-22
-categories: 
+categories:
   - "Software"
 ---
 

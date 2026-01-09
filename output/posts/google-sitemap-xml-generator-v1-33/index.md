@@ -1,7 +1,7 @@
 ---
 title: "Google Sitemap XML Generator v1.33"
 date: 2007-09-13
-categories: 
+categories:
   - "Google-Sitemap-XML-Generator"
 ---
 

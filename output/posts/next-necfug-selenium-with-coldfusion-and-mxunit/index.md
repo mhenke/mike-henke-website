@@ -1,7 +1,7 @@
 ---
 title: "next NECFUG - Selenium with Coldfusion and MXUnit"
 date: 2008-05-19
-categories: 
+categories:
   - "ColdFusion"
   - "mxunit"
   - "NECFUG"

@@ -1,7 +1,7 @@
 ---
 title: "My Git User Config Cheat Sheet"
 date: 2010-06-10
-categories: 
+categories:
   - "git"
 ---
 

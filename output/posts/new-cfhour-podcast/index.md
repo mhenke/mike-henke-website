@@ -1,7 +1,7 @@
 ---
 title: "new CFHour() podcast"
 date: 2009-03-18
-categories: 
+categories:
   - "ColdFusion"
 ---
 

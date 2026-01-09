@@ -1,7 +1,7 @@
 ---
 title: "Mylyn 3.0: Code at the Speed of Thought preso"
 date: 2008-07-30
-categories: 
+categories:
   - "CFEclipse"
   - "Eclipse"
   - "Mylyn"

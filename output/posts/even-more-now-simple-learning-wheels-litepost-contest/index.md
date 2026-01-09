@@ -1,7 +1,7 @@
 ---
 title: "Even More $$$ now - simple learning Wheels/Litepost Contest"
 date: 2010-01-27
-categories: 
+categories:
   - "cfwheels"
   - "ColdFusion"
 ---

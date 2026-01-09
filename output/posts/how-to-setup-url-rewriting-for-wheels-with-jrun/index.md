@@ -1,7 +1,7 @@
 ---
 title: "How to setup url rewriting for Wheels with JRUN"
 date: 2010-07-24
-categories: 
+categories:
   - "cfwheels"
   - "ColdFusion"
   - "jrun"
@@ -15,17 +15,17 @@ C:\JRun4\servers\cfwheels\cfusion.ear\cfusion.war\WEB-INF\urlrewrite.xml
 
 \[code language="coldfusion"\]
 <filter>
-  <filter-name>UrlRewriteFilter</filter-name>
-  <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
-  <init-param>
-   <param-name>logLevel</param-name>
-   <param-value>WARN</param-value>
-  </init-param>
- </filter>
- <filter-mapping>
-  <filter-name>UrlRewriteFilter</filter-name>
-  <url-pattern>/*</url-pattern>
- </filter-mapping>
+<filter-name>UrlRewriteFilter</filter-name>
+<filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
+<init-param>
+<param-name>logLevel</param-name>
+<param-value>WARN</param-value>
+</init-param>
+</filter>
+<filter-mapping>
+<filter-name>UrlRewriteFilter</filter-name>
+<url-pattern>/\*</url-pattern>
+</filter-mapping>
 \\[/code\]
 
 Next open your web.xml Mine was located at \[code language="coldfusion"\]
@@ -45,13 +45,11 @@ something
 \\[/code\] in urlrewriting.xml.
 
 \[code language="coldfusion"\]
-The rule is for making CFWheels URLs prettier using URL rewriting.
-			# http://cfwheels.org/docs/chapter/url-rewriting
-			
-			# RewriteCond %{REQUEST_URI} !^.*/(flex2gateway|jrunscripts|cfide|cfformgateway|railo-context|files|images|javascripts|miscellaneous|stylesheets|robots.txt|sitemap.xml|rewrite.cfm)($|/.*$) [NC]
+The rule is for making CFWheels URLs prettier using URL rewriting. # http://cfwheels.org/docs/chapter/url-rewriting # RewriteCond %{REQUEST_URI} !^._/(flex2gateway|jrunscripts|cfide|cfformgateway|railo-context|files|images|javascripts|miscellaneous|stylesheets|robots.txt|sitemap.xml|rewrite.cfm)($|/._$) [NC]
 			# RewriteRule ^(.*)$ ./rewrite.cfm/$1 [L]
-        
-		^.*/(flex2gateway|jrunscripts|cfide|cfformgateway|railo-context|files|images|javascripts|miscellaneous|stylesheets|robots.txt|sitemap.xml|rewrite.cfm)
+
+	^.*/(flex2gateway|jrunscripts|cfide|cfformgateway|railo-context|files|images|javascripts|miscellaneous|stylesheets|robots.txt|sitemap.xml|rewrite.cfm)
         ^(.*)$
         /rewrite.cfm/$1
+
 \\[/code\]

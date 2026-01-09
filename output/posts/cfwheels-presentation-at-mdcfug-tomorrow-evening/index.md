@@ -1,7 +1,7 @@
 ---
 title: "CFWheels presentation at MDCFUG tomorrow evening"
 date: 2009-11-09
-categories: 
+categories:
   - "cfwheels"
   - "coldfusion-builder"
   - "mdcfug"

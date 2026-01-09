@@ -1,7 +1,7 @@
 ---
 title: "ColdFusion & Github Weekly Update Aug 20, 2010"
 date: 2010-08-20
-categories: 
+categories:
   - "ColdFusion"
   - "git"
   - "github"
@@ -9,7 +9,8 @@ categories:
 
 Two [ColdFusion](http://www.adobe.com/products/coldfusion/) & [Github](http://www.github.com) Weekly updates in a row! Where to start? Well, [CFMeetup: GIT for Dummies and the slightly more enlightened](http://experts.na3.acrobat.com/p65645730/) by Tim Cunningham is a great place. It was recorded yesterday. I didn't attend but will watch it this weekend. Railo [announced they are doing their nightly builds and BER on Github](http://www.railo.ch/blog/index.cfm/2010/8/19/Railo-on-Github). There is a nice why we use git post called "[How we use Git at Algodeal](http://ericlefevre.net/wordpress/2010/07/22/how-we-use-git-at-algodeal/)". The ColdFusion Jedi mentions he is "[quite enamored with Git now and am using it for new projects](http://www.coldfusionjedi.com/index.cfm/2010/8/16/Opportunity-to-learn-about-Git)". Here is the update of Github/Coldfusion activity.
 
-### Recently Updated Repositories[  
+### Recently Updated Repositories[
+
 ](http://github.com/languages/ColdFusion/updated)
 
 - ![](images/6c18ceafef161be26ae441469b29c475) [tpryan](http://github.com/tpryan) / [Apptacular](http://github.com/tpryan/Apptacular)
@@ -18,7 +19,8 @@ Two [ColdFusion](http://www.adobe.com/products/coldfusion/) & [Github](http://ww
 - ![](images/a0572373c82e428eca2216ec31ec580c) [gregmoser](http://github.com/gregmoser) / [Slatwall](http://github.com/gregmoser/Slatwall)
 - ![](images/bd508cb86ee45d370a469dc4f0460f8a) [raulriera](http://github.com/raulriera) / [Scaffold](http://github.com/raulriera/Scaffold)
 
-### Recently Created Repositories[  
+### Recently Created Repositories[
+
 ](http://github.com/languages/ColdFusion/created)
 
 - ![](images/a0572373c82e428eca2216ec31ec580c) [gregmoser](http://github.com/gregmoser) / [queryOrganizer](http://github.com/gregmoser/queryOrganizer)

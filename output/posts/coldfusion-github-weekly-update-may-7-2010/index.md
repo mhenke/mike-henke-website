@@ -1,7 +1,7 @@
 ---
 title: "ColdFusion & Github Weekly Update May 7, 2010"
 date: 2010-05-07
-categories: 
+categories:
   - "ColdFusion"
   - "git"
   - "github"
@@ -30,7 +30,8 @@ categories:
 - ![](images/dae6ae9ff5fa99d918cedf67648ae038)[webflint](http://github.com/webflint)/[fw1](http://github.com/webflint/fw1)
 - ![](images/f21fb88b0f2dc9476750526485bad961)[shuWebDev](http://github.com/shuWebDev)/[Landing-Pages](http://github.com/shuWebDev/Landing-Pages)
 
-### Recently Updated Repositories[  
+### Recently Updated Repositories[
+
 ](http://github.com/languages/ColdFusion/updated)
 
 - ![](images/6f480895b9398e5cbc4e92189ed8f576)[stevewithington](http://github.com/stevewithington)/[MuraGoogleMaps](http://github.com/stevewithington/MuraGoogleMaps)

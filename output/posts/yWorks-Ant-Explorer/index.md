@@ -1,7 +1,7 @@
 ---
 title: "yWorks Ant Explorer"
 date: 2007-10-29
-categories: 
+categories:
   - "Ant"
   - "Eclipse"
 ---

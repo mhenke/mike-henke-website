@@ -1,7 +1,7 @@
 ---
 title: "Eclipse Navigator Toolbar"
 date: 2007-12-13
-categories: 
+categories:
   - "CFEclipse"
   - "Eclipse"
 ---

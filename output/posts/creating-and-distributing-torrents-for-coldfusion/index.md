@@ -1,7 +1,7 @@
 ---
 title: "Creating and distributing torrents for ColdFusion"
 date: 2010-02-15
-categories: 
+categories:
   - "Amazon-S3"
   - "ColdFusion"
 ---
@@ -10,7 +10,7 @@ I have been venturing into creating and distributing torrents for ColdFusion rel
 
 ### Torrent Vocabulary
 
-A _Web Tracker_ is a server that keeps track of which seeds and peers are in the swarm. A _seeder_ is a peer that has a complete copy of the torrent and still offers it for upload. A _Web seed_ is an http or ftp sever that makes the file available for download. An _Announcment_ tells the Web Tracker, it should add this download to the list of peers in the swarm. A _swarm_ is all peers (including seeders) sharing a torrent are called a _swarm_ Some definitions are from [http://en.wikipedia.org/wiki/BitTorrent\_vocabulary](http://en.wikipedia.org/wiki/BitTorrent_vocabulary).
+A _Web Tracker_ is a server that keeps track of which seeds and peers are in the swarm. A _seeder_ is a peer that has a complete copy of the torrent and still offers it for upload. A _Web seed_ is an http or ftp sever that makes the file available for download. An _Announcment_ tells the Web Tracker, it should add this download to the list of peers in the swarm. A _swarm_ is all peers (including seeders) sharing a torrent are called a _swarm_ Some definitions are from [http://en.wikipedia.org/wiki/BitTorrent_vocabulary](http://en.wikipedia.org/wiki/BitTorrent_vocabulary).
 
 ### Web Tracker
 

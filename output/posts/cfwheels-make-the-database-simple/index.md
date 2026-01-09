@@ -1,7 +1,7 @@
 ---
 title: "CFWheels make the database simple"
 date: 2010-08-05
-categories: 
+categories:
   - "cfwheels"
   - "ColdFusion"
 ---
@@ -16,12 +16,12 @@ Here is the \[code language="coldfusion"\]
 
 \[code language="coldfusion"\]
 <cfcomponent extends="Model" output="false">
-	<cffunction name="init">
-		<cfset property(name="id", column="categoryid")>
-		<cfset property(name="categoriesCount", sql="(SELECT COUNT(*) FROM entries WHERE categories.categoryid = entries.categoryId)")> 
-		<cfset validatesPresenceOf(properties="category")>
-		<cfset belongsTo("Entry")>
-	</cffunction>
+<cffunction name="init">
+<cfset property(name="id", column="categoryid")>
+<cfset property(name="categoriesCount", sql="(SELECT COUNT(\*) FROM entries WHERE categories.categoryid = entries.categoryId)")>
+<cfset validatesPresenceOf(properties="category")>
+<cfset belongsTo("Entry")>
+</cffunction>
 </cfcomponent>
 \\[/code\]
 
@@ -45,8 +45,8 @@ Another cool feature of the Wheels ORM is the deleteEntry action in the \[code l
 
 \[code language="coldfusion"\]
 aEntry = model("entry").findByKey( id );
-		aEntry.deleteAllComments();
-		aEntry.delete();
+aEntry.deleteAllComments();
+aEntry.delete();
 \\[/code\]
 
 How does it know to create a \[code language="coldfusion"\]
@@ -59,12 +59,12 @@ aEntry object
 
 \[code language="coldfusion"\]
 <cfcomponent extends="Model" output="false">
-	<cffunction name="init">
-		<cfset property(name="id", column="entryid")>
-		<cfset validatesPresenceOf(properties="title,body")>
-		 <cfset hasMany("comments")>
-		 <cfset hasOne("category")>
-	</cffunction>
+<cffunction name="init">
+<cfset property(name="id", column="entryid")>
+<cfset validatesPresenceOf(properties="title,body")>
+<cfset hasMany("comments")>
+<cfset hasOne("category")>
+</cffunction>
 </cfcomponent>
 \\[/code\]
 

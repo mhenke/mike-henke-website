@@ -1,7 +1,7 @@
 ---
 title: "upgrading Windows - try Xubuntu instead"
 date: 2011-06-05
-categories: 
+categories:
   - "Software"
   - "xubuntu"
 ---

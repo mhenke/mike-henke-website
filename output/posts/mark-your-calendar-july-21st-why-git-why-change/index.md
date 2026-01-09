@@ -1,7 +1,7 @@
 ---
 title: "Mark Your Calendar July 21st - Why Git? Why Change?"
 date: 2011-07-07
-categories: 
+categories:
   - "ColdFusion"
   - "git"
   - "github"

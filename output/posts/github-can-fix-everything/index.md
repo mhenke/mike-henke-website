@@ -1,7 +1,7 @@
 ---
 title: "GitHub can fix everything"
 date: 2012-05-25
-categories: 
+categories:
   - "git"
   - "github"
 ---

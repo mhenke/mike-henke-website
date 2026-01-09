@@ -1,8 +1,8 @@
 ---
 title: "My CF.Objective Schedule"
 date: 2008-03-26
-categories: 
+categories:
   - "ColdFusion"
 ---
 
-![](images/cfobjective(1).gif)
+![](<images/cfobjective(1).gif>)

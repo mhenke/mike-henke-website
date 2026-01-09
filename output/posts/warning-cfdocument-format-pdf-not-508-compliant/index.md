@@ -1,7 +1,7 @@
 ---
 title: "Warning: cfdocument/format=pdf not 508 compliant"
 date: 2010-03-25
-categories: 
+categories:
   - "ColdFusion"
 ---
 
@@ -11,7 +11,8 @@ I am disappointed to warn ColdFusion users that Adobe ColdFusion does not suppor
 
 Create a cfm page with this code. <cfdocument format="PDF" backgroundvisible="yes" fontembed="true">  
 <img src="images/logo.jpg" title="title" alt="logo">  
-<span class="anyclass">  
+<span class="anyclass">
+
 <ul>  
 <li>PDF generator will add image with no alt attribute here</li>  
 <li>PDF generator will add image with no alt attribute here</li> <li>PDF generator will add image with no alt attribute here</li> </ul>  

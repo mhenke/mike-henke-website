@@ -1,7 +1,7 @@
 ---
 title: "Getting started with CFWheels in seconds"
 date: 2010-05-10
-categories: 
+categories:
   - "CFEclipse"
   - "cfwheels"
   - "ColdFusion"

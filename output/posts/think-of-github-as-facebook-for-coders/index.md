@@ -1,7 +1,7 @@
 ---
 title: "Think Of Github as Facebook for Coders"
 date: 2010-03-04
-categories: 
+categories:
   - "ColdFusion"
   - "github"
 ---

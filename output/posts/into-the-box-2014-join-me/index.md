@@ -1,7 +1,7 @@
 ---
 title: "Into The Box 2014 - Join Me"
 date: 2014-04-14
-categories: 
+categories:
   - "ColdFusion"
 ---
 

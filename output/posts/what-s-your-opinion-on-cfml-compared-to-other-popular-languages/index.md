@@ -1,7 +1,7 @@
 ---
 title: "What's your opinion on CFML compared to other popular languages?"
 date: 2012-03-08
-categories: 
+categories:
   - "acf"
   - "ColdFusion"
   - "openbd"

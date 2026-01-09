@@ -1,7 +1,7 @@
 ---
 title: "CFObjective 2010 Caching"
 date: 2010-04-22
-categories: 
+categories:
   - "cf-objective"
   - "ColdFusion"
 ---

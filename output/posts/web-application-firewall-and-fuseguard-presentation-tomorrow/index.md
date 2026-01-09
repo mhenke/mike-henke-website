@@ -1,7 +1,7 @@
 ---
 title: "Web Application Firewall and FuseGuard presentation tomorrow"
 date: 2012-06-25
-categories: 
+categories:
   - "ColdFusion"
   - "NECFUG"
   - "Presentations"

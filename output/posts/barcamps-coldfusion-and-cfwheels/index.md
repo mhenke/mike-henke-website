@@ -1,7 +1,7 @@
 ---
 title: "BarCamps, ColdFusion, and CFWheels"
 date: 2010-11-22
-categories: 
+categories:
   - "cfwheels"
   - "ColdFusion"
 ---

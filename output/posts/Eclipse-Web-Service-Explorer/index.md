@@ -1,7 +1,7 @@
 ---
 title: "Eclipse Web Service Explorer"
 date: 2007-10-12
-categories: 
+categories:
   - "ColdFusion"
   - "Eclipse"
 ---

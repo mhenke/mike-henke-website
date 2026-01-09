@@ -1,7 +1,7 @@
 ---
 title: "Using Mylyn video presentation"
 date: 2008-06-20
-categories: 
+categories:
   - "CFEclipse"
   - "Mylyn"
   - "Presentations"

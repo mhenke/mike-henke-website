@@ -1,7 +1,7 @@
 ---
 title: "Missed me at CFUNITED? Catch my presentation this week"
 date: 2010-08-09
-categories: 
+categories:
   - "cfunited"
   - "cfwheels"
   - "ColdFusion"

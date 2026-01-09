@@ -1,7 +1,7 @@
 ---
 title: "ColdFusion 9 DZone Refcardz"
 date: 2009-08-18
-categories: 
+categories:
   - "ColdFusion"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Git Performance commands"
 date: 2011-04-19
-categories: 
+categories:
   - "git"
 ---
 

@@ -1,9 +1,9 @@
 ---
-title: 'Stump the CFChump - 4'
+title: "Stump the CFChump - 4"
 date: 2012-12-03
 categories:
-  - 'cfchump'
-  - 'ColdFusion'
+  - "cfchump"
+  - "ColdFusion"
 ---
 
 I am doing a "Stump the CFChump" series. I recently passed the [ColdFusion 9 exam](http://blogs.adobe.com/adc/2010/11/coldfusion-9-certification-exam-now-available.html) and this is material I learned while studying. I have several [CodeSchool](http://www.codeschool.com/) gift cards to giveaway so comments who answer correctly I'll email you the discount code. ["Stump the Chumps"](http://www.cartalk.com/content/stump-chumps) is from the "Car Talk" so I am spinning that title for ColdFusion. These are questions that stumped me when studying.

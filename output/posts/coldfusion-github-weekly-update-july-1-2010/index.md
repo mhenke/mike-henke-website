@@ -1,7 +1,7 @@
 ---
 title: "ColdFusion & Github Weekly Update July 1, 2010"
 date: 2010-07-02
-categories: 
+categories:
   - "coldfusion-builder"
   - "git"
   - "github"
@@ -29,7 +29,7 @@ First ColdFusion & Github update in a while, I was fishing last week in Northern
 
 - ![](images/ae21466843a2f6d7bf2d9ce785299557) [misterdai](http://github.com/misterdai) / [cfTracker](http://github.com/misterdai/cfTracker)
 - ![](images/1ae57d1ff583049035455afb1b031f80) [clearcrystalmedia](http://github.com/clearcrystalmedia) / [reCAPTCHA-on-Wheels](http://github.com/clearcrystalmedia/reCAPTCHA-on-Wheels)
-- ![](images/1a650db02dfea269fe358c3ebb9b93fc) [russjohnson](http://github.com/russjohnson) / [wheels\_application\_template](http://github.com/russjohnson/wheels_application_template)
+- ![](images/1a650db02dfea269fe358c3ebb9b93fc) [russjohnson](http://github.com/russjohnson) / [wheels_application_template](http://github.com/russjohnson/wheels_application_template)
 - ![](images/9354eec0679e2d3b36b77ff62165f717) [seancorfield](http://github.com/seancorfield) / [fw1](http://github.com/seancorfield/fw1)
 - ![](images/6e13e752833ccf50dde7940f9320e7da) [mschierberl](http://github.com/mschierberl) / [varscoper](http://github.com/mschierberl/varscoper)
 

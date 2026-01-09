@@ -1,6 +1,6 @@
 ---
 date: 2015-06-27
-description: 'In-depth articles on ColdFusion, Eclipse, and developer productivity by Mike Henke.'
+description: "In-depth articles on ColdFusion, Eclipse, and developer productivity by Mike Henke."
 ---
 
 ## Featured Articles

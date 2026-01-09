@@ -1,7 +1,7 @@
 ---
 title: "Elimination of the CFWheels evangelism team"
 date: 2010-05-07
-categories: 
+categories:
   - "cfwheels"
   - "ColdFusion"
 ---

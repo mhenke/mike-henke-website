@@ -1,7 +1,7 @@
 ---
 title: "Coding CF fast from IBM developerWorks"
 date: 2007-11-07
-categories: 
+categories:
   - "ColdFusion"
   - "Eclipse"
 ---

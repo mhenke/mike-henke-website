@@ -1,7 +1,7 @@
 ---
 title: "Bar Camp Omaha 2011 - Open Source CFML"
 date: 2011-09-10
-categories: 
+categories:
   - "acf"
   - "cfwheels"
   - "ColdFusion"

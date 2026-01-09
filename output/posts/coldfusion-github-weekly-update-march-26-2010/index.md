@@ -1,7 +1,7 @@
 ---
 title: "ColdFusion & Github Weekly Update March 26, 2010"
 date: 2010-03-26
-categories: 
+categories:
   - "ColdFusion"
   - "github"
 ---

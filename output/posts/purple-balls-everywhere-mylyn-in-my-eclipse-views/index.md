@@ -1,7 +1,7 @@
 ---
 title: "Purple Balls Everywhere (Mylyn In My Eclipse Views)"
 date: 2010-12-30
-categories: 
+categories:
   - "CFEclipse"
   - "coldfusion-builder"
   - "Eclipse"
@@ -19,7 +19,7 @@ Another example of "focus" is this: Think of my work desk. It is cluttered with 
 What does "focus" mean to you as a programmer? Well, a picture is worth a thousand words. **\[Insert Another Brett Farve & Vikings joke here\]**
 
 | _Show navigator with Mylyn focus toggled off_ ![](images/pb2.jpg) | _Show navigator with Mylyn focus toggled on_ ![](images/pb3.jpg) |
-| --- | --- |
+| ----------------------------------------------------------------- | ---------------------------------------------------------------- |
 
 Notice, with Mylyn Focus toggled on in the Navigator view, I only see important files for the task at hand. You may wonder how do the purple balls know what is relevant? This is done by Mylyn's Task Focused Interface. You create and activate a task, then start working with resources in Eclipse. The resources (or context) get remembered by the task as you work.
 

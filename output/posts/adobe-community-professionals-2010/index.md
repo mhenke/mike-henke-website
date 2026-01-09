@@ -1,7 +1,7 @@
 ---
 title: "Adobe Community Professionals 2010"
 date: 2010-01-19
-categories: 
+categories:
   - "cfwheels"
   - "ColdFusion"
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Noteworthy thread about Git and a ColdFusion project"
 date: 2009-09-25
-categories: 
+categories:
   - "cfwheels"
   - "ColdFusion"
   - "git"

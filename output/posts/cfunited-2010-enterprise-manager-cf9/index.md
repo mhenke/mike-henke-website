@@ -1,7 +1,7 @@
 ---
 title: "CFUnited 2010 Enterprise Manager CF9 session"
 date: 2010-07-28
-categories: 
+categories:
   - "cfunited"
   - "ColdFusion"
 ---

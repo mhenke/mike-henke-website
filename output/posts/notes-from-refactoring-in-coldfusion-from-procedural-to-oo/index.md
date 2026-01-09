@@ -1,7 +1,7 @@
 ---
 title: "Notes from Refactoring in ColdFusion: from Procedural to OO"
 date: 2008-05-04
-categories: 
+categories:
   - "ColdFusion"
   - "Presentations"
 ---

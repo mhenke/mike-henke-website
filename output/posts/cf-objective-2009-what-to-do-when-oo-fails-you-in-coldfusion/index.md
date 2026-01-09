@@ -1,7 +1,7 @@
 ---
 title: "CF.Objective 2009 - What to do when oo fails you in ColdFusion"
 date: 2009-05-15
-categories: 
+categories:
   - "cf-objective"
   - "ColdFusion"
 ---

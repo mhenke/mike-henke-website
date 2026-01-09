@@ -1,7 +1,7 @@
 ---
 title: "Notes from Leveraging Basic Design Patterns in ColdFusion"
 date: 2008-05-04
-categories: 
+categories:
   - "ColdFusion"
   - "Presentations"
 ---

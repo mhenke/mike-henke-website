@@ -1,7 +1,7 @@
 ---
 title: "CFWheels so you wanna series translated into Italian"
 date: 2009-09-20
-categories: 
+categories:
   - "cfwheels"
   - "ColdFusion"
 ---

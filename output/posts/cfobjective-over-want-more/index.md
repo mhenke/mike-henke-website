@@ -1,7 +1,7 @@
 ---
 title: "CFObjective Over, Want More?"
 date: 2011-05-16
-categories: 
+categories:
   - "cf-objective"
   - "CFEclipse"
   - "cfwheels"

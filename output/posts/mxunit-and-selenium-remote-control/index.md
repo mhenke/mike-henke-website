@@ -1,7 +1,7 @@
 ---
 title: "MXUnit and Selenium Remote Control"
 date: 2009-05-27
-categories: 
+categories:
   - "ColdFusion"
   - "mxunit"
   - "Selenium"

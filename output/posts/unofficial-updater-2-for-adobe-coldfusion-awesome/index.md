@@ -1,7 +1,7 @@
 ---
 title: "Unofficial Updater 2 for Adobe Coldfusion - AWEsome"
 date: 2012-01-04
-categories: 
+categories:
   - "acf"
   - "ColdFusion"
   - "github"

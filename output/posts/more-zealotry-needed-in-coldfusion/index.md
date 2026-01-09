@@ -1,7 +1,7 @@
 ---
 title: "more zealotry needed in coldfusion"
 date: 2012-02-14
-categories: 
+categories:
   - "ColdFusion"
 ---
 
@@ -13,8 +13,8 @@ I thought it would be nice to break-down the definition of "zealotry" using [dic
 
 - [zeal·ot·ry](http://dictionary.reference.com/browse/zealotry) - **_undue_** or **excessive** **zeal**; fanaticism.
 - [un·due](http://dictionary.reference.com/browse/undue)
-    - unwarranted; **_excessive_**: undue haste.
-    - inappropriate; **_unjustifiable_**; improper: undue influence.
+  - unwarranted; **_excessive_**: undue haste.
+  - inappropriate; **_unjustifiable_**; improper: undue influence.
 - [ex·ces·sive](http://dictionary.reference.com/browse/excessive) - **_going beyond the usual_**, necessary, or proper limit or degree; characterized by excess.
 - [zeal](http://dictionary.reference.com/browse/zeal) - fervor for a person, cause, or object; **_eager desire_** or endeavor; **_enthusiastic_ _diligence_**; ardor.
 
@@ -25,4 +25,4 @@ With this break-down, my preceived negatives are "_excessive_" and "_undo_". _**
 - Is presenting on a subject "excessive"?
 - Is working on an open source project "excessive"?
 
-Sadly, i would say "Yes" these are **excessive**. These are "_going beyond the usual_". Are these **negative**? No. Next time, when I hear **zealotry** used, I'll try to keep this in mind. _Was the zealotry claim on some "**unjustifiable**" statement?_ In most cases, I doubt the actual instance called _zealtory_ was _"_unjustifiable_"_ so it isn't negative but a **positive** case of zealotry. In this post's context, I think ColdFusion needs more **zealots** which means "**going beyond the usual**" with "**enthusiastic diligence**" using CFML.
+Sadly, i would say "Yes" these are **excessive**. These are "_going beyond the usual_". Are these **negative**? No. Next time, when I hear **zealotry** used, I'll try to keep this in mind. _Was the zealotry claim on some "**unjustifiable**" statement?_ In most cases, I doubt the actual instance called _zealtory_ was _"\_unjustifiable_"\_ so it isn't negative but a **positive** case of zealotry. In this post's context, I think ColdFusion needs more **zealots** which means "**going beyond the usual**" with "**enthusiastic diligence**" using CFML.

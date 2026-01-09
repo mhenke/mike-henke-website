@@ -30,10 +30,7 @@
       "cleanedSize": "21.57 KB",
       "sizeSavings": "1.2%",
       "bytesRemoved": 278,
-      "rejectedSelectors": [
-        ".search-input-wrapper",
-        ".search-input-icon"
-      ],
+      "rejectedSelectors": [".search-input-wrapper", ".search-input-icon"],
       "rejectedCss": "\n.search-input-wrapper {\n  position: relative;\n  width: 100%;\n}\n.search-input-icon {\n  position: absolute;\n  left: var(--spacing-lg);\n  top: 50%;\n  transform: translateY(-50%);\n  font-size: var(--font-size-xl);\n  color: var(--color-text);\n  pointer-events: none;\n  z-index: 2;\n}"
     }
   ],

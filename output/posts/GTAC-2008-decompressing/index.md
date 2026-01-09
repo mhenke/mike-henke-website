@@ -1,7 +1,7 @@
 ---
 title: "GTAC 2008 decompressing"
 date: 2008-10-26
-categories: 
+categories:
   - "ColdFusion"
   - "GTAC-2008"
 ---

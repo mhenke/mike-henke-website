@@ -1,7 +1,7 @@
 ---
 title: "Eclipse .Net plugin"
 date: 2008-05-04
-categories: 
+categories:
   - "ColdFusion"
   - "Presentations"
 ---

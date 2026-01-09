@@ -1,7 +1,7 @@
 ---
 title: "Installed ColdFusion 8 on Ubuntu"
 date: 2007-09-16
-categories: 
+categories:
   - "ColdFusion"
   - "Ubuntu"
 ---

@@ -1,7 +1,7 @@
 ---
 title: "My Top 5 Entries of 2007"
 date: 2007-12-27
-categories: 
+categories:
   - "Ant"
   - "CFEclipse"
   - "ColdFusion"

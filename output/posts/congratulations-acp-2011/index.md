@@ -1,7 +1,7 @@
 ---
 title: "Congratulations ACP 2011"
 date: 2011-01-30
-categories: 
+categories:
   - "ColdFusion"
 ---
 

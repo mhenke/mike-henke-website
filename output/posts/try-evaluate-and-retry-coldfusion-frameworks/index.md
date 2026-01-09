@@ -1,7 +1,7 @@
 ---
 title: "Try, evaluate, and retry (ColdFusion Frameworks)"
 date: 2011-02-01
-categories: 
+categories:
   - "cfwheels"
   - "ColdFusion"
 ---

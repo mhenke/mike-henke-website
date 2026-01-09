@@ -15,7 +15,7 @@ Please analyze and fix the GitHub issue: $ARGUMENTS.
 4. **Search Codebase**: Find relevant files using search tools
 5. **Plan Solution**: Document approach in the issue plan file
 6. **Implement Changes**: Make necessary code modifications
-7. **Test Thoroughly**: 
+7. **Test Thoroughly**:
    - Run existing tests
    - Write new tests if needed
    - Verify the fix works as expected
@@ -25,6 +25,7 @@ Please analyze and fix the GitHub issue: $ARGUMENTS.
 11. **Create PR**: Use `gh pr create` with proper description
 
 **🏗️ Project-Specific Guidelines:**
+
 - Follow Eleventy/Nunjucks patterns established in codebase
 - Maintain dark theme design consistency (#19d4fe accent)
 - Preserve WordPress post routing at root level
@@ -32,6 +33,7 @@ Please analyze and fix the GitHub issue: $ARGUMENTS.
 - Check responsive design at 768px, 900px, 1200px breakpoints
 
 **💡 Remember:**
+
 - Use GitHub CLI (`gh`) for all GitHub operations
 - Update issue with progress comments if needed
 - Reference issue number in commit messages

@@ -1,7 +1,7 @@
 ---
 title: "Fusion Authority Quarterly Update Vol. 3, Issue 2 available"
 date: 2010-01-06
-categories: 
+categories:
   - "ColdFusion"
   - "Eclipse"
   - "Mylyn"

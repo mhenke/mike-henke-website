@@ -1,7 +1,7 @@
 ---
 title: "CF.Objective 2009 - Object Relational Mappings with ColdFusion"
 date: 2009-05-15
-categories: 
+categories:
   - "cf-objective"
   - "ColdFusion"
 ---

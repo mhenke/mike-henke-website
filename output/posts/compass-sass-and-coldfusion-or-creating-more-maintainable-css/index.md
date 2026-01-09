@@ -1,7 +1,7 @@
 ---
 title: "Compass, SASS, and ColdFusion (or creating more maintainable css)"
 date: 2010-09-22
-categories: 
+categories:
   - "ColdFusion"
 ---
 
@@ -13,7 +13,7 @@ _"**Compass** is a stylesheet authoring framework that makes your stylesheets an
 
  
 
-"_With **_compass_**, you write your stylesheets in Sass instead of _CSS_. Using the power of Sass Mixins and the _Compass_ community, you can apply battle-tested_ **_..._"**
+"_With \*\*\_compass_**, you write your stylesheets in Sass instead of _CSS_. Using the power of Sass Mixins and the _Compass_ community, you can apply battle-tested\_ **_..._"\*\*
 
  
 
@@ -21,7 +21,7 @@ _"**Sass** is a meta-language on top of CSS that’s used to describe the style 
 
  
 
-_"**_Sass_** makes CSS fun again. _Sass_ is an extension of CSS3, adding nested rules, variables, mixins, selector inheritance, and more. ..._"
+_"\*\*\_Sass_\*\* makes CSS fun again. _Sass_ is an extension of CSS3, adding nested rules, variables, mixins, selector inheritance, and more. ...\_"
 
 ## Overview of Process
 
@@ -60,7 +60,7 @@ Now for the big finale, 1) we will setup a configuration file, 2) install Bluepr
 
  
 
-1) Open your editor of your choice. I am using Eclipse 3.6 with [ColdFusion Builder](http://www.adobe.com/products/coldfusion/cfbuilder/features/). The project for me is a typical [CFWheels](http://cfwheels.org/docs/1-0/chapter/directory-structure) file/folder structure but don't concern yourself with all the files/folders. In the webroot create a folder called SASS and add a file called config.rb. Paste in this code in the config.rb file:
+1. Open your editor of your choice. I am using Eclipse 3.6 with [ColdFusion Builder](http://www.adobe.com/products/coldfusion/cfbuilder/features/). The project for me is a typical [CFWheels](http://cfwheels.org/docs/1-0/chapter/directory-structure) file/folder structure but don't concern yourself with all the files/folders. In the webroot create a folder called SASS and add a file called config.rb. Paste in this code in the config.rb file:
 
  
 
@@ -79,13 +79,13 @@ output_style = :compressed
 
  
 
-The lines you may need to modify are the css\_dir, images\_dir, and javascript\_dir to match your folder structure. Notice it is a relative path from the location of config.rb file http\_stylesheets\_path, http\_javascripts\_path, and http\_images\_path are the url path to these folders.
+The lines you may need to modify are the css_dir, images_dir, and javascript_dir to match your folder structure. Notice it is a relative path from the location of config.rb file http_stylesheets_path, http_javascripts_path, and http_images_path are the url path to these folders.
 
 ![](images/compass2.jpg)
 
  
 
-2) Optional - (you could use [YUI Compass Plugin](http://github.com/chriseppstein/yui-compass-plugin) or nothing as a starting point)
+2. Optional - (you could use [YUI Compass Plugin](http://github.com/chriseppstein/yui-compass-plugin) or nothing as a starting point)
 
 In the Command Prompt type in the path to your webroot and the sass folder you created. For me it is "C:\\JRun4\\servers\\cfwheels\\cfusion.ear\\cfusion.war\\sass".
 
@@ -99,7 +99,7 @@ You will see some stuff flash by the screen. Check your editor, you will need to
 
  
 
-3) Drop down one directory in your command prompt, so you are in your webroot and type in: compass watch sass
+3. Drop down one directory in your command prompt, so you are in your webroot and type in: compass watch sass
 
 ![](images/compass4.jpg)
 

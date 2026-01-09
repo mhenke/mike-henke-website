@@ -1,7 +1,7 @@
 ---
 title: "Practical Refactoring article"
 date: 2008-10-24
-categories: 
+categories:
   - "ColdFusion"
 ---
 

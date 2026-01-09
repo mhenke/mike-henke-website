@@ -1,7 +1,7 @@
 ---
 title: "Google Code Search Sitemaps Introduced"
 date: 2007-10-18
-categories: 
+categories:
   - "Google-Sitemap-XML-Generator"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "CFObjective 2010 Continuous Integration with Hudson, MXUnit, and ColdFusion"
 date: 2010-04-22
-categories: 
+categories:
   - "Ant"
   - "cf-objective"
   - "ColdFusion"

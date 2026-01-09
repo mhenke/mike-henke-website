@@ -1,7 +1,7 @@
 ---
 title: "Eclipse/CFEclipse NECFUG presentation link"
 date: 2008-02-27
-categories: 
+categories:
   - "CFEclipse"
   - "Eclipse"
   - "NECFUG"

@@ -1,12 +1,12 @@
 ---
 title: "Oh, cfdump, how you have changed"
 date: 2011-08-03
-categories: 
+categories:
   - "acf"
   - "ColdFusion"
 ---
 
-I have been reviewing [Adobe ColdFusion](http://www.adobe.com/products/coldfusion/) last release and the many enhancements (some of which went under my radar). This post will cover how [CFDUMP](http://help.adobe.com/en_US/ColdFusion/9.0/CFMLRef/WSc3ff6d0ea77859461172e0811cbec22c24-7ef7.html) has improve over the years. I will go in order of the enhancements. In **MX 6.1**, COM objects are able to be displayed. In **MX 7**, the _top_ attribute was added. The _top_ attribute designates the number of rows to display. For a structure, this is the number of nested levels to display. In **ACF8**, several attributes were added. They were _show_, _format_, _hide_, _keys_, _metainfo_, _output_, and _showUDFs_.
+I have been reviewing [Adobe ColdFusion](http://www.adobe.com/products/coldfusion/) last release and the many enhancements (some of which went under my radar). This post will cover how [CFDUMP](http://help.adobe.com/en_US/ColdFusion/9.0/CFMLRef/WSc3ff6d0ea77859461172e0811cbec22c24-7ef7.html) has improve over the years. I will go in order of the enhancements. In **MX 6.1**, COM objects are able to be displayed. In **MX 7**, the _top_ attribute was added. The _top_ attribute designates the number of rows to display. For a structure, this is the number of nested levels to display. In **ACF8**, several attributes were added. They were *show*, _format_, _hide_, _keys_, _metainfo_, _output_, and _showUDFs_.
 
 - _show_ - default is **all**. For a query, this is a column name or a comma-delimited list of column names to display. For a structure, this is a key or a comma-delimited list of keys to display.
 - _format_ - default is **text**. This attribute is used with the output attribute to specify whether to save the results of a cfdump to a file in text or HTML format.

@@ -1,7 +1,7 @@
 ---
 title: "ColdFusion & Github Weekly Update May 28, 2010"
 date: 2010-05-28
-categories: 
+categories:
   - "coldfusion-builder"
   - "git"
   - "github"
@@ -15,7 +15,8 @@ Being the end of the month, I'll also mention monthly updates of [ColdFusion](ht
 
 ## [FW/1 1.1 is one step away](http://corfield.org/blog/fw-1-1-1-is-one-step-away)
 
-### Recently Created Repositories[  
+### Recently Created Repositories[
+
 ](http://github.com/languages/ColdFusion/created)
 
 - ![](images/dae6ae9ff5fa99d918cedf67648ae038)[webflint](http://github.com/webflint) /[ColdMVC](http://github.com/webflint/ColdMVC)
@@ -24,7 +25,8 @@ Being the end of the month, I'll also mention monthly updates of [ColdFusion](ht
 - ![](images/7666b8e1ab67c0d868e40e43a4129c00)[ryancogswell](http://github.com/ryancogswell) /[fw1](http://github.com/ryancogswell/fw1)
 - ![](images/6f480895b9398e5cbc4e92189ed8f576)[stevewithington](http://github.com/stevewithington) /[fw1](http://github.com/stevewithington/fw1)
 
-### Recently Updated Repositories[  
+### Recently Updated Repositories[
+
 ](http://github.com/languages/ColdFusion/updated)
 
 - ![](images/a525217b1e4d780e9527c0f6f9a2bc68)[spills](http://github.com/spills) /[fw1](http://github.com/spills/fw1)
@@ -36,7 +38,7 @@ Being the end of the month, I'll also mention monthly updates of [ColdFusion](ht
 ### Most Watched This Week
 
 - ![](images/9354eec0679e2d3b36b77ff62165f717)[seancorfield](http://github.com/seancorfield) /[fw1](http://github.com/seancorfield/fw1)
-- ![](images/1a650db02dfea269fe358c3ebb9b93fc)[russjohnson](http://github.com/russjohnson) /[wheels\_application\_template](http://github.com/russjohnson/wheels_application_template)
+- ![](images/1a650db02dfea269fe358c3ebb9b93fc)[russjohnson](http://github.com/russjohnson) /[wheels_application_template](http://github.com/russjohnson/wheels_application_template)
 - ![](images/c0fa38e4ecea790a10466a71ebb9674e)[tonynelson19](http://github.com/tonynelson19) /[ColdMVC](http://github.com/tonynelson19/ColdMVC)
 - ![](images/2b2592af4550b566f315c9ae6bd07350)[denuno](http://github.com/denuno) /[shendub](http://github.com/denuno/shendub)
 - ![](images/6c5d8be6ffe678809cb737db55c761d2)[mhenke](http://github.com/mhenke) /[cfwheels](http://github.com/mhenke/cfwheels)

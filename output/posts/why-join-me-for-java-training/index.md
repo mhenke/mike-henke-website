@@ -17,8 +17,6 @@ I am hoping after this class, I'll be able to:
 - Integrate ColdFusion with J2EE and servlet technology
 - Know the advantages of Java classes to leverage ColdFusion power
 
-  
-
 I grabbed the above bullet points from these resources.
 
 - [Java For ColdFusion Developers By Eben Hewitt](http://www.bennadel.com/blog/2057-Java-For-ColdFusion-Developers-By-Eben-Hewitt.htm)

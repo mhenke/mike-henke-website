@@ -1,7 +1,7 @@
 ---
 title: "Lifehacker: Make Your Linux Desktop Look Like a Mac"
 date: 2007-10-31
-categories: 
+categories:
   - "Software"
   - "Ubuntu"
 ---

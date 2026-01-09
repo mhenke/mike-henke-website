@@ -1,7 +1,7 @@
 ---
 title: "Nothingness & Null (sample training material)"
 date: 2011-04-25
-categories: 
+categories:
   - "cf-objective"
   - "cfwheels"
   - "ColdFusion"
@@ -39,13 +39,13 @@ makeeggs
 NULL
 \\[/code\] :
 
-| **Tag** |
-| --- |
-|   ```  <cffunction name="makeeggs" returnType="component">    <cfargument name="quantity" type="numeric">    <cfif (IsNull(arguments.quantity)) />     <cfset this.makeEggs = "How am I supposed to make nothingness number of eggs?" />    <cfelse>     <cfset this.makeEggs = "Making your #arguments.quantity# eggs!" />     <cfset this.yourEggs = ArrayNew(1) />     <cfloop condition="#ArrayLen(this.yourEggs)# LT #arguments.quantity#" />      <cfset ArrayAppend(this.yourEggs, "Making an Egg.") />     </cfloop>    </cfif>    <cfreturn this />   </cffunction>   ```     |
+| **Tag**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `  <cffunction name="makeeggs" returnType="component">    <cfargument name="quantity" type="numeric">    <cfif (IsNull(arguments.quantity)) />     <cfset this.makeEggs = "How am I supposed to make nothingness number of eggs?" />    <cfelse>     <cfset this.makeEggs = "Making your #arguments.quantity# eggs!" />     <cfset this.yourEggs = ArrayNew(1) />     <cfloop condition="#ArrayLen(this.yourEggs)# LT #arguments.quantity#" />      <cfset ArrayAppend(this.yourEggs, "Making an Egg.") />     </cfloop>    </cfif>    <cfreturn this />   </cffunction>   ` |
 
-| **Script** |
-| --- |
-|   ```  public component function makeeggs(numeric quantity){   if(IsNull(arguments.quantity)) {    this.makeEggs = "How am I supposed to make nothingness number of eggs?";   } else {    this.makeEggs = "Making your #arguments.quantity# eggs!";    this.yourEggs = ArrayNew(1);    while (ArrayLen(this.yourEggs) < arguments.quantity)  	ArrayAppend(this.yourEggs, "Making an Egg.");    }    return this;   }   ```     |
+| **Script**                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `  public component function makeeggs(numeric quantity){   if(IsNull(arguments.quantity)) {    this.makeEggs = "How am I supposed to make nothingness number of eggs?";   } else {    this.makeEggs = "Making your #arguments.quantity# eggs!";    this.yourEggs = ArrayNew(1);    while (ArrayLen(this.yourEggs) < arguments.quantity)  	ArrayAppend(this.yourEggs, "Making an Egg.");    }    return this;   }   ` |
 
 Reload the file, call \[code language="coldfusion"\]
 frank.makeeggs(3)

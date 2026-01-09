@@ -1,7 +1,7 @@
 ---
 title: "RDS, ColdFusion 8 Debugger, and Eclipse"
 date: 2007-12-01
-categories: 
+categories:
   - "CFEclipse"
   - "ColdFusion"
   - "Eclipse"

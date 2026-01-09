@@ -1,7 +1,7 @@
 ---
 title: "second coldfusion show out the door"
 date: 2011-10-31
-categories: 
+categories:
   - "coldfusion-show"
 ---
 

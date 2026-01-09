@@ -1,7 +1,7 @@
 ---
 title: "haml, jhaml, and ColdFusion demo"
 date: 2010-09-18
-categories: 
+categories:
   - "ColdFusion"
 ---
 
@@ -73,7 +73,7 @@ I altered code from these two posts and would like to thank them.
 
 ## Display HTML
 
-<g:layoutTitle default='Adobe ColdFusion'></g:layoutTitle>  ![Adobe](http://www.adobe.com/go/gn_home_logo)
+<g:layoutTitle default='Adobe ColdFusion'></g:layoutTitle> ![Adobe](http://www.adobe.com/go/gn_home_logo)
 
 [![ColdFusion](http://1337productions.com/new_images/ColdFusion_logo.png)](http://www.adobe.com/products/coldfusion/)
 

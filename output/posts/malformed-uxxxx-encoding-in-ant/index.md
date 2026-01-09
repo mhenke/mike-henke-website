@@ -1,7 +1,7 @@
 ---
 title: "Malformed uxxxx encoding in ant"
 date: 2008-03-12
-categories: 
+categories:
   - "Ant"
 ---
 

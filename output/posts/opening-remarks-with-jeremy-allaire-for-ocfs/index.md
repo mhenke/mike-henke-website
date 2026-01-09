@@ -1,7 +1,7 @@
 ---
 title: "Opening Remarks with Jeremy Allaire for OCFS"
 date: 2012-02-25
-categories: 
+categories:
   - "ColdFusion"
   - "opencf-summit"
 ---

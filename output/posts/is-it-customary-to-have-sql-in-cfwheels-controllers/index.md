@@ -1,7 +1,7 @@
 ---
 title: "Is it customary to have SQL in CFWheels Controllers?"
 date: 2012-07-18
-categories: 
+categories:
   - "cfwheels"
 ---
 
@@ -16,7 +16,7 @@ models/myStoredProc.cfc
 <cffunction name="myfirststoredproc">
 <cfstoredproc procedure="spListRegions">
 <cfprocresult name="qRegions">
- </cfstoredproc>
+</cfstoredproc>
 <cfreturn spListRegions>
 </cffunction>
 </cfcomponent>

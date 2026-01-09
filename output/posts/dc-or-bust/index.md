@@ -1,7 +1,7 @@
 ---
 title: "DC or Bust"
 date: 2009-01-12
-categories: 
+categories:
   - "ColdFusion"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Eclipse Search & Find basics for CFEclipse/CFBuilder"
 date: 2011-01-06
-categories: 
+categories:
   - "CFEclipse"
   - "ColdFusion"
   - "coldfusion-builder"
@@ -27,7 +27,7 @@ The default Eclipse search works great for me also. I usually click the flashlig
 Notice three tabs in my Search page abobe. Each tab is a specialized search. Depending on your Eclipse package and plugins, you may have more or less tabs. You can "customize" the Search page by selecting the "customize" button. Deselect a search from the Search Page Selection and the search won't appear in the search page (ctrl-h or the flashlight icon).
 
 | Search Page Selections from my [RadRails](http://aptana.com/products/radrails) installation ![](images/searchc4.jpg) | From my [Eclipse JEE Helios Windows 32](http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/helios/SR1/eclipse-jee-helios-SR1-win32.zip) installion ![](images/searchc5.jpg) |
-| --- | --- |
+| -------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 ## Search Results
 
