@@ -4,32 +4,32 @@
  */
 
 // Initialize search when DOM is ready
-document.addEventListener('DOMContentLoaded', async () => {
-  const searchContainer = document.getElementById('search');
+document.addEventListener("DOMContentLoaded", async () => {
+  const searchContainer = document.getElementById("search");
   if (!searchContainer) {
-    console.error('Search element not found');
+    console.error("Search element not found");
     return;
   }
 
-  console.log('Initializing custom Pagefind search...');
+  console.log("Initializing custom Pagefind search...");
 
   // Initialize Pagefind
   await initializePagefind();
 
   async function initializePagefind() {
     try {
-      console.log('Loading Pagefind...');
+      console.log("Loading Pagefind...");
 
       // Import Pagefind dynamically
-      const pagefind = await import('/pagefind/pagefind.js');
+      const pagefind = await import("/pagefind/pagefind.js");
 
       // Store in window for global access
       window.pagefind = pagefind;
 
-      console.log('Pagefind loaded successfully, creating search interface...');
+      console.log("Pagefind loaded successfully, creating search interface...");
       createSearchInterface();
     } catch (error) {
-      console.error('Failed to load Pagefind:', error);
+      console.error("Failed to load Pagefind:", error);
       // Fallback: create basic search interface with error message
       createSearchInterface(true);
     }
@@ -49,38 +49,38 @@ document.addEventListener('DOMContentLoaded', async () => {
           placeholder="Search articles..."
           autocomplete="off"
           aria-label="Search articles"
-          ${hasError ? 'disabled' : ''}
+          ${hasError ? "disabled" : ""}
         >
       </div>
       <div id="search-results-count" class="search-results-count" aria-live="polite"></div>
       <div id="search-results" class="search-results" role="region" aria-live="polite">
-        ${hasError ? '<p class="search-message"><i class="fas fa-times-circle" aria-hidden="true"></i> Search is currently unavailable</p>' : ''}
+        ${hasError ? '<p class="search-message"><i class="fas fa-times-circle" aria-hidden="true"></i> Search is currently unavailable</p>' : ""}
       </div>
     `;
 
     if (hasError) return;
 
-    const searchInput = document.getElementById('search-input');
-    const searchResults = document.getElementById('search-results');
-    const searchResultsCount = document.getElementById('search-results-count');
+    const searchInput = document.getElementById("search-input");
+    const searchResults = document.getElementById("search-results");
+    const searchResultsCount = document.getElementById("search-results-count");
 
     let searchTimeout;
 
     // Add event listener for search input
-    searchInput.addEventListener('input', (e) => {
+    searchInput.addEventListener("input", (e) => {
       clearTimeout(searchTimeout);
       const query = e.target.value.trim();
 
       if (query.length === 0) {
-        searchResults.innerHTML = '';
-        searchResultsCount.textContent = '';
+        searchResults.innerHTML = "";
+        searchResultsCount.textContent = "";
         return;
       }
 
       if (query.length < 2) {
         searchResults.innerHTML =
           '<p class="search-message"><i class="fas fa-info-circle" aria-hidden="true"></i> Type at least 2 characters to search...</p>';
-        searchResultsCount.textContent = '';
+        searchResultsCount.textContent = "";
         return;
       }
 
@@ -95,17 +95,17 @@ document.addEventListener('DOMContentLoaded', async () => {
    * Perform search using Pagefind API
    */
   async function performSearch(query) {
-    const searchResults = document.getElementById('search-results');
-    const searchResultsCount = document.getElementById('search-results-count');
+    const searchResults = document.getElementById("search-results");
+    const searchResultsCount = document.getElementById("search-results-count");
 
     try {
       searchResults.innerHTML =
         '<p class="search-message"><i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Searching...</p>';
-      searchResultsCount.textContent = '';
+      searchResultsCount.textContent = "";
 
       // Check if Pagefind is available
       if (!window.pagefind) {
-        throw new Error('Pagefind is not loaded');
+        throw new Error("Pagefind is not loaded");
       }
 
       // Perform the search using Pagefind API
@@ -121,22 +121,22 @@ document.addEventListener('DOMContentLoaded', async () => {
       // Load the first 10 results
       const resultLimit = Math.min(search.results.length, 10);
       const results = await Promise.all(
-        search.results.slice(0, resultLimit).map((r) => r.data())
+        search.results.slice(0, resultLimit).map((r) => r.data()),
       );
 
       // Render results as blog cards
       renderBlogCards(results);
-      searchResultsCount.textContent = `${search.results.length} result${search.results.length !== 1 ? 's' : ''} for "${query}"`;
+      searchResultsCount.textContent = `${search.results.length} result${search.results.length !== 1 ? "s" : ""} for "${query}"`;
     } catch (error) {
-      console.error('Search error:', error);
-      if (error.message.includes('Pagefind is not loaded')) {
+      console.error("Search error:", error);
+      if (error.message.includes("Pagefind is not loaded")) {
         searchResults.innerHTML =
           '<p class="search-message"><i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Search is loading. Please try again in a moment.</p>';
       } else {
         searchResults.innerHTML =
           '<p class="search-message"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i> Search failed. Please try again.</p>';
       }
-      searchResultsCount.textContent = '';
+      searchResultsCount.textContent = "";
     }
   }
 
@@ -144,13 +144,13 @@ document.addEventListener('DOMContentLoaded', async () => {
    * Render search results as blog cards
    */
   function renderBlogCards(results) {
-    const searchResults = document.getElementById('search-results');
+    const searchResults = document.getElementById("search-results");
 
     const blogCardsHTML = results
       .map((result) => {
         return createBlogCard(result);
       })
-      .join('');
+      .join("");
 
     searchResults.innerHTML = blogCardsHTML;
   }
@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const url = result.url;
 
     // Process excerpt with better cleaning
-    let excerpt = '';
+    let excerpt = "";
     if (result.meta && result.meta.custom_excerpt) {
       // Use custom excerpt from meta - it's already clean from blogExcerpt filter
       excerpt = result.meta.custom_excerpt.trim();
@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const formattedDate = formatDate(date);
 
     // Create category tags if available
-    const categoryTags = category ? createCategoryTags([category]) : '';
+    const categoryTags = category ? createCategoryTags([category]) : "";
 
     return `
       <article class="blog-post-card" itemscope itemtype="https://schema.org/BlogPosting">
@@ -217,38 +217,38 @@ document.addEventListener('DOMContentLoaded', async () => {
   function extractTitleFromContent(content) {
     const titleMatch = content.match(/<h1[^>]*>(.*?)<\/h1>/i);
     if (titleMatch) {
-      return titleMatch[1].replace(/<[^>]*>/g, '').trim();
+      return titleMatch[1].replace(/<[^>]*>/g, "").trim();
     }
-    return 'Untitled';
+    return "Untitled";
   }
 
   /**
    * Clean and format excerpt text
    */
   function cleanExcerpt(excerpt) {
-    if (!excerpt) return '';
+    if (!excerpt) return "";
 
     // Remove HTML tags
-    let cleaned = excerpt.replace(/<[^>]*>/g, ' ');
+    let cleaned = excerpt.replace(/<[^>]*>/g, " ");
 
     // Remove extra whitespace and normalize spaces
-    cleaned = cleaned.replace(/\s+/g, ' ').trim();
+    cleaned = cleaned.replace(/\s+/g, " ").trim();
 
     // Remove quotes that might wrap the content
-    cleaned = cleaned.replace(/^["']|["']$/g, '');
+    cleaned = cleaned.replace(/^["']|["']$/g, "");
 
     // Remove common unwanted prefixes/suffixes
-    cleaned = cleaned.replace(/^(I am doing a|This is|Here is|In this)/i, '');
+    cleaned = cleaned.replace(/^(I am doing a|This is|Here is|In this)/i, "");
 
     // Truncate if too long
     if (cleaned.length > 150) {
       // Find the last complete word before 150 characters
       const truncated = cleaned.substring(0, 150);
-      const lastSpace = truncated.lastIndexOf(' ');
+      const lastSpace = truncated.lastIndexOf(" ");
       cleaned =
         lastSpace > 120
-          ? truncated.substring(0, lastSpace) + '...'
-          : truncated + '...';
+          ? truncated.substring(0, lastSpace) + "..."
+          : truncated + "...";
     }
 
     return cleaned;
@@ -260,8 +260,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   function extractExcerpt(content) {
     // Remove HTML tags and get first 150 characters
     const plainText = content
-      .replace(/<[^>]*>/g, ' ')
-      .replace(/\s+/g, ' ')
+      .replace(/<[^>]*>/g, " ")
+      .replace(/\s+/g, " ")
       .trim();
     return cleanExcerpt(plainText);
   }
@@ -293,11 +293,11 @@ document.addEventListener('DOMContentLoaded', async () => {
    * Extract category from URL
    */
   function extractCategoryFromUrl(url) {
-    const pathSegments = url.split('/').filter((segment) => segment.length > 0);
+    const pathSegments = url.split("/").filter((segment) => segment.length > 0);
 
     // Look for category in URL path
     const categoryIndex = pathSegments.findIndex(
-      (segment) => segment === 'category'
+      (segment) => segment === "category",
     );
     if (categoryIndex !== -1 && pathSegments[categoryIndex + 1]) {
       return pathSegments[categoryIndex + 1];
@@ -305,11 +305,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Check for common categories in the URL
     const commonCategories = [
-      'ColdFusion',
-      'JavaScript',
-      'Eclipse',
-      'CFWheels',
-      'Development',
+      "ColdFusion",
+      "JavaScript",
+      "Eclipse",
+      "CFWheels",
+      "Development",
     ];
     for (const category of commonCategories) {
       if (url.toLowerCase().includes(category.toLowerCase())) {
@@ -324,7 +324,7 @@ document.addEventListener('DOMContentLoaded', async () => {
    * Get current date in ISO format
    */
   function getCurrentDate() {
-    return new Date().toISOString().split('T')[0];
+    return new Date().toISOString().split("T")[0];
   }
 
   /**
@@ -332,15 +332,15 @@ document.addEventListener('DOMContentLoaded', async () => {
    */
   function createCategoryTags(categories) {
     if (!categories || categories.length === 0) {
-      return '';
+      return "";
     }
 
     const categoryElements = categories
       .map(
         (category) =>
-          `<a href="/category/${category.trim()}/" class="category-tag">${category}</a>`
+          `<a href="/category/${category.trim()}/" class="category-tag">${category}</a>`,
       )
-      .join('');
+      .join("");
 
     return `<div class="blog-post-categories">${categoryElements}</div>`;
   }
@@ -351,10 +351,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   function formatDate(dateString) {
     try {
       const date = new Date(dateString);
-      return date.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
+      return date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
       });
     } catch (error) {
       return dateString;

@@ -42,7 +42,7 @@
 
 /* Add the decorative underline consistent with other sections */
 .search-container h1::after {
-  content: '';
+  content: "";
   display: block;
   width: calc(var(--icon-size) + var(--spacing-lg));
   height: var(--border-width);
