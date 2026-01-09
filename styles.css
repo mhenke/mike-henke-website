@@ -1212,9 +1212,20 @@ section {
   max-width: 100%;
   width: var(--hero-image-mobile);
   border-radius: var(--border-radius-xl);
-  box-shadow: var(--shadow-accent), var(--shadow-lg);
+  box-shadow: var(--shadow-accent), var(--shadow-md);
+  border: var(--border-width) solid var(--color-border);
   background: var(--color-surface);
   margin-top: var(--spacing-lg);
+  cursor: pointer;
+  transition:
+    box-shadow var(--transition-normal),
+    border-color var(--transition-normal),
+    transform var(--transition-normal);
+}
+
+.career-photo:hover {
+  box-shadow: var(--shadow-accent), var(--shadow-lg), var(--shadow-accent-lg);
+  border-color: var(--color-primary);
 }
 
 .career-timeline-column {
