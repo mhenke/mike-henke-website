@@ -27,7 +27,7 @@
   --color-code-string: #ce9178;
 
   /* Typography */
-  --font-primary: 'Montserrat', Arial, Helvetica, sans-serif;
+  --font-primary: "Montserrat", Arial, Helvetica, sans-serif;
   --font-weight-regular: 400;
   --font-weight-medium: 600;
   --font-weight-bold: 700;
@@ -585,7 +585,7 @@ section {
 }
 
 .navbar-links a::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -2px;
   left: 50%;
@@ -822,7 +822,7 @@ section {
   }
 
   .navbar-links::after {
-    content: '';
+    content: "";
     display: block;
     height: var(--spacing-xl);
     flex-shrink: 0;
@@ -919,7 +919,7 @@ section {
 
 /* Add visual indicator that this is expandable */
 .nav-dropdown:hover .dropdown-toggle,
-.dropdown-toggle[aria-expanded='true'] {
+.dropdown-toggle[aria-expanded="true"] {
   background-color: var(--color-accent-bg);
   color: var(--color-primary);
 }
@@ -931,7 +931,7 @@ section {
   color: var(--color-primary);
 }
 
-.dropdown-toggle[aria-expanded='true'] .dropdown-arrow {
+.dropdown-toggle[aria-expanded="true"] .dropdown-arrow {
   transform: rotate(180deg);
 }
 
@@ -1036,10 +1036,10 @@ section {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-areas:
-    'text'
-    'image'
-    'description'
-    'buttons';
+    "text"
+    "image"
+    "description"
+    "buttons";
   gap: var(--spacing-lg);
   align-items: center;
   max-width: var(--max-width-content);
@@ -1130,9 +1130,9 @@ section {
   .hero-section {
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
-      'text image'
-      'description image'
-      'buttons image';
+      "text image"
+      "description image"
+      "buttons image";
     gap: var(--spacing-2xl);
     text-align: left;
     padding: var(--spacing-2xl) var(--spacing-xl);
@@ -1797,7 +1797,7 @@ section {
 }
 
 .contact-details a::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: var(--spacing-xs);
@@ -2361,7 +2361,7 @@ section {
 #disqus_thread {
   background: var(--color-background) !important;
   color: var(--color-text-secondary) !important;
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif !important;
+  font-family: "Montserrat", Arial, Helvetica, sans-serif !important;
   font-size: 1rem;
   line-height: 1.7;
   padding: 32px 0 0 0;
@@ -2381,7 +2381,7 @@ section {
 #disqus_thread h5,
 #disqus_thread h6 {
   color: var(--color-text-secondary) !important;
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif !important;
+  font-family: "Montserrat", Arial, Helvetica, sans-serif !important;
   font-weight: 700;
   letter-spacing: 0.3px;
 }
@@ -2390,14 +2390,14 @@ section {
   background: var(--color-background) !important;
   color: var(--color-text-secondary) !important;
   border: 1px solid var(--color-border) !important;
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif !important;
+  font-family: "Montserrat", Arial, Helvetica, sans-serif !important;
 }
 
 /* Disqus Comment Content Readability (Dark Theme) */
 #disqus_thread {
   background: var(--color-background) !important;
   color: var(--color-text-secondary) !important;
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif !important;
+  font-family: "Montserrat", Arial, Helvetica, sans-serif !important;
   font-size: 1.08rem;
   line-height: 1.7;
 }
@@ -2428,7 +2428,7 @@ section {
   background: var(--color-background) !important;
   color: var(--color-text-secondary) !important;
   border: 1px solid var(--color-border) !important;
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif !important;
+  font-family: "Montserrat", Arial, Helvetica, sans-serif !important;
 }
 #disqus_thread ::selection {
   background: var(--color-primary);
@@ -2523,7 +2523,7 @@ section {
 
 .code-joke pre {
   margin: 0;
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   font-size: var(--font-size-base);
   line-height: 1.6;
   text-align: left;
@@ -2680,6 +2680,6 @@ section {
    ========================================================================== */
 
 /* Import search styles */
-@import url('assets/css/search.css');
+@import url("assets/css/search.css");
 
 /* ...existing imports... */
