@@ -1,7 +1,7 @@
 ---
 title: "Cloudy with a Chance of Tests Feb 16 6pm EST (rescheduled)"
 date: 2012-02-15
-categories: 
+categories:
   - "ColdFusion"
   - "jenkins"
   - "Presentations"

@@ -1,7 +1,7 @@
 ---
 title: "My first entry for CFWheels blog"
 date: 2009-12-09
-categories: 
+categories:
   - "cfwheels"
 ---
 

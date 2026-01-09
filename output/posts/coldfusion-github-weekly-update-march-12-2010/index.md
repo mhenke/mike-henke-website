@@ -1,7 +1,7 @@
 ---
 title: "ColdFusion & Github Weekly Update March 12, 2010"
 date: 2010-03-12
-categories: 
+categories:
   - "CFEclipse"
   - "git"
   - "github"

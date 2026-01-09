@@ -1,7 +1,7 @@
 ---
 title: "ColdFusion On Wheels Intro 2 Day Training"
 date: 2011-03-09
-categories: 
+categories:
   - "cf-objective"
   - "cfwheels"
   - "ColdFusion"

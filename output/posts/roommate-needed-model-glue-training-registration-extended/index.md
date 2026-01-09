@@ -1,7 +1,7 @@
 ---
 title: "Roommate needed: Model Glue training registration extended"
 date: 2008-01-07
-categories: 
+categories:
   - "ColdFusion"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Speaking at cf.Objective 2010 (ColdFusion on Wheels)"
 date: 2010-01-09
-categories: 
+categories:
   - "cf-objective"
   - "ColdFusion"
 ---

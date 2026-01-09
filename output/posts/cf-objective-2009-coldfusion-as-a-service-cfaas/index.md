@@ -1,7 +1,7 @@
 ---
 title: "CF.Objective 2009 - ColdFusion as a Service (CFAAS)"
 date: 2009-05-15
-categories: 
+categories:
   - "cf-objective"
   - "ColdFusion"
 ---

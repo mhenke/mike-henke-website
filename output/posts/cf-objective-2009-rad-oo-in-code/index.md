@@ -1,7 +1,7 @@
 ---
 title: "CF.Objective 2009 - Rad OO in Code"
 date: 2009-05-14
-categories: 
+categories:
   - "cf-objective"
   - "ColdFusion"
 ---

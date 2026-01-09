@@ -1,7 +1,7 @@
 ---
 title: "JRun URL Rewriting"
 date: 2009-09-01
-categories: 
+categories:
   - "ColdFusion"
   - "jrun"
 ---

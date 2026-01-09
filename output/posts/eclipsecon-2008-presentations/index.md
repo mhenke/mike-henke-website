@@ -1,7 +1,7 @@
 ---
 title: "EclipseCon 2008 presentations"
 date: 2008-05-06
-categories: 
+categories:
   - "CFEclipse"
   - "Eclipse"
   - "Mylyn"

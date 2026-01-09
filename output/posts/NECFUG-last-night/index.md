@@ -1,7 +1,7 @@
 ---
 title: "NECFUG last night"
 date: 2008-01-23
-categories: 
+categories:
   - "ColdFusion"
   - "NECFUG"
 ---

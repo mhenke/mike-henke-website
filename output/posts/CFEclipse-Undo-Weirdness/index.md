@@ -1,7 +1,7 @@
 ---
 title: "CFEclipse Undo Weirdness"
 date: 2008-09-22
-categories: 
+categories:
   - "CFEclipse"
   - "ColdFusion"
   - "Eclipse"

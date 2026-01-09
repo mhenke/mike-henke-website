@@ -1,7 +1,7 @@
 ---
 title: "Omaha BarCamp Eclipse/Mylyn Slides"
 date: 2008-08-16
-categories: 
+categories:
   - "Eclipse"
   - "Mylyn"
 ---

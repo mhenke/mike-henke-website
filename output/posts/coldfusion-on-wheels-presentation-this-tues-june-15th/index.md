@@ -1,7 +1,7 @@
 ---
 title: "ColdFusion On Wheels presentation this Tues, June 15th"
 date: 2010-06-13
-categories: 
+categories:
   - "cfwheels"
   - "Presentations"
 ---

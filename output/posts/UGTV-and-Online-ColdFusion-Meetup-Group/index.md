@@ -1,7 +1,7 @@
 ---
 title: "UGTV and Online ColdFusion Meetup Group"
 date: 2007-11-29
-categories: 
+categories:
   - "ColdFusion"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Initiative to improve ColdFusion 9 docs on github"
 date: 2011-06-29
-categories: 
+categories:
   - "acf"
   - "ColdFusion"
   - "github"

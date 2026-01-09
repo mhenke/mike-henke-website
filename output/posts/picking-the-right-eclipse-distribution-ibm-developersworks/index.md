@@ -1,7 +1,7 @@
 ---
 title: "Picking the right Eclipse distribution - IBM DevelopersWorks"
 date: 2008-05-22
-categories: 
+categories:
   - "Eclipse"
 ---
 

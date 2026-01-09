@@ -1,7 +1,7 @@
 ---
 title: "Installing Mylyn onto ColdFusion Builder"
 date: 2010-04-08
-categories: 
+categories:
   - "coldfusion-builder"
   - "Mylyn"
 ---

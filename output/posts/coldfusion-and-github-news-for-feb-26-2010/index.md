@@ -1,7 +1,7 @@
 ---
 title: "ColdFusion and Github news for Feb 26, 2010"
 date: 2010-02-26
-categories: 
+categories:
   - "coldfusion-builder"
   - "github"
 ---
@@ -21,7 +21,8 @@ This week [ColdFusion](http://en.wikipedia.org/wiki/ColdFusion_Markup_Language) 
 - ![](images/f09f0a0d45c19276540a9899d0e6b667) [rip747](http://github.com/rip747) / [cfwheels](http://github.com/rip747/cfwheels)
 - ![](images/95d98aa8f56318b4e22aab08425ee792) [bobsilverberg](http://github.com/bobsilverberg) / [ValidateThis](http://github.com/bobsilverberg/ValidateThis)
 
-### Recently Created Repositories [more  
+### Recently Created Repositories [more
+
 ](http://github.com/languages/ColdFusion/created)
 
 - ![](images/e7e3d08b9efa1f00057358546d9e195d) [crimsonskyfalling](http://github.com/crimsonskyfalling) / [ValidateThisWithAnnotations](http://github.com/crimsonskyfalling/ValidateThisWithAnnotations)
@@ -30,7 +31,8 @@ This week [ColdFusion](http://en.wikipedia.org/wiki/ColdFusion_Markup_Language) 
 - ![](images/e7e3d08b9efa1f00057358546d9e195d) [crimsonskyfalling](http://github.com/crimsonskyfalling) / [ValidateThis](http://github.com/crimsonskyfalling/ValidateThis)
 - ![](images/6c5d8be6ffe678809cb737db55c761d2) [mhenke](http://github.com/mhenke) / [cfwheels](http://github.com/mhenke/cfwheels)
 
-### Recently Updated Repositories [more  
+### Recently Updated Repositories [more
+
 ](http://github.com/languages/ColdFusion/updated)
 
 - ![](images/e7e3d08b9efa1f00057358546d9e195d) [crimsonskyfalling](http://github.com/crimsonskyfalling) / [ValidateThisWithAnnotations](http://github.com/crimsonskyfalling/ValidateThisWithAnnotations)

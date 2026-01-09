@@ -1,7 +1,7 @@
 ---
 title: "Eclipse Working Sets - Part I demo"
 date: 2008-03-05
-categories: 
+categories:
   - "Eclipse"
 ---
 

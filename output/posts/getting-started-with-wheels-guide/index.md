@@ -1,7 +1,7 @@
 ---
 title: "Getting Started with Wheels guide"
 date: 2011-06-16
-categories: 
+categories:
   - "cfwheels"
   - "ColdFusion"
   - "github"

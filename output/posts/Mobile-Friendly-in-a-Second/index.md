@@ -1,7 +1,7 @@
 ---
 title: "Mobile Friendly in a Second"
 date: 2008-01-24
-categories: 
+categories:
   - "ColdFusion"
 ---
 

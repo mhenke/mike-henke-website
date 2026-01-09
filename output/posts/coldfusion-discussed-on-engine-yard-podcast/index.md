@@ -1,7 +1,7 @@
 ---
 title: "ColdFusion discussed on Rails Engine Yard podcast"
 date: 2011-09-06
-categories: 
+categories:
   - "acf"
   - "cfwheels"
   - "ColdFusion"

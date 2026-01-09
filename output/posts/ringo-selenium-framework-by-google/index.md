@@ -1,7 +1,7 @@
 ---
 title: "Ringo - Selenium Framework by Google"
 date: 2008-04-20
-categories: 
+categories:
   - "Presentations"
   - "Selenium"
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Thanks ColdFusion Weekly and thecrumb.com"
 date: 2007-09-24
-categories: 
+categories:
   - "ColdFusion"
   - "Selenium"
 ---

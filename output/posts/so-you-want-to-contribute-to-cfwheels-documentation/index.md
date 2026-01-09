@@ -1,7 +1,7 @@
 ---
 title: "So you want to contribute to CFWheels? (Documentation )"
 date: 2011-04-27
-categories: 
+categories:
   - "cfwheels"
   - "ColdFusion"
   - "git"
@@ -34,11 +34,11 @@ hasManyCheckBox
 		</cfloop>
 	'
 	categories="view-helper,forms-association" chapters="nested-properties" functions="hasMany,hasManyRadioButton,includedInObject,nestedProperties">
-	<cfargument name="objectName" type="string" required="true" hint="See documentation for @hasManyRadioButton." />
-	<cfargument name="association" type="string" required="true" hint="See documentation for @hasManyRadioButton." />
-	<cfargument name="keys" type="string" required="true" hint="See documentation for @hasManyRadioButton." />
-		....MORE CODE....
-	<cfreturn loc.returnValue />
+<cfargument name="objectName" type="string" required="true" hint="See documentation for @hasManyRadioButton." />
+<cfargument name="association" type="string" required="true" hint="See documentation for @hasManyRadioButton." />
+<cfargument name="keys" type="string" required="true" hint="See documentation for @hasManyRadioButton." />
+....MORE CODE....
+<cfreturn loc.returnValue />
 </cffunction>
 \\[/code\]
 

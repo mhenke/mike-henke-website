@@ -1,7 +1,7 @@
 ---
 title: "HackMyCF giveaway tweet and you are entered"
 date: 2011-12-05
-categories: 
+categories:
   - "coldfusion-show"
 ---
 

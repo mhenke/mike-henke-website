@@ -1,7 +1,7 @@
 ---
 title: "CF.Objective 2009 - Code Reviews and Mentoring"
 date: 2009-05-16
-categories: 
+categories:
   - "cf-objective"
   - "ColdFusion"
 ---

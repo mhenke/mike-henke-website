@@ -1,7 +1,7 @@
 ---
 title: "Setting up MXUnit Eclipse plugin with CFWheels"
 date: 2011-09-26
-categories: 
+categories:
   - "cfwheels"
   - "ColdFusion"
   - "mxunit"

@@ -1,7 +1,7 @@
 ---
 title: "would like one more person - Melbourne Australia training and conference"
 date: 2011-11-04
-categories: 
+categories:
   - "cf-objective-anz"
   - "cfwheels"
   - "ColdFusion"

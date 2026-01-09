@@ -1,7 +1,7 @@
 ---
 title: "Trac/ColdFusion case studies"
 date: 2008-02-19
-categories: 
+categories:
   - "ColdFusion"
 ---
 

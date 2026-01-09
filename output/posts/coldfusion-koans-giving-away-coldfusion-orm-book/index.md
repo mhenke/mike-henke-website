@@ -1,7 +1,7 @@
 ---
 title: "ColdFusion Koans giving away ColdFusion ORM Book"
 date: 2012-02-27
-categories: 
+categories:
   - "ColdFusion"
 ---
 

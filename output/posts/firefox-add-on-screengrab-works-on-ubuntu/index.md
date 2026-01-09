@@ -1,7 +1,7 @@
 ---
 title: "Firefox Add-on: ScreenGrab! works on Ubuntu"
 date: 2008-01-20
-categories: 
+categories:
   - "Ubuntu"
 ---
 

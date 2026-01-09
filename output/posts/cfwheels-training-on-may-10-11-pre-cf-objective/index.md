@@ -1,7 +1,7 @@
 ---
 title: "CFWheels Training on May 10-11 (Pre-CF.Objective)"
 date: 2011-04-18
-categories: 
+categories:
   - "cf-objective"
   - "cfwheels"
   - "ColdFusion"

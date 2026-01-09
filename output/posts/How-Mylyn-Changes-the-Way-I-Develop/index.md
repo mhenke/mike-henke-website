@@ -1,7 +1,7 @@
 ---
 title: "How Mylyn Changes the Way I Develop"
 date: 2008-07-17
-categories: 
+categories:
   - "CFEclipse"
   - "Mylyn"
   - "Presentations"

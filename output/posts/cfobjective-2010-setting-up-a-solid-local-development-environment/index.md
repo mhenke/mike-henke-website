@@ -1,7 +1,7 @@
 ---
 title: "CFObjective 2010 Setting up a solid local development environment"
 date: 2010-04-22
-categories: 
+categories:
   - "cf-objective"
   - "ColdFusion"
 ---

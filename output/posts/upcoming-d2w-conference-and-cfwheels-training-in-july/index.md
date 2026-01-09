@@ -1,13 +1,13 @@
 ---
 title: "Upcoming D2WC conference and CFWheels training in July"
 date: 2011-07-05
-categories: 
+categories:
   - "cfwheels"
   - "ColdFusion"
   - "d2w"
 ---
 
-##   
+##
 
 ## D2WC conference
 
@@ -15,7 +15,7 @@ Just a reminder, the [D2WC conference](http://d2wc.com/) is coming up in a few w
 
 ![](images/21.jpg)
 
-###   
+###
 
 ### Speakers
 

@@ -1,8 +1,8 @@
 ---
-title: 'Get results from sql Ant task into a property'
+title: "Get results from sql Ant task into a property"
 date: 2007-07-25
 categories:
-  - 'Ant'
+  - "Ant"
 ---
 
 My first attempt to create an ant using sql results within the ant script. I am using MSSQL as my db server. The example expects ant and sql are setup. Several good blogs covering how to [ant and sql setup](http://www.thecrumb.com/wiki/Ant). My next attempt will try to store the SQL result as XML, and extracting the values.

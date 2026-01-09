@@ -1,7 +1,7 @@
 ---
 title: "CodingHorror.com - Software Branching and Parallel Universes"
 date: 2007-10-03
-categories: 
+categories:
   - "Subversion"
 ---
 

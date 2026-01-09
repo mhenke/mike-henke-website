@@ -1,7 +1,7 @@
 ---
 title: "CFObjective 2010 Stack Tracing CFML Requests to Solve Problems"
 date: 2010-04-22
-categories: 
+categories:
   - "cf-objective"
   - "ColdFusion"
 ---

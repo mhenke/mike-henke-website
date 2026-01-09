@@ -1,7 +1,7 @@
 ---
 title: "Model Glue training..."
 date: 2007-12-16
-categories: 
+categories:
   - "ColdFusion"
 ---
 

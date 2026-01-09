@@ -1,7 +1,7 @@
 ---
 title: "Seamless ColdFusion Builder on Linux"
 date: 2011-06-28
-categories: 
+categories:
   - "CFEclipse"
   - "ColdFusion"
   - "coldfusion-builder"

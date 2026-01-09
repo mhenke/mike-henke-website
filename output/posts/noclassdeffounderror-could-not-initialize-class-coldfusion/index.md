@@ -1,7 +1,7 @@
 ---
 title: "NoClassDefFoundError: Could not initialize class coldfusion"
 date: 2009-11-03
-categories: 
+categories:
   - "ColdFusion"
 ---
 

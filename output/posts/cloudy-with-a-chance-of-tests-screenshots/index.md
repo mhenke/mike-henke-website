@@ -1,7 +1,7 @@
 ---
 title: "Cloudy With A Chance of Tests screenshots"
 date: 2012-01-19
-categories: 
+categories:
   - "ColdFusion"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Cloudy with a Chance of Tests tonight 6pm EST"
 date: 2012-02-02
-categories: 
+categories:
   - "ColdFusion"
 ---
 

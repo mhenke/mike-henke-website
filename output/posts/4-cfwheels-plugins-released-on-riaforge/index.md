@@ -1,7 +1,7 @@
 ---
 title: "4 CFWheels plugins released on Riaforge"
 date: 2010-09-24
-categories: 
+categories:
   - "cfwheels"
   - "ColdFusion"
 ---
@@ -12,7 +12,7 @@ I submitted four [CFWheels](http://www.cfwheels.org) plugins to [Riaforge](http:
 
 from [RIAForge](https://www.google.com/reader/view/feed/http%3A%2F%2Fgooglesitemapxmlgenerator.riaforge.org%2Findex.cfm%3Fevent%3Dpage.rss)
 
-using jtidy\_cfc returns parsed and valid xHTML for CFWheels
+using jtidy_cfc returns parsed and valid xHTML for CFWheels
 
 ## [ColdBox's CacheBox For Wheels (Active)](http://coldboxcacheboxforwheels.riaforge.org/)
 

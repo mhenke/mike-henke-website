@@ -1,7 +1,7 @@
 ---
 title: "Write In Marc Esher for Community Member of the Year"
 date: 2009-07-16
-categories: 
+categories:
   - "ColdFusion"
   - "mxunit"
 ---

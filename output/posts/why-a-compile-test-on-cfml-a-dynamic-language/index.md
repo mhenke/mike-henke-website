@@ -1,7 +1,7 @@
 ---
 title: "Why a compile test on CFML, a dynamic language?"
 date: 2011-12-16
-categories: 
+categories:
   - "ColdFusion"
   - "mxunit"
 ---

@@ -1,7 +1,7 @@
 ---
 title: "ColdFusion is dead (yet again)"
 date: 2008-04-09
-categories: 
+categories:
   - "ColdFusion"
 ---
 

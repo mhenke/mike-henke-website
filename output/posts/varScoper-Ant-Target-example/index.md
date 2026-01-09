@@ -1,16 +1,19 @@
 ---
 title: "varScoper Ant Target example"
 date: 2008-07-08
-categories: 
+categories:
   - "Ant"
   - "ColdFusion"
   - "mxunit"
 ---
 
-If you haven't heard of the [vaScoper tool](http://varscoper.riaforge.org/ ) created and maintained by [Mike Schierberl](http://www.schierberl.com/cfblog/), it is definately worth checking out. It has the stamp of approval of [Raymond Camden](http://www.coldfusionjedi.com/index.cfm/2008/5/22/VarScoper-Tool ) and [Sean Corfield](http://corfield.org/blog/index.cfm/do/blog.entry/entry/varScoper_updated). Here is a varScoper ant target recently added to the [MXUnit](http://www.mxunit.org) build ant. Download both tools and give them a test drive. _<target name="varScopeCheck" depends="init">  
-<!-- MUST HAVE VARSCOPER IN WEBROOT -->  
-<echo>Check for unscoped variables</echo>  
-<!-- load the varScoper task -->  
+If you haven't heard of the [vaScoper tool](http://varscoper.riaforge.org/) created and maintained by [Mike Schierberl](http://www.schierberl.com/cfblog/), it is definately worth checking out. It has the stamp of approval of [Raymond Camden](http://www.coldfusionjedi.com/index.cfm/2008/5/22/VarScoper-Tool) and [Sean Corfield](http://corfield.org/blog/index.cfm/do/blog.entry/entry/varScoper_updated). Here is a varScoper ant target recently added to the [MXUnit](http://www.mxunit.org) build ant. Download both tools and give them a test drive. \_<target name="varScopeCheck" depends="init">
+
+<!-- MUST HAVE VARSCOPER IN WEBROOT -->
+
+<echo>Check for unscoped variables</echo>
+
+<!-- load the varScoper task -->
 <taskdef name="conGet" classname="com.varscoper.ant.task.ConditionalGet" classpathref="project.classpath" />  
   
 <property file="${antrunner.file}" />  

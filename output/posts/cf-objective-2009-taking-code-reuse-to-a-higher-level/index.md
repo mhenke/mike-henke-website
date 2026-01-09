@@ -1,7 +1,7 @@
 ---
 title: "CF.Objective 2009 - Taking Code Reuse to a higher level"
 date: 2009-05-14
-categories: 
+categories:
   - "cf-objective"
   - "ColdFusion"
 ---

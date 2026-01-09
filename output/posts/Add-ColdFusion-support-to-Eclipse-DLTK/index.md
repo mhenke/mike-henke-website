@@ -1,7 +1,7 @@
 ---
 title: "Add ColdFusion support to Eclipse DLTK"
 date: 2008-03-02
-categories: 
+categories:
   - "ColdFusion"
   - "Eclipse"
 ---

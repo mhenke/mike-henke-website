@@ -1,7 +1,7 @@
 ---
 title: "No Brainer for CFObjective Sponsorships"
 date: 2012-03-29
-categories: 
+categories:
   - "cf-objective"
   - "ColdFusion"
 ---
@@ -17,7 +17,7 @@ with the community. In addition, you will also receive the following benefits: _
 
 - Bronze Level sponsor recognition on all website pages.
 - Linked company logo and a 100 word description on the conference website sponsor page  
-    ([http://www.cfobjective.com](http://www.cfobjective.com)).
+   ([http://www.cfobjective.com](http://www.cfobjective.com)).
 
 _**Onsite Benefits**_
 

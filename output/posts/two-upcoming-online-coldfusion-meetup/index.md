@@ -1,7 +1,7 @@
 ---
 title: "Two upcoming Online ColdFusion meetup"
 date: 2012-01-11
-categories: 
+categories:
   - "ColdFusion"
 ---
 

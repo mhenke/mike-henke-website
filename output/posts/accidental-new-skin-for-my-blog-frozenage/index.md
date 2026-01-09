@@ -1,7 +1,7 @@
 ---
 title: "Accidental new skin for my blog - frozenage"
 date: 2008-01-14
-categories: 
+categories:
   - "ColdFusion"
 ---
 

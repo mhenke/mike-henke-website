@@ -1,7 +1,7 @@
 ---
 title: "Toggle whitespace in Eclipse, CFEclipse, and CFBuilder"
 date: 2010-07-02
-categories: 
+categories:
   - "CFEclipse"
   - "coldfusion-builder"
   - "Eclipse"

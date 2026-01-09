@@ -1,7 +1,7 @@
 ---
 title: "New Year, New Site Design: JournalCrunch for MangoBlog"
 date: 2010-12-23
-categories: 
+categories:
   - "ColdFusion"
   - "github"
 ---

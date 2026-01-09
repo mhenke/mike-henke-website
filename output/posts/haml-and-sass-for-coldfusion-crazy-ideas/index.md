@@ -1,7 +1,7 @@
 ---
 title: "haml and sass for ColdFusion | crazy ideas"
 date: 2010-09-16
-categories: 
+categories:
   - "ColdFusion"
   - "openbd"
   - "railo"
@@ -11,16 +11,17 @@ I recently took a Rails two day class and was exposed to [haml](http://haml-lang
 
 \[code language="coldfusion"\]
 #profile
-  .left.column
-    #date= print_date
-    #address= current_user.address
-  .right.column
-    #email= current_user.email
-    #bio= current_user.bio
+.left.column
+#date= print_date
+#address= current_user.address
+.right.column
+#email= current_user.email
+#bio= current_user.bio
 \\[/code\] instead of the norm cfml and html
 
 \[code language="coldfusion"\]
 <cfoutput>
+
 <div id="profile">
 <div class="left column">
 <div id="date">#print_date#</div>

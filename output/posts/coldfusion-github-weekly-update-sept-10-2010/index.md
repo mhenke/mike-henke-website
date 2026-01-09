@@ -1,7 +1,7 @@
 ---
 title: "ColdFusion & Github Weekly Update Sept 10, 2010"
 date: 2010-09-10
-categories: 
+categories:
   - "cfwheels"
   - "ColdFusion"
   - "git"
@@ -9,10 +9,10 @@ categories:
   - "Subversion"
 ---
 
-Two weeks since the last [ColdFusion](http://www.adobe.com/products/coldfusion/) & [Github](http://www.github.com/). I will start with what I missed. A [Mango Blog plugin for gists](http://www.mangoblog.org/news/github-gists-plugin) was announced Aug. 16th. You may be wondering what the heck are GISTS?  
-  
-**Gist** is a simple way to **share snippets and pastes** with others. All **gists** are git repositories, so they are automatically **versioned**, **forkable** and usable as a **git repository**.  
-  
+Two weeks since the last [ColdFusion](http://www.adobe.com/products/coldfusion/) & [Github](http://www.github.com/). I will start with what I missed. A [Mango Blog plugin for gists](http://www.mangoblog.org/news/github-gists-plugin) was announced Aug. 16th. You may be wondering what the heck are GISTS?
+
+**Gist** is a simple way to **share snippets and pastes** with others. All **gists** are git repositories, so they are automatically **versioned**, **forkable** and usable as a **git repository**.
+
 Pretty sweet huh? Now back to what has happened since the last update.
 
 ## Interesting posts from the Git and ColdFusion blog realm
@@ -44,7 +44,6 @@ GIT** Supports SVN](http://www.sosensible.com/index.cfm/blog/entry/182/)
 
 [Terry Ryan](http://www.terrenceryan.com/) is keeping his releasing code on github streak going with [CFConsole](http://www.terrenceryan.com/blog/coldfusion-from-a-console). Round of applause for Terry, now people start forking and help the guy out :-) [DI/1 - Inject One](http://github.com/seancorfield/di1) was added to Github during CFUnited but sparked some conversation about [Reinventing the Wheels](http://corfield.org/blog/open-source-rtw-or-collaboration) vs Collaberating on existing projects. [ColdBox Platform](http://github.com/coldbox) is on Github now. [John Blandii](http://www.johncblandii.com/) has created a [Cooking Wheels site](http://cookingwheels.com/) and the [source is on github.](http://github.com/johncblandii/cookingwheels)  [LitePost](http://github.com/mhenke/litepost),  a lightweight CFML-based blog application built in various ColdFusion frameworks, is on github. Currently, [FW/1](http://fw1.riaforge.org/), [Wheels](http://cfwheels.org/), [ColdMVC](http://github.com/tonynelson19/ColdMVC), [MachII](http://www.mach-ii.com/), and [Model-Glue](http://model-glue.com/) have examples. The MachII and Model-Glue examples need updated if anyone is interested in contributing.
 
-  
 Now the ColdFuson on Github stats...
 
 ### Recently Created Repositories

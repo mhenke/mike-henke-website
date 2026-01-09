@@ -1,7 +1,7 @@
 ---
 title: "Upcoming HeadFirst FusionDebug - Southeast Minnesota CFUG"
 date: 2008-11-13
-categories: 
+categories:
   - "ColdFusion"
   - "FusionDebug"
   - "Presentations"

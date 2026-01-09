@@ -1,7 +1,7 @@
 ---
 title: "Winner Announced - Contribute & Win ColdFusion in 100 mins"
 date: 2011-07-14
-categories: 
+categories:
   - "ColdFusion"
   - "github"
 ---

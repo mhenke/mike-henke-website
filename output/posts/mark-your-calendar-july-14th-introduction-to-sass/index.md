@@ -1,14 +1,12 @@
 ---
 title: "Mark Your Calendar July 14th - Introduction to Sass"
 date: 2011-07-07
-categories: 
+categories:
   - "ColdFusion"
   - "Presentations"
 ---
 
 ["Introduction to Sass (Syntactically Awesome Style Sheets)", with Josh Timonen - The Online ColdFusion Meetup (Alpharetta, GA) - Meetup](http://www.meetup.com/coldfusionmeetup/events/24840361/)
-
-  
 
 **Title:** Introduction to [Sass](http://sass-lang.com/)
 
@@ -22,7 +20,7 @@ Josh Timonen is co-founder of Secret Monkey Science LLC, which creates iOS and w
 
 **_Synopsis:_**
 
-_Sass has been growing in popularity since Hampton Catlin first introduced it in 2005.  Sass, which stands for Syntactically Awesome Style Sheets, helps you write less-verbose code with better organization._  
+*Sass has been growing in popularity since Hampton Catlin first introduced it in 2005.  Sass, which stands for Syntactically Awesome Style Sheets, helps you write less-verbose code with better organization.*  
 
 _Originally a Ruby technology, Sass can help organize and streamline any web application’s styling that uses CSS, including ColdFusion projects.  You’ll see what Sass has to offer, how to set it up, and how to write it._
 

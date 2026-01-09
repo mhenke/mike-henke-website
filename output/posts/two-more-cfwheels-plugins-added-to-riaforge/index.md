@@ -1,7 +1,7 @@
 ---
 title: "Two more CFWheels Plugins added to Riaforge"
 date: 2010-10-05
-categories: 
+categories:
   - "cfwheels"
   - "ColdFusion"
 ---

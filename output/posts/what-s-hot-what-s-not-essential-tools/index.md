@@ -1,7 +1,7 @@
 ---
 title: "What's Hot? What's Not? Essential Tools"
 date: 2011-12-22
-categories: 
+categories:
   - "ColdFusion"
   - "git"
 ---

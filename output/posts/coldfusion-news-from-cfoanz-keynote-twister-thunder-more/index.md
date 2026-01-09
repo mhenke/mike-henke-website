@@ -1,7 +1,7 @@
 ---
 title: "coldfusion news from cfoanz keynote (Twister, Thunder, more)"
 date: 2011-11-16
-categories: 
+categories:
   - "cf-objective-anz"
   - "ColdFusion"
   - "coldfusion-builder"
@@ -13,13 +13,13 @@ It has been awhile since I have seen [Terrence Ryan](http://www.terrenceryan.com
 
 - ColdFusion is a profitable product for Adobe so we will continue to enhance & sell it
 - Twister is the code name for the next ColdFusion Builder upgrade
-    - support for Zeus
-        - server manager
-        - language dictionaries
-    - performance enhancements
+  - support for Zeus
+    - server manager
+    - language dictionaries
+  - performance enhancements
 - Quotes from Tridib Roy Chowdhury. He is the Director of Products at Adobe Systems managing products like ColdFusion, Captivate and the Adobe eLearning Suite.
-    - "Business around pricing, licensing, and access (through cloud Process innovations) will eliminate the roadblocks for new users trying out the platform - to access the latest technology."
-    - "Adobe continues to invest in CF as is illustrated by 4 product releases planned in the next 24 months"
+  - "Business around pricing, licensing, and access (through cloud Process innovations) will eliminate the roadblocks for new users trying out the platform - to access the latest technology."
+  - "Adobe continues to invest in CF as is illustrated by 4 product releases planned in the next 24 months"
 
 Does the pricing quote suggest, a lower amount of initial capital for companies to start using ColdFusion with a subscription model or the likes? This would mean less up front investment for companies if they prefer that over the current pricing structure. With a little detective work, the upcoming 4 releases may breakdown to these:
 
@@ -31,10 +31,10 @@ Does the pricing quote suggest, a lower amount of initial capital for companies 
 Also a nice announcement was the enhancements to CFSchedule:
 
 - Event Handling
-    - Before
-    - After
-    - OnError ( your code isn't correct )
-    - OnMisfire ( schedule or server problem )
+  - Before
+  - After
+  - OnError ( your code isn't correct )
+  - OnMisfire ( schedule or server problem )
 - Groups - Manage tasks together
 - Application Specific tasks
 - Chaining

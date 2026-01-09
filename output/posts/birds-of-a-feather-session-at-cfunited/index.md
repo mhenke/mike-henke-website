@@ -1,7 +1,7 @@
 ---
 title: "Birds of a Feather Session at CFUnited"
 date: 2010-07-27
-categories: 
+categories:
   - "cfwheels"
   - "ColdFusion"
 ---

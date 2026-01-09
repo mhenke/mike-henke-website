@@ -1,7 +1,7 @@
 ---
 title: "Moving back to Omaha / CACFUG / Firebug"
 date: 2010-11-04
-categories: 
+categories:
   - "cfwheels"
   - "ColdFusion"
 ---

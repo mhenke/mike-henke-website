@@ -1,7 +1,7 @@
 ---
 title: "Selenium Presentaion slides with Coldfusion and MXUnit"
 date: 2008-05-27
-categories: 
+categories:
   - "ColdFusion"
   - "mxunit"
   - "NECFUG"

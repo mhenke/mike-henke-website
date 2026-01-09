@@ -1,7 +1,7 @@
 ---
 title: "CFUnited ColdFusion On Wheels presentation wrapup"
 date: 2010-07-31
-categories: 
+categories:
   - "cfunited"
   - "cfwheels"
   - "ColdFusion"

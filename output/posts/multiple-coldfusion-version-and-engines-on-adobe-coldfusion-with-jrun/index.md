@@ -1,14 +1,14 @@
 ---
 title: "Multiple ColdFusion Versions and Engines on Adobe ColdFusion with JRUN"
 date: 2010-06-13
-categories: 
+categories:
   - "ColdFusion"
   - "jrun"
   - "openbd"
   - "railo"
 ---
 
-This tutorial will show how using Adobe ColdFusion server with Multiserver configuration, so you can have multiple ColdFusion engines / version running. I think the approach is useful since most Adobe ColdFusion developers probably have Adobe ColdFusion setup as Multiple Instances. This approach allows easier ability to get started with a different CF version or engine without adding Apache or another application server like Tomcat or Resin. Another feature is with JRUN, I am able to point the instances to one code base. Essentially, JRUN4 has a feature that I can't duplicate with Tomcat allowing me to point to one codebase folder. There are other blog entries on using JRUN with other CFML versions and engines: [http://www.andreacfm.com/installing-railo-on-jrun4](http://www.andreacfm.com/installing-railo-on-jrun4) [http://corfield.org/entry/Railo\_\_ColdFusion\_on\_JRun](http://corfield.org/entry/Railo__ColdFusion_on_JRun)
+This tutorial will show how using Adobe ColdFusion server with Multiserver configuration, so you can have multiple ColdFusion engines / version running. I think the approach is useful since most Adobe ColdFusion developers probably have Adobe ColdFusion setup as Multiple Instances. This approach allows easier ability to get started with a different CF version or engine without adding Apache or another application server like Tomcat or Resin. Another feature is with JRUN, I am able to point the instances to one code base. Essentially, JRUN4 has a feature that I can't duplicate with Tomcat allowing me to point to one codebase folder. There are other blog entries on using JRUN with other CFML versions and engines: [http://www.andreacfm.com/installing-railo-on-jrun4](http://www.andreacfm.com/installing-railo-on-jrun4) [http://corfield.org/entry/Railo\_\_ColdFusion_on_JRun](http://corfield.org/entry/Railo__ColdFusion_on_JRun)
 
 This approach differs slightly by using the JRUN administrator and not exploding the war file manually.
 

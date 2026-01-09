@@ -1,7 +1,7 @@
 ---
 title: "ColdFusion Builder Advance Search = Tags"
 date: 2011-04-20
-categories: 
+categories:
   - "ColdFusion"
   - "coldfusion-builder"
 ---

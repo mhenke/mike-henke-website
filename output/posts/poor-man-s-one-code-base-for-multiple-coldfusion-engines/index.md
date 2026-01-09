@@ -1,7 +1,7 @@
 ---
 title: "Poor Man's One Code Base for Multiple ColdFusion Engines"
 date: 2010-06-03
-categories: 
+categories:
   - "ColdFusion"
   - "railo"
 ---
@@ -30,13 +30,12 @@ Then select Advanced tab. I marked the sections we will be concerned with in the
 
 - Do Nothing, Skip the file
 
-  
 Select Expert button, then Background tab. Check "Run this profile every" and change to 5 seconds "in the background"  
 ![](images/background1.jpg)  
 (Optional) I am using git and don't need all that moved over to my web roots.  
 Select Filter tab, in the"Directories NOT to copy" Section, add .git  
 Now select OK and No.  
-You should see your profile updating every 5 seconds. The last run should be updating in SyncBack. Copy the profile and repeat for your other engines changing the destination.  
+You should see your profile updating every 5 seconds. The last run should be updating in SyncBack. Copy the profile and repeat for your other engines changing the destination.
 
 # Other Approaches:
 

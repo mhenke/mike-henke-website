@@ -1,7 +1,7 @@
 ---
 title: "Using the Eclipse Workbench demo on Eclipse Live site"
 date: 2008-02-01
-categories: 
+categories:
   - "Eclipse"
 ---
 

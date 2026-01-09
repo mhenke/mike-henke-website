@@ -1,7 +1,7 @@
 ---
 title: "Notes from flex: no frameworks required"
 date: 2008-05-04
-categories: 
+categories:
   - "ColdFusion"
   - "Presentations"
 ---

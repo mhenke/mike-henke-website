@@ -1,7 +1,7 @@
 ---
 title: "Notes from Intro into ColdSpring"
 date: 2008-05-03
-categories: 
+categories:
   - "ColdFusion"
   - "Presentations"
 ---

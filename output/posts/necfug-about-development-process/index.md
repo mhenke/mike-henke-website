@@ -1,7 +1,7 @@
 ---
 title: "NECFUG - About development process"
 date: 2008-07-21
-categories: 
+categories:
   - "Ant"
   - "ColdFusion"
   - "Mylyn"

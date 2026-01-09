@@ -1,13 +1,13 @@
 ---
 title: "error: failed to push some refs"
 date: 2011-01-26
-categories: 
+categories:
   - "git"
 ---
 
 My co-worker received an error message when trying to do a push to our git repos. Usually a pull will fix the issue in my experience but this was different.
 
-## Error Message  
+## Error Message
 
 git.exe push --progress  "origin" branchName:branchName
 
@@ -19,7 +19,7 @@ error: failed to push some refs to 'X:\\xxx.git'
 
 To resolve, we had to run some clean-up/performance commands on the remote repository.
 
-## Commands  
+## Commands
 
 git fsck --unreachable  
 git reflog expire --expire=0 --all  

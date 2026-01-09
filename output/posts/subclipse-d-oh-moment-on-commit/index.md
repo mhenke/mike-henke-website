@@ -1,7 +1,7 @@
 ---
 title: "Subclipse D'oh moment on commit"
 date: 2008-01-22
-categories: 
+categories:
   - "Eclipse"
   - "Subversion"
 ---

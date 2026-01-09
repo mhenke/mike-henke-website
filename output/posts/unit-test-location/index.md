@@ -1,7 +1,7 @@
 ---
 title: "unit test location?"
 date: 2008-05-14
-categories: 
+categories:
   - "ColdFusion"
   - "mxunit"
 ---

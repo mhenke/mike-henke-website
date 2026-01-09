@@ -1,7 +1,7 @@
 ---
 title: "Come Work With Me"
 date: 2007-10-09
-categories: 
+categories:
   - "Ant"
   - "ColdFusion"
   - "Selenium"

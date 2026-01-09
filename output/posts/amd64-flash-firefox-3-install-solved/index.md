@@ -1,7 +1,7 @@
 ---
 title: "AMD64 Flash Firefox 3 install (solved)"
 date: 2008-09-06
-categories: 
+categories:
   - "Ubuntu"
 ---
 

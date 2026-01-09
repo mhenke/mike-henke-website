@@ -1,5 +1,5 @@
 ---
-title: 'Stump the CFChump - 2b'
+title: "Stump the CFChump - 2b"
 date: 2012-11-29
 ---
 
@@ -25,11 +25,11 @@ What will display when this code is ran?
 <cfset myvar = "Hello ">
 
 <cfif 1 eq true>
-	<cfset myvar = myvar & "Carrie">
+<cfset myvar = myvar & "Carrie">
 <cfelseif 1 eq false>
-	<cfset myvar = myvar & "Brody">
+<cfset myvar = myvar & "Brody">
 <cfelse>
-	<cfset myvar = myvar & "Saul">
+<cfset myvar = myvar & "Saul">
 </cfif>
 
 <cfoutput>#myvar#</cfoutput>

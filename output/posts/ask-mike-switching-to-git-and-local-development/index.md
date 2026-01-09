@@ -1,7 +1,7 @@
 ---
 title: "Ask Mike: Switching to Git and local development"
 date: 2010-09-09
-categories: 
+categories:
   - "ColdFusion"
   - "git"
 ---
@@ -36,7 +36,7 @@ You will have to set your individual computers up.
 
 \*\*\*User Configuration (one-time)\*\*\*
 
-1) Run these commands in the command prompt or git bash.
+1. Run these commands in the command prompt or git bash.
 
         git config --global[](http://www.google.com/url?q=http%3A%2F%2Fuser.name&sa=D&sntz=1&usg=AFQjCNFu0SPm6QpHZ5742pOucYZFgv7vIQ)[user.name](http://www.google.com/url?q=http%3A%2F%2Fuser.name&sa=D&sntz=1&usg=AFQjCNFu0SPm6QpHZ5742pOucYZFgv7vIQ) "John Doe"
 

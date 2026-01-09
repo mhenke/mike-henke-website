@@ -1,7 +1,7 @@
 ---
 title: "Dear ColdFusion - I am breaking up with you and Hitler reacts videos"
 date: 2012-07-23
-categories: 
+categories:
   - "acf"
   - "ColdFusion"
   - "openbd"

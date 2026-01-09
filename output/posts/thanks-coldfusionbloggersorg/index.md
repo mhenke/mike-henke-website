@@ -1,7 +1,7 @@
 ---
 title: "Thanks coldfusionBloggers.org"
 date: 2007-10-17
-categories: 
+categories:
   - "ColdFusion"
 ---
 

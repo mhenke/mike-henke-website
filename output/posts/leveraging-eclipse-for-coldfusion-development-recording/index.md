@@ -1,7 +1,7 @@
 ---
 title: "Leveraging Eclipse for ColdFusion Development recording"
 date: 2009-07-23
-categories: 
+categories:
   - "CFEclipse"
   - "ColdFusion"
   - "coldfusion-builder"

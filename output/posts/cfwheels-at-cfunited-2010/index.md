@@ -1,7 +1,7 @@
 ---
 title: "CFWheels at CFUnited 2010"
 date: 2010-05-12
-categories: 
+categories:
   - "cfunited"
   - "cfwheels"
 ---

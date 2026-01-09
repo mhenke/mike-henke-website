@@ -1,7 +1,7 @@
 ---
 title: "ColdFusion training for a newbie series"
 date: 2012-05-15
-categories: 
+categories:
   - "CFEclipse"
   - "cfmlin100mins"
   - "ColdFusion"

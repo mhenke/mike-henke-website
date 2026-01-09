@@ -1,7 +1,7 @@
 ---
 title: "CFWheels and the OpenCF Summit"
 date: 2011-02-16
-categories: 
+categories:
   - "cfwheels"
   - "opencf-summit"
 ---

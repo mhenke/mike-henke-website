@@ -1,7 +1,7 @@
 ---
 title: "What's Hot & Where do we go from here"
 date: 2011-12-14
-categories: 
+categories:
   - "cfwheels"
   - "ColdFusion"
 ---

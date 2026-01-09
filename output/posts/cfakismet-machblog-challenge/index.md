@@ -1,7 +1,7 @@
 ---
 title: "CFAkismet / Machblog challenge"
 date: 2007-10-24
-categories: 
+categories:
   - "ColdFusion"
 ---
 

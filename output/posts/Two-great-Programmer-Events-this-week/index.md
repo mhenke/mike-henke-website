@@ -1,7 +1,7 @@
 ---
 title: "Two great Programmer Events this week"
 date: 2008-08-11
-categories: 
+categories:
   - "ColdFusion"
   - "NECFUG"
   - "Presentations"

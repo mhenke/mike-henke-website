@@ -1,7 +1,7 @@
 ---
 title: "Smashing Magazine: Browser Tests, Services and Compatibility Test Suites"
 date: 2007-10-02
-categories: 
+categories:
   - "Ant"
   - "Selenium"
 ---

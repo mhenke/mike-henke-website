@@ -1,7 +1,7 @@
 ---
 title: "ColdFusion 8 upgrade checklist"
 date: 2008-06-23
-categories: 
+categories:
   - "ColdFusion"
 ---
 

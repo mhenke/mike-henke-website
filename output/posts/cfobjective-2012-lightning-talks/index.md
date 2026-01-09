@@ -1,7 +1,7 @@
 ---
 title: "CFObjective 2012 Lightning Talks"
 date: 2012-05-10
-categories: 
+categories:
   - "cf-objective"
 ---
 
@@ -9,4 +9,4 @@ A cool event [Bob Silverburg](http://www.silverwareconsulting.com) started at [C
 
 ### Mike Henke's Pecha Kucha Presentation at cf.Objective() 2010 video (7 mins)
 
-\[embed\]http://www.youtube.com/watch?v=AJfYa\_MmN5g\[/embed\] [http://www.youtube.com/watch?v=AJfYa\_MmN5g](http://www.youtube.com/watch?v=AJfYa_MmN5g) Other [PK presentation videos](http://www.silverwareconsulting.com/index.cfm/2010/5/3/View-the-Presentations-from-the-cfObjective-Pecha-Kucha-BOF) from the original event in 2010.
+\[embed\]http://www.youtube.com/watch?v=AJfYa\_MmN5g\[/embed\] [http://www.youtube.com/watch?v=AJfYa_MmN5g](http://www.youtube.com/watch?v=AJfYa_MmN5g) Other [PK presentation videos](http://www.silverwareconsulting.com/index.cfm/2010/5/3/View-the-Presentations-from-the-cfObjective-Pecha-Kucha-BOF) from the original event in 2010.

@@ -1,7 +1,7 @@
 ---
 title: "What do ColdFusion geeks listen to?"
 date: 2007-11-21
-categories: 
+categories:
   - "ColdFusion"
   - "Software"
 ---

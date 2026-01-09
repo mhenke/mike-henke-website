@@ -1,7 +1,7 @@
 ---
 title: "Contribute & Win a chance for Object-Oriented Programming"
 date: 2011-07-05
-categories: 
+categories:
   - "ColdFusion"
 ---
 

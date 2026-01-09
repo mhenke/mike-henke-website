@@ -1,7 +1,7 @@
 ---
 title: "Why use Mylyn Tasktop - my mom knows"
 date: 2011-07-20
-categories: 
+categories:
   - "Mylyn"
   - "tasktop"
 ---

@@ -1,7 +1,7 @@
 ---
 title: "ColdFusion and Heroku - OpenBD screencast"
 date: 2013-03-04
-categories: 
+categories:
   - "ColdFusion"
   - "git"
   - "heroku"

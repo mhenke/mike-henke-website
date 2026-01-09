@@ -1,7 +1,7 @@
 ---
 title: "Presenting Eclipse/CFEclipse for NECFUG"
 date: 2008-02-15
-categories: 
+categories:
   - "CFEclipse"
   - "Eclipse"
   - "NECFUG"

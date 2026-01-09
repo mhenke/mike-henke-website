@@ -1,7 +1,7 @@
 ---
 title: "Contribute to CFML in 100 mins and Win Head First jQuery book"
 date: 2011-09-29
-categories: 
+categories:
   - "ColdFusion"
   - "jquery"
 ---

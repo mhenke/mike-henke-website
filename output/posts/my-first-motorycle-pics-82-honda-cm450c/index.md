@@ -1,7 +1,7 @@
 ---
 title: "my first motorcycle pics - 82 Honda cm450c"
 date: 2011-09-07
-categories: 
+categories:
   - "other"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Git Performance - spring cleaning your repository"
 date: 2012-03-13
-categories: 
+categories:
   - "git"
 ---
 

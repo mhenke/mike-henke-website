@@ -1,7 +1,7 @@
 ---
 title: "See who's using CFWheels"
 date: 2009-09-25
-categories: 
+categories:
   - "cfwheels"
   - "ColdFusion"
 ---

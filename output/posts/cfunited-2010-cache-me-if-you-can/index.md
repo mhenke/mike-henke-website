@@ -1,7 +1,7 @@
 ---
 title: "CFUnited 2010 = Cache Me If You Can"
 date: 2010-07-28
-categories: 
+categories:
   - "cfunited"
   - "ColdFusion"
 ---

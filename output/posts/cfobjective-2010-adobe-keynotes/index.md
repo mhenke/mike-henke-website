@@ -1,7 +1,7 @@
 ---
 title: "cfObjective 2010 Adobe Keynotes"
 date: 2010-04-22
-categories: 
+categories:
   - "cf-objective"
   - "ColdFusion"
 ---

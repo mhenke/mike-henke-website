@@ -1,13 +1,13 @@
 ---
 title: "Pimping my Eclipse startup and other shizzle"
 date: 2007-12-29
-categories: 
+categories:
   - "Eclipse"
   - "Subversion"
 ---
 
-A couple weeks ago when writing the entry, [UnEclipsing CFEclipse Line Numbers](http://mikehenke.com/machblog/index.cfm?event=showEntry&entryId=FA78BD3D-188B-4E84-15C225362B1283AB), I stumbled on a couple interesting settings in preferences to pimp my Eclipse EDI ![](images/teeth_smile.gif)  
-  
+A couple weeks ago when writing the entry, [UnEclipsing CFEclipse Line Numbers](http://mikehenke.com/machblog/index.cfm?event=showEntry&entryId=FA78BD3D-188B-4E84-15C225362B1283AB), I stumbled on a couple interesting settings in preferences to pimp my Eclipse EDI ![](images/teeth_smile.gif)
+
 On the net is plenty of info for tweaking eclipse.ini file or adding variables to eclipse executable for performance but I hadn't seen anything about the settings below.
 
 ### Plug-ins activated on startup

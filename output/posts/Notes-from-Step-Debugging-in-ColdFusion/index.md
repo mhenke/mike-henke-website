@@ -1,7 +1,7 @@
 ---
 title: "Notes from Step Debugging in ColdFusion"
 date: 2008-05-03
-categories: 
+categories:
   - "CFEclipse"
   - "ColdFusion"
   - "FusionDebug"

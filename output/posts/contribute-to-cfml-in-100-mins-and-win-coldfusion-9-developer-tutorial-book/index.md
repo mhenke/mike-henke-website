@@ -1,7 +1,7 @@
 ---
 title: "Contribute to CFML in 100 mins and Win ColdFusion 9 Developer Tutorial book"
 date: 2012-01-13
-categories: 
+categories:
   - "cfmlin100mins"
   - "ColdFusion"
 ---
@@ -12,11 +12,11 @@ Time for another Contribute and Win contest. This will be the third [Contribute 
 
 All you need is an eagle eye to spot a typo or code example not working. 
 
-### Fix a ticket  
+### Fix a ticket
 
 [Grab a ticket](https://github.com/mhenke/CFML-in-100-minutes/issues), fix it, then submit a pull request.
 
-### Add script examples  
+### Add script examples
 
 Want practice with script, look at a tag example and port it to script.
 

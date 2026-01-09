@@ -1,7 +1,7 @@
 ---
 title: "Retweet and Entry Raffle for ColdFusion Anthology"
 date: 2011-02-22
-categories: 
+categories:
   - "cfwheels"
   - "ColdFusion"
 ---

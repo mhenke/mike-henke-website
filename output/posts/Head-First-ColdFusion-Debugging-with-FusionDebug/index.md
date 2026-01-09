@@ -1,7 +1,7 @@
 ---
 title: "Head First ColdFusion Debugging with FusionDebug"
 date: 2008-10-28
-categories: 
+categories:
   - "CFEclipse"
   - "ColdFusion"
   - "FusionDebug"

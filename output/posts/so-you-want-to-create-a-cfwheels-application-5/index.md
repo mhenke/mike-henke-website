@@ -1,7 +1,7 @@
 ---
 title: "So you want to create a CFWheels application? (Part 5)"
 date: 2009-08-11
-categories: 
+categories:
   - "cfwheels"
   - "ColdFusion"
 ---
@@ -15,7 +15,8 @@ I glossed over some important convention before in our series. CFWheels expects 
 ### Database Code
 
 Lets drop our old table and create it along with a types table using this code. \[code language="coldfusion"\]
-DROP TABLE IF EXISTS contactomatic.contacts;CREATE TABLE 'contactomatic'.'contacts' ( 'id' INTEGER UNSIGNED NOT NULL AUTO_INCREMENT, 'name' VARCHAR(<span class="cc_numeric">45) NOT NULL, 'typeid' INTEGER UNSIGNED NOT NULL, PRIMARY KEY ('id') ) ENGINE = InnoDB;
+DROP TABLE IF EXISTS contactomatic.contacts;
+CREATE TABLE 'contactomatic'.'contacts' ( 'id' INTEGER UNSIGNED NOT NULL AUTO_INCREMENT, 'name' VARCHAR(<span class="cc_numeric">45) NOT NULL, 'typeid' INTEGER UNSIGNED NOT NULL, PRIMARY KEY ('id') ) ENGINE = InnoDB;
 \\[/code\] \[code language="coldfusion"\]
 DROP TABLE IF EXISTS contactomatic.tbl_typesofcontact; CREATE TABLE 'contactomatic'.'tbl_typesofcontact' ( 'typeid' INTEGER UNSIGNED NOT NULL AUTO_INCREMENT, 'title_for_type_of_contact' VARCHAR(<span class="cc_numeric">45) NOT NULL, PRIMARY KEY ('typeid') ) ENGINE = InnoDB;
 \\[/code\] \[code language="coldfusion"\]
@@ -33,7 +34,9 @@ new
 \\[/code\] action. \[code language="coldfusion"\]
 <cfset types = model("type").findAll() />
 \\[/code\] While we are in this file, replace the code in the list action with this: \[code language="coldfusion"\]
-<cfset allContacts = model("contact").findAll(include="type") /><cfdump var="#allContacts#"><cfabort>
+<cfset allContacts = model("contact").findAll(include="type") />
+
+<cfdump var="#allContacts#"><cfabort>
 \\[/code\] And now lets check our add form. \[code language="coldfusion"\]
 URL Rewriting On = http://localhost/contact/new?reload=true
 \\[/code\] \[code language="coldfusion"\]
@@ -44,9 +47,12 @@ URL Rewriting Off = http://localhost/index.cfm?controller=contact&action=new
 
 ### Table Naming
 
-Well, you can see CFWheels assumes we have a types table since our newly created model cfc's name is type. Our table's name is actually tbl\_typesofcontact, we could rename the cfc to tbl\_typesofcontact.cfc, but CFWheels convention also says our table name should be plural. Lets tell (configure) CFWheels we already have a table name that doesn't fit in CFWheel's conventions. Add this code to our type.cfc in the models folder. \[code language="coldfusion"\]
-<cffunction name="init"><cfset table("tbl_typesofcontact") /><cfset property(name="title", column="title_for_type_of_contact") /></cffunction>
-\\[/code\] Ã¿ As you can see, we tell CFWheels our table's actual name. Also we give the long column name, title\_for\_type\_of\_contact, a shorter name, title. See how easy it is to override CFWheel's table conventions. It would have been easier if initially our table was named contacttypes and the model cfc contacttype.cfc but sometimes this won't be an option. Reload our page and you should now see our old form but look @ our debug information ![](images/cfwheels5_2.jpg) Notice we have a new query. This was created by the code, \[code language="coldfusion"\]
+Well, you can see CFWheels assumes we have a types table since our newly created model cfc's name is type. Our table's name is actually tbl_typesofcontact, we could rename the cfc to tbl_typesofcontact.cfc, but CFWheels convention also says our table name should be plural. Lets tell (configure) CFWheels we already have a table name that doesn't fit in CFWheel's conventions. Add this code to our type.cfc in the models folder. \[code language="coldfusion"\]
+<cffunction name="init">
+<cfset table("tbl_typesofcontact") />
+<cfset property(name="title", column="title_for_type_of_contact") />
+</cffunction>
+\\[/code\] Ã¿ As you can see, we tell CFWheels our table's actual name. Also we give the long column name, title_for_type_of_contact, a shorter name, title. See how easy it is to override CFWheel's table conventions. It would have been easier if initially our table was named contacttypes and the model cfc contacttype.cfc but sometimes this won't be an option. Reload our page and you should now see our old form but look @ our debug information ![](images/cfwheels5_2.jpg) Notice we have a new query. This was created by the code, \[code language="coldfusion"\]
 <cfset types = model("type").findAll() />
 \\[/code\], we added to our \[code language="coldfusion"\]
 new
@@ -59,14 +65,21 @@ Lets add our select box populated from this query to our form using a CFWheels h
 \\[/code\] With \[code language="coldfusion"\]
 <span class="cc_normaltag"><div>#select(objectName="newContact", property="typeid", options=types, label="Type", includeBlank="")#<span class="cc_normaltag"></div>
 \\[/code\] The select helper takes our blank new object, the typeid column (property), the types object, and we add a label of Type. For more information on Helper Forms, look through the code in \\wheels\\view\\forms.cfm. Load the page again, and now you should see the select dop down box. Lets submit the form. ![](images/cfwheels5_4.jpg) Weird, we selected a valid contact type from our new select drop down box, but our validation is catching it. This is because the value the form is submitting is actually the typeid not the title. Well, lets change our validation and add an association to mark typeid as a foreign key. In our model/contact.cfc change the code to match this. \[code language="coldfusion"\]
-<cfcomponent extends="Model" output="false"><cffunction name="init"><cfset validatesPresenceOf(property="name",message="Name is Required") /><cfset validatesPresenceOf(property="typeid",message="Type of Contact is Required") /><cfset validatesUniquenessOf(property="name", message="Name is already present") /><cfset belongsTo(name="type", foreignKey="typeid")></cffunction></cfcomponent>
+<cfcomponent extends="Model" output="false">
+<cffunction name="init">
+<cfset validatesPresenceOf(property="name",message="Name is Required") />
+<cfset validatesPresenceOf(property="typeid",message="Type of Contact is Required") />
+<cfset validatesUniquenessOf(property="name", message="Name is already present") />
+<cfset belongsTo(name="type", foreignKey="typeid")>
+</cffunction>
+</cfcomponent>
 \\[/code\] We basically made sure the typeid is present instead of type and declared a datebase relationship (association). Following CFWheels convention, we could use \[code language="coldfusion"\]
 <cfset belongTo("type")>
 \\[/code\] if we followed our CFWheels naming convention for the primary key of a table but instead of id, we have typeid so we need to tell CFWheels. Lets try to submit the form again. ![](images/cfwheels5_5.jpg) We are making progress, looks like the form submitted and executed our cfdump and cfabort in /controllers/contact.cfc
 
 ### Association
 
-Here is where our association we set in /models/contact.cfc comes to play. CFWheels ORM joins the tbl\_typesofcontact table with the contacts table. This happens because we added the association declaring the foriegn key in our /models/contacts.cfc and in creating the query, we told it to include type. \[code language="coldfusion"\]
+Here is where our association we set in /models/contact.cfc comes to play. CFWheels ORM joins the tbl_typesofcontact table with the contacts table. This happens because we added the association declaring the foriegn key in our /models/contacts.cfc and in creating the query, we told it to include type. \[code language="coldfusion"\]
 <cfset allContacts = model("contact").findAll(include="type") />
 \\[/code\] Remove \[code language="coldfusion"\]
 <cfdump var="#allContacts#"><cfabort>

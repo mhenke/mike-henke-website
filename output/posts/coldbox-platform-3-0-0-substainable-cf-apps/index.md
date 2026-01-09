@@ -1,7 +1,7 @@
 ---
 title: "ColdBox Platform 3.0.0: Substainable CF Apps"
 date: 2010-07-28
-categories: 
+categories:
   - "cfunited"
   - "ColdFusion"
 ---

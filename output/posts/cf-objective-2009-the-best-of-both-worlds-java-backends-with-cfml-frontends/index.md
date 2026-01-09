@@ -1,7 +1,7 @@
 ---
 title: "CF.Objective 2009 - The Best of Both Worlds: Java backends with CFML Frontends"
 date: 2009-05-15
-categories: 
+categories:
   - "cf-objective"
   - "ColdFusion"
 ---

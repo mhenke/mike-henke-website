@@ -1,7 +1,7 @@
 ---
 title: "CFWheels APIs built from ColdDoc"
 date: 2010-09-30
-categories: 
+categories:
   - "cfwheels"
   - "ColdFusion"
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Intro into  Wheels ORM  & Validation Presentation"
 date: 2010-01-21
-categories: 
+categories:
   - "cfwheels"
   - "ColdFusion"
 ---

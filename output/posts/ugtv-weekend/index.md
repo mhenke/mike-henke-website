@@ -1,7 +1,7 @@
 ---
 title: "UGTV weekend"
 date: 2009-08-24
-categories: 
+categories:
   - "ColdFusion"
   - "Presentations"
 ---
@@ -14,10 +14,9 @@ I caught up on some [UGTV recordings](http://www.carehart.org/ugtv) this weekend
 
 ### Different Approaches To CFML Engines Setup
 
-  
-[CFMeetup: Getting Started with Multiple Instances in CF](http://experts.na3.acrobat.com/p73988646/) by Charlie Arehart  
-  
-[CFMeetup: Running Multiple CFML Engines on Apache Tomcat](http://experts.na3.acrobat.com/p13033917/) by Matt Woodward  
-  
+[CFMeetup: Getting Started with Multiple Instances in CF](http://experts.na3.acrobat.com/p73988646/) by Charlie Arehart
+
+[CFMeetup: Running Multiple CFML Engines on Apache Tomcat](http://experts.na3.acrobat.com/p13033917/) by Matt Woodward
+
 [CFMeetup: Using Tomcat & Eclipse to Develop CFML Apps w/ Any CFML Engine](http://experts.na3.acrobat.com/p39094247/) by Dan Skaggs[  
 ](http://experts.na3.acrobat.com/p39094247/)

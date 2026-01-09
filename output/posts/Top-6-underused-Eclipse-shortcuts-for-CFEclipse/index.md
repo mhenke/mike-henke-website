@@ -1,7 +1,7 @@
 ---
 title: "Top 6 underused Eclipse shortcuts for CFEclipse"
 date: 2008-07-02
-categories: 
+categories:
   - "CFEclipse"
   - "ColdFusion"
   - "Eclipse"
@@ -25,19 +25,13 @@ Line - Ctrl+d
 
 To end of line - Ctrl+Shift+delete
 
-  
-
 **4\. Go to last edit location - Ctrl+Q**
 
 _Ctrl+Q_ _takes you back to the place where you last made a change._
 
-  
-
 **3\. Now, where was I? - Alt+Left Arrow**
 
 _Workbench editors keep a navigation history. If you open a second editor while you're editing, you can press Alt+Left Arrow to go back to the last editor. This makes working with several open editors a whole lot easier._
-
-  
 
 **2\. Faster workspace navigation - Ctrl+Shift+R**
 
@@ -45,14 +39,10 @@ _Ctrl+Shift+R_ _brings up a dialog that allows you to quickly locate and open an
 
 ![](images/ctrr.jpg)
 
-  
-
 **1\. Quick access - Ctrl+3**
 
 _You can quickly find all manner of contributions with the Ctrl-3 binding including (but not limited to) open editors, available perspectives, views, preferences, wizards, and commands. Simply start typing the name of the item you wish to invoke and we will attempt to find something in the Workbench that matches the provided string._
 
 ![](images/quickaccess.png)
-
-  
 
 Be sure to check out Help --> Key Assist (Ctrl+Shift+L) for other shortcuts and remember the list changes depending on the editor you are in. The definitions in _italics_ above are from the [Eclipse Documentation](http://help.eclipse.org/help33/index.jsp).

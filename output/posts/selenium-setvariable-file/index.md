@@ -1,7 +1,7 @@
 ---
 title: "selenium setVariable file?"
 date: 2008-03-28
-categories: 
+categories:
   - "Selenium"
 ---
 
