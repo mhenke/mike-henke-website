@@ -821,7 +821,6 @@ section {
   body.nav-open {
     overflow: hidden;
     position: fixed;
-    width: 100%;
   }
 
   @media (max-width: 1023px) and (orientation: landscape) {
