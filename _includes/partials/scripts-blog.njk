@@ -1,70 +1,64 @@
 <!-- PrismJS syntax highlighting scripts -->
+<script>
+    // ColdFusion language definition for Prism - defined before autoloader so CDN isn't fetched
+    window.__cfLanguage = {
+        'cf-tag': {
+            pattern: /<\/?cf[a-z]+(?:\s[^>]*)?\/?>/i,
+            inside: {
+                'tag': {
+                    pattern: /<\/?cf[a-z]+/i,
+                    inside: {
+                        'punctuation': /^<\/?/,
+                        'namespace': /^cf/
+                    }
+                },
+                'attr-name': {
+                    pattern: /(?:[a-z]|-)+(?=\s*=)/i
+                },
+                'attr-value': {
+                    pattern: /=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/i,
+                    inside: {
+                        'punctuation': [/^=/, /^['"]|['"]$/]
+                    }
+                },
+                'punctuation': /\/?>/
+            }
+        },
+        'cf-script': {
+            pattern: /#[^#]*#/,
+            inside: {
+                'punctuation': /^#|#$/,
+                'keyword': /\b(?:var|if|else|elseif|for|while|function|return|true|false|null)\b/i,
+                'string': {
+                    pattern: /("|')(?:\\.|(?!\1)[^\\\r\n])*\1/
+                },
+                'number': {
+                    pattern: /\b0x[\da-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:e[+-]?\d+)?/i
+                },
+                'operator': {
+                    pattern: /[<>]=?|[!=]=?=?|--?|\+\+?|&&?|\|\|?|[?*/~^%]/
+                },
+                'punctuation': {
+                    pattern: /[{}\[\];(),.:]*/
+                }
+            }
+        },
+        'cf-function': {
+            pattern: /\b[a-zA-Z_]\w*(?=\s*\()/,
+            alias: 'function'
+        }
+    };
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+<!-- Apply CF language definition BEFORE autoloader so it skips the broken CDN component -->
+<script>
+    if (typeof Prism !== 'undefined') {
+        Prism.languages.coldfusion = Prism.languages.extend('markup', window.__cfLanguage);
+        Prism.languages.cfml = Prism.languages.coldfusion;
+        Prism.languages.cfscript = Prism.languages.javascript;
+        delete window.__cfLanguage;
+    }
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
-<script>
-    // Initialize PrismJS after DOM is loaded
-    document.addEventListener('DOMContentLoaded', function() {
-        // Configure PrismJS autoloader
-        if (typeof Prism !== 'undefined') {
-            Prism.plugins.autoloader.languages_path = 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/';
-            
-            // Add language aliases and custom ColdFusion support
-            if (Prism.languages) {
-                // Create a better ColdFusion language definition
-                Prism.languages.coldfusion = Prism.languages.extend('markup', {
-                    'cf-tag': {
-                        pattern: /<\/?cf[a-z]+(?:\s[^>]*)?\/?>/i,
-                        inside: {
-                            'tag': {
-                                pattern: /<\/?cf[a-z]+/i,
-                                inside: {
-                                    'punctuation': /^<\/?/,
-                                    'namespace': /^cf/
-                                }
-                            },
-                            'attr-name': {
-                                pattern: /(?:[a-z]|-)+(?=\s*=)/i
-                            },
-                            'attr-value': {
-                                pattern: /=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/i,
-                                inside: {
-                                    'punctuation': [/^=/, /^['"]|['"]$/]
-                                }
-                            },
-                            'punctuation': /\/?>/
-                        }
-                    },
-                    'cf-script': {
-                        pattern: /#[^#]*#/,
-                        inside: {
-                            'punctuation': /^#|#$/,
-                            'keyword': /\b(?:var|if|else|elseif|for|while|function|return|true|false|null)\b/i,
-                            'string': {
-                                pattern: /("|')(?:\\.|(?!\1)[^\\\r\n])*\1/
-                            },
-                            'number': {
-                                pattern: /\b0x[\da-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:e[+-]?\d+)?/i
-                            },
-                            'operator': {
-                                pattern: /[<>]=?|[!=]=?=?|--?|\+\+?|&&?|\|\|?|[?*/~^%]/
-                            },
-                            'punctuation': {
-                                pattern: /[{}\[\];(),.:]*/
-                            }
-                        }
-                    },
-                    'cf-function': {
-                        pattern: /\b[a-zA-Z_]\w*(?=\s*\()/,
-                        alias: 'function'
-                    }
-                });
-                
-                // Map other CFML variations
-                Prism.languages.cfml = Prism.languages.coldfusion;
-                Prism.languages.cfscript = Prism.languages.javascript;
-            }
-        }
-    });
-</script>

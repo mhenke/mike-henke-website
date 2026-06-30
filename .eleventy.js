@@ -77,8 +77,8 @@ module.exports = function (eleventyConfig) {
 
         // Language mapping for Prism
         const languageMap = {
-          coldfusion: "language-markup",
-          cfml: "language-markup",
+          coldfusion: "language-coldfusion",
+          cfml: "language-coldfusion",
           cfscript: "language-javascript",
           javascript: "language-javascript",
           js: "language-javascript",
@@ -140,6 +140,9 @@ module.exports = function (eleventyConfig) {
       // Clean up remaining orphaned tags and excessive paragraphs
       result = result
         .replace(/\[(?:\/)?code[^\]]*\]/gi, "")
+        // Strip <p> tags wrapping code blocks (Markdown wraps block-level shortcodes)
+        .replace(/<p>\s*(<div class="code-block")/gi, "$1")
+        .replace(/(<\/div>)\s*<\/p>/gi, "$1")
         .replace(/<\/p>\s*<\/p>/g, "</p>")
         .replace(/<p>\s*<p>/g, "<p>")
         .replace(/<p>\s*<\/p>/g, "");
