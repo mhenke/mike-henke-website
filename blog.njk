@@ -5,12 +5,18 @@ permalink: /blog/index.html
 ---
 {% from "macros/blog-card.njk" import blogCard %}
 <section class="content-section-boxed content-section-top-margin" data-pagefind-body>
-    <h1 class="section-title">Blog Posts</h1>
-    <div class="section-underline"></div>
-    <div class="blog-post-list">
-        {# PERFORMANCE: Pass loop index to reduce slug calculations #}
-        {%- for post in collections.allPosts -%}
-            {{ blogCard(post, loop.index0) }}
-        {%- endfor -%}
-    </div>
+<h1 class="section-title">Blog Posts</h1>
+<div class="section-underline"></div>
+<div class="blog-post-list">
+  {# PERFORMANCE: Pass loop index to reduce slug calculations #}
+  {%- for post in collections.allPosts -%}
+  {{ blogCard(post, loop.index0) }}
+  {%- endfor -%}
+</div>
+{%- if collections.allPosts.length == 0 -%}
+<div class="blog-empty-state">
+<i class="ph ph-article" aria-hidden="true" style="font-size: var(--font-size-4xl); color: var(--color-text-secondary); margin-bottom: var(--spacing-lg);"></i>
+<p style="color: var(--color-text-secondary); font-size: var(--font-size-lg); margin: 0;">No blog posts yet. Check back soon!</p>
+</div>
+{%- endif -%}
 </section>

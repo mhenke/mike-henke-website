@@ -1,6 +1,5 @@
 const { DateTime } = require("luxon");
 const { URL } = require("url");
-const purgeCSS = require("eleventy-plugin-purgecss");
 
 /**
  * MAINTAINABILITY NOTE: This configuration file is becoming quite large (650+ lines).
@@ -16,19 +15,22 @@ module.exports = function (eleventyConfig) {
   const isProduction = process.env.NODE_ENV === "production";
   const isDevelopment = !isProduction;
 
+  // Expose environment to templates for conditional rendering
+  eleventyConfig.addGlobalData("site.environment", () => isDevelopment ? "development" : "production");
+
   // Build performance monitoring
   let buildStartTime;
   eleventyConfig.on("eleventy.before", function () {
     buildStartTime = Date.now();
     if (isDevelopment) {
-      console.log("🚀 Starting Eleventy build...");
+      console.warn("🚀 Starting Eleventy build...");
     }
   });
 
   eleventyConfig.on("eleventy.after", function () {
     if (buildStartTime && isDevelopment) {
       const buildTime = Date.now() - buildStartTime;
-      console.log(`✅ Build completed in ${buildTime}ms`);
+      console.warn(`✅ Build completed in ${buildTime}ms`);
     }
   });
   // Optimized code block transform
@@ -189,7 +191,7 @@ module.exports = function (eleventyConfig) {
 
           // Extract YouTube video ID from various YouTube URL formats
           const youtubeRegex =
-            /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i;
+            /(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/\s]{11})/i;
           const youtubeMatch = cleanUrl.match(youtubeRegex);
 
           if (youtubeMatch) {
@@ -256,10 +258,10 @@ module.exports = function (eleventyConfig) {
         }
       }
       return new URL(url, base).href;
-    } catch (e) {
+    } catch (urlError) {
       console.error(
-        `Error creating absolute URL for ${url} with base ${base}: `,
-        e,
+        `Error creating absolute URL for ${url} with base ${base}:`,
+        urlError,
       );
       return url;
     }
@@ -342,7 +344,7 @@ module.exports = function (eleventyConfig) {
           // Return a proper HTML img tag
           return `<img src="${finalSrc}" alt="${alt}" loading="lazy">`;
         } catch (renderError) {
-          console.warn(
+          console.error(
             "⚠️ Warning: Error rendering image in markdown:",
             renderError.message,
           );
@@ -351,7 +353,7 @@ module.exports = function (eleventyConfig) {
         }
       };
     } catch (error) {
-      console.warn(
+      console.error(
         "⚠️ Warning: Could not configure markdown image renderer:",
         error.message,
       );
@@ -376,7 +378,7 @@ module.exports = function (eleventyConfig) {
       // Only transform WordPress post pages (now at root level)
       if (
         outputPath.includes("output/posts/") ||
-        outputPath.match(/\/_site\/[^\/]+\/index\.html$/)
+        outputPath.match(/\/_site\/[^/]+\/index\.html$/)
       ) {
         const pathPrefix = "";
 
@@ -675,7 +677,7 @@ module.exports = function (eleventyConfig) {
     // Check directory existence only once
     if (!fs.existsSync(postsDir)) {
       if (isDevelopment) {
-        console.log(
+        console.warn(
           "📝 Note: No output/posts directory found. Skipping image setup.",
         );
       }
@@ -688,7 +690,7 @@ module.exports = function (eleventyConfig) {
           .filter((dirent) => dirent.isDirectory())
           .map((dirent) => dirent.name);
       } catch (readError) {
-        console.warn(
+        console.error(
           "⚠️ Warning: Could not read posts directory:",
           readError.message,
         );
@@ -709,7 +711,7 @@ module.exports = function (eleventyConfig) {
             configuredCount++;
           }
         } catch (copyError) {
-          console.warn(
+          console.error(
             `⚠️ Warning: Could not check images for ${postSlug}:`,
             copyError.message,
           );
@@ -722,15 +724,15 @@ module.exports = function (eleventyConfig) {
       });
 
       if (isDevelopment && configuredCount > 0) {
-        console.log(
+        console.warn(
           `✅ Configured image copying for ${configuredCount} posts with images`,
         );
       }
     }
-  } catch (error) {
-    console.warn(
+  } catch (setupError) {
+    console.error(
       "⚠️ Warning: Error during image configuration setup:",
-      error.message,
+      setupError,
     );
   }
 
