@@ -11,14 +11,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     return;
   }
 
-  console.log("Initializing custom Pagefind search...");
+  console.warn("Initializing custom Pagefind search...");
 
   // Initialize Pagefind
   await initializePagefind();
 
   async function initializePagefind() {
     try {
-      console.log("Loading Pagefind...");
+      console.warn("Loading Pagefind...");
 
       // Import Pagefind dynamically
       const pagefind = await import("/pagefind/pagefind.js");
@@ -26,7 +26,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       // Store in window for global access
       window.pagefind = pagefind;
 
-      console.log("Pagefind loaded successfully, creating search interface...");
+      console.warn(
+        "Pagefind loaded successfully, creating search interface...",
+      );
       createSearchInterface();
     } catch (error) {
       console.error("Failed to load Pagefind:", error);
@@ -164,8 +166,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     const url = result.url;
 
     // Process excerpt with better cleaning
-    let excerpt = "";
-    if (result.meta && result.meta.custom_excerpt) {
+    let excerpt;
+    if (result.meta?.custom_excerpt) {
       // Use custom excerpt from meta - it's already clean from blogExcerpt filter
       excerpt = result.meta.custom_excerpt.trim();
     } else if (result.excerpt) {
@@ -271,7 +273,7 @@ document.addEventListener("DOMContentLoaded", async () => {
    */
   function extractDateFromUrl(url) {
     // Look for date patterns in URL like /2023/01/15/ or /2023-01-15/
-    const dateRegex = /\/(\d{4})[\/\-](\d{2})[\/\-](\d{2})\//;
+    const dateRegex = /\/(\d{4})[-/](\d{2})[-/](\d{2})\//;
     const match = url.match(dateRegex);
 
     if (match) {
@@ -356,7 +358,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         month: "long",
         day: "numeric",
       });
-    } catch (error) {
+    } catch {
       return dateString;
     }
   }

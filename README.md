@@ -14,9 +14,8 @@ A professional portfolio website built with Eleventy (11ty), showcasing career p
 ### Key Sections
 
 - **Hero**: Professional introduction with call-to-action buttons
-- **Skills**: Programming languages with animated progress bars
-- **Technologies**: Framework icons with hover animations
-- **Expertise**: Certifications and specializations
+- **About**: Career overview and background
+- **Skills**: Programming languages, technologies, and core competencies
 - **Career Timeline**: Union Pacific Railroad progression (2016-Present)
 - **Contact**: Professional contact information
 
@@ -24,7 +23,7 @@ A professional portfolio website built with Eleventy (11ty), showcasing career p
 
 ### Prerequisites
 
-- Node.js (v16 or higher)
+- Node.js (v18.20.5 or compatible) - managed via Volta
 - Git
 
 ### Installation
@@ -36,20 +35,29 @@ cd mike-henke-website
 
 # Install dependencies
 npm install
-
-# Start development server
-npm run start
-
-# Build for production
-npm run build
 ```
 
-### Available Scripts
+### Development
 
-- `npm run start` - Start development server with live reload
-- `npm run build` - Build production site
-- `npm run clean` - Clean output directory
-- `npm run serve` - Serve built site locally
+```bash
+# Start development server with watch mode
+npm run dev
+```
+
+The site will be available at `http://localhost:4000` by default.
+
+### Build Commands
+
+| Command                    | Purpose                                  |
+| -------------------------- | ---------------------------------------- |
+| `npm run dev`              | Dev server with watch mode               |
+| `npm run dev:search`       | Dev server + Pagefind indexing           |
+| `npm run build`            | Production build + search index          |
+| `npm run build:dev`        | Dev build (no search index)              |
+| `npm run build:production` | Prod build (quiet mode, no search index) |
+| `npm run search:index`     | Generate Pagefind index for `_site/`     |
+| `npm run validate`         | ESLint + Prettier check                  |
+| `npm run lint:fix`         | Auto-fix ESLint issues                   |
 
 ## 🚀 Deployment
 
@@ -103,7 +111,7 @@ npm run build
 - Main stylesheet: `styles.css`
 - CSS custom properties for consistent theming
 - Responsive breakpoints at 768px, 900px, and 1200px
-- Montserrat font family with proper font weights
+- Geist font family with proper font weights
 
 ### Content
 

@@ -222,6 +222,9 @@ module.exports = function (eleventyConfig) {
     if (dateObj === "now") {
       return DateTime.now().toFormat(format);
     }
+    if (typeof dateObj === "string") {
+      return DateTime.fromISO(dateObj).toFormat(format);
+    }
     return DateTime.fromJSDate(dateObj).toFormat(format);
   });
 
@@ -832,8 +835,12 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.setQuietMode(true);
   }
 
+  // Disable .gitignore-based ignoring so output/posts/ (gitignored) gets processed
+  eleventyConfig.setUseGitIgnore(false);
+
   // Ignore docs folder to prevent template processing of instruction files
   eleventyConfig.ignores.add("docs/**");
+  eleventyConfig.ignores.add(".git/**");
 
   return {
     // No pathPrefix needed for custom domain
