@@ -77,9 +77,9 @@ module.exports = function (eleventyConfig) {
 
         // Language mapping for Prism
         const languageMap = {
-          coldfusion: "language-coldfusion",
-          cfml: "language-coldfusion",
-          cfscript: "language-cfscript",
+          coldfusion: "language-markup",
+          cfml: "language-markup",
+          cfscript: "language-javascript",
           javascript: "language-javascript",
           js: "language-javascript",
           java: "language-java",
