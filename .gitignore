@@ -11,6 +11,13 @@ _site/
 # Pagefind
 pagefind/
 
+# Generated artifacts
+homepage-critique.png
+
+# Agent tools
+.impeccable/
+.playwright-mcp/
+
 # OS generated files
 .DS_Store
 Thumbs.db
