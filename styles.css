@@ -25,6 +25,14 @@
   --color-code-comment: #6a9955;
   --color-code-keyword: #569cd6;
   --color-code-string: #ce9178;
+  --color-steel-gray: #22313a;
+  --color-slate-border: #3e4750;
+  --color-carbon: #2a2a2a;
+  --color-orange-accent: #ff6b35;
+  --color-primary-18: rgba(25, 212, 254, 0.18);
+  --color-primary-20: rgba(25, 212, 254, 0.2);
+  --color-primary-25: rgba(25, 212, 254, 0.25);
+  --color-primary-30: rgba(25, 212, 254, 0.3);
 
   /* Typography */
   --font-primary: "Geist", "Inter", system-ui, -apple-system, sans-serif;
@@ -233,27 +241,6 @@ img {
   position: relative;
 }
 
-/* Image fallback styling for broken images */
-img::before {
-  content: attr(alt) " (image not found)";
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: var(--color-surface-light);
-  color: var(--color-text-secondary);
-  font-size: var(--font-size-sm);
-  text-align: center;
-  padding: var(--spacing-lg);
-  border: 1px dashed var(--color-border);
-  border-radius: var(--border-radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  word-break: break-word;
-}
 
 hr {
   margin-top: var(--spacing-lg);
@@ -463,7 +450,7 @@ section {
    ========================================================================== */
 
 .navbar {
-  background-color: rgba(34, 49, 58, 0.95);
+  background: color-mix(in srgb, var(--color-steel-gray) 95%, transparent);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   -ms-backdrop-filter: blur(10px);
@@ -472,7 +459,7 @@ section {
   top: 0;
   z-index: var(--z-nav);
   width: 100%;
-  border-bottom: 1px solid rgba(62, 71, 80, 0.3);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-slate-border) 30%, transparent);
   overflow: visible; /* Allow dropdown to extend beyond navbar */
 }
 
@@ -681,7 +668,7 @@ section {
     width: var(--mobile-menu-width);
     height: 100vh;
     height: 100dvh;
-    background-color: rgba(34, 49, 58, 0.98);
+    background: color-mix(in srgb, var(--color-steel-gray) 98%, transparent);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     -ms-backdrop-filter: blur(20px);
@@ -1057,15 +1044,10 @@ section {
     opacity: 1;
     visibility: visible;
     transform: none;
-    transition: none;
-  max-height: 0;
-  overflow: hidden;
-}
-
-.dropdown-menu.show {
-  max-height: none;
-  transition: max-height var(--transition-slow);
-}
+        transition: none;
+        max-height: 0;
+        overflow: hidden;
+    }
 
   .dropdown-menu a {
     padding: var(--spacing-md) var(--spacing-xl);
@@ -1076,6 +1058,11 @@ section {
     background-color: var(--color-accent-bg);
     border-left-color: var(--color-primary);
   }
+}
+
+.dropdown-menu.show {
+  max-height: none;
+  transition: max-height var(--transition-slow);
 }
 
 /* ==========================================================================
@@ -1469,6 +1456,7 @@ section {
 .timeline-item.animate {
   opacity: 1;
   transform: translateX(0);
+  will-change: transform, opacity;
 }
 
 .timeline-item.animate .timeline-square {
@@ -1619,7 +1607,7 @@ section {
   padding: var(--spacing-xs) var(--spacing-md);
   background: var(--color-accent-bg);
   color: var(--color-primary);
-  border: 1px solid rgba(25, 212, 254, 0.25);
+  border: 1px solid var(--color-primary-25);
   border-radius: 999px;
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
@@ -1628,7 +1616,7 @@ section {
 }
 
 .language-pill:hover {
-  background: rgba(25, 212, 254, 0.18);
+  background: var(--color-primary-18);
   border-color: var(--color-primary);
   transform: translateY(-1px);
 }
@@ -1662,6 +1650,10 @@ section {
 }
 
 
+
+.framework-item.animate {
+  will-change: transform, opacity;
+}
 
 .framework-item.animate:hover,
 .framework-item.animate:focus {
@@ -1750,6 +1742,10 @@ section {
   align-items: center;
   justify-content: center;
   min-width: 1.2em;
+}
+
+.methodology-item.animate {
+  will-change: transform, opacity;
 }
 
 .methodology-item.animate i {
@@ -1909,6 +1905,10 @@ section {
   box-shadow: var(--shadow-lg);
   border-color: var(--color-primary);
   transform: var(--hover-slide);
+}
+
+.contact-item.animate {
+  will-change: transform, opacity;
 }
 
 .contact-item.animate .contact-icon {
@@ -2104,7 +2104,7 @@ section {
 
 .blog-post-card.error {
   background-color: var(--color-surface-light);
-  border-left: 4px solid var(--color-error);
+  border: 2px solid var(--color-error);
   padding: var(--spacing-lg);
   border-radius: var(--border-radius-md);
   margin: var(--spacing-lg) 0;
@@ -2390,12 +2390,17 @@ section {
 
 /* Disqus container styling */
 #disqus_thread {
-  background: var(--color-surface);
+  background: var(--color-background);
   border: 1px solid var(--color-border);
-  border-radius: var(--border-radius-sm);
-  padding: var(--spacing-lg);
+  border-radius: 16px;
+  padding: 32px 0 0 0;
   margin: var(--spacing-2xl) 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+  color: var(--color-text-secondary);
+  font-family: var(--font-primary);
+  font-size: 1.08rem;
+  line-height: 1.7;
+  min-height: var(--spacing-4xl);
 }
 
 /* Ensure proper color inheritance for Disqus */
@@ -2408,18 +2413,14 @@ section {
 /* Style Disqus links to match site theme */
 #disqus_thread a {
   color: var(--color-primary) !important;
-  text-decoration: none;
+  text-decoration: underline;
+  font-weight: 600;
+  letter-spacing: 0.2px;
 }
 
 #disqus_thread a:hover {
   color: var(--color-primary-dark) !important;
   text-decoration: underline;
-}
-
-/* Force dark theme detection by setting proper text colors */
-#disqus_thread {
-  color: var(--color-text);
-  background-color: var(--color-surface);
 }
 
 /* Style the noscript fallback */
@@ -2437,23 +2438,7 @@ section {
   color: var(--color-primary) !important;
 }
 
-/* Disqus Readability Enhancements for Dark Theme */
-#disqus_thread {
-  background: var(--color-background) !important;
-  color: var(--color-text-secondary) !important;
-  font-family: var(--font-primary) !important;
-  font-size: 1rem;
-  line-height: 1.7;
-  padding: 32px 0 0 0;
-  border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
-}
-#disqus_thread a {
-  color: var(--color-primary) !important;
-  text-decoration: underline;
-  font-weight: 600;
-  letter-spacing: 0.2px;
-}
+/* Disqus heading styling */
 #disqus_thread h1,
 #disqus_thread h2,
 #disqus_thread h3,
@@ -2465,6 +2450,8 @@ section {
   font-weight: 700;
   letter-spacing: 0.3px;
 }
+
+/* Disqus input/textarea styling */
 #disqus_thread input,
 #disqus_thread textarea {
   background: var(--color-background) !important;
@@ -2473,29 +2460,20 @@ section {
   font-family: var(--font-primary) !important;
 }
 
-/* Disqus Comment Content Readability (Dark Theme) */
-#disqus_thread {
-  background: var(--color-background) !important;
-  color: var(--color-text-secondary) !important;
-  font-family: var(--font-primary) !important;
-  font-size: 1.08rem;
-  line-height: 1.7;
-}
+/* Disqus comment author styling */
 #disqus_thread .author {
   color: var(--color-primary) !important;
   font-weight: 700;
   letter-spacing: 0.2px;
 }
-#disqus_thread a {
-  color: var(--color-primary) !important;
-  text-decoration: underline;
-  font-weight: 600;
-  letter-spacing: 0.2px;
-}
+
+/* Disqus icon styling */
 #disqus_thread .icon {
   color: var(--color-primary) !important;
   opacity: 0.85;
 }
+
+/* Disqus user badge styling */
 #disqus_thread .user {
   background: var(--color-background) !important;
   color: var(--color-primary) !important;
@@ -2503,13 +2481,8 @@ section {
   border-radius: 50%;
   border: 2px solid var(--color-primary-dark);
 }
-#disqus_thread input,
-#disqus_thread textarea {
-  background: var(--color-background) !important;
-  color: var(--color-text-secondary) !important;
-  border: 1px solid var(--color-border) !important;
-  font-family: var(--font-primary) !important;
-}
+
+/* Disqus selection styling */
 #disqus_thread ::selection {
   background: var(--color-primary);
   color: var(--color-background);
@@ -2543,9 +2516,15 @@ section {
   font-weight: var(--font-weight-bold);
   color: var(--color-primary);
   line-height: 0.9;
-  text-shadow: 0 4px 8px rgba(25, 212, 254, 0.3);
+  text-shadow: 0 4px 8px var(--color-primary-30);
   letter-spacing: 0.02em;
-  animation: float 3s ease-in-out infinite;
+  animation: float 3s ease-in-out 3;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .error-number {
+    animation: none;
+  }
 }
 
 .error-subtitle {
@@ -2629,7 +2608,7 @@ section {
 
 .error-quotes blockquote {
   background: var(--color-accent-bg-light);
-  border-left: 4px solid var(--color-primary);
+  border-left: 3px solid var(--color-primary);
   padding: var(--spacing-xl);
   margin: 0;
   border-radius: var(--border-radius-md);
@@ -2760,7 +2739,6 @@ section {
    ========================================================================== */
 
 /* Import search styles */
-@import url("assets/css/search.css");
 
 /* ==========================================================================
    BACK TO TOP BUTTON
@@ -2820,6 +2798,15 @@ section {
   margin-bottom: var(--spacing-xl);
 }
 
-#disqus_thread {
-  min-height: var(--spacing-4xl);
+/* Blog empty state styling */
+.blog-empty-icon {
+  font-size: var(--font-size-4xl);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-lg);
+}
+
+.blog-empty-text {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-lg);
+  margin: 0;
 }

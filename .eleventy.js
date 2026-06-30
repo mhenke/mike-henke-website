@@ -99,9 +99,9 @@ module.exports = function (eleventyConfig) {
 
         return `<div class="code-block">
   <div class="code-header">
-    <span class="code-language">${cleanLanguage.toUpperCase()}</span>
+    <span class="code-language" aria-hidden="true">${cleanLanguage.toUpperCase()}</span>
     <button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">
-      <i class="fas fa-copy"></i>
+      <i class="ph ph-copy" aria-hidden="true"></i>
     </button>
   </div>
   <pre class="line-numbers"><code class="${prismClass}">${escapedCode}</code></pre>
@@ -202,6 +202,7 @@ module.exports = function (eleventyConfig) {
             return `<div class="video-embed">
   <iframe 
     src="https://www.youtube.com/embed/${videoId}" 
+    title="YouTube video" 
     frameborder="0" 
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
     allowfullscreen>

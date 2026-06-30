@@ -1,6 +1,6 @@
 {% from "macros/navigation.njk" import navLinks %}
 <!-- Shared navigation for all layouts -->
-<nav class="navbar" role="navigation" aria-label="Main navigation">
+<nav class="navbar" aria-label="Main navigation">
     <div class="navbar-container">
         <a href="{{ '/' | url }}" class="navbar-brand" aria-label="Mike Henke - Return to homepage">Mike Henke</a>
         
@@ -14,7 +14,7 @@
             <div class="mobile-menu-header">
                 <span class="menu-brand">Mike Henke</span>
                 <!-- Close button INSIDE slide-out menu -->
-                <button class="navbar-close" aria-label="Close navigation menu" tabindex="0">
+                <button class="navbar-close" aria-label="Close navigation menu">
                     <i class="ph ph-x" aria-hidden="true"></i>
                 </button>
             </div>

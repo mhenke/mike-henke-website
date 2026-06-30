@@ -43,7 +43,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         var navLinkItems = navLinks.querySelectorAll('a:not(.dropdown-toggle)');
         navLinkItems.forEach(function(link) {
             link.addEventListener('click', function() {
-                if (window.innerWidth < 768) closeMobileMenu();
+                if (window.innerWidth < 1024) closeMobileMenu();
             });
         });
 
@@ -139,7 +139,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         var dropdownLinks = menu.querySelectorAll('a');
         dropdownLinks.forEach(function(link) {
             link.addEventListener('click', function() {
-                if (window.innerWidth < 768 && typeof closeMobileMenu === 'function') {
+                if (window.innerWidth < 1024 && typeof closeMobileMenu === 'function') {
                     closeMobileMenu();
                 }
             });
@@ -251,20 +251,6 @@ function showCopySuccess(button) {
     window.addEventListener('scroll', toggle, { passive: true });
 
     backToTopButton.addEventListener('click', function() {
-        var startY = window.scrollY;
-        var duration = Math.min(400, startY * 0.5);
-        var startTime = performance.now();
-        function step(now) {
-            var elapsed = now - startTime;
-            var progress = Math.min(elapsed / duration, 1);
-            window.scrollTo(0, startY * (1 - (1 - Math.pow(1 - progress, 3))));
-            if (progress < 1) { requestAnimationFrame(step); }
-            else {
-                window.scrollTo(0, 0);
-                var main = document.querySelector('#main-content');
-                if (main) { main.setAttribute('tabindex', '-1'); main.focus(); }
-            }
-        }
-        requestAnimationFrame(step);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 })();
