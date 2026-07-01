@@ -2807,3 +2807,104 @@ section {
   font-size: var(--font-size-lg);
   margin: 0;
 }
+
+/* Section subtitle (used under section title) */
+.section-subtitle {
+  color: var(--color-text);
+  font-size: var(--font-size-base);
+  text-align: center;
+  max-width: 65ch;
+  margin: 0 auto var(--spacing-xl);
+  line-height: 1.7;
+}
+
+/* Writing section topic tags */
+.writing-topics {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  margin: 0 auto var(--spacing-xl);
+  max-width: 65ch;
+}
+.topic-tag {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  padding: var(--spacing-xs) var(--spacing-md);
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--border-radius-pill);
+  transition: border-color var(--transition-normal), color var(--transition-normal);
+}
+.topic-tag:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+.writing-cta {
+  text-align: center;
+}
+
+/* Education & Certifications grid */
+.education-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-2xl);
+}
+.education-item {
+  padding: var(--spacing-lg);
+  background: var(--color-surface);
+  border-radius: var(--border-radius-md);
+  border: var(--border-width-thin) solid var(--color-border);
+}
+.education-degree {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+  margin: 0 0 var(--spacing-xs);
+}
+.education-school {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--spacing-xs);
+}
+.education-status {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+.education-status.status-in-progress {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Testimonials grid */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-2xl);
+}
+.testimonial-card {
+  margin: 0;
+  padding: var(--spacing-lg);
+  background: var(--color-surface);
+  border-radius: var(--border-radius-md);
+  border-left: var(--border-width-thin) solid var(--color-primary);
+}
+.testimonial-quote {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  margin: 0 0 var(--spacing-md);
+  font-style: italic;
+}
+.testimonial-footer {
+  margin: 0;
+}
+.testimonial-author {
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  font-style: normal;
+}

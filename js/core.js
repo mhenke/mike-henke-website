@@ -9,10 +9,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
         let releaseTrap = null;
 
         function openMobileMenu() {
-            console.log('nav open');
             scrollPosition = window.pageYOffset;
             navLinks.classList.add('active');
             navToggle.classList.add('active');
+            navToggle.setAttribute('aria-expanded', 'true');
             if (navOverlay) navOverlay.classList.add('active');
             document.body.classList.add('nav-open');
         }
