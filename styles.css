@@ -809,18 +809,16 @@ section {
     z-index: var(--z-nav-overlay);
     opacity: 0;
     visibility: hidden;
-    transition: all var(--transition-slow);
+    transition: opacity var(--transition-slow), visibility var(--transition-slow);
   }
 
   .nav-overlay.active {
     opacity: 1;
     visibility: visible;
-    width: calc(100% - var(--mobile-menu-width));
   }
 
   body.nav-open {
     overflow: hidden;
-    position: fixed;
   }
 
   @media (max-width: 1023px) and (orientation: landscape) {

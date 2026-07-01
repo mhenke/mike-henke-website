@@ -9,17 +9,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
         let releaseTrap = null;
 
         function openMobileMenu() {
+            console.log('nav open');
             scrollPosition = window.pageYOffset;
-            lastFocusedElement = document.activeElement;
-            navToggle.setAttribute('aria-expanded', 'true');
             navLinks.classList.add('active');
             navToggle.classList.add('active');
             if (navOverlay) navOverlay.classList.add('active');
             document.body.classList.add('nav-open');
-            document.body.style.top = '-' + scrollPosition + 'px';
-            releaseTrap = trapFocus(navLinks);
-            var firstLink = navLinks.querySelector('a, button');
-            if (firstLink) firstLink.focus();
         }
 
         function closeMobileMenu() {
@@ -28,7 +23,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
             navToggle.setAttribute('aria-expanded', 'false');
             if (navOverlay) navOverlay.classList.remove('active');
             document.body.classList.remove('nav-open');
-            document.body.style.top = '';
             if (releaseTrap) { releaseTrap(); releaseTrap = null; }
             if (scrollPosition) { window.scrollTo(0, scrollPosition); scrollPosition = 0; }
             if (lastFocusedElement) { lastFocusedElement.focus(); lastFocusedElement = null; }
