@@ -1151,7 +1151,7 @@ section {
   color: var(--color-text-secondary);
   margin-bottom: var(--spacing-xl);
   max-width: var(--max-width-text);
-  margin-left: auto;
+  margin-left: 0;
   margin-right: auto;
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -1375,7 +1375,7 @@ section {
     var(--spacing-2xl);
   border-radius: 16px;
   border: var(--border-width-thick) solid var(--color-border);
-  box-shadow: var(--shadow-accent), var(--shadow-md);
+  box-shadow: var(--shadow-md);
   margin-left: 0;
   flex: 1 1 0%;
   display: flex;
@@ -1450,24 +1450,24 @@ section {
 }
 
 /* Timeline Animations */
-.timeline-item.animate {
+.timeline.animate .timeline-item {
   opacity: 1;
   transform: translateX(0);
   will-change: transform, opacity;
 }
 
-.timeline-item.animate .timeline-square {
+.timeline.animate .timeline-item .timeline-square {
   transform: scale(1);
 }
 
-.timeline-item.animate .timeline-square:hover,
-.timeline-item.animate:hover .timeline-square,
-.timeline-item.animate:has(.timeline-content:hover) .timeline-square {
+.timeline.animate .timeline-item .timeline-square:hover,
+.timeline.animate .timeline-item:hover .timeline-square,
+.timeline.animate .timeline-item:has(.timeline-content:hover) .timeline-square {
   transform: var(--hover-scale-rotate) !important;
   box-shadow: var(--shadow-accent-sm);
 }
 
-.timeline-item.animate .timeline-content {
+.timeline.animate .timeline-item .timeline-content {
   transform: translateX(0);
 }
 
@@ -2385,6 +2385,11 @@ section {
    DISQUS COMMENTS STYLING
    ========================================================================== */
 
+
+/* Section padding variation */
+#writing.content-section-boxed {
+  padding: var(--spacing-xl) var(--spacing-2xl);
+}
 /* Disqus container styling */
 #disqus_thread {
   background: var(--color-background);
@@ -2604,7 +2609,7 @@ section {
 
 .error-quotes blockquote {
   background: var(--color-accent-bg-light);
-  border-left: 3px solid var(--color-primary);
+  border: 1px solid var(--color-primary);
   padding: var(--spacing-xl);
   margin: 0;
   border-radius: var(--border-radius-md);

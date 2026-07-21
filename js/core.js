@@ -167,25 +167,21 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
     }
 
-    var timelineItems = document.querySelectorAll('.timeline-item[data-animation-delay]');
-    if (timelineItems.length > 0) {
-        function animateTimeline(item) {
-            var delay = item.getAttribute('data-animation-delay') || '0s';
-            item.style.setProperty('--animation-delay', delay);
-            item.classList.add('animate');
-        }
+    var timeline = document.querySelector('.timeline');
+    if (timeline) {
+        function animateTimeline() { timeline.classList.add('animate'); }
         if ('IntersectionObserver' in window) {
             var tobs = new IntersectionObserver(function(entries) {
                 entries.forEach(function(entry) {
                     if (entry.isIntersecting && !entry.target.classList.contains('animate')) {
-                        animateTimeline(entry.target);
+                        animateTimeline();
                         tobs.unobserve(entry.target);
                     }
                 });
             }, { root: null, rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
-            timelineItems.forEach(function(item) { tobs.observe(item); });
+            tobs.observe(timeline);
         } else {
-            timelineItems.forEach(animateTimeline);
+            animateTimeline();
         }
     }
 });
