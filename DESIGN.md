@@ -46,14 +46,14 @@ typography:
     fontWeight: 400
     letterSpacing: "clamp(0.3px, 0.8vw, 0.5px)"
 rounded:
+  xxs: "2px"
   xs: "4px"
   sm: "6px"
   md: "8px"
-  lg: "18px"
-  xl: "24px"
-  xxs: "2px"
+  lg: "14px"
+  xl: "20px"
+  16: "16px"
   pill: "999px"
-  # xxs for subtle tags, pill for badge shapes
 spacing:
   xs: "clamp(0.25rem, 1vw, 0.5rem)"
   sm: "clamp(0.5rem, 2vw, 0.75rem)"
@@ -85,7 +85,12 @@ components:
     padding: "clamp(1rem, 3vw, 1.5rem) clamp(1.25rem, 4vw, 2rem)"
   card-hover:
     borderColor: "{colors.electric-cyan-dark}"
-    boxShadow: "0 12px 24px rgba(0, 0, 0, 0.3)"
+    boxShadow: "0 8px 24px rgba(0, 0, 0, 0.3)"
+  timeline-card:
+    backgroundColor: "{colors.carbon}"
+    rounded: "{rounded.16}"
+    border: "2.5px solid {colors.slate-border}"
+    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.25)"
   nav-dropdown:
     backgroundColor: "{colors.steel-gray}"
     rounded: "{rounded.sm}"
@@ -155,7 +160,7 @@ The palette reads as terminal-native: a dark IDE with syntax highlighting. Elect
 
 **Display Font:** Geist (with Arial, Helvetica, sans-serif fallback)
 **Body Font:** Geist (single family, weight contrast only)
-**Label/Mono Font:** N/A (system monospace for code blocks only)
+**Mono Font:** system monospace for code blocks only
 
 **Character:** Geometric sans with personality. Geist is not a training-data default — it has distinctive geometric construction that reads as engineered, not templated. Single-family with committed weight contrast (400 body, 500 medium, 600 semibold, 700 bold) is stronger than a timid display+body pair.
 
@@ -177,15 +182,17 @@ The system uses ambient shadows to create depth — surfaces appear to float abo
 
 ### Shadow Vocabulary
 
-- **Shadow MD** (`0 8px 16px rgba(0, 0, 0, 0.2)`): Default card shadow. Subtle lift that separates cards from the background.
-- **Shadow LG** (`0 12px 24px rgba(0, 0, 0, 0.3)`): Enhanced shadow for hover states and elevated elements. Deeper, more diffuse.
-- **Shadow Accent** (`0 8px 32px rgba(25, 212, 254, 0.15)`): Ambient cyan glow. Used on elements that should feel like they're emitting light — hero images, featured cards.
-- **Shadow Accent SM** (`0 4px 12px rgba(25, 212, 254, 0.4)`): Tight cyan glow for small accent elements — timeline markers, hover states on icons.
-- **Shadow Accent LG** (`0 8px 20px rgba(25, 212, 254, 0.3)`): Medium cyan glow for larger accent elements.
+- **Shadow MD** (`0 4px 12px rgba(0, 0, 0, 0.25)`): Default card shadow. Subtle lift that separates cards from the background.
+- **Shadow LG** (`0 8px 24px rgba(0, 0, 0, 0.3)`): Enhanced shadow for hover states and elevated elements. Deeper, more diffuse.
+- **Shadow Accent** (`0 4px 20px rgba(25, 212, 254, 0.12)`): Tight cyan glow for hero images and timeline markers. Subtle — reads as ambient light, not a glow stick.
+- **Shadow Accent SM** (`0 2px 8px rgba(25, 212, 254, 0.25)`): Small cyan glow for accent elements on hover.
+- **Shadow Accent LG** (`0 6px 16px rgba(25, 212, 254, 0.22)`): Medium cyan glow for hover states on featured elements.
 
 ### Named Rules
 
 **The Ambient Rule.** Shadows exist at rest, not just on hover. A card without its shadow feels like it's sitting on the surface, not floating above it. Hover enhances the shadow; it doesn't create it.
+
+**No shadow glow on timeline cards.** Timeline content cards use shadow-md only — no accent glow. The border and surface color provide separation.
 
 ## 5. Components
 
@@ -198,18 +205,19 @@ The system uses ambient shadows to create depth — surfaces appear to float abo
 
 ### Cards / Containers
 
-- **Corner Style:** 18px radius (lg) — rounded enough to feel modern, not pill-shaped.
-- **Background:** Carbon (#2a2a2a) for blog cards; Steel Gray for author bio and larger containers.
-- **Shadow Strategy:** Shadow-md at rest, shadow-lg on hover. Cards float above the page.
-- **Border:** 2.5px solid slate-border at rest, transitions to electric-cyan-dark on hover.
+- **Corner Style:** 14px radius (lg) — rounded enough to feel modern, not pill-shaped. Blog cards and education items use this.
+- **Timeline cards:** 16px radius — slightly tighter than section cards to differentiate hierarchy.
+- **Background:** Carbon (#2a2a2a) for blog cards and timeline content; Steel Gray for author bio.
+- **Shadow Strategy:** Shadow-md at rest for blog cards, shadow-lg on hover. Timeline cards use shadow-md at rest only.
+- **Border:** 2.5px solid slate-border at rest, transitions to electric-cyan-dark on hover for blog cards.
 - **Internal Padding:** lg (1rem–1.5rem) horizontal, xl (1.25rem–2rem) vertical.
 
 ### Navigation
 
 - **Style:** Sticky navbar with backdrop-filter blur (10px). Steel gray at 95% opacity — feels like a terminal title bar.
-- **Typography:** Geist medium, 16px equivalent. Links have subtle underline animation on hover (width 0→100%, cyan).
+- **Typography:** Geist medium, 16px equivalent. Links have subtle underline animation on hover.
 - **Mobile:** Slide-out menu from right, 280px wide, full viewport height with blur backdrop.
-- **Dropdown:** Positioned absolutely, 200px min-width, steel gray background, appears below toggle with opacity/transform transition.
+- **Dropdown:** Positioned absolutely, steel gray background, appears below toggle with opacity/transform transition.
 
 ### Tags / Chips
 
@@ -219,15 +227,20 @@ The system uses ambient shadows to create depth — surfaces appear to float abo
 
 ### Back to Top
 
-- **Shape:** 44×44px circular button (touch target compliant).
+- **Shape:** 44x44px circular button (touch target compliant).
 - **Style:** Electric cyan background, near-black icon, fixed bottom-right.
 - **Behavior:** Hidden until scrolled (opacity 0, visibility hidden, translateY 20px), appears when visible class added.
 
 ### Author Bio
 
 - **Layout:** Flex row (image left, content right) on desktop; column on mobile.
-- **Style:** Steel gray background, 18px radius, 2px slate border, cyan border on hover.
+- **Style:** Steel gray background, 14px radius, 2px slate border.
 - **Image:** 80px circular avatar with 3px slate border.
+
+### Footer
+
+- **Style:** Single inline row, 5 links (Home, About, Career, Blog, Contact) with bullet separators, copyright line below.
+- **Type:** Statement footer — compact, no columns. Closes the page rather than indexing it.
 
 ## 6. Do's and Don'ts
 
@@ -240,16 +253,18 @@ The system uses ambient shadows to create depth — surfaces appear to float abo
 - **Do** respect reduced motion. Every animation has a instant/crossfade fallback.
 - **Do** cap body line length at 65ch. Prose should be readable, not a horizontal scan.
 - **Do** use fluid clamp() spacing and typography. No breakpoint chaos.
+- **Do** keep hero description left-aligned. Balanced asymmetry reads more honestly than perfect centering.
 
 ### Don't:
 
 - **Don't** use gradient text. Solid colors only. Emphasis through weight and size, not gradient effects.
-- **Don't** use border-left as a colored stripe on cards. Full borders or background tints, not side stripes.
+- **Don't** use border-left as a colored stripe on cards or blockquotes. Full borders or background tints, not side stripes.
 - **Don't** use glassmorphism. The site is terminal-native, not glassy.
 - **Don't** use AI slop aesthetics: generic gradient heroes, stock photo beach/desk setups, "Hello I'm a Full Stack Developer" prose.
 - **Don't** use card grids with identical icon+heading+text patterns. Each card should earn its space.
 - **Don't** use tiny uppercase tracked eyebrows above every section. One named kicker as brand system is voice; repeating it is AI grammar.
-- **Don't** use numbered section scaffolding (01 / 02 / 03). Numbers earn their place only in ordered sequences.
+- **Don't** use numbered section scaffolding (01 / 02 / 03). Numbers earn their place only in ordered sequences like the career timeline.
 - **Don't** pair cyan with purple or pink. The palette is cyan-on-near-black — no neon rainbow.
-- **Don't** use border-radius above 24px on cards. 18px is the ceiling; full-pill is fine for buttons/tags only.
+- **Don't** use border-radius above 20px on section containers. Timeline cards cap at 16px.
 - **Don't** use bounce or elastic easing. Ease-out-quart only — mechanical and precise.
+- **Don't** use shadow glow on timeline content cards. Elevation via border and surface lightness only.
