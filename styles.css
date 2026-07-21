@@ -1373,7 +1373,7 @@ section {
   background: var(--color-surface-light);
   padding: var(--spacing-2xl) var(--spacing-2xl) var(--spacing-xl)
     var(--spacing-2xl);
-  border-radius: var(--border-radius-xl);
+  border-radius: 16px;
   border: var(--border-width-thick) solid var(--color-border);
   box-shadow: var(--shadow-accent), var(--shadow-md);
   margin-left: 0;
@@ -2392,7 +2392,6 @@ section {
   border-radius: 16px;
   padding: 32px 0 0 0;
   margin: var(--spacing-2xl) 0;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
   color: var(--color-text-secondary);
   font-family: var(--font-primary);
   font-size: 1.08rem;
