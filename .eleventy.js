@@ -15,6 +15,11 @@ module.exports = function (eleventyConfig) {
   const isProduction = process.env.NODE_ENV === "production";
   const isDevelopment = !isProduction;
 
+  // Helper: generate URL path for WordPress post images
+  function imagePath(postSlug, imageName) {
+    return `/blog/${postSlug}/images/${imageName}`;
+  }
+
   // Expose environment to templates for conditional rendering
   eleventyConfig.addGlobalData("site.environment", () =>
     isDevelopment ? "development" : "production",
@@ -305,8 +310,6 @@ module.exports = function (eleventyConfig) {
 
             // Only process relative image paths that start with 'images/'
             if (src && src.startsWith("images/")) {
-              const pathPrefix = "";
-
               // Extract post slug from available data
               let postSlug = "";
 
@@ -327,7 +330,7 @@ module.exports = function (eleventyConfig) {
               if (postSlug) {
                 const imageName = src.replace("images/", "");
                 // Route images to /blog/slug/images/ under the blog prefix
-                const newSrc = `${pathPrefix}/blog/${postSlug}/images/${imageName}`;
+                const newSrc = imagePath(postSlug, imageName);
                 token.attrs[srcIndex][1] = newSrc;
               }
             }
@@ -389,8 +392,6 @@ module.exports = function (eleventyConfig) {
         outputPath.includes("output/posts/") ||
         outputPath.match(/\/_site\/blog\/[^/]+\/index\.html$/)
       ) {
-        const pathPrefix = "";
-
         // Extract the post slug from the output path
         const pathParts = outputPath.split("/");
         let postSlug = "";
@@ -420,7 +421,7 @@ module.exports = function (eleventyConfig) {
             .replace(
               /<img([^>]*)\ssrc=["']images\/([^"']+)["']/g,
               (match, attrs, imageName) => {
-                const newPath = `${pathPrefix}/blog/${postSlug}/images/${imageName}`;
+                const newPath = imagePath(postSlug, imageName);
                 return `<img${attrs} src="${newPath}"`;
               },
             )
@@ -428,13 +429,13 @@ module.exports = function (eleventyConfig) {
             .replace(
               /src=["']\.\/images\/([^"']+)["']/g,
               (match, imageName) => {
-                const newPath = `${pathPrefix}/blog/${postSlug}/images/${imageName}`;
+                const newPath = imagePath(postSlug, imageName);
                 return `src="${newPath}"`;
               },
             )
             // Remaining markdown image syntax
             .replace(/!\[\]\(images\/([^)]+)\)/g, (match, imageName) => {
-              const newSrc = `${pathPrefix}/blog/${postSlug}/images/${imageName}`;
+              const newSrc = imagePath(postSlug, imageName);
               return `<img src="${newSrc}" alt="" loading="lazy">`;
             });
         }
