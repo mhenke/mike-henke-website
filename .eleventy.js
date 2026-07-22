@@ -326,8 +326,8 @@ module.exports = function (eleventyConfig) {
 
               if (postSlug) {
                 const imageName = src.replace("images/", "");
-                // Route images to the root directory structure (not /blog/)
-                const newSrc = `${pathPrefix}/${postSlug}/images/${imageName}`;
+                // Route images to /blog/slug/images/ under the blog prefix
+                const newSrc = `${pathPrefix}/blog/${postSlug}/images/${imageName}`;
                 token.attrs[srcIndex][1] = newSrc;
               }
             }
@@ -384,10 +384,10 @@ module.exports = function (eleventyConfig) {
         return content;
       }
 
-      // Only transform WordPress post pages (now at root level)
+      // Only transform WordPress post pages (now under /blog/)
       if (
         outputPath.includes("output/posts/") ||
-        outputPath.match(/\/_site\/[^/]+\/index\.html$/)
+        outputPath.match(/\/_site\/blog\/[^/]+\/index\.html$/)
       ) {
         const pathPrefix = "";
 
@@ -395,22 +395,15 @@ module.exports = function (eleventyConfig) {
         const pathParts = outputPath.split("/");
         let postSlug = "";
 
-        // For root-level posts, find the slug differently
+        // Extract slug from _site/blog/post-slug/index.html pattern
         if (outputPath.includes("_site/")) {
-          // Extract from _site/post-slug/index.html pattern
           const siteIndex = pathParts.indexOf("_site");
           if (
             siteIndex !== -1 &&
-            pathParts[siteIndex + 1] &&
-            pathParts[siteIndex + 1] !== "blog" &&
-            pathParts[siteIndex + 1] !== "category" &&
-            pathParts[siteIndex + 1] !== "search" &&
-            pathParts[siteIndex + 1] !== "wordpress-pages" &&
-            pathParts[siteIndex + 1] !== "articles" &&
-            pathParts[siteIndex + 1] !== "presentations" &&
-            pathParts[siteIndex + 1] !== "wheels-series"
+            pathParts[siteIndex + 1] === "blog" &&
+            pathParts[siteIndex + 2]
           ) {
-            postSlug = pathParts[siteIndex + 1];
+            postSlug = pathParts[siteIndex + 2];
           }
         } else if (outputPath.includes("output/posts/")) {
           // Extract from source path during processing
@@ -427,7 +420,7 @@ module.exports = function (eleventyConfig) {
             .replace(
               /<img([^>]*)\ssrc=["']images\/([^"']+)["']/g,
               (match, attrs, imageName) => {
-                const newPath = `${pathPrefix}/${postSlug}/images/${imageName}`;
+                const newPath = `${pathPrefix}/blog/${postSlug}/images/${imageName}`;
                 return `<img${attrs} src="${newPath}"`;
               },
             )
@@ -435,13 +428,13 @@ module.exports = function (eleventyConfig) {
             .replace(
               /src=["']\.\/images\/([^"']+)["']/g,
               (match, imageName) => {
-                const newPath = `${pathPrefix}/${postSlug}/images/${imageName}`;
+                const newPath = `${pathPrefix}/blog/${postSlug}/images/${imageName}`;
                 return `src="${newPath}"`;
               },
             )
             // Remaining markdown image syntax
             .replace(/!\[\]\(images\/([^)]+)\)/g, (match, imageName) => {
-              const newSrc = `${pathPrefix}/${postSlug}/images/${imageName}`;
+              const newSrc = `${pathPrefix}/blog/${postSlug}/images/${imageName}`;
               return `<img src="${newSrc}" alt="" loading="lazy">`;
             });
         }
@@ -715,7 +708,7 @@ module.exports = function (eleventyConfig) {
           const imagesPath = path.join(postsDir, postSlug, "images");
           if (fs.existsSync(imagesPath)) {
             imageConfigs.push({
-              [`output/posts/${postSlug}/images`]: `${postSlug}/images`,
+              [`output/posts/${postSlug}/images`]: `blog/${postSlug}/images`,
             });
             configuredCount++;
           }
@@ -754,7 +747,7 @@ module.exports = function (eleventyConfig) {
       });
   });
 
-  // Add custom permalink for WordPress posts to route them to root level
+  // Add custom permalink for WordPress posts to route them under /blog/
   eleventyConfig.addGlobalData("eleventyComputed", {
     permalink: (data) => {
       // Only apply to WordPress posts
@@ -763,7 +756,7 @@ module.exports = function (eleventyConfig) {
         const outputIndex = pathParts.indexOf("output");
         if (outputIndex !== -1 && pathParts[outputIndex + 1] === "posts") {
           const postSlug = pathParts[outputIndex + 2];
-          return `/${postSlug}/`; // Root level structure
+          return `/blog/${postSlug}/`;
         }
       }
       return data.permalink;
