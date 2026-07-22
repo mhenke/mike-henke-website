@@ -241,7 +241,6 @@ img {
   position: relative;
 }
 
-
 hr {
   margin-top: var(--spacing-lg);
   margin-bottom: var(--spacing-md);
@@ -459,7 +458,8 @@ section {
   top: 0;
   z-index: var(--z-nav);
   width: 100%;
-  border-bottom: 1px solid color-mix(in srgb, var(--color-slate-border) 30%, transparent);
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--color-slate-border) 30%, transparent);
   overflow: visible; /* Allow dropdown to extend beyond navbar */
 }
 
@@ -809,7 +809,9 @@ section {
     z-index: var(--z-nav-overlay);
     opacity: 0;
     visibility: hidden;
-    transition: opacity var(--transition-slow), visibility var(--transition-slow);
+    transition:
+      opacity var(--transition-slow),
+      visibility var(--transition-slow);
   }
 
   .nav-overlay.active {
@@ -1041,10 +1043,10 @@ section {
     opacity: 1;
     visibility: visible;
     transform: none;
-        transition: none;
-        max-height: 0;
-        overflow: hidden;
-    }
+    transition: none;
+    max-height: 0;
+    overflow: hidden;
+  }
 
   .dropdown-menu a {
     padding: var(--spacing-md) var(--spacing-xl);
@@ -1646,8 +1648,6 @@ section {
   border: var(--border-width-medium) solid transparent;
 }
 
-
-
 .framework-item.animate {
   will-change: transform, opacity;
 }
@@ -1727,8 +1727,6 @@ section {
     width: 100% !important;
   }
 }
-
-
 
 .methodology-item i {
   color: var(--color-primary);
@@ -1896,7 +1894,6 @@ section {
 }
 
 /* Contact Animations */
-
 
 .contact-item.animate:hover {
   box-shadow: var(--shadow-lg);
@@ -2385,7 +2382,6 @@ section {
    DISQUS COMMENTS STYLING
    ========================================================================== */
 
-
 /* Section padding variation */
 #writing.content-section-boxed {
   padding: var(--spacing-xl) var(--spacing-2xl);
@@ -2839,7 +2835,9 @@ section {
   padding: var(--spacing-xs) var(--spacing-md);
   border: var(--border-width-thin) solid var(--color-border);
   border-radius: var(--border-radius-pill);
-  transition: border-color var(--transition-normal), color var(--transition-normal);
+  transition:
+    border-color var(--transition-normal),
+    color var(--transition-normal);
 }
 .topic-tag:hover {
   border-color: var(--color-primary);

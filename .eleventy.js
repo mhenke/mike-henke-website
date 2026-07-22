@@ -16,7 +16,9 @@ module.exports = function (eleventyConfig) {
   const isDevelopment = !isProduction;
 
   // Expose environment to templates for conditional rendering
-  eleventyConfig.addGlobalData("site.environment", () => isDevelopment ? "development" : "production");
+  eleventyConfig.addGlobalData("site.environment", () =>
+    isDevelopment ? "development" : "production",
+  );
 
   // Build performance monitoring
   let buildStartTime;
@@ -855,9 +857,7 @@ module.exports = function (eleventyConfig) {
       data: "_data",
       output: "_site",
     },
-    passthroughFileCopy: true,
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
-    dataTemplateEngine: "njk",
   };
 };

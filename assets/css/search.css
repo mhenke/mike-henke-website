@@ -1,7 +1,8 @@
 /* Search Page Styles - Consistent with Site Design */
 
 /* Hidden utility class for Pagefind metadata */
-[data-pagefind-meta] .hidden, .pagefind-ui__hidden {
+[data-pagefind-meta] .hidden,
+.pagefind-ui__hidden {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
@@ -93,8 +94,9 @@
   outline: 3px solid var(--color-focus, rgba(25, 212, 254, 0.4));
   outline-offset: 2px;
   border-color: var(--color-primary);
-  box-shadow: 0 8px 24px rgba(25, 212, 254, 0.25),
-              0 0 0 3px var(--color-accent-bg, rgba(25, 212, 254, 0.1));
+  box-shadow:
+    0 8px 24px rgba(25, 212, 254, 0.25),
+    0 0 0 3px var(--color-accent-bg, rgba(25, 212, 254, 0.1));
 }
 
 .search-content .search-input::placeholder,
@@ -377,7 +379,6 @@
   font-weight: var(--font-weight-regular);
 }
 
-
 @media (min-width: 1200px) {
   .search-container {
     padding: var(--spacing-3xl) var(--spacing-xl);
@@ -563,7 +564,6 @@
     animation: none;
   }
 }
-
 
 /* Footer Navigation Styles */
 footer nav {
