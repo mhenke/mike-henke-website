@@ -1711,7 +1711,7 @@ section {
   color: var(--color-text);
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-regular);
-  opacity: 1;
+  opacity: 0.45;
   transform: none;
   transition: all var(--transition-normal);
   text-align: left;
@@ -1747,12 +1747,15 @@ section {
   transform: scale(1);
 }
 
-.methodology-item:hover {
+.methodology-item:hover,
+.methodology-item:focus-visible {
   transform: var(--hover-slide);
   color: var(--color-primary);
+  opacity: 1;
 }
 
-.methodology-item:hover i {
+.methodology-item:hover i,
+.methodology-item:focus-visible i {
   color: var(--color-primary);
   transform: var(--hover-scale-rotate);
   box-shadow: var(--shadow-accent-sm);
