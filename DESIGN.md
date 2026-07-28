@@ -7,7 +7,7 @@ colors:
   near-black: "#181a1b"
   steel-gray: "#22313a"
   carbon: "#2a2a2a"
-  white: "#ffffff"
+  text-primary: "#e6f7fc"
   light-gray: "#cfd8dc"
   slate-border: "#3e4750"
   cyan-glow: "rgba(25, 212, 254, 0.1)"
@@ -20,7 +20,7 @@ colors:
   code-string: "#ce9178"
 typography:
   display:
-    fontFamily: "Geist, Arial, Helvetica, sans-serif"
+    fontFamily: "Source Serif 4, Georgia, serif"
     fontSize: "clamp(2rem, 7vw, 2.75rem)"
     fontWeight: 700
     lineHeight: 1.2

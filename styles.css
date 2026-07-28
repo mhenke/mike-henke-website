@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap');
-
+/* ==========================================================================
 /* ==========================================================================
    CSS CUSTOM PROPERTIES & VARIABLES
    ========================================================================== */
@@ -35,6 +34,8 @@
   --color-primary-20: rgba(25, 212, 254, 0.2);
   --color-primary-25: rgba(25, 212, 254, 0.25);
   --color-primary-30: rgba(25, 212, 254, 0.3);
+  --color-overlay: rgba(0, 0, 0, 0.8);
+  --shadow-nav-drawer: rgba(0, 0, 0, 0.3);
 
   /* Typography */
   --font-display: "Source Serif 4", "Georgia", serif;
@@ -169,7 +170,7 @@ select:focus-visible {
 html {
   scroll-behavior: smooth;
   height: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -680,7 +681,7 @@ section {
     transition: right var(--transition-slow);
     z-index: var(--z-nav-menu);
     gap: 0;
-    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+    box-shadow: -2px 0 10px var(--shadow-nav-drawer);
     overflow-y: auto;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
@@ -808,7 +809,7 @@ section {
     left: 0;
     width: 100%;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: var(--color-overlay);
     z-index: var(--z-nav-overlay);
     opacity: 0;
     visibility: hidden;
@@ -1064,7 +1065,6 @@ section {
 
 .dropdown-menu.show {
   max-height: none;
-  transition: max-height var(--transition-slow);
 }
 
 /* ==========================================================================
