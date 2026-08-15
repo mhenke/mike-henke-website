@@ -65,6 +65,7 @@
   /* Typography */
   --font-display: "Source Serif 4", "Georgia", serif;
   --font-primary: "Geist", "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", Menlo, Consolas, monospace;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-bold: 600;
@@ -2619,7 +2620,7 @@ section {
 
 .code-joke pre {
   margin: 0;
-  font-family: "Courier New", monospace;
+  font-family: var(--font-mono);
   font-size: var(--font-size-base);
   line-height: 1.6;
   text-align: left;

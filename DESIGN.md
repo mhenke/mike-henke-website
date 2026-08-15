@@ -45,6 +45,11 @@ typography:
     fontSize: "clamp(0.7rem, 1.5vw, 0.8rem)"
     fontWeight: 400
     letterSpacing: "clamp(0.3px, 0.8vw, 0.5px)"
+  mono:
+    fontFamily: "ui-monospace, Cascadia Code, Menlo, Consolas, monospace"
+    fontSize: "clamp(0.85rem, 2vw, 0.95rem)"
+    fontWeight: 400
+    lineHeight: 1.6
 rounded:
   xxs: "2px"
   xs: "4px"
