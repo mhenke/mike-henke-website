@@ -16,6 +16,7 @@ colors:
   error-red: "#f87171"
   orange-accent: "#ff6b35"
   code-comment: "#6a9955"
+  code-comment-light: "#90c483"
   code-keyword: "#569cd6"
   code-string: "#ce9178"
 typography:
@@ -153,7 +154,7 @@ The palette reads as terminal-native: a dark IDE with syntax highlighting. Elect
 
 ### Code Syntax
 
-- **Comment Green** (#6a9955): Code comments in syntax-highlighted blocks.
+- **Comment Green** (#90c483): Code comments in syntax-highlighted blocks. Lightened from #6a9955, which measured 4.29:1 on `--color-surface-light` and failed WCAG AA; #90c483 clears AAA (7.09:1) on every surface a code block sits on. The old value is retained as `code-comment` for reference only.
 - **Keyword Blue** (#569cd6): Code keywords in syntax-highlighted blocks.
 - **String Orange** (#ce9178): Code strings in syntax-highlighted blocks.
 
@@ -219,8 +220,13 @@ The system uses ambient shadows to create depth — surfaces appear to float abo
 
 ### Navigation
 
+**Archetype: N8 · Terminal command.** The nav is a shell prompt, not a link bar — the site's north star is "The Terminal Professional", so the chrome reads as a command line rather than a generic SaaS bar. The previous wordmark-plus-inline-links treatment was the recognised AI-nav fingerprint.
+
 - **Style:** Sticky navbar with backdrop-filter blur (10px). Steel gray at 95% opacity — feels like a terminal title bar.
-- **Typography:** Geist medium, 16px equivalent. Links have subtle underline animation on hover.
+- **Brand:** A shell prompt. `>` renders in light gray, the name `mikehenke` in electric cyan, both in the mono stack (`--font-mono`), not Geist. It reads as a prompt, not a logo.
+- **Links:** CLI flags in the mono stack — `--home --about --writing --career --contact --search`. Electric-cyan underline at 30% opacity, offset 3px; hover pushes the underline to full opacity. No pills, no hover bars, no centred cluster. Geist returns only inside the mobile drawer.
+- **Accessibility:** Each flag carries an `sr-only` plain-language label *before* the visible flag text, so the accessible name reads `Home --home`. The visible text is part of the accessible name (WCAG 2.5.3 Label in Name).
+- **Breakpoint:** The flag treatment is desktop-only (`min-width: 1024px`). Below it the links are the mobile drawer's full-width touch rows, which keep drawer typography and layout.
 - **Mobile:** Slide-out menu from right, 280px wide, full viewport height with blur backdrop.
 - **Dropdown:** Positioned absolutely, steel gray background, appears below toggle with opacity/transform transition.
 
@@ -241,6 +247,35 @@ The system uses ambient shadows to create depth — surfaces appear to float abo
 - **Layout:** Flex row (image left, content right) on desktop; column on mobile.
 - **Style:** Steel gray background, 14px radius, 2px slate border.
 - **Image:** 80px circular avatar with 3px slate border.
+
+### Testimonials
+
+**Archetype: T1 · Pull quote with marginalia.** Not three equal cards — a row of same-size boxes is the default shape.
+
+- **Layout:** Asymmetric two-column grid, `1.6fr 1fr`. The first quote spans the lead column and both rows; the other two stack in the narrow column. Collapses to a single column below 60rem.
+- **Treatment:** No card surface. Each quote is separated by a 1px slate top rule only — no fill, no radius, no box-shadow.
+- **Scale:** The lead quote sets at `--font-size-lg` in `--color-text`; supporting quotes at `--font-size-base` in `--color-text-secondary`.
+- **Attribution:** Reads as a caption beneath the quote, roman (not italic), `--font-size-sm`.
+
+### Section Rhythm
+
+Sections deliberately do **not** share one padding value — uniform containers read as templated. Three tiers:
+
+- **Essay sections** (`#about`, `#why`) — `--spacing-2xl` vertical. Prose-forward, tighter.
+- **Reference blocks** (`#career`, `#testimonials`) — `--spacing-3xl` vertical. Carry the timeline and the proof quotes, so they get room to breathe.
+- **Short blocks** (`#writing`, `#education`, `#contact`) — `--spacing-xl` vertical. Lists and grids that are already dense.
+
+Horizontal padding is fluid: `clamp(var(--spacing-xl), 6vw, var(--spacing-3xl))`, tightened to `clamp(var(--spacing-xl), 6vw, var(--spacing-4xl))` on the two reference blocks.
+
+Section headings are **left-aligned**, matching the hero. Centred headings in every section was the AI tell.
+
+### Scroll Motion
+
+The career timeline is the page's **single** orchestrated entrance. The achievement list and contact cards are static content — three separate scroll reveals meant the page never settled.
+
+- Hidden pre-states are gated behind `.js-animate`, added once and unconditionally, so a blocked or failed script leaves content visible instead of blanking a section.
+- `--animation-duration-reveal: 0.5s` with `--ease-out-quart`. Sibling stagger caps at 0.4s.
+- `prefers-reduced-motion: reduce` collapses every reveal to an instant visible state and drops `will-change`.
 
 ### Footer
 

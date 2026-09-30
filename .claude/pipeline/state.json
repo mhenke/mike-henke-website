@@ -1,0 +1,12 @@
+{
+  "checkpoints": {
+    "scan": "completed"
+  },
+  "mode": "FULL",
+  "last_scanned": "2026-09-30T00:00:00Z",
+  "plugin_availability": {
+    "understand-anything": false,
+    "context-mode": false
+  },
+  "coverage": "0%"
+}

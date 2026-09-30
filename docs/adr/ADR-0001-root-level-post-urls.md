@@ -1,11 +1,13 @@
 # ADR-0001: Root-Level Post URLs for WordPress Migrated Content
 
-**Status:** Accepted  
-**Date:** 2025-01  
-**Deciders:** Mike Henke  
-**Tags:** url, seo, wordpress-migration, permalink
+> ⚠️ **SUPERSEDED by [ADR-0003](ADR-0003-post-urls-under-blog.md) on 2026-09-30.**
+> The decision below is no longer implemented. Posts are served at `/blog/<slug>/`.
+> Retained for history only — do not act on it.
 
-## Context
+**Status:** Superseded by ADR-0003
+**Date:** 2025-01
+**Deciders:** Mike Henke
+**Tags:** url, seo, wordpress-migration, permalink
 
 The site contains 385 blog posts migrated from a WordPress site that had been running since ~2009. These posts had accumulated search engine rankings, inbound links, and reader bookmarks under URLs like `https://mikehenke.com/some-post-slug/`.
 

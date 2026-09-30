@@ -6,20 +6,20 @@ Personal portfolio and tech blog for a senior software engineer with 25+ years o
 
 ## Content Types
 
-| Type              | Source                         | URL Pattern         | Notes                                                                                 |
-| ----------------- | ------------------------------ | ------------------- | ------------------------------------------------------------------------------------- |
-| **Post**          | `output/posts/<slug>/index.md` | `/<slug>/`          | Migrated WordPress content (385 posts). Frontmatter has `categories`, `date`, `tags`. |
-| **Page**          | `output/pages/<slug>/index.md` | `/<slug>/`          | WordPress pages (about, contact, speaking, career).                                   |
-| **Article**       | `articles.njk`                 | `/articles/`        | Hand-curated collection page.                                                         |
-| **Presentation**  | `presentations.njk`            | `/presentations/`   | Conference talk listing.                                                              |
-| **Blog index**    | `blog.njk`                     | `/blog/`            | All posts sorted by date.                                                             |
-| **Category page** | `blog-category.njk`            | `/category/<name>/` | Filtered by `categories` field.                                                       |
+| Type              | Source                         | URL Pattern         | Notes                                                                                                             |
+| ----------------- | ------------------------------ | ------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| **Post**          | `output/posts/<slug>/index.md` | `/blog/<slug>/`     | Migrated WordPress content (385 posts). Frontmatter has `categories`, `date`, `tags`.                             |
+| **Page**          | `output/pages/<slug>/index.md` | `/<slug>/`          | WordPress pages. **Declared but unpopulated** — `output/pages/` does not exist, so the collection resolves empty. |
+| **Article**       | `articles.njk`                 | `/articles/`        | Hand-curated collection page.                                                                                     |
+| **Presentation**  | `presentations.njk`            | `/presentations/`   | Conference talk listing.                                                                                          |
+| **Blog index**    | `blog.njk`                     | `/blog/`            | All posts sorted by date.                                                                                         |
+| **Category page** | `blog-category.njk`            | `/category/<name>/` | Filtered by `categories` field.                                                                                   |
 
 ## Key Modules
 
 ### Content Pipeline (`output/posts/`)
 
-385 markdown files extracted from WordPress XML by `scripts/extract-wordpress-posts.mjs`. Each post gets its own directory with `index.md` and optional `images/` folder. Post URLs are root-level (`/<slug>/`), not under `/blog/`.
+385 markdown files extracted from WordPress XML by `scripts/extract-wordpress-posts.mjs`. Each post gets its own directory with `index.md` and optional `images/` folder. Post URLs are served under `/blog/<slug>/`.
 
 ### Transform Chain (`.eleventy.js`, ~860 lines)
 
@@ -63,10 +63,18 @@ Use these terms precisely in architecture discussions:
 | **Locality**  | Whether related code lives close together. Currently low — transforms, collections, filters, and config are all in one 860-line `.eleventy.js`.                                       |
 | **Leverage**  | A change that yields outsized benefit. Example: fixing the permalink logic in `eleventyComputed` fixes URL generation for all 385 posts.                                              |
 | **Adapter**   | Code that wraps one system to present a uniform interface to another. The `combinedImageTransform` is an adapter between WordPress image paths and Eleventy's output structure.       |
+| **Post**      | One migrated article from the ColdFusion era, authored and dated. Not a "page" — a page is structural, a post is editorial. 385 of them.                                              |
+| **Page**      | A structural destination with its own template (`/blog/`, `/articles/`, `/search/`). Never carries editorial dates. `output/pages/` is currently unpopulated.                         |
+| **Archive**   | The 385-post body of migrated work. Deliberately labelled archived, not current — the site presents it as a historical record, not a live publication.                                |
+| **Section**   | A homepage band with one job: About, Why, Writing, Career, Education, Testimonials, Contact. The homepage is the only page composed of Sections.                                      |
+| **Flag**      | A navigation destination rendered as a CLI flag (`--career`). It carries both an `sr-only` plain label and visible monospace text; the accessible name is `Career --career`.          |
+| **Drawer**    | The mobile navigation surface. Distinct from the navbar: the drawer owns touch rows and focus management, the navbar owns the desktop command line.                                   |
+| **Reveal**    | A scroll-triggered entrance. Exactly one exists on the site (the career timeline). Anything else animating on scroll is a defect, not a feature.                                      |
+| **Category**  | A WordPress taxonomy term carried in post frontmatter, surfaced at `/category/<name>/`. Distinct from a topic tag, which is editorial and unordered.                                  |
 
-## Design Decisions (to be formalized as ADRs)
+## Design Decisions (ADRs in `docs/adr/`)
 
-1. **Root-level post URLs** — WordPress posts route to `/<slug>/` not `/blog/<slug>/`. This is a deliberate choice to preserve existing SEO from the WordPress site.
+1. **Post URLs live under `/blog/<slug>/`** — WordPress posts route to `/blog/<slug>/`. `.eleventy.js` computes this in `eleventyComputed.permalink`. Settled 2026-09-30: `ADR-0003` supersedes `ADR-0001`, which had recorded the opposite decision.
 2. **No markdown image transform** — Image rewriting happens in `combinedImageTransform` (on HTML output) and through the markdown-it image renderer override in `amendLibrary("md", ...)`.
 3. **`eleventyComputed` for permalink** — WordPress post permalinks are computed in `eleventyConfig.addGlobalData("eleventyComputed", ...)` rather than in frontmatter.
 4. **Earliest Node 18** — Project is pinned to Node 18.20.5 via Volta.
