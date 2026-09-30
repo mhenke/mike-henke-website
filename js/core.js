@@ -69,6 +69,11 @@ window.addEventListener("DOMContentLoaded", () => {
     function openMobileMenu() {
       scrollPosition = window.pageYOffset;
       returnFocusTo = document.activeElement;
+      // Mount first, then force a reflow: without it the browser merges the
+      // display change and the transform change into one frame and the drawer
+      // snaps in instead of sliding.
+      navLinks.classList.add("mounted");
+      void navLinks.offsetWidth;
       navLinks.classList.add("active");
       navToggle.classList.add("active");
       navToggle.setAttribute("aria-expanded", "true");
@@ -83,6 +88,19 @@ window.addEventListener("DOMContentLoaded", () => {
       navLinks.classList.remove("active");
       navToggle.classList.remove("active");
       navToggle.setAttribute("aria-expanded", "false");
+      // Unmount after the slide-out finishes. The timeout is the fallback for
+      // reduced motion (no transition => no transitionend) and for a close
+      // that never had an open transition to end.
+      const unmountDrawer = () => {
+        if (!drawerIsOpen()) navLinks.classList.remove("mounted");
+      };
+      navLinks.addEventListener("transitionend", function onEnd(event) {
+        if (event.target !== navLinks || event.propertyName !== "transform")
+          return;
+        navLinks.removeEventListener("transitionend", onEnd);
+        unmountDrawer();
+      });
+      setTimeout(unmountDrawer, 550);
       if (navOverlay) navOverlay.classList.remove("active");
       document.body.classList.remove("nav-open");
       if (releaseTrap) {
