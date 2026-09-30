@@ -721,42 +721,10 @@ section {
   color: var(--color-primary);
 }
 
-/* The flag treatment is a desktop idea. In the drawer the rows are
-   full-width touch targets, so they keep the drawer layout and lose the
-   monospace underline in favour of the drawer's own affordances. */
-@media (min-width: 1024px) {
-  .navbar-links a.nav-flag,
-  .navbar-links button.dropdown-toggle.nav-flag {
-    font-family: var(--font-mono);
-    font-size: var(--font-size-sm);
-    color: var(--color-text);
-    text-decoration: underline;
-    text-decoration-color: var(--color-primary-30);
-    text-underline-offset: 3px;
-    padding: var(--spacing-xs) 0;
-    border-radius: 0;
-    white-space: nowrap;
-  }
-
-  .navbar-links a.nav-flag::after,
-  .navbar-links button.dropdown-toggle.nav-flag::after {
-    content: none;
-  }
-
-  .navbar-links a.nav-flag:hover,
-  .navbar-links a.nav-flag:focus-visible,
-  .navbar-links button.dropdown-toggle.nav-flag:hover,
-  .navbar-links button.dropdown-toggle.nav-flag:focus-visible {
-    color: var(--color-primary);
-    text-decoration-color: var(--color-primary);
-  }
-}
-
 /* Always show the dropdown arrow indicator in nav */
 .navbar-links a .dropdown-arrow,
 .navbar-links button.dropdown-toggle .dropdown-arrow {
   display: inline !important;
-  margin-left: var(--spacing-xs);
   font-size: var(--font-size-sm);
   color: var(--color-primary);
   transition: transform var(--transition-normal);
@@ -1081,6 +1049,9 @@ section {
   padding: var(--spacing-sm) var(--spacing-md);
   border-radius: var(--border-radius-sm);
   transition: var(--transition-colors);
+  /* UA buttons force line-height: normal (~19px); sibling nav links sit on the
+     body's 1.6 (25.6px), leaving the toggle 4.6px shorter. Inherit to match. */
+  line-height: inherit;
 }
 
 .dropdown-toggle:hover,
