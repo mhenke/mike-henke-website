@@ -3,12 +3,18 @@
 <div class="author-bio">
     {% if showImage %}
     <div class="author-image">
-        <img src="{{ '/assets/profile.jpg' | url }}" alt="Mike Henke" loading="lazy">
+        <img
+            src="{{ '/assets/profile.jpg' | url }}"
+            alt="Mike Henke"
+            width="400"
+            height="400"
+            loading="lazy"
+        />
     </div>
     {% endif %}
     
     <div class="author-content">
-        <h4 class="author-name">Written by {{ author }}</h4>
+        <h3 class="author-name">Written by {{ author }}</h3>
         <div class="author-description">
             <p>Mike Henke (pronounced "hang-kee") is a full-stack developer with 25+ years of experience, evolving from ColdFusion to modern frontend frameworks, AI, and cloud technologies. Based in Omaha, he enjoys time with his wife and three children when not coding.</p>
             
@@ -23,7 +29,7 @@
                 </a>
                 {% set url = page.url or '' %}
                 {% if not url.match('^/(articles|presentations|wheels-series)/?$') %}
-                <a href="/blog/" class="author-link" aria-label="Browse all blog posts">
+                <a href="/blog/" class="author-link">
                     <i class="ph ph-article" aria-hidden="true"></i>
                     <span>All Posts</span>
                 </a>

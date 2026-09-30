@@ -1,13 +1,10 @@
 {% macro navLinks() %}
-    <li><a href="{{ '/' | url }}"><i class="ph ph-house" aria-hidden="true"></i><span>Home</span></a></li>
-    <li><a href="{{ '/' | url }}#about"><i class="ph ph-user" aria-hidden="true"></i><span>About</span></a></li>
-    <li><a href="{{ '/' | url }}#writing"><i class="ph ph-code" aria-hidden="true"></i><span>Writing</span></a></li>
-    <li><a href="{{ '/' | url }}#career"><i class="ph ph-briefcase" aria-hidden="true"></i><span>Career</span></a></li>
-    <li><a href="{{ '/' | url }}#contact"><i class="ph ph-envelope" aria-hidden="true"></i><span>Contact</span></a></li>
+    <li><a href="{{ '/' | url }}" class="nav-flag"><span class="sr-only">Home</span> <span class="nav-flag-text">--home</span></a></li>
+    <li><a href="{{ '/' | url }}#about" class="nav-flag"><span class="sr-only">About</span> <span class="nav-flag-text">--about</span></a></li>
     <li class="nav-dropdown">
-        <button type="button" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">
-            <i class="ph ph-pen-nib" aria-hidden="true"></i>
-            <span>Writing</span>
+        <button type="button" class="dropdown-toggle nav-flag" aria-expanded="false" aria-haspopup="true">
+            <span class="sr-only">Writing archive</span>
+            <span class="nav-flag-text">--writing</span>
             <i class="ph ph-caret-down dropdown-arrow" aria-hidden="true"></i>
         </button>
         <ul class="dropdown-menu">
@@ -17,7 +14,9 @@
             <li><a href="{{ '/wheels-series/' | url }}"><i class="ph ph-gear" aria-hidden="true"></i><span>Wheels Series</span></a></li>
         </ul>
     </li>
-    <li><a href="{{ '/search/' | url }}"><i class="ph ph-magnifying-glass" aria-hidden="true"></i><span>Search</span></a></li>
+    <li><a href="{{ '/' | url }}#career" class="nav-flag"><span class="sr-only">Career</span> <span class="nav-flag-text">--career</span></a></li>
+    <li><a href="{{ '/' | url }}#contact" class="nav-flag"><span class="sr-only">Contact</span> <span class="nav-flag-text">--contact</span></a></li>
+    <li><a href="{{ '/search/' | url }}" class="nav-flag"><span class="sr-only">Search</span> <span class="nav-flag-text">--search</span></a></li>
 {% endmacro %}
 
 {% macro footerLinks() %}

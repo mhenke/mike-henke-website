@@ -29,9 +29,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<!-- PERFORMANCE: Preload self-hosted fonts to eliminate FOUT on hero heading -->
+<!-- PERFORMANCE: Preload the serif face used by every h1-h4 on the first screen.
+     The 600 file is byte-identical to the 400 file, so only one is preloaded;
+     the duplicate @font-face is left in place so nothing can lose its weights. -->
 <link rel="preload" href="/assets/fonts/source-serif-4-normal-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/assets/fonts/source-serif-4-normal-600.woff2" as="font" type="font/woff2" crossorigin>
 
 <!-- PERFORMANCE: Critical font loading only -->
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;display=swap" rel="stylesheet">

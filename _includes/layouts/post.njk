@@ -22,7 +22,7 @@
         <footer>
             {# Only show Back to Blog and Disqus for blog posts #}
             {% if page.inputPath and page.inputPath.includes('output/posts/') %}
-                <p><a href="{{ '/blog' | url }}" class="back-to-blog-link" aria-label="Return to blog listing">&larr; Back to Blog</a></p>
+                <p><a href="{{ '/blog' | url }}" class="back-to-blog-link">&larr; Back to Blog</a></p>
                 {% include "partials/disqus-config.njk" %}
             {% endif %}
         </footer>

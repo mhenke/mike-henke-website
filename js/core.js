@@ -4,20 +4,82 @@ window.addEventListener("DOMContentLoaded", () => {
   const navOverlay = document.querySelector(".nav-overlay");
 
   if (navToggle && navLinks) {
+    const DESKTOP_BREAKPOINT = 1023;
+    const FOCUSABLE =
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
     let scrollPosition = 0;
-    let lastFocusedElement = null;
-    let releaseTrap = null;
+    let returnFocusTo = null;
+
+    function drawerIsOpen() {
+      return navLinks.classList.contains("active");
+    }
+
+    // The nav is always the real navbar. Only the <=1023px presentation slides it
+    // off-canvas, so "closed" must be derived from breakpoint AND open state —
+    // otherwise a resize leaves a visible-but-inert (dead) navigation bar.
+    function syncDrawerState() {
+      const isDrawerLayout = window.innerWidth <= DESKTOP_BREAKPOINT;
+      const inactive = isDrawerLayout && !drawerIsOpen();
+      navLinks.inert = inactive;
+      if (inactive) {
+        navLinks.setAttribute("aria-hidden", "true");
+      } else {
+        navLinks.removeAttribute("aria-hidden");
+      }
+    }
+
+    // Trap Tab inside the drawer while it is open. Returns a release function so
+    // the listener can be detached again, instead of stacking handlers.
+    function trapFocus(container) {
+      function onKeydown(event) {
+        if (event.key !== "Tab" || !drawerIsOpen()) return;
+        const focusable = Array.prototype.filter.call(
+          container.querySelectorAll(FOCUSABLE),
+          function (el) {
+            return el.offsetParent !== null || el.getClientRects().length > 0;
+          },
+        );
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        const active = document.activeElement;
+
+        if (
+          event.shiftKey &&
+          (active === first || !container.contains(active))
+        ) {
+          event.preventDefault();
+          last.focus();
+        } else if (
+          !event.shiftKey &&
+          (active === last || !container.contains(active))
+        ) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+      document.addEventListener("keydown", onKeydown, true);
+      return function releaseFocus() {
+        document.removeEventListener("keydown", onKeydown, true);
+      };
+    }
+
+    var releaseTrap = null;
 
     function openMobileMenu() {
       scrollPosition = window.pageYOffset;
+      returnFocusTo = document.activeElement;
       navLinks.classList.add("active");
       navToggle.classList.add("active");
       navToggle.setAttribute("aria-expanded", "true");
+      syncDrawerState();
       if (navOverlay) navOverlay.classList.add("active");
       document.body.classList.add("nav-open");
+      releaseTrap = trapFocus(navLinks);
     }
 
     function closeMobileMenu() {
+      if (!drawerIsOpen()) return;
       navLinks.classList.remove("active");
       navToggle.classList.remove("active");
       navToggle.setAttribute("aria-expanded", "false");
@@ -27,13 +89,14 @@ window.addEventListener("DOMContentLoaded", () => {
         releaseTrap();
         releaseTrap = null;
       }
+      syncDrawerState();
       if (scrollPosition) {
         window.scrollTo(0, scrollPosition);
         scrollPosition = 0;
       }
-      if (lastFocusedElement) {
-        lastFocusedElement.focus();
-        lastFocusedElement = null;
+      if (returnFocusTo) {
+        returnFocusTo.focus();
+        returnFocusTo = null;
       }
     }
 
@@ -60,9 +123,15 @@ window.addEventListener("DOMContentLoaded", () => {
       }
     });
 
+    // Matches the CSS drawer breakpoint (1023px), not an older 768px value, so the
+    // drawer never stays "closed but off-screen" in the 768-1023px gap.
     window.addEventListener("resize", function () {
-      if (window.innerWidth >= 768) closeMobileMenu();
+      if (window.innerWidth > DESKTOP_BREAKPOINT && drawerIsOpen()) {
+        closeMobileMenu();
+      }
+      syncDrawerState();
     });
+    syncDrawerState();
 
     var navClose = document.querySelector(".navbar-close");
     if (navClose) {
@@ -191,6 +260,16 @@ window.addEventListener("DOMContentLoaded", () => {
       animateTimeline();
     }
   }
+
+  // Every scroll reveal on the site (timeline, achievement list, contact cards)
+  // hides its pre-state behind .js-animate. Set it once, up front and
+  // unconditionally: a blocked or failed script must leave content visible, and
+  // one missing selector must never be able to blank a section.
+  document.documentElement.classList.add("js-animate");
+
+  // The career timeline is the page's one orchestrated entrance. The achievement
+  // list and contact cards are static content — three separate scroll reveals
+  // meant the page never settled.
 });
 
 window.copyCode = function (button) {
@@ -255,6 +334,14 @@ function showCopySuccess(button) {
   window.addEventListener("scroll", toggle, { passive: true });
 
   backToTopButton.addEventListener("click", function () {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // CSS already forces scroll-behavior:auto under reduced motion, but an
+    // explicit behavior:"smooth" here would override it.
+    var prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    window.scrollTo({
+      top: 0,
+      behavior: prefersReducedMotion ? "auto" : "smooth",
+    });
   });
 })();

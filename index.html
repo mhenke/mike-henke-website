@@ -17,6 +17,8 @@ eleventyExcludeFromCollections: false
   <div class="hero-image">
     <img
       src="{{ '/assets/profile.jpg' | url }}"
+      width="400"
+      height="400"
       alt="Professional headshot of Mike Henke, smiling and wearing business attire"
       fetchpriority="high"
       decoding="async"
@@ -51,7 +53,9 @@ eleventyExcludeFromCollections: false
   <h2 id="about-title" class="section-title">About Me</h2>
   <div class="section-underline" aria-hidden="true"></div>
   <p>
-    I've been writing code for 25+ years, the last 10 at Union Pacific. Picked up a cybersecurity grad certificate from UNO, working on another in AI. I automate anything worth automating.
+    I've been writing code for 25+ years, the last 10 at Union Pacific. Picked
+    up a cybersecurity grad certificate from UNO, working on another in AI. I
+    automate anything worth automating.
   </p>
 </section>
 
@@ -59,13 +63,27 @@ eleventyExcludeFromCollections: false
   <h2 id="why-title" class="section-title">Why I Build</h2>
   <div class="section-underline" aria-hidden="true"></div>
   <p>
-    When I was a kid, there was this book series called <a href="https://en.wikipedia.org/wiki/Micro_Adventure" target="_blank" rel="noopener">Micro Adventure</a>. To keep the story going, you had to type BASIC programs into a computer: crack the code, solve the puzzle, get through the airlock. First time I realized code wasn't just letters on a screen. You could actually <em>make something happen</em>. That hooked me.
+    When I was a kid, there was this book series called
+    <a
+      href="https://en.wikipedia.org/wiki/Micro_Adventure"
+      target="_blank"
+      rel="noopener"
+      >Micro Adventure</a
+    >. To keep the story going, you had to type BASIC programs into a computer:
+    crack the code, solve the puzzle, get through the airlock. First time I
+    realized code wasn't just letters on a screen. You could actually
+    <em>make something happen</em>. That hooked me.
   </p>
   <p>
-    I stayed because the best puzzles aren't in the code. They're in the gap between what a team thinks it needs and what it actually needs. Same curiosity, 25 years later.
+    I stayed because the best puzzles aren't in the code. They're in the gap
+    between what a team thinks it needs and what it actually needs. Same
+    curiosity, 25 years later.
   </p>
   <p>
-    I used to give ColdFusion conference talks and write training material. I still teach, just inside the company now. Phishing training, developer security sessions, monthly tech deep dives with people from across the railroad. Same instinct, different room.
+    I used to give ColdFusion conference talks and write training material. I
+    still teach, just inside the company now. Phishing training, developer
+    security sessions, monthly tech deep dives with people from across the
+    railroad. Same instinct, different room.
   </p>
 </section>
 
@@ -78,8 +96,10 @@ eleventyExcludeFromCollections: false
   <h2 id="writing-title" class="section-title">What I Wrote About</h2>
   <div class="section-underline" aria-hidden="true"></div>
   <p class="section-subtitle">
-    384 posts from 2007 to 2014, back when I was deep in the ColdFusion world.<br />
-    Conference talks, training material, framework plugins, and community rants. Archived, not current.
+    384 posts from 2007 to 2014, back when I was deep in the ColdFusion
+    world.<br />
+    Conference talks, training material, framework plugins, and community rants.
+    Archived, not current.
   </p>
   <div class="writing-topics">
     <span class="topic-tag">ColdFusion</span>
@@ -90,9 +110,7 @@ eleventyExcludeFromCollections: false
     <span class="topic-tag">Community</span>
   </div>
   <div class="writing-cta">
-    <a href="{{ '/blog/' | url }}" class="btn btn-primary"
-      >Browse the Blog</a
-    >
+    <a href="{{ '/blog/' | url }}" class="btn btn-primary">Browse the Blog</a>
   </div>
 </section>
 
@@ -106,7 +124,7 @@ eleventyExcludeFromCollections: false
   <div class="section-underline" aria-hidden="true"></div>
   <div class="career-header">
     <h3 class="career-title">Union Pacific Railroad</h3>
-    <p class="career-subtitle">Career Progression — June 2016 to Present</p>
+    <p class="career-subtitle">Career Progression: June 2016 to Present</p>
 
     <div
       class="achievements-card skills-card"
@@ -115,40 +133,28 @@ eleventyExcludeFromCollections: false
     >
       <h3 id="achievements-card-title">Key Achievements</h3>
       <ul
-        role="list"
         aria-label="Key career achievements and accomplishments"
         class="methodologies-list"
       >
-      <li 
-      class="methodology-item" 
-      role="listitem" 
-      data-animation-delay="0.1s"
-      >
-      <i class="ph ph-bug" aria-hidden="true"></i>
-      <span 
-      >Found SMTP spoofing gap through Python analysis (2024)</span
-      >
-      </li>
-      <li 
-      class="methodology-item" 
-      role="listitem" 
-      data-animation-delay="0.2s"
-      >
-      <i class="ph ph-megaphone" aria-hidden="true"></i>
-      <span 
-      >Automation: Built Python ETL and Tableau self-service programs that retired manual admin work and trained 50+ users</span
-      >
-      </li>
-      <li 
-      class="methodology-item" 
-      role="listitem" 
-      data-animation-delay="0.3s"
-      >
-      <i class="ph ph-rocket" aria-hidden="true"></i>
-      <span 
-      >Delivery: Shipped the $1.8M Shipment Management application on Angular 14, kept 20K+ users productive through Angular migrations</span
-      >
-      </li>
+        <li class="methodology-item">
+          <i class="ph ph-bug" aria-hidden="true"></i>
+          <span>Found SMTP spoofing gap through Python analysis (2024)</span>
+        </li>
+        <li class="methodology-item">
+          <i class="ph ph-megaphone" aria-hidden="true"></i>
+          <span
+            >Automation: Built Python ETL and Tableau self-service programs that
+            retired manual admin work and trained 50+ users</span
+          >
+        </li>
+        <li class="methodology-item">
+          <i class="ph ph-rocket" aria-hidden="true"></i>
+          <span
+            >Delivery: Shipped the $1.8M Shipment Management application on
+            Angular 14, kept 20K+ users productive through Angular
+            migrations</span
+          >
+        </li>
       </ul>
     </div>
   </div>
@@ -159,6 +165,8 @@ eleventyExcludeFromCollections: false
     <div class="career-photo-column">
       <img
         src="{{ '/assets/career-photo.jpg' | url }}"
+        width="848"
+        height="990"
         alt="Professional photo of Mike Henke in workplace setting"
         class="career-photo"
         loading="lazy"
@@ -172,7 +180,7 @@ eleventyExcludeFromCollections: false
         <div class="timeline-line" aria-hidden="true"></div>
 
         <!-- Timeline Item 1 - Current Position -->
-        <div class="timeline-item" role="listitem">
+        <div class="timeline-item">
           <div class="timeline-marker-group">
             <div class="timeline-square">
               <span class="timeline-number" aria-label="Current position"
@@ -185,13 +193,19 @@ eleventyExcludeFromCollections: false
             <h3>Associate System Engineer (Technology)</h3>
             <p class="duration">September 2024 - Present</p>
             <p class="description">
-              Building Angular and Lit applications for enterprise railroad operations. From 2024-2026 focused on customer-facing tools: built the Customer Vision search feature in Angular 17, coordinated monthly tech deep dives with 20+ cross-functional stakeholders, and led an Angular 11+ migration for a critical vendor application. Shifted April 2026 to an HR-focused portfolio within Technology, supporting workforce systems and internal tooling.
+              Building Angular and Lit applications for enterprise railroad
+              operations. From 2024-2026 focused on customer-facing tools: built
+              the Customer Vision search feature in Angular 17, coordinated
+              monthly tech deep dives with 20+ cross-functional stakeholders,
+              and led an Angular 11+ migration for a critical vendor
+              application. Shifted April 2026 to an HR-focused portfolio within
+              Technology, supporting workforce systems and internal tooling.
             </p>
           </div>
         </div>
 
         <!-- Timeline Item 2 - IT Audit Manager -->
-        <div class="timeline-item" role="listitem">
+        <div class="timeline-item">
           <div class="timeline-marker-group">
             <div class="timeline-square">
               <span class="timeline-number" aria-label="Previous position"
@@ -204,13 +218,16 @@ eleventyExcludeFromCollections: false
             <h3>Manager I Audit Information Technology (Finance)</h3>
             <p class="duration">January 2024 - August 2024</p>
             <p class="description">
-              Ran IT audits and security assessments, auditing CIS v7 controls over 6 months (January-August 2024). Found an SMTP spoofing gap through Python analysis in July 2024 and got it to the network security team.
+              Ran IT audits and security assessments, auditing CIS v7 controls
+              over 6 months (January-August 2024). Found an SMTP spoofing gap
+              through Python analysis in July 2024 and got it to the network
+              security team.
             </p>
           </div>
         </div>
 
         <!-- Timeline Item 3 - Associate System Engineer (Previous) -->
-        <div class="timeline-item" role="listitem">
+        <div class="timeline-item">
           <div class="timeline-marker-group">
             <div class="timeline-square">
               <span class="timeline-number" aria-label="Earlier position"
@@ -222,32 +239,35 @@ eleventyExcludeFromCollections: false
           <div class="timeline-content">
             <h3>Associate System Engineer (Technology)</h3>
             <p class="duration">December 2021 - December 2023</p>
-      <p class="description">
-      Built Shipment Management application with Angular 14 over 9-month
-      development cycle (2022-2023), contributing to $1.8M initiative
-      supporting 20K+ users with 1.7M monthly hits. Developed enterprise
-      platforms including Shipment Dashboard, Forecast, Track Shipment,
-      and analytics dashboard providing business intelligence across
-      shipping operations. Built out Tableau self-service infrastructure for analysts during this period.
-      </p>
+            <p class="description">
+              Built Shipment Management application with Angular 14 over 9-month
+              development cycle (2022-2023), contributing to $1.8M initiative
+              supporting 20K+ users with 1.7M monthly hits. Developed enterprise
+              platforms including Shipment Dashboard, Forecast, Track Shipment,
+              and analytics dashboard providing business intelligence across
+              shipping operations. Built out Tableau self-service infrastructure
+              for analysts during this period.
+            </p>
           </div>
         </div>
 
         <!-- Timeline Item 4 - Earlier BI/Consulting Roles -->
-        <div class="timeline-item" role="listitem">
+        <div class="timeline-item">
           <div class="timeline-marker-group">
             <div class="timeline-square">
-              <span class="timeline-number" aria-label="Earlier roles"
-                >4</span
-              >
+              <span class="timeline-number" aria-label="Earlier roles">4</span>
             </div>
           </div>
           <div class="timeline-content">
             <h3>Business Intelligence & Analytics (2016-2021)</h3>
             <p class="duration">Jun 2016 - Nov 2021</p>
-      <p class="description">
-      Four roles spanning business integration consulting, BI management, and data visualization. Built 29 Tableau data sources, trained 50+ users on Tableau self-service, automated stale content cleanup with Python, and retired 9 legacy ColdFusion applications. Cut maintenance overhead across the railroad.
-      </p>
+            <p class="description">
+              Four roles spanning business integration consulting, BI
+              management, and data visualization. Built 29 Tableau data sources,
+              trained 50+ users on Tableau self-service, automated stale content
+              cleanup with Python, and retired 9 legacy ColdFusion applications.
+              Cut maintenance overhead across the railroad.
+            </p>
           </div>
         </div>
       </div>
@@ -307,30 +327,45 @@ eleventyExcludeFromCollections: false
   <h2 id="testimonials-title" class="section-title">What People Say</h2>
   <div class="section-underline" aria-hidden="true"></div>
   <div class="testimonials-grid">
-      <blockquote class="testimonial-card">
-        <p class="testimonial-quote">
-        Mike took ownership when we needed it most — automating user management so analysts stopped chasing manual admin work. Customers came to him directly with new projects, and he shipped.
-        </p>
-        <footer class="testimonial-footer">
-        <cite class="testimonial-author">— Manager, Customer Analytics, Union Pacific Railroad</cite>
-        </footer>
-      </blockquote>
-      <blockquote class="testimonial-card">
-        <p class="testimonial-quote">
-        He picked up Tableau review board leadership and made our Python ETL stack certifiable. Easy to trust with hard problems.
-        </p>
-        <footer class="testimonial-footer">
-        <cite class="testimonial-author">— Manager, Data Engineering, Union Pacific Railroad</cite>
-        </footer>
-      </blockquote>
-      <blockquote class="testimonial-card">
-        <p class="testimonial-quote">
-        Mike started his UX developer group and is leading the team to ensure there are standards in place. He has rallied the team to work together to come up with ideas and solutions.
-        </p>
-        <footer class="testimonial-footer">
-        <cite class="testimonial-author">— Manager, Technology, Union Pacific Railroad</cite>
-        </footer>
-      </blockquote>
+    <blockquote class="testimonial-card">
+      <!-- The em-dash in the quote below is deliberate: it is verbatim
+           testimonial text from a named colleague. Rewriting quoted speech
+           would put words in someone's mouth, and this site does not publish
+           invented content. -->
+      <p class="testimonial-quote">
+        Mike took ownership when we needed it most — automating user management
+        so analysts stopped chasing manual admin work. Customers came to him
+        directly with new projects, and he shipped.
+      </p>
+      <footer class="testimonial-footer">
+        <cite class="testimonial-author"
+          >Manager, Customer Analytics, Union Pacific Railroad</cite
+        >
+      </footer>
+    </blockquote>
+    <blockquote class="testimonial-card">
+      <p class="testimonial-quote">
+        He picked up Tableau review board leadership and made our Python ETL
+        stack certifiable. Easy to trust with hard problems.
+      </p>
+      <footer class="testimonial-footer">
+        <cite class="testimonial-author"
+          >Manager, Data Engineering, Union Pacific Railroad</cite
+        >
+      </footer>
+    </blockquote>
+    <blockquote class="testimonial-card">
+      <p class="testimonial-quote">
+        Mike started his UX developer group and is leading the team to ensure
+        there are standards in place. He has rallied the team to work together
+        to come up with ideas and solutions.
+      </p>
+      <footer class="testimonial-footer">
+        <cite class="testimonial-author"
+          >Manager, Technology, Union Pacific Railroad</cite
+        >
+      </footer>
+    </blockquote>
   </div>
 </section>
 
@@ -351,21 +386,17 @@ eleventyExcludeFromCollections: false
     </div>
 
     <div class="contact-grid">
-      <div class="contact-item email" data-animation-delay="0.2s">
+      <div class="contact-item email">
         <div class="contact-icon">
           <i class="ph ph-envelope" aria-hidden="true"></i>
         </div>
         <div class="contact-details">
           <h3>Email</h3>
-          <a
-            href="mailto:henke.mike@gmail.com"
-            aria-label="Send email to Michael Henke"
-            >henke.mike@gmail.com</a
-          >
+          <a href="mailto:henke.mike@gmail.com">henke.mike@gmail.com</a>
         </div>
       </div>
 
-      <div class="contact-item linkedin" data-animation-delay="0.3s">
+      <div class="contact-item linkedin">
         <div class="contact-icon">
           <i class="ph ph-linkedin-logo" aria-hidden="true"></i>
         </div>
@@ -375,13 +406,12 @@ eleventyExcludeFromCollections: false
             href="https://linkedin.com/in/henkemike"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="View Michael Henke's LinkedIn profile"
             >linkedin.com/in/henkemike</a
           >
         </div>
       </div>
 
-      <div class="contact-item github" data-animation-delay="0.4s">
+      <div class="contact-item github">
         <div class="contact-icon">
           <i class="ph ph-github-logo" aria-hidden="true"></i>
         </div>
@@ -391,7 +421,6 @@ eleventyExcludeFromCollections: false
             href="https://github.com/mhenke"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="View Michael Henke's GitHub profile"
             >github.com/mhenke</a
           >
         </div>

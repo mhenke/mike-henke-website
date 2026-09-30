@@ -1,31 +1,38 @@
+/* design-system: DESIGN.md · macrostructure: Split Diptych + Workbench
+ * N8 Terminal-command nav (route: terminal genre default) · Ft2 inline footer
+ * Tone: technical / terminal-native · anchor hue: cool (cyan 197°)
+ * System-managed: every value below resolves to a DESIGN.md token. Do not add a
+ * colour or font here that DESIGN.md does not name.
+ */
+
 /* ==========================================================================
    SELF-HOSTED FONTS
    ========================================================================== */
 
 /* Source Serif 4 — Latin subset, 3 weights */
 @font-face {
-  font-family: 'Source Serif 4';
+  font-family: "Source Serif 4";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('/assets/fonts/source-serif-4-normal-400.woff2') format('woff2');
+  src: url("/assets/fonts/source-serif-4-normal-400.woff2") format("woff2");
 }
 @font-face {
-  font-family: 'Source Serif 4';
+  font-family: "Source Serif 4";
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url('/assets/fonts/source-serif-4-normal-600.woff2') format('woff2');
+  src: url("/assets/fonts/source-serif-4-normal-600.woff2") format("woff2");
 }
 @font-face {
-  font-family: 'Source Serif 4';
+  font-family: "Source Serif 4";
   font-style: italic;
   font-weight: 400;
   font-display: swap;
-  src: url('/assets/fonts/source-serif-4-italic-400.woff2') format('woff2');
+  src: url("/assets/fonts/source-serif-4-italic-400.woff2") format("woff2");
 }
 
-   CSS CUSTOM PROPERTIES & VARIABLES
+CSS CUSTOM PROPERTIES & VARIABLES
    ========================================================================== */
 
 /* Hidden utility class for Pagefind metadata - ensures custom_excerpt spans are not visible */
@@ -48,8 +55,9 @@
   --color-accent-bg-light: rgba(25, 212, 254, 0.05);
   --color-focus: rgba(25, 212, 254, 0.4);
   --color-error: #f87171;
-  --color-code-comment: #6a9955;
-  --color-code-keyword: #569cd6;
+  /* Lightened from #6a9955: 4.29:1 on --color-surface-light failed AA. 7.11:1
+     clears AAA on every surface the code blocks sit on. */
+  --color-code-comment: #90c483;
   --color-code-string: #ce9178;
   --color-steel-gray: #22313a;
   --color-slate-border: #3e4750;
@@ -83,6 +91,11 @@
   --font-size-2xl: clamp(1.5rem, 5vw, 1.875rem);
   --font-size-3xl: clamp(1.75rem, 6vw, 2.25rem);
   --font-size-4xl: clamp(2rem, 7vw, 2.75rem);
+
+  /* Motion */
+  --animation-duration-reveal: 0.5s;
+  --animation-delay: 0s;
+  --ease-out-quart: cubic-bezier(0.16, 1, 0.3, 1);
 
   /* Spacing */
   --spacing-xs: clamp(0.25rem, 1vw, 0.5rem);
@@ -132,7 +145,10 @@
   --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-interactive: background-color var(--transition-fast), color var(--transition-fast), opacity var(--transition-normal), transform var(--transition-normal), box-shadow var(--transition-normal);
+  --transition-interactive:
+    background-color var(--transition-fast), color var(--transition-fast),
+    opacity var(--transition-normal), transform var(--transition-normal),
+    box-shadow var(--transition-normal);
   --transition-shadow-border:
     box-shadow var(--transition-normal), border-color var(--transition-normal);
   --transition-colors:
@@ -329,8 +345,34 @@ p {
 
 a {
   color: var(--color-primary);
-  text-decoration: none;
+  /* In-prose links need a non-colour affordance (WCAG 1.4.1): cyan text on a
+     dark surface is only 1.6:1 against the surrounding copy. Chrome-less
+     nav/footer links override this to stay underline-free. */
+  text-decoration: underline;
+  text-decoration-color: var(--color-primary-30);
+  text-underline-offset: 2px;
   transition: color var(--transition-normal);
+}
+
+/* Nav, footer, and card links are standalone affordances, not in-prose text —
+   they keep their own hover treatment instead of the global underline. */
+.navbar-links a,
+.navbar-links button.dropdown-toggle,
+.footer-link,
+.category-tag,
+.topic-tag,
+.contact-details a,
+.back-to-blog-link,
+.skip-link {
+  text-decoration: none;
+}
+
+.navbar-links a:hover,
+.navbar-links a:focus,
+.navbar-links button.dropdown-toggle:hover,
+.footer-link:hover,
+.category-tag:hover {
+  text-decoration: underline;
 }
 
 a:hover,
@@ -460,7 +502,7 @@ section {
 .section-title {
   font-size: var(--font-size-3xl);
   font-weight: var(--font-weight-bold);
-  text-align: center;
+  text-align: left;
   margin-bottom: var(--spacing-lg);
   color: var(--color-text);
   letter-spacing: var(--letter-spacing-wide);
@@ -470,8 +512,25 @@ section {
   width: calc(var(--icon-size) + var(--spacing-lg));
   height: var(--border-width);
   background-color: var(--color-primary);
-  margin: 0 auto var(--spacing-lg) auto;
+  margin: 0 0 var(--spacing-lg) 0;
   border-radius: 2px;
+}
+
+/* Vary the rhythm: the two essay sections read tighter than the reference
+   blocks, so the page has a cadence instead of one repeated container. */
+#about,
+#why {
+  padding: var(--spacing-2xl) clamp(var(--spacing-xl), 6vw, var(--spacing-3xl));
+}
+
+#career,
+#testimonials {
+  padding: var(--spacing-3xl) clamp(var(--spacing-xl), 6vw, var(--spacing-4xl));
+}
+
+#education,
+#contact {
+  padding: var(--spacing-xl) clamp(var(--spacing-xl), 6vw, var(--spacing-3xl));
 }
 
 /* ==========================================================================
@@ -505,12 +564,22 @@ section {
 }
 
 .navbar-brand {
-  font-size: var(--font-size-xl);
+  /* N8 · Terminal-command nav — the shell prompt is the brand. */
+  font-family: var(--font-mono);
+  font-size: var(--font-size-base);
   font-weight: var(--font-weight-bold);
   color: var(--color-primary);
   letter-spacing: var(--letter-spacing-wide);
   text-decoration: none;
   transition: color var(--transition-normal);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5ch;
+  white-space: nowrap;
+}
+
+.navbar-brand .nav-prompt {
+  color: var(--color-text-secondary);
 }
 
 .navbar-brand:hover,
@@ -640,22 +709,35 @@ section {
   color: var(--color-primary);
 }
 
-.navbar-links a::after,
-.navbar-links button.dropdown-toggle::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background-color: var(--color-primary);
-  transition: var(--transition-interactive);
-  transform: translateX(-50%);
-}
+/* The flag treatment is a desktop idea. In the drawer the rows are
+   full-width touch targets, so they keep the drawer layout and lose the
+   monospace underline in favour of the drawer's own affordances. */
+@media (min-width: 1024px) {
+  .navbar-links a.nav-flag,
+  .navbar-links button.dropdown-toggle.nav-flag {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+    text-decoration: underline;
+    text-decoration-color: var(--color-primary-30);
+    text-underline-offset: 3px;
+    padding: var(--spacing-xs) 0;
+    border-radius: 0;
+    white-space: nowrap;
+  }
 
-.navbar-links a:hover::after,
-.navbar-links button.dropdown-toggle:hover::after {
-  width: 100%;
+  .navbar-links a.nav-flag::after,
+  .navbar-links button.dropdown-toggle.nav-flag::after {
+    content: none;
+  }
+
+  .navbar-links a.nav-flag:hover,
+  .navbar-links a.nav-flag:focus-visible,
+  .navbar-links button.dropdown-toggle.nav-flag:hover,
+  .navbar-links button.dropdown-toggle.nav-flag:focus-visible {
+    color: var(--color-primary);
+    text-decoration-color: var(--color-primary);
+  }
 }
 
 /* Always show the dropdown arrow indicator in nav */
@@ -695,6 +777,8 @@ section {
     position: fixed;
     top: 0;
     right: -100%;
+    /* Closed drawer must leave the tab order and the a11y tree, not just sit off-screen */
+    visibility: hidden;
     width: var(--mobile-menu-width);
     height: 100vh;
     height: 100dvh;
@@ -704,7 +788,9 @@ section {
     -ms-backdrop-filter: blur(20px);
     flex-direction: column;
     padding: 0 0 var(--spacing-xl) 0;
-    transition: right var(--transition-slow);
+    transition:
+      right var(--transition-slow),
+      visibility var(--transition-slow);
     z-index: var(--z-nav-menu);
     gap: 0;
     box-shadow: -2px 0 10px var(--shadow-nav-drawer);
@@ -839,6 +925,10 @@ section {
     z-index: var(--z-nav-overlay);
     opacity: 0;
     visibility: hidden;
+    /* The visibility transition keeps this covering the page for its full
+       duration. Without pointer-events:none the closed overlay swallows the
+       first tap on the menu button. */
+    pointer-events: none;
     transition:
       opacity var(--transition-slow),
       visibility var(--transition-slow);
@@ -847,6 +937,7 @@ section {
   .nav-overlay.active {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
   }
 
   body.nav-open {
@@ -1071,8 +1162,9 @@ section {
     margin: var(--spacing-xs) 0;
     padding: 0;
     opacity: 1;
-    visibility: visible;
     transform: none;
+    /* No visibility override here: the submenu must inherit .navbar-links' hidden
+       state, or its links stay focusable while the drawer is closed. */
     transition: none;
     max-height: 0;
     overflow: hidden;
@@ -1332,10 +1424,16 @@ section {
   min-height: calc(var(--timeline-marker) + var(--spacing-4xl));
   margin-bottom: var(--spacing-4xl);
   z-index: var(--z-timeline-item);
+  transition: var(--transition-interactive);
+  transition-delay: var(--animation-delay);
+}
+
+/* Hidden pre-state is gated behind .js-animate: without JavaScript the whole
+   career history would stay at opacity 0 and the page would look empty. */
+.js-animate .timeline-item {
   opacity: 0;
   transform: translateX(calc(-1 * var(--spacing-2xl)));
-  transition: var(--transition-interactive);
-  transition-delay: var(--animation-delay, 0s);
+  will-change: opacity, transform;
 }
 
 @media (max-width: 480px) {
@@ -1469,6 +1567,8 @@ section {
   z-index: 1;
   margin-bottom: 0;
   letter-spacing: var(--letter-spacing-subtle);
+  /* Dates stack vertically across entries — proportional figures misalign them. */
+  font-variant-numeric: tabular-nums;
 }
 
 .timeline-content .description {
@@ -1483,10 +1583,10 @@ section {
 }
 
 /* Timeline Animations */
-.timeline.animate .timeline-item {
+.js-animate .timeline.animate .timeline-item {
   opacity: 1;
   transform: translateX(0);
-  will-change: transform, opacity;
+  will-change: auto;
 }
 
 .timeline.animate .timeline-item .timeline-square {
@@ -1664,66 +1764,6 @@ section {
   display: none;
 }
 
-.framework-item {
-  background: var(--color-surface-light);
-  border-radius: var(--border-radius-sm);
-  padding: var(--spacing-lg) 0 var(--spacing-md) 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: var(--color-text);
-  gap: var(--spacing-sm);
-  transition: var(--transition-interactive);
-  opacity: 1;
-  transform: none;
-  border: var(--border-width-medium) solid transparent;
-}
-
-.framework-item.animate {
-  will-change: transform, opacity;
-}
-
-.framework-item.animate:hover,
-.framework-item.animate:focus {
-  transform: var(--hover-slide);
-  color: var(--color-primary);
-}
-
-.framework-item i,
-.framework-item svg {
-  font-size: var(--font-size-2xl);
-  color: var(--color-primary);
-  transform: scale(1);
-  transition: var(--transition-interactive);
-  width: var(--icon-size);
-  height: var(--icon-size);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.framework-item:hover i,
-.framework-item:hover svg,
-.framework-item:focus i,
-.framework-item:focus svg {
-  color: var(--color-primary);
-  transform: var(--hover-scale-rotate);
-  box-shadow: var(--shadow-accent-sm);
-}
-
-.framework-item span {
-  color: var(--color-text);
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-regular);
-  transition: color var(--transition-normal);
-}
-
-.framework-item:hover span,
-.framework-item:focus span {
-  color: var(--color-primary);
-}
-
 /* Methodologies List */
 .methodologies-list {
   list-style: none;
@@ -1748,6 +1788,9 @@ section {
   text-align: left;
   width: 100%;
 }
+
+/* No scroll reveal here: the career timeline is the page's single orchestrated
+   entrance. These items are static content and must not depend on JS. */
 @media (max-width: 600px) {
   .achievements-card,
   .achievements-card .methodologies-list,
@@ -1764,19 +1807,13 @@ section {
   font-size: var(--font-size-xl);
   transform: scale(1);
   opacity: 0.7;
-  transition: transform var(--transition-normal), opacity var(--transition-normal);
+  transition:
+    transform var(--transition-normal),
+    opacity var(--transition-normal);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-width: 1.2em;
-}
-
-.methodology-item.animate {
-  will-change: transform, opacity;
-}
-
-.methodology-item.animate i {
-  transform: scale(1);
 }
 
 .methodology-item:hover,
@@ -1905,8 +1942,10 @@ section {
   position: relative;
   display: inline-block;
   border-radius: var(--border-radius-xs);
-  padding: 1px var(--spacing-xs);
-  margin: -1px calc(-1 * var(--spacing-xs));
+  /* Min 44px touch target: the label stays at the type size, the padding grows
+     the hit area. Compensated with negative margin so the visual box is unchanged. */
+  padding: var(--spacing-sm) var(--spacing-xs);
+  margin: calc(-1 * var(--spacing-sm)) calc(-1 * var(--spacing-xs));
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1932,27 +1971,6 @@ section {
 
 .contact-details a:hover::after {
   transform: scaleX(1);
-}
-
-/* Contact Animations */
-
-.contact-item.animate:hover {
-  box-shadow: var(--shadow-lg);
-  border-color: var(--color-primary);
-  transform: var(--hover-slide);
-}
-
-.contact-item.animate {
-  will-change: transform, opacity;
-}
-
-.contact-item.animate .contact-icon {
-  transform: scale(1);
-}
-
-.contact-item.animate:hover .contact-icon {
-  transform: var(--hover-scale-rotate) !important;
-  box-shadow: var(--shadow-accent-sm);
 }
 
 /* Contact Responsive Design */
@@ -2024,7 +2042,7 @@ section {
   display: inline-block;
   background-color: transparent;
   color: var(--color-text);
-  padding: var(--spacing-xs) var(--spacing-sm);
+  padding: var(--spacing-md) var(--spacing-sm);
   border-radius: var(--border-radius-xs);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-regular);
@@ -2052,7 +2070,10 @@ section {
 }
 
 .blog-post-categories .category-tag {
-  padding: var(--spacing-xs) calc(var(--spacing-sm) + var(--spacing-xs));
+  /* Vertical padding clears 44px; the negative margin keeps the chip row the
+     same height it was designed at. */
+  padding: var(--spacing-md) calc(var(--spacing-sm) + var(--spacing-xs));
+  margin-top: calc(-1 * var(--spacing-md));
   font-weight: var(--font-weight-medium);
   border: var(--border-width-thin) solid var(--color-primary);
   line-height: 1.2;
@@ -2281,6 +2302,10 @@ section {
   align-items: center;
   gap: var(--spacing-xs);
   margin-bottom: var(--spacing-lg);
+  /* Clears the 44px touch target without moving the visible label. */
+  padding: var(--spacing-sm) var(--spacing-xs);
+  margin-top: calc(-1 * var(--spacing-sm));
+  margin-left: calc(-1 * var(--spacing-xs));
 }
 
 .back-to-blog-link:hover,
@@ -2351,6 +2376,11 @@ section {
   font-weight: var(--font-weight-regular);
   transition: color var(--transition-fast);
   letter-spacing: var(--letter-spacing-subtle);
+  /* inline-block + vertical padding clears the 44px touch target; the negative
+     margin keeps the text on the same baseline inside the footer row. */
+  display: inline-block;
+  padding: var(--spacing-md) var(--spacing-xs);
+  margin: calc(-1 * var(--spacing-md)) calc(-1 * var(--spacing-xs));
 }
 
 .footer-link:hover,
@@ -2708,7 +2738,7 @@ section {
   display: block;
 }
 
-.suggestion-card h4 {
+.suggestion-card h3 {
   color: var(--color-text);
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-medium);
@@ -2922,26 +2952,53 @@ section {
   font-weight: var(--font-weight-medium);
 }
 
-/* Testimonials grid */
+/* Testimonials — T1 · Pull-quote with marginalia, not three equal cards. The
+   first quote carries the full measure; the other two sit in a narrower column
+   and the attribution reads as a caption rather than sitting inside a box. */
 .testimonials-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--spacing-lg);
+  grid-template-columns: 1.6fr 1fr;
+  grid-template-areas:
+    "lead support"
+    "lead second";
+  gap: var(--spacing-2xl) var(--spacing-3xl);
   margin-top: var(--spacing-2xl);
 }
+
 .testimonial-card {
   margin: 0;
-  padding: var(--spacing-lg);
-  background: var(--color-surface);
-  border-radius: var(--border-radius-md);
-  border-left: var(--border-width-thin) solid var(--color-primary);
+  padding: 0;
+  background: none;
+  border: none;
+  border-top: var(--border-width) solid var(--color-slate-border);
+  padding-top: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
 }
+
+.testimonial-card:first-child {
+  grid-area: lead;
+}
+
+.testimonial-card:nth-child(2) {
+  grid-area: support;
+}
+
+.testimonial-card:nth-child(3) {
+  grid-area: second;
+}
+
 .testimonial-quote {
   font-size: var(--font-size-base);
   color: var(--color-text-secondary);
   line-height: 1.7;
   margin: 0 0 var(--spacing-md);
-  font-style: italic;
+  font-style: normal;
+}
+
+.testimonial-card:first-child .testimonial-quote {
+  font-size: var(--font-size-lg);
+  color: var(--color-text);
 }
 .testimonial-footer {
   margin: 0;
@@ -2950,4 +3007,31 @@ section {
   font-size: var(--font-size-sm);
   color: var(--color-text);
   font-style: normal;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5ch;
+}
+
+/* The attribution reads as name-minus-role. The separator lives here rather
+   than as an em-dash in the copy, so the text stays plain. */
+.testimonial-author::before {
+  content: "-";
+  color: var(--color-primary);
+}
+
+/* Single column below 60rem — the asymmetry is a desktop idea only. */
+@media (max-width: 60rem) {
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "lead"
+      "support"
+      "second";
+    gap: var(--spacing-xl);
+  }
+
+  .testimonial-card:first-child .testimonial-quote {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+  }
 }
