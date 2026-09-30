@@ -444,20 +444,32 @@ div {
 }
 
 .skip-link {
-  position: absolute;
-  top: calc(-1 * var(--touch-target));
+  /* Must be fixed, not absolute: an absolutely-positioned skip link anchors to
+     the document, so once the page is scrolled the focused link renders
+     thousands of pixels above the viewport and the keyboard user tabs into
+     nothing. Fixed keeps it pinned to the top-left of the screen. */
+  position: fixed;
+  top: calc(-1 * var(--touch-target) - var(--spacing-sm));
   left: var(--spacing-xs);
   background: var(--color-primary);
   color: var(--color-background);
   padding: var(--spacing-sm);
   text-decoration: none;
   border-radius: var(--border-radius-sm);
-  z-index: var(--z-nav);
+  z-index: var(--z-nav-menu);
   font-weight: var(--font-weight-medium);
 }
 
-.skip-link:focus {
+.skip-link:focus,
+.skip-link:focus-visible {
   top: var(--spacing-xs);
+}
+
+/* #main-content is focusable via tabindex="-1" so the skip link can move focus,
+   not just scroll. Suppress the ring: focusing <main> is a scripted jump, and a
+   page-sized outline would be visual noise. */
+#main-content:focus {
+  outline: none;
 }
 
 .content-section-top-margin {
