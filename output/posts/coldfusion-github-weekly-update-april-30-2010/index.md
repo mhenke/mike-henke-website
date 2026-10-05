@@ -3,6 +3,9 @@ title: ColdFusion &amp; Github Weekly Update April 30, 2010
 date: '2010-04-30'
 author: Mike Henke
 layout: layouts/post.njk
+categories:
+  - ColdFusion
+  - Git
 ---
 
 I missed last week's ColdFusion &amp; Github update due to attending <a href="http://www.cfobjective.com">CF.Objective() 2010</a> in Minneapolis. <a href="http://blog.simb.net/">Simeon Bateman</a> presented on <a href="http://git-scm.com/">Git</a>. His sessionwas the last of the conference and was very well attended. He covered basic git ideas and commands. He also showed <a href="http://github.com">GitHub</a> and mentioned <a href="http://learn.github.com">http://learn.github.com</a> for learning more about git and GitHub. <a href="http://en.wikipedia.org/wiki/ColdFusion">ColdFusion</a> moved up one position to 29th for language popularity after falling several spots a couple weeks ago.

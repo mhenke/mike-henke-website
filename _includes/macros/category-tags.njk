@@ -11,6 +11,8 @@
 {% macro categoryTags(categories) %}
 {% if categories and categories.length > 0 %}
     <div class="blog-post-categories">
+        {# Hidden comma-separated categories for Pagefind search results #}
+        <span data-pagefind-meta="categories" class="hidden" style="display:none;">{{ categories | join(', ') }}</span>
         {# Output each category as a separate Pagefind filter element #}
         {% for category in categories %}
             {% if category %}

@@ -3,6 +3,8 @@ title: Buzz Kill (how to disable google buzz)
 date: '2010-02-11'
 author: Mike Henke
 layout: layouts/post.njk
+categories:
+  - Google
 ---
 
 I recently was opted into a service I didn't sign up for. Many of you have been also. <a href="http://www.google.com/buzz">Google Buzz</a> is Google's attempt at a social networking for "share updates, photos, videos, and more".

@@ -3,6 +3,8 @@ title: SE MN WWII Honor Flight this past weekend
 date: '2011-05-02'
 author: Mike Henke
 layout: layouts/post.njk
+categories:
+  - Personal
 ---
 
 I have been helping with the <a href="http://www.semnhonorflight.org">SE MN Honor Flights</a> since my grandfather was on one. I think this is my 5th. It is always a privilege to help. I heard there maybe only two more from this hub. The last flight had several veterans passing away before they could see their memorial. We had over 100 veterans and 60 guardians this flight.

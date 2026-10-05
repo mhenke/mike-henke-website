@@ -32,13 +32,23 @@
   src: url("/assets/fonts/source-serif-4-italic-400.woff2") format("woff2");
 }
 
-CSS CUSTOM PROPERTIES & VARIABLES
+/* ==========================================================================
+   CSS CUSTOM PROPERTIES & VARIABLES
    ========================================================================== */
 
 /* Hidden utility class for Pagefind metadata - ensures custom_excerpt spans are not visible */
-.hidden {
+.hidden,
+[data-pagefind-meta].hidden,
+[data-pagefind-meta] .hidden {
   display: none !important;
   visibility: hidden !important;
+  opacity: 0 !important;
+  position: absolute !important;
+  left: -9999px !important;
+  top: -9999px !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
 }
 
 :root {
@@ -133,6 +143,7 @@ CSS CUSTOM PROPERTIES & VARIABLES
   --border-radius-md: 10px;
   --border-radius-lg: 14px;
   --border-radius-xl: 20px;
+  --border-radius-pill: 9999px;
 
   /* Shadows */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.25);
@@ -2035,8 +2046,8 @@ section {
   position: relative;
   background-color: var(--color-accent-bg);
   color: var(--color-primary);
-  padding: var(--spacing-xs) var(--spacing-md);
-  border-radius: var(--border-radius-pill);
+  padding: 4px 10px;
+  border-radius: var(--border-radius-xs);
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-medium);
   margin-right: var(--spacing-xs);
@@ -2060,15 +2071,17 @@ section {
 
 .category-tag:hover,
 .category-tag:focus-visible {
-  background-color: var(--color-primary-18);
+  background-color: var(--color-primary);
   border-color: var(--color-primary);
-  color: var(--color-text);
+  color: var(--color-surface);
   transform: translateY(-1px);
+  box-shadow: var(--shadow-accent-sm);
   text-decoration: none;
 }
 
 .blog-post-categories {
-  margin-top: var(--spacing-sm);
+  margin-top: var(--spacing-xs);
+  margin-bottom: var(--spacing-md);
   display: flex;
   flex-wrap: wrap;
   gap: var(--spacing-xs);
@@ -2076,7 +2089,7 @@ section {
 }
 
 .blog-post-categories .category-tag {
-  margin-top: 0;
+  margin: 0;
   font-weight: var(--font-weight-medium);
   border: 1px solid var(--color-primary-25);
   line-height: 1.2;
@@ -2085,8 +2098,8 @@ section {
 }
 
 .blog-post-card .blog-post-categories {
-  margin-top: 0;
-  margin-bottom: var(--spacing-md);
+  margin-top: var(--spacing-xs);
+  margin-bottom: var(--spacing-sm);
 }
 
 .blog-post-list {

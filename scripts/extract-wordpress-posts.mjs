@@ -218,6 +218,30 @@ for (const item of items) {
   const rawContent = field(item, 'content:encoded');
   const excerpt = field(item, 'excerpt:encoded');
 
+  const KNOWN_CATEGORIES = {
+    'stump-the-cfchump-2b': ['cfchump', 'ColdFusion'],
+    'coldfusion-on-wheels-0-9-4-released': ['ColdFusion', 'CFWheels'],
+    'coldfusion-github-weekly-update-april-30-2010': ['ColdFusion', 'Git'],
+    'testing-if-mylyn-is-working-in-coldfusion-builder-2-0-1-beta': ['ColdFusion', 'Eclipse'],
+    'learning-wheels-litepost-contest-ends-feb-19th': ['CFWheels'],
+    'github-recognizes-cfml': ['ColdFusion', 'Git'],
+    'SQL-Server-2005-Express-error-connection-issue-solved': ['Database', 'SQL Server'],
+    'awesome-java-training-deal-hit-me-up': ['Java'],
+    'why-join-me-for-java-training': ['Java'],
+    'exclusive-java-training-bargain-for-experienced-developers': ['Java'],
+    'last-day-for-webucator-java-discount': ['Java'],
+    'Learn-Flex-2-over-Lunch-Free': ['Flex'],
+    'how-to-uninstall-crossover-on-ubuntu': ['Linux', 'Ubuntu'],
+    'Google-announces-Website-Optimizer-online-seminars': ['Google'],
+    'buzz-kill-how-to-disable-google-buzz': ['Google'],
+    'cloudy-with-a-chance-of-tests-at-necfug-tomorrow': ['ColdFusion', 'Testing'],
+    'Lost-Season-3-DVD-set': ['Personal'],
+    'Added-pic-and-name-to-About-section': ['Personal'],
+    'New-Look': ['Personal'],
+    'se-mn-wwii-honor-flight-this-past-weekend': ['Personal'],
+    'test-blog-for-funky-characters': ['Development'],
+  };
+
   const categories = [];
   const catMatches = item.match(
     /<category domain="category"[^>]*><!\[CDATA\[([\s\S]*?)\]\]><\/category>/g
@@ -227,6 +251,10 @@ for (const item of items) {
       const m = cm.match(/<!\[CDATA\[([\s\S]*?)\]\]>/);
       if (m) categories.push(m[1]);
     }
+  }
+
+  if (categories.length === 0 && KNOWN_CATEGORIES[slug]) {
+    categories.push(...KNOWN_CATEGORIES[slug]);
   }
 
   const dateShort = dateRaw ? dateRaw.split(' ')[0] : '2000-01-01';

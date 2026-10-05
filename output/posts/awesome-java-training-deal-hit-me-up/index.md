@@ -3,6 +3,8 @@ title: awesome java training deal - hit me up
 date: '2014-03-06'
 author: Mike Henke
 layout: layouts/post.njk
+categories:
+  - Java
 ---
 
 I am pretty excited to announce an exclusive deal for an online Java training class at the end of April. It is for experienced coders wanting to learn Java. Shoot me an email henke dot mike at gmail dot com if are interested and I can give you more details.

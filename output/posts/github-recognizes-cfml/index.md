@@ -3,6 +3,9 @@ title: Github recognizes CFML
 date: '2010-02-09'
 author: Mike Henke
 layout: layouts/post.njk
+categories:
+  - ColdFusion
+  - Git
 ---
 
 <a href="http://www.github.com">Github</a> now tracks <a href="http://en.wikipedia.org/wiki/ColdFusion_Markup_Language">CFML</a> syntax. Github uses <a href="http://dev.pocoo.org/projects/pygments">Pygments</a>, a generic syntax highlighter.  Pygment recently added support for CFML and Github has implemented it.

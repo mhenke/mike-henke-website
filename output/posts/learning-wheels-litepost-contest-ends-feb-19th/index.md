@@ -3,6 +3,8 @@ title: Learning Wheels Litepost Contest ends Feb 19th
 date: '2010-02-17'
 author: Mike Henke
 layout: layouts/post.njk
+categories:
+  - CFWheels
 ---
 
 The <a href="http://cfwheels.org/blog/index.cfm/2010/1/25/Wheels-LitePost-Contest--win-Amazon-Gift-Card" title="Wheels LitePost Contest - Win Amazon Gift Card">Learning Wheels Litepost Contest</a> is wrapping up on Feb 19th.  It is meant for a hopefully, quick and simple intro into Wheels.

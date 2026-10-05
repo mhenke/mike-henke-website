@@ -3,6 +3,9 @@ title: Cloudy With a Chance of Tests at NECFUG tomorrow
 date: '2012-02-27'
 author: Mike Henke
 layout: layouts/post.njk
+categories:
+  - ColdFusion
+  - Testing
 ---
 
 <a href="http://www.necfug.com">CFUG</a> Meets Tomorrow

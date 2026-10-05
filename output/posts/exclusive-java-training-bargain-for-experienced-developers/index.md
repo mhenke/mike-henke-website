@@ -3,6 +3,8 @@ title: exclusive Java training bargain for experienced developers
 date: '2014-03-10'
 author: Mike Henke
 layout: layouts/post.njk
+categories:
+  - Java
 excerpt: condensed
 ---
 

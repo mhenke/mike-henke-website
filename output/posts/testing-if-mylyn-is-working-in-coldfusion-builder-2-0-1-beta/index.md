@@ -3,6 +3,9 @@ title: Testing if Mylyn is working in ColdFusion Builder 2.0.1 beta
 date: '2012-02-18'
 author: Mike Henke
 layout: layouts/post.njk
+categories:
+  - ColdFusion
+  - Eclipse
 ---
 
 I post on <a href="/blog/coldfusion-builder-2-0-1-beta-and-mylyn/">installing ColdFusion Builder 2.0.1 beta and Mylyn</a>. This post will show how to test it is working.

@@ -3,6 +3,9 @@ title: how to uninstall CrossOver on Ubuntu
 date: '2012-02-27'
 author: Mike Henke
 layout: layouts/post.njk
+categories:
+  - Linux
+  - Ubuntu
 ---
 
 I installed <a href="http://www.codeweavers.com/products/crossover/">CrossOver</a> to test it on Ubuntu but the uninstall link from the menu didn't work.

@@ -178,15 +178,28 @@ document.addEventListener("DOMContentLoaded", async () => {
       excerpt = extractExcerpt(result.content);
     }
 
+    let categories = [];
+    if (result.meta?.categories) {
+      categories = result.meta.categories
+        .split(",")
+        .map((c) => c.trim())
+        .filter(Boolean);
+    } else if (result.meta?.category) {
+      categories = [result.meta.category.trim()];
+    } else {
+      const fromUrl = extractCategoryFromUrl(url);
+      if (fromUrl) categories = [fromUrl];
+    }
+
     const date =
       result.meta.date || extractDateFromUrl(url) || getCurrentDate();
-    const category = result.meta.category || extractCategoryFromUrl(url);
 
     // Format the date
     const formattedDate = formatDate(date);
 
     // Create category tags if available
-    const categoryTags = category ? createCategoryTags([category]) : "";
+    const categoryTags =
+      categories.length > 0 ? createCategoryTags(categories) : "";
 
     return `
       <article class="blog-post-card" itemscope itemtype="https://schema.org/BlogPosting">
