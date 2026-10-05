@@ -18,6 +18,7 @@ homepage-critique.png
 .impeccable/
 .playwright-mcp/
 .smart-fix/
+.smart-fix-archive/
 
 # OS generated files
 .DS_Store

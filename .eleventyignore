@@ -6,6 +6,7 @@ wp_posts_data.txt
 
 # Agent + design context — never publish these
 .smart-fix/
+.smart-fix-archive/
 .claude/
 .impeccable/
 .opencode/
