@@ -1,0 +1,21 @@
+---
+pagination:
+  data: collections.allPosts
+  size: 1
+  alias: post
+permalink: "/{{ post.fileSlug }}/index.html"
+eleventyExcludeFromCollections: true
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting to /blog/{{ post.fileSlug }}/</title>
+  <link rel="canonical" href="/blog/{{ post.fileSlug }}/">
+  <meta http-equiv="refresh" content="0; url=/blog/{{ post.fileSlug }}/">
+  <meta name="robots" content="noindex, follow">
+</head>
+<body>
+  <p>Redirecting to <a href="/blog/{{ post.fileSlug }}/">/blog/{{ post.fileSlug }}/</a>...</p>
+</body>
+</html>

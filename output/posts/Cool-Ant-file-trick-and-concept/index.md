@@ -1,0 +1,10 @@
+---
+title: Cool Ant file trick and concept
+date: '2008-06-25'
+author: Mike Henke
+layout: layouts/post.njk
+categories:
+  - Ant
+---
+
+I watched <a href="http://www.QasimRasheed.com">Qasim Rasheed's</a> <a href="http://www.cfunited.com">CFUnited</a> presentation on <a href="http://partners.adobe.acrobat.com/p27287024/">Continuous Integration with SVN, ANT, CFUnit &amp; Selenium</a>. I picked up a fundamental <a href="#concept">concept</a>, Conditional Execution, and a cool <a href="#trick">trick</a>.<a name="concept">The concept</a> was the <em>if </em>and <em>unless </em>attribute of an ant target. I have read about them but it was great to see them in action. He covered it quick so I had to watch that section a couple times.<br /><br />Basically:<br /><br />&lt;target name="if" if="propertyName" ...&gt;I run if propertyName is define&lt;/target&gt;<br /><br />&lt;target name="unless" unless="propertyName" ...&gt;I run if propertyName is NOT defined&lt;/target&gt;so&lt;property name="propertyName" value="true" /&gt;&lt;target .... depends="if,unless" &gt;hello&lt;/target&gt;Both targets would be called but <em>if </em>would only actually run. If propertyName wasn't defined both targets would be called but only <em>unless </em>would actually run.<br /><br /><a name="trick">The trick</a> was in an Ant File <strong>(using the Ant Editor - thanks Jim) </strong>pressing Ctrl and mouse over properties (example <em>${property}</em>) , the <em>${property}</em> will turn blue and underlined.If you click the <em>${property}</em>, the editor will jump to where the property is defined in the file. If the property was set in a property file, the editor will jump to where the property file is defined in the ant file. If you hold Ctrl and click on the property file, the editor will open up the file. Pretty sweet. I wonder how Ant files are doing this since it would be interesting to have this feature in CFEclipse for some variables. I guess this <b>Ctrl-Click </b>feature is -<td> </td> Go to declaration of object at cursor.

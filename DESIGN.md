@@ -225,7 +225,7 @@ The system uses ambient shadows to create depth — surfaces appear to float abo
 - **Style:** Sticky navbar with backdrop-filter blur (10px). Steel gray at 95% opacity — feels like a terminal title bar.
 - **Brand:** A shell prompt. `>` renders in light gray, the name `mikehenke` in electric cyan, both in the mono stack (`--font-mono`), not Geist. It reads as a prompt, not a logo.
 - **Links:** CLI flags in the mono stack — `--home --about --writing --career --contact --search`. Electric-cyan underline at 30% opacity, offset 3px; hover pushes the underline to full opacity. No pills, no hover bars, no centred cluster. Geist returns only inside the mobile drawer.
-- **Accessibility:** Each flag carries an `sr-only` plain-language label *before* the visible flag text, so the accessible name reads `Home --home`. The visible text is part of the accessible name (WCAG 2.5.3 Label in Name).
+- **Accessibility:** Each flag carries an `sr-only` plain-language label _before_ the visible flag text, so the accessible name reads `Home --home`. The visible text is part of the accessible name (WCAG 2.5.3 Label in Name).
 - **Breakpoint:** The flag treatment is desktop-only (`min-width: 1024px`). Below it the links are the mobile drawer's full-width touch rows, which keep drawer typography and layout.
 - **Mobile:** Slide-out menu from right, 280px wide, full viewport height with blur backdrop.
 - **Dropdown:** Positioned absolutely, steel gray background, appears below toggle with opacity/transform transition.

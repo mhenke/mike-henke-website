@@ -1,0 +1,14 @@
+---
+title: What&#039;s Hot &amp; Where do we go from here
+date: '2011-12-14'
+author: Mike Henke
+layout: layouts/post.njk
+categories:
+  - CFWheels
+  - ColdFusion
+---
+
+Last week, "<a href="http://www.fusionauthority.com/community/4829-whats-hot-whats-not-where-do-we-go-from-here.htm">What technologies, other than ColdFusion, should a developer know?</a>" was posted on <a href="http://www.fusionauthority.com">Fusion Authority</a>. I figured I would answer the question also. Feel free do blog your own "What technologies, other than ColdFusion, should a developer know?". It could be like a what to expect (or would like to see) in the New Year post about ColdFusion developer's skills and technologies.
+<h2>What technologies, other than ColdFusion, should a developer know?</h2>
+Anything <a href="http://rubyonrails.org/">Rails</a>! <a href="http://en.wikipedia.org/wiki/ColdFusion">ColdFusion</a> has a framework modeled after Rails called <a href="http://www.cfwheels.org">ColdFusion On Wheels</a> (CFWheels). Rails promotes two philosophies: Convention over Configuration (CoC), and the rapid development principle of <strong>Don't Repeat Yourself</strong> (DRY). The Rails community excels at taking the DRY principle to new levels with <a href="http://haml-lang.com">Haml</a> (HTML Abstraction Markup Language) and <a href="htpp://sass-lang.com/">Sass</a> (Syntactically Awesome Stylesheets). Two technologies ColdFusion developers can learn and take advantage of. Haml is a markup language to concisely <em>describe </em>the HTML (Hyper Text Markup Language) of a web page. Coding HTML is very similar to a frog in boiling water, we don’t notice all the repetitive code and wasteful keystrokes. <em><strong>Most developer probably haven’t consider why we are coding HTML and if there is a better solution.</strong></em> Developers code HTML to render a web page properly to a browser. Haml maybe a better, friendly solution to accomplish this goal. Sass also prides itself on a simpler, more elegant syntax to <em>describe </em>the style of a web page. CSS (Cascading Style Sheets) maybe even more repetitive and awkward then HTML. Both Haml and Sass move the DRY principle to new levels in syntax. ColdFusion developers should start exploring them along with other Rails technologies.
+<a href="http://git-scm.com/">Git</a> has taken hold as a source control system for CFML developers. With Git in many Coldfusion shops, I see <a href="http://code.google.com/p/gerrit/">Gerrit</a> integration for code reviews becoming adopted. Gerrit is a code review system specifically using Git and makes reviews easier. Gerrit has <a href="http://eclipse.org/mylyn/">Mylyn</a> integration so code reviews can be easily accomplished without leaving your Eclipse IDE (Integrated Development Environment).

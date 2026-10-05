@@ -2,8 +2,10 @@ README.md
 .github/
 mikehenke.wordpress.2025-05-31.xml
 wp_posts_data.txt
+.prettierignore
 
 # Agent + design context — never publish these
+.smart-fix/
 .claude/
 .impeccable/
 .opencode/

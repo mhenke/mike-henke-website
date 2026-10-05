@@ -1,0 +1,11 @@
+---
+title: My 8 Favorite ColdFusion Builder Shortcuts
+date: '2009-07-18'
+author: Mike Henke
+layout: layouts/post.njk
+categories:
+  - CFEclipse
+  - ColdFusion Builder
+---
+
+I haven't been able to use <a href="http://labs.adobe.com/technologies/coldfusionbuilder/">ColdFusion Builder</a> extensively yet, but here are my favorite 8 key assists so far.<h3>First group is</h3>First group is not too amazing and still should be mentioned. They are available in <a href="http://www.cfeclipse.org">CFEclipse </a>but the wrap in pound signs binding is a different combination.<ul><li>ctrl+shift+a - insert cfabort <br /></li><li>ctrl+shift+d - insert cfdump <br /></li><li>ctrl+shift+h - wrap in ## <br /></li><li>ctrl+space - Content Assist (image below is the CFBuilder assist within a cfparam)</li></ul><img src="/assets/content//contentAssist.jpg" alt="ColdFusion Builder Content Assist" width="439" height="400" /><h3>Here are some new key assists in ColdFusion Builder</h3><ul><li>ctrl+shift+f - format code, this has been missing since I switched to Eclipse for my ColdFusion coding.</li><li>ctrl+= - insert cfset - I am not certain, but don't think CFEclipse hasa shortcut for cfset. I have missed it, if it exists in CFEclipse.</li><li>ctrl+t - tag wizard, opens up a dictionary for ColdFusion tags and if you select a tag it will walk you through a wizard. I would like to see syntax usage of the tags in the dictionary view before having go to the wizard. Also it would be great if ColdFusion functions were available also for searching and help.</li></ul><img src="/assets/content//tagWizard.jpg" alt="ColdFusion Builder Tag Wizard" width="439" height="400" /><h3>And my favorite is....</h3>ctrl+o - opens a outline fast view and you can filter on the contents to quickly get to code on the page. See <a href="http://www.coldfusionjedi.com/index.cfm/2009/7/17/ColdFusion-Builder-and-Outline-Mode">Raymod Camden's video on the Outline view</a> for more.<img src="/assets/content//outlineKeyAssist.jpg" alt="ColdFusion Builder Outline view key assist" width="439" height="400" />

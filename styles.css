@@ -59,6 +59,7 @@ CSS CUSTOM PROPERTIES & VARIABLES
      clears AAA on every surface the code blocks sit on. */
   --color-code-comment: #90c483;
   --color-code-string: #ce9178;
+  --color-code-keyword: #569cd6;
   --color-steel-gray: #22313a;
   --color-slate-border: #3e4750;
   --color-carbon: #2a2a2a;
@@ -370,8 +371,7 @@ a {
 .navbar-links a:hover,
 .navbar-links a:focus,
 .navbar-links button.dropdown-toggle:hover,
-.footer-link:hover,
-.category-tag:hover {
+.footer-link:hover {
   text-decoration: underline;
 }
 
@@ -2030,25 +2030,40 @@ section {
    ========================================================================== */
 
 .category-tag {
-  display: inline-block;
-  background-color: transparent;
-  color: var(--color-text);
-  padding: var(--spacing-md) var(--spacing-sm);
-  border-radius: var(--border-radius-xs);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-regular);
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  background-color: var(--color-accent-bg);
+  color: var(--color-primary);
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--border-radius-pill);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
   margin-right: var(--spacing-xs);
   margin-bottom: var(--spacing-xs);
-  border: var(--border-width-thin) solid var(--color-primary);
+  border: 1px solid var(--color-primary-25);
   text-decoration: none;
   transition: var(--transition-interactive);
-  line-height: 1.1;
-  letter-spacing: normal;
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-subtle);
 }
 
-.category-tag:hover {
-  background-color: var(--color-primary);
-  color: var(--color-background);
+.category-tag::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: var(--touch-target);
+  min-height: var(--touch-target);
+}
+
+.category-tag:hover,
+.category-tag:focus-visible {
+  background-color: var(--color-primary-18);
+  border-color: var(--color-primary);
+  color: var(--color-text);
+  transform: translateY(-1px);
   text-decoration: none;
 }
 
@@ -2061,15 +2076,12 @@ section {
 }
 
 .blog-post-categories .category-tag {
-  /* Vertical padding clears 44px; the negative margin keeps the chip row the
-     same height it was designed at. */
-  padding: var(--spacing-md) calc(var(--spacing-sm) + var(--spacing-xs));
-  margin-top: calc(-1 * var(--spacing-md));
+  margin-top: 0;
   font-weight: var(--font-weight-medium);
-  border: var(--border-width-thin) solid var(--color-primary);
+  border: 1px solid var(--color-primary-25);
   line-height: 1.2;
   letter-spacing: var(--letter-spacing-subtle);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
 }
 
 .blog-post-card .blog-post-categories {
@@ -2332,6 +2344,139 @@ section {
   text-decoration: underline;
 }
 
+/* Code Blocks */
+.code-block {
+  margin: var(--spacing-xl) 0;
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-carbon);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.code-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-xs) var(--spacing-md);
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.code-language {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-wide);
+  color: var(--color-primary);
+  text-transform: uppercase;
+}
+
+.code-copy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--color-text-secondary);
+  border-radius: var(--border-radius-xs);
+  padding: var(--spacing-xs);
+  cursor: pointer;
+  font-size: var(--font-size-base);
+  transition: var(--transition-interactive);
+  line-height: 1;
+  min-width: var(--touch-target);
+  min-height: var(--touch-target);
+}
+
+.code-copy:hover {
+  color: var(--color-primary);
+  background-color: var(--color-accent-bg);
+  border-color: var(--color-primary-25);
+}
+
+.code-copy:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 1px;
+}
+
+.code-copy.copy-success {
+  color: var(--color-code-comment);
+}
+
+.code-block pre {
+  margin: 0 !important;
+  padding: var(--spacing-lg) var(--spacing-xl) !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+}
+
+.code-block code {
+  font-family: var(--font-mono);
+  font-size: inherit;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+/* Custom token colors for code blocks */
+.code-block .token.comment,
+.code-block .token.prolog,
+.code-block .token.doctype,
+.code-block .token.cdata {
+  color: var(--color-code-comment);
+  font-style: italic;
+}
+
+.code-block .token.punctuation {
+  color: var(--color-text-secondary);
+}
+
+.code-block .token.keyword {
+  color: var(--color-code-keyword);
+  font-weight: var(--font-weight-medium);
+}
+
+.code-block .token.tag,
+.code-block .token.tag .token.punctuation,
+.code-block .token.tag .token.namespace {
+  color: var(--color-primary);
+}
+
+.code-block .token.attr-name {
+  color: var(--color-orange-accent);
+}
+
+.code-block .token.string,
+.code-block .token.attr-value,
+.code-block .token.attr-value .token.punctuation {
+  color: var(--color-code-string);
+}
+
+.code-block .token.operator,
+.code-block .token.entity,
+.code-block .token.url {
+  color: var(--color-text);
+}
+
+.code-block .token.boolean,
+.code-block .token.number {
+  color: var(--color-orange-accent);
+}
+
+.code-block .token.function,
+.code-block .token.class-name {
+  color: var(--color-primary-dark);
+}
+
+.code-block .token.variable {
+  color: var(--color-primary);
+}
+
 /* ==========================================================================
    FOOTER
    ========================================================================== */
@@ -2450,23 +2595,15 @@ section {
 }
 /* Disqus container styling */
 #disqus_thread {
-  background: var(--color-background);
-  border: 1px solid var(--color-border);
-  border-radius: 16px;
-  padding: 32px 0 0 0;
-  margin: var(--spacing-2xl) 0;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: var(--spacing-lg) 0;
   color: var(--color-text-secondary);
   font-family: var(--font-primary);
   font-size: 1.08rem;
   line-height: 1.7;
   min-height: var(--spacing-4xl);
-}
-
-/* Ensure proper color inheritance for Disqus */
-#disqus_thread,
-#disqus_thread * {
-  color: var(--color-text) !important;
-  background-color: var(--color-surface) !important;
 }
 
 /* Style Disqus links to match site theme */
@@ -2847,14 +2984,18 @@ section {
 
 /* Comments Section */
 .comments-section {
-  padding: var(--spacing-4xl) 0;
+  margin-top: var(--spacing-3xl);
+  padding-top: var(--spacing-2xl);
+  border-top: 1px solid var(--color-border);
   max-width: var(--max-width-content);
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .comments-section h2 {
   font-size: var(--font-size-2xl);
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-text);
 }
 
 /* Blog empty state styling */

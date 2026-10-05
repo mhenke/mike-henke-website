@@ -4,3 +4,11 @@
 
 # Categories: /blog/category/category-name/ → /category/category-name/
 /blog/category/:category/ /category/:category/ 301
+
+# Legacy ColdFusion post URLs: /post.cfm/slug → /blog/slug/
+/post.cfm/:slug /blog/:slug/ 301
+/post.cfm/* /blog/:splat 301
+
+# Legacy pages
+/contact-me /#contact 301
+/contact-me/ /#contact 301

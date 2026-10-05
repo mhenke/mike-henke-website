@@ -1,0 +1,11 @@
+---
+title: Eclipse Working Sets
+date: '2008-02-05'
+author: Mike Henke
+layout: layouts/post.njk
+categories:
+  - CFEclipse
+  - Eclipse
+---
+
+This entry is a quick review of Working Sets in Eclipse. I will show how to create a new working set and selecting/deselecting. <em>Working sets help reduce the clutter.</em> A working set groups resources for display in the Navigator view.<br /><br />I finally learned about working sets today while attending a 4 day Model Glue class by Doug Hughes. Doug showed the group during a break and I figured this would complement the entry on <a href="http://mikehenke.com/machblog/index.cfm?event=showEntry&amp;entryId=D6C41396-188B-4E84-1576FB07A9393746">Eclipse Navigator Toolbar</a>.<h3>Create A working set</h3>Select the menu triangle in the Navigator view, then "Select Working Set..."<br /><img width="398" height="409" alt="selecting working set" src="/machblog/uploads/Image/selectWS.jpg" /><br /><br />In the next dialog box select <em>New</em> then <em>Resource</em> and <em>Next</em>.<br /><br /><img width="543" height="482" alt="" src="/machblog/uploads/Image/wsType.jpg" /><br /><br />Here is where the cool part starts. Enter a name for the Working set and then select resources to be used in this working set. You are able to choice <strong>projects,</strong> <strong>folder,</strong> and <strong>individual files</strong>. I selected several different items.<br /><br /><img width="525" height="557" alt="" src="/machblog/uploads/Image/resourcesWS.jpg" /><br /><br />Now you will be presented with a window to select the working set you would like activated in your Naviator Toolbar. Check your newly created working set. You can even select multiple work sets.<h3>Selecting/Deselecting</h3>To deselect working sets, select working sets, and other options, you can select the menu triangle in the Navigator view.<br /><img alt="" src="/machblog/uploads/Image/selectWS2.jpg" /> As you see above the newly created working set is now showing in the Navigator view reducing the clutter and helping me easily get to the files I need.

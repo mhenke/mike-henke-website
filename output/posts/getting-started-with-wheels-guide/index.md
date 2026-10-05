@@ -1,0 +1,14 @@
+---
+title: Getting Started with Wheels guide
+date: '2011-06-16'
+author: Mike Henke
+layout: layouts/post.njk
+categories:
+  - CFWheels
+  - ColdFusion
+  - Github
+---
+
+Awhile ago I worked on a <a href="https://docs.google.com/View?id=dc2sb454_5109m97mddk">Getting Started with Wheels (Google Doc version)</a> guide in Google Docs. It is based on "<a href="http://guides.rubyonrails.org/getting_started.html">Getting Started with Rails</a>". I saved from Google Docs as html then used <a href="http://johnmacfarlane.net/pandoc/">pandoc</a> to converted it to markdown. I am posting the guide on github for anyone to help.
+<h2><a href="https://github.com/mhenke/Getting-Started-with-Wheels">Getting Started with Wheels (Github version)</a></h2>
+   1. Wheels Getting Started<br />         1. What is Wheels?<br />               1. Wheels Philosophies<br />                     1. Simplicity<br />                           1. Full Stack<br />                           2. Object Relational Mapping<br />                     2. Convention Over Configuration<br />                     3. Model-View-Controller<br />                           1. Model<br />                           2. View<br />                           3. Controller<br />         2. Creating a Wheels Application<br />               1. Wheels Requirements<br />               2. Wheels Installation<br />               3. Hello Wheels<br />               4. Connecting a Database<br />               5. Getting Up and Running Quickly With scaffolding<br />                     1. Creating the Model, View, and Controller<br />               6. Wheels Concepts<br />                     1. Routes<br />                     2. Incoming Request<br />                     3. URL Convention<br />                     4. Params<br />                     5. Wheels Form Helpers<br />                     6. Wheels Flash<br />                     7. Using set()<br />               7. Setting the Application Home Page<br />               8. Creating Entries<br />         3. Reviewing Generated Code<br />               1. Listing entries<br />               2. Creating New Entry<br />                     1. Action One, Display New page<br />                     2. Action Two, Create New Entry<br />               3. Showing an Individual Entry<br />               4. Editing an Entry<br />               5. Deleting an Entry<br />         4. Working with Wheels Code<br />               1. Wheels Debugging Section<br />               2. Adding a Link<br />               3. Customizing our Application<br />                     1. Layouts<br />                     2. Styling Forms<br />               4. The Model<br />                     1. Adding Some Validation<br />                     2. Model Class Functions<br />               5. NOT SURE WHATS<br />         5. What's Next?<br />         6. License and Acknowledgments

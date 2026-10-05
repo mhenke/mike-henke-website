@@ -1,0 +1,11 @@
+---
+title: Using ColdFusion within Selenium
+date: '2007-09-24'
+author: Mike Henke
+layout: layouts/post.njk
+categories:
+  - ColdFusion
+  - Selenium
+---
+
+Selenium only cares the output is in its simple table structure. Please refer to Sebastien Lachance's post about <a href="http://sebastienlachance.com/2007/08/03/getting-started-with-selenium-ide-part-2/" target="_self">Structure of an html test</a> and James Netherton's post about <a href="http://www.jamesnetherton.com/blog/index.cfm/2007/7/2/Creating-a-Selenium-test-suite" target="_self">Selenium suites</a> . I use the Firefox IDE to initially create scripts and save as a cfm file. Then add the ColdFusion sweetness.Here is a simple use of ColdFusion within a Selenium test script to create a random email address. This would be useful when needing unique email addresses for testing a create new user process.<em>&lt;cfset r = Randomize(5)&gt;<br />&lt;cfset email = "#r#@test.com"&gt;</em><em>&lt;tr&gt;<br /> &lt;td&gt;type&lt;/td&gt;<br /> &lt;td&gt;emailAddress&lt;/td&gt;<br /> &lt;td&gt;&lt;cfoutput&gt;#email#&lt;/cfoutput&gt;&lt;/td&gt;<br />&lt;/tr&gt;</em>Generating dynamic test scripts are easy. Here is an example of looping through all the options of a select statement with a query and verifying after submitting.<em>&lt;cfquery name="selectOptions" datasource="DS"&gt;<br /> select select_id, selectName from selectTable<br /> &lt;/cfquery&gt;</em><em>&lt;!--- loop through select options---&gt;<br /> &lt;cfloop query="selectOptions"&gt;</em><em> &lt;tr&gt;<br /> &lt;td&gt;select&lt;/td&gt;<br /> &lt;td&gt;Select_ID&lt;/td&gt;<br /> &lt;td&gt;value=#selectOptions.select_ID#&lt;/td&gt;<br /> &lt;/tr&gt;</em><em> &lt;tr&gt;<br /> &lt;td&gt;clickAndWait&lt;/td&gt;<br /> &lt;td&gt;button&lt;/td&gt;<br /> &lt;td&gt;&lt;/td&gt;<br /> &lt;/tr&gt;</em><em> &lt;tr&gt;<br /> &lt;td&gt;verifyValue&lt;/td&gt;<br /> &lt;td&gt;select_ID&lt;/td&gt;<br /> &lt;td&gt;#selectOptions.select_ID#&lt;/td&gt;<br /> &lt;/tr&gt;</em><em> &lt;!--- more checks, actions, and then return back to form ---&gt;</em><em> &lt;/cfloop&gt;</em>

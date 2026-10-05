@@ -66,5 +66,49 @@ permalink: /404.html
 </div>
 
 <script>
-// No additional JavaScript needed for this 404 page
+(function() {
+  var path = window.location.pathname;
+  if (!path) return;
+
+  // Pattern 1: /post.cfm/<slug>
+  var cfmMatch = path.match(/^\/post\.cfm\/([^/?#]+)/i);
+  if (cfmMatch) {
+    var slug = cfmMatch[1].replace(/\.html?$/i, '');
+    window.location.replace('/blog/' + encodeURIComponent(slug) + '/' + window.location.search + window.location.hash);
+    return;
+  }
+
+  // Pattern 2: /contact-me
+  if (/^\/contact-me\/?$/i.test(path)) {
+    window.location.replace('/#contact');
+    return;
+  }
+
+  // Pattern 3: Legacy root-level post URLs (e.g. /<slug> or /<slug>/)
+  var topLevelRoutes = [
+    '',
+    'blog',
+    'search',
+    'category',
+    'assets',
+    'js',
+    'css',
+    'fonts',
+    'images',
+    '404.html',
+    'index.html',
+    'robots.txt',
+    'sitemap.xml'
+  ];
+
+  var trimmedPath = path.replace(/^\/+|\/+$/g, '');
+  var segments = trimmedPath.split('/');
+
+  if (segments.length === 1 && segments[0]) {
+    var candidate = segments[0].toLowerCase();
+    if (topLevelRoutes.indexOf(candidate) === -1) {
+      window.location.replace('/blog/' + encodeURIComponent(segments[0]) + '/' + window.location.search + window.location.hash);
+    }
+  }
+})();
 </script>

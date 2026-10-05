@@ -17,6 +17,7 @@ homepage-critique.png
 # Agent tools
 .impeccable/
 .playwright-mcp/
+.smart-fix/
 
 # OS generated files
 .DS_Store
@@ -25,4 +26,4 @@ Thumbs.db
 # IDE / Editor specific
 # .vscode/ # You might want to commit .vscode/settings.json or .vscode/extensions.json
 .idea/
-/output/
+

@@ -1,0 +1,95 @@
+---
+title: So you want to create a CFWheels application? ( Part 3 )
+date: '2009-07-30'
+author: Mike Henke
+layout: layouts/post.njk
+categories:
+  - CFWheels
+  - ColdFusion
+---
+
+This <a href="http://cfwheels.org/">CFWheels </a>series is heavily borrowed from <a href="http://www.nodans.com">Dan Wilson</a>'s "So You Want to" series about <a href="http://model-glue.com">Model Glue</a>:Unity.Â  This entry matches to this <a href="http://www.nodans.com/index.cfm/2007/1/21/So-you-want-to-create-a-ModelGlueUnity-application--Part-3-">post</a>.Previously in this series, we <a href="/blog/so-you-want-to-install-cfwheels/">installed CFWheels</a>, <a href="/blog/so-you-want-to-create-a-cfwheels-application-part-1/">discussed some basic conventions over configuration and concepts</a> in CFWheels, and <a href="/blog/so-you-want-to-create-a-cfwheels-application-part-2/">added our basic flow and navigation</a>. Our Contact-O-Matic is moving right along (this last sentence was borrowed from Dan's post.)In this segment of our regularly scheduled programming (again borrowed), we will setup a Contactomatic database with tables, add the contact form, and contact list. <h3>Database Setup</h3>CFWheels 0.9.3 supports SQL Server 7 or later, Oracle 10g or later, PostgreSQL, and MySQL 5. You will need to setup a database and a simple table. Here is my code for MySQL 5. <em>Please post your creation code in the comments if you are using a different database system.</em>
+```coldfusion
+DROP TABLE IF EXISTS 'contactomatic'.'contacts';CREATE TABLE 'contactomatic'.'contacts' ( 'id' int(10) unsigned NOT NULL AUTO_INCREMENT, 'name' varchar(45) NOT NULL, 'type' varchar(45) NOT NULL, PRIMARY KEY ('id')) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+```
+Add a datasource called "contactomatic" to our new database through the ColdFusion Administrator<h3>Config</h3>CFWheels simplifies alot of time consuming steps we have gotten use to in developing ColdFusion application using conventions (or assumptions) of our database and naming.Â  Don't worry, we can override these assumptions/conventions if needed.Our first convention we encounter in CFWheels assumes our datasource name is the same as the webroot folder name. We will override that in config/development/settings.cfm . Place this code in that file.
+```coldfusion
+<cfset set(dataSourceName="contactomatic")>
+```
+More on <a href="http://cfwheels.org/docs/chapter/configuration-and-defaults">configuration and defaults</a>. <h3>Environment</h3>We will make sure our CFWheels environment is pointing to development. Check the enviroment.cfm file in the config folder has this.
+```coldfusion
+<cfset set(environment="development")>
+```
+More on <a href="http://cfwheels.org/docs/chapter/configuration-and-defaults">switching environments</a>.<h3>Model</h3>The Model folder is where we will create cfc files that map to tables. One cfc per table. Since we created a contact table, we will create a contact.cfc and place this code in it:
+```coldfusion
+<cfcomponent extends="Model" output="false"></cfcomponent> 
+```
+<h3>New Action</h3>We will add the new action in our contact.cfc file in the controller. Add this code to in the Controllers/contact.cfc .
+```coldfusion
+<cffunction name="new"><cfset newContact = model("contact").new() /><cfset newContact.name = "Mike Henke" /><cfset newContact.type = "Friend" /><cfset newContact.save() /><cfset renderNothing() /></cffunction> 
+```
+And run the page, remember your URL maybe different depending on your URL Rewriting setting.
+```coldfusion
+URL Rewriting On = http://localhost/contact/new
+```
+
+```coldfusion
+URL Rewriting Partial = http://localhost/index.cfm/contact/new
+```
+
+```coldfusion
+URL Rewriting Off = http://localhost/index.cfm?controller=contact&action=new
+```
+You should see nothing in the browser but check our contacts table.
+```coldfusion
+select * from contacts
+```
+<img src="http://mikehenke.com/assets/content//cfwheels3_1.jpg" alt="" width="554" height="381" />Pretty neat, look mamma no SQL!!! What we did was create an object called newContact to represent our Contact table, then added properties that map to our columns.<h3>Create View</h3>Lets drive on and create the new view page.Â  It will have a form to add new contacts, but before we do that let's modify the new action by commenting out this code.
+```coldfusion
+ <!---  <cfset newContact.name = "Mike Henke" /> <cfset newContact.type = "Friend" /> <cfset newContact.save() /> <cfset renderNothing() /> --->
+```
+Now lets add new.cfm in the Views folder and place this code in it.
+```coldfusion
+<cfoutput>#includePartial("banner")#<cfoutput>#flash("success")#</cfoutput>#startFormTag(action="create")#<div>#textField(objectName="newContact", property="name", label="Contact")#</div><div>#textField(objectName="newContact", property="type", label="Type")#</div><div>#submitTag()#</div>#endFormTag()#</cfoutput> 
+```
+You may remember the 
+```coldfusion
+includePartial
+```
+ from <a href="/blog/so-you-want-to-create-a-cfwheels-application-part-2/">Part 2</a>. It acts a cfinclude with special powers. We added our banner for navigation this way. The rest of the code looks like ColdFusion functions. They are actually CFWheels Helpers. 
+```coldfusion
+startFormTag()
+```
+ starts the form tag with an action of create. Pretty intuitive, huh. Take a guess on what 
+```coldfusion
+textField()
+```
+ does.Bingo. It creates a text field. You can figure out the rest hopefully :-)
+```coldfusion
+textField()
+```
+ takes the blank newContact object we created in new action and matches the property (column name) and gives it a label.Run the page and you should see this.
+```coldfusion
+URL Rewriting On = http://localhost/contact/newURL Rewriting Partial = http://localhost/index.cfm/contact/newURL Rewriting Off = http://localhost/index.cfm?controller=contact&action=new
+```
+<img src="http://mikehenke.com/assets/content//cfwheels3_2.jpg" alt="" width="554" height="379" /><h3>Adding Create Action</h3>Lets add the create action in controllers/contact.cfc .Add this code:
+```coldfusion
+<cfoutput>#includePartial("banner")#<cfoutput>#flash("success")#</cfoutput>#startFormTag(action="create")#<div>#textField(objectName="newContact", property="name", label="Contact")#</div><div>#textField(objectName="newContact", property="type", label="Type")#</div><div>#submitTag()#</div>#endFormTag()#</cfoutput> 
+```
+Enter some data into our form and submit it.<img src="http://mikehenke.com/assets/content//cfwheels3_3.jpg" alt="" width="499" height="382" />Delete 
+```coldfusion
+<cfset redirectTo(action="new")>
+```
+ and uncomment 
+```coldfusion
+<cfset redirectTo(action="list")>
+```
+ in our create action.<h3>List</h3>Lets create our list action and view, then take a break and get a drink. We will go more indepth what we did in the next posts.Add this code in controllers/contract.cfc, it creates the sql and get a list of our contacts.
+```coldfusion
+<cffunction name="list"><cfset allContacts = model("contact").findAll() /></cffunction> 
+```
+Add list.cfm in the views/contact folder with this code:
+```coldfusion
+<cfoutput>#includePartial("banner")#<cfoutput>#flash("success")#</cfoutput><cfif allContacts.recordcount EQ 0 >-No Saved Contacts-<br /><cfelse><table><tr><th>Name</th><th>Type</th></tr><cfloop query="allContacts"><tr><td>#allContacts.name#</td><td>#allContacts.type#</td></tr></cfloop></table></cfif></cfoutput> 
+```
+Add another contact and you should now see something like this.<img src="http://mikehenke.com/assets/content//cfwheels3_4.jpg" alt="" width="554" height="381" />By now, you should have an appreciation for what CFWheels can do. You should be very impressed by the power of built in ORM and Conventions over Configuration. You should be proud of yourself for making it through these verbose tutorials. In the following series, we will add database access, some ajax and some other interesting pieces to our Contact-O-Matic (again this paragraph was borrowed heavy from Dan's post)

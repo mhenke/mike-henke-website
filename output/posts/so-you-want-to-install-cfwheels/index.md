@@ -1,0 +1,10 @@
+---
+title: So you want to install CFWheels?
+date: '2009-07-21'
+author: Mike Henke
+layout: layouts/post.njk
+categories:
+  - CFWheels
+---
+
+I am doing a series forthe <a href="http://cfwheels.org">CFWheels </a>framework similar to <a href="http://www.nodans.com">Dan Wilson</a>'s "So you want to" series for<a href="http://www.model-glue.com/ "> Model Glue</a>:Unity. Here is his . I will try to match each post but using CFWheels. My first post will cover installing CFWheels.<br /><br />CFWheels is a framework based on <a href="http://www.rubyonrails.org">Ruby on Rails</a>. I love the idea of <a href="http://en.wikipedia.org/wiki/Convention_over_configuration">Convention over Configuration</a> when it comes to ColdFusion coding.<h3>Installation</h3><br />You can find the latest builds <a href="http://cfwheels.googlecode.com/svn/trunk/">here</a> in svn. The download page is <a href="http://cfwheels.org/download">here</a>. I will be using 0.9.3and these instructions assume you will have the framework in webroot.<br /><br />Unzip the contents of cfwheels.0.9.3.zip into your webroot. You should see alot of folders and files. All the folders and files have a purpose, which might seem obvious for some like images or javascripts folders. Others might not make to much sense now like plugins or views, but don't worry. All the files and folders are there for a reason which we will cover in upcoming posts.<br /><br />To verify the directories were created properly, run http://localhost/If everything has been installed correctly, you will see:<strong>Congratulations!</strong><strong>You have successfully installed version 0.9.3 of Wheels.</strong><br />Welcome to the wonderful world of Wheels, I hope you will enjoy it!CFWheels is running now, next post will be how to get thecool rewrite.Â  You must be using Apache or IIS for this to work. Sorry peopleusing the built in web server with ColdFusion, you are stuck usinghttp://localhost/index.cfm/cfc_name/method_name instead of the cool http://localhost/cfc_name/method_name

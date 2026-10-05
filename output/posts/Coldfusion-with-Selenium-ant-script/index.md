@@ -1,0 +1,12 @@
+---
+title: Coldfusion with Selenium ant script
+date: '2007-09-17'
+author: Mike Henke
+layout: layouts/post.njk
+categories:
+  - Ant
+  - ColdFusion
+  - Selenium
+---
+
+I have been wanting to do a <a href="http://www.openqa.org/selenium/" target="_self">Selenium</a> ant script since John Paul Ashenfelter's presentation on Testing CF applications @ CFUnited 2007. Selenium is a test tool for web applications. It has a very simple html table structure for creating suites and tests. I use <a href="http://www.openqa.org/selenium-ide/" target="_self">Selenenium IDE</a> for Firefox to create initial scripts and save it as a cfm file. Then added the ColdFusion functionality such as random username generation for testing a new user process.Please read <a href="http://www.openqa.org/selenium-core/" target="_self">Selenium Core</a> documentation link. The links include installation, quick start, and concepts. <strong>The core needs to be placed somewhere under web root.</strong>You will need the <a target="_self" href="http://www.openqa.org/selenium-rc/">Selenium Remote Control</a> for the selenium-server.jar but for convience I included it the zip. Within the jar, we will be accessing the <a target="_blank" href="http://release.openqa.org/selenium-remote-control/0.9.0/doc/server/org/openqa/selenium/server/ant/SeleneseAntTask.html">SeleneseAntTask</a>.The <a href="http://mikehenke.com/machblog//uploads/enclosures/seleniun%5Fant%5Ftask%2Ezip" target="_blank">seleniun_ant_task.zip</a> includes the build.xml, selenium-server.jar, testsuite.cfm, and test.cfmNote: I had to use selenium-remote-control-0.9.2-20070913.164243-129-dist.zip for the selenium-server.jar to solve the issues "<a href="http://jira.openqa.org/browse/SRC-225" target="_self">Preparing Firefox profile...</a>"<em>Directions and content of the zip:</em><em>seleniumTask folder contains build.xml and selenium-server.jar. This folder can be placed anywhere. Build.xml will need the seleiumDir and resultsDir set.<br /><br />tests folder contains testSuite.cfm and test.cfm. This folder <strong>needs to be placed in the selenium core folder over the exisiting tests folder.</strong><br /><br />files:<br />build.xml - ant script to run Selenium test<br />testSuite.cfm - contains the html to reference test.cfm<br />test.cfm - tests http://mikehenke.com search</em> Please send me any enhancements and I'll add them to the zip.
