@@ -13,6 +13,7 @@ pagefind/
 
 # Generated artifacts
 homepage-critique.png
+output/*.json
 
 # Agent tools
 .impeccable/

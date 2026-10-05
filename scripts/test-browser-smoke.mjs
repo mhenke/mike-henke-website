@@ -228,14 +228,14 @@ async function runBrowserTests() {
     const copyBtnExists = await copyBtn.isVisible();
     assert(copyBtnExists, 'Copy button is visible with aria-label');
 
-    // Test manual post: found-an-smtp-spoofing-gap-with-python
-    console.log('\n--- Manual Post Verification (found-an-smtp-spoofing-gap-with-python) ---');
-    await page.goto(`http://localhost:${PORT}/blog/found-an-smtp-spoofing-gap-with-python/`, { waitUntil: 'domcontentloaded' });
-    const manualPostTitle = await page.locator('h1').textContent();
-    assert(manualPostTitle.toLowerCase().includes('smtp'), `Manual post rendered with title: "${manualPostTitle}"`);
+    // Test code block post: stump-the-cfchump-1
+    console.log('\n--- Code Block Post Verification (stump-the-cfchump-1) ---');
+    await page.goto(`http://localhost:${PORT}/blog/stump-the-cfchump-1/`, { waitUntil: 'domcontentloaded' });
+    const postTitle = await page.locator('h1').textContent();
+    assert(postTitle.toLowerCase().includes('stump'), `Post rendered with title: "${postTitle}"`);
 
-    const pythonCodeBlocks = await page.locator('.code-block code.language-python').count();
-    assert(pythonCodeBlocks > 0, `Manual post rendered Python code block (.language-python count: ${pythonCodeBlocks})`);
+    const cfCodeBlocks = await page.locator('.code-block code.language-coldfusion').count();
+    assert(cfCodeBlocks > 0, `Post rendered ColdFusion code block (.language-coldfusion count: ${cfCodeBlocks})`);
 
   } finally {
     await browser.close();

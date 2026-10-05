@@ -55,7 +55,7 @@ const posts = readdirSync(postsDir, { withFileTypes: true })
   .map(d => d.name);
 
 results.details.build.totalSourcePosts = posts.length;
-assert(posts.length === 385, `Source posts count is 385 (found ${posts.length})`, 'build');
+assert(posts.length === 384, `Source posts count is 384 (found ${posts.length})`, 'build');
 
 // 2. Redirect Stubs Quality & Crawler Compatibility
 console.log('--- 2. Redirect Stubs Quality & Crawler Compatibility ---');
@@ -125,10 +125,10 @@ if (existsSync(contactStubPath)) {
   assert(false, 'Missing contact-me stub at _site/contact-me/index.html', 'redirectStubs');
 }
 
-assert(cfmStubCount === 385, `All 385 CFM stubs exist (found ${cfmStubCount})`, 'redirectStubs');
-assert(validCfmStubs === 385, `All 385 CFM stubs have valid meta refresh, canonical, robots, fallback link`, 'redirectStubs');
-assert(rootStubCount === 385, `All 385 Root stubs exist (found ${rootStubCount})`, 'redirectStubs');
-assert(validRootStubs === 385, `All 385 Root stubs have valid meta refresh, canonical, robots, fallback link`, 'redirectStubs');
+assert(cfmStubCount === 384, `All 384 CFM stubs exist (found ${cfmStubCount})`, 'redirectStubs');
+assert(validCfmStubs === 384, `All 384 CFM stubs have valid meta refresh, canonical, robots, fallback link`, 'redirectStubs');
+assert(rootStubCount === 384, `All 384 Root stubs exist (found ${rootStubCount})`, 'redirectStubs');
+assert(validRootStubs === 384, `All 384 Root stubs have valid meta refresh, canonical, robots, fallback link`, 'redirectStubs');
 
 results.details.redirectStubs = {
   totalCfmStubs: cfmStubCount,
@@ -144,7 +144,6 @@ console.log('--- 3. Blog Post Canonical Pages & Code Blocks ---');
 let canonicalPostCount = 0;
 let postsWithCodeBlocks = 0;
 let totalCodeBlockElements = 0;
-let manualPostVerified = false;
 
 for (const slug of posts) {
   const postHtmlPath = join(siteDir, 'blog', slug, 'index.html');
@@ -172,19 +171,12 @@ for (const slug of posts) {
       assert(content.includes('class="code-copy" onclick="copyCode(this)"'), `Code block in ${slug} has copy button`, 'codeBlocks');
       assert(content.includes('<pre class="line-numbers"><code class="language-'), `Code block in ${slug} has pre code syntax`, 'codeBlocks');
     }
-
-    if (slug === 'found-an-smtp-spoofing-gap-with-python') {
-      const hasPythonCode = content.includes('language-python') && content.includes('<div class="code-block">');
-      assert(hasPythonCode, 'Manual post found-an-smtp-spoofing-gap-with-python contains rendered python code-block', 'codeBlocks');
-      manualPostVerified = true;
-    }
   } else {
     assert(false, `Missing canonical post page at _site/blog/${slug}/index.html`, 'canonicalPosts');
   }
 }
 
-assert(canonicalPostCount === 385, `All 385 canonical blog posts rendered (found ${canonicalPostCount})`, 'canonicalPosts');
-assert(manualPostVerified, 'Manual post found-an-smtp-spoofing-gap-with-python successfully verified', 'canonicalPosts');
+assert(canonicalPostCount === 384, `All 384 canonical blog posts rendered (found ${canonicalPostCount})`, 'canonicalPosts');
 
 results.details.canonicalPosts = {
   totalCanonicalPosts: canonicalPostCount,
